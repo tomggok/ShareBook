@@ -21,7 +21,7 @@
     
     int shareMePage;
     int mySharePage;
-    DragonUIImageView *_imgV_noDataTip;//无数据提示
-    DragonUILabel *_lb_noDataTip;//无数据提示
+//    DragonUIImageView *_imgV_noDataTip;//无数据提示
+//    DragonUILabel *_lb_noDataTip;//无数据提示
 }
 @end

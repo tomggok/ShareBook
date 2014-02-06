@@ -36,6 +36,7 @@
 #import "DYBActivityViewController.h"
 #import "DYBGuideView.h"
 #import "WOSPersonInfoViewController.h"
+#import "WOSALLOrderViewController.h"
 
 @interface DYBDynamicViewController ()
 {
@@ -724,9 +725,13 @@ static NSString *cellName = @"cellName";
 //        RELEASE(vc);
 
         
-        WOSPersonInfoViewController *person = [[WOSPersonInfoViewController alloc]init];
-        [self.drNavigationController pushViewController:person animated:YES];
-        RELEASE(person);
+//        WOSPersonInfoViewController *person = [[WOSPersonInfoViewController alloc]init];
+//        [self.drNavigationController pushViewController:person animated:YES];
+//        RELEASE(person);
+        
+        WOSALLOrderViewController *allOrder = [[WOSALLOrderViewController alloc]init];
+        [self.drNavigationController pushViewController:allOrder animated:YES];
+        RELEASE(allOrder);
         
     }
     

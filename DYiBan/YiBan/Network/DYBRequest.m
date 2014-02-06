@@ -270,30 +270,45 @@
     [dict removeObjectForKey:INTERFACEDOACTION];
     
     [params setValue:dict forKey:@"data"];
-    
-    [params setValue:SHARED.imei forKey:@"identify"];//等待有效的解决方案
-    
-    [params setValue:SHARED.token forKey:@"token"];
-    [params setValue:SHARED.sessionID forKey:@"sessID"];
-    DLogInfo(@"sessionID -- %@",SHARED.sessionID);
-    [params setValue:@"1" forKey:@"ct"];
-    [params setValue:SHARED.version forKey:@"v"];
-    [params setValue:@"AppStore" forKey:@"rv"];
-    [params setValue:apn forKey:@"apn"];
-    [params setValue:platom forKey:@"device"];
+//    
+//    [params setValue:SHARED.imei forKey:@"identify"];//等待有效的解决方案
+//    
+//    [params setValue:SHARED.token forKey:@"token"];
+//    [params setValue:SHARED.sessionID forKey:@"sessID"];
+//    DLogInfo(@"sessionID -- %@",SHARED.sessionID);
+//    [params setValue:@"1" forKey:@"ct"];
+//    [params setValue:SHARED.version forKey:@"v"];
+//    [params setValue:@"AppStore" forKey:@"rv"];
+//    [params setValue:apn forKey:@"apn"];
+//    [params setValue:platom forKey:@"device"];
     
     
     DLogInfo(@"parms -- > %@",params);
     
     self.requestDict = params;
     
-    NSString *jsonStr = [DragonCommentMethod encodeURL:[params JSONString]];
-    NSString *md5 = [DragonCommentMethod md5:[params JSONString]];
+    NSString *strParam = [self getUrlParams:[params objectForKey:@"data"]];
+    NSString *jsonStr = [DragonCommentMethod encodeURL:strParam];
     
-    NSString *url = [NSString stringWithFormat:@"%@?json=%@&sig=%@",sendURL, jsonStr, md5];
+    NSString *url = [NSString stringWithFormat:@"%@%@?%@",sendURL, [params objectForKey:@"do"], jsonStr];
     DLogInfo(@"%@ 接口的 url === %@",[params objectForKey:@"do"],url);
     return url;
 }
+-(NSString *)getUrlParams:(NSDictionary *)dict{
+    NSArray *arrallKey = [dict allKeys];
+    NSMutableArray *arrayStr = [[[NSMutableArray alloc]init] autorelease];
+    
+    for (int i = 0; i<dict.count; i++) {
+        NSString *key = [arrallKey objectAtIndex:i];
+       NSString *url = [NSString stringWithFormat:@"%@=%@",key, [dict objectForKey:key]];
+        [arrayStr addObject:url];
+    }
+
+    NSString* url = [arrayStr componentsJoinedByString:@"&"];
+    DLogInfo(@"url -- %@",url);
+    return url;
+}
+
 //处理锁住的Button
 - (void)handleNetworkeback
 {
@@ -339,7 +354,14 @@
         DLogInfo(@"request.responseString ----- %@",request.responseString);
         JsonResponse *respose = [JsonResponse JSONReflection:dict];
         
+        
+        [receiver handleRequest:request receiveObj:respose];
+        
+        return;
+        
         switch (respose.response)
+        
+        
         {
             case khttpsucceedCode /*| khttpfailCode*/:
             case khttpfailCode:

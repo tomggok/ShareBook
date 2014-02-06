@@ -35,6 +35,8 @@
 //#define    DenJun               @"http://221.130.201.102/mobile/index/index"
 #define    TESTDATABANK         @"http://221.130.201.102:89/api/YiBan/index_dev.php"
 
+#define    WOSLOCALHOST         @"http://10.21.138.30:8080/ios/"
+
 /////////////////////接口
 #undef INTERFACEDOACTION
 #define INTERFACEDOACTION   @"interfacedoaction"
@@ -125,6 +127,10 @@
 #define ColorBackgroundGray [DragonCommentMethod colorWithHex:@"f8f8f8"] //最淡的背景色
 #define ColorNav [DragonCommentMethod color:248 green:248 blue:248 alpha:1] //导航栏背景色
 
+#define ColorBG [DragonCommentMethod color:36 green:36 blue:36 alpha:1] //view背景色
+#define ColorTextYellow [DragonCommentMethod color:226 green:72 blue:49 alpha:1] //view背景色
+#define ColorGryWhite [DragonCommentMethod color:191 green:192 blue:191 alpha:1] //字体色
+
 ///////////////////动态Cell最大限制数
 #define DynamicLimitNum 1000
 
@@ -189,3 +195,6 @@
 #ifndef k_Note_EditingNoteName
 #define k_Note_EditingNoteName @"k_Note_EditingNoteName"  //所有账号公用的笔记缓存数据表里的字段: 正在编辑中的没点保存按钮就返回上一页时的笔记的固定名字,只有最新的一份,注销后清除
 #endif
+
+#define USERMODLE   @"usermodle"
+

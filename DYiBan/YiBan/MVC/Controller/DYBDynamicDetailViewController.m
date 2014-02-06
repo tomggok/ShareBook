@@ -29,8 +29,10 @@
 #import "comment_num_info.h"
 #import "active.h"
 #import "DYBActivityViewController.h"
-
-@interface DYBDynamicDetailViewController ()
+#import "WOSCalculateOrder.h"
+@interface DYBDynamicDetailViewController (){
+    UILabel *lableMid;
+}
 
 @end
 
@@ -97,37 +99,98 @@ DEF_SIGNAL(TRANSPARENT)//透明按钮
         nPageSize = 10;
         _bMore = NO;
         
+        
+        
+        WOSCalculateOrder *calculateView  = [[WOSCalculateOrder alloc]initWithFrame:CGRectMake(30.0f, 150.0f, 120  , 40)];
+        [self.view addSubview:calculateView];
+        RELEASE(calculateView);
+        
+        UIView *view  = [[UIView alloc]initWithFrame:CGRectMake(30.0f, 150.0f, 120.0f, 40.0f)];
+        [view setBackgroundColor:[UIColor grayColor]];
+//        [self.view addSubview:view];
+//        RELEASE(view);
+        
+        UIButton *btnLeft = [[UIButton alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 40.0f, 40.0f)];
+        [btnLeft setTitle:@"-" forState:UIControlStateNormal];
+        [btnLeft setTitle:@"-" forState:UIControlStateHighlighted];
+        [btnLeft setBackgroundColor:[UIColor redColor]];
+        [btnLeft addTarget:self action:@selector(minusFood) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:btnLeft];
+        RELEASE(btnLeft);
+        
+        lableMid = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(btnLeft.frame), 0, 40.0f, 40.0f)];
+        [lableMid setText:@"0"];
+        [lableMid setTextAlignment:NSTextAlignmentCenter];
+        [lableMid setBackgroundColor:[UIColor grayColor]];
+        [view addSubview:lableMid];
+        RELEASE(lableMid);
+        
+        
+        UIButton *btnRight = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(lableMid.frame) + CGRectGetMinX(lableMid.frame), 0.0f, 40.0f, 40.0f)];
+        [btnRight setTitle:@"+" forState:UIControlStateNormal];
+        [btnRight setTitle:@"+" forState:UIControlStateHighlighted];
+        [btnRight setBackgroundColor:[UIColor redColor]];
+        [btnRight addTarget:self action:@selector(addFood) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:btnRight];
+        RELEASE(btnRight);
+        
+        DragonUITableView *orderTableView = [[DragonUITableView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.frameHeight-self.headHeight) isNeedUpdate:YES];
+        [self.view addSubview:orderTableView];
+        RELEASE(orderTableView);
+        
+        
         _tabDynamicDetail = [[DragonUITableView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.frameHeight-self.headHeight) isNeedUpdate:YES];
         [_tabDynamicDetail setTableViewType:DTableViewSlime];
         [_tabDynamicDetail setShowsVerticalScrollIndicator:NO];
         [_tabDynamicDetail setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        [self.view addSubview:_tabDynamicDetail];
-        RELEASE(_tabDynamicDetail);
-                
-        if (!_dynamicStatus.comment_num) {//从非 DYBDynamicViewController 页跳转进来时,_dynamicStatus数据不完整,获取其完整数据并刷新页面
-            [self DYB_GetStatusDetail];
-        }else{
-            switch (nStatus) {
-                case 1://评论列表
-                    [self DYB_GetStatusCommentlist];
-                    break;
-                case 2://赞列表
-                    [self DYB_GetStatusLikelist];
-                    break;
-                case 3://转发列表
-                    [self DYB_GetStatusSharelist];
-                    break;
-                default:
-                    [self DYB_GetStatusCommentlist];
-                    break;
-            }
-        }
+//        [self.view addSubview:_tabDynamicDetail];
+//        RELEASE(_tabDynamicDetail);
         
-        //接受键盘的消息
-        [self observeNotification:[DragonUIKeyboard SHOWN]];
-        [self observeNotification:[DragonUIKeyboard HIDDEN]];        
+//        if (!_dynamicStatus.comment_num) {//从非 DYBDynamicViewController 页跳转进来时,_dynamicStatus数据不完整,获取其完整数据并刷新页面
+//            [self DYB_GetStatusDetail];
+//        }else{
+//            switch (nStatus) {
+//                case 1://评论列表
+//                    [self DYB_GetStatusCommentlist];
+//                    break;
+//                case 2://赞列表
+//                    [self DYB_GetStatusLikelist];
+//                    break;
+//                case 3://转发列表
+//                    [self DYB_GetStatusSharelist];
+//                    break;
+//                default:
+//                    [self DYB_GetStatusCommentlist];
+//                    break;
+//            }
+//        }
+//        
+//        //接受键盘的消息
+//        [self observeNotification:[DragonUIKeyboard SHOWN]];
+//        [self observeNotification:[DragonUIKeyboard HIDDEN]];        
         
     }
+}
+
+-(void)minusFood{
+
+    int numFood = [lableMid.text integerValue];
+    if (numFood == 0) {
+        
+    }else{
+    
+        numFood--;
+    }
+
+    lableMid.text = [NSString stringWithFormat:@"%d",numFood];
+}
+
+-(void)addFood{
+
+    int numFood = [lableMid.text integerValue];        
+    numFood++;
+    lableMid.text = [NSString stringWithFormat:@"%d",numFood];
+    
 }
 
 #pragma mark -

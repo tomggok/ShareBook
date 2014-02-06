@@ -10,9 +10,15 @@
 #import "DYBNaviView.h"
 #import "DYBBaseView.h"
 #import "DYBUITabbarViewController.h"
+#import "UIViewController+DragonCategory.h"
+
 @interface DYBBaseViewController : DragonViewController
 {
     DragonUITableView *_tbv;
+    
+    //无数据提示
+    DragonUIImageView *_imgV_noDataTip;//
+    DragonUILabel *_lb_noDataTip;//
 }
 AS_SIGNAL(BACKBUTTON);
 AS_SIGNAL(NEXTSTEPBUTTON);
@@ -27,6 +33,7 @@ AS_SIGNAL(NoInternetConnection)//无网
 @property (nonatomic, retain)DYBBaseView *baseView;
 @property (nonatomic, assign)DragonViewController *vc;
 @property (nonatomic, retain) DragonUITableView *tbv;
+@property (nonatomic, readonly, assign) float headViewHeight;//取得headview高度始终减去状态栏高度
 
 
 //输入框 默认字符 颜色 所属类

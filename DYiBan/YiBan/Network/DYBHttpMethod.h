@@ -424,4 +424,27 @@
 + (DragonRequest *)notes_delfile:(NSString *)fid isAlert:(BOOL)isAlert receive:(id)receive ;
 + (DragonRequest *)notes_editnote:(NSString *)nid content:(NSString *)content tagid:(NSString *)tagid/*标签id:"1,2,3,4"*/ isAlert:(BOOL)isAlert receive:(id)receive ;
 
++ (DragonRequest *)wosLongin_nickName:(NSString *)nickname passwd:(NSString *)passwd sAlert:(BOOL)isAlert receive:(id)receive ;
+
++ (DragonRequest *)wosRegion_nickName:(NSString *)nickName passwd:(NSString *)passwd sex:(NSString *)sex sAlert:(BOOL)isAlert receive:(id)receive;
+
++ (DragonRequest *)wosgoodFood_typeIndex:(NSString *)typeIndex  orderBy:(NSString *)orderBy  page:(NSString *)page count:(NSString *)count orderType:(NSString *)orderType sAlert:(BOOL)isAlert receive:(id)receive;
+
++ (DragonRequest *)wosKitchenInfo_kitchenIndex :(NSString *)kitchenIndex   userIndex :(NSString *)userIndex   hotFoodCount :(NSString *)hotFoodCount sAlert:(BOOL)isAlert receive:(id)receive;
+
+
++ (DragonRequest *)wosKitchenInfo_favorite_userIndex:(NSString *)userIndex  kitchenIndex  :(NSString *)kitchenIndex sAlert:(BOOL)isAlert receive:(id)receive;
+
++ (DragonRequest *)wosKitchenInfo_commentkitchenlist:(NSString *)kitchenIndex starLevel:(NSString *)starLevel page :(NSString *)page count:(NSString *)count sAlert:(BOOL)isAlert receive:(id)receive;
+
++ (DragonRequest *)wosKitchenInfo_foodlist:(NSString *)kitchenIndex sAlert:(BOOL)isAlert receive:(id)receive;
+
++ (DragonRequest *)wosKitchenInfo_commentadd:(NSString *)commentFor orderIndex :(NSString *)orderIndex userIndex :(NSString *)userIndex commentType :(NSString *)commentType starLevel :(NSString *)starLevel comment:(NSString *)comment sAlert:(BOOL)isAlert receive:(id)receive;
+
++ (DragonRequest *)wosKitchenInfo_searchKitch_keywords :(NSString *)keywords  page  :(NSString *)page  count  :(NSString *)count sAlert:(BOOL)isAlert receive:(id)receive;
+
+
++ (DragonRequest *)wosKitchenInfo_medeals_userIndex:(NSString *)userIndex kitchenIndex:(NSString *)kitchenIndex sAlert:(BOOL)isAlert receive:(id)receive;
+
+
 @end

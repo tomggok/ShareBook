@@ -36,8 +36,16 @@
 
 -(void)creatCell{
     
-    titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 5.0f, 150.0f, 50.0f)];
+    
+    
+    UIImageView *imageIcon = [[UIImageView alloc]initWithFrame:CGRectMake(15.0f, 0.0f, 50.0, 50.0f)];
+    [imageIcon setImage:[UIImage imageNamed:@"food1"]];
+    [self addSubview:imageIcon];
+    RELEASE(imageIcon);
+    
+    titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(70.0f, 5.0f, 150.0f, 50.0f)];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
+    [titleLabel setTextColor:ColorGryWhite];
     [self addSubview:titleLabel];
     RELEASE(titleLabel);
     
@@ -45,7 +53,10 @@
 //    [self addSubview:arrowImageView];
 //    RELEASE(arrowImageView);
     
-    
+    UIImageView *imageViewFen = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 39.0f, 320.0f, 1)];
+    [imageViewFen setImage:[UIImage imageNamed:@"个人中心_line"]];
+    [self addSubview:imageViewFen];
+    RELEASE(imageViewFen);
 }
 
 @end

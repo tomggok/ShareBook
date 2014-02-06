@@ -7,12 +7,13 @@
 //
 
 #import "DYBNaviView.h"
-
+#import "Dragon_Device.h"
 
 @interface DYBNaviView ()
 {
-    DragonUILabel *_label;
+    
     DragonUIImageView *_viewArrow;
+    DragonUILabel *_label;
 }
 @property (nonatomic, assign)CGRect titleFrame;
 
@@ -30,25 +31,34 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-    frame = CGRectMake(0, 0, 320, 44);
+    float y = 20;
+    float height = 64;
+    if ([DragonDevice sysVersion] < 7)
+    {
+        y = 0;
+        height = 44;
+    }
+    frame = CGRectMake(0, 0, 320, height);
     self = [super initWithFrame:frame];
     if (self)
     {
-        _label = [[DragonUILabel alloc] initWithFrame:CGRectMake(0, 0, 20, 43)];
+        _label = [[DragonUILabel alloc] initWithFrame:CGRectMake(0, y, 20, 43)];
         [_label setBackgroundColor:[UIColor clearColor]];
         [self setBackgroundColor:[DragonCommentMethod color:248 green:248 blue:248 alpha:1.f]];
         [self addSubview:_label];
-
+        
         UIImage *imgArrow = [UIImage imageNamed:@"title_arrow.png"];
-        _viewArrow = [[DragonUIImageView alloc] initWithFrame:CGRectMake(0, 0, imgArrow.size.width/2, imgArrow.size.height/2)];
+        _viewArrow = [[DragonUIImageView alloc] initWithFrame:CGRectMake(0, y, imgArrow.size.width/2, imgArrow.size.height/2)];
         [_viewArrow setImage:imgArrow];
         [_viewArrow setHidden:YES];
         [self addSubview:_viewArrow];
         
-        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 44, 320, .5f)];
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, y + 44, 320, .5f)];
         [_lineView setBackgroundColor:[DragonCommentMethod color:204 green:204 blue:204 alpha:1.f]];
         [self addSubview:_lineView];
         RELEASE(_lineView);
+        
+        [self setBackgroundColor:[UIColor colorWithRed:96/255.0f green:96/255.0f  blue:96/255.0f  alpha:1.0f]];
     }
     return self;
 }
@@ -62,6 +72,13 @@
 {
     [self setTitle:title font:[DYBShareinstaceDelegate DYBFoutStyle:20.f]];
 }
+
+//文字中间加省略
+- (void)setTitlelineBreakMode {
+    
+    _label.lineBreakMode = UILineBreakModeMiddleTruncation;
+}
+
 
 - (void)setTitle:(NSString *)title font:(UIFont *)font
 {

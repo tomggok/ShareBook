@@ -59,7 +59,7 @@
     UIPanGestureRecognizer *swipe = [[UIPanGestureRecognizer alloc] init];
     [swipe setDelegate:self];
     [_firstView addGestureRecognizer:swipe];
-    [swipe addTarget:self action:@selector(oneViewSwipe:)];
+//    [swipe addTarget:self action:@selector(oneViewSwipe:)];
     
     RELEASE(swipe)
 }

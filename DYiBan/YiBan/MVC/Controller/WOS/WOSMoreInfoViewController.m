@@ -48,10 +48,10 @@
     {
         //        [self.rightButton setHidden:YES];
         [self.headview setTitle:@"更多"];
-        
-        //         [self setButtonImage:self.rightButton setImage:@"btn_more_def"];
-        
-        
+        [self.headview setBackgroundColor:[UIColor colorWithRed:97.0f/255 green:97.0f/255 blue:97.0f/255 alpha:1.0]];
+        [self.headview setTitleColor:[UIColor colorWithRed:193.0f/255 green:193.0f/255 blue:193.0f/255 alpha:1.0f]];
+        [self setButtonImage:self.leftButton setImage:@"back"];
+        [self.view setBackgroundColor:ColorBG];
     }
     else if ([signal is:[DragonViewController CREATE_VIEWS]]) {
         
@@ -61,12 +61,25 @@
         
         arrayTitle = [[NSArray alloc]initWithObjects:@"告诉朋友",@"意见反馈",@"常用问题",@"关于",@"访问订餐网站", nil];
 
-        tbDataBank1 = [[UITableView alloc]initWithFrame:CGRectMake(0.0f, SEARCHBAT_HIGH + 44, 320.0f, self.view.frame.size.height - SEARCHBAT_HIGH - 44 - 20 - 70 ) style:UITableViewStyleGrouped ];
+        
+        UIImageView *tt = [[UIImageView alloc]initWithFrame:CGRectMake(20.0f, SEARCHBAT_HIGH + 44, 280.0f, self.view.frame.size.height - SEARCHBAT_HIGH - 44 - 260 )];
+
+        
+        UIImage *imageNew = [[UIImage imageNamed:@"text_area"] resizableImageWithCapInsets:UIEdgeInsetsMake(10.5, 10.5 , 10.5,10.5)];
+        [tt setImage:imageNew];
+//        [tt setBackgroundColor:[UIColor redColor]];
+        [self.view addSubview:tt];
+        RELEASE(tt);
+        
+        
+        tbDataBank1 = [[UITableView alloc]initWithFrame:CGRectMake(20.0f, SEARCHBAT_HIGH + 44, 280.0f, self.view.frame.size.height - SEARCHBAT_HIGH - 44 - 20 - 70 ) ];
         tbDataBank1.dataSource = self;
         tbDataBank1.delegate = self;
+        [tbDataBank1 setScrollEnabled:NO];
         [self.view addSubview:tbDataBank1];
         RELEASE(tbDataBank1);
         [tbDataBank1 setBackgroundColor:[UIColor clearColor]];
+        [tbDataBank1 setSeparatorColor:[UIColor clearColor]];
         
     }
     
@@ -84,9 +97,7 @@
 #pragma mark - tableviewdelete
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section/*第一次回调时系统传的section是数据源里section数量的最大值-1*/
 {
-        
-    
-    return arrayTitle.count;
+            return arrayTitle.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -103,16 +114,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell2";
-    Cell2 *cell = (Cell2*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     if (!cell) {
-        cell = [[Cell2 alloc]init];
+        cell = [[UITableViewCell alloc]init];
     }
-    cell.titleLabel.text = [arrayTitle objectAtIndex:indexPath.row];
+    cell.textLabel.text = [arrayTitle objectAtIndex:indexPath.row];
+    [cell setBackgroundColor:[UIColor clearColor]];
+    [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
+    [cell.textLabel setTextColor:ColorGryWhite];
+    UIImageView *imageViewSep = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 39, 280, 1)];
+    [imageViewSep setImage:[UIImage imageNamed:@"个人中心_line"]];
     
-//    [signal setReturnValue:cell];
-
+    [cell addSubview:imageViewSep];
+    RELEASE(imageViewSep);
     
     
     return cell;
@@ -144,7 +160,21 @@
     
 }
 
+- (void)dealloc
+{
+    
+    [super dealloc]; 
+}
 
+#pragma mark - back button signal
+- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+{
+    if ([signal is:[DYBBaseViewController BACKBUTTON]])
+    {
+        [self.drNavigationController popViewControllerAnimated:YES];
+    }else if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
+    }
+}
 
 
 @end

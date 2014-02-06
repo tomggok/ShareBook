@@ -35,6 +35,8 @@
 #import "DYBNoteDetailViewController.h"
 
 
+#import "WOSHomeViewController.h"
+
 #import "WOSPersonInfoViewController.h"
 @interface DYBUITabbarViewController ()
 {
@@ -236,27 +238,29 @@ DragonUIButton *hiddenView;
 //动态页的bar的参数
 - (NSArray *)initDynBarParams
 {
-    DYBDynamicViewController *dynVc = [[[DYBDynamicViewController alloc] init] autorelease];
-    [dynVc setVc:_vc];
+    WOSHomeViewController *homeVC = [[[WOSHomeViewController alloc]init] autorelease];
+    [homeVC setVc:_vc];
+//    DYBDynamicViewController *dynVc = [[[DYBDynamicViewController alloc] init] autorelease];
+//    [dynVc setVc:_vc];
     
-    DYBMsgViewController *msgVc = [[[DYBMsgViewController alloc]init] autorelease];
-    [msgVc setVc:_vc];
-    [msgVc initTotalNumOfUnreadMsgRequest];
+//    DYBMsgViewController *msgVc = [[[DYBMsgViewController alloc]init] autorelease];
+//    [msgVc setVc:_vc];
+//    [msgVc initTotalNumOfUnreadMsgRequest];
+//    
+//    DYBFriendsViewController *friendVc = [[[DYBFriendsViewController alloc]init] autorelease];
+//    friendVc.b_isInMainPage=YES;
+//    [friendVc setVc:_vc];
+//    
+//    DYBSearchFriendsViewController *searchFriendVc = [[[DYBSearchFriendsViewController alloc]init] autorelease];
+//    searchFriendVc.b_isInMainPage = YES;
+//    [searchFriendVc setVc:_vc];
+//    
+//    //回来改成个人主页
+//    DYBPersonalHomePageViewController *peopleVC = [[[DYBPersonalHomePageViewController alloc] init] autorelease];
+//    peopleVC.b_isInMainPage=YES;
+//    [peopleVC setVc:_vc];
     
-    DYBFriendsViewController *friendVc = [[[DYBFriendsViewController alloc]init] autorelease];
-    friendVc.b_isInMainPage=YES;
-    [friendVc setVc:_vc];
-    
-    DYBSearchFriendsViewController *searchFriendVc = [[[DYBSearchFriendsViewController alloc]init] autorelease];
-    searchFriendVc.b_isInMainPage = YES;
-    [searchFriendVc setVc:_vc];
-    
-    //回来改成个人主页
-    DYBPersonalHomePageViewController *peopleVC = [[[DYBPersonalHomePageViewController alloc] init] autorelease];
-    peopleVC.b_isInMainPage=YES;
-    [peopleVC setVc:_vc];
-    
-    NSArray *arrayVC = [NSArray arrayWithObjects:dynVc, msgVc, friendVc, searchFriendVc, peopleVC, nil];
+    NSArray *arrayVC = [NSArray arrayWithObjects:homeVC, nil];
     
     
     NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
@@ -410,7 +414,7 @@ DragonUIButton *hiddenView;
     
     
     self.DB.FROM(KDATABANKDOWNLIST).WHERE(@"type", @"1").WHERE(@"userid", SHARED.userId).GET(); 
-    [self addAndRefreshTotalMsgView: self.DB.resultArray.count];
+//    [self addAndRefreshTotalMsgView: self.DB.resultArray.count];
     
     [self changeMsgTotalFrame];
     
@@ -551,27 +555,27 @@ DragonUIButton *hiddenView;
 #pragma mark-添加|刷新 总消息数view
 -(void)addAndRefreshTotalMsgView:(int)num
 {
-    if (num==0 || (selectBtIndex!=0 && selectBtIndex!=3)/*只在选择了 社区||资料库 时 创建*/) {
-        if (_v_totalNumOfUnreadMsg) {
-            _v_totalNumOfUnreadMsg.hidden=YES;
-        }
-        return;
-    }
-    
-    _v_totalNumOfUnreadMsg.hidden = NO; //防止在切换中隐藏
-    
-        if (!_v_totalNumOfUnreadMsg) {
-            UIImage *img=[UIImage imageNamed:@"tabtip_bottom"];
-            int a=(_containerView.tabBar.frame.size.width/5);//一个tab的宽
-            _v_totalNumOfUnreadMsg=[[DYBUnreadMsgView alloc]initWithFrame:CGRectMake(a*2-a/2-a/4-4, _containerView.tabBar.frame.origin.y-10, 0, 0) img:img nums:[NSString stringWithFormat:@"%d",num] arrowDirect:2];
-            [_containerView addSubview:_v_totalNumOfUnreadMsg];
-            RELEASE(_v_totalNumOfUnreadMsg);
-//            _containerView.tabBar.hidden=YES;
-            [_containerView.tabBar addObserverObj:_v_totalNumOfUnreadMsg forKeyPath:@"frame" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:[DragonUITabBar class]];
-        }else{
-            UIImage *img=[UIImage imageNamed:@"tabtip_bottom"];
-            [_v_totalNumOfUnreadMsg refreshByimg:img nums:[NSString stringWithFormat:@"%d",num]];
-        }
+//    if (num==0 || (selectBtIndex!=0 && selectBtIndex!=3)/*只在选择了 社区||资料库 时 创建*/) {
+//        if (_v_totalNumOfUnreadMsg) {
+//            _v_totalNumOfUnreadMsg.hidden=YES;
+//        }
+//        return;
+//    }
+//    
+//    _v_totalNumOfUnreadMsg.hidden = NO; //防止在切换中隐藏
+//    
+//        if (!_v_totalNumOfUnreadMsg) {
+//            UIImage *img=[UIImage imageNamed:@"tabtip_bottom"];
+//            int a=(_containerView.tabBar.frame.size.width/5);//一个tab的宽
+//            _v_totalNumOfUnreadMsg=[[DYBUnreadMsgView alloc]initWithFrame:CGRectMake(a*2-a/2-a/4-4, _containerView.tabBar.frame.origin.y-10, 0, 0) img:img nums:[NSString stringWithFormat:@"%d",num] arrowDirect:2];
+//            [_containerView addSubview:_v_totalNumOfUnreadMsg];
+//            RELEASE(_v_totalNumOfUnreadMsg);
+////            _containerView.tabBar.hidden=YES;
+//            [_containerView.tabBar addObserverObj:_v_totalNumOfUnreadMsg forKeyPath:@"frame" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:[DragonUITabBar class]];
+//        }else{
+//            UIImage *img=[UIImage imageNamed:@"tabtip_bottom"];
+//            [_v_totalNumOfUnreadMsg refreshByimg:img nums:[NSString stringWithFormat:@"%d",num]];
+//        }
 }
 
 -(void)changeMsgTotalFrame{

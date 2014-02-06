@@ -11,8 +11,8 @@
 #import "UserSettingMode.h"
 
 @interface DYBBaseViewController ()
-
-
+{
+}
 @end
 
 @implementation DYBBaseViewController
@@ -20,12 +20,23 @@
 @synthesize baseView = _baseView;
 @synthesize vc = _vc;
 @synthesize tbv = _tbv;
+@synthesize headViewHeight = _headViewHeight;
 
 @synthesize headHeight, frameHeight, frameY;
 
 DEF_SIGNAL(BACKBUTTON);
 DEF_SIGNAL(NEXTSTEPBUTTON)
 DEF_SIGNAL(NoInternetConnection)//无网
+
+- (float)headViewHeight
+{
+    float h = CGRectGetHeight(_headview.frame);
+    if ([DragonDevice sysVersion] >= 7)
+    {
+        h -= 20;
+    }
+    return h;
+}
 
 - (void)viewDidLoad
 {
@@ -37,12 +48,22 @@ DEF_SIGNAL(NoInternetConnection)//无网
 //    [barColorView setBackgroundColor:[UIColor yellowColor]];
 //    [self.view addSubview:barColorView];
 //    RELEASE(barColorView);
-
+    
     _headview = [[DYBNaviView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    _leftButton = [[DragonUIButton alloc] initWithFrame:CGRectMake(0, 0, 60, CGRectGetHeight(_headview.frame))];
+    
+    float y = 0;
+    if ([DragonDevice sysVersion] >= 7)
+    {
+        y = 20;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= IOS_7        
+//        self.automaticallyAdjustsScrollViewInsets = NO;
+#endif
+    }
+    
+    _leftButton = [[DragonUIButton alloc] initWithFrame:CGRectMake(0, y, 60, self.headViewHeight)];
     
     //临时
-    _rightButton = [[DragonUIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-60, 0, 60, CGRectGetHeight(_headview.frame))];
+    _rightButton = [[DragonUIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-60, y, 60,  self.headViewHeight)];
     [_rightButton addSignal:[DYBBaseViewController NEXTSTEPBUTTON] forControlEvents:UIControlEventTouchUpInside];
     
 //    [_headview setTitle:@"登陆"];
@@ -57,6 +78,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
     RELEASE(_rightButton);
     
     [self.view addSubview:_headview];
+
     RELEASE(_headview);
     
     [self setVCBackAnimation:SWIPELASTIMAGEBACKTYPE canBackPageNumber:2];
@@ -74,6 +96,17 @@ DEF_SIGNAL(NoInternetConnection)//无网
         RELEASE(_baseView);
     }
     return _baseView;
+}
+
+//适配ios7 偏移
+- (float)getOffset {
+    
+    float y = 0;
+    if ([DragonDevice sysVersion] >= 7)
+    {
+        y = 20;
+    }
+    return y;
 }
 
 //根据不同页面自动变换BT的样式
@@ -268,16 +301,22 @@ DEF_SIGNAL(NoInternetConnection)//无网
 - (CGFloat)frameHeight
 {
     CGSize mainSize = MAINSIZE;
-    return mainSize.height;
+    float height = mainSize.height;
+    /*if ([DragonDevice sysVersion] >= 7)
+    {
+        height += 20;
+    }*/
+    return height;
 }
 
 //获得vc的header的高度
 - (float)headHeight
 {
     float screenY = 44;
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
-    screenY += 20;
-#endif
+    if ([DragonDevice sysVersion] >= 7)
+    {
+        screenY += 20;
+    }
     
     return screenY;
 }
@@ -343,17 +382,18 @@ DEF_SIGNAL(NoInternetConnection)//无网
     }
     if (qu == 3 && image.size.width*image.size.height >= 320*480) {//高
         
-        data= [self CompressPicturesMoreThanKB:1000 Img:image imgData:[self UIImageToNSData:image compressionQuality:1]];
+         data = UIImageJPEGRepresentation(image, 0.9);
+//        data= [self CompressPicturesMoreThanKB:1000 Img:image imgData:[self UIImageToNSData:image compressionQuality:1]];
         
     } else if(qu == 2 && (image.size.width*image.size.height)/0.49 >= 320*480)//中
     {
-        //        data = UIImageJPEGRepresentation(imageView.image, 0.8);
-        data= [self CompressPicturesMoreThanKB:400 Img:image imgData:[self UIImageToNSData:image compressionQuality:1]];
+        data = UIImageJPEGRepresentation(image, 0.8);
+//        data= [self CompressPicturesMoreThanKB:400 Img:image imgData:[self UIImageToNSData:image compressionQuality:1]];
         
     } else if(qu == 1 && (image.size.width*image.size.height)/0.25 >= 320*480)//图片质量低
     {
-        //        data = UIImageJPEGRepresentation(imageView.image, 0.7);
-        data= [self CompressPicturesMoreThanKB:100 Img:image imgData:[self UIImageToNSData:image compressionQuality:1]];
+        data = UIImageJPEGRepresentation(image, 0.7);
+//        data= [self CompressPicturesMoreThanKB:100 Img:image imgData:[self UIImageToNSData:image compressionQuality:1]];
         
     }
     else {//自动

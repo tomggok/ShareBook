@@ -1496,6 +1496,104 @@
     DragonRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
     return dre;
 }
+
+
++ (DragonRequest *)wosLongin_nickName:(NSString *)nickname passwd:(NSString *)passwd sAlert:(BOOL)isAlert receive:(id)receive{
+    
+    NSMutableDictionary *dict = [DYBHttpInterface wosLogin_nickName:nickname passwd:passwd];
+    DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
+    DragonRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
+    return dre;
+
+
+}
+
++ (DragonRequest *)wosRegion_nickName:(NSString *)nickName passwd:(NSString *)passwd sex:(NSString *)sex sAlert:(BOOL)isAlert receive:(id)receive{
+
+    NSMutableDictionary *dict = [DYBHttpInterface wosRegion_nickName:nickName passwd:passwd sex:sex];
+    DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
+    DragonRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
+    return dre;
+    
+}
+
+
++ (DragonRequest *)wosgoodFood_typeIndex:(NSString *)typeIndex  orderBy:(NSString *)orderBy  page:(NSString *)page count:(NSString *)count orderType:(NSString *)orderType sAlert:(BOOL)isAlert receive:(id)receive{
+
+    NSMutableDictionary *dict = [DYBHttpInterface wosgoodFood_typeIndex:typeIndex orderBy:orderBy page:page count:count orderType:orderType];
+    DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
+    DragonRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
+    return dre;
+
+}
+
+
+
++ (DragonRequest *)wosKitchenInfo_kitchenIndex :(NSString *)kitchenIndex   userIndex :(NSString *)userIndex   hotFoodCount :(NSString *)hotFoodCount sAlert:(BOOL)isAlert receive:(id)receive{
+
+    NSMutableDictionary *dict = [DYBHttpInterface wosKitchenInfo_kitchenIndex:kitchenIndex userIndex:userIndex hotFoodCount:hotFoodCount];
+    DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
+    DragonRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
+    return dre;
+
+}
+
++ (DragonRequest *)wosKitchenInfo_favorite_userIndex:(NSString *)userIndex  kitchenIndex  :(NSString *)kitchenIndex sAlert:(BOOL)isAlert receive:(id)receive{
+
+    NSMutableDictionary *dict = [DYBHttpInterface wosKitchenInfo_favorite_userIndex:userIndex kitchenIndex:kitchenIndex];
+    DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
+    DragonRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
+    return dre;
+
+}
+
+
++ (DragonRequest *)wosKitchenInfo_commentkitchenlist:(NSString *)kitchenIndex starLevel:(NSString *)starLevel page :(NSString *)page count:(NSString *)count sAlert:(BOOL)isAlert receive:(id)receive{
+    
+    NSMutableDictionary *dict = [DYBHttpInterface wosKitchenInfo_commentkitchenlist:kitchenIndex starLevel:starLevel page:page count:count];
+    DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
+    DragonRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
+    return dre;
+
+}
+
++ (DragonRequest *)wosKitchenInfo_foodlist:(NSString *)kitchenIndex sAlert:(BOOL)isAlert receive:(id)receive{
+    
+    NSMutableDictionary *dict = [DYBHttpInterface wosKitchenInfo_foodlist:kitchenIndex];
+    DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
+    DragonRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
+    return dre;
+
+
+}
+
++ (DragonRequest *)wosKitchenInfo_commentadd:(NSString *)commentFor orderIndex :(NSString *)orderIndex userIndex :(NSString *)userIndex commentType :(NSString *)commentType starLevel :(NSString *)starLevel comment:(NSString *)comment sAlert:(BOOL)isAlert receive:(id)receive{
+
+    NSMutableDictionary *dict = [DYBHttpInterface wosKitchenInfo_commentadd:commentFor orderIndex:orderIndex userIndex:userIndex commentType:commentType starLevel:starLevel comment:comment];
+    DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
+    DragonRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
+    return dre;
+
+
+}
+
++ (DragonRequest *)wosKitchenInfo_searchKitch_keywords :(NSString *)keywords  page  :(NSString *)page  count  :(NSString *)count sAlert:(BOOL)isAlert receive:(id)receive{
+
+    NSMutableDictionary *dict = [DYBHttpInterface wosKitchenInfo_searchKitch_keywords:keywords page:page count:count];
+    DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
+    DragonRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
+    return dre;
+
+}
+
++ (DragonRequest *)wosKitchenInfo_medeals_userIndex:(NSString *)userIndex kitchenIndex:(NSString *)kitchenIndex sAlert:(BOOL)isAlert receive:(id)receive{
+
+    NSMutableDictionary *dict = [DYBHttpInterface wosKitchenInfo_medeals_userIndex:userIndex kitchenIndex:kitchenIndex];
+    DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
+    DragonRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
+    return dre;
+
+}
 @end
 
 

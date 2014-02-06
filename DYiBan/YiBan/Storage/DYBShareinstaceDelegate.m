@@ -361,6 +361,12 @@ static DYBShareinstaceDelegate *sharedInstace = nil;
     .FIELD(@"page",@"TEXT")
     .CREATE_IF_NOT_EXISTS();
     
+    
+    self.DB.TABLE(USERMODLE)
+    .FIELD(@"userInfo",@"TEXT")
+    .FIELD(@"userIndex",@"TEXT")
+    .CREATE_IF_NOT_EXISTS();
+    
 }
 
 

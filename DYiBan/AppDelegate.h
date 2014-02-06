@@ -10,7 +10,7 @@
 
 //#import "BMapKit.h" /*百度地图Marker*/
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate/*, BMKGeneralDelegate 百度地图Marker*/,UIScrollViewDelegate>{
+@interface AppDelegate : UIResponder <UIApplicationDelegate/*, BMKGeneralDelegate*/,UIScrollViewDelegate>{
 //    BMKMapManager* _mapManager;/*百度地图Marker*/
 }
 

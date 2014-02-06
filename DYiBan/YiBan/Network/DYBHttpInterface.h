@@ -430,4 +430,32 @@
 + (NSMutableDictionary *)notes_delfile:(NSString *)fid;
 + (NSMutableDictionary *)notes_editnote:(NSString *)nid content:(NSString *)content tagid:(NSString *)tagid/*标签id:"1,2,3,4"*/;
 
++ (NSMutableDictionary *)wosLogin_nickName:(NSString *)nickName passwd:(NSString *)passwd;
+
++ (NSMutableDictionary *)wosRegion_nickName:(NSString *)nickName passwd:(NSString *)passwd sex:(NSString *)sex;
+
+
++ (NSMutableDictionary *)wosgoodFood_typeIndex:(NSString *)typeIndex  orderBy:(NSString *)orderBy  page:(NSString *)page count:(NSString *)count orderType:(NSString *)orderType;
+
++ (NSMutableDictionary *)wosKitchenInfo_kitchenIndex :(NSString *)kitchenIndex   userIndex :(NSString *)userIndex   hotFoodCount :(NSString *)hotFoodCount;
+
++ (NSMutableDictionary *)wosKitchenInfo_kitchenComment_commentFor :(NSString *)commentFor    orderIndex :(NSString *)orderIndex    userIndex :(NSString *)userIndex commentType  :(NSString *)commentType     starLevel  :(NSString *)starLevel  comment  :(NSString *)comment ;
+//favorite/add.do
+
++ (NSMutableDictionary *)wosKitchenInfo_favorite_userIndex:(NSString *)userIndex  kitchenIndex  :(NSString *)kitchenIndex;
+
+///comment/kitchen/list.do
+
++ (NSMutableDictionary *)wosKitchenInfo_commentkitchenlist:(NSString *)kitchenIndex starLevel:(NSString *)starLevel page :(NSString *)page  count:(NSString *)count;
+
+
++ (NSMutableDictionary *)wosKitchenInfo_foodlist:(NSString *)kitchenIndex;
+
++ (NSMutableDictionary *)wosKitchenInfo_commentadd:(NSString *)commentFor orderIndex :(NSString *)orderIndex userIndex :(NSString *)userIndex commentType :(NSString *)commentType starLevel :(NSString *)starLevel comment:(NSString *)comment;
+///search/kitchen.do
++ (NSMutableDictionary *)wosKitchenInfo_searchKitch_keywords :(NSString *)keywords  page  :(NSString *)page  count  :(NSString *)count ;
+
+//me/deals.do
++ (NSMutableDictionary *)wosKitchenInfo_medeals_userIndex:(NSString *)userIndex kitchenIndex:(NSString *)kitchenIndex;
+
 @end

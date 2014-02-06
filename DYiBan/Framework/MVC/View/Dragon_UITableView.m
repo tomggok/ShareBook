@@ -272,6 +272,8 @@ DEF_SIGNAL(TAbLEVIERETOUCH)//touch事件
         if (isNeedUpdate)
         {
             [self initSignView:self.frame];
+            [self.headerView setHidden:YES];
+            [self.footerView setHidden:YES];
         }
         
         

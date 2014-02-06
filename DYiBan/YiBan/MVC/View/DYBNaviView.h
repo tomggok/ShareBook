@@ -36,4 +36,7 @@
 
 //设置箭头旋转
 - (void)setTitleArrowStatus:(BOOL)bReversal;
+
+//文字中间加省略
+- (void)setTitlelineBreakMode;
 @end

@@ -38,7 +38,7 @@
         [self.headview setTitle:@"电子优惠券"];
         
         //         [self setButtonImage:self.rightButton setImage:@"btn_more_def"];
-        
+        [self setButtonImage:self.leftButton setImage:@"back"];
         
     }
     else if ([signal is:[DragonViewController CREATE_VIEWS]]) {
@@ -70,10 +70,24 @@
     }
 }
 
+- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+{
+    if ([signal is:[DYBBaseViewController BACKBUTTON]])
+    {
+        [self.drNavigationController popViewControllerAnimated:YES];
+    }else if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
+    }
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)dealloc
+{
+    
+    [super dealloc];
+}
 @end

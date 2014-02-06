@@ -10,4 +10,6 @@
 
 @interface WOSALLOrderViewController : DYBBaseViewController
 
+
+@property (nonatomic,retain)NSDictionary *dictInfo;
 @end

@@ -417,19 +417,19 @@ static NSMutableArray *_arr_allViewController;
 {
     if (animationType == NORAMLBACKTYPE)
     {
-        self.drNavigationController.needSwipeBackSCRAnimation = NO;
-        self.drNavigationController.needSwipeBackIMGAnimation = NO;
+//        self.drNavigationController.needSwipeBackSCRAnimation = NO;
+//        self.drNavigationController.needSwipeBackIMGAnimation = NO;
     }else if (animationType == SWIPESCROLLERBACKTYPE)
     {
-        self.drNavigationController.needSwipeBackSCRAnimation = YES;
-        self.drNavigationController.needSwipeBackIMGAnimation = NO;
+//        self.drNavigationController.needSwipeBackSCRAnimation = YES;
+//        self.drNavigationController.needSwipeBackIMGAnimation = NO;
     }else if (animationType == SWIPELASTIMAGEBACKTYPE)
     {
-        self.drNavigationController.needSwipeBackSCRAnimation = NO;
-        self.drNavigationController.needSwipeBackIMGAnimation = YES;
+//        self.drNavigationController.needSwipeBackSCRAnimation = NO;
+//        self.drNavigationController.needSwipeBackIMGAnimation = YES;
     }
     
-    [[self drNavigationController] setPageNumberCantBack:number];
+//    [[self drNavigationController] setPageNumberCantBack:number];
 }
 
 @end

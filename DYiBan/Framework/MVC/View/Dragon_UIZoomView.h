@@ -51,5 +51,6 @@ AS_SIGNAL(DOUBLE_TAPPED)
 - (void)layoutContent;
 - (void)layoutContentRotated;
 - (void)setContent:(UIView *)content animated:(BOOL)animated;
+CGSize AspectFitSize(CGSize size, CGSize bound);
 
 @end

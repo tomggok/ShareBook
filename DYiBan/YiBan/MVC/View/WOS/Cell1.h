@@ -8,4 +8,5 @@
 @property (nonatomic,retain) UIImageView *arrowImageView;
 
 - (void)changeArrowWithUp:(BOOL)up;
+-(void)setIconImage:(int)num;
 @end

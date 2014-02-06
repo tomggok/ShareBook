@@ -1860,5 +1860,133 @@
  *notes_systemtime
  */
 
++ (NSMutableDictionary *)wosLogin_nickName:(NSString *)nickName passwd:(NSString *)passwd{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:nickName forKey:@"nickName"];
+    [dict setValue:passwd forKey:@"passwd"];
+    [dict setValue:@"me/login.do" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+
+
++ (NSMutableDictionary *)wosRegion_nickName:(NSString *)nickName passwd:(NSString *)passwd sex:(NSString *)sex{
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:nickName forKey:@"nickName"];
+    [dict setValue:passwd forKey:@"passwd"];
+    [dict setValue:sex  forKey:@"sex"];
+    [dict setValue:@"me/add.do" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+
++ (NSMutableDictionary *)wosgoodFood_typeIndex:(NSString *)typeIndex  orderBy:(NSString *)orderBy  page:(NSString *)page count:(NSString *)count orderType:(NSString *)orderType{
+    
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:typeIndex forKey:@"typeIndex"];
+    [dict setValue:orderBy forKey:@"orderBy"];
+    [dict setValue:orderType forKey:@"orderType"];
+    [dict setValue:page  forKey:@"page"];
+    [dict setValue:count forKey:@"count"];
+    [dict setValue:@"kitchen/list.do" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+//kitchen/info.do
+
++ (NSMutableDictionary *)wosKitchenInfo_kitchenIndex :(NSString *)kitchenIndex   userIndex :(NSString *)userIndex   hotFoodCount :(NSString *)hotFoodCount  {
+    
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:kitchenIndex forKey:@"kitchenIndex"];
+    [dict setValue:userIndex forKey:@"userIndex"];
+    [dict setValue:hotFoodCount forKey:@"hotFoodCount"];
+    [dict setValue:@"kitchen/info.do" forKey:INTERFACEDOACTION];
+    return dict;
+    
+}
+
+
+
+
++ (NSMutableDictionary *)wosKitchenInfo_favorite_userIndex:(NSString *)userIndex  kitchenIndex  :(NSString *)kitchenIndex{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:userIndex forKey:@"userIndex"];
+    [dict setValue:kitchenIndex forKey:@"kitchenIndex"];
+    [dict setValue:@"favorite/add.do" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+
+
++ (NSMutableDictionary *)wosKitchenInfo_commentkitchenlist:(NSString *)kitchenIndex starLevel:(NSString *)starLevel page :(NSString *)page count:(NSString *)count{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    
+    if (![starLevel isEqualToString:@"0"]) {
+        [dict setValue:starLevel forKey:@"starLevel"];
+    }
+    
+    [dict setValue:kitchenIndex forKey:@"kitchenIndex"];
+    [dict setValue:page forKey:@"page"];
+    [dict setValue:count forKey:@"count"];
+    [dict setValue:@"comment/kitchen/list.do" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+//food/list.do
++ (NSMutableDictionary *)wosKitchenInfo_foodlist:(NSString *)kitchenIndex{
+    
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:kitchenIndex  forKey:@"kitchenIndex"];
+
+    [dict setValue:@"food/list.do" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+
+
++ (NSMutableDictionary *)wosKitchenInfo_commentadd:(NSString *)commentFor orderIndex :(NSString *)orderIndex userIndex :(NSString *)userIndex commentType :(NSString *)commentType starLevel :(NSString *)starLevel comment:(NSString *)comment{
+    
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    
+    [dict setValue:commentFor  forKey:@"commentFor"];
+    
+//    if (![commentType isEqualToString:@"1"]) {
+    
+        [dict setValue:orderIndex  forKey:@"orderIndex"];
+//    }
+    
+    [dict setValue:userIndex  forKey:@"userIndex"];
+    [dict setValue:commentType  forKey:@"commentType"];
+    [dict setValue:starLevel  forKey:@"starLevel"];
+    [dict setValue:comment  forKey:@"comment"];
+    
+    [dict setValue:@"food/list.do" forKey:INTERFACEDOACTION];
+    return dict;
+    
+}
+
+
++ (NSMutableDictionary *)wosKitchenInfo_searchKitch_keywords :(NSString *)keywords  page  :(NSString *)page  count  :(NSString *)count {
+    
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:keywords  forKey:@"keywords"];
+    [dict setValue:page  forKey:@"page"];
+    [dict setValue:count  forKey:@"count"];
+    [dict setValue:@"search/kitchen.do" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+
++ (NSMutableDictionary *)wosKitchenInfo_medeals_userIndex:(NSString *)userIndex kitchenIndex:(NSString *)kitchenIndex{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:userIndex  forKey:@"userIndex"];
+    [dict setValue:kitchenIndex  forKey:@"kitchenIndex"];
+    [dict setValue:@"me/deals.do" forKey:INTERFACEDOACTION];
+    return dict;
+}
 
 @end
