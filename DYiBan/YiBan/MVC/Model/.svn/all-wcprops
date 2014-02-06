@@ -1,0 +1,1295 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/eclass-mobile/!svn/ver/10908/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model
+END
+photoList.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/eclass-mobile/!svn/ver/8885/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/photoList.m
+END
+contact.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/eclass-mobile/!svn/ver/8099/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/contact.h
+END
+eclass_detail_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/eclass_detail_list.m
+END
+UserLoginModel.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/UserLoginModel.m
+END
+sign_datelog.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/sign_datelog.h
+END
+contact.m
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/contact.m
+END
+recommendfriend.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/recommendfriend.h
+END
+comment.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/comment.h
+END
+sign_datelog.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/sign_datelog.m
+END
+eclass_topiclist.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/eclass-mobile/!svn/ver/8954/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/eclass_topiclist.h
+END
+user_birthday.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/eclass-mobile/!svn/ver/9363/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/user_birthday.h
+END
+recommendfriend.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/recommendfriend.m
+END
+status_detail_other.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/eclass-mobile/!svn/ver/10824/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/status_detail_other.h
+END
+comment.m
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/comment.m
+END
+ChineseToPinyin.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/ChineseToPinyin.h
+END
+eclass_topiclist.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/eclass-mobile/!svn/ver/8954/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/eclass_topiclist.m
+END
+user_birthday.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/eclass-mobile/!svn/ver/9363/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/user_birthday.m
+END
+status_detail_other.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/eclass-mobile/!svn/ver/10824/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/status_detail_other.m
+END
+sign_info.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/sign_info.h
+END
+ChineseToPinyin.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/ChineseToPinyin.m
+END
+user.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/eclass-mobile/!svn/ver/9346/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/user.h
+END
+sign_info.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/sign_info.m
+END
+good_num_info.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/eclass-mobile/!svn/ver/8807/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/good_num_info.h
+END
+user.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/eclass-mobile/!svn/ver/9293/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/user.m
+END
+albums.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/eclass-mobile/!svn/ver/7817/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/albums.h
+END
+notes_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/10455/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/notes_list.h
+END
+good_num_info.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/eclass-mobile/!svn/ver/8807/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/good_num_info.m
+END
+albums.m
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/albums.m
+END
+notes_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/10455/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/notes_list.m
+END
+friends.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/eclass-mobile/!svn/ver/9555/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/friends.h
+END
+user_avatardolist.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/eclass-mobile/!svn/ver/9355/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/user_avatardolist.h
+END
+YiBanApp_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/eclass-mobile/!svn/ver/7817/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/YiBanApp_list.h
+END
+friends.m
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/eclass-mobile/!svn/ver/9555/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/friends.m
+END
+ext.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/eclass-mobile/!svn/ver/8948/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/ext.h
+END
+user_avatardolist.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/eclass-mobile/!svn/ver/9355/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/user_avatardolist.m
+END
+Review.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/eclass-mobile/!svn/ver/7910/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/Review.h
+END
+bannerList.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/bannerList.h
+END
+YiBanApp_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/YiBanApp_list.m
+END
+ext.m
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/eclass-mobile/!svn/ver/8513/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/ext.m
+END
+Review.m
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/Review.m
+END
+bannerList.m
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/bannerList.m
+END
+list.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/eclass-mobile/!svn/ver/7817/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/list.h
+END
+chat.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/eclass-mobile/!svn/ver/10482/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/chat.h
+END
+scrollerData.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/eclass-mobile/!svn/ver/8228/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/scrollerData.h
+END
+list.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/list.m
+END
+sign_user.mm
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/sign_user.mm
+END
+chat.m
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/eclass-mobile/!svn/ver/10482/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/chat.m
+END
+scrollerData.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/eclass-mobile/!svn/ver/8228/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/scrollerData.m
+END
+Status_detail_follow.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/eclass-mobile/!svn/ver/10824/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/Status_detail_follow.h
+END
+album_piclist.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/eclass-mobile/!svn/ver/7817/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/album_piclist.h
+END
+Status_detail_follow.m
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/eclass-mobile/!svn/ver/10824/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/Status_detail_follow.m
+END
+album_piclist.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/album_piclist.m
+END
+ma.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/eclass-mobile/!svn/ver/8308/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/ma.h
+END
+msg_count.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/eclass-mobile/!svn/ver/7910/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/msg_count.h
+END
+ma.m
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/eclass-mobile/!svn/ver/8308/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/ma.m
+END
+msg_count.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/eclass-mobile/!svn/ver/7910/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/msg_count.m
+END
+news_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/news_list.h
+END
+security_verifyauthcode.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/security_verifyauthcode.h
+END
+action_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/action_list.h
+END
+eclass.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/eclass-mobile/!svn/ver/8921/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/eclass.h
+END
+news_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/news_list.m
+END
+action_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/action_list.m
+END
+userRegistModel.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/eclass-mobile/!svn/ver/8271/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/userRegistModel.h
+END
+security_verifyauthcode.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/security_verifyauthcode.m
+END
+eclass_managelist.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/eclass_managelist.h
+END
+eclass.m
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/eclass-mobile/!svn/ver/9410/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/eclass.m
+END
+sgin_days.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/sgin_days.h
+END
+userRegistModel.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/eclass-mobile/!svn/ver/8271/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/userRegistModel.m
+END
+school_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/school_list.h
+END
+eclass_managelist.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/eclass_managelist.m
+END
+charts.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/eclass-mobile/!svn/ver/7817/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/charts.h
+END
+sgin_days.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/sgin_days.m
+END
+GTMDefines.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/eclass-mobile/!svn/ver/8857/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/GTMDefines.h
+END
+school_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/school_list.m
+END
+charts.m
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/charts.m
+END
+sgin_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/sgin_list.h
+END
+pics.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/eclass-mobile/!svn/ver/8807/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/pics.h
+END
+tags.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/tags.h
+END
+sgin_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/sgin_list.m
+END
+StatusListModel.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/StatusListModel.h
+END
+tags.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/tags.m
+END
+pics.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/eclass-mobile/!svn/ver/8807/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/pics.m
+END
+notesUserinfo.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/eclass-mobile/!svn/ver/10210/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/notesUserinfo.h
+END
+status_notice_model.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/eclass-mobile/!svn/ver/9182/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/status_notice_model.h
+END
+banner.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/banner.h
+END
+StatusListModel.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/StatusListModel.m
+END
+notesUserinfo.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/eclass-mobile/!svn/ver/10210/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/notesUserinfo.m
+END
+status_notice_model.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/status_notice_model.m
+END
+banner.m
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/banner.m
+END
+guest_list_all.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/eclass-mobile/!svn/ver/7817/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/guest_list_all.h
+END
+file_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/eclass-mobile/!svn/ver/10699/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/file_list.h
+END
+active.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/eclass-mobile/!svn/ver/10473/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/active.h
+END
+notice_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/notice_list.h
+END
+NSDate+Helpers.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/eclass-mobile/!svn/ver/8753/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/NSDate+Helpers.h
+END
+charts_total_all.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/eclass-mobile/!svn/ver/7817/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/charts_total_all.h
+END
+guest_list_all.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/guest_list_all.m
+END
+file_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/eclass-mobile/!svn/ver/10699/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/file_list.m
+END
+active.m
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/eclass-mobile/!svn/ver/10473/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/active.m
+END
+notice_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/notice_list.m
+END
+NSDate+Helpers.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/eclass-mobile/!svn/ver/8753/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/NSDate+Helpers.m
+END
+charts_total_all.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/charts_total_all.m
+END
+security_cert.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/eclass-mobile/!svn/ver/8347/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/security_cert.h
+END
+friends_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/friends_list.h
+END
+addfriendReq.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/addfriendReq.h
+END
+security_cert.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/eclass-mobile/!svn/ver/8347/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/security_cert.m
+END
+friends_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/friends_list.m
+END
+GTMBase64.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/eclass-mobile/!svn/ver/8857/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/GTMBase64.h
+END
+college_list_all.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/eclass-mobile/!svn/ver/7817/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/college_list_all.h
+END
+addfriendReq.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/addfriendReq.m
+END
+sign_user.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/sign_user.h
+END
+news_detail.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/news_detail.h
+END
+GTMBase64.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/eclass-mobile/!svn/ver/8857/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/GTMBase64.m
+END
+college_list_all.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/college_list_all.m
+END
+eclasses.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/eclasses.h
+END
+news_detail.m
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/news_detail.m
+END
+college_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/eclass-mobile/!svn/ver/7817/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/college_list.h
+END
+eclasses.m
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/eclasses.m
+END
+college_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/college_list.m
+END
+friend_request_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/friend_request_list.h
+END
+Tag.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/eclass-mobile/!svn/ver/10193/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/Tag.h
+END
+friend_request_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/friend_request_list.m
+END
+Tag.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/eclass-mobile/!svn/ver/10176/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/Tag.m
+END
+XiTongFaceCode.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/eclass-mobile/!svn/ver/8024/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/XiTongFaceCode.h
+END
+reqlist.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/eclass-mobile/!svn/ver/10591/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/reqlist.h
+END
+XiTongFaceCode.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/eclass-mobile/!svn/ver/8024/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/XiTongFaceCode.m
+END
+reqlist.m
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/eclass-mobile/!svn/ver/7910/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/reqlist.m
+END
+PagePickerModel.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/eclass-mobile/!svn/ver/7817/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/PagePickerModel.h
+END
+follow_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/follow_list.h
+END
+user_searchreasult_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/user_searchreasult_list.h
+END
+PagePickerModel.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/PagePickerModel.m
+END
+follow_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/follow_list.m
+END
+user_searchreasult_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/user_searchreasult_list.m
+END
+recommend_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/recommend_list.h
+END
+eclass_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/eclass_list.h
+END
+tag_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/eclass-mobile/!svn/ver/10186/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/tag_list.h
+END
+recommend_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/recommend_list.m
+END
+eclass_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/eclass_list.m
+END
+eclass_notice.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/eclass-mobile/!svn/ver/8954/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/eclass_notice.h
+END
+tag_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/eclass-mobile/!svn/ver/10186/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/tag_list.m
+END
+news.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/news.h
+END
+SyncType.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/eclass-mobile/!svn/ver/8143/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/SyncType.h
+END
+message_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/eclass-mobile/!svn/ver/7910/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/message_list.h
+END
+eclass_notice.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/eclass-mobile/!svn/ver/8175/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/eclass_notice.m
+END
+news.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/news.m
+END
+UserSettingMode.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/eclass-mobile/!svn/ver/10192/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/UserSettingMode.h
+END
+notice.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/notice.h
+END
+SyncType.m
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/eclass-mobile/!svn/ver/8143/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/SyncType.m
+END
+message_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/message_list.m
+END
+version.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/version.h
+END
+NSDictionary-MutableDeepCopy.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/NSDictionary-MutableDeepCopy.h
+END
+target.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/target.h
+END
+UserSettingMode.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/eclass-mobile/!svn/ver/10192/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/UserSettingMode.m
+END
+notice.m
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/notice.m
+END
+noteModel.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/eclass-mobile/!svn/ver/10908/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/noteModel.h
+END
+status_detail_comment.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/eclass-mobile/!svn/ver/10824/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/status_detail_comment.h
+END
+JsonResponse.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/JsonResponse.h
+END
+version.m
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/version.m
+END
+target.m
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/target.m
+END
+NSDictionary-MutableDeepCopy.m
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/NSDictionary-MutableDeepCopy.m
+END
+noteModel.m
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/eclass-mobile/!svn/ver/10854/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/noteModel.m
+END
+status_detail_comment.m
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/eclass-mobile/!svn/ver/10824/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/status_detail_comment.m
+END
+user_recommendlist_data.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/user_recommendlist_data.h
+END
+JsonResponse.m
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/JsonResponse.m
+END
+mc.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/eclass-mobile/!svn/ver/8312/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/mc.h
+END
+album.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/album.h
+END
+pinyin.c
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/pinyin.c
+END
+user_recommendlist_data.m
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/user_recommendlist_data.m
+END
+CheckVersionModel.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/CheckVersionModel.h
+END
+mc.m
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/eclass-mobile/!svn/ver/8312/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/mc.m
+END
+album.m
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/album.m
+END
+pinyin.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/pinyin.h
+END
+news_detail_info.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/news_detail_info.h
+END
+CheckVersionModel.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/CheckVersionModel.m
+END
+school_list_all.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/school_list_all.h
+END
+user_avatartop_ user_avatartread.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/eclass-mobile/!svn/ver/9278/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/user_avatartop_%20user_avatartread.h
+END
+charts_all.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/eclass-mobile/!svn/ver/7817/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/charts_all.h
+END
+news_detail_info.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/news_detail_info.m
+END
+status_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/8095/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/status_list.h
+END
+school_list_all.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/school_list_all.m
+END
+user_avatartop_ user_avatartread.m
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/eclass-mobile/!svn/ver/9017/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/user_avatartop_%20user_avatartread.m
+END
+charts_all.m
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/charts_all.m
+END
+album_list_all.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/eclass-mobile/!svn/ver/7817/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/album_list_all.h
+END
+status.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/eclass-mobile/!svn/ver/8939/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/status.h
+END
+status_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/8095/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/status_list.m
+END
+status_detail_model.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/status_detail_model.h
+END
+album_list_all.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/album_list_all.m
+END
+status.m
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/eclass-mobile/!svn/ver/9062/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/status.m
+END
+status_detail_model.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/status_detail_model.m
+END
+nearByFriends.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/nearByFriends.h
+END
+album_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/eclass-mobile/!svn/ver/7817/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/album_list.h
+END
+comment_num_info.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/eclass-mobile/!svn/ver/8807/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/comment_num_info.h
+END
+nearByFriends.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/nearByFriends.m
+END
+friend_data.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/friend_data.h
+END
+album_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/album_list.m
+END
+comment_num_info.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/eclass-mobile/!svn/ver/8807/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/comment_num_info.m
+END
+source_schoollist.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/eclass-mobile/!svn/ver/7994/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/source_schoollist.h
+END
+friend_data.m
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/friend_data.m
+END
+source_schoollist.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/eclass-mobile/!svn/ver/7994/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/source_schoollist.m
+END
+user_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/user_list.h
+END
+Atmsg.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/Atmsg.h
+END
+user_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/user_list.m
+END
+DYBLocalDataManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/eclass-mobile/!svn/ver/8167/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/DYBLocalDataManager.h
+END
+charts_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/7817/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/charts_list.h
+END
+Atmsg.m
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/Atmsg.m
+END
+EmployInfo.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/eclass-mobile/!svn/ver/8906/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/EmployInfo.h
+END
+tag_list_info.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/eclass-mobile/!svn/ver/10631/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/tag_list_info.h
+END
+guest_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/eclass-mobile/!svn/ver/8053/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/guest_list.h
+END
+DYBLocalDataManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/eclass-mobile/!svn/ver/9904/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/DYBLocalDataManager.m
+END
+charts_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/charts_list.m
+END
+photoList.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/eclass-mobile/!svn/ver/8885/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/photoList.h
+END
+EmployInfo.m
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/eclass-mobile/!svn/ver/8906/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/EmployInfo.m
+END
+tag_list_info.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/eclass-mobile/!svn/ver/10631/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/tag_list_info.m
+END
+guest_list.m
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/eclass-mobile/!svn/ver/7821/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/guest_list.m
+END
+eclass_detail_list.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/eclass_detail_list.h
+END
+UserLoginModel.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/eclass-mobile/!svn/ver/7818/iphone/trunk/DYiBan/DYiBan/YiBan/MVC/Model/UserLoginModel.h
+END

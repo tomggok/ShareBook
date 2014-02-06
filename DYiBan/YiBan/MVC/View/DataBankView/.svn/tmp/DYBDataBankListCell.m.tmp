@@ -1,0 +1,126 @@
+//
+//  DYBDataBankListCell.m
+//  DYiBan
+//
+//  Created by tom zeng on 13-8-9.
+//  Copyright (c) 2013年 ZzL. All rights reserved.
+//
+
+#import "DYBDataBankListCell.h"
+#import "Dragon_UILabel.h"
+#import "Dragon_UIImageView.h"
+
+@implementation DYBDataBankListCell
+
+@synthesize cellBackground = _cellBackground;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        // Initialization code
+//        [self initViewCell_dict:nil];
+        DLogInfo(@"self --- %@",self);
+    }
+    return self;
+}
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
+
+-(DYBDataBankListCell *)initViewCell_dict:(NSDictionary *)dict{
+//    [self setBackgroundColor:[UIColor yellowColor]];
+    
+    _cellBackground = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 84.0f)];
+    [_cellBackground setBackgroundColor:[UIColor clearColor]];
+    [self addSubview:_cellBackground];
+    [_cellBackground release];
+
+    DragonUIImageView *iconImageView = [[DragonUIImageView alloc]initWithFrame:CGRectMake(ICAN_LEFT, ICAN_TOP, ICAN_WIDTH, ICAN_LENGHT)];
+    [iconImageView setImage:[UIImage imageNamed:[self getPicName:[dict objectForKey:@"icon"]]]];
+    [iconImageView setBackgroundColor:[UIColor clearColor]];
+    [self addSubview:iconImageView];
+    [iconImageView release];
+    
+    
+    DragonUIImageView *numImage = [[DragonUIImageView alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP, NUM_LENGHT, NUM_HIGHT )];
+    [numImage setBackgroundColor:[UIColor clearColor]];
+    [numImage setImage:[UIImage imageNamed:@"bg_filenum"]];
+    [self addSubview:numImage];
+    [numImage release];
+    
+    UILabel *labelNUM = [[UILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP, NUM_LENGHT, NUM_HIGHT )];
+//    [labelNUM setText:[dict objectForKey:@"count"]];
+    [labelNUM setText:[NSString stringWithFormat:@"%@",[dict objectForKey:@"count"]]];
+    [labelNUM setFont:[DYBShareinstaceDelegate DYBFoutStyle:15]];
+    [labelNUM setTextColor:[UIColor whiteColor]];
+    [labelNUM setBackgroundColor:[UIColor clearColor]];
+    [self addSubview:labelNUM];
+    [labelNUM release];
+
+    DragonUILabel *labelName = [[DragonUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME, 150 , 20)];
+    [labelName setText:[dict objectForKey:@"title"]];
+    [self addSubview:labelName];
+    [labelNUM setTextAlignment:NSTextAlignmentCenter];
+    [labelName setFont:[DYBShareinstaceDelegate DYBFoutStyle:20]];
+    [labelName setBackgroundColor:[UIColor clearColor]];
+//    [labelName sizeToFit];
+    [labelName release];
+    
+    DragonUIImageView *swipIcan = [[DragonUIImageView alloc]initWithFrame:CGRectMake(320 - SWIPICAN_WIDTH, 0, SWIPICAN_WIDTH,SWIPICAN_HIGHT )];
+    [swipIcan setImage:[UIImage imageNamed:@"btn_morecontrol_def"]];
+    [swipIcan setBackgroundColor:[UIColor clearColor]];
+    [self addSubview:swipIcan];
+    [swipIcan release];
+    
+    return  self;
+}
+
+
+-(NSString *)getPicName:(NSString *)type{
+    
+    if ([type isEqualToString:@"course"]) {
+        
+        return @"icon_tm";
+        
+    }else if([type isEqualToString:@"home"]){
+    
+        return @"icon_homework";
+        
+    }else if ([type isEqualToString:@"image"]){
+    
+        return @"icon_photo";
+    
+    }else if([type isEqualToString:@"doc"]){
+    
+        return @"icon_doc";
+    
+    }else if ([type isEqualToString:@"other"]){
+    
+        return @"icon_others";
+    
+    }else{
+    
+        return @"icon_others";
+    
+    }
+    
+    
+}
+- (void)setCellBackgroundColor:(UIColor *)color{
+    
+    [_cellBackground setBackgroundColor:color];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+@end

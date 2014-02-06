@@ -1,0 +1,193 @@
+//
+//  DYBRequest.m
+//  DYiBan
+//
+//  Created by NewM on 13-7-31.
+//  Copyright (c) 2013年 ZzL. All rights reserved.
+//
+
+#import "DYBRequest.h"
+
+#import "Dragon_Device.h"
+#import "Dragon_CommentMethod.h"
+#import "JSONKit.h"
+#import "JSON.h"
+#import "UIView+DragonViewSignal.h"
+#import "NSObject+DragonRequestResponder.h"
+#import "Dragon_Device.h"
+#import "NSObject+DragonDatabase.h"
+
+#import "user.h"
+#import "UserSettingMode.h"
+
+@interface DYBRequest ()
+{
+    id                   receiver;   //http响应接受者
+    NSMutableDictionary *requestDict;//http请求参数
+}
+
+@end
+
+@implementation DYBRequest
+
+
+- (void)dealloc
+{
+    RELEASEDICTARRAYOBJ(requestDict);
+    RELEASEOBJ(receiver);
+    [super dealloc];
+}
+
+//网络请求
+- (DragonRequest *)DYBGET:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive
+{
+    if ([DragonDevice hasInternetConnection] == NO) {
+//        Dragonuin *notice = [[[SJNoticeView alloc] init] autorelease];
+//        [notice setNoticeText:@"请求失败，请检查网络！"];
+        
+        if ([_receive isKindOfClass:[UIViewController class]]) {
+            [((UIViewController *)_receive).view setUserInteractionEnabled:YES];
+            
+        }
+        return nil;
+    }
+    
+    receiver = [_receive retain];
+    NSString *url = [self encodeUrl:params];
+    DragonRequest *request = [self GET:url];
+    
+    if ([DragonDevice sysVersion] == 5.0)
+    {
+        [request setValidatesSecureCertificate:NO];
+    }
+    
+    
+    return request;
+}
+
+//网络请求协议
+- (NSString *)encodeUrl:(NSMutableDictionary *)dict
+{
+    
+    NSString *strDataBank = [dict objectForKey:@"isDataBank"]; //判断来自资料库的接口
+    NSString *sendURL = nil;
+    if ([strDataBank isEqualToString:@"YES"]) {
+        
+        [dict removeObjectForKey:@"isDataBank"];
+        sendURL = DenJun;
+    }else{
+    
+        sendURL = SHARED.httpUrl;
+    }
+    
+    
+    NSString *apn = [DragonDevice networkType];
+    NSString *platom = [NSString stringWithFormat:@"ios%.f",[DragonDevice sysVersion]];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setValue:[dict objectForKey:INTERFACEDOACTION] forKey:@"do"];
+    
+    [dict removeObjectForKey:INTERFACEDOACTION];
+    
+    [params setValue:dict forKey:@"data"];
+    
+    [params setValue:@"69b4d383c3bce72d636d9d8fc043e4af" forKey:@"identify"];//等待有效的解决方案
+
+    [params setValue:SHARED.token forKey:@"token"];
+    [params setValue:SHARED.sessionID forKey:@"sessID"];
+    NSLog(@"sessionID -- %@",SHARED.sessionID);
+    [params setValue:@"1" forKey:@"ct"];
+    [params setValue:SHARED.version forKey:@"v"];
+    [params setValue:@"AppStore" forKey:@"rv"];
+    [params setValue:apn forKey:@"apn"];
+    [params setValue:platom forKey:@"device"];
+
+   
+   
+    
+    
+    if (requestDict)
+    {
+        RELEASEDICTARRAYOBJ(requestDict);
+    }
+    
+    requestDict = [params mutableCopy];
+    
+    NSString *jsonStr = [DragonCommentMethod encodeURL:[params JSONString]];
+    NSString *md5 = [DragonCommentMethod md5:[params JSONString]];
+    
+    NSString *url = [NSString stringWithFormat:@"%@?json=%@&sig=%@",sendURL, jsonStr, md5];
+    NSLog(@"url === %@",url);
+    return url;
+}
+
+//网络响应处理
+- (void)handleRequest:(DragonRequest *)request
+{
+    if (request.succeed)
+    {
+        NSDictionary *dict = [request.responseString JSONValue];
+        NSLog(@"request.responseString ----- %@",request.responseString);
+        JsonResponse *respose = [JsonResponse JSONReflection:dict];
+        
+        switch (respose.response)
+        {
+            case khttpsucceedCode /*| khttpfailCode*/:
+            case khttpfailCode:
+                if (receiver && [receiver respondsToSelector:@selector(handleRequest:receiveObj:)])
+                {
+                    
+                    if (respose.response == khttpsucceedCode)
+                    {
+                        [self handleSql:request response:respose];
+                    }
+                    
+                    [receiver handleRequest:request receiveObj:respose];
+                
+                }
+                
+                break;
+
+            case khttpWrongfulCode:
+                
+                break;
+            case khttpSessIDtimeoutCode:
+                
+                break;
+            case khttpSecurityCode:
+                
+                break;
+            case khttpWrongfulAppCode:
+                
+                break;
+            case khttpNeedUpdateCode:
+                
+                break;
+            case khttpUpdateCode:
+                
+                break;
+            case khttpWrongfulVersionCode:
+                
+                break;
+                
+            default:
+                break;
+        }
+        
+        
+    }
+}
+
+//数据库处理
+- (void)handleSql:(DragonRequest *)request response:(id)_response
+{
+    JsonResponse *response = (JsonResponse *)_response;
+    //登陆接口
+    if ([[requestDict objectForKey:@"do"] isEqualToString:@"security_login"])
+    {
+        SHARED.curUser = [user JSONReflection:[[response data] objectForKey:@"user"]];
+        SHARED.sessionID = response.sessID;
+        SHARED.currentUserSetting = [[UserSettingMode alloc]init];
+    }
+    
+}
+@end

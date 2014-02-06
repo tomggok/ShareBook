@@ -1,0 +1,272 @@
+//
+//  DYBLoginViewController.m
+//  DYiBan
+//
+//  Created by NewM on 13-8-6.
+//  Copyright (c) 2013年 ZzL. All rights reserved.
+//
+
+#import "DYBLoginViewController.h"
+#import "DYBDynamicViewController.h"
+#import "DYBRegisterStep1ViewController.h"
+#import "DYBForgetPassWordViewController.h"
+#import "DYBSettingViewController.h"
+#import "user.h"
+#import "DYBDataBankListController.h"
+#import "DYBDataBankBarViewController.h"
+//#import "DYBFriendsViewController.h"
+#import "Dragon_Sandbox.h"
+#import "userRegistModel.h"
+
+#import "DYBUITabbarViewController.h"
+
+@interface DYBLoginViewController ()
+
+
+@end
+
+@implementation DYBLoginViewController
+@synthesize imLog = _imLog;
+@synthesize nameInput = _nameInput;
+@synthesize passInput = _passInput;
+@synthesize loginButton = _loginButton;
+
+DEF_SIGNAL(LOGINBUTTON)//登陆
+DEF_SIGNAL(REGISTBUTTON) //注册按钮
+DEF_SIGNAL(FORGETBUTTON) //忘记密码
+DEF_SIGNAL(ENTERDATABANK) // 资料库入口
+DEF_SIGNAL(SETTINGBUTTON)//临时 设置按钮
+
+
+- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+{
+    if ([signal is:[DragonViewController WILL_APPEAR]])
+    {
+        [self.leftButton setHidden:YES];
+        [self.rightButton setHidden:YES];
+        self.headview.hidden = YES;
+        [self.headview setTitle:@"登陆"];
+    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    {
+        
+        DragonRequest *request = [DYBHttpMethod security_newchannel:YES receive:self];
+        [request setTag:2];
+        
+        
+        SHARED.registUserSetting = [[userRegistModel alloc]init]; //注册用户数据
+        
+        //logo图标
+        _imLog = [[DragonUIImageView alloc] initWithFrame:CGRectMake((320-115)/2, 40, 115, 50)];
+        [_imLog setImage:[UIImage imageNamed:@"logo"]];
+        _imLog.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:_imLog];
+        //注册按钮
+        UIImage *registImage = [UIImage imageNamed:@"btn_reg_def"];
+        DragonUIButton *btnRegist = [[DragonUIButton alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-registImage.size.height/2, registImage.size.width/2, registImage.size.height/2)];
+        [self setDragonUIButton:btnRegist setImageNorm:[UIImage imageNamed:@"btn_reg_def"] setImageHigh:[UIImage imageNamed:@"btn_reg_high"] signal:[DYBLoginViewController REGISTBUTTON] setControl:self];
+        
+        
+         //设置页面
+        DragonUIButton *btnSet = [[DragonUIButton alloc] initWithFrame:CGRectMake(20+60+50, SCREEN_HEIGHT-80-20, 60, 60)];
+        [self setDragonUIButton:btnSet setImageNorm:[UIImage imageNamed:@"btn_login_dis"] setImageHigh:[UIImage imageNamed:@"btn_login_dis"]  signal:[DYBLoginViewController SETTINGBUTTON] setControl:self];
+        
+        
+        //忘记密码按钮
+        DragonUIButton *btnForget = [[DragonUIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-registImage.size.width/2, btnRegist.frame.origin.y, registImage.size.width/2, registImage.size.height/2)];
+        [self setDragonUIButton:btnForget setImageNorm:[UIImage imageNamed:@"btn_forgetpass_def"] setImageHigh:[UIImage imageNamed:@"btn_forgetpass_high"] signal:[DYBLoginViewController FORGETBUTTON] setControl:self];
+        
+        //输入用户名
+        _nameInput = [[DYBInputView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 20+_imLog.frame.origin.y+_imLog.frame.size.height, INPUTWIDTH, INPUTHEIGHT) placeText:@"用户名/手机/邮箱" textType:0];
+        [_nameInput.nameField setText:@"1"];
+        [self.view addSubview:_nameInput];
+        RELEASE(_nameInput);
+        
+        //输入用户密码
+        _passInput = [[DYBInputView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, [_nameInput getLowy]-1, INPUTWIDTH, INPUTHEIGHT) placeText:@"密码" textType:1];
+        [_passInput.nameField setText:@"1"];
+        [self.view addSubview:_passInput];
+        RELEASE(_passInput);
+        
+        //登陆按钮
+        _loginButton = [[DragonUIButton alloc] initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 15+[_passInput getLowy], INPUTWIDTH, 44)];
+        
+        
+        if (_nameInput.nameField.text.length >0 &&_passInput.nameField.text.length) {
+            
+            [self setDragonUIButton:_loginButton setImageNorm:[UIImage imageNamed:@"btn_login_def"] setImageHigh:[UIImage imageNamed:@"btn_login_high"]  signal:[DYBLoginViewController LOGINBUTTON] setControl:self];
+        }else {
+            
+            [self setDragonUIButton:_loginButton setImageNorm:[UIImage imageNamed:@"btn_login_dis"] setImageHigh:[UIImage imageNamed:@"btn_login_dis"]  signal:[DYBLoginViewController LOGINBUTTON] setControl:self];
+        }
+        
+        
+        [_loginButton retain];
+        
+        DragonUIButton *enterController = [[DragonUIButton alloc]initWithFrame:CGRectMake(100.0f, 280.0f, 70.0f, 60.0f)];
+        
+        [self.view addSubview:enterController];
+        [enterController setBackgroundColor:[UIColor redColor]];
+        
+        
+        // 资料库入口
+        [self setDragonUIButton:enterController setImageNorm:[UIImage imageNamed:@"btn_login_dis"] setImageHigh:[UIImage imageNamed:@"btn_login_dis"]  signal:[DYBLoginViewController ENTERDATABANK] setControl:self];
+//        [self setDragonUIButton:enterController setTitle:@"资料库" signal:[DYBLoginViewController ENTERDATABANK] setColor:[UIColor redColor] setControl:self];
+    }
+}
+
+//监听textfeild字符变化 改变按钮状态
+- (void)setButtonStatus:(NSTimer *)timer {
+    
+    DragonUIButton *statusButton = (DragonUIButton *)timer.userInfo;
+    
+    if (_nameInput.nameField.text.length > 0 && _passInput.nameField.text.length > 0) {
+        
+        
+        [statusButton setImage:[UIImage imageNamed:@"btn_login_def"] forState:UIControlStateNormal];
+        [statusButton setImage:[UIImage imageNamed:@"btn_login_high"] forState:UIControlStateHighlighted];
+        [statusButton addSignal:[DYBLoginViewController LOGINBUTTON] forControlEvents:UIControlEventTouchUpInside];
+    }else {
+        
+        [statusButton setImage:[UIImage imageNamed:@"btn_login_dis"] forState:UIControlStateNormal];
+        [statusButton setImage:[UIImage imageNamed:@"btn_login_dis"] forState:UIControlStateHighlighted];
+        [statusButton addSignal:[DYBLoginViewController LOGINBUTTON] forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+}
+
+#pragma mark- UITextField
+- (void)handleViewSignal_DragonUITextField:(DragonViewSignal *)signal
+{
+    if ([signal.source isKindOfClass:[DragonUITextField class]])//完成编辑
+    {
+        DragonUITextField *textField = [signal source];
+    
+        if ([signal is:[DragonUITextField TEXTFIELDDIDENDEDITING]])
+        {
+            [self animateTextField:[textField superview] up:NO getContrl:self];
+        }else if ([signal is:[DragonUITextField TEXTFIELD]])
+        {
+            
+            [NSTimer scheduledTimerWithTimeInterval:.1f target:self selector:@selector(setButtonStatus:) userInfo:_loginButton repeats:NO];
+
+            
+        }else if ([signal is:[DragonUITextField TEXTFIELDSHOULDRETURN]])
+        {
+            [textField resignFirstResponder];
+            
+        }
+        else if ([signal is:[DragonUITextField TEXTFIELDSHOULDCLEAR]])
+        {
+            
+            [_loginButton setImage:[UIImage imageNamed:@"btn_login_dis"] forState:UIControlStateNormal];
+            [_loginButton setImage:[UIImage imageNamed:@"btn_login_dis"] forState:UIControlStateHighlighted];
+            [_loginButton addSignal:[DYBLoginViewController LOGINBUTTON] forControlEvents:UIControlEventTouchUpInside];
+            
+        }else if ([signal is:[DragonUITextField TEXTFIELDDIDBEGINEDITING]]) //开始编辑
+        {
+            
+            
+            [self animateTextField:[textField superview] up:YES getContrl:self];
+            
+        }
+        
+    }
+    
+    
+}
+
+
+#pragma mark- 点击按钮
+- (void)handleViewSignal_DYBLoginViewController:(DragonViewSignal *)signal
+{
+    if ([signal is:[DYBLoginViewController LOGINBUTTON]])
+    {
+        
+        if (_nameInput.nameField.text.length > 0 && _passInput.nameField.text.length > 0) {
+            
+            _nameInput.nameField.text = @"noreason";
+            _passInput.nameField.text = @"123456";
+            
+//            self.view.userInteractionEnabled = NO;
+            
+            DragonRequest *request = [DYBHttpMethod login:_nameInput.nameField.text password:_passInput.nameField.text isAlert:YES isRemberPsd:NO receive:self];
+            [request setTag:1];
+        }
+    
+    }
+    //regist page
+    if ([signal is:[DYBLoginViewController REGISTBUTTON]]) {
+    
+        DYBRegisterStep1ViewController *vc = [[DYBRegisterStep1ViewController alloc] init];
+        [self.drNavigationController pushViewController:vc animated:YES];
+        RELEASE(vc);
+    }
+    //forget password page
+    if ([signal is:[DYBLoginViewController FORGETBUTTON]]) {
+        
+        DYBForgetPassWordViewController *vc = [[DYBForgetPassWordViewController alloc] init];
+        [self.drNavigationController pushViewController:vc animated:YES];
+        RELEASE(vc);
+    }
+
+    if ([signal is:[DYBLoginViewController ENTERDATABANK]]) {
+        
+        DYBDataBankBarViewController *dataBank = [[DYBDataBankBarViewController alloc]init];
+        [self.drNavigationController pushViewController:dataBank animated:YES];
+        
+        RELEASE(dataBank);
+        
+        
+    }
+    //setting
+    if ([signal is:[DYBLoginViewController SETTINGBUTTON]]) {
+        
+        DYBSettingViewController *vc = [[DYBSettingViewController alloc] init];
+        [self.drNavigationController pushViewController:vc animated:YES];
+        RELEASE(vc);
+    }
+}
+
+
+#pragma mark- HTTP
+- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+{
+    
+    if ([request succeed])
+    {
+
+        //获取是否 是新生通道 1是 0 不是
+        if (request.tag == 2) {
+            JsonResponse *response = (JsonResponse *)receiveObj;
+            
+            SHARED.registUserSetting.registIsNew = [[response data] objectForKey:@"result"];
+        }
+        
+        //登陆
+        if (request.tag == 1) {
+            
+            JsonResponse *response = (JsonResponse *)receiveObj;
+            if ([response response] ==khttpsucceedCode)
+            {
+                SHARED.curUser = [user JSONReflection:[[response data] objectForKey:@"user"]];
+                SHARED.sessionID = response.sessID;
+                
+
+//                [self pushLoginSuccess];
+                DYBUITabbarViewController *vc = [[DYBUITabbarViewController alloc] init:self];
+                [self.drNavigationController pushViewController:vc animated:YES];
+                RELEASE(vc);
+                
+                
+            }
+            if ([response response] ==khttpfailCode)
+            {
+                
+                
+            }
+        }
+    }
+    
+}
+
+@end

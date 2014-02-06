@@ -1,0 +1,113 @@
+//
+//  DYBShareinstaceDelegate.m
+//  DYiBan
+//
+//  Created by NewM on 13-7-31.
+//  Copyright (c) 2013年 ZzL. All rights reserved.
+//
+
+#import "DYBShareinstaceDelegate.h"
+#import "user.h"
+#import "DYBUITabbarViewController.h"
+@implementation DYBShareinstaceDelegate
+@synthesize sessionID = _sessionID,
+            token = _token,
+            version = _version,
+httpUrl = _httpUrl,curUser=_curUser,currentUserSetting = _currentUserSetting,registUserSetting = _registUserSetting;
+
+static DYBShareinstaceDelegate *sharedInstace = nil;
+
++ (DYBShareinstaceDelegate *)sharedInstace
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (!sharedInstace)
+        {
+            sharedInstace = [[DYBShareinstaceDelegate alloc] init];
+        }
+    });
+    return sharedInstace;
+
+}
+
+//清楚sharedinstance
+- (void)cleanValue
+{
+    RELEASE(SHARED.sessionID);
+    RELEASE(SHARED.token);
+    RELEASE(SHARED.token);
+    RELEASE(SHARED.version);
+    RELEASE(SHARED.httpUrl)
+    
+    RELEASEOBJ(SHARED.currentUserSetting);
+    RELEASEOBJ(SHARED.registUserSetting);
+}
+
+#pragma mark -
+#pragma mark appMessage
+- (NSString *)sessionID
+{
+    if (!_sessionID || _sessionID.length == 0)
+    {
+        _sessionID = @"";//要做改的
+    }
+    return _sessionID;
+}
+
+- (NSString *)version
+{
+    if (!_version || _version.length == 0)
+    {
+        NSBundle * bundle = [NSBundle mainBundle];
+        _version = [NSString stringWithFormat:@"%@", [bundle objectForInfoDictionaryKey:@"CFBundleVersion"]];
+    }
+    
+    return _version;
+}
+
+- (NSString *)token
+{
+    return _token ? _token : @"";
+}
+
+#pragma mark -
+#pragma mark method
+//一般字体统一    ,这种字体在 sizeFit()方法后,字体内容在其frame里偏高
++ (UIFont *)DYBFoutStyle:(CGFloat)fontSize
+{
+    return [UIFont fontWithName:@"STHeitiSC-Light" size:fontSize];
+}
+
+#pragma mark -获取user里的usertype
+-(NSString *)getUsertype:(int)type
+{
+    switch (type) {
+        case 0:
+            return @"学生";
+        case 1:
+            return @"辅导员";
+        case 2:
+            return @"领导";
+        case 3:
+            return @"施政老师";
+        default:
+            break;
+    }
+}
+
++(void)opeartionTabBarShow:(BOOL)key{
+    
+    DYBUITabbarViewController *tabBatC = [DYBUITabbarViewController sharedInstace];
+    
+    if (key) {
+        
+        [tabBatC hideTabBar:YES animated:YES];
+    }else{
+        
+        [tabBatC hideTabBar:NO animated:YES];
+    }
+    
+    
+}
+
+@end

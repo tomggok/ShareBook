@@ -1,0 +1,302 @@
+//
+//  DYBRequest.m
+//  DYiBan
+//
+//  Created by NewM on 13-7-31.
+//  Copyright (c) 2013年 ZzL. All rights reserved.
+//
+
+#import "DYBRequest.h"
+
+#import "Dragon_Device.h"
+#import "Dragon_CommentMethod.h"
+#import "JSONKit.h"
+#import "JSON.h"
+#import "UIView+DragonViewSignal.h"
+#import "NSObject+DragonRequestResponder.h"
+#import "Dragon_Device.h"
+#import "NSObject+DragonDatabase.h"
+
+#import "user.h"
+#import "UserSettingMode.h"
+
+@interface DYBRequest ()
+{
+    id                   receiver;   //http响应接受者
+    NSMutableDictionary *requestDict;//http请求参数
+    
+    
+    DragonUIPopAlertView *popView;//提示框
+}
+
+@end
+
+@implementation DYBRequest
+
+
+- (void)dealloc
+{
+    RELEASEDICTARRAYOBJ(requestDict);
+    RELEASEOBJ(receiver);
+    [super dealloc];
+}
+
+- (DragonRequest *)POSTORGET:(NSMutableDictionary *)params
+                     isAlert:(BOOL)isAlert
+                     receive:(id)_receive
+                   imageData:(NSArray *)imageDatas
+                      isPost:(BOOL)isPost
+{
+    if ([DragonDevice hasInternetConnection] == NO) {
+        
+        DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+        [pop setDelegate:receiver];
+        [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+        [pop setText:@"检测不到网络连接！"];
+        [pop alertViewAutoHidden:.5f isRelease:YES];
+//        return nil;
+    }
+    
+    receiver = [_receive retain];
+    NSString *url = [self encodeUrl:params];
+    DragonRequest *request = nil;
+    if (isPost)
+    {
+        request = self.HTTP_POST(url);
+        
+        for (NSData *imageData in imageDatas)
+        {
+            [request addData:imageData withFileName:@"anykey.jpg" andContentType:@"image/jpeg" forKey:@"image[]"];
+        }
+        
+    }else
+    {
+        request = [self GET:url];
+    }
+    
+    if ([DragonDevice sysVersion] == 5.0)
+    {
+        [request setValidatesSecureCertificate:NO];
+    }
+    
+    if (isAlert)
+    {
+        if (!popView) {
+            popView = [[DragonUIPopAlertView alloc] init];
+            [popView setDelegate:receiver];
+            [popView setIndicatorMode:INDICATORHEADTYPE];
+            [popView setText:@"加载中..."];
+            [popView alertViewShown];
+        }
+        
+    }
+    
+    return request;
+    
+}
+
+//网络请求POST请求为上传图片
+- (DragonRequest *)DYBPOSTIMG:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive imageData:(NSArray *)imageDatas
+{
+    DragonRequest *request = [self POSTORGET:params isAlert:isAlert receive:_receive imageData:imageDatas isPost:YES];
+    
+    return request;
+}
+
+//网络请求GET请求
+- (DragonRequest *)DYBGET:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive
+{
+    DragonRequest *request = [self POSTORGET:params isAlert:isAlert receive:_receive imageData:nil isPost:NO];
+    
+    return request;
+}
+
+//网络请求协议
+- (NSString *)encodeUrl:(NSMutableDictionary *)dict
+{
+    
+    NSString *strDataBank = [dict objectForKey:@"isDataBank"]; //判断来自资料库的接口
+    NSString *sendURL = nil;
+    if ([strDataBank isEqualToString:@"YES"]) {
+        
+        [dict removeObjectForKey:@"isDataBank"];
+        sendURL = DenJun;
+    }else{
+        
+        sendURL = SHARED.httpUrl;
+    }
+    
+    
+    NSString *apn = [DragonDevice networkType];
+    NSString *platom = [NSString stringWithFormat:@"ios%.f",[DragonDevice sysVersion]];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setValue:[dict objectForKey:INTERFACEDOACTION] forKey:@"do"];
+    
+    [dict removeObjectForKey:INTERFACEDOACTION];
+    
+    [params setValue:dict forKey:@"data"];
+    
+    [params setValue:@"69b4d383c3bce72d636d9d8fc043e4af" forKey:@"identify"];//等待有效的解决方案
+    
+    [params setValue:SHARED.token forKey:@"token"];
+    [params setValue:SHARED.sessionID forKey:@"sessID"];
+    DLogInfo(@"sessionID -- %@",SHARED.sessionID);
+    [params setValue:@"1" forKey:@"ct"];
+    [params setValue:SHARED.version forKey:@"v"];
+    [params setValue:@"AppStore" forKey:@"rv"];
+    [params setValue:apn forKey:@"apn"];
+    [params setValue:platom forKey:@"device"];
+    
+    
+    DLogInfo(@"parms -- > %@",params);
+    
+    
+    if (requestDict)
+    {
+        RELEASEDICTARRAYOBJ(requestDict);
+    }
+    
+    requestDict = [params mutableCopy];
+    
+    NSString *jsonStr = [DragonCommentMethod encodeURL:[params JSONString]];
+    NSString *md5 = [DragonCommentMethod md5:[params JSONString]];
+    
+    NSString *url = [NSString stringWithFormat:@"%@?json=%@&sig=%@",sendURL, jsonStr, md5];
+    DLogInfo(@"url === %@",url);
+    return url;
+}
+
+//网络响应处理
+- (void)handleRequest:(DragonRequest *)request
+{
+    if (popView)
+    {
+        [popView alertViewAutoHidden:.05f isRelease:YES];
+        popView = nil;
+    }
+    
+    
+    
+    if (request.succeed)
+    {
+        NSDictionary *dict = [request.responseString JSONValue];
+        DLogInfo(@"request.responseString ----- %@",request.responseString);
+        JsonResponse *respose = [JsonResponse JSONReflection:dict];
+        
+        switch (respose.response)
+        {
+            case khttpsucceedCode /*| khttpfailCode*/:
+            case khttpfailCode:
+                if (receiver && [receiver respondsToSelector:@selector(handleRequest:receiveObj:)])
+                {
+                    
+                    if (respose.response == khttpsucceedCode)
+                    {
+                        [self handleSql:request response:respose];
+                    }else
+                    {
+                        if (SHARED.isLogin || [[requestDict objectForKey:@"do"] isEqualToString:@"security_login"])
+                        {
+                            [DYBShareinstaceDelegate loadFinishAlertView:respose.message target:receiver showTime:1.f];
+                        }
+                    
+                    }
+                    
+                    [receiver handleRequest:request receiveObj:respose];
+                    
+                }
+                
+                break;
+                
+            case khttpWrongfulCode:
+                
+                break;
+            case khttpSessIDtimeoutCode:
+            {
+                [request cancelRequests];
+                if (receiver && [receiver respondsToSelector:@selector(handleRequest:receiveObj:)])
+                {
+                    [DYBShareinstaceDelegate loadFinishAlertView:@"未操作时间过长，请重新登陆" target:receiver showTime:.8f];
+                    [receiver handleRequest:request receiveObj:respose];
+                    SHARED.isLogin = NO;
+                }
+            }
+                break;
+            case khttpSecurityCode:
+                
+                break;
+            case khttpWrongfulAppCode:
+                
+                break;
+            case khttpNeedUpdateCode:
+                
+                break;
+            case khttpUpdateCode:
+                
+                break;
+            case khttpWrongfulVersionCode:
+                
+                break;
+                
+            default:
+                break;
+        }
+        
+        
+    }else if (request.recving)
+    {
+        DLogInfo(@"ffff");
+        DLogInfo(@"s === %f", request.downloadPercent);
+    }
+}
+
+//数据库处理
+- (void)handleSql:(DragonRequest *)request response:(id)_response
+{
+    JsonResponse *response = (JsonResponse *)_response;
+    
+    NSString *getMethod = [requestDict objectForKey:@"do"];
+    
+    //登陆接口
+    if ([getMethod isEqualToString:@"security_login"] || [getMethod isEqualToString:@"security_autologin"] || [getMethod isEqualToString:@"security_reg"])
+    {
+        SHARED.isLogin = YES;
+        SHARED.curUser = [user JSONReflection:[[response data] objectForKey:@"user"]];
+        SHARED.sessionID = response.sessID;
+        SHARED.currentUserSetting = [[UserSettingMode alloc]init];
+        DLogInfo(@"SHARED.curUser === %@", SHARED.curUser.pic_s);
+        [self insertUser:SHARED.curUser];
+    }else if ([getMethod isEqualToString:@"security_logout"])
+    {//退出接口
+        self.DB.FROM(kYIBANUSERTABLE).SET(@"sessionID", SHARED.sessionID).SET(@"logintype", @"0").UPDATE();
+        SHARED.isLogin = NO;
+    }
+    
+}
+
+//保存user表
+- (void)insertUser:(user *)userModel
+{
+    NSString *username = [[requestDict objectForKey:@"data"] objectForKey:@"username"];
+    NSString *password = [[requestDict objectForKey:@"data"] objectForKey:@"password"];
+    NSString *userid = [userModel userid];
+    NSString *sessionId = SHARED.sessionID;
+    NSString *logintype = @"1";
+    
+    NSDateFormatter *formatter = [SHARED dateFormatter];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date = [NSDate new];
+    NSString *logintime = [formatter stringFromDate:date];;
+    
+    self.DB.FROM(kYIBANUSERTABLE).WHERE(@"userid", userid).GET();
+    DLogInfo(@"self.DB.resultArray === %@", self.DB.resultArray);
+    if ([self.DB.resultArray count] > 0)
+    {
+        self.DB.FROM(kYIBANUSERTABLE).SET(@"sessionID", sessionId).SET(@"logintime", logintime).SET(@"logintype", logintype).UPDATE();
+    }else
+    {
+        self.DB.FROM(kYIBANUSERTABLE).SET(@"username", username).SET(@"password", password).SET(@"userid", userid).SET(@"sessionID", sessionId).SET(@"logintime", logintime).SET(@"logintype", logintype).INSERT();
+    }
+}
+
+@end
