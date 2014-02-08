@@ -1,6 +1,6 @@
 //
 //  UIImageView+Init.h
-//  DragonFramework
+//  MagicFramework
 //
 //  Created by zhangchao on 13-4-21.
 //  Copyright (c) 2013年 ZzL. All rights reserved.

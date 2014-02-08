@@ -1,6 +1,6 @@
 //
 //  NSString+Count.m
-//  DragonFramework
+//  MagicFramework
 //
 //  Created by zhangchao on 13-4-12.
 //  Copyright (c) 2013年 ZzL. All rights reserved.
@@ -418,7 +418,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(dir, NSUserDomainMask, YES);
     NSString *diskCachePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:fileType];
     
-    return [diskCachePath stringByAppendingPathComponent:[DragonCommentMethod md5:fileName]];
+    return [diskCachePath stringByAppendingPathComponent:[MagicCommentMethod md5:fileName]];
 }
 
 #pragma mark- 删除沙盒里self路径的文件

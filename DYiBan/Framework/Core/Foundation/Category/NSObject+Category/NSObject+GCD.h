@@ -1,6 +1,6 @@
 //
 //  NSObject+GCD.h
-//  DragonFramework
+//  MagicFramework
 //
 //  Created by zhangchao on 13-4-12.
 //  Copyright (c) 2013年 ZzL. All rights reserved.

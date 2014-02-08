@@ -1,6 +1,6 @@
 //
 //  UIImageView+Init.m
-//  DragonFramework
+//  MagicFramework
 //
 //  Created by zhangchao on 13-4-21.
 //  Copyright (c) 2013年 ZzL. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import <objc/runtime.h>
 #import "UIImageView+Init.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "UIImageView+WebCache.h"
 
 @implementation UIImageView (Init)
@@ -204,7 +204,7 @@ static char _c_Alignment;
 }
 
 //接受图片通过网络请求成功消息
-- (void)handleViewSignal_UIImageView:(DragonViewSignal *)signal
+- (void)handleViewSignal_UIImageView:(MagicViewSignal *)signal
 {
     if ([signal is:[UIImageView SDWEBIMGDOWNSUCCESS]]) {
         [self changePosInSuperViewWithAlignment:self._Alignment];

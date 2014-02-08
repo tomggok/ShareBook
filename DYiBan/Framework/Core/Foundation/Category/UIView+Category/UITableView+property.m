@@ -9,7 +9,7 @@
 #import "UITableView+property.h"
 #import <objc/runtime.h>
 #import "NSDictionary-MutableDeepCopy.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 
 @implementation UITableView (property)
 

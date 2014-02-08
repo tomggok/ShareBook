@@ -1,6 +1,6 @@
 //
 //  UIPanGestureRecognizer+init.m
-//  DragonFramework
+//  MagicFramework
 //
 //  Created by zhangchao on 13-4-22.
 //  Copyright (c) 2013年 ZzL. All rights reserved.

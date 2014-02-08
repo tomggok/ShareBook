@@ -9,7 +9,7 @@
 #import "UITextView+Property.h"
 #import <objc/runtime.h>
 #import "UILabel+ReSize.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 
 @implementation UITextView (Property)
 
@@ -66,7 +66,7 @@ static char c_lb_textLength;
 #pragma mark- 创建字数限制Lb
 -(void)initLbTextLength:(CGRect)frame 
 {
-    self.lb_textLength = [[DragonUILabel alloc]initWithFrame:frame];
+    self.lb_textLength = [[MagicUILabel alloc]initWithFrame:frame];
     self.lb_textLength._originFrame=CGRectMake(CGRectGetMinX(frame), CGRectGetMinY(frame), CGRectGetWidth(frame), CGRectGetHeight(frame));
 //    self.lb_textLength._originFrame=CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
     self.lb_textLength.backgroundColor = [UIColor clearColor];

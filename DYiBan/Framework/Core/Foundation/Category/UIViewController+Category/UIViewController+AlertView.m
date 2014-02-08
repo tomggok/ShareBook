@@ -1,6 +1,6 @@
 //
 //  UIViewController+AlertView.m
-//  DragonFramework
+//  MagicFramework
 //
 //  Created by zhangchao on 13-4-11.
 //  Copyright (c) 2013年 ZzL. All rights reserved.
