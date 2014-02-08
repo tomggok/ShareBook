@@ -16,9 +16,9 @@
 @property (nonatomic, retain) NSMutableArray *assets;
 @property (nonatomic, retain) NSMutableOrderedSet *selectedAssets;
 
-@property (nonatomic, retain) DragonUITableView *tableView;
+@property (nonatomic, retain) MagicUITableView *tableView;
 @property (nonatomic, retain) DYBCustomLabel *numLabel;
-@property (nonatomic, retain) DragonUILabel *numLabel1;
+@property (nonatomic, retain) MagicUILabel *numLabel1;
 @property (nonatomic, retain) UIBarButtonItem *doneButton;
 
 - (void)reloadData;
@@ -32,9 +32,9 @@
 @implementation DYBAssetCollectionViewController
 
 @synthesize  father = _father,title,numBack = _numBack;
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.headview setTitle:title];
         self.rightButton.hidden = !self.allowsMultipleSelection;
@@ -42,7 +42,7 @@
         [self setButtonImage:self.rightButton setImage:@"btn_ok_dis"];
         
         [self willAppearView];
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         [self initView];
         
@@ -75,7 +75,7 @@
     
     
     
-    _numLabel1 = [[DragonUILabel alloc]initWithFrame:CGRectMake(_numLabel.frame.size.width, 0, SCREEN_WIDTH-_numLabel.frame.size.width, 57)];
+    _numLabel1 = [[MagicUILabel alloc]initWithFrame:CGRectMake(_numLabel.frame.size.width, 0, SCREEN_WIDTH-_numLabel.frame.size.width, 57)];
     _numLabel1.text = @"张图片";
     _numLabel1.textAlignment = NSTextAlignmentLeft;
     _numLabel1.textColor = ColorBlack;
@@ -85,7 +85,7 @@
     
     
     // Table View
-    _tableView = [[DragonUITableView alloc] initWithFrame:CGRectMake(0, self.headHeight, SCREEN_WIDTH, SCREEN_HEIGHT-self.headHeight) isNeedUpdate:NO];
+    _tableView = [[MagicUITableView alloc] initWithFrame:CGRectMake(0, self.headHeight, SCREEN_WIDTH, SCREEN_HEIGHT-self.headHeight) isNeedUpdate:NO];
     _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _tableView.allowsSelection = YES;
      [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -232,9 +232,9 @@
 }
 
 #pragma mark- 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
-    DragonUIButton *btn = signal.source;
+    MagicUIButton *btn = signal.source;
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
         [self.drNavigationController popViewControllerAnimated:YES];
@@ -267,9 +267,9 @@
 #pragma mark - UITableViewDataSource
 
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
         
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSString *section = [dict objectForKey:@"section"];
@@ -295,11 +295,11 @@
         NSNumber *s = [NSNumber numberWithInteger:numberOfRowsInSection];
         [signal setReturnValue:s];
         
-    }else if([signal is:[DragonUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
+    }else if([signal is:[MagicUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
         NSNumber *s = [NSNumber numberWithInteger:3];
         [signal setReturnValue:s];
         
-    }else if([signal is:[DragonUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
+    }else if([signal is:[MagicUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
         
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -329,10 +329,10 @@
         NSNumber *s = [NSNumber numberWithInteger:heightForRow];
         [signal setReturnValue:s];
         
-    }else if([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])/*heightForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])/*heightForHeaderInSection*/{
         [signal setReturnValue:[NSNumber numberWithFloat:0.0]];
         
-    }else if([signal is:[DragonUITableView TABLECELLFORROW]])/*cell*/{
+    }else if([signal is:[MagicUITableView TABLECELLFORROW]])/*cell*/{
         
     
         NSDictionary *dict = (NSDictionary *)[signal object];
@@ -380,7 +380,7 @@
         [signal setReturnValue:cell];
         
         
-    }else if([signal is:[DragonUITableView TABLEDIDSELECT]])/*选中cell*/{
+    }else if([signal is:[MagicUITableView TABLEDIDSELECT]])/*选中cell*/{
         
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];

@@ -28,7 +28,7 @@
         // Initialization code
         self.sginInfo = arrInfo;
         
-        DragonUIImageView *_imgUserPortrait = [[DragonUIImageView alloc] initWithFrame:CGRectMake(8.75, 5.25, 45, 45) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        MagicUIImageView *_imgUserPortrait = [[MagicUIImageView alloc] initWithFrame:CGRectMake(8.75, 5.25, 45, 45) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         [_imgUserPortrait setNeedRadius:YES];
         RELEASE(_imgUserPortrait);
         

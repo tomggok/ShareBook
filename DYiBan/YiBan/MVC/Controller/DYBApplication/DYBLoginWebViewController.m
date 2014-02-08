@@ -16,34 +16,34 @@
 @implementation DYBLoginWebViewController
 DEF_SIGNAL(LOGINWEBBUTTON); //登陆web
 DEF_SIGNAL(CANCELBUTTON);//取消
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self setVCBackAnimation:SWIPELASTIMAGEBACKTYPE canBackPageNumber:0];
         [self.rightButton setHidden:YES];
         [self.headview setTitle:@"易码通"];
         [self backImgType:0];
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         [self.view setBackgroundColor:[UIColor colorWithRed:250/255.0f green:250/255.0f blue:250/255.0f alpha:1.0f]];
-        DragonUIImageView *imageview = [[DragonUIImageView alloc]initWithImage:[UIImage imageNamed:@"scanconf.png"]];
+        MagicUIImageView *imageview = [[MagicUIImageView alloc]initWithImage:[UIImage imageNamed:@"scanconf.png"]];
         [imageview setFrame:CGRectMake(60.0f, 120,121 , 151)];
         [imageview setCenter:CGPointMake(160.0f, 180.0f)];
         [imageview setUserInteractionEnabled:YES];
         [self.view addSubview:imageview];
         RELEASE(imageview)
         
-        DragonUIButton *btn = [[DragonUIButton alloc]initWithFrame:CGRectMake(20.0f, 120.0f, 132.0f, 42.0f)];
-        [self setDragonUIButton:btn setImageNorm:[UIImage imageNamed:@"btn_blank2_a"] setImageHigh:[UIImage imageNamed:@"btn_blank2_b"]  signal:[DYBLoginWebViewController LOGINWEBBUTTON] setControl:self];
+        MagicUIButton *btn = [[MagicUIButton alloc]initWithFrame:CGRectMake(20.0f, 120.0f, 132.0f, 42.0f)];
+        [self setMagicUIButton:btn setImageNorm:[UIImage imageNamed:@"btn_blank2_a"] setImageHigh:[UIImage imageNamed:@"btn_blank2_b"]  signal:[DYBLoginWebViewController LOGINWEBBUTTON] setControl:self];
         [btn setTag:101];
         [btn setCenter:CGPointMake(160.0f, 320.0f)];
         [btn setTitle:@"确认" forState:UIControlStateNormal];
         [self.view addSubview:btn];
         RELEASE(btn);
         
-        DragonUIButton *cancelbtn = [[DragonUIButton alloc]initWithFrame:CGRectMake(20.0f, 170.0f, 132.0f, 42.0f)];
-        [self setDragonUIButton:cancelbtn setImageNorm:[UIImage imageNamed:@"btn_blank2_d"] setImageHigh:[UIImage imageNamed:@"btn_blank2_d"]  signal:[DYBLoginWebViewController CANCELBUTTON] setControl:self];
+        MagicUIButton *cancelbtn = [[MagicUIButton alloc]initWithFrame:CGRectMake(20.0f, 170.0f, 132.0f, 42.0f)];
+        [self setMagicUIButton:cancelbtn setImageNorm:[UIImage imageNamed:@"btn_blank2_d"] setImageHigh:[UIImage imageNamed:@"btn_blank2_d"]  signal:[DYBLoginWebViewController CANCELBUTTON] setControl:self];
         [cancelbtn setTag:101];
         [cancelbtn setCenter:CGPointMake(160.0f, 400.0f)];
         [cancelbtn setTitle:@"取消" forState:UIControlStateNormal];
@@ -53,7 +53,7 @@ DEF_SIGNAL(CANCELBUTTON);//取消
 }
 
 #pragma mark-
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -74,13 +74,13 @@ DEF_SIGNAL(CANCELBUTTON);//取消
 }
 
 #pragma mark- 点击按钮
-- (void)handleViewSignal_DYBLoginWebViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBLoginWebViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBLoginWebViewController CANCELBUTTON]])
     {
 //        for (int i = 0; i < [[self.drNavigationController allviewControllers] count]; i++)
 //        {
-//            DragonViewController *vc = [[self.drNavigationController allviewControllers] objectAtIndex:i];
+//            MagicViewController *vc = [[self.drNavigationController allviewControllers] objectAtIndex:i];
 //            
 //            DLogInfo(@"vc == %@", vc);
 //        }
@@ -96,9 +96,9 @@ DEF_SIGNAL(CANCELBUTTON);//取消
         
         
         // 设置按钮不可按
-        DragonUIButton *btn1 = (DragonUIButton *)[self.view viewWithTag:101];
+        MagicUIButton *btn1 = (MagicUIButton *)[self.view viewWithTag:101];
         [btn1 setUserInteractionEnabled:NO];
-        DragonUIButton *btn2 = (DragonUIButton *)[self.view viewWithTag:102];
+        MagicUIButton *btn2 = (MagicUIButton *)[self.view viewWithTag:102];
         [btn2 setUserInteractionEnabled:NO];
         NSString *name = [[NSUserDefaults standardUserDefaults]valueForKey:@"username"];
         NSString *temp1 = [self utf2gbk:name];

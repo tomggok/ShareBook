@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 ZzL. All rights reserved.
 //
 
-#import "Dragon_JSONReflection.h"
+#import "Magic_JSONReflection.h"
 
-@interface orderModel : DragonJSONReflection
+@interface orderModel : MagicJSONReflection
 
 @property (nonatomic,assign)int num; //订单数
 @property (nonatomic,retain)NSString *name; //菜名

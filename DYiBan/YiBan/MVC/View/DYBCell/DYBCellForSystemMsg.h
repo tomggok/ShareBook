@@ -11,9 +11,9 @@
 
 @interface DYBCellForSystemMsg : UITableViewCell
 {
-    DragonUIImageView *_imgV_showImg/*左边展示图*/,*_imgV_newMsgNums/*新消息数量图*/;
-    DragonUILabel *_lb_newContent,*_lb_nickName,*_lb_time;
-    DragonUIButton *_bt_agree,*_bt_ignore;
+    MagicUIImageView *_imgV_showImg/*左边展示图*/,*_imgV_newMsgNums/*新消息数量图*/;
+    MagicUILabel *_lb_newContent,*_lb_nickName,*_lb_time;
+    MagicUIButton *_bt_agree,*_bt_ignore;
     reqlist *model;
 }
 

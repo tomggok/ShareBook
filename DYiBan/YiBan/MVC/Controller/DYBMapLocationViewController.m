@@ -41,21 +41,21 @@
 }
 
 #pragma mark- ViewController信号
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]]){
+    if ([signal is:[MagicViewController WILL_APPEAR]]){
         [self.headview setTitle:@"位置信息"];
         [self backImgType:0];
         if (_bAutoLocation == YES) {
             [self backImgType:3];
         }
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]]){
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]]){
 
     }
 }
 
 #pragma mark - 返回Button处理
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
         if ([_address isEqualToString:@"(null)"]){
@@ -72,11 +72,11 @@
         
         
         [self.drNavigationController popVCAnimated:YES];
-        [self sendViewSignal:[DragonViewController VCBACKSUCCESS]];
+        [self sendViewSignal:[MagicViewController VCBACKSUCCESS]];
 
     }else if ([signal is:[DYBBaseViewController BACKBUTTON]]){
         [self.drNavigationController popVCAnimated:YES];
-        [self sendViewSignal:[DragonViewController VCBACKSUCCESS]];
+        [self sendViewSignal:[MagicViewController VCBACKSUCCESS]];
     }
     
 }

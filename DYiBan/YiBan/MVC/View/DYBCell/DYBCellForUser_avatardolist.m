@@ -10,12 +10,12 @@
 #import "DYBCustomLabel.h"
 #import "user_avatardolist.h"
 #import "UITableView+property.h"
-#import "UITableViewCell+DragonCategory.h"
+#import "UITableViewCell+MagicCategory.h"
 #import "NSString+Count.h"
 
 @interface DYBCellForUser_avatardolist ()
 {
-    DragonUIImageView *_imgV_showImg/*左边展示图*/,*_imgV_newMsgNums/*新消息数量图*/;
+    MagicUIImageView *_imgV_showImg/*左边展示图*/,*_imgV_newMsgNums/*新消息数量图*/;
     DYBCustomLabel *_lb_newContent,*_lb_nickName,*_lb_time;
     UIView *_v_bigContent/*主要内容背景*/,*_v_toBeSlidingView/*要被滑动的view*/;
 }
@@ -31,7 +31,7 @@
         [self setFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), tbv._cellH)];
         
         if (!_imgV_showImg) {
-            _imgV_showImg=[[DragonUIImageView alloc]initWithFrame:CGRectMake(15,0, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_showImg.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            _imgV_showImg=[[MagicUIImageView alloc]initWithFrame:CGRectMake(15,0, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_showImg.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             _imgV_showImg.needRadius=YES;
             RELEASE(_imgV_showImg);
             
@@ -45,7 +45,7 @@
             _lb_nickName.font=[DYBShareinstaceDelegate DYBFoutStyle:18];
             _lb_nickName.text=model.username;
             [_lb_nickName setNeedCoretext:NO];
-            _lb_nickName.textColor=[DragonCommentMethod color:51 green:51 blue:51 alpha:1];
+            _lb_nickName.textColor=[MagicCommentMethod color:51 green:51 blue:51 alpha:1];
             _lb_nickName.numberOfLines=1;
             
             _lb_nickName.lineBreakMode=NSLineBreakByTruncatingTail;
@@ -77,7 +77,7 @@
                 default:
                     break;
             }
-            _lb_newContent.textColor=([DragonCommentMethod color:170 green:170 blue:170 alpha:1]);
+            _lb_newContent.textColor=([MagicCommentMethod color:170 green:170 blue:170 alpha:1]);
             //            [_lb_newContent sizeToFit];
             _lb_newContent.maxLineNum=1;//只一行
             [_lb_newContent sizeToFitByconstrainedSize:CGSizeMake(175, 40)];
@@ -97,7 +97,7 @@
     
     {//分割线
         UIView *v=[[UIView alloc]initWithFrame:CGRectMake(0, (self.frame.size.height-1), self.frame.size.width, 0.5)];
-        [v setBackgroundColor:[DragonCommentMethod colorWithHex:@"0xeeeeee"]];
+        [v setBackgroundColor:[MagicCommentMethod colorWithHex:@"0xeeeeee"]];
         [self addSubview:v];
         RELEASE(v);
     }

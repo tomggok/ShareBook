@@ -12,7 +12,7 @@
 #import "target.h"
 
 //#import "Jastor.h"
-@interface chat : DragonJSONReflection
+@interface chat : MagicJSONReflection
 @property(retain,nonatomic)NSString * id;
 @property(retain,nonatomic)NSString * content;//消息内容
 @property(assign,nonatomic)int time;//消息产生时间

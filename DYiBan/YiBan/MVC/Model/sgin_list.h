@@ -9,7 +9,7 @@
 //#import "Jastor.h"
 #import "sign_user.h"
 
-@interface sgin_list : DragonJSONReflection
+@interface sgin_list : MagicJSONReflection
 
 @property(nonatomic, retain) NSString *address;
 @property(nonatomic, retain) NSString *from;

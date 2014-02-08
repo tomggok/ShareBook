@@ -27,8 +27,8 @@ DEF_SIGNAL(SWITCHBTN);
     if (self) {
         
         self.layer.borderWidth = 1;
-        self.backgroundColor = [DragonCommentMethod colorWithHex:@"f8f8f8"];
-        self.layer.borderColor = [DragonCommentMethod colorWithHex:@"e5e5e5"].CGColor;
+        self.backgroundColor = [MagicCommentMethod colorWithHex:@"f8f8f8"];
+        self.layer.borderColor = [MagicCommentMethod colorWithHex:@"e5e5e5"].CGColor;
         
         [self addsub:labelText isArrow:yesOn type:type];
     }
@@ -40,16 +40,16 @@ DEF_SIGNAL(SWITCHBTN);
 - (void)addsub:(NSString *)labelText isArrow:(BOOL)yesOn type:(int)type{
     
     //按钮文字
-    _textLabel = [[DragonUILabel alloc]initWithFrame:CGRectMake(15, 5, [self getWidth]-15, [self getHeight]-10)];
+    _textLabel = [[MagicUILabel alloc]initWithFrame:CGRectMake(15, 5, [self getWidth]-15, [self getHeight]-10)];
     _textLabel.textAlignment = UIControlContentVerticalAlignmentCenter;
     _textLabel.font = [DYBShareinstaceDelegate DYBFoutStyle:20];  //字体和大小设置
     _textLabel.text = labelText;
-    _textLabel.textColor = [DragonCommentMethod colorWithHex:@"333333"];
+    _textLabel.textColor = [MagicCommentMethod colorWithHex:@"333333"];
     _textLabel.backgroundColor = [UIColor clearColor];
     [self addSubview:_textLabel];
     
     UIImage *arrowImage = [UIImage imageNamed:@"list_arrow"];
-    _arrowImv = [[DragonUIImageView alloc]initWithFrame:CGRectMake([self getWidth]-24, ([self getHeight]-arrowImage.size.height/2)/2, arrowImage.size.width/2, arrowImage.size.height/2)];
+    _arrowImv = [[MagicUIImageView alloc]initWithFrame:CGRectMake([self getWidth]-24, ([self getHeight]-arrowImage.size.height/2)/2, arrowImage.size.width/2, arrowImage.size.height/2)];
     _arrowImv.image = arrowImage;
     _arrowImv.hidden = yesOn;
     [self addSubview:_arrowImv];
@@ -57,7 +57,7 @@ DEF_SIGNAL(SWITCHBTN);
     
     _switchButton = [[DYBSwitchButton alloc] initWithFrame:CGRectMake(_textLabel.frame.origin.x+_textLabel.frame.size.width-60, ([self getHeight]-30)/2, 50, 30)];    
     _switchButton.onTintColor = ColorBlue;
-    _switchButton.contrastColor = [DragonCommentMethod color:229 green:229 blue:229 alpha:1.0];
+    _switchButton.contrastColor = [MagicCommentMethod color:229 green:229 blue:229 alpha:1.0];
     [self addSubview:_switchButton];
     
     [_switchButton setOn: NO animated: NO];

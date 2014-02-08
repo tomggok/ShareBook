@@ -9,7 +9,7 @@
 //#import "Jastor.h"
 
 //好友列表数据
-@interface friends : DragonJSONReflection
+@interface friends : MagicJSONReflection
 
 @property (retain, nonatomic) NSString *canfriend;
 @property (retain, nonatomic) NSString *desc;

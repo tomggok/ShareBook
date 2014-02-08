@@ -10,6 +10,6 @@
 
 @interface DYBSettingMessageViewController : DYBBaseViewController {
     
-    DragonUISwitch *airplaneModeSwitch[7];
+    MagicUISwitch *airplaneModeSwitch[7];
 }
 @end

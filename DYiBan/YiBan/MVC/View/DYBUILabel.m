@@ -11,7 +11,7 @@
 
 @implementation DYBUILabel
 {
-    DragonUIImageView *imgView;
+    MagicUIImageView *imgView;
 }
 @synthesize imgType = _imgType;
 - (void)dealloc
@@ -37,7 +37,7 @@
     {
         CGFloat imgX = CGRectGetWidth(self.frame) - 55;
         CGFloat imgY = CGRectGetHeight(self.frame) - 22;
-        imgView = [[DragonUIImageView alloc] initWithFrame:CGRectMake(imgX, imgY, 55, 22)];
+        imgView = [[MagicUIImageView alloc] initWithFrame:CGRectMake(imgX, imgY, 55, 22)];
         [imgView setImage:[UIImage imageNamed:@"mask_more.png"]];
         [self addSubview:imgView];
         [self bringSubviewToFront:imgView];

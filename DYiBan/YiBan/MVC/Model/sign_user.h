@@ -9,7 +9,7 @@
 //#import "Jastor.h"
 #import "sign_user.h"
 
-@interface sign_user : DragonJSONReflection
+@interface sign_user : MagicJSONReflection
 
 @property (retain, nonatomic) NSString *desc;
 @property (retain, nonatomic) NSString *fullname;

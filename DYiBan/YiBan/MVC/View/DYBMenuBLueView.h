@@ -9,7 +9,7 @@
 #import "DYBBaseView.h"
 
 @interface DYBMenuBLueView : DYBBaseView{
-    DragonUITableView *_tableMenu;
+    MagicUITableView *_tableMenu;
     NSArray *_arrMenu;
     NSInteger _nSelRow;
     NSInteger _nCellType;

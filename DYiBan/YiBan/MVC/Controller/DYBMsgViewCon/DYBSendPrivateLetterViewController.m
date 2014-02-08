@@ -10,14 +10,14 @@
 #import "UITableView+property.h"
 #import "DYBCellForSendPrivateLetter.h"
 #import "chat.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "NSString+Count.h"
 #import "UIView+Animations.h"
 #import "ext.h"
-#import "UIImage+DragonCategory.h"
-#import "Dragon_UIUpdateView.h"
+#import "UIImage+MagicCategory.h"
+#import "Magic_UIUpdateView.h"
 #import "UserSettingMode.h"
-#import "Dragon_Device.h"
+#import "Magic_Device.h"
 #import "DYBRequest.h"
 #import "NSString+Count.h"
 #import "DYBCheckImageViewController.H"
@@ -45,11 +45,11 @@ DEF_SIGNAL(SENDLOCATION);
 DEF_SIGNAL(OPENURL);//打开链接
 
 #pragma mark- ViewController信号
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
     [super handleViewSignal:signal];
     
-    if ([signal is:DragonViewController.CREATE_VIEWS]) {
+    if ([signal is:MagicViewController.CREATE_VIEWS]) {
         bONface = NO;
         cell_list = [[NSMutableArray alloc]init];
         
@@ -58,7 +58,7 @@ DEF_SIGNAL(OPENURL);//打开链接
                        
         {
             _v_bottomView=[[UIView alloc]initWithFrame:CGRectMake(0, self.frameHeight-50, self.view.frame.size.width, 50)];
-            _v_bottomView.backgroundColor=[UIColor whiteColor];//[DragonCommentMethod color:255 green:255 blue:255 alpha:0.8];
+            _v_bottomView.backgroundColor=[UIColor whiteColor];//[MagicCommentMethod color:255 green:255 blue:255 alpha:0.8];
             _v_bottomView.alpha = 0.9;
 //            _v_bottomView._originFrame=CGRectMake(CGRectGetMinX(_v_bottomView.frame), CGRectGetMinY(_v_bottomView.frame), CGRectGetWidth(_v_bottomView.frame), CGRectGetHeight(_v_bottomView.frame));
             [self.view addSubview:_v_bottomView];
@@ -81,9 +81,9 @@ DEF_SIGNAL(OPENURL);//打开链接
         
         {
             UIImage *img= [UIImage imageNamed:@"sx_02"];
-            _bt_add = [[DragonUIButton alloc] initWithFrame:CGRectMake(0, 0, img.size.width/2, img.size.height/2)];
+            _bt_add = [[MagicUIButton alloc] initWithFrame:CGRectMake(0, 0, img.size.width/2, img.size.height/2)];
             _bt_add.tag=-1;
-            [_bt_add addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [_bt_add addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
             [_bt_add setImage:img forState:UIControlStateNormal];
 //            [_bt_add setImage:[UIImage imageNamed:@"btn_mainmenu_hilight"] forState:UIControlStateHighlighted];
             [_v_bottomView addSubview:_bt_add];
@@ -95,9 +95,9 @@ DEF_SIGNAL(OPENURL);//打开链接
         
         {
             UIImage *img= [UIImage imageNamed:@"btn_quick_send_dis"];
-            _bt_send = [[DragonUIButton alloc] initWithFrame:CGRectMake(_v_bottomView.frame.size.width-img.size.width/2, 0, img.size.width/2, img.size.height/2)];
+            _bt_send = [[MagicUIButton alloc] initWithFrame:CGRectMake(_v_bottomView.frame.size.width-img.size.width/2, 0, img.size.width/2, img.size.height/2)];
             _bt_send.tag=-2;
-            [_bt_send addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [_bt_send addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
             [_bt_send setImage:img forState:UIControlStateNormal];
             //            [_bt_add setImage:[UIImage imageNamed:@"btn_mainmenu_hilight"] forState:UIControlStateHighlighted];
             [_v_bottomView addSubview:_bt_send];
@@ -128,15 +128,15 @@ DEF_SIGNAL(OPENURL);//打开链接
         
         [self.view bringSubviewToFront:_v_bottomView];
                 
-//        [DragonUIKeyboard sharedInstace];
-//        [self observeNotification:[DragonUIKeyboard HEIGHT_CHANGED]];
-//        [self observeNotification:[DragonUIKeyboard SHOWN]];
-//        [self observeNotification:[DragonUIKeyboard HIDDEN]];
+//        [MagicUIKeyboard sharedInstace];
+//        [self observeNotification:[MagicUIKeyboard HEIGHT_CHANGED]];
+//        [self observeNotification:[MagicUIKeyboard SHOWN]];
+//        [self observeNotification:[MagicUIKeyboard HIDDEN]];
         
         {//HTTP
             [self.view setUserInteractionEnabled:YES];
             
-            DragonRequest *request = [DYBHttpMethod message_chat_sixin:1 pageNum:_tbv.i_pageNums type:@"0" userid:[_model objectForKey:@"userid"] maxid:@"0" last_id:@"0" isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod message_chat_sixin:1 pageNum:_tbv.i_pageNums type:@"0" userid:[_model objectForKey:@"userid"] maxid:@"0" last_id:@"0" isAlert:YES receive:self];
             [request setTag:1];
             
             if (!request) {//无网路
@@ -144,12 +144,12 @@ DEF_SIGNAL(OPENURL);//打开链接
             }
         }
         
-    }else if ([signal is:DragonViewController.WILL_APPEAR]){
+    }else if ([signal is:MagicViewController.WILL_APPEAR]){
         [self.headview setTitle: [_model objectForKey:@"name"]];
         [self backImgType:0];
         
         if(!_imgV_headView){
-            _imgV_headView = [[DragonUIImageView alloc] initWithFrame:CGRectMake(self.headview.frame.size.width-45, 15, 30, 30) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self.headview Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            _imgV_headView = [[MagicUIImageView alloc] initWithFrame:CGRectMake(self.headview.frame.size.width-45, 15, 30, 30) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self.headview Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             [_imgV_headView setNeedRadius:YES];
             
             [_imgV_headView setImgWithUrl:[_model objectForKey:@"pic"] defaultImg:no_pic_50];
@@ -162,23 +162,23 @@ DEF_SIGNAL(OPENURL);//打开链接
             
 //            {//遮罩
 //                UIImage *img=[UIImage imageNamed:@"midface_mask_high"];
-//                DragonUIImageView *imgV=[[DragonUIImageView alloc]initWithFrame:CGRectMake(0,0, 30,30) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_imgV_headView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+//                MagicUIImageView *imgV=[[MagicUIImageView alloc]initWithFrame:CGRectMake(0,0, 30,30) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_imgV_headView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
 //                RELEASE(imgV);
 //            }
            
         }
         
-    }else if ([signal is:DragonViewController.DID_DISAPPEAR]){
+    }else if ([signal is:MagicViewController.DID_DISAPPEAR]){
         //        RELEASEVIEW(_tbv);//界面不显示时彻底释放TBV,已释放cell
         
-    }else if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    }else if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         
-    }else if ([signal is:[DragonViewController FREE_DATAS]])//dealloc时回调,先释放数据
+    }else if ([signal is:[MagicViewController FREE_DATAS]])//dealloc时回调,先释放数据
     {
         [_tbv releaseDataResource];
         
-    }else if ([signal is:[DragonViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
+    }else if ([signal is:[MagicViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
         
         REMOVEFROMSUPERVIEW(_imgV_headView);
         
@@ -194,7 +194,7 @@ DEF_SIGNAL(OPENURL);//打开链接
 -(void)creatTbv{
     
     if (!_tbv) {
-        _tbv = [[DragonUITableView alloc] initWithFrame:CGRectMake(0, self.headHeight, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-self.headHeight-kH_StateBar-_v_bottomView.frame.size.height) isNeedUpdate:YES];//创建后_tbv.retainCount=5
+        _tbv = [[MagicUITableView alloc] initWithFrame:CGRectMake(0, self.headHeight, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-self.headHeight-kH_StateBar-_v_bottomView.frame.size.height) isNeedUpdate:YES];//创建后_tbv.retainCount=5
 //        _tbv._cellH=65;
         [_tbv setTableViewType:DTableViewSlime];//此句会让_tbv.retainCount++
         RELEASE(_tbv);
@@ -219,9 +219,9 @@ DEF_SIGNAL(OPENURL);//打开链接
 
 static NSString *cellName = @"cellName";//前4个cell
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -237,7 +237,7 @@ static NSString *cellName = @"cellName";//前4个cell
             [signal setReturnValue:s];
         }
         
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -251,11 +251,11 @@ static NSString *cellName = @"cellName";//前4个cell
         }
         
     }
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
-        DragonUITableView *tableView = [dict objectForKey:@"tableView"];
+        MagicUITableView *tableView = [dict objectForKey:@"tableView"];
         
         DLogInfo(@"%@",indexPath);
         
@@ -277,7 +277,7 @@ static NSString *cellName = @"cellName";//前4个cell
                 
                 if ([tableView isOneSection]&&indexPath.row==tableView.i_pageNums-1 && !tableView.b_isreloadOver /*&& tableView._page==1*/) {//判断 单section下 新页是否reload完毕,如果完毕就滚到新页的最下边的cell
 //                    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:tableView, @"tableView", indexPath, @"indexPath", nil];
-//                    [tableView sendViewSignal:[DragonUITableView TAbLEVIERELOADOVER] withObject:dict];
+//                    [tableView sendViewSignal:[MagicUITableView TAbLEVIERELOADOVER] withObject:dict];
                     tableView.b_isreloadOver=YES;
 
                     [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:NO];
@@ -293,7 +293,7 @@ static NSString *cellName = @"cellName";//前4个cell
         
         if ([tableView isOneSection]&&indexPath.row==tableView.muA_singelSectionData.count-1 && !tableView.b_isreloadOver) {//加载完最后一个cell
             //                NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:tableView, @"tableView", indexPath, @"indexPath", nil];
-            //                [tableView sendViewSignal:[DragonUITableView TAbLEVIERELOADOVER] withObject:dict];
+            //                [tableView sendViewSignal:[MagicUITableView TAbLEVIERELOADOVER] withObject:dict];
             tableView.b_isreloadOver=YES;
             
             if (!b_isNeedScrollDownTbv) {
@@ -305,11 +305,11 @@ static NSString *cellName = @"cellName";//前4个cell
         }
         
     }
-    else if ([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
     {
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
     {
         //        NSDictionary *dict = (NSDictionary *)[signal object];
         //        UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -317,12 +317,12 @@ static NSString *cellName = @"cellName";//前4个cell
         [signal setReturnValue:nil];
         
     }//
-    else if ([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
     {
         [signal setReturnValue:[NSNumber numberWithFloat:0.0]];
         
     }
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell  只返回显示的cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell  只返回显示的cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableview = [dict objectForKey:@"tableView"];
@@ -333,26 +333,26 @@ static NSString *cellName = @"cellName";//前4个cell
         
         [signal setReturnValue:cell];
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         
     }
-    else if ([signal is:[DragonUITableView TAbLEVIEWLODATA]])//
+    else if ([signal is:[MagicUITableView TAbLEVIEWLODATA]])//
     {
-        DragonUITableView *tableView = (DragonUITableView *)[signal source];
+        MagicUITableView *tableView = (MagicUITableView *)[signal source];
         [tableView reloadData:YES];//避免 获取第一页后 滚动到最下边时 收到 加载更多信号后 没重置顶部刷新view
         tableView.b_isreloadOver=YES;
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]])//
+    else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]])//
     {
         
-        DragonUITableView *tableView = (DragonUITableView *)[signal source];
+        MagicUITableView *tableView = (MagicUITableView *)[signal source];
         
         {//HTTP请求已加入的班级列表
             [self.view setUserInteractionEnabled:NO];
             
-            DragonRequest *request = [DYBHttpMethod message_chat_sixin:++tableView._page pageNum:tableView.i_pageNums type:@"0" userid:[_model objectForKey:@"userid"] maxid:@"0" last_id:((chat *)[_tbv.muA_singelSectionData objectAtIndex:0]).id isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod message_chat_sixin:++tableView._page pageNum:tableView.i_pageNums type:@"0" userid:[_model objectForKey:@"userid"] maxid:@"0" last_id:((chat *)[_tbv.muA_singelSectionData objectAtIndex:0]).id isAlert:YES receive:self];
             [request setTag:2];
             
             if (!request) {//无网路
@@ -361,8 +361,8 @@ static NSString *cellName = @"cellName";//前4个cell
         }
     }
     
-    else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLUP]]){//上滑
-        DragonUITableView *tableView = (DragonUITableView *)[signal source];
+    else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLUP]]){//上滑
+        MagicUITableView *tableView = (MagicUITableView *)[signal source];
 //        [self setVbottomView];
 
 //        [_tbv StretchingUpOrDown:0];
@@ -371,8 +371,8 @@ static NSString *cellName = @"cellName";//前4个cell
 //            [_v_inputV.textV resignFirstResponder];
 //        }
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLDOWN]]){//下滑
-        DragonUITableView *tableView = (DragonUITableView *)[signal source];
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLDOWN]]){//下滑
+        MagicUITableView *tableView = (MagicUITableView *)[signal source];
 //        [self setVbottomView];
         
         if(tableView.b_isreloadOver && tableView.b_Dragging){//tbv被拖拽时才隐藏键盘
@@ -393,11 +393,11 @@ static NSString *cellName = @"cellName";//前4个cell
     
         
         }
-    }else if ([signal is:[DragonUITableView TAbLEVIERELOADOVER]])//reload完毕
+    }else if ([signal is:[MagicUITableView TAbLEVIERELOADOVER]])//reload完毕
     {
 
     }
-    else if ([signal is:[DragonUITableView TAbLEVIERETOUCH]])//reload完毕
+    else if ([signal is:[MagicUITableView TAbLEVIERETOUCH]])//reload完毕
     {
         if (_v_inputV.textV.isFirstResponder == YES) {
             [_v_inputV.textV resignFirstResponder];
@@ -455,12 +455,12 @@ static NSString *cellName = @"cellName";//前4个cell
 
 
 #pragma mark- 只接受UITextView信号
-- (void)handleViewSignal_DragonUITextView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITextView:(MagicViewSignal *)signal
 {
     keyboardY = NO;
     keyboardChange = 0;
     keyboardChangeNOW= 0;
-    if ([signal is:[DragonUITextView TEXTVIEWSHOULDBEGINEDITING]])//textViewShouldBeginEditing
+    if ([signal is:[MagicUITextView TEXTVIEWSHOULDBEGINEDITING]])//textViewShouldBeginEditing
     {
         if (_v_threeBtView) {
             REMOVEFROMSUPERVIEW(_bt_face);
@@ -475,20 +475,20 @@ static NSString *cellName = @"cellName";//前4个cell
         }
         
 //        _originFrameAfterHideKeyBoard=CGRectZero;
-    }else  if ([signal is:[DragonUITextView TEXTVIEWDIDBEGINEDITING]])//textViewDidBeginEditing
+    }else  if ([signal is:[MagicUITextView TEXTVIEWDIDBEGINEDITING]])//textViewDidBeginEditing
     {
    
-    }else  if ([signal is:[DragonUITextView TEXT_OVERFLOW]])//文字超长
+    }else  if ([signal is:[MagicUITextView TEXT_OVERFLOW]])//文字超长
     {
         [signal returnNO];
-    }else  if ([signal is:[DragonUITextView TEXTVIEW]])//shouldChangeTextInRange
+    }else  if ([signal is:[MagicUITextView TEXTVIEW]])//shouldChangeTextInRange
     {
         NSMutableDictionary *muD = (NSMutableDictionary *)[signal object];
         NSString *emString=[muD objectForKey:@"text"];
         
         if ([NSString isContainsEmoji:emString]) {
             
-//            [signal setReturnValue:[DragonViewSignal NO_VALUE]];
+//            [signal setReturnValue:[MagicViewSignal NO_VALUE]];
         }else if ([emString isEqualToString:@"\\"]){
             
         }
@@ -498,7 +498,7 @@ static NSString *cellName = @"cellName";//前4个cell
         _originFrameAfterHideKeyBoard=CGRectZero;
 
     }
-    else  if ([signal is:[DragonUITextView TEXTVIEWDIDCHANGE]])//textViewDidChange
+    else  if ([signal is:[MagicUITextView TEXTVIEWDIDCHANGE]])//textViewDidChange
     {
         if (_bt_add.selected) {
             keyboardChange = 1;
@@ -652,9 +652,9 @@ static NSString *cellName = @"cellName";//前4个cell
 
 
 #pragma mark- 接受按钮信号
-- (void)handleViewSignal_DragonUIButton:(DragonViewSignal *)signal{
-    if ([signal is:[DragonUIButton TOUCH_UP_INSIDE]]) {
-        DragonUIButton *bt=(DragonUIButton *)signal.source;
+- (void)handleViewSignal_MagicUIButton:(MagicViewSignal *)signal{
+    if ([signal is:[MagicUIButton TOUCH_UP_INSIDE]]) {
+        MagicUIButton *bt=(MagicUIButton *)signal.source;
         
         if (bt)
         {
@@ -692,9 +692,9 @@ static NSString *cellName = @"cellName";//前4个cell
                             if (!_bt_face) {
                                 UIImage *img= [UIImage imageNamed:@"sx_04"];
                                 UIImage *img1= [UIImage imageNamed:@"sx_04_press"];
-                                _bt_face = [[DragonUIButton alloc] initWithFrame:CGRectMake(25, 12, img.size.width/2, img.size.height/2)];
+                                _bt_face = [[MagicUIButton alloc] initWithFrame:CGRectMake(25, 12, img.size.width/2, img.size.height/2)];
                                 _bt_face.tag=-3;
-                                [_bt_face addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+                                [_bt_face addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
                                 [_bt_face setImage:img forState:UIControlStateNormal];
                                 [_bt_face setImage:img1 forState:UIControlStateHighlighted];
                                 //            [_bt_add setImage:[UIImage imageNamed:@"btn_mainmenu_hilight"] forState:UIControlStateHighlighted];
@@ -709,9 +709,9 @@ static NSString *cellName = @"cellName";//前4个cell
                             if (!_bt_photo) {
                                 UIImage *img= [UIImage imageNamed:@"sx_05"];
                                 UIImage *img1= [UIImage imageNamed:@"sx_05_press"];
-                                _bt_photo = [[DragonUIButton alloc] initWithFrame:CGRectMake(_bt_face.frame.origin.x+_bt_face.frame.size.width+40, _bt_face.frame.origin.y, img.size.width/2, img.size.height/2)];
+                                _bt_photo = [[MagicUIButton alloc] initWithFrame:CGRectMake(_bt_face.frame.origin.x+_bt_face.frame.size.width+40, _bt_face.frame.origin.y, img.size.width/2, img.size.height/2)];
                                 _bt_photo.tag=-4;
-                                [_bt_photo addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+                                [_bt_photo addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
                                 [_bt_photo setImage:img forState:UIControlStateNormal];
                                 [_bt_photo setImage:img1 forState:UIControlStateHighlighted];
                                 //            [_bt_add setImage:[UIImage imageNamed:@"btn_mainmenu_hilight"] forState:UIControlStateHighlighted];
@@ -726,9 +726,9 @@ static NSString *cellName = @"cellName";//前4个cell
                             if (!_bt_location) {
                                 UIImage *img= [UIImage imageNamed:@"sx_06"];
                                 UIImage *img1= [UIImage imageNamed:@"sx_06_press"];
-                                _bt_location = [[DragonUIButton alloc] initWithFrame:CGRectMake(_bt_photo.frame.origin.x+_bt_photo.frame.size.width+40, _bt_face.frame.origin.y, img.size.width/2, img.size.height/2)];
+                                _bt_location = [[MagicUIButton alloc] initWithFrame:CGRectMake(_bt_photo.frame.origin.x+_bt_photo.frame.size.width+40, _bt_face.frame.origin.y, img.size.width/2, img.size.height/2)];
                                 _bt_location.tag=-5;
-                                [_bt_location addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+                                [_bt_location addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
                                 [_bt_location setImage:img forState:UIControlStateNormal];
                                 [_bt_location setImage:img1 forState:UIControlStateHighlighted];
                                 //            [_bt_add setImage:[UIImage imageNamed:@"btn_mainmenu_hilight"] forState:UIControlStateHighlighted];
@@ -814,7 +814,7 @@ static NSString *cellName = @"cellName";//前4个cell
                     _strContent = [_strContent stringByReplacingOccurrencesOfString: @"\r" withString:@""];
                     _strContent = [_strContent stringByReplacingOccurrencesOfString: @"\n" withString:@""];
                     _strContent = [_strContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                    DragonRequest *request = [DYBHttpMethod sendmessage:_strContent userid:[_model objectForKey:@"userid"] isAlert:YES receive:self];
+                    MagicRequest *request = [DYBHttpMethod sendmessage:_strContent userid:[_model objectForKey:@"userid"] isAlert:YES receive:self];
                     [request setTag:3];
                     model.SucessSend=1;
                     
@@ -882,7 +882,7 @@ static NSString *cellName = @"cellName";//前4个cell
     
 }
 
-- (void)handleViewSignal_DYBSendPrivateLetterViewController:(DragonViewSignal *)signal{
+- (void)handleViewSignal_DYBSendPrivateLetterViewController:(MagicViewSignal *)signal{
     
     
     if ([signal is:[DYBSendPrivateLetterViewController OPENURL]]){
@@ -938,7 +938,7 @@ static NSString *cellName = @"cellName";//前4个cell
         cell._imagV_fail.hidden = YES;
         
         
-        DragonRequest *request = [DYBHttpMethod sendmessage2:[_model objectForKey:@"userid"] content:@"定位" type:@"2" lng:_lng lat:_lat address:_address speech_length:0 isAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod sendmessage2:[_model objectForKey:@"userid"] content:@"定位" type:@"2" lng:_lng lat:_lat address:_address speech_length:0 isAlert:YES receive:self];
         [request setTag:5];
         
         if (!request) {//无网路
@@ -960,13 +960,13 @@ static NSString *cellName = @"cellName";//前4个cell
 }
 
 //弹出视图
--(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
     
     //文字删除和重新发送
     if (_showTag == 1) {
         if ([signal is:[DYBDataBankShotView RIGHT]]) {
             indexRow = saveExt.indexRow;
-            DragonRequest *request = [DYBHttpMethod sendmessage:saveExt.content userid:[_model objectForKey:@"userid"] isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod sendmessage:saveExt.content userid:[_model objectForKey:@"userid"] isAlert:YES receive:self];
             [request setTag:3];
             
             if (!request) {//无网路
@@ -1006,7 +1006,7 @@ static NSString *cellName = @"cellName";//前4个cell
             
             NSArray *a = @[data];
             DYBRequest *request1 = [[DYBRequest alloc]init];;
-            DragonRequest *request = [request1 DYBPOSTIMG:params isAlert:YES receive:self imageData:a];
+            MagicRequest *request = [request1 DYBPOSTIMG:params isAlert:YES receive:self imageData:a];
             [request setTag:4];
             
             if (!request) {//无网路
@@ -1034,7 +1034,7 @@ static NSString *cellName = @"cellName";//前4个cell
         if ([signal is:[DYBDataBankShotView RIGHT]]) {
             
             indexRow = saveExt.indexRow;
-            DragonRequest *request = [DYBHttpMethod sendmessage2:[_model objectForKey:@"userid"] content:@"定位" type:@"2" lng:saveExt.ext.lon lat:saveExt.ext.lat address:saveExt.ext.address speech_length:0 isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod sendmessage2:[_model objectForKey:@"userid"] content:@"定位" type:@"2" lng:saveExt.ext.lon lat:saveExt.ext.lat address:saveExt.ext.address speech_length:0 isAlert:YES receive:self];
             [request setTag:5];
             
             if (!request) {//无网路
@@ -1061,7 +1061,7 @@ static NSString *cellName = @"cellName";//前4个cell
 }
 
 #pragma mark- 接受UIView信号
-- (void)handleViewSignal_UIView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_UIView:(MagicViewSignal *)signal{
     if ([signal is:[UIView TAP]]) {
         [_v_inputV.textV resignFirstResponder];
         
@@ -1453,7 +1453,7 @@ static NSString *cellName = @"cellName";//前4个cell
     
     NSArray *a = @[data];
     DYBRequest *request1 = AUTORELEASE([[DYBRequest alloc] init]);
-    DragonRequest *request = [request1 DYBPOSTIMG:params isAlert:YES receive:self imageData:a];
+    MagicRequest *request = [request1 DYBPOSTIMG:params isAlert:YES receive:self imageData:a];
     [request setTag:4];
     
     if (!request) {//无网路
@@ -1607,7 +1607,7 @@ static NSString *cellName = @"cellName";//前4个cell
 }
 
 #pragma mark- 只接受HTTP信号
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if ([request succeed])
     {

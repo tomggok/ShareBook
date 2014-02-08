@@ -40,7 +40,7 @@
 -(float)ActivityInfo:(NSString *)title begin_time:(NSString *)begin_time end_time:(NSString *)end_time{
    float fHeight = 50.0f;
 
-    DragonUILabel *_lbTitle = [[DragonUILabel alloc] initWithFrame:CGRectMake(15, 15, 200, 20)];
+    MagicUILabel *_lbTitle = [[MagicUILabel alloc] initWithFrame:CGRectMake(15, 15, 200, 20)];
     [_lbTitle setBackgroundColor:[UIColor clearColor]];
     [_lbTitle setTextAlignment:NSTextAlignmentLeft];
     [_lbTitle setFont:[UIFont boldSystemFontOfSize:18.0f]];
@@ -71,7 +71,7 @@
     }
     
     
-    DragonUILabel *_lbTime = [[DragonUILabel alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(_lbTitle.frame)-5, 200, 30)];
+    MagicUILabel *_lbTime = [[MagicUILabel alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(_lbTitle.frame)-5, 200, 30)];
     [_lbTime setBackgroundColor:[UIColor clearColor]];
     [_lbTime setTextAlignment:NSTextAlignmentLeft];
     [_lbTime setFont:[UIFont boldSystemFontOfSize:13.0f]];
@@ -117,7 +117,7 @@
         NSInteger nIMAGECount  = [arrIMG count];
         
         for (int nIndex = 0; nIndex < nIMAGECount; nIndex ++) {
-            DragonUIImageView *_imgDynamicIMAGE = [[DragonUIImageView alloc] initWithFrame:CGRectMake(65+70*nIndex, CGRectGetMaxY(_lbSelfContent.frame)+15+nIndex/3*85, 60, 75) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleToFill stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            MagicUIImageView *_imgDynamicIMAGE = [[MagicUIImageView alloc] initWithFrame:CGRectMake(65+70*nIndex, CGRectGetMaxY(_lbSelfContent.frame)+15+nIndex/3*85, 60, 75) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleToFill stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             [_imgDynamicIMAGE setTag:nIndex];
             
             if (nIndex > 2) {

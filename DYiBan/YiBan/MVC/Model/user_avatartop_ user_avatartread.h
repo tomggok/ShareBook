@@ -6,10 +6,10 @@
 //  Copyright (c) 2013年 ZzL. All rights reserved.
 //
 
-#import "Dragon_JSONReflection.h"
+#import "Magic_JSONReflection.h"
 
 //user_avatartread踩和user_avatartop顶接口返回的数据
-@interface user_avatartop__user_avatartread : DragonJSONReflection
+@interface user_avatartop__user_avatartread : MagicJSONReflection
 
 @property (nonatomic, retain)NSString *content;//供页面显示的信息
 @property (nonatomic, retain)NSString *foot;//清除多少脚印

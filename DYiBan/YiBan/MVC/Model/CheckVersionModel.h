@@ -8,7 +8,7 @@
 
 //#import "Jastor.h"
 #import "version.h"
-@interface CheckVersionModel : DragonJSONReflection
+@interface CheckVersionModel : MagicJSONReflection
 @property (nonatomic, retain)NSString *status;
 @property (nonatomic, retain)version *version;
 

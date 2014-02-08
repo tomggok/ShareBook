@@ -17,9 +17,9 @@
 @implementation DYBSNS_Controller_webViewController
 @synthesize father = _father;
 
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.leftButton setHidden:NO];
         [self.rightButton setHidden:YES];
@@ -43,7 +43,7 @@
         
         [self.view addSubview:webView];
         
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         
     }
@@ -83,7 +83,7 @@
 }
 
 #pragma mark- 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {

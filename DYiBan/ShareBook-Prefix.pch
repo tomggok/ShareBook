@@ -13,16 +13,16 @@
     #import <Foundation/Foundation.h>
     #import <QuartzCore/QuartzCore.h>
 
-#import "Dragon_Logger.h"
-#import "Dragon_View.h"
-#import "Dragon_CommentMethod.h"
-#import "Dragon_Sandbox.h"
-#import "Dragon_UITableView.h"
-#import "Dragon_UIButton.h"
+#import "Magic_Logger.h"
+#import "Magic_View.h"
+#import "Magic_CommentMethod.h"
+#import "Magic_Sandbox.h"
+#import "Magic_UITableView.h"
+#import "Magic_UIButton.h"
 #import "DYBParameter.h"    
 #import "DYBShareinstaceDelegate.h"
 
-#import "Dragon_JSONReflection.h"
+#import "Magic_JSONReflection.h"
 
 #import "DYBRequest.h"
 #import "DYBHttpInterface.h"

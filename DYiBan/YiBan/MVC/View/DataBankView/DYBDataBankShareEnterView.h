@@ -5,7 +5,7 @@
 //  Created by tom zeng on 13-9-16.
 //  Copyright (c) 2013年 ZzL. All rights reserved.
 //
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "DYBBaseView.h"
 #import "DYBBaseViewController.h"
 #import "DYBDataBankListCell.h"

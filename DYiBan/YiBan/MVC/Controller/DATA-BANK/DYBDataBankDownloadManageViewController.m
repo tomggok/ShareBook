@@ -18,14 +18,14 @@
 #import <Accelerate/Accelerate.h>
 #import "DYBMenuView.h"
 #import "UITableView+property.h"
-#import "NSObject+DragonRequestResponder.h"
+#import "NSObject+MagicRequestResponder.h"
 #import "DYBDataBankSelectBtn.h"
-#import "NSObject+DragonDatabase.h"
+#import "NSObject+MagicDatabase.h"
 #import "DYBDataBankListCell.h"
 #import "DYBDataBankFileDetailViewController.h"
-#import "Dragon_Sandbox.h"
+#import "Magic_Sandbox.h"
 #import "UserSettingMode.h"
-#import "Dragon_Device.h"
+#import "Magic_Device.h"
 #import "NSString+Count.h"
 
 #define NORESULTVIEW 1000
@@ -33,8 +33,8 @@
 
 @interface DYBDataBankDownloadManageViewController (){
     
-    DragonUITableView *tbDowningDataBank;
-    DragonUITableView *tbFinishDataBank;
+    MagicUITableView *tbDowningDataBank;
+    MagicUITableView *tbFinishDataBank;
     
     NSMutableArray *arrayFolderList;
     NSMutableArray *arrayCellView;
@@ -87,10 +87,10 @@ static DYBDataBankDownloadManageViewController *shareInstance = nil;
     return shareInstance;
 }
 
--(void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal{
     
     
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
 
         if (tbDowningDataBank.hidden) {
@@ -106,7 +106,7 @@ static DYBDataBankDownloadManageViewController *shareInstance = nil;
         [self setButtonImage:self.rightButton setImage:@"btn_delall_def" setHighString:@"btn_delall_perss"];
         [self.view setBackgroundColor:[UIColor whiteColor]];
         
-        DragonUIButton *_btnSwichDybamic = [[DragonUIButton alloc] initWithFrame:CGRectMake(110, 0, 100, 44)];
+        MagicUIButton *_btnSwichDybamic = [[MagicUIButton alloc] initWithFrame:CGRectMake(110, 0, 100, 44)];
         [_btnSwichDybamic addSignal:[DYBDataBankDownloadManageViewController SWITCHDYBAMICBUTTON] forControlEvents:UIControlEventTouchUpInside];
         [self.headview addSubview:_btnSwichDybamic];
         
@@ -119,7 +119,7 @@ static DYBDataBankDownloadManageViewController *shareInstance = nil;
         [self.headview setTitleArrow];
         
     }
-    if ([signal is:[DragonViewController CREATE_VIEWS]]) {
+    if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         //初始化
        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goOnDown) name:@"backApp" object:nil];
@@ -139,7 +139,7 @@ static DYBDataBankDownloadManageViewController *shareInstance = nil;
         
         [self.view setBackgroundColor:[UIColor clearColor]];
         
-        tbDowningDataBank = [[DragonUITableView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44.0f -20)isNeedUpdate:YES];
+        tbDowningDataBank = [[MagicUITableView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44.0f -20)isNeedUpdate:YES];
         [tbDowningDataBank.headerView setHidden:YES];
         [tbDowningDataBank setTableViewType:DTableViewSlime];
         [self.view addSubview:tbDowningDataBank];
@@ -149,7 +149,7 @@ static DYBDataBankDownloadManageViewController *shareInstance = nil;
         [tbDowningDataBank release];   
         
 //        
-        tbFinishDataBank = [[DragonUITableView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44.0f -20)isNeedUpdate:YES];
+        tbFinishDataBank = [[MagicUITableView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44.0f -20)isNeedUpdate:YES];
         [tbFinishDataBank.headerView setHidden:YES];
         [tbFinishDataBank setHidden:YES];
         [tbFinishDataBank setTag:2];
@@ -178,7 +178,7 @@ static DYBDataBankDownloadManageViewController *shareInstance = nil;
         }
         
         
-    if ([signal is:[DragonViewController LAYOUT_VIEWS]]) {
+    if ([signal is:[MagicViewController LAYOUT_VIEWS]]) {
 
         [self.view setBackgroundColor:[UIColor whiteColor]];
 //         [self.headview setTitle:@"传送中"];
@@ -279,10 +279,10 @@ static DYBDataBankDownloadManageViewController *shareInstance = nil;
     }
 }
 
-- (void)handleViewSignal_DragonUIImageView_WEBDOWNSUCCESS:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUIImageView_WEBDOWNSUCCESS:(MagicViewSignal *)signal
 {
 
-    DragonUIImageView *tttt = (DragonUIImageView *)[signal source];
+    MagicUIImageView *tttt = (MagicUIImageView *)[signal source];
 
     NSString *downloadName  = tttt.strTag;
     
@@ -290,7 +290,7 @@ static DYBDataBankDownloadManageViewController *shareInstance = nil;
 //        
 //        
 //        [cell.progressView setProgress:1];
-//        //        [cell.progressView setInnerColor:[DragonCommentMethod colorWithHex:@"aaaaaa"]];
+//        //        [cell.progressView setInnerColor:[MagicCommentMethod colorWithHex:@"aaaaaa"]];
 //        
 //        [cell.labelProgress setText:@"100%100"];
 //        
@@ -360,24 +360,24 @@ static DYBDataBankDownloadManageViewController *shareInstance = nil;
                 //删除离线并下载
                 self.DB.FROM(KDATABANKDOWNLIST).WHERE(@"url", url).WHERE(@"userid", SHARED.userId).DELETE();
                 NSString *downName = [self downPathFileNameWithUrl:url];
-                BOOL isFinish = [DragonSandbox deleteFile:downName];
+                BOOL isFinish = [MagicSandbox deleteFile:downName];
                 if (!isFinish)
                 {
-                    [DragonSandbox deleteFile:[NSString stringWithFormat:@"%@.download", downName]];
+                    [MagicSandbox deleteFile:[NSString stringWithFormat:@"%@.download", downName]];
                 }
             }
             
             
         }else{
             
-            if (SHARED.currentUserSetting.wifiForPush && ![[DragonDevice networkType] isEqualToString:@"wifi"] && [[DragonDevice networkType] isEqualToString:@"2g"]) {
+            if (SHARED.currentUserSetting.wifiForPush && ![[MagicDevice networkType] isEqualToString:@"wifi"] && [[MagicDevice networkType] isEqualToString:@"2g"]) {
                 [DYBShareinstaceDelegate addConfirmViewTitle:@"提示" MSG:@"您当前为2G/3G网络，需要消耗流量，是否继续操作？" targetView:APPDELEGATE.window targetObj:self btnType:BTNTAG_GOONDOWNLOAD dic:[NSMutableDictionary dictionaryWithDictionary:dict] ];
                 return;
                 
-            }else if ([DragonDevice hasInternetConnection] == NO) {
-                DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+            }else if ([MagicDevice hasInternetConnection] == NO) {
+                MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                 [pop setDelegate:self];
-                [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                 [pop setText:@"检测不到网络连接！"];
                 [pop alertViewAutoHidden:.5f isRelease:YES];
                 
@@ -391,14 +391,14 @@ static DYBDataBankDownloadManageViewController *shareInstance = nil;
 
     }else{
         
-        if (SHARED.currentUserSetting.wifiForPush &&![[DragonDevice networkType] isEqualToString:@"wifi"] && [[DragonDevice networkType] isEqualToString:@"2g"]) {
+        if (SHARED.currentUserSetting.wifiForPush &&![[MagicDevice networkType] isEqualToString:@"wifi"] && [[MagicDevice networkType] isEqualToString:@"2g"]) {
             [DYBShareinstaceDelegate addConfirmViewTitle:@"提示" MSG:@"您当前为2G/3G网络，需要消耗流量，是否继续操作？" targetView:APPDELEGATE.window targetObj:self btnType:BTNTAG_GOONDOWNLOAD dic:[NSMutableDictionary dictionaryWithDictionary:dict] ];
             return;
             
-        }else if ([DragonDevice hasInternetConnection] == NO) {
-            DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+        }else if ([MagicDevice hasInternetConnection] == NO) {
+            MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
             [pop setDelegate:self];
-            [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+            [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
             [pop setText:@"检测不到网络连接！"];
             [pop alertViewAutoHidden:.5f isRelease:YES];
             
@@ -422,7 +422,7 @@ static DYBDataBankDownloadManageViewController *shareInstance = nil;
             [_cellDown.imageViewDown setHidden:NO];
         }
         
-        DragonRequest *request = self.HTTP_GET_DOWN(url);
+        MagicRequest *request = self.HTTP_GET_DOWN(url);
         
        
         
@@ -501,7 +501,7 @@ static DYBDataBankDownloadManageViewController *shareInstance = nil;
 
             
             NSString *file_url = [dict objectForKey:@"file_url"];
-            DragonUIImageView *image = [[DragonUIImageView alloc]init];
+            MagicUIImageView *image = [[MagicUIImageView alloc]init];
             image.strTag = downFileName;
             [self.view addSubview:image];
             [image setImgWithUrl:file_url defaultImg:nil];
@@ -533,7 +533,7 @@ static DYBDataBankDownloadManageViewController *shareInstance = nil;
     
     NSString *strType = [[url componentsSeparatedByString:@"."] lastObject];
     
-    NSString *md5 = [DragonCommentMethod md5:url];
+    NSString *md5 = [MagicCommentMethod md5:url];
     
     [dictDictCellURL setValue:cell forKey:[md5 stringByAppendingFormat:@".%@",strType]];
 //    tableView._muA_differHeightCellView = [[NSMutableArray alloc]initWithArray:arrayView];
@@ -684,7 +684,7 @@ static DYBDataBankDownloadManageViewController *shareInstance = nil;
 }
 
 
--(void)handleViewSignal_DYBMenuView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBMenuView:(MagicViewSignal *)signal{
     
     if ([signal is:[DYBMenuView MENUSELECTCELL]]) {
         
@@ -739,7 +739,7 @@ static DYBDataBankDownloadManageViewController *shareInstance = nil;
     
 }
 
-- (void)handleViewSignal_DYBDataBankDownloadManageViewController:(DragonViewSignal *)signal{
+- (void)handleViewSignal_DYBDataBankDownloadManageViewController:(MagicViewSignal *)signal{
 
     if ([signal is:[DYBDataBankDownloadManageViewController SWITCHDYBAMICBUTTON]]) {
         
@@ -751,7 +751,7 @@ static DYBDataBankDownloadManageViewController *shareInstance = nil;
 //        NSNumber *nSection = [dict objectForKey:@"section"];
     
 //        NSLog(@"%d", [nSection intValue]);
-    }if ([signal is:[DragonUIImageView WEBDOWNSUCCESS]]) {
+    }if ([signal is:[MagicUIImageView WEBDOWNSUCCESS]]) {
         
         
         NSLog(@"ffff");
@@ -759,7 +759,7 @@ static DYBDataBankDownloadManageViewController *shareInstance = nil;
 
 }
 #pragma mark- 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -791,7 +791,7 @@ static DYBDataBankDownloadManageViewController *shareInstance = nil;
 
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request
+- (void)handleRequest:(MagicRequest *)request
 {
     
     NSString *strURL = request.downloadName;
@@ -817,7 +817,7 @@ static DYBDataBankDownloadManageViewController *shareInstance = nil;
 //下载进度回调
 bool istest;
 CGFloat test = 0;
-- (void)downloadProgress:(CGFloat)newProgress request:(DragonRequest *)request
+- (void)downloadProgress:(CGFloat)newProgress request:(MagicRequest *)request
 {
 
     DLogInfo(@"request -- %@",request.downloadName);
@@ -855,10 +855,10 @@ CGFloat test = 0;
 #pragma mark- 只接受tbv信号
 //static NSString *reuseIdentifier = @"reuseIdentifier";
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal{
     
     
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
     {
         
         NSDictionary  *dict = (NSDictionary *)[signal object];
@@ -884,32 +884,32 @@ CGFloat test = 0;
         [signal setReturnValue:s];
         
         
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
     {
         NSNumber *s = [NSNumber numberWithInteger:1];
         [signal setReturnValue:s];
         
     }
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
     {
 
         [signal setReturnValue:[NSNumber numberWithInteger:CELLHIGHT]];
     }
-    else if ([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
     {
         [signal setReturnValue:nil];
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
     {
         [signal setReturnValue:nil];
         
     }
-    else if ([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
     {
         [signal setReturnValue:[NSNumber numberWithFloat:0.0]];
     }
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -949,7 +949,7 @@ CGFloat test = 0;
         [signal setReturnValue:cell];
         
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
     {
         
         NSDictionary *dict = (NSDictionary *)[signal object];
@@ -997,26 +997,26 @@ CGFloat test = 0;
         RELEASE(childerListController);           
     
     
-    }else if ([signal is:[DragonUITableView TABLESCROLLVIEWDIDSCROLL]])
+    }else if ([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])
     {
 //        [tbDowningDataBank tableViewDidDragging];
     }
-    else if ([signal is:[DragonUITableView TABLESCROLLVIEWDIDENDDRAGGING]])
+    else if ([signal is:[MagicUITableView TABLESCROLLVIEWDIDENDDRAGGING]])
     {
 //        NSLog(@"1111");
 //        [tbDowningDataBank reloadData:NO];
 //        [tbFinishDataBank reloadData:NO];
         
-    }else if ([signal is:[DragonUITableView TABELVIEWBEGAINSCROLL]]){
+    }else if ([signal is:[MagicUITableView TABELVIEWBEGAINSCROLL]]){
     
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLUP]]){
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLUP]]){
         
         [DYBShareinstaceDelegate opeartionTabBarShow:YES];
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLDOWN]]){
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLDOWN]]){
         
         [DYBShareinstaceDelegate opeartionTabBarShow:NO];
-    } else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]])
+    } else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]])
     {
        
         UITableView *tableView = (UITableView *)[signal source];
@@ -1071,15 +1071,15 @@ CGFloat test = 0;
                 break;
         }
         
-    }else if([signal is:[DragonUITableView TAbLEVIEWLODATA]])
+    }else if([signal is:[MagicUITableView TAbLEVIEWLODATA]])
     {
-//        DragonUITableView *tableview = (DragonUITableView *)[signal source];
+//        MagicUITableView *tableview = (MagicUITableView *)[signal source];
 //        [tableview reloadData:NO];
     }
     
 }
 
--(void)handleViewSignal_DYBDataBankSelectBtn:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankSelectBtn:(MagicViewSignal *)signal{
     
     if ([signal is:[DYBDataBankSelectBtn TOUCHSIGLEBTN]]) {
         NSDictionary *dict = (NSDictionary *)[signal object];
@@ -1133,10 +1133,10 @@ CGFloat test = 0;
 }
 
 #pragma mark- 选择提示框按键回调
--(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
     
     DLogInfo(@"ddddd");
-    DragonUIButton *bt = (DragonUIButton *)[signal source];
+    MagicUIButton *bt = (MagicUIButton *)[signal source];
     if ([signal is:[DYBDataBankShotView LEFT]]) {
         
     }else if ([signal is:[DYBDataBankShotView RIGHT]]) {
@@ -1177,10 +1177,10 @@ CGFloat test = 0;
                         return;
                     }
                     NSString *downName = [self downPathFileNameWithUrl:encodeUrl];
-//                    BOOL isFinish = [DragonSandbox deleteFile:downName];
+//                    BOOL isFinish = [MagicSandbox deleteFile:downName];
 //                    if (!isFinish)
                     {
-                        [DragonSandbox deleteFile:[NSString stringWithFormat:@"%@.download", downName]];
+                        [MagicSandbox deleteFile:[NSString stringWithFormat:@"%@.download", downName]];
                     }
                     
                     self.DB.FROM(KDATABANKDOWNLIST).WHERE(@"url", encodeUrl).WHERE(@"userid", SHARED.userId).DELETE();
@@ -1210,7 +1210,7 @@ CGFloat test = 0;
                 
                 NSLog(@"url -- %@",url);
                 if (url != nil) { //开始下载
-                    DragonRequest *request = self.HTTP_GET_DOWN(url);
+                    MagicRequest *request = self.HTTP_GET_DOWN(url);
                     
                     
                     [self addOrHideDownIcan:url add:YES];
@@ -1341,7 +1341,7 @@ CGFloat test = 0;
             
             [selectCell resetContentView];
             
-            [selectCell.labelProgress setBackgroundColor:[DragonCommentMethod colorWithHex:@"aaaaaa"]];
+            [selectCell.labelProgress setBackgroundColor:[MagicCommentMethod colorWithHex:@"aaaaaa"]];
 
             UIImageView *image = selectCell.imageViewStats;
             
@@ -1366,14 +1366,14 @@ CGFloat test = 0;
             .WHERE(@"url", encodeUrl).WHERE(@"userid", SHARED.userId)
             .UPDATE();
             
-            [selectCell.labelProgress setBackgroundColor:[DragonCommentMethod colorWithHex:@"aaaaaa"]];
+            [selectCell.labelProgress setBackgroundColor:[MagicCommentMethod colorWithHex:@"aaaaaa"]];
             DLogInfo(@"progressview --- %@",selectCell.progressView);
         }
             break;
         case 2:
         {//继续下载
                        
-            [selectCell.labelProgress setBackgroundColor:[DragonCommentMethod colorWithHex:@"6eab44"]];
+            [selectCell.labelProgress setBackgroundColor:[MagicCommentMethod colorWithHex:@"6eab44"]];
             
             if (selectCell.progressView.progress == 1.0f)
                 
@@ -1420,7 +1420,7 @@ CGFloat test = 0;
             
             NSString *downName = [self downPathFileNameWithUrl:encodeUrl];
             
-            [DragonSandbox deleteFile:downName];
+            [MagicSandbox deleteFile:downName];
             
             [arrayList removeObjectAtIndex:row];
             [arrayView removeAllObjects];
@@ -1518,7 +1518,7 @@ CGFloat test = 0;
             [cell.progressView setProgress:0];
             [cell.labelProgress setText:[NSString stringWithFormat:@"0/100"]];
             
-            [cell.labelProgress setBackgroundColor:[DragonCommentMethod colorWithHex:@"6eab44"]];
+            [cell.labelProgress setBackgroundColor:[MagicCommentMethod colorWithHex:@"6eab44"]];
             
             UIView *viewStart = [viewCell viewWithTag:BTNTAG_RESTART];
             [viewStart setHidden:YES];
@@ -1531,8 +1531,8 @@ CGFloat test = 0;
             [image setImage:[UIImage imageNamed:@"下载--1"]];
 
             NSString *downName = [self downPathFileNameWithUrl:encodeUrl];
-            [DragonSandbox deleteFile:downName];
-            [DragonSandbox deleteFile:[NSString stringWithFormat:@"%@.download", downName]];
+            [MagicSandbox deleteFile:downName];
+            [MagicSandbox deleteFile:[NSString stringWithFormat:@"%@.download", downName]];
             
             self.HTTP_GET_DOWN(encodeUrl);
             
@@ -1558,7 +1558,7 @@ CGFloat test = 0;
                 self.DB.FROM(KDATABANKDOWNLIST).WHERE(@"url", encodeUrl2).WHERE(@"userid", SHARED.userId).DELETE();
                 self.DB.FROM(kDATABANKDOWNDETAIL).WHERE(@"file_urlencode", encodeUrl2).WHERE(@"userid", SHARED.userId).DELETE();
                 NSString *downName = [self downPathFileNameWithUrl:encodeUrl2];
-                [DragonSandbox deleteFile:downName];
+                [MagicSandbox deleteFile:downName];
                 
                 [self addOrHideDownIcan:encodeUrl2 add:NO];
                 [self delPicCache:deCodeUrl];
@@ -1593,8 +1593,8 @@ CGFloat test = 0;
                 self.DB.FROM(KDATABANKDOWNLIST).WHERE(@"type", @"1").WHERE(@"userid", SHARED.userId).DELETE();
                 self.DB.FROM(kDATABANKDOWNDETAIL).WHERE(@"file_urlencode", encodeUrl2).DELETE();
                 NSString *downName = [self downPathFileNameWithUrl:encodeUrl2];
-                [DragonSandbox deleteFile:downName];
-                [DragonSandbox deleteFile:[NSString stringWithFormat:@"%@.download", downName]];
+                [MagicSandbox deleteFile:downName];
+                [MagicSandbox deleteFile:[NSString stringWithFormat:@"%@.download", downName]];
                 usleep(500);
                 DLogInfo(@"encodeUrl ----- %@",encodeUrl2);
                 [self cancelRequestWithUrl:encodeUrl2];
@@ -1655,13 +1655,13 @@ CGFloat test = 0;
         UIImage *image = [UIImage imageNamed:@"ybx_big.png"];
         float BearHeadStartX = (CGRectGetWidth(self.view.frame)-image.size.width/2)/2;
         float BearHeadStartY = (self.frameHeight-self.headHeight-image.size.height/2 - 70)/2-44 - SEARCHBAT_HIGH;
-        DragonUIImageView *viewBearHead = [[DragonUIImageView alloc] initWithFrame:CGRectMake(BearHeadStartX, BearHeadStartY - 44, image.size.width/2, image.size.height/2)];
+        MagicUIImageView *viewBearHead = [[MagicUIImageView alloc] initWithFrame:CGRectMake(BearHeadStartX, BearHeadStartY - 44, image.size.width/2, image.size.height/2)];
         [viewBearHead setBackgroundColor:[UIColor clearColor]];
         [viewBearHead setImage:image];
         [view addSubview:viewBearHead];
         RELEASE(viewBearHead);
         
-        DragonUILabel *labelMsg = [[DragonUILabel alloc]initWithFrame:CGRectMake((320 - 250)/2, viewBearHead.frame.size.height + viewBearHead.frame.origin.y + 15, 250.0f, 40.0f)];
+        MagicUILabel *labelMsg = [[MagicUILabel alloc]initWithFrame:CGRectMake((320 - 250)/2, viewBearHead.frame.size.height + viewBearHead.frame.origin.y + 15, 250.0f, 40.0f)];
         [labelMsg setText:strMsg];
         //        [labelMsg setFont:[UIFont systemFontOfSize:14]];
         [labelMsg setTextColor:ColorGray];
@@ -1702,7 +1702,7 @@ CGFloat test = 0;
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
         NSString * diskCachePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"ImageCache"];
         NSString *encoderUrl= [strEncode stringByAddingPercentEscapesUsingEncoding];
-        NSString *md5 =  [DragonCommentMethod dataBankMD5:encoderUrl];
+        NSString *md5 =  [MagicCommentMethod dataBankMD5:encoderUrl];
         NSString *pathtt = [diskCachePath stringByAppendingPathComponent:md5];
         
         NSFileManager* fm=[NSFileManager defaultManager];

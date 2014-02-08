@@ -88,13 +88,13 @@ DEF_SIGNAL(SINGLEBTN)
                 if (strSizeText.width > 240) {
                     width = 240;
                 }
-                _labelText=[[DragonUILabel alloc]initWithFrame:CGRectMake(15.0f, 40.0f + offset, width, 40.0f)];
+                _labelText=[[MagicUILabel alloc]initWithFrame:CGRectMake(15.0f, 40.0f + offset, width, 40.0f)];
                 _labelText.backgroundColor=[UIColor clearColor];
                 _labelText.textAlignment=NSTextAlignmentLeft;
                 _labelText.font=[DYBShareinstaceDelegate DYBFoutStyle:16];
                 _labelText.text=_strMsg;
                 [_labelText setNeedCoretext:NO];
-                _labelText.textColor=[DragonCommentMethod color:51 green:51 blue:51 alpha:1];
+                _labelText.textColor=[MagicCommentMethod color:51 green:51 blue:51 alpha:1];
                 _labelText.lineBreakMode = UILineBreakModeWordWrap;
                 _labelText.numberOfLines = 2;
                 [_labelText setCenter:CGPointMake(bgView.frame.size.width/2 , 90/2 + offset/2)];
@@ -155,13 +155,13 @@ DEF_SIGNAL(SINGLEBTN)
                 if (strSizeText.width > 240) {
                     width = 240;
                 }
-                _labelText=[[DragonUILabel alloc]initWithFrame:CGRectMake(15.0f, 40.0f + offset, width, 40.0f)];
+                _labelText=[[MagicUILabel alloc]initWithFrame:CGRectMake(15.0f, 40.0f + offset, width, 40.0f)];
                 _labelText.backgroundColor=[UIColor clearColor];
                 _labelText.textAlignment=NSTextAlignmentLeft;
                 _labelText.font=[DYBShareinstaceDelegate DYBFoutStyle:16];
                 _labelText.text=_strMsg;
                 [_labelText setNeedCoretext:NO];
-                _labelText.textColor=[DragonCommentMethod color:51 green:51 blue:51 alpha:1];                
+                _labelText.textColor=[MagicCommentMethod color:51 green:51 blue:51 alpha:1];                
                 _labelText.lineBreakMode = UILineBreakModeWordWrap;
                 _labelText.numberOfLines = 2;
                 [_labelText setCenter:CGPointMake(bgView.frame.size.width/2 , 90/2 + offset/2)];
@@ -202,13 +202,13 @@ DEF_SIGNAL(SINGLEBTN)
                 if (strSizeText.width > 240) {
                     width = 240;
                 }
-                _labelText=[[DragonUILabel alloc]initWithFrame:CGRectMake(15.0f, 40.0f + offset, width, 40.0f)];
+                _labelText=[[MagicUILabel alloc]initWithFrame:CGRectMake(15.0f, 40.0f + offset, width, 40.0f)];
                 _labelText.backgroundColor=[UIColor clearColor];
                 _labelText.textAlignment=NSTextAlignmentLeft;
                 _labelText.font=[DYBShareinstaceDelegate DYBFoutStyle:16];
                 _labelText.text=_strMsg;
                 [_labelText setNeedCoretext:NO];
-                _labelText.textColor=[DragonCommentMethod color:51 green:51 blue:51 alpha:1];
+                _labelText.textColor=[MagicCommentMethod color:51 green:51 blue:51 alpha:1];
                 _labelText.lineBreakMode = UILineBreakModeWordWrap;
                 _labelText.numberOfLines = 2;
                 [_labelText setCenter:CGPointMake(bgView.frame.size.width/2 , 90/2 + offset/2)];
@@ -267,14 +267,14 @@ DEF_SIGNAL(SINGLEBTN)
         if (strSizeText.width > 240) {
             width = 240;
         }
-        _labelTextView=[[DragonUITextView alloc]initWithFrame:CGRectMake(0, 50, bgView.frame.size.width, 108.0f)];
+        _labelTextView=[[MagicUITextView alloc]initWithFrame:CGRectMake(0, 50, bgView.frame.size.width, 108.0f)];
         _labelTextView.backgroundColor=[UIColor clearColor];
         _labelTextView.font=[DYBShareinstaceDelegate DYBFoutStyle:18];
         _labelTextView.editable = NO;
         [_labelTextView setText:_strMsg];
         [_labelTextView setMaxSize:CGSizeMake(bgView.frame.size.width, 108.0f)];
         [_labelTextView sizeFitByText];
-        _labelTextView.textColor=[DragonCommentMethod color:51 green:51 blue:51 alpha:1];
+        _labelTextView.textColor=[MagicCommentMethod color:51 green:51 blue:51 alpha:1];
         [bgView addSubview:_labelTextView];
         RELEASE(_labelTextView);
         
@@ -292,14 +292,14 @@ DEF_SIGNAL(SINGLEBTN)
     
     
     if (_selectIndex == 1) {
-        DragonUIButton *btnLeft = nil;
+        MagicUIButton *btnLeft = nil;
         
         if ( [self.type isEqualToString:[NSString stringWithFormat:@"%d", BTNTAG_GOONDOWNLOAD]]) {
             
-           btnLeft = [[DragonUIButton alloc]initWithFrame:CGRectMake(0.0f, 100, 270.0/2, 100/2)];
+           btnLeft = [[MagicUIButton alloc]initWithFrame:CGRectMake(0.0f, 100, 270.0/2, 100/2)];
         }else{
             
-         btnLeft = [[DragonUIButton alloc]initWithFrame:CGRectMake(0.0f, (_labelTextView.frame.origin.y+_labelTextView.frame.size.height)+10, 270.0/2, 100/2)];
+         btnLeft = [[MagicUIButton alloc]initWithFrame:CGRectMake(0.0f, (_labelTextView.frame.origin.y+_labelTextView.frame.size.height)+10, 270.0/2, 100/2)];
         
         }
         
@@ -311,18 +311,18 @@ DEF_SIGNAL(SINGLEBTN)
         [bgView addSubview:btnLeft];
         [btnLeft release];
         
-        DragonUIButton *rightBtn = nil;
+        MagicUIButton *rightBtn = nil;
         
         if ( [self.type isEqualToString:[NSString stringWithFormat:@"%d", BTNTAG_GOONDOWNLOAD]]) {
             
-            rightBtn = [[DragonUIButton alloc]initWithFrame:CGRectMake(135,  100, 270.0/2, 100/2)];
+            rightBtn = [[MagicUIButton alloc]initWithFrame:CGRectMake(135,  100, 270.0/2, 100/2)];
         }else{
             
-            rightBtn = [[DragonUIButton alloc]initWithFrame:CGRectMake(135,  (_labelTextView.frame.origin.y+_labelTextView.frame.size.height)+10, 270.0/2, 100/2)];
+            rightBtn = [[MagicUIButton alloc]initWithFrame:CGRectMake(135,  (_labelTextView.frame.origin.y+_labelTextView.frame.size.height)+10, 270.0/2, 100/2)];
             
         }
         
-//        DragonUIButton *rightBtn = [[DragonUIButton alloc]initWithFrame:CGRectMake(135,  (_labelTextView.frame.origin.y+_labelTextView.frame.size.height)+10, 270.0/2, 100/2)];
+//        MagicUIButton *rightBtn = [[MagicUIButton alloc]initWithFrame:CGRectMake(135,  (_labelTextView.frame.origin.y+_labelTextView.frame.size.height)+10, 270.0/2, 100/2)];
         [rightBtn setBackgroundColor:[UIColor clearColor]];
         [rightBtn setImage:[UIImage imageNamed:@"alert_yes_def"] forState:UIControlStateNormal];
         [rightBtn setImage:[UIImage imageNamed:@"alert_yes_high"] forState:UIControlStateHighlighted];
@@ -330,7 +330,7 @@ DEF_SIGNAL(SINGLEBTN)
         [bgView addSubview:rightBtn];
         [rightBtn release];
     }else {
-        DragonUIButton *rightBtn = [[DragonUIButton alloc]initWithFrame:CGRectMake(0,  (_labelTextView.frame.origin.y+_labelTextView.frame.size.height)+10, 540/2, 100/2)];
+        MagicUIButton *rightBtn = [[MagicUIButton alloc]initWithFrame:CGRectMake(0,  (_labelTextView.frame.origin.y+_labelTextView.frame.size.height)+10, 540/2, 100/2)];
         [rightBtn setBackgroundColor:[UIColor clearColor]];
         [rightBtn setImage:[UIImage imageNamed:@"alert_onlyyes_def"] forState:UIControlStateNormal];
         [rightBtn setImage:[UIImage imageNamed:@"alert_onlyyes_hlt"] forState:UIControlStateHighlighted];
@@ -345,7 +345,7 @@ DEF_SIGNAL(SINGLEBTN)
 
 -(void)creatSingleBtn{
     
-    DragonUIButton *rightBtn = [[DragonUIButton alloc]initWithFrame:CGRectMake(0,  150-50, 540/2, 100/2)];
+    MagicUIButton *rightBtn = [[MagicUIButton alloc]initWithFrame:CGRectMake(0,  150-50, 540/2, 100/2)];
     [rightBtn setBackgroundColor:[UIColor clearColor]];
     [rightBtn setImage:[UIImage imageNamed:@"alert_onlyyes_def"] forState:UIControlStateNormal];
     [rightBtn setImage:[UIImage imageNamed:@"alert_onlyyes_hlt"] forState:UIControlStateHighlighted];
@@ -399,7 +399,7 @@ DEF_SIGNAL(SINGLEBTN)
     
     if (type == 1) {
         
-        DragonUIButton *btnLeft = [[DragonUIButton alloc]initWithFrame:CGRectMake(0.0f, floaty, 270.0/2, 100/2)];
+        MagicUIButton *btnLeft = [[MagicUIButton alloc]initWithFrame:CGRectMake(0.0f, floaty, 270.0/2, 100/2)];
         [btnLeft setBackgroundColor:[UIColor clearColor]];
         [btnLeft  addSignal:[DYBDataBankShotView LEFT] forControlEvents:UIControlEventTouchUpInside];
         [btnLeft setImage:[UIImage imageNamed:@"alert_no_def"] forState:UIControlStateNormal];
@@ -407,7 +407,7 @@ DEF_SIGNAL(SINGLEBTN)
         [bgView addSubview:btnLeft];
         [btnLeft release];
         
-        DragonUIButton *rightBtn = [[DragonUIButton alloc]initWithFrame:CGRectMake(135,  floaty, 270.0/2, 100/2)];
+        MagicUIButton *rightBtn = [[MagicUIButton alloc]initWithFrame:CGRectMake(135,  floaty, 270.0/2, 100/2)];
         [rightBtn setBackgroundColor:[UIColor clearColor]];
         [rightBtn setImage:[UIImage imageNamed:@"alert_yes_def"] forState:UIControlStateNormal];
         [rightBtn setImage:[UIImage imageNamed:@"alert_yes_high"] forState:UIControlStateHighlighted];
@@ -417,7 +417,7 @@ DEF_SIGNAL(SINGLEBTN)
         
     }else {
         
-        DragonUIButton *rightBtn = [[DragonUIButton alloc]initWithFrame:CGRectMake(0,  floaty, 540/2, 100/2)];
+        MagicUIButton *rightBtn = [[MagicUIButton alloc]initWithFrame:CGRectMake(0,  floaty, 540/2, 100/2)];
         [rightBtn setBackgroundColor:[UIColor clearColor]];
         [rightBtn setImage:[UIImage imageNamed:@"alert_onlyyes_def"] forState:UIControlStateNormal];
         [rightBtn setImage:[UIImage imageNamed:@"alert_onlyyes_hlt"] forState:UIControlStateHighlighted];
@@ -433,7 +433,7 @@ DEF_SIGNAL(SINGLEBTN)
 
 -(void)creatoOperationBTN{
 
-    DragonUIButton *btnLeft = [[DragonUIButton alloc]initWithFrame:CGRectMake(0.0f, 150-50, 270.0/2, 100/2)];
+    MagicUIButton *btnLeft = [[MagicUIButton alloc]initWithFrame:CGRectMake(0.0f, 150-50, 270.0/2, 100/2)];
     [btnLeft setBackgroundColor:[UIColor clearColor]];
     [btnLeft  addSignal:[DYBDataBankShotView LEFT] forControlEvents:UIControlEventTouchUpInside];
     [btnLeft setImage:[UIImage imageNamed:@"alert_no_def"] forState:UIControlStateNormal];
@@ -441,7 +441,7 @@ DEF_SIGNAL(SINGLEBTN)
     [bgView addSubview:btnLeft];
     [btnLeft release];
     
-    DragonUIButton *rightBtn = [[DragonUIButton alloc]initWithFrame:CGRectMake(135,  150-50, 270.0/2, 100/2)];
+    MagicUIButton *rightBtn = [[MagicUIButton alloc]initWithFrame:CGRectMake(135,  150-50, 270.0/2, 100/2)];
     [rightBtn setBackgroundColor:[UIColor clearColor]];
     [rightBtn setImage:[UIImage imageNamed:@"alert_yes_def"] forState:UIControlStateNormal];
     [rightBtn setImage:[UIImage imageNamed:@"alert_yes_high"] forState:UIControlStateHighlighted];
@@ -466,7 +466,7 @@ DEF_SIGNAL(SINGLEBTN)
     receive = obj;
 
 }
--(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
 
     NSMutableDictionary *sendDcit = nil;
     
@@ -505,9 +505,9 @@ DEF_SIGNAL(SINGLEBTN)
 
 
 }
-- (void)handleViewSignal_DragonUITextField:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITextField:(MagicViewSignal *)signal
 {
-    if ([signal.source isKindOfClass:[DragonUITextField class]])//完成编辑
+    if ([signal.source isKindOfClass:[MagicUITextField class]])//完成编辑
     {
         
         [bgView setCenter:CGPointMake(160.0f, 140.0)]; //test 

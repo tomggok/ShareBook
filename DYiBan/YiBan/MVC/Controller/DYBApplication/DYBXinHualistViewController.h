@@ -12,7 +12,7 @@
     
     NSMutableArray *items;
     NSString *havenext;
-    DragonUITableView *_tableView;
+    MagicUITableView *_tableView;
     news_list *info;
     
     int Page;

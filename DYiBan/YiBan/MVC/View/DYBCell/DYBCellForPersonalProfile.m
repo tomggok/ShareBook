@@ -9,7 +9,7 @@
 #import "DYBCellForPersonalProfile.h"
 #import "user.h"
 #import "UITableView+property.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 
 @interface DYBCellForPersonalProfile()
 {
@@ -69,7 +69,7 @@
                     
                     [self initTitle:@"昵称 :"];
                     
-                    _nameInput = [[DragonUITextField alloc]initWithFrame:CGRectMake(_lbTitle.frame.origin.x+_lbTitle.frame.size.width+10, _lbTitle.frame.origin.y, 0, 0)];
+                    _nameInput = [[MagicUITextField alloc]initWithFrame:CGRectMake(_lbTitle.frame.origin.x+_lbTitle.frame.size.width+10, _lbTitle.frame.origin.y, 0, 0)];
                     _nameInput.text = _model.name;
                     [_vBack addSubview:_nameInput];
                     [self initContent1:_lbTitle content:_model.name textColor:ColorBlack];
@@ -445,7 +445,7 @@
     if(!_vBack){
         _vBack=[[UIView alloc]initWithFrame:CGRectMake(15, 0, self.frame.size.width-30, self.frame.size.height)];
         _vBack.layer.borderWidth=0.5;
-        _vBack.backgroundColor = [DragonCommentMethod colorWithHex:@"f8f8f8"];
+        _vBack.backgroundColor = [MagicCommentMethod colorWithHex:@"f8f8f8"];
         _vBack.layer.borderColor = ColorDivLine.CGColor;
         [self addSubview:_vBack];
         _vBack.userInteractionEnabled = YES;
@@ -453,7 +453,7 @@
     }
 }
 
--(void)initContent:(DragonUILabel *)lb content:(NSString *)content textColor:(UIColor *)textColor
+-(void)initContent:(MagicUILabel *)lb content:(NSString *)content textColor:(UIColor *)textColor
 {
     if (!_lb_content) {//
         _lb_content=[[DYBCustomLabel alloc]initWithFrame:CGRectMake(lb.frame.origin.x+lb.frame.size.width+10, lb.frame.origin.y, 0,0)];
@@ -475,7 +475,7 @@
     
 }
 
-- (void)setTextType:(DragonUITextField*)textFeild placeText:(NSString *)placeText textType:(int)type{
+- (void)setTextType:(MagicUITextField*)textFeild placeText:(NSString *)placeText textType:(int)type{
     
     
    
@@ -483,7 +483,7 @@
     [self addSubview:textFeild];
 }
 
--(void)initContent1:(DragonUILabel *)lb content:(NSString *)content textColor:(UIColor *)textColor
+-(void)initContent1:(MagicUILabel *)lb content:(NSString *)content textColor:(UIColor *)textColor
 {
      _lb_content=[[DYBCustomLabel alloc]initWithFrame:CGRectMake(lb.frame.origin.x+lb.frame.size.width+10, lb.frame.origin.y, 0,0)];
     _lb_content.text=content;
@@ -506,14 +506,14 @@
     if (![SHARED.curUser.userid isEqualToString:model.userid]) {
         return;
     }
-    _btIcon=[[DragonUIButton alloc]initWithFrame:CGRectMake(_vBack.frame.size.width-img.size.width-10, 0, img.size.width, img.size.height)];
+    _btIcon=[[MagicUIButton alloc]initWithFrame:CGRectMake(_vBack.frame.size.width-img.size.width-10, 0, img.size.width, img.size.height)];
     _btIcon.tag=tag;
     
     NSString *_vBackOrginy = [@"" stringByAppendingFormat:@"%f",self.frame.origin.y];
     DLogInfo(@"========gaodu========%@",_vBackOrginy);
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:_nameInput, @"textfeild",_vBackOrginy, @"Orginy", nil];
     
-    [_btIcon addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:dict];
+    [_btIcon addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:dict];
     [_btIcon setImage:img forState:UIControlStateNormal];
     //                            [_bt_pushUpNumsArea setTitle:@"80"];
     _btIcon.showsTouchWhenHighlighted=YES;

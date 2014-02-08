@@ -8,7 +8,7 @@
 
 //#import "Jastor.h"
 
-@interface banner : DragonJSONReflection
+@interface banner : MagicJSONReflection
 @property(retain,nonatomic)NSString* type;
 @property(assign,nonatomic)int id;
 @property(retain,nonatomic)NSString* title;

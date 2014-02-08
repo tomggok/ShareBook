@@ -16,7 +16,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        _textLabel = [[DragonUILabel alloc] init];
+        _textLabel = [[MagicUILabel alloc] init];
 		[_textLabel setFont:[DYBShareinstaceDelegate DYBFoutStyle:17]];
         _textLabel.textAlignment = NSTextAlignmentCenter;
 		[_textLabel setLineBreakMode:UILineBreakModeTailTruncation];

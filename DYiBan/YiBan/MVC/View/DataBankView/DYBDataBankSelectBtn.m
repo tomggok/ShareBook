@@ -7,7 +7,7 @@
 //
 
 #import "DYBDataBankSelectBtn.h"
-#import "Dragon_UIButton.h"
+#import "Magic_UIButton.h"
 #import "DYBDtaBankSearchView.h"
 
 
@@ -16,8 +16,8 @@
 
 @implementation DYBDataBankSelectBtn{
     
-    DragonUIButton *allBtn[5];
-    DragonUIButton *goodBtn[4];
+    MagicUIButton *allBtn[5];
+    MagicUIButton *goodBtn[4];
     
     
     BOOL _isSysFolder;
@@ -146,7 +146,7 @@ DEF_SIGNAL(TOUCHSIGLEBTN)
         
     }
     
-    DragonUIButton *shareBtn = [DragonUIButton buttonWithType:UIButtonTypeCustom];
+    MagicUIButton *shareBtn = [MagicUIButton buttonWithType:UIButtonTypeCustom];
     [shareBtn setTag:BTNTAG_RENAME];
     [shareBtn setBackgroundImage:[UIImage imageNamed:@"file_rename_def"] forState:UIControlStateNormal];
     [shareBtn setBackgroundImage:[UIImage imageNamed:@"file_rename_dis"] forState:UIControlStateDisabled];
@@ -157,7 +157,7 @@ DEF_SIGNAL(TOUCHSIGLEBTN)
     [shareBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateDisabled];
     [_targetCell addSubview:shareBtn];
     
-    DragonUIButton *delBtn = [DragonUIButton buttonWithType:UIButtonTypeCustom];
+    MagicUIButton *delBtn = [MagicUIButton buttonWithType:UIButtonTypeCustom];
     [delBtn setTag:BTNTAG_DEL];
     [delBtn setBackgroundImage:[UIImage imageNamed:@"file_del_def"] forState:UIControlStateNormal];
     
@@ -180,9 +180,9 @@ DEF_SIGNAL(TOUCHSIGLEBTN)
     
     for (int i = 0; i < 5; i++) {
        
-        allBtn[i] = [DragonUIButton buttonWithType:UIButtonTypeCustom];
+        allBtn[i] = [MagicUIButton buttonWithType:UIButtonTypeCustom];
         [allBtn[i] setTag:BTNTAG_SHARE + i];
-        DragonUIButton *btn = allBtn[i];
+        MagicUIButton *btn = allBtn[i];
         NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:allBtn[i],@"btn",[NSNumber numberWithInt:_touchCellIndexPath.row],@"row", nil];
         
         id target = nil;
@@ -260,7 +260,7 @@ DEF_SIGNAL(TOUCHSIGLEBTN)
 }
 
 -(void)creratShareBtn{ //转存
-    DragonUIButton *shareBtn = [DragonUIButton buttonWithType:UIButtonTypeCustom];
+    MagicUIButton *shareBtn = [MagicUIButton buttonWithType:UIButtonTypeCustom];
     [shareBtn setTag:BTNTAG_CHANGE];
     [shareBtn setBackgroundImage:[UIImage imageNamed:@"file_resave_def"] forState:UIControlStateNormal];
     
@@ -284,7 +284,7 @@ DEF_SIGNAL(TOUCHSIGLEBTN)
 
 -(void)creatDELBtn{
     
-    DragonUIButton *shareBtn = [DragonUIButton buttonWithType:UIButtonTypeCustom];
+    MagicUIButton *shareBtn = [MagicUIButton buttonWithType:UIButtonTypeCustom];
     [shareBtn setTag:BTNTAG_DEL];
     [shareBtn setBackgroundImage:[UIImage imageNamed:@"file_del_def"] forState:UIControlStateNormal];
     
@@ -311,7 +311,7 @@ DEF_SIGNAL(TOUCHSIGLEBTN)
         
     }
     
-    DragonUIButton *shareBtn = [DragonUIButton buttonWithType:UIButtonTypeCustom];
+    MagicUIButton *shareBtn = [MagicUIButton buttonWithType:UIButtonTypeCustom];
     [shareBtn setTag:BTNTAG_SHARE];
     [shareBtn setBackgroundImage:[UIImage imageNamed:@"file_editshare_def"] forState:UIControlStateNormal];
 
@@ -322,7 +322,7 @@ DEF_SIGNAL(TOUCHSIGLEBTN)
     [shareBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateDisabled];
     [_targetCell addSubview:shareBtn];
     
-    DragonUIButton *delBtn = [DragonUIButton buttonWithType:UIButtonTypeCustom];
+    MagicUIButton *delBtn = [MagicUIButton buttonWithType:UIButtonTypeCustom];
     [delBtn setTag:BTNTAG_CANCELSHARE];
     [delBtn setBackgroundImage:[UIImage imageNamed:@"file_cancelshare_def"] forState:UIControlStateNormal];
 
@@ -351,7 +351,7 @@ DEF_SIGNAL(TOUCHSIGLEBTN)
 -(void)creatProgressBtn{
     
     for (int i = 0; i < 3; i++) {
-        allBtn[i] = [DragonUIButton buttonWithType:UIButtonTypeCustom];
+        allBtn[i] = [MagicUIButton buttonWithType:UIButtonTypeCustom];
         NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:allBtn[i],@"btn",[NSNumber numberWithInt:_touchCellIndexPath.row],@"row",_targetCell,@"cell", nil];
         
         [allBtn[i] addSignal:[DYBDataBankSelectBtn TOUCHSIGLEBTN] forControlEvents:UIControlEventTouchUpInside object:dict];
@@ -373,7 +373,7 @@ DEF_SIGNAL(TOUCHSIGLEBTN)
                 [allBtn[i] setBackgroundImage:[UIImage imageNamed:@"file_pause_def"] forState:UIControlStateNormal];
                 [allBtn[i] setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateDisabled];
                     
-                DragonUIButton *ReStartDown = [[DragonUIButton alloc]initWithFrame:CGRectMake(70 + 0*CELL_BTN_WIDTH*1.5, (84 - CELL_BTN_HIGHT)/2, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
+                MagicUIButton *ReStartDown = [[MagicUIButton alloc]initWithFrame:CGRectMake(70 + 0*CELL_BTN_WIDTH*1.5, (84 - CELL_BTN_HIGHT)/2, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
                 NSDictionary *dict1 = [[NSDictionary alloc]initWithObjectsAndKeys:ReStartDown,@"btn",[NSNumber numberWithInt:_touchCellIndexPath.row],@"row",_targetCell,@"cell", nil];
                 [ReStartDown setBackgroundImage:[UIImage imageNamed:@"file_start_def"] forState:UIControlStateNormal];
                 [ReStartDown setBackgroundImage:[UIImage imageNamed:@"file_start_def"] forState:UIControlStateDisabled];
@@ -393,7 +393,7 @@ DEF_SIGNAL(TOUCHSIGLEBTN)
                     [allBtn[i] setTag:BTNTAG_RESTART];
                     [allBtn[i] setHidden:NO];
                     
-                    DragonUIButton *ReStartDown = [[DragonUIButton alloc]initWithFrame:CGRectMake(70 + 0*CELL_BTN_WIDTH*1.5, (84 - CELL_BTN_HIGHT)/2, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
+                    MagicUIButton *ReStartDown = [[MagicUIButton alloc]initWithFrame:CGRectMake(70 + 0*CELL_BTN_WIDTH*1.5, (84 - CELL_BTN_HIGHT)/2, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
                     NSDictionary *dict1 = [[NSDictionary alloc]initWithObjectsAndKeys:ReStartDown,@"btn",[NSNumber numberWithInt:_touchCellIndexPath.row],@"row",_targetCell,@"cell", nil];
                     [ReStartDown setBackgroundImage:[UIImage imageNamed:@"file_pause_def"] forState:UIControlStateNormal];
                     [ReStartDown setBackgroundImage:[UIImage imageNamed:@"file_pause_def"] forState:UIControlStateDisabled];
@@ -439,7 +439,7 @@ DEF_SIGNAL(TOUCHSIGLEBTN)
 -(void)creatGoodBtn{
     
     for (int i = 0; i < 4; i++) {
-        allBtn[i] = [DragonUIButton buttonWithType:UIButtonTypeCustom];
+        allBtn[i] = [MagicUIButton buttonWithType:UIButtonTypeCustom];
 
         NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:allBtn[i],@"btn",[NSNumber numberWithInt:_touchCellIndexPath.row],@"row", nil];
         

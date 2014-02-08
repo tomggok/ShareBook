@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 ZzL. All rights reserved.
 //
 
-#import "Dragon_UILabel.h"
+#import "Magic_UILabel.h"
 
-@interface DYBUILabel : DragonUILabel
+@interface DYBUILabel : MagicUILabel
 @property (nonatomic, assign)NSInteger imgType;
 
 - (void)setMaxLineNum:(NSInteger)maxLineNum maxFrame:(CGSize)maxFrame;

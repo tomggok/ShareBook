@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 ZzL. All rights reserved.
 //
 
-#import "Dragon_JSONReflection.h"
+#import "Magic_JSONReflection.h"
 
-@interface notes_list : DragonJSONReflection
+@interface notes_list : MagicJSONReflection
 
 @property (nonatomic, retain) NSString *totals;
 @property (nonatomic, retain) NSString *havenext;

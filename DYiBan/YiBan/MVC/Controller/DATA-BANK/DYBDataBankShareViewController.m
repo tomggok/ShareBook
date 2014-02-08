@@ -23,7 +23,7 @@
 #import "UITableView+property.h"
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "DYBDataBankShareEnterView.h"
 #import "DYBSignViewController.h"
 #import "DYBDataBankFileDetailViewController.h"
@@ -36,7 +36,7 @@
 
 @interface DYBDataBankShareViewController (){
 
-    DragonUITableView *tbDataBank;
+    MagicUITableView *tbDataBank;
     DYBDtaBankSearchView *searchView;
 
    
@@ -53,7 +53,7 @@
     NSMutableArray *arrayCellView;
     NSMutableArray *arrayFolderList;
     
-    DragonUIButton *chooseBtn[4];
+    MagicUIButton *chooseBtn[4];
     DYBMenuView *_tabMenu;
     DYBDataBankTopRightCornerView *rightView;
 
@@ -106,16 +106,16 @@ DEF_SIGNAL(SHOWCHOOSE)
 
 }
 
--(void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal{
     
    
     
-    if ([signal is:[DragonViewController LAYOUT_VIEWS]]) {
+    if ([signal is:[MagicViewController LAYOUT_VIEWS]]) {
         
         [self setButtonImage:self.rightButton setImage:@"btn_sequence_def.png" setHighString:@"btn_sequence_hlt"] ;
     }
     
-    if ([signal is:[DragonViewController CREATE_VIEWS]]) {
+    if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
         page = 1;
         num = 20;
@@ -127,7 +127,7 @@ DEF_SIGNAL(SHOWCHOOSE)
 //        target：共享目标（U、好友；C、班级；D、学院；S、学校）大小写均可
         strTarget = [[NSString alloc]initWithString:@"U"];
         
-        DragonRequest *request = [DYBHttpMethod share_formelist_target:strTarget order:@"1" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:@"2"  isAlert:NO receive:self];
+        MagicRequest *request = [DYBHttpMethod share_formelist_target:strTarget order:@"1" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:@"2"  isAlert:NO receive:self];
         [request setTag:REQUESTTAG_FIRIST];
 
         self.showType = SomeoneShowToME;
@@ -155,7 +155,7 @@ DEF_SIGNAL(SHOWCHOOSE)
                     
             UIImage *im = [UIImage imageNamed:@"2tabs_left_def"];
             
-            chooseBtn[i] = [[DragonUIButton alloc]initWithFrame:CGRectMake(im.size.width/2 *i, searchView.frame.origin.y + searchView.frame.size.height , im.size.width/2, im.size.height/2)];
+            chooseBtn[i] = [[MagicUIButton alloc]initWithFrame:CGRectMake(im.size.width/2 *i, searchView.frame.origin.y + searchView.frame.size.height , im.size.width/2, im.size.height/2)];
             [chooseBtn[i] setTag:i+1];
             [chooseBtn[i] addSignal:[DYBDataBankShareViewController CHOOSE] forControlEvents:UIControlEventTouchUpInside object:chooseBtn[i]];
             [viewTopBar addSubview:chooseBtn[i]];
@@ -212,7 +212,7 @@ DEF_SIGNAL(SHOWCHOOSE)
             }
         }
         
-        tbDataBank = [[DragonUITableView alloc]initWithFrame:CGRectMake(0.0f, viewTopBar.frame.origin.y + viewTopBar.frame.size.height , 320.0f, self.view.frame.size.height - viewTopBar.frame.origin.y - viewTopBar.frame.size.height -5)isNeedUpdate:YES];
+        tbDataBank = [[MagicUITableView alloc]initWithFrame:CGRectMake(0.0f, viewTopBar.frame.origin.y + viewTopBar.frame.size.height , 320.0f, self.view.frame.size.height - viewTopBar.frame.origin.y - viewTopBar.frame.size.height -5)isNeedUpdate:YES];
                 
         tbDataBank.v_headerVForHide = viewTopBar;
         [self.view addSubview:tbDataBank];
@@ -225,9 +225,9 @@ DEF_SIGNAL(SHOWCHOOSE)
         
         arrayCellView = [[NSMutableArray alloc]init];
         
-    }else if ([signal is:[DragonViewController DID_APPEAR]]) {
+    }else if ([signal is:[MagicViewController DID_APPEAR]]) {
         
-        DragonUIButton *_btnSwichDybamic = [[DragonUIButton alloc] initWithFrame:CGRectMake(110, 0, 100, 44)];
+        MagicUIButton *_btnSwichDybamic = [[MagicUIButton alloc] initWithFrame:CGRectMake(110, 0, 100, 44)];
         [_btnSwichDybamic addSignal:[DYBDataBankShareViewController SWITCHDYBAMICBUTTON] forControlEvents:UIControlEventTouchUpInside];
         [self.headview addSubview:_btnSwichDybamic];
         [_btnSwichDybamic setBackgroundColor:[UIColor clearColor]];
@@ -251,7 +251,7 @@ DEF_SIGNAL(SHOWCHOOSE)
         
         [self.headview setTitleArrow];
         
-    }else if ([signal is:[DragonViewController WILL_APPEAR]])
+    }else if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         if ( self.showType == SomeoneShowToME) {
             
@@ -272,7 +272,7 @@ DEF_SIGNAL(SHOWCHOOSE)
 
 #pragma makr -
 #pragma mark - back button signal
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -325,7 +325,7 @@ DEF_SIGNAL(SHOWCHOOSE)
 }
 
 
--(void)handleViewSignal_DYBDtaBankSearchView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDtaBankSearchView:(MagicViewSignal *)signal{
     
     if ([signal is:[DYBDtaBankSearchView FIRSTTOUCH]]) {
         
@@ -474,7 +474,7 @@ DEF_SIGNAL(SHOWCHOOSE)
             
             self.showType = SomeoneShowToME;
             
-            DragonRequest *request = [DYBHttpMethod share_formelist_target:@"U" order:@"1" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:@"2"  isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod share_formelist_target:@"U" order:@"1" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:@"2"  isAlert:YES receive:self];
             [request setTag:REQUESTTAG_FIRIST];
             return @"共享给我";
             
@@ -487,7 +487,7 @@ DEF_SIGNAL(SHOWCHOOSE)
 
             [self hideButtonORNot:YES];
             self.showType = MEShowToSomeone;
-            DragonRequest *request = [DYBHttpMethod share_frommelist:@"1" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:@"2" isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod share_frommelist:@"1" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:@"2" isAlert:YES receive:self];
             [request setTag:REQUESTTAG_FIRIST];
             return @"我共享的";
         }
@@ -498,7 +498,7 @@ DEF_SIGNAL(SHOWCHOOSE)
 
             [self hideButtonORNot:YES];
             self.showType = Commonality;
-            DragonRequest *request = [DYBHttpMethod document_public_order:@"1" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page]  keyword:@""  asc:@"2" isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod document_public_order:@"1" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page]  keyword:@""  asc:@"2" isAlert:YES receive:self];
             [request setTag:REQUESTTAG_FIRIST];
             return @"公共资源";
         }
@@ -537,7 +537,7 @@ DEF_SIGNAL(SHOWCHOOSE)
     [tbDataBank setFrame:CGRectMake(0.0f, barView.frame.origin.y + barView.frame.size.height , 320.0f, self.view.frame.size.height - barView.frame.origin.y - barView.frame.size.height - 5 )];
 }
 
--(void)handleViewSignal_DYBMenuView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBMenuView:(MagicViewSignal *)signal{
 
     if ([signal is:[DYBMenuView MENUSELECTCELL]]) {
         
@@ -596,7 +596,7 @@ DEF_SIGNAL(SHOWCHOOSE)
 
     return @"U";
 }
--(void)handleViewSignal_DYBDataBankShareViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShareViewController:(MagicViewSignal *)signal{
 
     if ([signal is:[DYBDataBankShareViewController SWITCHDYBAMICBUTTON]]) {
 
@@ -613,7 +613,7 @@ DEF_SIGNAL(SHOWCHOOSE)
         [self hideRightView];
         
         DLogInfo(@"obj --- %@",[signal object]);
-        DragonUIButton *btn = (DragonUIButton *)[signal object];
+        MagicUIButton *btn = (MagicUIButton *)[signal object];
         int tag = btn.tag;
         
         strTarget = [self getTarget:tag];
@@ -627,7 +627,7 @@ DEF_SIGNAL(SHOWCHOOSE)
             
         }
         
-        DragonRequest *request = [DYBHttpMethod share_formelist_target:strTarget order:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:[NSString stringWithFormat:@"%d",asc] isAlert:NO receive:self];
+        MagicRequest *request = [DYBHttpMethod share_formelist_target:strTarget order:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:[NSString stringWithFormat:@"%d",asc] isAlert:NO receive:self];
         [request setTag:REQUESTTAG_FIRIST];
         
         [self changeBtnColoer:tag];
@@ -655,7 +655,7 @@ DEF_SIGNAL(SHOWCHOOSE)
 
 }
 
--(void)handleViewSignal_DYBDataBankTopRightCornerView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankTopRightCornerView:(MagicViewSignal *)signal{
 
     if ([signal is:[DYBDataBankTopRightCornerView TOUCHSINGLEBTN]]) {
         
@@ -685,21 +685,21 @@ DEF_SIGNAL(SHOWCHOOSE)
         switch (iRequestType) {
             case 0:
             {
-                DragonRequest *request = [DYBHttpMethod share_formelist_target:strTarget order:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:[NSString stringWithFormat:@"%d",asc]  isAlert:NO receive:self];
+                MagicRequest *request = [DYBHttpMethod share_formelist_target:strTarget order:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:[NSString stringWithFormat:@"%d",asc]  isAlert:NO receive:self];
                 [request setTag:REQUESTTAG_FIRIST];
                 
             }
                 break;
             case 1:
             {
-                DragonRequest *request = [DYBHttpMethod share_frommelist:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page]  keyword:@"" asc:[NSString stringWithFormat:@"%d",asc] isAlert:NO receive:self];
+                MagicRequest *request = [DYBHttpMethod share_frommelist:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page]  keyword:@"" asc:[NSString stringWithFormat:@"%d",asc] isAlert:NO receive:self];
                 [request setTag:REQUESTTAG_FIRIST];
                 
             }
                 break;
             case 2:
             {
-                DragonRequest *request = [DYBHttpMethod document_public_order:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:[NSString stringWithFormat:@"%d",asc]  isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod document_public_order:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:[NSString stringWithFormat:@"%d",asc]  isAlert:YES receive:self];
                 [request setTag:REQUESTTAG_FIRIST];
                 
             }
@@ -749,42 +749,42 @@ return @"1";
 #pragma mark- 只接受tbv信号
 //static NSString *reuseIdentifier = @"reuseIdentifier";
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal{
     
     
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
     {
         NSNumber *s = [NSNumber numberWithInteger:arrayCellView.count];
         [signal setReturnValue:s];
         
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
     {
         NSNumber *s = [NSNumber numberWithInteger:1];
         [signal setReturnValue:s];
         
     }
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
     {
         
         
         
         [signal setReturnValue:[NSNumber numberWithInteger:CELLHIGHT]];
     }
-    else if ([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
     {
         [signal setReturnValue:nil];
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
     {
         [signal setReturnValue:nil];
         
     }
-    else if ([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
     {
         [signal setReturnValue:[NSNumber numberWithFloat:0.0]];
     }
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -803,7 +803,7 @@ return @"1";
         [signal setReturnValue:cell];
         
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
     {
         
         if (bPullDown) {
@@ -844,31 +844,31 @@ return @"1";
             return ;
         }
 
-    }else if ([signal is:[DragonUITableView TABLESCROLLVIEWDIDENDDRAGGING]])//滚动停止
+    }else if ([signal is:[MagicUITableView TABLESCROLLVIEWDIDENDDRAGGING]])//滚动停止
     {
          [self hideTabMenu];
         
-    }else if ([signal is:[DragonUITableView TABLESCROLLVIEWDIDSCROLL]])
+    }else if ([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])
     {
          [self hideRightView];
     }
-    else if ([signal is:[DragonUITableView TABLESCROLLVIEWDIDENDDRAGGING]])
+    else if ([signal is:[MagicUITableView TABLESCROLLVIEWDIDENDDRAGGING]])
     {
         DLogInfo(@"1111");
         
-    }else if ([signal is:[DragonUITableView TABELVIEWBEGAINSCROLL]])
+    }else if ([signal is:[MagicUITableView TABELVIEWBEGAINSCROLL]])
     {
 
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLUP]]){
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLUP]]){
         
         [tbDataBank StretchingUpOrDown:0];
         [DYBShareinstaceDelegate opeartionTabBarShow:YES];
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLDOWN]]){
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLDOWN]]){
         
         [tbDataBank StretchingUpOrDown:1];
         [DYBShareinstaceDelegate opeartionTabBarShow:NO];
-    }else if([signal is:[DragonUITableView TAbLEVIEWLODATA]])
+    }else if([signal is:[MagicUITableView TAbLEVIEWLODATA]])
     {
         
         page ++;
@@ -886,21 +886,21 @@ return @"1";
         switch (self.showType) {
             case SomeoneShowToME:
             {
-                DragonRequest *request = [DYBHttpMethod share_formelist_target:strTarget order:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:[NSString stringWithFormat:@"%d",asc] isAlert:NO receive:self];
+                MagicRequest *request = [DYBHttpMethod share_formelist_target:strTarget order:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:[NSString stringWithFormat:@"%d",asc] isAlert:NO receive:self];
                 [request setTag:REQUESTTAG_MORE];
                 
             }
                 break;
             case MEShowToSomeone:
             {
-                DragonRequest *request = [DYBHttpMethod share_frommelist:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc: [NSString stringWithFormat:@"%d",asc] isAlert:NO receive:self];
+                MagicRequest *request = [DYBHttpMethod share_frommelist:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc: [NSString stringWithFormat:@"%d",asc] isAlert:NO receive:self];
                 [request setTag:REQUESTTAG_MORE];
                 
             }
                 break;
             case Commonality:
             {
-                DragonRequest *request = [DYBHttpMethod document_public_order:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:[NSString stringWithFormat:@"%d",asc] isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod document_public_order:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:[NSString stringWithFormat:@"%d",asc] isAlert:YES receive:self];
                 [request setTag:REQUESTTAG_MORE];
                 
             }
@@ -911,7 +911,7 @@ return @"1";
         }
                 
         
-    }else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]])
+    }else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]])
     {
         
         int asc = 1;
@@ -928,21 +928,21 @@ return @"1";
         switch (self.showType) {
             case SomeoneShowToME:
             {
-                DragonRequest *request = [DYBHttpMethod share_formelist_target:strTarget order:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:[NSString stringWithFormat:@"%d",asc] isAlert:NO receive:self];
+                MagicRequest *request = [DYBHttpMethod share_formelist_target:strTarget order:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:[NSString stringWithFormat:@"%d",asc] isAlert:NO receive:self];
                 [request setTag:REQUESTTAG_FIRIST];
                 
             }
                 break;
             case MEShowToSomeone:
             {
-                DragonRequest *request = [DYBHttpMethod share_frommelist:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:[NSString stringWithFormat:@"%d",asc] isAlert:NO receive:self];
+                MagicRequest *request = [DYBHttpMethod share_frommelist:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:[NSString stringWithFormat:@"%d",asc] isAlert:NO receive:self];
                 [request setTag:REQUESTTAG_FIRIST];
                 
             }
                 break;
             case Commonality:
             {
-                DragonRequest *request = [DYBHttpMethod document_public_order:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:[NSString stringWithFormat:@"%d",asc] isAlert:NO receive:self];
+                MagicRequest *request = [DYBHttpMethod document_public_order:[NSString stringWithFormat:@"%d",iRihgt] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@"" asc:[NSString stringWithFormat:@"%d",asc] isAlert:NO receive:self];
                 [request setTag:REQUESTTAG_FIRIST];
                 
             }
@@ -956,7 +956,7 @@ return @"1";
 }
 
 
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     
     JsonResponse *response = (JsonResponse *)receiveObj;
@@ -1055,7 +1055,7 @@ return @"1";
         
         NSString *strMSG = [response.data objectForKey:@"msg"];
         
-        [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+        [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
          
     }else if (request.tag == REQUESTTAG_MORE){
         
@@ -1157,13 +1157,13 @@ return @"1";
         UIImage *image = [UIImage imageNamed:@"ybx_big.png"];
         float BearHeadStartX = (CGRectGetWidth(self.view.frame)-image.size.width/2)/2;
         float BearHeadStartY = (self.frameHeight-self.headHeight-image.size.height/2 - 70)/2-130;
-        DragonUIImageView *viewBearHead = [[DragonUIImageView alloc] initWithFrame:CGRectMake(BearHeadStartX, BearHeadStartY - 44, image.size.width/2, image.size.height/2)];
+        MagicUIImageView *viewBearHead = [[MagicUIImageView alloc] initWithFrame:CGRectMake(BearHeadStartX, BearHeadStartY - 44, image.size.width/2, image.size.height/2)];
         [viewBearHead setBackgroundColor:[UIColor clearColor]];
         [viewBearHead setImage:image];
         [view addSubview:viewBearHead];
         RELEASE(viewBearHead);
         
-        DragonUILabel *labelMsg = [[DragonUILabel alloc]initWithFrame:CGRectMake((320 - 250)/2, viewBearHead.frame.size.height + viewBearHead.frame.origin.y + 15, 250.0f, 40.0f)];
+        MagicUILabel *labelMsg = [[MagicUILabel alloc]initWithFrame:CGRectMake((320 - 250)/2, viewBearHead.frame.size.height + viewBearHead.frame.origin.y + 15, 250.0f, 40.0f)];
         [labelMsg setText:strMsg];
         [labelMsg setTextColor:ColorGray];
         [labelMsg setFont:[DYBShareinstaceDelegate DYBFoutStyle:20]];
@@ -1183,7 +1183,7 @@ return @"1";
 }
 
 
--(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
     
     if ([signal is:[DYBDataBankShotView LEFT]]) {
         
@@ -1197,7 +1197,7 @@ return @"1";
         switch ([type integerValue]) {
             case BTNTAG_DEL:{
                 
-                DragonRequest *request = [DYBHttpMethod document_deldoc_doc:fileURL indexDataBack:[NSString stringWithFormat:@"%@",row] isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod document_deldoc_doc:fileURL indexDataBack:[NSString stringWithFormat:@"%@",row] isAlert:YES receive:self];
                 
                 [request setTag:BTNTAG_DEL];
                 
@@ -1218,7 +1218,7 @@ return @"1";
             {
                 cancelShareIndex = [row integerValue];
                 NSString *strDoc = [[arrayFolderList objectAtIndex:[row integerValue]] objectForKey:@"file_path"];
-                DragonRequest *request = [DYBHttpMethod document_share_doc:strDoc target:@"" isAlert:YES receive:self ];
+                MagicRequest *request = [DYBHttpMethod document_share_doc:strDoc target:@"" isAlert:YES receive:self ];
                 [request setTag:BTNTAG_CANCELSHARE];
             
             }
@@ -1230,7 +1230,7 @@ return @"1";
     }
 }
 
--(void)handleViewSignal_DYBDataBankSelectBtn:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankSelectBtn:(MagicViewSignal *)signal{
     
     if ([signal is:[DYBDataBankSelectBtn TOUCHSIGLEBTN]]) {
         NSDictionary *dict = (NSDictionary *)[signal object];
@@ -1308,7 +1308,7 @@ return @"1";
                 [btn setEnabled:NO];
                 _badBtn = btn;
                 [self creatGoodANDBadIMG:@"cai"];
-                DragonRequest *request = [DYBHttpMethod document_estimate_id:[dictInfo objectForKey:@"oid"] type:@"2" isAlert:NO receive:self];
+                MagicRequest *request = [DYBHttpMethod document_estimate_id:[dictInfo objectForKey:@"oid"] type:@"2" isAlert:NO receive:self];
                 [request setTag:BTNTAG_BAD];
             }
                 break;
@@ -1319,7 +1319,7 @@ return @"1";
                 goodRow = row;
                 [btn setEnabled:NO];
                 _goodBtn = btn;
-                DragonRequest *request = [DYBHttpMethod document_estimate_id:[dictInfo objectForKey:@"oid"] type:@"1" isAlert:NO receive:self];
+                MagicRequest *request = [DYBHttpMethod document_estimate_id:[dictInfo objectForKey:@"oid"] type:@"1" isAlert:NO receive:self];
                 [request setTag:BTNTAG_GOOD];
             }
                 break;
@@ -1358,7 +1358,7 @@ return @"1";
     }
 }
 
--(void)handleViewSignal_DYBDataBankListCell:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankListCell:(MagicViewSignal *)signal{
 
     if ([signal is:[DYBDataBankListCell FINISHSWIP]]) {
         [self hideRightView];
@@ -1366,7 +1366,7 @@ return @"1";
     }
 }
 
--(void)handleViewSignal_DYBDataBankFileDetailViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankFileDetailViewController:(MagicViewSignal *)signal{
 
     if ([signal is:[DYBDataBankFileDetailViewController CANCELSHARE]]) {
         

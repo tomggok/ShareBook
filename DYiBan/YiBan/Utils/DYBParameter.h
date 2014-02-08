@@ -109,27 +109,27 @@
 #define SYSTEMFOLDER  100
 
 ///////////////////字体颜色
-#define ColorTextCount [DragonCommentMethod colorWithHex:@"cccccc"]
-#define ColorGray [DragonCommentMethod colorWithHex:@"aaaaaa"]
-#define ColorBlack [DragonCommentMethod colorWithHex:@"333333"]
-#define ColorContentGray [DragonCommentMethod colorWithHex:@"888888"]
-#define ColorDivLine [DragonCommentMethod colorWithHex:@"e5e5e5"] //边框色
-#define BKGGray [DragonCommentMethod colorWithHex:@"f5f5f5"]  //和[DragonCommentMethod color:248 green:248 blue:248 alpha:1]一样
-#define BKGGraylight [DragonCommentMethod colorWithHex:@"fafafa"]
-#define ColorBlue [DragonCommentMethod colorWithHex:@"009cd5"]//蓝色
-#define ColorGreen [DragonCommentMethod colorWithHex:@"6eab44"]//绿色
-#define ColorCellSepL [DragonCommentMethod colorWithHex:@"0xeeeeee"] //Cell的分割线
-#define ColorRed [DragonCommentMethod colorWithHex:@"0xde341a"]
-#define Colortime [DragonCommentMethod colorWithHex:@"0x999999"] //用于显示时间等
-#define ColorWhite [DragonCommentMethod colorWithHex:@"0xffffff"] //白色
-#define ColorCheckinFontColor [DragonCommentMethod colorWithHex:@"222222"]
-#define ColorSlightGray [DragonCommentMethod colorWithHex:@"0xfafafax"] //最淡的灰色
-#define ColorBackgroundGray [DragonCommentMethod colorWithHex:@"f8f8f8"] //最淡的背景色
-#define ColorNav [DragonCommentMethod color:248 green:248 blue:248 alpha:1] //导航栏背景色
+#define ColorTextCount [MagicCommentMethod colorWithHex:@"cccccc"]
+#define ColorGray [MagicCommentMethod colorWithHex:@"aaaaaa"]
+#define ColorBlack [MagicCommentMethod colorWithHex:@"333333"]
+#define ColorContentGray [MagicCommentMethod colorWithHex:@"888888"]
+#define ColorDivLine [MagicCommentMethod colorWithHex:@"e5e5e5"] //边框色
+#define BKGGray [MagicCommentMethod colorWithHex:@"f5f5f5"]  //和[MagicCommentMethod color:248 green:248 blue:248 alpha:1]一样
+#define BKGGraylight [MagicCommentMethod colorWithHex:@"fafafa"]
+#define ColorBlue [MagicCommentMethod colorWithHex:@"009cd5"]//蓝色
+#define ColorGreen [MagicCommentMethod colorWithHex:@"6eab44"]//绿色
+#define ColorCellSepL [MagicCommentMethod colorWithHex:@"0xeeeeee"] //Cell的分割线
+#define ColorRed [MagicCommentMethod colorWithHex:@"0xde341a"]
+#define Colortime [MagicCommentMethod colorWithHex:@"0x999999"] //用于显示时间等
+#define ColorWhite [MagicCommentMethod colorWithHex:@"0xffffff"] //白色
+#define ColorCheckinFontColor [MagicCommentMethod colorWithHex:@"222222"]
+#define ColorSlightGray [MagicCommentMethod colorWithHex:@"0xfafafax"] //最淡的灰色
+#define ColorBackgroundGray [MagicCommentMethod colorWithHex:@"f8f8f8"] //最淡的背景色
+#define ColorNav [MagicCommentMethod color:248 green:248 blue:248 alpha:1] //导航栏背景色
 
-#define ColorBG [DragonCommentMethod color:36 green:36 blue:36 alpha:1] //view背景色
-#define ColorTextYellow [DragonCommentMethod color:226 green:72 blue:49 alpha:1] //view背景色
-#define ColorGryWhite [DragonCommentMethod color:191 green:192 blue:191 alpha:1] //字体色
+#define ColorBG [MagicCommentMethod color:36 green:36 blue:36 alpha:1] //view背景色
+#define ColorTextYellow [MagicCommentMethod color:226 green:72 blue:49 alpha:1] //view背景色
+#define ColorGryWhite [MagicCommentMethod color:191 green:192 blue:191 alpha:1] //字体色
 
 ///////////////////动态Cell最大限制数
 #define DynamicLimitNum 1000

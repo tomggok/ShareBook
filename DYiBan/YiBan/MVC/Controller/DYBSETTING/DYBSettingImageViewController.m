@@ -11,22 +11,22 @@
 #import "UserSettingMode.h"
 @interface DYBSettingImageViewController () {
     
-    DragonUIButton *btnSelect;
-    DragonUIImageView *imv_radio;
+    MagicUIButton *btnSelect;
+    MagicUIImageView *imv_radio;
 }
 
 @end
 
 @implementation DYBSettingImageViewController
 DEF_SIGNAL(SETIMAGEBUTTON) //设置图片消息
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.rightButton setHidden:YES];
         [self.headview setTitle:@"图片设置"];
         [self backImgType:0];
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         
         
@@ -37,7 +37,7 @@ DEF_SIGNAL(SETIMAGEBUTTON) //设置图片消息
         //选择按钮图片质量radio_off
         UIImage *imageRadio = [UIImage imageNamed:@"radio_off"];
         UIImage *image = [UIImage imageNamed:@"radio_on"];
-        btnSelect = [[DragonUIButton alloc] initWithFrame:CGRectMake(10,(BUTTONHEIGHT-image.size.height/2)/2, image.size.width/2, image.size.height/2)];
+        btnSelect = [[MagicUIButton alloc] initWithFrame:CGRectMake(10,(BUTTONHEIGHT-image.size.height/2)/2, image.size.width/2, image.size.height/2)];
         [btnSelect setImage:image forState:UIControlStateNormal];
         
         for (int i = 0; i < [textArray count]; i++) {
@@ -49,7 +49,7 @@ DEF_SIGNAL(SETIMAGEBUTTON) //设置图片消息
                 settingButton[i].tag = i;
                 [settingButton[i].textLabel setFrame:CGRectMake(40, 5, BUTTONWIDTH-40, BUTTONHEIGHT-10)];
                 
-                imv_radio = [[DragonUIImageView alloc]initWithFrame:CGRectMake(10, (BUTTONHEIGHT-imageRadio.size.height/2)/2, imageRadio.size.width/2, imageRadio.size.height/2)];
+                imv_radio = [[MagicUIImageView alloc]initWithFrame:CGRectMake(10, (BUTTONHEIGHT-imageRadio.size.height/2)/2, imageRadio.size.width/2, imageRadio.size.height/2)];
                 [imv_radio setImage:imageRadio];
                 [settingButton[i] addSubview:imv_radio];
                 RELEASE(imv_radio);
@@ -64,10 +64,10 @@ DEF_SIGNAL(SETIMAGEBUTTON) //设置图片消息
             
         }
         
-        DragonUILabel *highlabel = [[DragonUILabel alloc]initWithFrame:CGRectMake(60, 6, BUTTONWIDTH-35, BUTTONHEIGHT-10)];
+        MagicUILabel *highlabel = [[MagicUILabel alloc]initWithFrame:CGRectMake(60, 6, BUTTONWIDTH-35, BUTTONHEIGHT-10)];
         [self setLabel:highlabel setText:@"(建议wifi或3G环境下使用)" setButton:settingButton[2]];
         
-        DragonUILabel *lowlabel = [[DragonUILabel alloc]initWithFrame:CGRectMake(60, 6, BUTTONWIDTH-35, BUTTONHEIGHT-10)];
+        MagicUILabel *lowlabel = [[MagicUILabel alloc]initWithFrame:CGRectMake(60, 6, BUTTONWIDTH-35, BUTTONHEIGHT-10)];
         [self setLabel:lowlabel setText:@"(省流量 上传更快)" setButton:settingButton[4]];
         
         
@@ -90,20 +90,20 @@ DEF_SIGNAL(SETIMAGEBUTTON) //设置图片消息
 }
 
 //添加label
-- (void)setLabel:(DragonUILabel *)label setText:(NSString *)string setButton:(DYBSetButton *)btn{
+- (void)setLabel:(MagicUILabel *)label setText:(NSString *)string setButton:(DYBSetButton *)btn{
     
     label.textAlignment = UIControlContentVerticalAlignmentCenter;
     label.textAlignment = NSTextAlignmentLeft;
     label.font = [DYBShareinstaceDelegate DYBFoutStyle:18];  //字体和大小设置
     label.text = string;
-    label.textColor = [DragonCommentMethod colorWithHex:@"333333"];
+    label.textColor = [MagicCommentMethod colorWithHex:@"333333"];
     label.backgroundColor = [UIColor clearColor];
     [btn addSubview:label];
     RELEASE(label);
 }
 
 #pragma mark- 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -123,9 +123,9 @@ DEF_SIGNAL(SETIMAGEBUTTON) //设置图片消息
 
 
 #pragma mark- 按钮点击
-- (void)handleViewSignal_DYBSettingImageViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBSettingImageViewController:(MagicViewSignal *)signal
 {
-    DragonUIButton *btn = signal.source;
+    MagicUIButton *btn = signal.source;
     
     if ([signal is:[DYBSettingImageViewController SETIMAGEBUTTON]])
     {

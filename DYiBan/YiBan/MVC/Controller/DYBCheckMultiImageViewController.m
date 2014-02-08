@@ -32,10 +32,10 @@
 }
 
 
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
     
-    if ([signal is:[DragonViewController CREATE_VIEWS]])
+    if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         NSMutableArray *array = [[NSMutableArray alloc]init];;
         for (int i = 0; i < [_arrIMG count]; i++) {
@@ -44,14 +44,14 @@
             RELEASE(dict);
         }
         
-        DragonUIScrollListView *scroller = [[DragonUIScrollListView alloc] initWithFrame:CGRectMake(0, self.headHeight,SCREEN_WIDTH, SCREEN_HEIGHT-self.headHeight-20)];
+        MagicUIScrollListView *scroller = [[MagicUIScrollListView alloc] initWithFrame:CGRectMake(0, self.headHeight,SCREEN_WIDTH, SCREEN_HEIGHT-self.headHeight-20)];
         [self.view addSubview:scroller];
         [scroller setImgArr:array];
         [scroller setSelectIndex:_nSel];
         RELEASE(scroller);
         RELEASE(array);
 
-    }else if([signal is:[DragonViewController WILL_APPEAR]])
+    }else if([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.view setBackgroundColor:[UIColor blackColor]];
         [self.headview setBackgroundColor:[UIColor clearColor]];
@@ -65,7 +65,7 @@
 }
 
 #pragma mark - 返回Button处理
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
         
@@ -85,17 +85,17 @@
         }
 
         [self.drNavigationController popVCAnimated:YES];
-        [self sendViewSignal:[DragonViewController VCBACKSUCCESS]];
+        [self sendViewSignal:[MagicViewController VCBACKSUCCESS]];
     }else if ([signal is:[DYBBaseViewController BACKBUTTON]]){
         [self.drNavigationController popVCAnimated:YES];
-        [self sendViewSignal:[DragonViewController VCBACKSUCCESS]];
+        [self sendViewSignal:[MagicViewController VCBACKSUCCESS]];
     }
     
 }
 
-- (void)handleViewSignal_DragonUIScrollListView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUIScrollListView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUIScrollListView SCROLLVIEWNUM]]) {
+    if ([signal is:[MagicUIScrollListView SCROLLVIEWNUM]]) {
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSString *index= [dict objectForKey:@"index"];
         _curSel = [index intValue];

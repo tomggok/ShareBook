@@ -8,7 +8,7 @@
 
 //#import "Jastor.h"
 //#import "albums.h"
-@interface album_piclist : DragonJSONReflection
+@interface album_piclist : MagicJSONReflection
 @property (nonatomic, retain)NSArray *albums;
 @property (nonatomic, retain)NSString *havenext;
 //+(Class)albums_class;

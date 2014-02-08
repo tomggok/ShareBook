@@ -10,11 +10,11 @@
 #import "DYBCustomLabel.h"
 #import "user_birthday.h"
 #import "UITableView+property.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 
 @interface DYBCellForUser_birthday ()
 {
-    DragonUIImageView *_imgV_icon,*_imgV_head;
+    MagicUIImageView *_imgV_icon,*_imgV_head;
     DYBCustomLabel *_lb_newContent,*_lb_nickName;
 }
 
@@ -31,7 +31,7 @@
         user_birthday *model=data;
         
         if (!_imgV_head) {
-            _imgV_head=[[DragonUIImageView alloc]initWithFrame:CGRectMake(15,0, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_head.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            _imgV_head=[[MagicUIImageView alloc]initWithFrame:CGRectMake(15,0, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_head.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             _imgV_head.needRadius=YES;
             RELEASE(_imgV_head);
             
@@ -45,7 +45,7 @@
             _lb_nickName.font=[DYBShareinstaceDelegate DYBFoutStyle:18];
             _lb_nickName.text=model.name;
             [_lb_nickName setNeedCoretext:NO];
-            _lb_nickName.textColor=[DragonCommentMethod color:51 green:51 blue:51 alpha:1];
+            _lb_nickName.textColor=[MagicCommentMethod color:51 green:51 blue:51 alpha:1];
             _lb_nickName.numberOfLines=1;
             
             _lb_nickName.lineBreakMode=NSLineBreakByTruncatingTail;
@@ -86,7 +86,7 @@
         
         if (!_imgV_icon) {
             UIImage *img=[UIImage imageNamed:@"grzy_14"];
-            _imgV_icon=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-15-img.size.width/2,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            _imgV_icon=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-15-img.size.width/2,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             RELEASE(_imgV_icon);
             
             [_imgV_icon creatExpandGestureAreaView];
@@ -107,7 +107,7 @@
     
     {//分割线
         UIView *v=[[UIView alloc]initWithFrame:CGRectMake(0, (self.frame.size.height-1), self.frame.size.width, 0.5)];
-        [v setBackgroundColor:[DragonCommentMethod colorWithHex:@"0xeeeeee"]];
+        [v setBackgroundColor:[MagicCommentMethod colorWithHex:@"0xeeeeee"]];
         [self addSubview:v];
         RELEASE(v);
     }

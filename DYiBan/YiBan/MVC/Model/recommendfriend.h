@@ -9,7 +9,7 @@
 //#import "Jastor.h"
 
     //可能认识的人数据模型
-@interface recommendfriend : DragonJSONReflection
+@interface recommendfriend : MagicJSONReflection
 
 @property (retain, nonatomic) NSString *canfriend;
 @property (retain, nonatomic) NSString *distance;

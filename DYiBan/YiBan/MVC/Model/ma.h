@@ -11,7 +11,7 @@
 #import "user.h"
 
 //ma at提醒
-@interface ma : DragonJSONReflection
+@interface ma : MagicJSONReflection
 @property(copy,nonatomic) NSString *id;//消息id
 @property(retain,nonatomic) NSString * title;//消息标题
 @property(retain,nonatomic) NSString * content;//at内容

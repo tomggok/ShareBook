@@ -36,12 +36,12 @@ DEF_SIGNAL(CLOSEBUTTON)
         nCurViewTag = 0;
         
         for (banner *_bner in _bnerlist.banner) {
-            DragonUIImageView *_bnerView = [self createBanner:_bner.banner_img url:_bner.url];
+            MagicUIImageView *_bnerView = [self createBanner:_bner.banner_img url:_bner.url];
             [_arrBnerView addObject:_bnerView];
             [_arrBnerData addObject:_bner];
         }
         
-        _btnClose= [[DragonUIButton alloc] initWithFrame:CGRectMake(280.0f, 18.0f, 30.0f, 30.0f)];
+        _btnClose= [[MagicUIButton alloc] initWithFrame:CGRectMake(280.0f, 18.0f, 30.0f, 30.0f)];
         [_btnClose setBackgroundImage:[UIImage imageNamed:@"adclose.png"] forState:UIControlStateNormal];
         [_btnClose setBackgroundImage:[UIImage imageNamed:@"adclose.png"] forState:UIControlStateHighlighted];
         [_btnClose addSignal:[DYBCellForBanner CLOSEBUTTON] forControlEvents:UIControlEventTouchUpInside];
@@ -49,7 +49,7 @@ DEF_SIGNAL(CLOSEBUTTON)
         RELEASE(_btnClose);
         
         if ([_arrBnerView count] > 0) {
-            [((DragonUIImageView *)[_arrBnerView objectAtIndex:0]) setAlpha:1.0f];
+            [((MagicUIImageView *)[_arrBnerView objectAtIndex:0]) setAlpha:1.0f];
             [self setFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), 60)];
             
             _bannerQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -61,8 +61,8 @@ DEF_SIGNAL(CLOSEBUTTON)
     }
 }
 
-- (DragonUIImageView *)createBanner:(NSString *)strBnner url:(NSString *)strURL{
-    DragonUIImageView *_Banner = [[DragonUIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), 60) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+- (MagicUIImageView *)createBanner:(NSString *)strBnner url:(NSString *)strURL{
+    MagicUIImageView *_Banner = [[MagicUIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), 60) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
     [_Banner setAlpha:0.0f];
     [_Banner setTag:nCurViewTag];
     nCurViewTag++;
@@ -117,13 +117,13 @@ DEF_SIGNAL(CLOSEBUTTON)
             [UIView beginAnimations:nil context:nil];
             [UIView setAnimationDuration:2];
             
-            for (DragonUIImageView *imgBnr in arrBanner) {
+            for (MagicUIImageView *imgBnr in arrBanner) {
                 [imgBnr setAlpha:0.0f];
             }
             
-            [self bringSubviewToFront:((DragonUIImageView *)[_arrBnerView objectAtIndex:i])];         
+            [self bringSubviewToFront:((MagicUIImageView *)[_arrBnerView objectAtIndex:i])];         
 
-            [((DragonUIImageView *)[_arrBnerView objectAtIndex:i]) setAlpha:1.0f];
+            [((MagicUIImageView *)[_arrBnerView objectAtIndex:i]) setAlpha:1.0f];
             [UIView commitAnimations];
             
             [self bringSubviewToFront:_btnClose];
@@ -141,7 +141,7 @@ DEF_SIGNAL(CLOSEBUTTON)
     } 
 }
 
-- (void)handleViewSignal_DYBCellForBanner:(DragonViewSignal *)signal{
+- (void)handleViewSignal_DYBCellForBanner:(MagicViewSignal *)signal{
     if ([signal is:[DYBCellForBanner CLOSEBUTTON]]){
         DLogInfo(@"close");
         bStop = YES;

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ChineseToPinyin : DragonJSONReflection
+@interface ChineseToPinyin : MagicJSONReflection
 
 + (NSString *) pinyinFromChiniseString:(NSString *)string;
 + (char) sortSectionTitle:(NSString *)string;

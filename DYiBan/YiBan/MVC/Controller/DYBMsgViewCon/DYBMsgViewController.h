@@ -13,8 +13,8 @@
 //消息页
 @interface DYBMsgViewController : DYBBaseViewController
 {
-    DragonUIButton *_bt_sendPrivateLetter/*发私信*/,*_bt_sendNotice/*发通知*/,*_bt_notice,*_bt_MentionedMe/*提到我的*/,*_bt_CommentMe/*评论我的*/,*_bt_systemMsg/*系统消息*/;
-//    DragonUITableView *_tbv;//
+    MagicUIButton *_bt_sendPrivateLetter/*发私信*/,*_bt_sendNotice/*发通知*/,*_bt_notice,*_bt_MentionedMe/*提到我的*/,*_bt_CommentMe/*评论我的*/,*_bt_systemMsg/*系统消息*/;
+//    MagicUITableView *_tbv;//
     msg_count *_model_message_count/*用户新信息数接口的数据模型*/;
 //    NSMutableArray *_muA_privateLetterList/*私信列表*/;
 //    BOOL _b_couldReload;//2个接口有一个回调后变成yes,下拉刷新时同时请求2个接口,变成no

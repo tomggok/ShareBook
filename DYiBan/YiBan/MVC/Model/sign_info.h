@@ -8,7 +8,7 @@
 
 //#import "Jastor.h"
 
-@interface sign_info : DragonJSONReflection
+@interface sign_info : MagicJSONReflection
 
 @property(nonatomic, retain) NSString *is_sgin;
 @property(nonatomic, retain) NSArray *sgin_list;

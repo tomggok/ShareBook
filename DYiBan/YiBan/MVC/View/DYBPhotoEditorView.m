@@ -9,7 +9,7 @@
 #import "DYBPhotoEditorView.h"
 #import "DYBImageUtil.h"
 #import <QuartzCore/QuartzCore.h>
-#import "UIImage+DragonCategory.h"
+#import "UIImage+MagicCategory.h"
 #import "DYBPublishViewController.h"
 
 @implementation DYBPhotoEditorView
@@ -132,13 +132,13 @@ const float DYBcolormatrix_yese[] = {
 - (void)initInterface{
     [self setBackgroundColor:[UIColor blackColor]];
     
-    _imgRootView = [[DragonUIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.frame)-50)];
+    _imgRootView = [[MagicUIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.frame)-50)];
     [_imgRootView setBackgroundColor:[UIColor clearColor]];
     [_imgRootView setImage:_curImage];
     [self addSubview:_imgRootView];
     RELEASE(_imgRootView);
     
-    _scrollView = [[DragonUIScrollView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.bounds)-150, CGRectGetWidth(self.frame), 100)];
+    _scrollView = [[MagicUIScrollView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.bounds)-150, CGRectGetWidth(self.frame), 100)];
     [_scrollView setBackgroundColor:[UIColor clearColor]];
     [_scrollView setIndicatorStyle:UIScrollViewIndicatorStyleBlack];
     [_scrollView setBounces:NO];
@@ -149,13 +149,13 @@ const float DYBcolormatrix_yese[] = {
     [self addSubview:_scrollView];
     RELEASE(_scrollView);
     
-    DragonUIImageView *bg_scroll = [[DragonUIImageView alloc]initWithImage:[UIImage imageNamed:@"filtermask.png"]];
+    MagicUIImageView *bg_scroll = [[MagicUIImageView alloc]initWithImage:[UIImage imageNamed:@"filtermask.png"]];
     [bg_scroll setFrame:CGRectMake(0, 0, 640+70, 100)];
     [bg_scroll setBackgroundColor:[UIColor clearColor]];
     [_scrollView addSubview:bg_scroll];
     RELEASE(bg_scroll);
     
-    _imgFilter = [[DragonUIImageView alloc] initWithImage:[UIImage imageNamed:@"filterbox.png"]];
+    _imgFilter = [[MagicUIImageView alloc] initWithImage:[UIImage imageNamed:@"filterbox.png"]];
     [_imgFilter setFrame:CGRectMake(12.5f, 12.5f, 65.0f, 65.0f)];
     [_scrollView addSubview:_imgFilter];
     RELEASEVIEW(_imgFilter);
@@ -170,12 +170,12 @@ const float DYBcolormatrix_yese[] = {
     [self creatButton:CGRectMake(560.0f, 20.0f, 50.0f, 50.0f) tag:8 text:@"青柠" image:@"filter_demo_lemo.png"];
     [self creatButton:CGRectMake(635.0f, 20.0f, 50.0f, 50.0f) tag:9 text:@"夜色" image:@"filter_demo_lemo.png"];
     
-    DragonUIImageView *bar = [[DragonUIImageView alloc]initWithImage:[UIImage imageNamed:@"filterbar.png"]];
+    MagicUIImageView *bar = [[MagicUIImageView alloc]initWithImage:[UIImage imageNamed:@"filterbar.png"]];
     [bar setFrame:CGRectMake(0.0f, _scrollView.frame.origin.y + _scrollView.frame.size.height - 4, 320.0f, 54)];
     [self addSubview:bar];
     RELEASE(bar);
     
-    DragonUIButton *send = [[DragonUIButton alloc]initWithFrame:CGRectMake(230.0f, self.bounds.size.height-44, 40.0f, 35.0f)];
+    MagicUIButton *send = [[MagicUIButton alloc]initWithFrame:CGRectMake(230.0f, self.bounds.size.height-44, 40.0f, 35.0f)];
     [send addSignal:[DYBPhotoEditorView DOSAVE] forControlEvents:UIControlEventTouchUpInside];
     [send setBackgroundImage:[UIImage imageNamed:@"filter_yes_a.png"] forState:UIControlStateNormal];
     [send setBackgroundImage:[UIImage imageNamed:@"filter_yes_b.png"] forState:UIControlStateHighlighted];
@@ -183,7 +183,7 @@ const float DYBcolormatrix_yese[] = {
     [self addSubview:send];
     RELEASE(send);
     
-    DragonUIButton *save = [[DragonUIButton alloc]initWithFrame:CGRectMake(50.0f, self.bounds.size.height-44, 40.0f, 35.0f)];
+    MagicUIButton *save = [[MagicUIButton alloc]initWithFrame:CGRectMake(50.0f, self.bounds.size.height-44, 40.0f, 35.0f)];
     [save addSignal:[DYBPhotoEditorView DOBACK] forControlEvents:UIControlEventTouchUpInside];
     [save setBackgroundImage:[UIImage imageNamed:@"filter_close_a.png"] forState:UIControlStateNormal];
     [save setBackgroundImage:[UIImage imageNamed:@"filter_close_b.png"] forState:UIControlStateHighlighted];
@@ -191,7 +191,7 @@ const float DYBcolormatrix_yese[] = {
     [self addSubview:save];
     RELEASE(save);
     
-    DragonUIButton *right = [[DragonUIButton alloc]initWithFrame:CGRectMake(140.0f, self.bounds.size.height-44, 40.0f, 35.0f)];
+    MagicUIButton *right = [[MagicUIButton alloc]initWithFrame:CGRectMake(140.0f, self.bounds.size.height-44, 40.0f, 35.0f)];
     [right addSignal:[DYBPhotoEditorView DORIGHT] forControlEvents:UIControlEventTouchUpInside];
     [right setBackgroundImage:[UIImage imageNamed:@"filter_rotate_a.png"] forState:UIControlStateNormal];
     [right setBackgroundImage:[UIImage imageNamed:@"filter_rotate_b.png"] forState:UIControlStateHighlighted];
@@ -202,12 +202,12 @@ const float DYBcolormatrix_yese[] = {
 }
 
 -(void)creatButton:(CGRect)rect tag:(int)tag text:(NSString*)text image:(NSString*)strImage{
-    DragonUIImageView *shadow = [[DragonUIImageView alloc]initWithImage:[UIImage imageNamed:@"filtershadow.png"]];
+    MagicUIImageView *shadow = [[MagicUIImageView alloc]initWithImage:[UIImage imageNamed:@"filtershadow.png"]];
     [shadow setFrame:CGRectMake(rect.origin.x-2.5, rect.origin.y-2.5, 55, 55)];
     [_scrollView addSubview:shadow];
     RELEASE(shadow);
     
-    DragonUIButton *btn = [[DragonUIButton alloc]initWithFrame:rect];
+    MagicUIButton *btn = [[MagicUIButton alloc]initWithFrame:rect];
     [btn setTag:tag];
     [btn setBackgroundColor:[UIColor clearColor]];
     [btn addSignal:[DYBPhotoEditorView DOSELECT] forControlEvents:UIControlEventTouchUpInside];
@@ -215,7 +215,7 @@ const float DYBcolormatrix_yese[] = {
     [btn setImage:[UIImage imageNamed:strImage] forState:UIControlStateNormal];
     RELEASE(btn);
     
-    DragonUILabel *label = [[DragonUILabel alloc]initWithFrame:CGRectMake(rect.origin.x, rect.origin.y+40, rect.size.width, rect.size.height)];
+    MagicUILabel *label = [[MagicUILabel alloc]initWithFrame:CGRectMake(rect.origin.x, rect.origin.y+40, rect.size.width, rect.size.height)];
     [label setText:text];
     [label setTextColor:[UIColor whiteColor]];
     [label setTextAlignment:NSTextAlignmentCenter];
@@ -239,10 +239,10 @@ const float DYBcolormatrix_yese[] = {
     
 }
 #pragma mark- 接受其他信号
-- (void)handleViewSignal_DYBPhotoEditorView:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBPhotoEditorView:(MagicViewSignal *)signal
 {  
     if ([signal is:[DYBPhotoEditorView DOSELECT]]){
-        DragonUIButton *bt = (DragonUIButton *)signal.source;
+        MagicUIButton *bt = (MagicUIButton *)signal.source;
         
         switch (bt.tag) {
             case 0:

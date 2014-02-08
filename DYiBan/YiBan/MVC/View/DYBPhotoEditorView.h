@@ -9,15 +9,15 @@
 #import "DYBBaseView.h"
 
 @interface DYBPhotoEditorView : DYBBaseView{
-    DragonUIImageView *_imgView;
-    DragonUIImageView *_imgFilter;
-    DragonUIScrollView *_scrollView;
+    MagicUIImageView *_imgView;
+    MagicUIImageView *_imgFilter;
+    MagicUIScrollView *_scrollView;
  
     UIImage *_rootImage;
     NSInteger _rotation;
 }
 
-@property (nonatomic, retain) DragonUIImageView *imgRootView;
+@property (nonatomic, retain) MagicUIImageView *imgRootView;
 @property (nonatomic, retain) UIImage *curImage;
 @property (nonatomic, assign) int ntype; // 1 发布 2 个人主页 3 发通知 4创建笔记
 

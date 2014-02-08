@@ -10,7 +10,7 @@
 //#import "DYBDataBankTableView.h"
 #import "DYBDataBankChildrenListViewController.h"
 #import "DYBDataBankListCell.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "DYBUITabbarViewController.h"
 #import "UITableView+property.h"
 #import "DYBDataBankFileDetailViewController.h"
@@ -26,7 +26,7 @@
 @interface DYBDataBankSearchViewController (){
 
     DYBUITableView *tbDataBank;
-    DragonUISearchBar *searchView;
+    MagicUISearchBar *searchView;
 
     NSMutableArray *arrayResult;
     
@@ -68,10 +68,10 @@ static DYBDataBankSearchViewController *shareIntance = nil;
 
 }
 
--(void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal{
     
     DLogInfo(@"name -- %@",signal.name);
-    if ([signal is:[DragonViewController CREATE_VIEWS]]) {
+    if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
         
         page = 1;
@@ -89,7 +89,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
 //        [tbDataBank release];
                 
         
-        searchView = [[DragonUISearchBar alloc]initWithFrame:CGRectMake(0.0f, 44.0f, 320.0f, SEARCHBAT_HIGH) backgroundColor:[UIColor whiteColor] placeholder:@"文件名" isHideOutBackImg:YES isHideLeftView:NO];
+        searchView = [[MagicUISearchBar alloc]initWithFrame:CGRectMake(0.0f, 44.0f, 320.0f, SEARCHBAT_HIGH) backgroundColor:[UIColor whiteColor] placeholder:@"文件名" isHideOutBackImg:YES isHideLeftView:NO];
         [searchView setShowsCancelButton:NO];
         [searchView setBackgroundColor:[UIColor colorWithRed:248/255.0f green:248/255.0f blue:248/255.0f alpha:1.0f]];
         
@@ -126,9 +126,9 @@ static DYBDataBankSearchViewController *shareIntance = nil;
     }
     
     
-    if ([signal is:[DragonViewController DID_APPEAR]]) {
+    if ([signal is:[MagicViewController DID_APPEAR]]) {
         
-        DragonUIButton *_btnSwichDybamic = [[DragonUIButton alloc] initWithFrame:CGRectMake(110, 0, 100, 44)];
+        MagicUIButton *_btnSwichDybamic = [[MagicUIButton alloc] initWithFrame:CGRectMake(110, 0, 100, 44)];
         [_btnSwichDybamic addSignal:[DYBDataBankSearchViewController SWITCHDYBAMICBUTTON] forControlEvents:UIControlEventTouchUpInside];
         [self.headview addSubview:_btnSwichDybamic];
         [_btnSwichDybamic setBackgroundColor:[UIColor clearColor]];
@@ -158,7 +158,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
         [self.headview setTitleArrow];
 
        
-    } else if([signal is:[DragonViewController LAYOUT_VIEWS]]){
+    } else if([signal is:[MagicViewController LAYOUT_VIEWS]]){
     
         
         if (arrayCellView.count == 0 ) {
@@ -184,7 +184,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
     
 }
 
--(void)handleViewSignal_DYBDataBankSearchViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankSearchViewController:(MagicViewSignal *)signal{
 
     if ([signal is:[DYBDataBankSearchViewController SWITCHDYBAMICBUTTON]]) {
         
@@ -232,7 +232,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
     
 }
 
--(void)handleViewSignal_DYBMenuView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBMenuView:(MagicViewSignal *)signal{
     
     if ([signal is:[DYBMenuView MENUSELECTCELL]]) {
         
@@ -261,7 +261,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
             
             strSearchType = @"all";
             
-            DragonRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
             [request setTag:1];
             
             return @"搜索全部";
@@ -272,7 +272,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
 
             strSearchType = @"doc";
             
-            DragonRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
             [request setTag:1];
             
             return @"文档";
@@ -283,7 +283,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
 
             strSearchType = @"image";
             
-            DragonRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
             [request setTag:1];
             
             return @"图片";
@@ -294,7 +294,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
 
             strSearchType = @"audio";
             
-            DragonRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
             [request setTag:1];
             
             return @"音频";
@@ -305,7 +305,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
 
             strSearchType = @"video";
             
-            DragonRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
             [request setTag:1];
             
             return @"视频";
@@ -316,7 +316,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
             
             strSearchType = @"zip";
             
-            DragonRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
             [request setTag:1];
             
             return @"压缩文件";
@@ -326,7 +326,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
             
             strSearchType = @"exe";
             
-            DragonRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
             [request setTag:1];
             
             return @"可执行文件";
@@ -367,7 +367,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
 
 #pragma makr -
 #pragma mark - back button signal
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -381,40 +381,40 @@ static DYBDataBankSearchViewController *shareIntance = nil;
 #pragma mark- 只接受tbv信号
 //static NSString *reuseIdentifier = @"reuseIdentifier";
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal{
     
     
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
     {
         NSNumber *s = [NSNumber numberWithInteger:arrayCellView.count];
         [signal setReturnValue:s];
         
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
     {
         NSNumber *s = [NSNumber numberWithInteger:1];
         [signal setReturnValue:s];
         
     }
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
     {
                 
         [signal setReturnValue:[NSNumber numberWithInteger:CELLHIGHT]];
     }
-    else if ([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
     {
         [signal setReturnValue:nil];
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
     {
         [signal setReturnValue:nil];
         
     }//
-    else if ([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
     {
         [signal setReturnValue:[NSNumber numberWithFloat:0.0]];
     }
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -436,7 +436,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
         
         
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
     {
         
         
@@ -481,7 +481,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
         [self.drNavigationController pushViewController:childerListController animated:YES];
         [childerListController release];
         
-    }else if ([signal is:[DragonUITableView TABLESCROLLVIEWDIDENDDRAGGING]])//滚动停止
+    }else if ([signal is:[MagicUITableView TABLESCROLLVIEWDIDENDDRAGGING]])//滚动停止
     {
         
         [self sendViewSignal:[DYBMenuView MENUSHRINK] withObject:self from:self target:_tabMenu];
@@ -489,7 +489,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
         
         bPullDown = NO;
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLUP]]){
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLUP]]){
        
         
         [self hideSearchBtn];
@@ -498,28 +498,28 @@ static DYBDataBankSearchViewController *shareIntance = nil;
         [self opeartionTabBar_show:YES];
         
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLDOWN]]){
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLDOWN]]){
        
         [self hideSearchBtn];
         
         [tbDataBank StretchingUpOrDown:1];
         [self opeartionTabBar_show:NO];
        
-    }else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]])
+    }else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]])
     {
         
         page = 1;
-        DragonRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
         [request setTag:1];
         
         if (!request) {//无网路
             [tbDataBank reloadData:NO];
         }
         
-    }else if([signal is:[DragonUITableView TAbLEVIEWLODATA]])
+    }else if([signal is:[MagicUITableView TAbLEVIEWLODATA]])
     {        
         page ++;
-        DragonRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
         [request setTag:page];
          [request setTag:8];
         DLogInfo(@"dddddddddd page %d",page);
@@ -541,7 +541,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
 }
 
 
--(void)handleViewSignal_DYBDataBankFileDetailViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankFileDetailViewController:(MagicViewSignal *)signal{
     
 
     
@@ -612,7 +612,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
 }
 
 
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj{
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj{
 
     [searchView resignFirstResponder];
      [self.view setUserInteractionEnabled:YES];
@@ -726,10 +726,10 @@ static DYBDataBankSearchViewController *shareIntance = nil;
             [arrayResult removeObjectAtIndex:index];
             [self creatCell];
                     
-            [DYBShareinstaceDelegate popViewText:@"删除成功！" target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+            [DYBShareinstaceDelegate popViewText:@"删除成功！" target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
         }else{
         
-            [DYBShareinstaceDelegate popViewText:@"删除失败！" target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+            [DYBShareinstaceDelegate popViewText:@"删除失败！" target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
         }
        
        
@@ -752,14 +752,14 @@ static DYBDataBankSearchViewController *shareIntance = nil;
         
             NSString *strMSG = [response.data objectForKey:@"msg"];
         
-            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
     }
 }
 
--(void)handleViewSignal_DragonUISearchBar:(DragonViewSignal *)signal{
+-(void)handleViewSignal_MagicUISearchBar:(MagicViewSignal *)signal{
 
 
-    if ([signal is:[DragonUISearchBar BEGINEDITING]]) {
+    if ([signal is:[MagicUISearchBar BEGINEDITING]]) {
         
 //        [searchView setShowsCancelButton:YES];
         
@@ -771,15 +771,15 @@ static DYBDataBankSearchViewController *shareIntance = nil;
         strKey = [searchView text];
         page = 1;
         
-    }else if([signal is:[DragonUISearchBar CANCEL]]){
+    }else if([signal is:[MagicUISearchBar CANCEL]]){
     
        strKey = [searchView text];
         
-        DragonUISearchBar *obj = (DragonUISearchBar *)[signal object];
+        MagicUISearchBar *obj = (MagicUISearchBar *)[signal object];
         [obj resignFirstResponder];
         [obj setShowsCancelButton:NO];
         
-    }else if([signal is:[DragonUISearchBar SEARCH]]){
+    }else if([signal is:[MagicUISearchBar SEARCH]]){
     
         strKey = [searchView text];
         [self request:1];
@@ -789,12 +789,12 @@ static DYBDataBankSearchViewController *shareIntance = nil;
 
 -(void)request:(int)tag {
 
-    DragonRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
+    MagicRequest *request = [DYBHttpMethod search_disk_keyword:strKey page:page num:SEARCHNUM type:strSearchType sAlert:YES receive:self];
     [request setTag:tag];
 
 }
 
--(void)handleViewSignal_DYBDataBankSelectBtn:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankSelectBtn:(MagicViewSignal *)signal{
     
     if ([signal is:[DYBDataBankSelectBtn TOUCHSIGLEBTN]]) {
         NSDictionary *dict = (NSDictionary *)[signal object];
@@ -869,7 +869,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
     }
 }
 
--(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
     
     DLogInfo(@"ddddd");
     if ([signal is:[DYBDataBankShotView LEFT]]) {
@@ -886,7 +886,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
         switch ([type integerValue]) {
             case BTNTAG_DEL:{
                 
-                DragonRequest *request = [DYBHttpMethod document_deldoc_doc:fileURL indexDataBack:[NSString stringWithFormat:@"%@",row] isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod document_deldoc_doc:fileURL indexDataBack:[NSString stringWithFormat:@"%@",row] isAlert:YES receive:self];
                 
                 
                 [request setTag:BTNTAG_DEL];
@@ -922,7 +922,7 @@ static DYBDataBankSearchViewController *shareIntance = nil;
                 }
                 
                 
-                DragonRequest *request = [DYBHttpMethod document_rename_doc_id:doc_id name:text is_dir:dir indexDataBank:[NSString stringWithFormat:@"%@",row]  sAlert:YES receive:self ];
+                MagicRequest *request = [DYBHttpMethod document_rename_doc_id:doc_id name:text is_dir:dir indexDataBank:[NSString stringWithFormat:@"%@",row]  sAlert:YES receive:self ];
                 
                 
                 [request setTag:BTNTAG_RENAME];
@@ -953,14 +953,14 @@ static DYBDataBankSearchViewController *shareIntance = nil;
         UIImage *image = [UIImage imageNamed:@"ybx_big.png"];
         float BearHeadStartX = (CGRectGetWidth(self.view.frame)-image.size.width/2)/2;
         float BearHeadStartY = (self.frameHeight-self.headHeight-image.size.height/2 - 70)/2-44 - SEARCHBAT_HIGH;
-        DragonUIImageView *viewBearHead = [[DragonUIImageView alloc] initWithFrame:CGRectMake(BearHeadStartX, BearHeadStartY, image.size.width/2, image.size.height/2)];
+        MagicUIImageView *viewBearHead = [[MagicUIImageView alloc] initWithFrame:CGRectMake(BearHeadStartX, BearHeadStartY, image.size.width/2, image.size.height/2)];
         [viewBearHead setBackgroundColor:[UIColor clearColor]];
         [viewBearHead setUserInteractionEnabled:YES];
         [viewBearHead setImage:image];
         [view addSubview:viewBearHead];
         RELEASE(viewBearHead);
         
-        DragonUILabel *labelMsg = [[DragonUILabel alloc]initWithFrame:CGRectMake((320 - 250)/2, viewBearHead.frame.size.height + viewBearHead.frame.origin.y + 15, 250.0f, 40.0f)];
+        MagicUILabel *labelMsg = [[MagicUILabel alloc]initWithFrame:CGRectMake((320 - 250)/2, viewBearHead.frame.size.height + viewBearHead.frame.origin.y + 15, 250.0f, 40.0f)];
         [labelMsg setText:strMsg];
 //        [labelMsg setFont:[UIFont systemFontOfSize:14]];
         [labelMsg setTextColor:ColorGray];

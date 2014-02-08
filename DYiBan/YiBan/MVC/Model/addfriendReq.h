@@ -8,7 +8,7 @@
 
 //#import "Jastor.h"
 
-@interface addfriendReq : DragonJSONReflection
+@interface addfriendReq : MagicJSONReflection
 @property(nonatomic, retain)NSString *req;
 
 @end

@@ -149,7 +149,7 @@
     switch (btn.tag) {
         case 1:
         {
-            DragonRequest *request = [DYBHttpMethod document_share_doc:[_dictFileInfo objectForKey:@"file_path"] target:@"O" isAlert:YES receive:self ];
+            MagicRequest *request = [DYBHttpMethod document_share_doc:[_dictFileInfo objectForKey:@"file_path"] target:@"O" isAlert:YES receive:self ];
             [request setTag:5];
             
         }
@@ -158,7 +158,7 @@
         {
             NSString *strUserId = SHARED.curUser.userid;
             NSString *strTarget = [NSString stringWithFormat:@"U,%@",strUserId];
-            DragonRequest *request = [DYBHttpMethod document_share_doc:[_dictFileInfo objectForKey:@"file_path"] target:strTarget isAlert:YES receive:self ];
+            MagicRequest *request = [DYBHttpMethod document_share_doc:[_dictFileInfo objectForKey:@"file_path"] target:strTarget isAlert:YES receive:self ];
             [request setTag:6];
             
         }
@@ -230,7 +230,7 @@
 
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     
     
@@ -245,7 +245,7 @@
         
         NSString *MSG = [response.data objectForKey:@"msg"];
                 
-        [DYBShareinstaceDelegate popViewText:MSG target:self hideTime:-0.3f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+        [DYBShareinstaceDelegate popViewText:MSG target:self hideTime:-0.3f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
     }if (request.tag == 6) {
         
         if ([[response.data objectForKey:@"result"] boolValue]) {
@@ -256,7 +256,7 @@
         
         NSString *MSG = [response.data objectForKey:@"msg"];
                 
-        [DYBShareinstaceDelegate popViewText:MSG target:self hideTime:-0.3f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+        [DYBShareinstaceDelegate popViewText:MSG target:self hideTime:-0.3f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
     }
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import "DYBCellForFriendList.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "NSString+Count.h"
 #import "UIImageView+WebCache.h"
 #import "friends.h"
@@ -27,7 +27,7 @@
         friends *model=data;
         
         if (!_imgV_showImg) {
-            _imgV_showImg=[[DragonUIImageView alloc]initWithFrame:CGRectMake(15,0, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_showImg.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            _imgV_showImg=[[MagicUIImageView alloc]initWithFrame:CGRectMake(15,0, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_showImg.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             _imgV_showImg.needRadius=YES;
             RELEASE(_imgV_showImg);
             [_imgV_showImg setImgWithUrl:model.pic defaultImg:no_pic_50];
@@ -44,7 +44,7 @@
 //            }
             
             
-//             DragonUIBlurView *blurView = [[DragonUIBlurView alloc] initWithFrame:_imgV_showImg.bounds];
+//             MagicUIBlurView *blurView = [[MagicUIBlurView alloc] initWithFrame:_imgV_showImg.bounds];
 //             blurView.originalImage = [UIImage imageNamed:@"midface_mask_def"];
 //             blurView.isGlassEffectOn = YES;
 //             [blurView setBlurLevel:.8f];
@@ -54,14 +54,14 @@
         }
         
         if (!_lb_nickName) {
-            _lb_nickName=[[DragonUILabel alloc]initWithFrame:CGRectMake(_imgV_showImg.frame.origin.x+_imgV_showImg.frame.size.width+10, 0, 0, 0)];
+            _lb_nickName=[[MagicUILabel alloc]initWithFrame:CGRectMake(_imgV_showImg.frame.origin.x+_imgV_showImg.frame.size.width+10, 0, 0, 0)];
             _lb_nickName.backgroundColor=[UIColor clearColor];
             _lb_nickName.textAlignment=NSTextAlignmentLeft;
             _lb_nickName.font=[DYBShareinstaceDelegate DYBFoutStyle:18];
 //            _lb_nickName._constrainedSize=CGSizeMake(screenShows.size.width-20, 100);
             _lb_nickName.text=model.name;
             [_lb_nickName setNeedCoretext:NO];
-            _lb_nickName.textColor=[DragonCommentMethod color:51 green:51 blue:51 alpha:1];
+            _lb_nickName.textColor=[MagicCommentMethod color:51 green:51 blue:51 alpha:1];
             _lb_nickName.numberOfLines=1;
             
             _lb_nickName.lineBreakMode=NSLineBreakByTruncatingTail;
@@ -76,13 +76,13 @@
         }
         
         if (!_lb_newContent && model.desc) {
-            _lb_newContent=[[DragonUILabel alloc]initWithFrame:CGRectMake(_lb_nickName.frame.origin.x, _lb_nickName.frame.origin.y+_lb_nickName.frame.size.height+2, /*self.frame.size.width-_lb_nickName.frame.origin.x-80, _lb_nickName.frame.size.height*/ 0,0)];
+            _lb_newContent=[[MagicUILabel alloc]initWithFrame:CGRectMake(_lb_nickName.frame.origin.x, _lb_nickName.frame.origin.y+_lb_nickName.frame.size.height+2, /*self.frame.size.width-_lb_nickName.frame.origin.x-80, _lb_nickName.frame.size.height*/ 0,0)];
             _lb_newContent.backgroundColor=[UIColor clearColor];
             _lb_newContent.textAlignment=NSTextAlignmentLeft;
             _lb_newContent.font=[DYBShareinstaceDelegate DYBFoutStyle:13];
 //            _lb_newContent._constrainedSize=CGSizeMake(screenShows.size.width-40, 100);
             _lb_newContent.text=model.desc;
-            _lb_newContent.textColor=[DragonCommentMethod color:170 green:170 blue:170 alpha:1];
+            _lb_newContent.textColor=[MagicCommentMethod color:170 green:170 blue:170 alpha:1];
             _lb_newContent.numberOfLines=1;//只一行时不能用 sizeToFitByconstrainedSize 方法,并要设置 宽高
             
             _lb_newContent.lineBreakMode=NSLineBreakByTruncatingTail;
@@ -102,10 +102,10 @@
                 {
                     if(!_bt_private){
                         UIImage *img= [UIImage imageNamed:@"btn_list_msg_def"];
-                        _bt_private = [[DragonUIButton alloc] initWithFrame:CGRectMake(self.frame.size.width-20-50-8-50, _imgV_showImg.frame.origin.y,/*img.size.width/4, img.size.height/4*/ 50,50)];
+                        _bt_private = [[MagicUIButton alloc] initWithFrame:CGRectMake(self.frame.size.width-20-50-8-50, _imgV_showImg.frame.origin.y,/*img.size.width/4, img.size.height/4*/ 50,50)];
                         _bt_private.tag=-1;
                         _bt_private.backgroundColor=[UIColor clearColor];
-                        [_bt_private addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:model];
+                        [_bt_private addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:model];
                         [_bt_private setImage:img forState:UIControlStateNormal];
                         [_bt_private setImage:[UIImage imageNamed:@"btn_list_msg_high"] forState:UIControlStateHighlighted];
                         //        [_bt_private setImageEdgeInsets:UIEdgeInsetsMake(5,5,5,5)];
@@ -122,7 +122,7 @@
                             img=[UIImage imageNamed:@"btn_list_call_def"];
                         }
                         
-                        _bt_call = [[DragonUIButton alloc] initWithFrame:CGRectMake(_bt_private.frame.origin.x+_bt_private.frame.size.width, _bt_private.frame.origin.y,_bt_private.frame.size.width, _bt_private.frame.size.height)];
+                        _bt_call = [[MagicUIButton alloc] initWithFrame:CGRectMake(_bt_private.frame.origin.x+_bt_private.frame.size.width, _bt_private.frame.origin.y,_bt_private.frame.size.width, _bt_private.frame.size.height)];
                         _bt_call.tag=-2;
                         _bt_call.backgroundColor=[UIColor clearColor];
                         [_bt_call setImage:img forState:UIControlStateNormal];
@@ -132,7 +132,7 @@
                             [_bt_call setImage:[UIImage imageNamed:@"btn_list_call_dis"] forState:UIControlStateHighlighted];
                             
                         }else{
-                            [_bt_call addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:model];
+                            [_bt_call addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:model];
                         }
                        
                         //            [_bt_call setImageEdgeInsets:UIEdgeInsetsMake(5,5,5,5)];
@@ -145,7 +145,7 @@
                 case 1://选择联系人cell
                 {
 //                    if (!_imgV_selectImg) {
-//                        _imgV_showImg=[[DragonUIImageView alloc]initWithFrame:CGRectMake(15,0, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_showImg.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+//                        _imgV_showImg=[[MagicUIImageView alloc]initWithFrame:CGRectMake(15,0, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_showImg.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
 //                        _imgV_showImg.needRadius=YES;
 //                        RELEASE(_imgV_showImg);
 //                    }

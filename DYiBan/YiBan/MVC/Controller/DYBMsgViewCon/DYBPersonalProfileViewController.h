@@ -13,10 +13,10 @@
 //个人资料
 @interface DYBPersonalProfileViewController : DYBBaseViewController
 {
-//    DragonUITableView *_tbv;
+//    MagicUITableView *_tbv;
     PagePickerModel *_pickerModel;
     college_list_all *collegeList;
-    DragonUITextField *nickTextField;
+    MagicUITextField *nickTextField;
 }
 @property (nonatomic, assign)PagePickerModel *pickerModel;
 @property (nonatomic,assign) user *model;

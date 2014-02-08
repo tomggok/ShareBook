@@ -19,7 +19,7 @@
 
 -(void)creatBTNMyShare:(UIView *)BGview{
     
-    DragonUIButton *btnShare = [[DragonUIButton alloc]initWithFrame:CGRectMake(20.0f, 30.0f, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
+    MagicUIButton *btnShare = [[MagicUIButton alloc]initWithFrame:CGRectMake(20.0f, 30.0f, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
     [btnShare setTag:BTNTAG_EDITSHARE];
     [btnShare addSignal:[DYBDataBankFileDetailViewController OPEATTIONMORE] forControlEvents:UIControlEventTouchUpInside object:btnShare];
     [btnShare setBackgroundColor:[UIColor clearColor]];
@@ -28,7 +28,7 @@
     
     RELEASE(btnShare);
     
-    DragonUIButton *btnZhuan = [[DragonUIButton alloc]initWithFrame:CGRectMake(132.0f, 30, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
+    MagicUIButton *btnZhuan = [[MagicUIButton alloc]initWithFrame:CGRectMake(132.0f, 30, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
     [btnZhuan setTag:BTNTAG_CANCELSHARE];
     [btnZhuan addSignal:[DYBDataBankFileDetailViewController OPEATTIONMORE] forControlEvents:UIControlEventTouchUpInside object:btnZhuan];
     [btnZhuan setImage:[UIImage imageNamed:@"file_cancelshare_def"] forState:UIControlStateNormal];
@@ -38,7 +38,7 @@
     NSString *strType = [[_dictFileInfo objectForKey:@"type"]lowercaseString];
     if ([strType isEqualToString:@"png"] ||[strType isEqualToString:@"jpg"]||[strType isEqualToString:@"bmp"]||[strType isEqualToString:@"gif"]) {
         
-        DragonUIButton *btnRename = [[DragonUIButton alloc]initWithFrame:CGRectMake(244, 30, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
+        MagicUIButton *btnRename = [[MagicUIButton alloc]initWithFrame:CGRectMake(244, 30, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
         [btnRename setTag:BTNTAG_SINGLE];
         [btnRename addSignal:[DYBDataBankFileDetailViewController OPEATTIONMORE] forControlEvents:UIControlEventTouchUpInside object:btnRename];
         [btnRename setImage:[UIImage imageNamed:@"file_save_def.png"] forState:UIControlStateNormal];
@@ -54,7 +54,7 @@
     NSString *strType = [[_dictFileInfo objectForKey:@"type"]lowercaseString];
     if ([strType isEqualToString:@"png"] ||[strType isEqualToString:@"jpg"]||[strType isEqualToString:@"bmp"]||[strType isEqualToString:@"gif"]) {
         
-        DragonUIButton *btnDown = [[DragonUIButton alloc]initWithFrame:CGRectMake(20.0f, 30.0f, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
+        MagicUIButton *btnDown = [[MagicUIButton alloc]initWithFrame:CGRectMake(20.0f, 30.0f, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
         [btnDown addSignal:[DYBDataBankFileDetailViewController OPEATTIONMORE] forControlEvents:UIControlEventTouchUpInside object:btnDown];
         [btnDown setTag:BTNTAG_SINGLE];
         [btnDown setImage:[UIImage imageNamed:@"file_save_def.png"] forState:UIControlStateNormal];
@@ -64,7 +64,7 @@
     }
     
     
-    DragonUIButton *btnZhuan = [[DragonUIButton alloc]initWithFrame:CGRectMake(132.0f, 30, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
+    MagicUIButton *btnZhuan = [[MagicUIButton alloc]initWithFrame:CGRectMake(132.0f, 30, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
     [btnZhuan setTag:BTNTAG_CHANGESAVE];
     [btnZhuan addSignal:[DYBDataBankFileDetailViewController OPEATTIONMORE] forControlEvents:UIControlEventTouchUpInside object:btnZhuan];
     [btnZhuan setImage:[UIImage imageNamed:@"file_resave_def"] forState:UIControlStateNormal];
@@ -77,7 +77,7 @@
 
 -(void)creatBTNPublicSomething:(UIView *)BGview{
     
-    DragonUIButton *btnShare = [[DragonUIButton alloc]initWithFrame:CGRectMake(20.0f, 30.0f, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
+    MagicUIButton *btnShare = [[MagicUIButton alloc]initWithFrame:CGRectMake(20.0f, 30.0f, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
     [btnShare setTag:BTNTAG_GOOD];
     [btnShare addSignal:[DYBDataBankFileDetailViewController OPEATTIONMORE] forControlEvents:UIControlEventTouchUpInside object:btnShare];
     [btnShare setBackgroundColor:[UIColor clearColor]];
@@ -90,7 +90,7 @@
     
     RELEASE(btnShare);
     
-    DragonUIButton *btnZhuan = [[DragonUIButton alloc]initWithFrame:CGRectMake(132.0f, 30, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
+    MagicUIButton *btnZhuan = [[MagicUIButton alloc]initWithFrame:CGRectMake(132.0f, 30, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
     [btnZhuan setTag:BTNTAG_BAD];
     [btnZhuan addSignal:[DYBDataBankFileDetailViewController OPEATTIONMORE] forControlEvents:UIControlEventTouchUpInside object:btnZhuan];
     [btnZhuan setImage:[UIImage imageNamed:@"file_cai_def"] forState:UIControlStateNormal];
@@ -102,7 +102,7 @@
     [btnZhuan setEnabled:!bcai];
     
     
-    DragonUIButton *btnRename = [[DragonUIButton alloc]initWithFrame:CGRectMake(244, 30, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
+    MagicUIButton *btnRename = [[MagicUIButton alloc]initWithFrame:CGRectMake(244, 30, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
     [btnRename setTag:BTNTAG_REPORT];
     [btnRename addSignal:[DYBDataBankFileDetailViewController OPEATTIONMORE] forControlEvents:UIControlEventTouchUpInside object:btnRename];
     [btnRename setImage:[UIImage imageNamed:@"file_report_def"] forState:UIControlStateNormal];
@@ -116,7 +116,7 @@
     NSString *strType = [[_dictFileInfo objectForKey:@"type"]lowercaseString];
     if ([strType isEqualToString:@"png"] ||[strType isEqualToString:@"jpg"]||[strType isEqualToString:@"bmp"]||[strType isEqualToString:@"gif"]) {
         
-        DragonUIButton *btnDown = [[DragonUIButton alloc]initWithFrame:CGRectMake(20.0f, 100, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
+        MagicUIButton *btnDown = [[MagicUIButton alloc]initWithFrame:CGRectMake(20.0f, 100, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
         [btnDown addSignal:[DYBDataBankFileDetailViewController OPEATTIONMORE] forControlEvents:UIControlEventTouchUpInside object:btnDown];
         [btnDown setTag:BTNTAG_SINGLE];
         [btnDown setImage:[UIImage imageNamed:@"file_save_def.png"] forState:UIControlStateNormal];
@@ -132,7 +132,7 @@
 
     BOOL iPublic = [[_dictFileInfo objectForKey:@"is_public"] boolValue];
     
-    DragonUIButton *btnShare = [[DragonUIButton alloc]initWithFrame:CGRectMake(20.0f, 30.0f, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
+    MagicUIButton *btnShare = [[MagicUIButton alloc]initWithFrame:CGRectMake(20.0f, 30.0f, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
     [btnShare setTag:BTNTAG_SHARE];
     [btnShare addSignal:[DYBDataBankFileDetailViewController OPEATTIONMORE] forControlEvents:UIControlEventTouchUpInside object:btnShare];
     [btnShare setBackgroundColor:[UIColor clearColor]];
@@ -143,7 +143,7 @@
     
     RELEASE(btnShare);
     
-    DragonUIButton *btnZhuan = [[DragonUIButton alloc]initWithFrame:CGRectMake(132.0f, 30, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
+    MagicUIButton *btnZhuan = [[MagicUIButton alloc]initWithFrame:CGRectMake(132.0f, 30, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
     [btnZhuan setTag:BTNTAG_CHANGE];
     [btnZhuan addSignal:[DYBDataBankFileDetailViewController OPEATTIONMORE] forControlEvents:UIControlEventTouchUpInside object:btnZhuan];
     [btnZhuan setImage:[UIImage imageNamed:@"file_move_def"] forState:UIControlStateNormal];
@@ -152,7 +152,7 @@
     [view addSubview:btnZhuan];
     RELEASE(btnZhuan);
     
-    DragonUIButton *btnRename = [[DragonUIButton alloc]initWithFrame:CGRectMake(244, 30, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
+    MagicUIButton *btnRename = [[MagicUIButton alloc]initWithFrame:CGRectMake(244, 30, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
     [btnRename setTag:BTNTAG_RENAME];
     [btnRename addSignal:[DYBDataBankFileDetailViewController OPEATTIONMORE] forControlEvents:UIControlEventTouchUpInside object:btnRename];
     [btnRename setImage:[UIImage imageNamed:@"file_rename_def"] forState:UIControlStateNormal];
@@ -162,7 +162,7 @@
     RELEASE(btnRename);
     
     
-    DragonUIButton *btnDown = [[DragonUIButton alloc]initWithFrame:CGRectMake(20.0f, 100, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
+    MagicUIButton *btnDown = [[MagicUIButton alloc]initWithFrame:CGRectMake(20.0f, 100, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
     [btnDown addSignal:[DYBDataBankFileDetailViewController OPEATTIONMORE] forControlEvents:UIControlEventTouchUpInside object:btnDown];
     [btnDown setTag:BTNTAG_DOWNLOAD];
     [btnDown setImage:[UIImage imageNamed:@"file_offline_def"] forState:UIControlStateNormal];
@@ -172,7 +172,7 @@
     RELEASE(btnDown);
     
     
-    DragonUIButton *btnSomething = [[DragonUIButton alloc]initWithFrame:CGRectMake(244, 100.0f, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
+    MagicUIButton *btnSomething = [[MagicUIButton alloc]initWithFrame:CGRectMake(244, 100.0f, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
     [btnSomething setTag:BTNTAG_SINGLE];
     [btnSomething addSignal:[DYBDataBankFileDetailViewController OPEATTIONMORE] forControlEvents:UIControlEventTouchUpInside object:btnSomething];
     
@@ -190,7 +190,7 @@
     
     RELEASE(btnSomething);
     
-    DragonUIButton *btnDEL = [[DragonUIButton alloc]initWithFrame:CGRectMake(132.0f, 100.0f, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
+    MagicUIButton *btnDEL = [[MagicUIButton alloc]initWithFrame:CGRectMake(132.0f, 100.0f, CELL_BTN_WIDTH, CELL_BTN_HIGHT)];
     [btnDEL setTag:BTNTAG_DEL];
     [btnDEL addSignal:[DYBDataBankFileDetailViewController OPEATTIONMORE] forControlEvents:UIControlEventTouchUpInside object:btnDEL];
     [btnDEL setImage:[UIImage imageNamed:@"file_del_def"] forState:UIControlStateNormal];

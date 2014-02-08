@@ -7,7 +7,7 @@
 //
 
 #import "DYBCellForMayKnowFriends.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "NSString+Count.h"
 #import "UIImageView+WebCache.h"
 #import "user.h"
@@ -24,7 +24,7 @@
         user *model=data;
         
         if (!_imgV_showImg) {
-            _imgV_showImg=[[DragonUIImageView alloc]initWithFrame:CGRectMake(15,0, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_showImg.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            _imgV_showImg=[[MagicUIImageView alloc]initWithFrame:CGRectMake(15,0, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_showImg.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             _imgV_showImg.needRadius=YES;
             RELEASE(_imgV_showImg);
             
@@ -42,20 +42,20 @@
 //            }
 //            {//圆形遮盖
 //                UIImage *img=[UIImage imageNamed:@"midface_mask_def"];
-//                DragonUIImageView *imgV=[[DragonUIImageView alloc]initWithFrame:CGRectMake(0,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_imgV_showImg Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+//                MagicUIImageView *imgV=[[MagicUIImageView alloc]initWithFrame:CGRectMake(0,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_imgV_showImg Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
 //                RELEASE(imgV);
 //            }
         }
         
         if (!_lb_nickName) {
-            _lb_nickName=[[DragonUILabel alloc]initWithFrame:CGRectMake(_imgV_showImg.frame.origin.x+_imgV_showImg.frame.size.width+10, 0, 0, 0)];
+            _lb_nickName=[[MagicUILabel alloc]initWithFrame:CGRectMake(_imgV_showImg.frame.origin.x+_imgV_showImg.frame.size.width+10, 0, 0, 0)];
             _lb_nickName.backgroundColor=[UIColor clearColor];
             _lb_nickName.textAlignment=NSTextAlignmentLeft;
             _lb_nickName.font=[DYBShareinstaceDelegate DYBFoutStyle:18];
 //            _lb_nickName._constrainedSize=CGSizeMake(screenShows.size.width-20, 100);
             _lb_nickName.text=model.name;
             [_lb_nickName setNeedCoretext:NO];
-            _lb_nickName.textColor=[DragonCommentMethod color:51 green:51 blue:51 alpha:1];
+            _lb_nickName.textColor=[MagicCommentMethod color:51 green:51 blue:51 alpha:1];
             _lb_nickName.numberOfLines=1;
             
             _lb_nickName.lineBreakMode=NSLineBreakByTruncatingTail;
@@ -69,12 +69,12 @@
         }
         
         if (!_lb_newContent) {
-            _lb_newContent=[[DragonUILabel alloc]initWithFrame:CGRectMake(_lb_nickName.frame.origin.x, _lb_nickName.frame.origin.y+_lb_nickName.frame.size.height+3, self.frame.size.width-_lb_nickName.frame.origin.x-40, _lb_nickName.frame.size.height)];
+            _lb_newContent=[[MagicUILabel alloc]initWithFrame:CGRectMake(_lb_nickName.frame.origin.x, _lb_nickName.frame.origin.y+_lb_nickName.frame.size.height+3, self.frame.size.width-_lb_nickName.frame.origin.x-40, _lb_nickName.frame.size.height)];
             _lb_newContent.backgroundColor=[UIColor clearColor];
             _lb_newContent.textAlignment=NSTextAlignmentLeft;
             _lb_newContent.font=[DYBShareinstaceDelegate DYBFoutStyle:13];
             _lb_newContent.text=model.relation_desc;
-            _lb_newContent.textColor=[DragonCommentMethod color:170 green:170 blue:170 alpha:1];
+            _lb_newContent.textColor=[MagicCommentMethod color:170 green:170 blue:170 alpha:1];
             _lb_newContent.numberOfLines=1;//只一行时不能用 sizeToFitByconstrainedSize 方法,并要设置 宽高
             
             _lb_newContent.lineBreakMode=NSLineBreakByTruncatingTail;
@@ -90,14 +90,14 @@
         
         if (!_imgV_arrow && [_lb_newContent.text numOfIntInStr]>0) {//右箭头暂时用 内容里是否有数字判断,因为服务器的user里没有相关字段
             UIImage *img=[UIImage imageNamed:@"doublearrow_left"];
-            _imgV_arrow=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_lb_newContent.frame)+5,CGRectGetMinY(_lb_newContent.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            _imgV_arrow=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_lb_newContent.frame)+5,CGRectGetMinY(_lb_newContent.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             RELEASE(_imgV_arrow);
             
             [_lb_newContent addSignal:[UIView TAP] object:[NSDictionary dictionaryWithObjectsAndKeys:model.userid,@"userid", nil]];
         }
         
         if (!_lb_check&&_imgV_arrow) {//查看
-            _lb_check=[[DragonUILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_imgV_arrow.frame)+5,CGRectGetMinY(_imgV_arrow.frame), 100, 100)];
+            _lb_check=[[MagicUILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_imgV_arrow.frame)+5,CGRectGetMinY(_imgV_arrow.frame), 100, 100)];
             _lb_check.backgroundColor=[UIColor clearColor];
             _lb_check.textAlignment=NSTextAlignmentLeft;
             _lb_check.font=[DYBShareinstaceDelegate DYBFoutStyle:13];

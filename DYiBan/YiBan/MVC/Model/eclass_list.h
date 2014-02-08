@@ -8,7 +8,7 @@
 
 //#import "Jastor.h"
 
-@interface eclass_list : DragonJSONReflection
+@interface eclass_list : MagicJSONReflection
 @property(nonatomic,retain)NSArray* eclass;
 //+(Class)eclass_class;
 

@@ -7,9 +7,9 @@
 //
 
 #import "DYBGuideView.h"
-#import "UIView+DragonCategory.h"
-#import "NSObject+DragonTypeConversion.h"
-#import "Dragon_Device.h"
+#import "UIView+MagicCategory.h"
+#import "NSObject+MagicTypeConversion.h"
+#import "Magic_Device.h"
 
 @interface DYBGuideView ()
 {
@@ -43,7 +43,7 @@ NSMutableArray *_muA_img;
         NSMutableString *imgName = [[NSMutableString alloc]initWithString:[first asNSString]];
         
         CGRect frame = CGRectMake(0, 0, 320, 460);
-        if ([DragonDevice boundSizeType]==1) {
+        if ([MagicDevice boundSizeType]==1) {
             [imgName appendString:@"-568h@2x"];
             frame.size.height = 548;
             
@@ -72,7 +72,7 @@ NSMutableArray *_muA_img;
                 break ;
             }
             imgName =[[NSMutableString alloc]initWithString:str];
-            if ([DragonDevice boundSizeType]==1) {
+            if ([MagicDevice boundSizeType]==1) {
                 [imgName appendString:@"-568h@2x"];
             }
             
@@ -103,7 +103,7 @@ NSMutableArray *_muA_img;
 
 
 #pragma mark- 接受UIView信号
-- (void)handleViewSignal_UIView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_UIView:(MagicViewSignal *)signal{
     if ([signal is:[UIView TAP]]) {
       
 //        [_muA_img removeLastObject];

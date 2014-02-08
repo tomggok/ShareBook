@@ -7,7 +7,7 @@
 //
 
 #import "DYBBaseViewController.h"
-#import "Dragon_UITableView.h"
+#import "Magic_UITableView.h"
 #import "DYBDtaBankSearchView.h"
 
    
@@ -16,7 +16,7 @@
 
 }
 @property (nonatomic, retain) NSObject *sender;
-@property (nonatomic, assign) DragonViewController *tabbarView;
+@property (nonatomic, assign) MagicViewController *tabbarView;
 @property (nonatomic, retain) NSMutableArray *arrayCellView;
 
 -(id)initWithFrame:(CGRect)frame slideView:(UIView *)slideView;

@@ -8,7 +8,7 @@
 
 //#import "Jastor.h"
 
-@interface albums : DragonJSONReflection
+@interface albums : MagicJSONReflection
 @property (nonatomic, retain)NSString *id,*pic_b,*pic_s,*time,*userid,*username;
 
 @end

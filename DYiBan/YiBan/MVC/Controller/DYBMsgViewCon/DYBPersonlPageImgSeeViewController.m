@@ -16,16 +16,16 @@
 @synthesize imgArray = _imgArray;
 @synthesize getInObjectl = _getInObjectl;
 @synthesize albumId,ifReadOne,userId,allImgCount=_allImgCount,iswillred = _iswillred,type = _type;
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self backImgType:7];
 
 //        [self setButtonImage:self.leftButton setImage:@"btn_back_def"];
         [self.headview setTitle:[@"" stringByAppendingFormat:@"%d/%d",[_imgArray indexOfObject:_getInObjectl]+1,_allImgCount]];
         [self.headview setTitleColor:[UIColor whiteColor]];
-        self.headview.backgroundColor=[DragonCommentMethod color:0 green:0 blue:0 alpha:0.2];
+        self.headview.backgroundColor=[MagicCommentMethod color:0 green:0 blue:0 alpha:0.2];
         self.headview.lineView.hidden=YES;
         [self backImgType:10];
         
@@ -33,7 +33,7 @@
         [self.rightButton setImage:[UIImage imageNamed:@"btn_savetolocal_def"] forState:UIControlStateNormal];
         [self.rightButton setImage:[UIImage imageNamed:@"btn_savetolocal_hlt"] forState:UIControlStateHighlighted];
         
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         array = [[NSMutableArray alloc]init];;
         for (int i = 0; i < [_imgArray count]; i++) {
@@ -41,7 +41,7 @@
             [array addObject:dict];
         }
         
-        scroller = [[DragonUIScrollListView alloc] initWithFrame:CGRectMake(0, 0,SCREEN_WIDTH, SCREEN_HEIGHT-20)];
+        scroller = [[MagicUIScrollListView alloc] initWithFrame:CGRectMake(0, 0,SCREEN_WIDTH, SCREEN_HEIGHT-20)];
         scroller.backgroundColor = [UIColor blackColor];
         [self.view addSubview:scroller];
         [scroller setImgArr:array];
@@ -50,14 +50,14 @@
     }
 }
 
-- (void)handleViewSignal_DragonUIScrollListView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUIScrollListView:(MagicViewSignal *)signal
 {
     NSDictionary *dict = (NSDictionary *)[signal object];
     NSString *index= [dict objectForKey:@"index"];
     currentImg = [index intValue];
     
     [self.headview setTitle:[@"" stringByAppendingFormat:@"%d/%d",[index intValue]+1,_allImgCount]];
-    if ([signal is:[DragonUIScrollListView SCROLLVIEWNUM]]) {
+    if ([signal is:[MagicUIScrollListView SCROLLVIEWNUM]]) {
         
         if ([array count] - [index intValue] <= 10) {
             
@@ -76,7 +76,7 @@
 
 
 #pragma mark- 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -95,7 +95,7 @@
 - (UIImage *)currentImg{//当前img
     
     NSDictionary *imgDict = [array objectAtIndex:currentImg];
-    DragonUIImageView *i = [[DragonUIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-20)];
+    MagicUIImageView *i = [[MagicUIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-20)];
     [i setImgWithUrl:[imgDict objectForKey:kSHOWIMGKEY] defaultImg:[imgDict objectForKey:kDEFAULTIMGKEY]];
     UIImage *img = [[i image] retain];
     return img;
@@ -126,13 +126,13 @@
         NSInteger readPage = ([array count])/24+1;
     DLogInfo(@"=============请求第几页数据%d",readPage);
     
-        DragonRequest *request = [DYBHttpMethod albumList:userId albumId:albumId num:24 page:readPage isAlert:NO receive:self];
+        MagicRequest *request = [DYBHttpMethod albumList:userId albumId:albumId num:24 page:readPage isAlert:NO receive:self];
         [request setTag:1];
 
 }
 
 #pragma mark- 只接受HTTP信号
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if ([request succeed])
     {

@@ -21,9 +21,9 @@
 @synthesize phoneInput = _phoneInput,codeInput = _codeInput,codeButton = _codeButton,type = _type,loginPassInput= _loginPassInput,father = _father;
 DEF_SIGNAL(GETCODEBUTTON)//验证码
 
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         if (_type == 1) {
             [self.headview setTitle:@"重置手机"];
@@ -36,30 +36,30 @@ DEF_SIGNAL(GETCODEBUTTON)//验证码
         
         [self sizeStatus];
         self.view.backgroundColor =ColorBackgroundGray;
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         
         //输入手机号
         _phoneInput = [[DYBInputView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 20+self.headHeight, INPUTWIDTH, INPUTHEIGHT) placeText:@"输入手机号" textType:0];
-        [_phoneInput.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[DragonCommentMethod color:229 green:229 blue:229 alpha:1.0] CGColor]];
+        [_phoneInput.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[MagicCommentMethod color:229 green:229 blue:229 alpha:1.0] CGColor]];
         [self.view addSubview:_phoneInput];
         RELEASE(_phoneInput);
         
         //验证码按钮
-        _codeButton = [[DragonUIButton alloc]initWithFrame:CGRectMake([_phoneInput getOrginx], [_phoneInput getLowy]+10, 110, 41)];
+        _codeButton = [[MagicUIButton alloc]initWithFrame:CGRectMake([_phoneInput getOrginx], [_phoneInput getLowy]+10, 110, 41)];
         [_codeButton.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:0 borderColor:nil];
         [_codeButton addSignal:[DYBForgetPassWordViewController GETCODEBUTTON] forControlEvents:UIControlEventTouchUpInside];
         _codeButton.tag = 0;
         _codeButton.titleLabel.font = [DYBShareinstaceDelegate DYBFoutStyle:18];
         [_codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-        _codeButton.backgroundColor = [DragonCommentMethod color:229 green:229 blue:229 alpha:1.0];
+        _codeButton.backgroundColor = [MagicCommentMethod color:229 green:229 blue:229 alpha:1.0];
         [self.view addSubview:_codeButton];
         RELEASE(_codeButton);
         
-        DragonUILabel *textLabel = [[DragonUILabel alloc]initWithFrame:CGRectMake(_codeButton.frame.size.width+_codeButton.frame.origin.x+15, [_phoneInput getLowy]+10, INPUTWIDTH-(_codeButton.frame.size.width+15), 41)];
+        MagicUILabel *textLabel = [[MagicUILabel alloc]initWithFrame:CGRectMake(_codeButton.frame.size.width+_codeButton.frame.origin.x+15, [_phoneInput getLowy]+10, INPUTWIDTH-(_codeButton.frame.size.width+15), 41)];
         textLabel.numberOfLines = 2;
         textLabel.font = [DYBShareinstaceDelegate DYBFoutStyle:15];
-        textLabel.textColor = [DragonCommentMethod colorWithHex:@"aaaaaa"];
+        textLabel.textColor = [MagicCommentMethod colorWithHex:@"aaaaaa"];
         if (_type == 1) {
             textLabel.text = @"通过手机短信重置手机号码每天上限3次。";
         }else {
@@ -71,7 +71,7 @@ DEF_SIGNAL(GETCODEBUTTON)//验证码
         RELEASE(textLabel);
         
         _codeInput = [[DYBInputView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, _codeButton.frame.size.height+_codeButton.frame.origin.y+10, INPUTWIDTH, INPUTHEIGHT) placeText:@"输入验证码" textType:0];
-        [_codeInput.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[DragonCommentMethod color:229 green:229 blue:229 alpha:1.0] CGColor]];
+        [_codeInput.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[MagicCommentMethod color:229 green:229 blue:229 alpha:1.0] CGColor]];
         [self.view addSubview:_codeInput];
         RELEASE(_codeInput);
         
@@ -102,7 +102,7 @@ DEF_SIGNAL(GETCODEBUTTON)//验证码
 }
 
 #pragma mark- 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -120,12 +120,12 @@ DEF_SIGNAL(GETCODEBUTTON)//验证码
             if (_type == 1) {
                 
                 
-                DragonRequest *request = [DYBHttpMethod security_resetphone:_codeInput.nameField.text phone:_phoneInput.nameField.text password:_loginPassInput.nameField.text isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod security_resetphone:_codeInput.nameField.text phone:_phoneInput.nameField.text password:_loginPassInput.nameField.text isAlert:YES receive:self];
                 [request setTag:2];
                 
             }else {
                 
-                DragonRequest *request = [DYBHttpMethod security_verifyauthcode:_phoneInput.nameField.text acuthcode:_codeInput.nameField.text isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod security_verifyauthcode:_phoneInput.nameField.text acuthcode:_codeInput.nameField.text isAlert:YES receive:self];
                 [request setTag:2];
             }
             
@@ -139,9 +139,9 @@ DEF_SIGNAL(GETCODEBUTTON)//验证码
 
 
 #pragma mark- 点击按钮
-- (void)handleViewSignal_DYBForgetPassWordViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBForgetPassWordViewController:(MagicViewSignal *)signal
 {
-    DragonUIButton *btn = signal.source;
+    MagicUIButton *btn = signal.source;
     
     if ([signal is:[DYBForgetPassWordViewController GETCODEBUTTON]]) {
         
@@ -149,10 +149,10 @@ DEF_SIGNAL(GETCODEBUTTON)//验证码
             
             if (_type == 1) {
                 //1是修改手机
-                DragonRequest *request = [DYBHttpMethod security_authcode:_phoneInput.nameField.text type:@"1" isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod security_authcode:_phoneInput.nameField.text type:@"1" isAlert:YES receive:self];
                 [request setTag:1];
             }else {
-                DragonRequest *request = [DYBHttpMethod security_authcode:_phoneInput.nameField.text type:@"0" isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod security_authcode:_phoneInput.nameField.text type:@"0" isAlert:YES receive:self];
                 [request setTag:1];
             }
             
@@ -177,7 +177,7 @@ DEF_SIGNAL(GETCODEBUTTON)//验证码
         
     }else {
         
-        _codeButton.backgroundColor = [DragonCommentMethod color:229 green:229 blue:229 alpha:1.0];
+        _codeButton.backgroundColor = [MagicCommentMethod color:229 green:229 blue:229 alpha:1.0];
         _codeButton.tag = 0;
         
         return NO;
@@ -209,7 +209,7 @@ DEF_SIGNAL(GETCODEBUTTON)//验证码
 //判断格式是否正确
 - (void)phoneRegExp:(NSTimer *)timer {
     
-    DragonUIButton *statusButton = (DragonUIButton *)timer.userInfo;
+    MagicUIButton *statusButton = (MagicUIButton *)timer.userInfo;
     
     if ([self phoneNumRegExp:_phoneInput.nameField.text] == YES) {
         
@@ -218,7 +218,7 @@ DEF_SIGNAL(GETCODEBUTTON)//验证码
         
     }else {
         
-        statusButton.backgroundColor = [DragonCommentMethod color:229 green:229 blue:229 alpha:1.0];
+        statusButton.backgroundColor = [MagicCommentMethod color:229 green:229 blue:229 alpha:1.0];
         statusButton.tag = 0;
     }
     
@@ -226,27 +226,27 @@ DEF_SIGNAL(GETCODEBUTTON)//验证码
 
 
 #pragma mark- UITextField
-- (void)handleViewSignal_DragonUITextField:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITextField:(MagicViewSignal *)signal
 {
-    if ([signal.source isKindOfClass:[DragonUITextField class]])
+    if ([signal.source isKindOfClass:[MagicUITextField class]])
     {
-        DragonUITextField *textField = [signal source];
+        MagicUITextField *textField = [signal source];
         
-        if ([signal is:[DragonUITextField TEXTFIELDDIDENDEDITING]])
+        if ([signal is:[MagicUITextField TEXTFIELDDIDENDEDITING]])
         {
             [self animateTextField:[textField superview] up:NO getContrl:self];
-        }else if ([signal is:[DragonUITextField TEXTFIELD]])
+        }else if ([signal is:[MagicUITextField TEXTFIELD]])
         {
             
             [NSTimer scheduledTimerWithTimeInterval:.1f target:self selector:@selector(sizeStatus) userInfo:nil repeats:NO];
             
             
-        }else if ([signal is:[DragonUITextField TEXTFIELDSHOULDRETURN]])
+        }else if ([signal is:[MagicUITextField TEXTFIELDSHOULDRETURN]])
         {
             [textField resignFirstResponder];
             
         }
-        else if ([signal is:[DragonUITextField TEXTFIELDSHOULDCLEAR]])
+        else if ([signal is:[MagicUITextField TEXTFIELDSHOULDCLEAR]])
         {
             if ([self phoneNumRegExp:_phoneInput.nameField.text] == YES) {
                 
@@ -255,12 +255,12 @@ DEF_SIGNAL(GETCODEBUTTON)//验证码
                 
             }else {
                 
-                _codeButton.backgroundColor = [DragonCommentMethod color:229 green:229 blue:229 alpha:1.0];
+                _codeButton.backgroundColor = [MagicCommentMethod color:229 green:229 blue:229 alpha:1.0];
                 _codeButton.tag = 0;
             }
             
             [self setButtonImage:self.rightButton setImage:@"btn_next_dis"];
-        }else if ([signal is:[DragonUITextField TEXTFIELDDIDBEGINEDITING]]) //开始编辑
+        }else if ([signal is:[MagicUITextField TEXTFIELDDIDBEGINEDITING]]) //开始编辑
         {
             [self animateTextField:[textField superview] up:YES getContrl:self];
             
@@ -271,7 +271,7 @@ DEF_SIGNAL(GETCODEBUTTON)//验证码
 }
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     
     if ([request succeed])

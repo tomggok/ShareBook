@@ -11,12 +11,12 @@
 //好友列表的cell
 @interface DYBCellForFriendList : UITableViewCell
 {
-    DragonUIImageView *_imgV_showImg/*左边展示图*/,*_imgV_selectImg/*选择联系人cell右边的对号*/;
-    DragonUILabel *_lb_newContent,*_lb_nickName;
-    DragonUIButton *_bt_private/*发私信*/,*_bt_call/*打电话*/;
+    MagicUIImageView *_imgV_showImg/*左边展示图*/,*_imgV_selectImg/*选择联系人cell右边的对号*/;
+    MagicUILabel *_lb_newContent,*_lb_nickName;
+    MagicUIButton *_bt_private/*发私信*/,*_bt_call/*打电话*/;
 }
 
-@property (nonatomic,retain)     DragonUIImageView *imgV_showImg/*左边展示图*/;
+@property (nonatomic,retain)     MagicUIImageView *imgV_showImg/*左边展示图*/;
 @property (nonatomic,assign)     BOOL bEnterDataBank;
 @property (nonatomic,assign)     NSIndexPath *indexPath;
 @property (nonatomic,retain)     NSMutableArray *arrayCollect;

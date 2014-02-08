@@ -8,7 +8,7 @@
 
 //#import "Jastor.h"
 #import "user.h"
-@interface user_list : DragonJSONReflection
+@interface user_list : MagicJSONReflection
 @property(nonatomic,retain)NSArray *user;
 //+(Class)user_class;
 @end

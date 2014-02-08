@@ -12,10 +12,10 @@
 //提醒我的cell
 @interface DYBCellForMentionedMe : UITableViewCell
 {
-    DragonUIImageView *_imgV_showImg/*左边展示图*/,*_imgV_newMsgNums/*新消息数量图*/;
-    DragonUILabel *_lb_newContent,*_lb_nickName,*_lb_time;
+    MagicUIImageView *_imgV_showImg/*左边展示图*/,*_imgV_newMsgNums/*新消息数量图*/;
+    MagicUILabel *_lb_newContent,*_lb_nickName,*_lb_time;
     DYBCustomLabel *_lb_content;
-    DragonUIButton *_bt_delete;
+    MagicUIButton *_bt_delete;
     UIView *_v_toBeSlidingView/*要被滑动的view*/,*_v_bigContent/*主要内容背景*/;
 
 }

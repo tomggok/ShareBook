@@ -10,8 +10,8 @@
 
 @implementation WOSGoodFoodDownView{
 
-    DragonUITableView *tableViewXi;
-    DragonUITableView *tableViewCai;
+    MagicUITableView *tableViewXi;
+    MagicUITableView *tableViewCai;
 
     NSMutableArray *arrayXi;
     NSMutableArray *arrayCai;
@@ -56,14 +56,14 @@ DEF_SIGNAL(SELECTCELLCAIXI)
     [arrayCai addObject:@"豫菜"];
     
     
-    tableViewXi = [[DragonUITableView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f/2, self.frame.size.height)];
+    tableViewXi = [[MagicUITableView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f/2, self.frame.size.height)];
     [tableViewXi setTag:3];
     [tableViewXi setShowsHorizontalScrollIndicator:NO];
     [tableViewXi setShowsVerticalScrollIndicator:NO];
     [self addSubview:tableViewXi];
     RELEASE(tableViewXi);
     
-    tableViewCai = [[DragonUITableView alloc]initWithFrame:CGRectMake(160.0f, 0.0f, 320.0/2, self.frame.size.height)];
+    tableViewCai = [[MagicUITableView alloc]initWithFrame:CGRectMake(160.0f, 0.0f, 320.0/2, self.frame.size.height)];
     [tableViewCai setTag:4];
     [self addSubview:tableViewCai];
     RELEASE(tableViewCai);
@@ -84,11 +84,11 @@ DEF_SIGNAL(SELECTCELLCAIXI)
 
 }
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
     
     
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
         
         UITableView *tabelView = (UITableView *)[signal source];
          NSNumber *s;
@@ -109,24 +109,24 @@ DEF_SIGNAL(SELECTCELLCAIXI)
         }
         [signal setReturnValue:s];
         
-    }else if([signal is:[DragonUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
+    }else if([signal is:[MagicUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
         NSNumber *s = [NSNumber numberWithInteger:1];
         [signal setReturnValue:s];
         
-    }else if([signal is:[DragonUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
+    }else if([signal is:[MagicUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
         
         NSNumber *s = [NSNumber numberWithInteger:50];
         [signal setReturnValue:s];
         
         
-    }else if([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])/*titleForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])/*titleForHeaderInSection*/{
         
-    }else if([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])/*viewForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])/*viewForHeaderInSection*/{
         
-    }else if([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])/*heightForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])/*heightForHeaderInSection*/{
         
         
-    }else if([signal is:[DragonUITableView TABLECELLFORROW]])/*cell*/{
+    }else if([signal is:[MagicUITableView TABLECELLFORROW]])/*cell*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         UITableView *tabelView = (UITableView *)[dict objectForKey:@"tableView"];
@@ -167,7 +167,7 @@ DEF_SIGNAL(SELECTCELLCAIXI)
         
         [signal setReturnValue:cell];
         
-    }else if([signal is:[DragonUITableView TABLEDIDSELECT]])/*选中cell*/{
+    }else if([signal is:[MagicUITableView TABLEDIDSELECT]])/*选中cell*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
@@ -192,13 +192,13 @@ DEF_SIGNAL(SELECTCELLCAIXI)
         
         
         
-    }else if([signal is:[DragonUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
         
-    }else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]]){
+    }else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]]){
         
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWLODATA]]){
-    }else if ([signal is:[DragonUITableView TAbLEVIERETOUCH]]){
+    }else if ([signal is:[MagicUITableView TAbLEVIEWLODATA]]){
+    }else if ([signal is:[MagicUITableView TAbLEVIERETOUCH]]){
         
     }
     

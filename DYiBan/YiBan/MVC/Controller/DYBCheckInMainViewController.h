@@ -12,12 +12,12 @@
 #import "DYBBubbleView.h"
 
 @interface DYBCheckInMainViewController : DYBBaseViewController/*<BMKMapViewDelegate, BMKSearchDelegate>*//*百度地图Marker*/{
-    DragonUIButton *_btnMySelf;
-    DragonUIButton *_btnFriends;
-    DragonUIButton *_btnInfoViewFold;
+    MagicUIButton *_btnMySelf;
+    MagicUIButton *_btnFriends;
+    MagicUIButton *_btnInfoViewFold;
     
-    DragonUILabel *_lbContinuousCount;
-    DragonUILabel *_lbTotalCount;
+    MagicUILabel *_lbContinuousCount;
+    MagicUILabel *_lbTotalCount;
     
     DYBBaseView *_viewCheckinInfo;
     

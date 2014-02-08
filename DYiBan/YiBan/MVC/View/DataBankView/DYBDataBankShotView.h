@@ -8,7 +8,7 @@
 
 #import "DYBBaseView.h"
 #import "DYBBoxView.h"
-#import "Dragon_UITextView.h"
+#import "Magic_UITextView.h"
 @interface DYBDataBankShotView : DYBBaseView
 AS_SIGNAL(LEFT)
 AS_SIGNAL(RIGHT)
@@ -17,8 +17,8 @@ AS_SIGNAL(SINGLEBTN)
 
 @property (nonatomic,retain) NSString *type;
 @property (nonatomic,retain) NSNumber *rowNum;
-@property (nonatomic,retain) DragonUILabel *labelText;
-@property (nonatomic,retain) DragonUITextView *labelTextView;
+@property (nonatomic,retain) MagicUILabel *labelText;
+@property (nonatomic,retain) MagicUITextView *labelTextView;
 @property (nonatomic,retain) NSString *strTitlt;
 @property (nonatomic,retain) NSString *strMsg;
 @property (nonatomic,retain) NSMutableDictionary *userInfo;//传参数

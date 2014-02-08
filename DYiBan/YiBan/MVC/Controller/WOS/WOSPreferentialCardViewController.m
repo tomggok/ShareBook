@@ -28,11 +28,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
--(void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal{
     
     DLogInfo(@"name -- %@",signal.name);
     
-    if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         //        [self.rightButton setHidden:YES];
         [self.headview setTitle:@"电子优惠券"];
@@ -41,7 +41,7 @@
         [self setButtonImage:self.leftButton setImage:@"back"];
         
     }
-    else if ([signal is:[DragonViewController CREATE_VIEWS]]) {
+    else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
         [self.rightButton setHidden:YES];
         
@@ -61,16 +61,16 @@
     }
     
     
-    else if ([signal is:[DragonViewController DID_APPEAR]]) {
+    else if ([signal is:[MagicViewController DID_APPEAR]]) {
         
         DLogInfo(@"rrr");
-    } else if ([signal is:[DragonViewController DID_DISAPPEAR]]){
+    } else if ([signal is:[MagicViewController DID_DISAPPEAR]]){
         
         
     }
 }
 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {

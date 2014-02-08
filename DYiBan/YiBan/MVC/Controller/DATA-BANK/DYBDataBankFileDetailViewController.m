@@ -12,18 +12,18 @@
 #import "DYBScroller.h"
 #import "DYBSelectContactViewController.h"
 #import "DYBDataBankEclassListsViewController.h"
-#import "Dragon_UIScrollListView.h"
+#import "Magic_UIScrollListView.h"
 #import "DYBGifView.h"
-#import "NSObject+DragonRequestResponder.h"
-#import "NSObject+DragonDatabase.h"
+#import "NSObject+MagicRequestResponder.h"
+#import "NSObject+MagicDatabase.h"
 #import "DYBDataBankShareEnterView.h"
 #import "DYBDataBankSelectBtn.h"
 #import "DYBDataBankDownloadManageViewController.h"
-#import "Dragon_Sandbox.h"
+#import "Magic_Sandbox.h"
 #import "NSString+Count.h"
 #import "DYBLoadingView.h"
 #import "PDColoredProgressView.h"
-#import "Dragon_Device.h"
+#import "Magic_Device.h"
 #import "UserSettingMode.h"
 #import "DYBGuideView.h"
 #import "DYBSignViewController.h"
@@ -108,7 +108,7 @@ DEF_SIGNAL(CANCELSHARE)
     }else if ([[strSourceType lowercaseString]isEqualToString:@"png"] ||[[strSourceType lowercaseString]isEqualToString:@"jpg"] ||[[strSourceType lowercaseString]isEqualToString:@"bmp"]){
         
         
-        if ([DragonDevice hasInternetConnection] == NO) {
+        if ([MagicDevice hasInternetConnection] == NO) {
             
             [self checkNET];
             return;
@@ -117,7 +117,7 @@ DEF_SIGNAL(CANCELSHARE)
         [self addIndicatorView];
         
         
-        if (SHARED.currentUserSetting.wifiForPush &&![[DragonDevice networkType] isEqualToString:@"wifi"] && [[DragonDevice networkType] isEqualToString:@"2g"]){
+        if (SHARED.currentUserSetting.wifiForPush &&![[MagicDevice networkType] isEqualToString:@"wifi"] && [[MagicDevice networkType] isEqualToString:@"2g"]){
             
             
             [DYBShareinstaceDelegate addConfirmViewTitle:@"提示" MSG:@"您当前为2G/3G网络，需要消耗流量，是否继续操作？" targetView:APPDELEGATE.window targetObj:self btnType:BTNTAG_GOONDOWNLOAD dic:nil ];
@@ -128,13 +128,13 @@ DEF_SIGNAL(CANCELSHARE)
     }
     else{
     
-        if ([DragonDevice hasInternetConnection] == NO) {
+        if ([MagicDevice hasInternetConnection] == NO) {
             
             [self checkNET];
             return;
         }
         
-        if (SHARED.currentUserSetting.wifiForPush &&![[DragonDevice networkType] isEqualToString:@"wifi"] && [[DragonDevice networkType] isEqualToString:@"2g"]){
+        if (SHARED.currentUserSetting.wifiForPush &&![[MagicDevice networkType] isEqualToString:@"wifi"] && [[MagicDevice networkType] isEqualToString:@"2g"]){
         
         
             [DYBShareinstaceDelegate addConfirmViewTitle:@"提示" MSG:@"您当前为2G/3G网络，需要消耗流量，是否继续操作？" targetView:APPDELEGATE.window targetObj:self btnType:BTNTAG_GOONDOWNLOAD dic:nil ];
@@ -163,7 +163,7 @@ DEF_SIGNAL(CANCELSHARE)
 {
     NSArray *typeArr = [url componentsSeparatedByString:@"."];
     NSString *type = [typeArr lastObject];
-    NSString *downFileName = [NSString stringWithFormat:@"%@.%@", [DragonCommentMethod md5:url], type];
+    NSString *downFileName = [NSString stringWithFormat:@"%@.%@", [MagicCommentMethod md5:url], type];
     return downFileName;
 }
 
@@ -203,9 +203,9 @@ DEF_SIGNAL(CANCELSHARE)
 
 -(void)checkNET{
 
-        DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+        MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
         [pop setDelegate:self];
-        [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+        [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
         [pop setText:@"检测不到网络连接！"];
         [pop alertViewAutoHidden:.5f isRelease:YES];
         
@@ -213,7 +213,7 @@ DEF_SIGNAL(CANCELSHARE)
         return;
 
 }
-- (void)downloadProgress:(CGFloat)newProgress request:(DragonRequest *)request
+- (void)downloadProgress:(CGFloat)newProgress request:(MagicRequest *)request
 {
     DLogInfo(@"request -- %@ newProgress %f",request.downloadName,newProgress);
         
@@ -270,9 +270,9 @@ DEF_SIGNAL(CANCELSHARE)
 
 
 
--(void)handleViewSignal:(DragonViewSignal *)signal{
+-(void)handleViewSignal:(MagicViewSignal *)signal{
     
-    if ([signal is:[DragonViewController CREATE_VIEWS]]) {
+    if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
         bChangeOk = NO;
         
@@ -287,7 +287,7 @@ DEF_SIGNAL(CANCELSHARE)
 
         [self creatBottonView];
         
-       }else if ([signal is:[DragonViewController LAYOUT_VIEWS]]){
+       }else if ([signal is:[MagicViewController LAYOUT_VIEWS]]){
         
            [self setButtonImage:self.leftButton setImage:@"btn_back_def" setHighString:@"btn_back_hlt"];
 
@@ -313,12 +313,12 @@ DEF_SIGNAL(CANCELSHARE)
             }
         }
 
-       }else if ([signal is:[DragonViewController WILL_DISAPPEAR]]){
+       }else if ([signal is:[MagicViewController WILL_DISAPPEAR]]){
        
 //           NSString *url = [_dictFileInfo objectForKey:@"file_urlencode"]; //暂停下载
 //           [self cancelRequestWithUrl:url];
            
-       }else if ([signal is:[DragonViewController WILL_APPEAR]])
+       }else if ([signal is:[MagicViewController WILL_APPEAR]])
        {
            if (![[NSUserDefaults standardUserDefaults] stringForKey:@"DYBDataBankFileDetailViewController"] || [[[NSUserDefaults standardUserDefaults] stringForKey:@"DYBDataBankFileDetailViewController"] intValue]==0) {
                
@@ -407,8 +407,8 @@ DEF_SIGNAL(CANCELSHARE)
 -(void)showGifView{
 
     NSString *encodeURL = [_dictFileInfo objectForKey:@"file_urlencode"];
-    NSString *downFileName = [DragonCommentMethod md5:encodeURL];
-    NSString *downloadPath = [NSString stringWithFormat:@"%@%@", [DragonCommentMethod downloadPath],    [downFileName stringByAppendingString:@".gif"]];
+    NSString *downFileName = [MagicCommentMethod md5:encodeURL];
+    NSString *downloadPath = [NSString stringWithFormat:@"%@%@", [MagicCommentMethod downloadPath],    [downFileName stringByAppendingString:@".gif"]];
     NSData *localData = [NSData dataWithContentsOfFile:downloadPath];
     UIImage *image = [[UIImage alloc]initWithData:localData];
     
@@ -422,7 +422,7 @@ DEF_SIGNAL(CANCELSHARE)
         
     }else{
     
-         [DYBShareinstaceDelegate popViewText:@"读取数据失败！" target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+         [DYBShareinstaceDelegate popViewText:@"读取数据失败！" target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
     }
     
     
@@ -451,7 +451,7 @@ DEF_SIGNAL(CANCELSHARE)
     
     RELEASE(_imgArray);
      
-    DragonUIScrollListView *scroller = [[DragonUIScrollListView alloc] initWithFrame:CGRectMake(0, self.headHeight,SCREEN_WIDTH, SCREEN_HEIGHT-self.headHeight-20)];
+    MagicUIScrollListView *scroller = [[MagicUIScrollListView alloc] initWithFrame:CGRectMake(0, self.headHeight,SCREEN_WIDTH, SCREEN_HEIGHT-self.headHeight-20)];
     [self.view addSubview:scroller];
     
     [scroller setImgArr:array];
@@ -473,9 +473,9 @@ DEF_SIGNAL(CANCELSHARE)
 -(void)showOfficeOrHtml{
     
     NSString *encodeURL = [_dictFileInfo objectForKey:@"file_urlencode"];
-    NSString *downFileName = [DragonCommentMethod md5:encodeURL];
+    NSString *downFileName = [MagicCommentMethod md5:encodeURL];
     downFileName = [downFileName stringByAppendingString:[NSString stringWithFormat:@".%@",[_dictFileInfo objectForKey:@"type"]]];
-    NSString *downloadPath = [NSString stringWithFormat:@"%@%@", [DragonCommentMethod downloadPath], downFileName];
+    NSString *downloadPath = [NSString stringWithFormat:@"%@%@", [MagicCommentMethod downloadPath], downFileName];
 
     DLogInfo(@"down -- %@",downFileName);
     NSURL *url = [NSURL fileURLWithPath:downloadPath];
@@ -691,13 +691,13 @@ DEF_SIGNAL(CANCELSHARE)
         strSize.height = 35;
     }
     
-    DragonUILabel *labelName = [[DragonUILabel alloc]initWithFrame:CGRectMake(10.0f, 0.0, 300.0f, strSize.height)];
+    MagicUILabel *labelName = [[MagicUILabel alloc]initWithFrame:CGRectMake(10.0f, 0.0, 300.0f, strSize.height)];
     labelName.lineBreakMode = UILineBreakModeCharacterWrap;
     [labelName setText:strTitle];
     [labelName setFont:[DYBShareinstaceDelegate DYBFoutStyle:15]];
     [labelName setTextAlignment:NSTextAlignmentLeft];
     labelName.numberOfLines = 200;
-    [labelName setTextColor:[DragonCommentMethod colorWithHex:@"0x333333"]];
+    [labelName setTextColor:[MagicCommentMethod colorWithHex:@"0x333333"]];
     [labelName setBackgroundColor:[UIColor clearColor]];
     [view1 addSubview:labelName];
     RELEASE(labelName);
@@ -710,7 +710,7 @@ DEF_SIGNAL(CANCELSHARE)
         [newTime setText:[NSString stringWithFormat:@"创建时间：%@",[_dictFileInfo objectForKey:@"create_time"]]];
     }
     [newTime setFont:[DYBShareinstaceDelegate DYBFoutStyle:15]];
-    [newTime setTextColor:[DragonCommentMethod colorWithHex:@"0x333333"]];
+    [newTime setTextColor:[MagicCommentMethod colorWithHex:@"0x333333"]];
     [view1 addSubview:newTime];
      [newTime setBackgroundColor:[UIColor clearColor]];
     RELEASE(newTime);
@@ -725,7 +725,7 @@ DEF_SIGNAL(CANCELSHARE)
     
     [shareTime setText:[NSString stringWithFormat:@"标签：%@",strKey]];
     [shareTime setFont:[DYBShareinstaceDelegate DYBFoutStyle:15]];
-    [shareTime setTextColor:[DragonCommentMethod colorWithHex:@"0x333333"]];
+    [shareTime setTextColor:[MagicCommentMethod colorWithHex:@"0x333333"]];
     [view1 addSubview:shareTime];
     [shareTime setBackgroundColor:[UIColor clearColor]];
     RELEASE(shareTime);
@@ -749,7 +749,7 @@ DEF_SIGNAL(CANCELSHARE)
             break;
     }
     [public setFont:[DYBShareinstaceDelegate DYBFoutStyle:15]];
-    [public setTextColor:[DragonCommentMethod colorWithHex:@"0x333333"]];
+    [public setTextColor:[MagicCommentMethod colorWithHex:@"0x333333"]];
     [view1 addSubview:public];
     [public setBackgroundColor:[UIColor clearColor]];
     RELEASE(public);
@@ -766,7 +766,7 @@ DEF_SIGNAL(CANCELSHARE)
 
 }
 
--(void)handleViewSignal_DYBDataBankFileDetailViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankFileDetailViewController:(MagicViewSignal *)signal{
     
     if ([signal is:[DYBDataBankFileDetailViewController OPEATTIONMORE]]) {
    
@@ -859,7 +859,7 @@ DEF_SIGNAL(CANCELSHARE)
                 [btn setEnabled:NO];                
                 [self creatGoodANDBadIMG:@"cai"];
                 
-                DragonRequest *request = [DYBHttpMethod document_estimate_id:[_dictFileInfo objectForKey:@"oid"] type:@"2" isAlert:NO receive:self];
+                MagicRequest *request = [DYBHttpMethod document_estimate_id:[_dictFileInfo objectForKey:@"oid"] type:@"2" isAlert:NO receive:self];
                 [request setTag:BTNTAG_BAD];
             }
                 break;
@@ -869,7 +869,7 @@ DEF_SIGNAL(CANCELSHARE)
                 [self creatGoodANDBadIMG:@"ding"];
                 
                 [btn setEnabled:NO];                
-                DragonRequest *request = [DYBHttpMethod document_estimate_id:[_dictFileInfo objectForKey:@"oid"] type:@"1" isAlert:NO receive:self];
+                MagicRequest *request = [DYBHttpMethod document_estimate_id:[_dictFileInfo objectForKey:@"oid"] type:@"1" isAlert:NO receive:self];
                 [request setTag:BTNTAG_GOOD];
             }
                 break;
@@ -959,15 +959,15 @@ DEF_SIGNAL(CANCELSHARE)
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
         NSString * diskCachePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"ImageCache"];
         NSString *encoderUrl= [[_dictFileInfo objectForKey:@"file_url"] stringByAddingPercentEscapesUsingEncoding];
-        NSString *md5 =  [DragonCommentMethod dataBankMD5:encoderUrl];
+        NSString *md5 =  [MagicCommentMethod dataBankMD5:encoderUrl];
         NSString *pathtt = [diskCachePath stringByAppendingPathComponent:md5];
         UIImage *im = [[UIImage alloc]initWithContentsOfFile:pathtt];
         
         if ([[[_dictFileInfo objectForKey:@"type"] lowercaseString] isEqualToString:@"gif"]) {
             
             NSString *encodeURL = [_dictFileInfo objectForKey:@"file_urlencode"];
-            NSString *downFileName = [DragonCommentMethod md5:encodeURL];
-            NSString *downloadPath = [NSString stringWithFormat:@"%@%@", [DragonCommentMethod downloadPath],    [downFileName stringByAppendingString:@".gif"]];
+            NSString *downFileName = [MagicCommentMethod md5:encodeURL];
+            NSString *downloadPath = [NSString stringWithFormat:@"%@%@", [MagicCommentMethod downloadPath],    [downFileName stringByAppendingString:@".gif"]];
             NSData *localData = [NSData dataWithContentsOfFile:downloadPath];
             
             ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
@@ -1027,7 +1027,7 @@ DEF_SIGNAL(CANCELSHARE)
 
 
 #pragma mark- 鸡肋点击按钮
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -1072,7 +1072,7 @@ DEF_SIGNAL(CANCELSHARE)
     }
 }
 
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     
     JsonResponse *response = (JsonResponse *)receiveObj;
@@ -1085,7 +1085,7 @@ DEF_SIGNAL(CANCELSHARE)
             [self.drNavigationController popViewControllerAnimated:YES];
         }
         NSString *strMSG = [response.data objectForKey:@"msg"];
-        [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+        [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
         
     }if (request.tag == BTNTAG_RENAME) {
         
@@ -1112,7 +1112,7 @@ DEF_SIGNAL(CANCELSHARE)
 
         }else{
         
-            [DYBShareinstaceDelegate popViewText:@"重命名失败！" target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+            [DYBShareinstaceDelegate popViewText:@"重命名失败！" target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
         
         }
     }
@@ -1140,7 +1140,7 @@ DEF_SIGNAL(CANCELSHARE)
             [self.drNavigationController popViewControllerAnimated:YES];
         }
         NSString *MSG = [response.data objectForKey:@"msg"];
-        [DYBShareinstaceDelegate popViewText:MSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+        [DYBShareinstaceDelegate popViewText:MSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
     }else if (request.tag == BTNTAG_BAD){
         
         
@@ -1170,7 +1170,7 @@ DEF_SIGNAL(CANCELSHARE)
     }    
 }
 
--(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
     
     if ([signal is:[DYBDataBankShotView LEFT]]) {
         NSDictionary *dict = (NSDictionary *)[signal object];
@@ -1196,7 +1196,7 @@ DEF_SIGNAL(CANCELSHARE)
         switch ([type integerValue]) {
             case BTNTAG_DEL:{
                 
-                DragonRequest *request = [DYBHttpMethod document_deldoc_doc:fileURL indexDataBack:[NSString stringWithFormat:@"%@",row] isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod document_deldoc_doc:fileURL indexDataBack:[NSString stringWithFormat:@"%@",row] isAlert:YES receive:self];
                 
                 
                 [request setTag:BTNTAG_DEL];
@@ -1230,7 +1230,7 @@ DEF_SIGNAL(CANCELSHARE)
                     return;
                 }
                 
-                DragonRequest *request = [DYBHttpMethod document_rename_doc_id:doc_id name:text is_dir:dir indexDataBank:[NSString stringWithFormat:@"%@",row]  sAlert:YES receive:self ];                
+                MagicRequest *request = [DYBHttpMethod document_rename_doc_id:doc_id name:text is_dir:dir indexDataBank:[NSString stringWithFormat:@"%@",row]  sAlert:YES receive:self ];                
                 [request setTag:BTNTAG_RENAME];
             }
                 break;
@@ -1249,7 +1249,7 @@ DEF_SIGNAL(CANCELSHARE)
             
                 
                 NSString *strDoc = [_dictFileInfo objectForKey:@"file_path"];
-                DragonRequest *request = [DYBHttpMethod document_share_doc:strDoc target:@"" isAlert:YES receive:self ];
+                MagicRequest *request = [DYBHttpMethod document_share_doc:strDoc target:@"" isAlert:YES receive:self ];
                 [request setTag:BTNTAG_CANCELSHARE];
             
             }

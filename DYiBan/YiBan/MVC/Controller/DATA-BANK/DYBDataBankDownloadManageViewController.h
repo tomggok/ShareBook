@@ -14,7 +14,7 @@
     
 }
 @property (nonatomic, retain)NSObject *sender;
-@property (nonatomic, assign)DragonViewController *tabbarView;
+@property (nonatomic, assign)MagicViewController *tabbarView;
 @property (nonatomic, retain)NSMutableDictionary *dictCellDown;
 @property (nonatomic, retain)DYBDataBankListCell *cellDown;
 //@property (nonatomic, copy)NSDictionary *dictInsetInfo;

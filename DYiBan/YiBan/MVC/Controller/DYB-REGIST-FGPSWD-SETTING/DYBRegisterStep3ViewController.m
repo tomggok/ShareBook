@@ -23,22 +23,22 @@
 
 @implementation DYBRegisterStep3ViewController
 DEF_SIGNAL(SCHOOLBUTTON) //选择学校
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.headview setTitle:@"校方认证"];
         [self setTextString];
         [self sizeStatus];
         self.view.backgroundColor =ColorBackgroundGray;
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         
         _schoollist_data = [[NSMutableArray alloc]init];
         NSArray *namArr = [[NSArray alloc]initWithObjects:@"学校",@"姓名",@"验证码",@"手机", nil];
         
         UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 20+self.headHeight, INPUTWIDTH, INPUTHEIGHT*4-4)];
-        [bgView.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[DragonCommentMethod color:229 green:229 blue:229 alpha:1.0] CGColor]];
+        [bgView.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[MagicCommentMethod color:229 green:229 blue:229 alpha:1.0] CGColor]];
         [self.view addSubview:bgView];
         RELEASE(bgView)
         
@@ -52,7 +52,7 @@ DEF_SIGNAL(SCHOOLBUTTON) //选择学校
         }
         
         
-        DragonUIButton *schoolBtn = [[DragonUIButton alloc]initWithFrame:CGRectMake(5, 5, INPUTWIDTH-10, INPUTHEIGHT-10)];
+        MagicUIButton *schoolBtn = [[MagicUIButton alloc]initWithFrame:CGRectMake(5, 5, INPUTWIDTH-10, INPUTHEIGHT-10)];
         schoolBtn.backgroundColor = [UIColor clearColor];
         [schoolBtn addSignal:[DYBRegisterStep3ViewController SCHOOLBUTTON] forControlEvents:UIControlEventTouchUpInside];
         textInput[0].userInteractionEnabled = YES;
@@ -62,10 +62,10 @@ DEF_SIGNAL(SCHOOLBUTTON) //选择学校
         [self setTextString];
         
         
-        DragonUILabel *textLabel = [[DragonUILabel alloc]initWithFrame:CGRectMake(bgView.frame.origin.x, bgView.frame.origin.y+bgView.frame.size.height+12-4, INPUTWIDTH, 40)];
+        MagicUILabel *textLabel = [[MagicUILabel alloc]initWithFrame:CGRectMake(bgView.frame.origin.x, bgView.frame.origin.y+bgView.frame.size.height+12-4, INPUTWIDTH, 40)];
         textLabel.numberOfLines = 2;
         textLabel.text = @"如果校方认证遇到问题，可向辅导员老师或学工部老师获取验证码通过验证。";
-        [self setLabel:textLabel sizeFont:15 setColor:[DragonCommentMethod colorWithHex:@"aaaaaa"]];
+        [self setLabel:textLabel sizeFont:15 setColor:[MagicCommentMethod colorWithHex:@"aaaaaa"]];
     }
 }
 
@@ -77,7 +77,7 @@ DEF_SIGNAL(SCHOOLBUTTON) //选择学校
 }
 
 //设置label属性
-- (void)setLabel:(DragonUILabel*)label sizeFont:(int)size setColor:(UIColor *)color{
+- (void)setLabel:(MagicUILabel*)label sizeFont:(int)size setColor:(UIColor *)color{
     
     label.font = [DYBShareinstaceDelegate DYBFoutStyle:size];
     label.textAlignment = NSTextAlignmentLeft;
@@ -88,7 +88,7 @@ DEF_SIGNAL(SCHOOLBUTTON) //选择学校
 }
 
 #pragma mark- 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -109,7 +109,7 @@ DEF_SIGNAL(SCHOOLBUTTON) //选择学校
              */
             
             //校园认证
-            DragonRequest *request = [DYBHttpMethod security_cert:SHARED.registUserSetting.registSchool realName:SHARED.registUserSetting.registTureName certNum:SHARED.registUserSetting.registCodeNum phone:SHARED.registUserSetting.registPhoneNum cerCode:SHARED.registUserSetting.registver_code certKey:SHARED.registUserSetting.registcert_key isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod security_cert:SHARED.registUserSetting.registSchool realName:SHARED.registUserSetting.registTureName certNum:SHARED.registUserSetting.registCodeNum phone:SHARED.registUserSetting.registPhoneNum cerCode:SHARED.registUserSetting.registver_code certKey:SHARED.registUserSetting.registcert_key isAlert:YES receive:self];
             [request setTag:2];
         }
     }
@@ -165,7 +165,7 @@ DEF_SIGNAL(SCHOOLBUTTON) //选择学校
 }
 
 #pragma mark- 点击按钮
-- (void)handleViewSignal_DYBRegisterStep3ViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBRegisterStep3ViewController:(MagicViewSignal *)signal
 {
     //school
     if ([signal is:[DYBRegisterStep3ViewController SCHOOLBUTTON]]) {
@@ -178,31 +178,31 @@ DEF_SIGNAL(SCHOOLBUTTON) //选择学校
 }
 
 #pragma mark- UITextField
-- (void)handleViewSignal_DragonUITextField:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITextField:(MagicViewSignal *)signal
 {
-    if ([signal.source isKindOfClass:[DragonUITextField class]])
+    if ([signal.source isKindOfClass:[MagicUITextField class]])
     {
-        DragonUITextField *textField = [signal source];
+        MagicUITextField *textField = [signal source];
         
-        if ([signal is:[DragonUITextField TEXTFIELDDIDENDEDITING]])
+        if ([signal is:[MagicUITextField TEXTFIELDDIDENDEDITING]])
         {
             textInput[0].userInteractionEnabled = YES;
             [self animateTextField:[textField superview] up:NO getContrl:self];
             
-        }else if ([signal is:[DragonUITextField TEXTFIELD]])
+        }else if ([signal is:[MagicUITextField TEXTFIELD]])
         {
             [NSTimer scheduledTimerWithTimeInterval:.1f target:self selector:@selector(sizeStatus) userInfo:nil repeats:NO];
             
-        }else if ([signal is:[DragonUITextField TEXTFIELDSHOULDRETURN]])
+        }else if ([signal is:[MagicUITextField TEXTFIELDSHOULDRETURN]])
         {
             [textField resignFirstResponder];
             
-        }else if ([signal is:[DragonUITextField TEXTFIELDDIDBEGINEDITING]]) //开始编辑
+        }else if ([signal is:[MagicUITextField TEXTFIELDDIDBEGINEDITING]]) //开始编辑
         {
             textInput[0].userInteractionEnabled = NO;
             [self animateTextField:[textField superview] up:YES getContrl:self];
             
-        }else if ([signal is:[DragonUITextField TEXTFIELDSHOULDCLEAR]])
+        }else if ([signal is:[MagicUITextField TEXTFIELDSHOULDCLEAR]])
         {
             //点击删除文字按钮
             [self setButtonImage:self.rightButton setImage:@"btn_ok_dis"];
@@ -215,7 +215,7 @@ DEF_SIGNAL(SCHOOLBUTTON) //选择学校
 
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     
     if ([request succeed])

@@ -8,7 +8,7 @@
 
 //#import "Jastor.h"
 
-@interface list : DragonJSONReflection
+@interface list : MagicJSONReflection
 
 @property (nonatomic, retain)NSString *store_url;
 @property (nonatomic, retain)NSString *schemes_url;

@@ -10,8 +10,8 @@
 
 #import "DYBHttpMethod.h"
 #import "DYBLoginViewController.h"
-#import "Dragon_NavigationController.h"
-#import "Dragon_NaviGroupViewController.h"
+#import "Magic_NavigationController.h"
+#import "Magic_NaviGroupViewController.h"
 #import "DYBMapView.h"
 #import "user.h"
 #import "WOSLogInViewController.h"
@@ -24,11 +24,11 @@
 
 @implementation AppDelegate
 {
-//    DragonNavigationController *navi;
+//    MagicNavigationController *navi;
     UIPageControl *pageCtrl;
-    DragonUIImageView *backImv;
+    MagicUIImageView *backImv;
     UIScrollView *scroll;
-    DragonUIButton *startBtn;
+    MagicUIButton *startBtn;
 }
 @synthesize window = _window;
 @synthesize navi = _navi;
@@ -58,11 +58,11 @@
     SHARED.messageHttpUrl = ShengchanMessage;
     
     if (SHARED.imei.length == 0) {
-//        DragonRequest *request = [DYBHttpMethod security_authtag:NO receive:self];
+//        MagicRequest *request = [DYBHttpMethod security_authtag:NO receive:self];
 //        [request setTag:3];
     }
     
-    [DragonUIKeyboard sharedInstace];
+    [MagicUIKeyboard sharedInstace];
      [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
     [self initAppdelegate];
@@ -126,7 +126,7 @@
             NSString *mtType = [[apsDict objectForKey:@"mt"] description];
             if ([mtType isEqualToString:@"8"])
             {//有私信
-                DragonRequest *request = [DYBHttpMethod user_detail:[apsDict objectForKey:@"ui"] isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod user_detail:[apsDict objectForKey:@"ui"] isAlert:YES receive:self];
                 [request setTag:2];
             }else if([mtType isEqualToString:@"5"] )
             {//评价
@@ -171,7 +171,7 @@
 #pragma mark - method
 - (void)loginMethod
 {
-//    DragonRequest *request = [DYBHttpMethod site_version:YES receive:self];
+//    MagicRequest *request = [DYBHttpMethod site_version:YES receive:self];
 //    [request setTag:1];
     
     NSDictionary *userDict = [DYBShareinstaceDelegate userList];
@@ -180,7 +180,7 @@
 //        SHARED.sessionID = [userDict objectForKey:@"sessionID"];
         SHARED.userId = [userDict objectForKey:@"userid"];
         
-//        DragonRequest *request = [DYBHttpMethod user_security_autologin:YES receive:self];
+//        MagicRequest *request = [DYBHttpMethod user_security_autologin:YES receive:self];
 //        [request setTag:1];
         
         DYBUITabbarViewController *vc = [[DYBUITabbarViewController sharedInstace] init:[[_navi viewControllers] objectAtIndex:0]];
@@ -219,7 +219,7 @@
 //        
 //        
 //        //蓝色背景
-//        backImv = [[DragonUIImageView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.window.frame), CGRectGetHeight(self.window.frame))];
+//        backImv = [[MagicUIImageView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.window.frame), CGRectGetHeight(self.window.frame))];
 //        backImv.userInteractionEnabled = YES;
 //        [backImv setImage:image];
 //        [self.window addSubview:backImv];
@@ -242,7 +242,7 @@
 //        //创建开始按钮
 //        UIImage *start_def = [UIImage imageNamed:@"btn_start_def"];
 //        UIImage *start_press = [UIImage imageNamed:@"btn_start_press"];
-//        startBtn = [[DragonUIButton alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.window.frame)-start_def.size.height/2-50, start_def.size.width/2, start_def.size.height/2)];
+//        startBtn = [[MagicUIButton alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.window.frame)-start_def.size.height/2-50, start_def.size.width/2, start_def.size.height/2)];
 //        [startBtn setImage:start_def forState:UIControlStateNormal];
 //        [startBtn setImage:start_press forState:UIControlStateNormal];
 //        [startBtn addTarget:self action:@selector(startBegin) forControlEvents:UIControlEventTouchUpInside];
@@ -250,7 +250,7 @@
 //        
 //        for (int i = 0; i <[photoArray count] ; i++) {
 //            
-//            DragonUIImageView *imv = [[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.window.frame)*i, 0, CGRectGetWidth(self.window.frame), CGRectGetHeight(self.window.frame))];
+//            MagicUIImageView *imv = [[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.window.frame)*i, 0, CGRectGetWidth(self.window.frame), CGRectGetHeight(self.window.frame))];
 //            imv.backgroundColor = [UIColor clearColor];
 //            UIImage *image = [UIImage imageNamed:[photoArray objectAtIndex:i]];
 //            [imv setImage:image];
@@ -270,10 +270,10 @@
 //        
 //        
 //    }else{
-        _navi = [DragonNavigationController stack:@"" firstViewClass:[WOSLogInViewController class]];
+        _navi = [MagicNavigationController stack:@"" firstViewClass:[WOSLogInViewController class]];
         [_navi setNavigationBarHidden:YES];
         
-        DragonNaviGroupViewController *naviGroup = [DragonNaviGroupViewController naviStatckGroupWithFirstStack:_navi];
+        MagicNaviGroupViewController *naviGroup = [MagicNaviGroupViewController naviStatckGroupWithFirstStack:_navi];
         
         [self.window setRootViewController:naviGroup];
 //    }
@@ -300,10 +300,10 @@
             RELEASEVIEW(startBtn);
             RELEASEVIEW(pageCtrl);
             
-            _navi = [DragonNavigationController stack:@"" firstViewClass:[WOSLogInViewController class]];
+            _navi = [MagicNavigationController stack:@"" firstViewClass:[WOSLogInViewController class]];
             [_navi setNavigationBarHidden:YES];
             
-            DragonNaviGroupViewController *naviGroup = [DragonNaviGroupViewController naviStatckGroupWithFirstStack:_navi];
+            MagicNaviGroupViewController *naviGroup = [MagicNaviGroupViewController naviStatckGroupWithFirstStack:_navi];
             
             [self.window setRootViewController:naviGroup];
         }
@@ -329,7 +329,7 @@
 
 #pragma mark -
 #pragma mark - http
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     JsonResponse *response = receiveObj;
     if (request.tag == 1)
@@ -378,7 +378,7 @@
 
 #pragma mark - 
 #pragma mark - DYBDataBankShotView
-- (void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal
 {
     DYBDataBankShotView *showView = [signal source];
     NSDictionary *dict = [showView userInfo];

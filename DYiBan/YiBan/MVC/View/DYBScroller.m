@@ -32,12 +32,12 @@ DEF_SIGNAL(PICKERCLICK);
     typeBox = 0;
     
     //两条黑色线条
-    DragonUILabel *lab = [[DragonUILabel alloc]initWithFrame:CGRectMake(0, orginy-10, 320, 1)];
+    MagicUILabel *lab = [[MagicUILabel alloc]initWithFrame:CGRectMake(0, orginy-10, 320, 1)];
     lab.backgroundColor = [UIColor blackColor];
     [self addSubview:lab];
     RELEASE(lab);
     
-    DragonUILabel *lab1 = [[DragonUILabel alloc]initWithFrame:CGRectMake(0, orginy+45, 320, 1)];
+    MagicUILabel *lab1 = [[MagicUILabel alloc]initWithFrame:CGRectMake(0, orginy+45, 320, 1)];
     lab1.backgroundColor = [UIColor blackColor];
     [self addSubview:lab1];
     RELEASE(lab1);
@@ -45,7 +45,7 @@ DEF_SIGNAL(PICKERCLICK);
     
     //按钮上得选择按钮
     UIImage *switchDoneImage = [UIImage imageNamed:@"select_no"];
-    selectDoneBtn = [[DragonUIButton alloc]initWithFrame:CGRectMake(5, orginy-10 + (55-switchDoneImage.size.height/2)/2, switchDoneImage.size.width/2, switchDoneImage.size.height/2)];
+    selectDoneBtn = [[MagicUIButton alloc]initWithFrame:CGRectMake(5, orginy-10 + (55-switchDoneImage.size.height/2)/2, switchDoneImage.size.width/2, switchDoneImage.size.height/2)];
     [selectDoneBtn setImage:switchDoneImage forState:UIControlStateNormal];
     [selectDoneBtn addSignal:[DYBScroller SELECTED] forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:selectDoneBtn];
@@ -53,7 +53,7 @@ DEF_SIGNAL(PICKERCLICK);
     
     //按钮上得选择按钮
     UIImage *switchImage = [UIImage imageNamed:@"select_yes"];
-    selectBtn = [[DragonUIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-switchImage.size.width/2-5, selectDoneBtn.frame.origin.y, switchImage.size.width/2, switchImage.size.height/2)];
+    selectBtn = [[MagicUIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-switchImage.size.width/2-5, selectDoneBtn.frame.origin.y, switchImage.size.width/2, switchImage.size.height/2)];
     [selectBtn setImage:switchImage forState:UIControlStateNormal];
     [self addSubview:selectBtn];
     RELEASE(selectBtn);
@@ -111,7 +111,7 @@ DEF_SIGNAL(PICKERCLICK);
 }
 
 //发送点击确定按钮消息
-- (void)handleViewSignal_DYBScroller:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBScroller:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBScroller SELECTED]])
     {
@@ -122,7 +122,7 @@ DEF_SIGNAL(PICKERCLICK);
 }
 
 #pragma mark- DYBScrollerView
-- (void)handleViewSignal_DYBScrollerView:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBScrollerView:(MagicViewSignal *)signal
 {
     //0 是带两个按钮的选择框
     if (typeBox == 0) {

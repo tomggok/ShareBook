@@ -14,10 +14,10 @@
 {
     DYBCustomLabel *_lb_content,*_lb_time,*_lb_adress;
     UIView *_v_Contentback/*主要内容背景*/;
-    DragonUIImageView *_imgV_showImg,*_imagV_fail,*_imgV_ArrowR,*_imgV_ArrowL;
+    MagicUIImageView *_imgV_showImg,*_imagV_fail,*_imgV_ArrowR,*_imgV_ArrowL;
 }
 
-@property(nonatomic,retain)DragonUIImageView *_imgV_showImg,*_imagV_fail;
+@property(nonatomic,retain)MagicUIImageView *_imgV_showImg,*_imagV_fail;
 @property(nonatomic,retain)DYBCustomLabel *_lb_content,*_lb_time,*_lb_adress;
 @property(nonatomic, retain) NSArray* matches;
 

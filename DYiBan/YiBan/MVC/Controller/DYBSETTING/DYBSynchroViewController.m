@@ -32,15 +32,15 @@
 DEF_SIGNAL(SYNCHROBUTTON)
 @synthesize btnSelectR,btnSelectT,btnSelect;
 
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.rightButton setHidden:YES];
         [self.headview setTitle:@"同步设置"];
         [self backImgType:0];
         [self checkSyncType];
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         
         canSyncTenct = NO;
@@ -64,13 +64,13 @@ DEF_SIGNAL(SYNCHROBUTTON)
         
         UIImage *image = [UIImage imageNamed:@"btn_check_no"];
         UIImage *imageyes = [UIImage imageNamed:@"btn_check_yes"];
-        btnSelectT = [[DragonUIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-image.size.width/2-40,(BUTTONHEIGHT-image.size.height/2)/2, image.size.width/2, image.size.height/2)];
+        btnSelectT = [[MagicUIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-image.size.width/2-40,(BUTTONHEIGHT-image.size.height/2)/2, image.size.width/2, image.size.height/2)];
         [btnSelectT setImage:image];
 //        btnSelectT.hidden = YES;
         [settingButton[0] addSubview:btnSelectT];
         RELEASE(btnSelectT);
         
-        btnSelectR = [[DragonUIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-image.size.width/2-40,(BUTTONHEIGHT-image.size.height/2)/2, image.size.width/2, image.size.height/2)];
+        btnSelectR = [[MagicUIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-image.size.width/2-40,(BUTTONHEIGHT-image.size.height/2)/2, image.size.width/2, image.size.height/2)];
         [btnSelectR setImage:image];
 //         btnSelectR.hidden = YES;
         [settingButton[1] addSubview:btnSelectR];
@@ -121,7 +121,7 @@ DEF_SIGNAL(SYNCHROBUTTON)
 
 
 #pragma mark- 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -141,9 +141,9 @@ DEF_SIGNAL(SYNCHROBUTTON)
 
 
 #pragma mark- 按钮点击
-- (void)handleViewSignal_DYBSynchroViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBSynchroViewController:(MagicViewSignal *)signal
 {
-    DragonUIButton *btn = signal.source;
+    MagicUIButton *btn = signal.source;
     btnSelect = (DYBSetButton *)btn;
     NSString *dic = nil;
     if ([signal is:[DYBSynchroViewController SYNCHROBUTTON]])
@@ -159,7 +159,7 @@ DEF_SIGNAL(SYNCHROBUTTON)
                 dic = [NSString stringWithFormat:@"%d",4];
                 tagNow = 1;
             }
-            DragonRequest *request = [DYBHttpMethod user_delsync_m:dic isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod user_delsync_m:dic isAlert:YES receive:self];
             [request setTag:1];
         }
         else {
@@ -200,7 +200,7 @@ DEF_SIGNAL(SYNCHROBUTTON)
 
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if ([request succeed])
     {

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 ZzL. All rights reserved.
 //
 
-#import "Dragon_UILabel.h"
+#import "Magic_UILabel.h"
 #import "DYBUILabel.h"
 @interface DYBCustomLabel : DYBUILabel{
     NSArray *_arrTarget;

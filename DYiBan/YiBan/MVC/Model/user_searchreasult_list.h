@@ -9,7 +9,7 @@
 //#import "Jastor.h"
 #import "recommend_list.h"
 
-@interface user_searchreasult_list : DragonJSONReflection
+@interface user_searchreasult_list : MagicJSONReflection
 @property(nonatomic,retain)NSString *havenext;
 @property(nonatomic,retain)recommend_list* user_list;
 

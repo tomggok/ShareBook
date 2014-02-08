@@ -7,7 +7,7 @@
 //
 
 #import "DYBCellForSchoolList.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "NSString+Count.h"
 #import "UITableView+property.h"
 #import "UIView+Gesture.h"
@@ -25,7 +25,7 @@
         scrollerData *model = data;
         
         if (!_lb_newContent) {
-            _lb_newContent = [[DragonUILabel alloc]initWithFrame:CGRectMake(50, 0, 0,0)];
+            _lb_newContent = [[MagicUILabel alloc]initWithFrame:CGRectMake(50, 0, 0,0)];
             _lb_newContent.backgroundColor=[UIColor clearColor];
             _lb_newContent.textAlignment=NSTextAlignmentLeft;
             _lb_newContent.font=[DYBShareinstaceDelegate DYBFoutStyle:15];
@@ -45,7 +45,7 @@
         
         if (!_imgV_star) {
             UIImage *img = [UIImage imageNamed:@"radio_off"];
-            _imgV_star=[[DragonUIImageView alloc]initWithFrame:CGRectMake(10,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            _imgV_star=[[MagicUIImageView alloc]initWithFrame:CGRectMake(10,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             RELEASE(_imgV_star);
         }
         
@@ -54,7 +54,7 @@
         
         {//分割线
             UIView *v=[[UIView alloc]initWithFrame:CGRectMake(0, (self.frame.size.height-1), self.frame.size.width, 0.5)];
-            [v setBackgroundColor:[DragonCommentMethod colorWithHex:@"0xeeeeee"]];
+            [v setBackgroundColor:[MagicCommentMethod colorWithHex:@"0xeeeeee"]];
             [self addSubview:v];
             RELEASE(v);
         }

@@ -12,7 +12,7 @@
 #import "DYBCellForMayKnowFriends.h"
 #import "DYBCellForNearBy.h"
 #import "nearByFriends.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "DYBPersonalHomePageViewController.h"
 #import "ChineseToPinyin.h"
 #import "DYBSearchResultViewController.h"
@@ -22,8 +22,8 @@
 
 @interface DYBSearchFriendsViewController ()
 {
-    DragonUIImageView *_imgV_noData;
-    DragonUILabel *_lb_noData;
+    MagicUIImageView *_imgV_noData;
+    MagicUILabel *_lb_noData;
     NSMutableArray *_muA_mayKnow,*_muA_nearBy;
 }
 @end
@@ -31,14 +31,14 @@
 @implementation DYBSearchFriendsViewController
 
 #pragma mark- ViewController信号
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
     [super handleViewSignal:signal];
     
-    if ([signal is:DragonViewController.CREATE_VIEWS]) {
+    if ([signal is:MagicViewController.CREATE_VIEWS]) {
         
         if (!_search) {
-            _search=[[DragonUISearchBar alloc]initWithFrame:CGRectMake(0, self.headHeight, self.view.frame.size.width, 50) backgroundColor:ColorNav placeholder:@"昵称/姓名/学校" isHideOutBackImg:YES isHideLeftView:NO];
+            _search=[[MagicUISearchBar alloc]initWithFrame:CGRectMake(0, self.headHeight, self.view.frame.size.width, 50) backgroundColor:ColorNav placeholder:@"昵称/姓名/学校" isHideOutBackImg:YES isHideLeftView:NO];
             [_search customBackGround:[[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bg_search"]] autorelease]];
             _search.tag=-1;
             [self.view addSubview:_search];
@@ -61,7 +61,7 @@
         
         {
             _v_btBack=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 57)];
-            _v_btBack.backgroundColor=[DragonCommentMethod color:255 green:255 blue:255 alpha:0.3];
+            _v_btBack.backgroundColor=[MagicCommentMethod color:255 green:255 blue:255 alpha:0.3];
             
             [_v_bt_tbv addSubview:_v_btBack];
             RELEASE(_v_btBack);
@@ -69,11 +69,11 @@
         
         if (!_bt_mayKnow) {
             UIImage *img= [UIImage imageNamed:@"2tabs_left_def"];
-            _bt_mayKnow = [[DragonUIButton alloc] initWithFrame:CGRectMake(0, 0,img.size.width/2, img.size.height/2)];
+            _bt_mayKnow = [[MagicUIButton alloc] initWithFrame:CGRectMake(0, 0,img.size.width/2, img.size.height/2)];
             _bt_mayKnow.tag=-1;
             _bt_mayKnow.showsTouchWhenHighlighted=YES;
             _bt_mayKnow.backgroundColor=[UIColor clearColor];
-            [_bt_mayKnow addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [_bt_mayKnow addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
             [_bt_mayKnow setBackgroundImage:img forState:UIControlStateNormal];
             [_bt_mayKnow setBackgroundImage:[UIImage imageNamed:@"2tabs_left_sel"] forState:UIControlStateSelected];
             [_bt_mayKnow setTitle:@"可能认识的人"];
@@ -87,11 +87,11 @@
         
         if (!_bt_nearBy) {
             UIImage *img= [UIImage imageNamed:@"2tabs_right_def"];
-            _bt_nearBy = [[DragonUIButton alloc] initWithFrame:CGRectMake(_bt_mayKnow.frame.origin.x+_bt_mayKnow.frame.size.width, _bt_mayKnow.frame.origin.y,_bt_mayKnow.frame.size.width, _bt_mayKnow.frame.size.height)];
+            _bt_nearBy = [[MagicUIButton alloc] initWithFrame:CGRectMake(_bt_mayKnow.frame.origin.x+_bt_mayKnow.frame.size.width, _bt_mayKnow.frame.origin.y,_bt_mayKnow.frame.size.width, _bt_mayKnow.frame.size.height)];
             _bt_nearBy.tag=-2;
             _bt_nearBy.showsTouchWhenHighlighted=YES;
             _bt_nearBy.backgroundColor=[UIColor clearColor];
-            [_bt_nearBy addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [_bt_nearBy addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
             [_bt_nearBy setBackgroundImage:img forState:UIControlStateNormal];
             [_bt_nearBy setBackgroundImage:[UIImage imageNamed:@"2tabs_right_sel"] forState:UIControlStateSelected];
             [_bt_nearBy setTitle:@"附近的人"];
@@ -108,7 +108,7 @@
         {//HTTP请求
             
             
-            DragonRequest *request = [DYBHttpMethod user_recommendlist_userid:[NSString stringWithFormat:@"%d",numsOfPage] isAlert:NO receive:self];
+            MagicRequest *request = [DYBHttpMethod user_recommendlist_userid:[NSString stringWithFormat:@"%d",numsOfPage] isAlert:NO receive:self];
             [request setTag:1];
             
             //            if (!request) {//无网路
@@ -117,7 +117,7 @@
         }
         
         
-    }else if ([signal is:DragonViewController.WILL_APPEAR]){
+    }else if ([signal is:MagicViewController.WILL_APPEAR]){
         
         if (!_b_isInMainPage) {
             [self backImgType:0];
@@ -127,14 +127,14 @@
         //        [self backImgType:0];
         self.rightButton.hidden=YES;
         
-    }else if ([signal is:DragonViewController.DID_DISAPPEAR]){
+    }else if ([signal is:MagicViewController.DID_DISAPPEAR]){
         //        RELEASEVIEW(_tbv);//界面不显示时彻底释放TBV,已释放cell
         
-    }else if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    }else if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         
     }
-    else if ([signal is:[DragonViewController FREE_DATAS]])//dealloc时回调,先释放数据
+    else if ([signal is:[MagicViewController FREE_DATAS]])//dealloc时回调,先释放数据
     {
         //        [_tbv_mayKnow releaseDataResource];
         //        [_tbv_nearBy releaseDataResource];
@@ -149,7 +149,7 @@
         //        _tbv_nearBy.muA_singelSectionData=nil;
         
     }
-    else if ([signal is:[DragonViewController DELETE_VIEWS]]){
+    else if ([signal is:[MagicViewController DELETE_VIEWS]]){
         
         //        [_tbv_mayKnow release_muA_differHeightCellView];
         //        RELEASEVIEW(_tbv_mayKnow);//界面不显示时彻底释放TBV,已释放cell
@@ -165,7 +165,7 @@
 
 #pragma makr -
 #pragma mark - back button signal
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -181,7 +181,7 @@
 #pragma mark-
 //-(void)creat_tbv_mayKnow{
 //    if (!_tbv_mayKnow) {
-//        _tbv_mayKnow = [[DragonUITableView alloc] initWithFrame:CGRectMake(0, _v_btBack.frame.origin.y+_v_btBack.frame.size.height, CGRectGetWidth(self.view.bounds), CGRectGetHeight(_v_bt_tbv.bounds)-CGRectGetHeight(_v_btBack.bounds)) isNeedUpdate:YES];
+//        _tbv_mayKnow = [[MagicUITableView alloc] initWithFrame:CGRectMake(0, _v_btBack.frame.origin.y+_v_btBack.frame.size.height, CGRectGetWidth(self.view.bounds), CGRectGetHeight(_v_bt_tbv.bounds)-CGRectGetHeight(_v_btBack.bounds)) isNeedUpdate:YES];
 //        _tbv_mayKnow._cellH=65;
 //        _tbv_mayKnow._originFrame=CGRectMake(0, _v_btBack.frame.origin.y+_v_btBack.frame.size.height, CGRectGetWidth(self.view.bounds), CGRectGetHeight(_v_bt_tbv.bounds)-CGRectGetHeight(_v_btBack.bounds));
 //        [_v_bt_tbv insertSubview:_tbv_mayKnow belowSubview:_v_btBack];
@@ -199,7 +199,7 @@
 #pragma mark-
 //-(void)creat_tbv_nearBy{
 //    if (!_tbv_nearBy) {
-//        _tbv_nearBy = [[DragonUITableView alloc] initWithFrame:_tbv_mayKnow.frame isNeedUpdate:YES];
+//        _tbv_nearBy = [[MagicUITableView alloc] initWithFrame:_tbv_mayKnow.frame isNeedUpdate:YES];
 //        _tbv_nearBy._cellH=65;
 //        _tbv_nearBy._originFrame=CGRectMake(0, _v_btBack.frame.origin.y+_v_btBack.frame.size.height, CGRectGetWidth(self.view.bounds), CGRectGetHeight(_v_bt_tbv.bounds)-CGRectGetHeight(_v_btBack.bounds));
 //        [_v_bt_tbv insertSubview:_tbv_nearBy belowSubview:_v_btBack];
@@ -217,7 +217,7 @@
 
 -(void)creat_tbv{
     if (!_tbv) {
-        _tbv = [[DragonUITableView alloc] initWithFrame:CGRectMake(0, _v_btBack.frame.origin.y+_v_btBack.frame.size.height, CGRectGetWidth(self.view.bounds), CGRectGetHeight(_v_bt_tbv.bounds)-CGRectGetHeight(_v_btBack.bounds)) isNeedUpdate:YES];
+        _tbv = [[MagicUITableView alloc] initWithFrame:CGRectMake(0, _v_btBack.frame.origin.y+_v_btBack.frame.size.height, CGRectGetWidth(self.view.bounds), CGRectGetHeight(_v_bt_tbv.bounds)-CGRectGetHeight(_v_btBack.bounds)) isNeedUpdate:YES];
         _tbv._cellH=65;
         _tbv._originFrame=CGRectMake(0, _v_btBack.frame.origin.y+_v_btBack.frame.size.height, CGRectGetWidth(self.view.bounds), CGRectGetHeight(_v_bt_tbv.bounds)-CGRectGetHeight(_v_btBack.bounds));
         [_v_bt_tbv insertSubview:_tbv belowSubview:_v_btBack];
@@ -237,7 +237,7 @@
 {
     if (!_imgV_noData) {
         UIImage *img=[UIImage imageNamed:@"ybx_big"];
-        DragonUIImageView *imgV=[[DragonUIImageView alloc]initWithFrame:CGRectMake(0, 0, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self.view Alignment:2 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        MagicUIImageView *imgV=[[MagicUIImageView alloc]initWithFrame:CGRectMake(0, 0, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self.view Alignment:2 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         _imgV_noData=imgV;
         [imgV setFrame:CGRectMake(CGRectGetMinX(imgV.frame), CGRectGetMinY(imgV.frame), CGRectGetWidth(imgV.frame), CGRectGetHeight(imgV.frame))];
         RELEASE(imgV);
@@ -245,7 +245,7 @@
     
     
     if(!_lb_noData){
-        DragonUILabel *lb=[[DragonUILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_imgV_noData.frame)+20, 0, 0)];
+        MagicUILabel *lb=[[MagicUILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_imgV_noData.frame)+20, 0, 0)];
         _lb_noData=lb;
         lb.backgroundColor=[UIColor clearColor];
         lb.textAlignment=NSTextAlignmentLeft;
@@ -278,9 +278,9 @@
 static NSString *cellNameFormayKnow = @"cellNameFormayKnow";//可能认识的人
 static NSString *cellNameForNearBy = @"cellNameForNearBy";//
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -296,7 +296,7 @@ static NSString *cellNameForNearBy = @"cellNameForNearBy";//
             [signal setReturnValue:s];
         }
         
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -311,7 +311,7 @@ static NSString *cellNameForNearBy = @"cellNameForNearBy";//
         }
         
     }
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -371,11 +371,11 @@ static NSString *cellNameForNearBy = @"cellNameForNearBy";//
         }
         
     }
-    else if ([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
     {
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
     {
         //        NSDictionary *dict = (NSDictionary *)[signal object];
         //        UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -383,12 +383,12 @@ static NSString *cellNameForNearBy = @"cellNameForNearBy";//
         [signal setReturnValue:nil];
         
     }//
-    else if ([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
     {
         [signal setReturnValue:[NSNumber numberWithFloat:0.0]];
         
     }
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell  只返回显示的cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell  只返回显示的cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -405,7 +405,7 @@ static NSString *cellNameForNearBy = @"cellNameForNearBy";//
         
         [signal setReturnValue:cell];
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableview = [dict objectForKey:@"tableView"];
@@ -431,15 +431,15 @@ static NSString *cellNameForNearBy = @"cellNameForNearBy";//
         
     }
     
-    else if ([signal is:[DragonUITableView TAbLEVIEWLODATA]])//加载更多
+    else if ([signal is:[MagicUITableView TAbLEVIEWLODATA]])//加载更多
     {
-        DragonUITableView *tableView = (DragonUITableView *)[signal source];
+        MagicUITableView *tableView = (MagicUITableView *)[signal source];
         {//HTTP请求
             
             
-            //            DragonRequest *request = [DYBHttpMethod searchNearby:@"5" latitude:@"31.292900" longitude:@"121.508504" page:[NSString stringWithFormat:@"%d",++tableView._page] userid:SHARED.curUser.userid isAlert:YES receive:self];
+            //            MagicRequest *request = [DYBHttpMethod searchNearby:@"5" latitude:@"31.292900" longitude:@"121.508504" page:[NSString stringWithFormat:@"%d",++tableView._page] userid:SHARED.curUser.userid isAlert:YES receive:self];
             
-            DragonRequest *request = [DYBHttpMethod searchNearby:@"5" latitude:[[NSUserDefaults standardUserDefaults] objectForKey:k_Signlat] longitude:[[NSUserDefaults standardUserDefaults] objectForKey:k_Signlng] page:[NSString stringWithFormat:@"%d",++tableView._page] userid:SHARED.curUser.userid isAlert:NO receive:self];
+            MagicRequest *request = [DYBHttpMethod searchNearby:@"5" latitude:[[NSUserDefaults standardUserDefaults] objectForKey:k_Signlat] longitude:[[NSUserDefaults standardUserDefaults] objectForKey:k_Signlng] page:[NSString stringWithFormat:@"%d",++tableView._page] userid:SHARED.curUser.userid isAlert:NO receive:self];
             
             [request setTag:3];
             
@@ -448,25 +448,25 @@ static NSString *cellNameForNearBy = @"cellNameForNearBy";//
             }
         }
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]])//刷新
+    else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]])//刷新
     {
         
-        DragonUITableView *tableView = (DragonUITableView *)[signal source];
+        MagicUITableView *tableView = (MagicUITableView *)[signal source];
         
         {//HTTP请求
             
             
             if (/*!_tbv_mayKnow.hidden*/ _bt_mayKnow.selected) {//刷新 可能认识的人
-                DragonRequest *request = [DYBHttpMethod user_recommendlist_userid:[NSString stringWithFormat:@"%d",numsOfPage] isAlert:NO receive:self];
+                MagicRequest *request = [DYBHttpMethod user_recommendlist_userid:[NSString stringWithFormat:@"%d",numsOfPage] isAlert:NO receive:self];
                 [request setTag:1];
                 
                 if (!request) {//无网路
                     [tableView reloadData:NO];
                 }
             }else{
-                //                DragonRequest *request = [DYBHttpMethod searchNearby:@"5" latitude:@"31.292900" longitude:@"121.508504" page:[NSString stringWithFormat:@"%d",(tableView._page=1)] userid:SHARED.curUser.userid isAlert:YES receive:self];
+                //                MagicRequest *request = [DYBHttpMethod searchNearby:@"5" latitude:@"31.292900" longitude:@"121.508504" page:[NSString stringWithFormat:@"%d",(tableView._page=1)] userid:SHARED.curUser.userid isAlert:YES receive:self];
                 
-                DragonRequest *request = [DYBHttpMethod searchNearby:@"5" latitude:[[NSUserDefaults standardUserDefaults] objectForKey:k_Signlat] longitude:[[NSUserDefaults standardUserDefaults] objectForKey:k_Signlng] page:[NSString stringWithFormat:@"%d",(tableView._page=1)] userid:SHARED.curUser.userid isAlert:NO receive:self];
+                MagicRequest *request = [DYBHttpMethod searchNearby:@"5" latitude:[[NSUserDefaults standardUserDefaults] objectForKey:k_Signlat] longitude:[[NSUserDefaults standardUserDefaults] objectForKey:k_Signlng] page:[NSString stringWithFormat:@"%d",(tableView._page=1)] userid:SHARED.curUser.userid isAlert:NO receive:self];
                 
                 [request setTag:2];
                 
@@ -478,7 +478,7 @@ static NSString *cellNameForNearBy = @"cellNameForNearBy";//
         }
     }
     
-    else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLUP]]){//上滑
+    else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLUP]]){//上滑
         
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableview = [dict objectForKey:@"tableView"];
@@ -497,7 +497,7 @@ static NSString *cellNameForNearBy = @"cellNameForNearBy";//
         
         [_search resignFirstResponder];
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLDOWN]]){//下滑
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLDOWN]]){//下滑
         
         [UIView animateWithDuration:0 animations:^{
             //            [_tbv_mayKnow setFrame:_tbv_mayKnow._originFrame];
@@ -516,7 +516,7 @@ static NSString *cellNameForNearBy = @"cellNameForNearBy";//
 }
 
 #pragma mark- 接受UIView信号
-- (void)handleViewSignal_UIView:(DragonViewSignal *)signal
+- (void)handleViewSignal_UIView:(MagicViewSignal *)signal
 {
     if ([signal is:[UIView TAP]]) {//单击信号
         NSDictionary *d=(NSDictionary *)signal.object;
@@ -530,10 +530,10 @@ static NSString *cellNameForNearBy = @"cellNameForNearBy";//
 }
 
 #pragma mark- 只接受searchBar信号
-- (void)handleViewSignal_DragonUISearchBar:(DragonViewSignal *)signal{
-    if ([signal is:[DragonUISearchBar BEGINEDITING]]) {//第一次按下搜索框
+- (void)handleViewSignal_MagicUISearchBar:(MagicViewSignal *)signal{
+    if ([signal is:[MagicUISearchBar BEGINEDITING]]) {//第一次按下搜索框
         
-        DragonUISearchBar *search=(DragonUISearchBar *)signal.object;
+        MagicUISearchBar *search=(MagicUISearchBar *)signal.object;
         {
             search.showsScopeBar = YES;//控制搜索栏下部的选择栏是否显示出来
             [search setShowsCancelButton:YES animated:YES];
@@ -542,11 +542,11 @@ static NSString *cellNameForNearBy = @"cellNameForNearBy";//
             
         }
         
-    }else if ([signal is:[DragonUISearchBar CANCEL]]){//取消搜索
-        //        DragonUISearchBar *search=(DragonUISearchBar *)signal.object;
+    }else if ([signal is:[MagicUISearchBar CANCEL]]){//取消搜索
+        //        MagicUISearchBar *search=(MagicUISearchBar *)signal.object;
         
-    }else if ([signal is:[DragonUISearchBar SEARCH]]){//按下搜索按钮
-        DragonUISearchBar *search=(DragonUISearchBar *)signal.object;
+    }else if ([signal is:[MagicUISearchBar SEARCH]]){//按下搜索按钮
+        MagicUISearchBar *search=(MagicUISearchBar *)signal.object;
         
         DYBSearchResultViewController *vc=[[DYBSearchResultViewController alloc]init];
         
@@ -559,9 +559,9 @@ static NSString *cellNameForNearBy = @"cellNameForNearBy";//
         
         
         
-    }else if ([signal is:[DragonUISearchBar CHANGEWORD]]){//内容改变
+    }else if ([signal is:[MagicUISearchBar CHANGEWORD]]){//内容改变
         NSString *str=(NSString *)signal.object;
-        DragonUISearchBar *search=(DragonUISearchBar *)signal.source;
+        MagicUISearchBar *search=(MagicUISearchBar *)signal.source;
         
         if ([str length] == 0) {//删除完search里的内容
             //            if (!_tbv_mayKnow.hidden) {
@@ -576,19 +576,19 @@ static NSString *cellNameForNearBy = @"cellNameForNearBy";//
             return;
         }
         
-        //        [search sendViewSignal:[DragonUISearchBar SEARCHING] withObject:[NSDictionary dictionaryWithObjectsAndKeys:str,@"searchContent",((!_tbv_mayKnow.hidden)?(_tbv_mayKnow):(_tbv_nearBy)),@"tbv", nil]];
+        //        [search sendViewSignal:[MagicUISearchBar SEARCHING] withObject:[NSDictionary dictionaryWithObjectsAndKeys:str,@"searchContent",((!_tbv_mayKnow.hidden)?(_tbv_mayKnow):(_tbv_nearBy)),@"tbv", nil]];
         
         
-    }else if ([signal is:[DragonUISearchBar SEARCHING]]){
+    }else if ([signal is:[MagicUISearchBar SEARCHING]]){
         
     }
 }
 
 
 #pragma mark- 接受按钮信号
-- (void)handleViewSignal_DragonUIButton:(DragonViewSignal *)signal{
-    if ([signal is:[DragonUIButton TOUCH_UP_INSIDE]]) {
-        DragonUIButton *bt=(DragonUIButton *)signal.source;
+- (void)handleViewSignal_MagicUIButton:(MagicViewSignal *)signal{
+    if ([signal is:[MagicUIButton TOUCH_UP_INSIDE]]) {
+        MagicUIButton *bt=(MagicUIButton *)signal.source;
         if (bt)
         {
             switch (bt.tag) {
@@ -604,7 +604,7 @@ static NSString *cellNameForNearBy = @"cellNameForNearBy";//
                     [_bt_nearBy setTitleColor:ColorBlue];
                     
                     if (_muA_mayKnow.count==0) {//可能认识的人
-                        DragonRequest *request = [DYBHttpMethod user_recommendlist_userid:[NSString stringWithFormat:@"%d",numsOfPage] isAlert:YES receive:self];
+                        MagicRequest *request = [DYBHttpMethod user_recommendlist_userid:[NSString stringWithFormat:@"%d",numsOfPage] isAlert:YES receive:self];
                         [request setTag:1];
                         
                         //                        if (!request) {//无网路
@@ -638,7 +638,7 @@ static NSString *cellNameForNearBy = @"cellNameForNearBy";//
                     //                    if(!_tbv_nearBy){//HTTP请求
                     //                        
                     //
-                    //                        DragonRequest *request = [DYBHttpMethod searchNearby:@"5" latitude:[[NSUserDefaults standardUserDefaults] objectForKey:k_Signlat] longitude:[[NSUserDefaults standardUserDefaults] objectForKey:k_Signlng] page:@"1" userid:SHARED.curUser.userid isAlert:YES receive:self];
+                    //                        MagicRequest *request = [DYBHttpMethod searchNearby:@"5" latitude:[[NSUserDefaults standardUserDefaults] objectForKey:k_Signlat] longitude:[[NSUserDefaults standardUserDefaults] objectForKey:k_Signlng] page:@"1" userid:SHARED.curUser.userid isAlert:YES receive:self];
                     //                        [request setTag:2];
                     //
                     //                        if (!request) {//无网路
@@ -659,14 +659,14 @@ static NSString *cellNameForNearBy = @"cellNameForNearBy";//
                         
                         
                         
-                        DragonRequest *request = [DYBHttpMethod searchNearby:@"5" latitude:[[NSUserDefaults standardUserDefaults] objectForKey:k_Signlat] longitude:[[NSUserDefaults standardUserDefaults] objectForKey:k_Signlng] page:@"1" userid:SHARED.curUser.userid isAlert:YES receive:self];
+                        MagicRequest *request = [DYBHttpMethod searchNearby:@"5" latitude:[[NSUserDefaults standardUserDefaults] objectForKey:k_Signlat] longitude:[[NSUserDefaults standardUserDefaults] objectForKey:k_Signlng] page:@"1" userid:SHARED.curUser.userid isAlert:YES receive:self];
                         [request setTag:2];
                     }else{
                         //                        [DYBShareinstaceDelegate addConfirmViewTitle:@"" MSG:@"请在“设置-隐私-定位服务”中开启“易班”后，重新尝试，谢谢！" targetView:APPDELEGATE.window targetObj:self btnType:BTNTAG_DEL];
                         {
-                            DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                            MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                             [pop setDelegate:self];
-                            [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                            [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                             [pop setText:@"请在“设置-隐私-定位服务”中开启“易班”后，重新尝试，谢谢！"];
                             [pop alertViewAutoHidden:1.5f isRelease:YES];
                         }
@@ -680,7 +680,7 @@ static NSString *cellNameForNearBy = @"cellNameForNearBy";//
                 case k_tag_fadeBt://取消search的背景按钮
                 {
                     if ([_search cancelSearch]) {
-                        [_search sendViewSignal:[DragonUISearchBar CANCEL] withObject:_search];
+                        [_search sendViewSignal:[MagicUISearchBar CANCEL] withObject:_search];
                         
                     }
                     
@@ -696,7 +696,7 @@ static NSString *cellNameForNearBy = @"cellNameForNearBy";//
 }
 
 #pragma mark- 只接受HTTP信号
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if ([request succeed])
     {

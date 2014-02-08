@@ -48,11 +48,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal{
     
     DLogInfo(@"name -- %@",signal.name);
     
-    if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         //        [self.rightButton setHidden:YES];
         [self.headview setTitle:@"海底捞牡丹江店"];
@@ -63,14 +63,14 @@
         [self.headview setBackgroundColor:[UIColor colorWithRed:97.0f/255 green:97.0f/255 blue:97.0f/255 alpha:1.0]];
         
     }
-    else if ([signal is:[DragonViewController CREATE_VIEWS]]) {
+    else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
         [self.rightButton setHidden:YES];
         arrayFoodList = [[NSArray alloc]init];
         arrayAddorder = [[NSMutableArray alloc]init];
         [self.view setBackgroundColor:[UIColor blackColor]];
         
-        DragonRequest *request = [DYBHttpMethod wosKitchenInfo_foodlist:[_dictInfo objectForKey:@"kitchenIndex"]sAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod wosKitchenInfo_foodlist:[_dictInfo objectForKey:@"kitchenIndex"]sAlert:YES receive:self];
         [request setTag:3];
         
         UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44)];
@@ -95,10 +95,10 @@
     }
     
     
-    else if ([signal is:[DragonViewController DID_APPEAR]]) {
+    else if ([signal is:[MagicViewController DID_APPEAR]]) {
         
         DLogInfo(@"rrr");
-    } else if ([signal is:[DragonViewController DID_DISAPPEAR]]){
+    } else if ([signal is:[MagicViewController DID_DISAPPEAR]]){
         
         
     }
@@ -144,11 +144,11 @@
 #pragma mark- 只接受UITableView信号
 static NSString *cellName = @"cellName";
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
     
     
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
 //        NSDictionary *dict = (NSDictionary *)[signal object];
 //        NSNumber *_section = [dict objectForKey:@"section"];
         NSNumber *s;
@@ -161,23 +161,23 @@ static NSString *cellName = @"cellName";
         
         [signal setReturnValue:s];
         
-    }else if([signal is:[DragonUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
+    }else if([signal is:[MagicUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
         NSNumber *s = [NSNumber numberWithInteger:1];
         [signal setReturnValue:s];
         
-    }else if([signal is:[DragonUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
+    }else if([signal is:[MagicUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
        
         NSNumber *s = [NSNumber numberWithInteger:50];
         [signal setReturnValue:s];
 
                
-    }else if([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])/*titleForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])/*titleForHeaderInSection*/{
         
-    }else if([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])/*viewForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])/*viewForHeaderInSection*/{
                 
-    }else if([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])/*heightForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])/*heightForHeaderInSection*/{
        
-    }else if([signal is:[DragonUITableView TABLECELLFORROW]])/*cell*/{
+    }else if([signal is:[MagicUITableView TABLECELLFORROW]])/*cell*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
@@ -191,20 +191,20 @@ static NSString *cellName = @"cellName";
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [signal setReturnValue:cell];
         
-    }else if([signal is:[DragonUITableView TABLEDIDSELECT]])/*选中cell*/{
+    }else if([signal is:[MagicUITableView TABLEDIDSELECT]])/*选中cell*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
        
                
         
-    }else if([signal is:[DragonUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
         
-    }else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]]){
+    }else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]]){
             
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWLODATA]]){
-            }else if ([signal is:[DragonUITableView TAbLEVIERETOUCH]]){
+    }else if ([signal is:[MagicUITableView TAbLEVIEWLODATA]]){
+            }else if ([signal is:[MagicUITableView TAbLEVIERETOUCH]]){
         
     }
     
@@ -288,7 +288,7 @@ static NSString *cellName = @"cellName";
 
 }
 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -300,7 +300,7 @@ static NSString *cellName = @"cellName";
     }
 }
 #pragma mark- 只接受HTTP信号
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if ([request succeed])
     {
@@ -315,12 +315,12 @@ static NSString *cellName = @"cellName";
                 if (!result) {
                     
                     _dictInfo = dict;
-                    [DYBShareinstaceDelegate popViewText:@"收藏成功！" target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+                    [DYBShareinstaceDelegate popViewText:@"收藏成功！" target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
                     
                 }else{
                     NSString *strMSG = [dict objectForKey:@"message"];
                     
-                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
                     
                     
                 }
@@ -357,7 +357,7 @@ static NSString *cellName = @"cellName";
                 else{
                     NSString *strMSG = [dict objectForKey:@"message"];
                     
-                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
                     
                     
                 }
@@ -367,7 +367,7 @@ static NSString *cellName = @"cellName";
             NSDictionary *dict = [request.responseString JSONValue];
             NSString *strMSG = [dict objectForKey:@"message"];
             
-            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
             
             
         }
@@ -375,7 +375,7 @@ static NSString *cellName = @"cellName";
 }
 //WOSOrderCell DOORDER
 
-- (void)handleViewSignal_WOSOrderCell:(DragonViewSignal *)signal{
+- (void)handleViewSignal_WOSOrderCell:(MagicViewSignal *)signal{
 
     if ([signal is:[WOSOrderCell DOORDER]]) {
         

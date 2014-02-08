@@ -10,11 +10,11 @@
 #import "noteModel.h"
 #import "UITableView+property.h"
 #import "NSString+Count.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "Tag.h"
 #import "DYBUITabbarViewController.h"
-#import "Dragon_Device.h"
-#import "UITableViewCell+DragonCategory.h"
+#import "Magic_Device.h"
+#import "UITableViewCell+MagicCategory.h"
 #import "UILabel+ReSize.h"
 @implementation DYBCellForNotes
 
@@ -85,11 +85,11 @@
                 
                 if (!_bt_delete) {
 //                    UIImage *img= [UIImage imageNamed:@"note_del_def"];
-                    _bt_delete = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-60, 0,60, 30)];
+                    _bt_delete = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-60, 0,60, 30)];
                     _bt_delete.tag=-8;
                     _bt_delete.backgroundColor=[UIColor clearColor];//self.headview.backgroundColor;
                     //            _bt_DropDown.alpha=0.9;
-                    [_bt_delete addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
+                    [_bt_delete addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
 //                    [_bt_delete setImage:img forState:UIControlStateNormal];
 //                    [_bt_delete setImage:[UIImage imageNamed:@"note_del_def"] forState:UIControlStateHighlighted];
                     [_bt_delete setTitle:@"取消筛选"];
@@ -131,11 +131,11 @@
                 
                 if (!_bt_delete) {
                     //                    UIImage *img= [UIImage imageNamed:@"note_del_def"];
-                    _bt_delete = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-60, 0,60, 30)];
+                    _bt_delete = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-60, 0,60, 30)];
                     _bt_delete.tag=-8;
                     _bt_delete.backgroundColor=[UIColor clearColor];//self.headview.backgroundColor;
                     //            _bt_DropDown.alpha=0.9;
-                    [_bt_delete addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
+                    [_bt_delete addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
                     //                    [_bt_delete setImage:img forState:UIControlStateNormal];
                     //                    [_bt_delete setImage:[UIImage imageNamed:@"note_del_def"] forState:UIControlStateHighlighted];
                     [_bt_delete setTitle:@"取消筛选"];
@@ -158,11 +158,11 @@
                 
                 if (!_bt_delete) {
                     UIImage *img= [UIImage imageNamed:@"note_del_def"];
-                    _bt_delete = [[DragonUIButton alloc] initWithFrame:CGRectMake(self.frame.size.width-img.size.width/2-15, 0,img.size.width/2, img.size.height/2)];
+                    _bt_delete = [[MagicUIButton alloc] initWithFrame:CGRectMake(self.frame.size.width-img.size.width/2-15, 0,img.size.width/2, img.size.height/2)];
                     _bt_delete.tag=-3;
                     _bt_delete.backgroundColor=[UIColor clearColor];//self.headview.backgroundColor;
                     //            _bt_DropDown.alpha=0.9;
-                    [_bt_delete addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
+                    [_bt_delete addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
                     [_bt_delete setImage:img forState:UIControlStateNormal];
                     [_bt_delete setImage:[UIImage imageNamed:@"note_del_def"] forState:UIControlStateHighlighted];
                     //            [_bt_delete setTitle:@"删除"];
@@ -177,11 +177,11 @@
                 
                 if (!_bt_favorite) {//星标
                     UIImage *img= [UIImage imageNamed:@"note_star_def"];
-                    _bt_favorite = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(_bt_delete.frame)-30-img.size.width/2, CGRectGetMinY(_bt_delete.frame),img.size.width/2, img.size.height/2)];
+                    _bt_favorite = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(_bt_delete.frame)-30-img.size.width/2, CGRectGetMinY(_bt_delete.frame),img.size.width/2, img.size.height/2)];
                     _bt_favorite.tag=-4;
                     _bt_favorite.backgroundColor=[UIColor clearColor];//self.headview.backgroundColor;
                     //            _bt_DropDown.alpha=0.9;
-                    [_bt_favorite addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
+                    [_bt_favorite addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
                     [_bt_favorite setImage:img forState:UIControlStateNormal];
                     [_bt_favorite setImage:[UIImage imageNamed:@"note_star_def"] forState:UIControlStateHighlighted];
                     //            [_bt_delete setTitle:@"删除"];
@@ -196,11 +196,11 @@
                 
                 if (!_bt_gotoDataBase) {//转存
                     UIImage *img= [UIImage imageNamed:@"note_move_def"];
-                    _bt_gotoDataBase = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(_bt_favorite.frame)-15-img.size.width/2, CGRectGetMinY(_bt_delete.frame),img.size.width/2, img.size.height/2)];
+                    _bt_gotoDataBase = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(_bt_favorite.frame)-15-img.size.width/2, CGRectGetMinY(_bt_delete.frame),img.size.width/2, img.size.height/2)];
                     _bt_gotoDataBase.tag=-5;
                     _bt_gotoDataBase.backgroundColor=[UIColor clearColor];//self.headview.backgroundColor;
                     //            _bt_DropDown.alpha=0.9;
-                    [_bt_gotoDataBase addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
+                    [_bt_gotoDataBase addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
                     [_bt_gotoDataBase setImage:img forState:UIControlStateNormal];
                     [_bt_gotoDataBase setImage:img forState:UIControlStateHighlighted];
                     //            [_bt_delete setTitle:@"删除"];
@@ -215,11 +215,11 @@
                 
                 if (!_bt_share) {//共享
                     UIImage *img= [UIImage imageNamed:@"note_share_def"];
-                    _bt_share = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(_bt_gotoDataBase.frame)-20-img.size.width/2, CGRectGetMinY(_bt_delete.frame),img.size.width/2, img.size.height/2)];
+                    _bt_share = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(_bt_gotoDataBase.frame)-20-img.size.width/2, CGRectGetMinY(_bt_delete.frame),img.size.width/2, img.size.height/2)];
                     _bt_share.tag=-6;
                     _bt_share.backgroundColor=[UIColor clearColor];//self.headview.backgroundColor;
                     //            _bt_DropDown.alpha=0.9;
-                    [_bt_share addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
+                    [_bt_share addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
                     [_bt_share setImage:img forState:UIControlStateNormal];
                     [_bt_share setImage:img forState:UIControlStateHighlighted];
                     //            [_bt_delete setTitle:@"删除"];
@@ -234,7 +234,7 @@
                 }
                 
                 if (!_v_toBeSlidingView) {
-                    _v_toBeSlidingView=[[DragonUIImageView alloc]initWithFrame:self.bounds];
+                    _v_toBeSlidingView=[[MagicUIImageView alloc]initWithFrame:self.bounds];
                     _v_toBeSlidingView.image=[UIImage imageNamed:@"bg_note"];
                     _v_toBeSlidingView._originFrame=CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
 //                    _v_toBeSlidingView.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_note"]];
@@ -248,7 +248,7 @@
                 }
                 
                 {/*标签的背景滚动*/
-                    _scrV_Tip = [[DragonUIScrollView alloc] initWithFrame:CGRectMake(15, 0, CGRectGetWidth(self.frame)-30, 40)];
+                    _scrV_Tip = [[MagicUIScrollView alloc] initWithFrame:CGRectMake(15, 0, CGRectGetWidth(self.frame)-30, 40)];
                     [_scrV_Tip setBackgroundColor:[UIColor clearColor]];
                     [_scrV_Tip setContentSize:CGSizeMake(0, CGRectGetHeight(_scrV_Tip.frame))];
                     [_scrV_Tip setShowsHorizontalScrollIndicator:NO];
@@ -421,7 +421,7 @@
                     }
                     
                     UIImage *img=[UIImage imageNamed:imgName];
-                    _imgV_star=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_lb_time.frame)+15,CGRectGetMinY(_lb_time.frame)-1, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                    _imgV_star=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_lb_time.frame)+15,CGRectGetMinY(_lb_time.frame)-1, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                     RELEASE(_imgV_star);
                     
                     [_imgV_star creatExpandGestureAreaView];
@@ -448,7 +448,7 @@
 
                             {//指示箭头
                                 UIImage *img=[UIImage imageNamed:@"arrow_more"];
-                                DragonUIImageView *imgV=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-65,CGRectGetMinY(_lb_time.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                                MagicUIImageView *imgV=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-65,CGRectGetMinY(_lb_time.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                                 RELEASE(imgV);
                             }
                             
@@ -456,12 +456,12 @@
                         }
                             break;
                     }
-                    imgV_show=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-80,CGRectGetMaxY(v_line.frame)+5, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                    imgV_show=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-80,CGRectGetMaxY(v_line.frame)+5, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                     RELEASE(imgV_show);
                     
                     {//指示箭头
                         UIImage *img=[UIImage imageNamed:@"arrow_more"];
-                        DragonUIImageView *imgV=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMidX(imgV_show.frame)-img.size.width/4,CGRectGetMinY(_lb_time.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                        MagicUIImageView *imgV=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMidX(imgV_show.frame)-img.size.width/4,CGRectGetMinY(_lb_time.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                         RELEASE(imgV);
                     }
                  
@@ -475,11 +475,11 @@
                 
                 if (!_bt_gotoDataBase) {//转存到笔记
                     UIImage *img= [UIImage imageNamed:@"note_tomynote_def"];
-                    _bt_gotoDataBase = [[DragonUIButton alloc] initWithFrame:CGRectMake((self.frame.size.width-img.size.width/2)/2, (self.frame.size.height-img.size.height/2)/2,img.size.width/2, img.size.height/2)];
+                    _bt_gotoDataBase = [[MagicUIButton alloc] initWithFrame:CGRectMake((self.frame.size.width-img.size.width/2)/2, (self.frame.size.height-img.size.height/2)/2,img.size.width/2, img.size.height/2)];
                     _bt_gotoDataBase.tag=-3;
                     _bt_gotoDataBase.backgroundColor=[UIColor clearColor];//self.headview.backgroundColor;
                     //            _bt_DropDown.alpha=0.9;
-                    [_bt_gotoDataBase addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
+                    [_bt_gotoDataBase addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
                     [_bt_gotoDataBase setImage:img forState:UIControlStateNormal];
                     [_bt_gotoDataBase setImage:img forState:UIControlStateHighlighted];
                     [self addSubview:_bt_gotoDataBase];
@@ -487,7 +487,7 @@
                 }
                 
                 if (!_v_toBeSlidingView) {
-                    _v_toBeSlidingView=[[DragonUIImageView alloc]initWithFrame:self.bounds];
+                    _v_toBeSlidingView=[[MagicUIImageView alloc]initWithFrame:self.bounds];
                     _v_toBeSlidingView.image=[UIImage imageNamed:@"bg_note"];
                     _v_toBeSlidingView._originFrame=CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
                     _v_toBeSlidingView.backgroundColor=ColorGray;
@@ -501,7 +501,7 @@
                 }
                 
                 {/*标签的背景滚动*/
-                    _scrV_Tip = [[DragonUIScrollView alloc] initWithFrame:CGRectMake(15, 0, CGRectGetWidth(self.frame)-30, 40)];
+                    _scrV_Tip = [[MagicUIScrollView alloc] initWithFrame:CGRectMake(15, 0, CGRectGetWidth(self.frame)-30, 40)];
                     [_scrV_Tip setBackgroundColor:[UIColor clearColor]];
                     [_scrV_Tip setContentSize:CGSizeMake(0, CGRectGetHeight(_scrV_Tip.frame))];
                     [_scrV_Tip setShowsHorizontalScrollIndicator:NO];
@@ -700,7 +700,7 @@
                             
                             {//指示箭头
                                 UIImage *img=[UIImage imageNamed:@"arrow_more"];
-                                DragonUIImageView *imgV=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-65,CGRectGetMinY(_lb_time.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                                MagicUIImageView *imgV=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-65,CGRectGetMinY(_lb_time.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                                 RELEASE(imgV);
                             }
                             
@@ -708,13 +708,13 @@
                         }
                             break;
                     }
-                    imgV_show=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-80,CGRectGetMaxY(v_line.frame)+5, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                    imgV_show=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-80,CGRectGetMaxY(v_line.frame)+5, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                     RELEASE(imgV_show);
                 }
 
                 {//指示箭头
                     UIImage *img=[UIImage imageNamed:@"arrow_more"];
-                    DragonUIImageView *imgV=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMidX(imgV_show.frame)-img.size.width/4,CGRectGetMinY(_lb_time.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                    MagicUIImageView *imgV=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMidX(imgV_show.frame)-img.size.width/4,CGRectGetMinY(_lb_time.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                     RELEASE(imgV);
                 }
 
@@ -728,11 +728,11 @@
                 
                 if (!_bt_delete) {//取消共享
                     UIImage *img= [UIImage imageNamed:@"note_cancelshare_def"];
-                    _bt_delete = [[DragonUIButton alloc] initWithFrame:CGRectMake(self.frame.size.width-img.size.width/2-60, 0,img.size.width/2, img.size.height/2)];
+                    _bt_delete = [[MagicUIButton alloc] initWithFrame:CGRectMake(self.frame.size.width-img.size.width/2-60, 0,img.size.width/2, img.size.height/2)];
                     _bt_delete.tag=-4;
                     _bt_delete.backgroundColor=[UIColor clearColor];//self.headview.backgroundColor;
                     //            _bt_DropDown.alpha=0.9;
-                    [_bt_delete addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
+                    [_bt_delete addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
                     [_bt_delete setImage:img forState:UIControlStateNormal];
                     [_bt_delete setImage:[UIImage imageNamed:@"note_del_def"] forState:UIControlStateHighlighted];
                     //            [_bt_delete setTitle:@"删除"];
@@ -748,11 +748,11 @@
                 
                 if (!_bt_share) {//修改共享
                     UIImage *img= [UIImage imageNamed:@"note_editshare_def"];
-                    _bt_share = [[DragonUIButton alloc] initWithFrame:CGRectMake(60, CGRectGetMinY(_bt_delete.frame),img.size.width/2, img.size.height/2)];
+                    _bt_share = [[MagicUIButton alloc] initWithFrame:CGRectMake(60, CGRectGetMinY(_bt_delete.frame),img.size.width/2, img.size.height/2)];
                     _bt_share.tag=-5;
                     _bt_share.backgroundColor=[UIColor clearColor];//self.headview.backgroundColor;
                     //            _bt_DropDown.alpha=0.9;
-                    [_bt_share addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
+                    [_bt_share addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
                     [_bt_share setImage:img forState:UIControlStateNormal];
                     [_bt_share setImage:img forState:UIControlStateHighlighted];
                     //            [_bt_delete setTitle:@"删除"];
@@ -766,7 +766,7 @@
                 }
                 
                 if (!_v_toBeSlidingView) {
-                    _v_toBeSlidingView=[[DragonUIImageView alloc]initWithFrame:self.bounds];
+                    _v_toBeSlidingView=[[MagicUIImageView alloc]initWithFrame:self.bounds];
                     _v_toBeSlidingView.image=[UIImage imageNamed:@"bg_note"];
                     _v_toBeSlidingView._originFrame=CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
                     _v_toBeSlidingView.backgroundColor=ColorGray;
@@ -780,7 +780,7 @@
                 }
                 
                 {/*标签的背景滚动*/
-                    _scrV_Tip = [[DragonUIScrollView alloc] initWithFrame:CGRectMake(15, 0, CGRectGetWidth(self.frame)-30, 40)];
+                    _scrV_Tip = [[MagicUIScrollView alloc] initWithFrame:CGRectMake(15, 0, CGRectGetWidth(self.frame)-30, 40)];
                     [_scrV_Tip setBackgroundColor:[UIColor clearColor]];
                     [_scrV_Tip setContentSize:CGSizeMake(0, CGRectGetHeight(_scrV_Tip.frame))];
                     [_scrV_Tip setShowsHorizontalScrollIndicator:NO];
@@ -942,7 +942,7 @@
                 
                 if (!_imgV_star) {
                     UIImage *img=[UIImage imageNamed:(([model.favorite isEqualToString:@"1"])?(@"star_note"):(@"star_none_note"))];
-                    _imgV_star=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_lb_time.frame)+15,CGRectGetMinY(_lb_time.frame)-1, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                    _imgV_star=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_lb_time.frame)+15,CGRectGetMinY(_lb_time.frame)-1, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                     RELEASE(_imgV_star);
                     
 //                    [_imgV_star creatExpandGestureAreaView];
@@ -968,7 +968,7 @@
                             
                             {//指示箭头
                                 UIImage *img=[UIImage imageNamed:@"arrow_more"];
-                                DragonUIImageView *imgV=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-65,CGRectGetMinY(_lb_time.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                                MagicUIImageView *imgV=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-65,CGRectGetMinY(_lb_time.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                                 RELEASE(imgV);
                             }
                             
@@ -976,13 +976,13 @@
                         }
                             break;
                     }
-                    imgV_show=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-80,CGRectGetMaxY(v_line.frame)+5, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                    imgV_show=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-80,CGRectGetMaxY(v_line.frame)+5, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                     RELEASE(imgV_show);
                 }
                 
                 {//指示箭头
                     UIImage *img=[UIImage imageNamed:@"arrow_more"];
-                    DragonUIImageView *imgV=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMidX(imgV_show.frame)-img.size.width/4,CGRectGetMinY(_lb_time.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                    MagicUIImageView *imgV=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMidX(imgV_show.frame)-img.size.width/4,CGRectGetMinY(_lb_time.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                     RELEASE(imgV);
                 }
 
@@ -1030,7 +1030,7 @@
 }
 
 #pragma mark- 接受UIView信号
-- (void)handleViewSignal_UIView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_UIView:(MagicViewSignal *)signal{
     if ([signal is:[UIView PAN]]) {//拖动信号
         NSDictionary *d=(NSDictionary *)signal.object;
         UIPanGestureRecognizer *recognizer=[d objectForKey:@"sender"];
@@ -1133,7 +1133,7 @@
                     
                     //关闭上次展开的cell
                     if (tbv._selectIndex_now) {
-                        if ([DragonDevice sysVersion]<6) {//IOS 6以下检测不准 添加了单击事件的view上加了子视图后 单击事件的重叠
+                        if ([MagicDevice sysVersion]<6) {//IOS 6以下检测不准 添加了单击事件的view上加了子视图后 单击事件的重叠
                             UITapGestureRecognizer *tap=[object objectForKey:@"sender"];
                             CGPoint p=[tap locationInView:self];
                             if (/*p.x>CGRectGetMinX(_bt_delete.frame) && p.y>CGRectGetMinY(_bt_delete.frame)*/ CGRectContainsPoint(_bt_delete.frame,p)) {//删除
@@ -1156,7 +1156,7 @@
                         tbv._selectIndex_now=nil;
                     }else{//选中cell
                         NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:tbv, @"tableView", [d objectForKey:@"indexPath"], @"indexPath", nil];
-                        [self sendViewSignal:[DragonUITableView TABLEDIDSELECT] withObject:dict from:signal.source target:[self superCon]];
+                        [self sendViewSignal:[MagicUITableView TABLEDIDSELECT] withObject:dict from:signal.source target:[self superCon]];
                     }
                 }
                 

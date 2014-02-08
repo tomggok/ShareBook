@@ -8,7 +8,7 @@
 
 //#import "Jastor.h"
 
-@interface pics : DragonJSONReflection
+@interface pics : MagicJSONReflection
 @property(nonatomic, retain)NSString *pic;
 @property(nonatomic, retain)NSString *pic_b;
 @property(nonatomic, retain)NSString *pic_s;

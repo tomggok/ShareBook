@@ -6,10 +6,10 @@
 //  Copyright (c) 2013年 ZzL. All rights reserved.
 //
 
-#import "Dragon_JSONReflection.h"
+#import "Magic_JSONReflection.h"
 
 //就业信息
-@interface EmployInfo : DragonJSONReflection
+@interface EmployInfo : MagicJSONReflection
 @property (nonatomic, retain)NSString *author;
 @property (nonatomic, retain)NSString *click_num;//浏览量
 @property (nonatomic, retain)NSString *collect_flag;//是否已被收藏 0:否 1:是

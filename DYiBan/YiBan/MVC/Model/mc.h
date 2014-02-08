@@ -13,7 +13,7 @@
 
 //mc 评论提醒 接口
 
-@interface mc : DragonJSONReflection
+@interface mc : MagicJSONReflection
 @property(retain,nonatomic) NSString *id; //消息id
 @property(retain,nonatomic) NSString * title;//消息标题
 @property(retain, nonatomic) NSString * content;//at内容

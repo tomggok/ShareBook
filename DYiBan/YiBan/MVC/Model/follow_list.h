@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "user.h"
 
-@interface follow_list : DragonJSONReflection
+@interface follow_list : MagicJSONReflection
 @property (nonatomic, retain) NSString *id;
 @property (nonatomic, retain) NSString *username;
 @property (nonatomic, retain) NSString *content;

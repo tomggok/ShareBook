@@ -11,7 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "DYBImageUtil.h"
 //#import "AGSimpleImageEditorView.h"
-#import "UIImage+DragonCategory.h"
+#import "UIImage+MagicCategory.h"
 #import "DYBSendPrivateLetterViewController.h"
 @interface DYBPhotoView ()
 

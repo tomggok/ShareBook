@@ -36,11 +36,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
--(void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal{
     
     DLogInfo(@"name -- %@",signal.name);
     
-    if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         [self.headview setTitle:@"添加地址"];
         
@@ -49,7 +49,7 @@
         [self.view setBackgroundColor:ColorBG];
         [self setButtonImage:self.leftButton setImage:@"back"];
     }
-    else if ([signal is:[DragonViewController CREATE_VIEWS]]) {
+    else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
         [self.view setBackgroundColor:[UIColor clearColor]];
         
@@ -113,10 +113,10 @@
         [btnBack release];
     }
 
-    else if ([signal is:[DragonViewController DID_APPEAR]]) {
+    else if ([signal is:[MagicViewController DID_APPEAR]]) {
         
         DLogInfo(@"rrr");
-    } else if ([signal is:[DragonViewController DID_DISAPPEAR]]){
+    } else if ([signal is:[MagicViewController DID_DISAPPEAR]]){
         
         
     }
@@ -147,7 +147,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -157,20 +157,20 @@
 }
 
 
--(void)handleViewSignal_DragonUITextField:(DragonViewSignal *)signal{
-    if ([signal isKindOf:[DragonUITextField TEXTFIELDDIDBEGINEDITING]]) {
+-(void)handleViewSignal_MagicUITextField:(MagicViewSignal *)signal{
+    if ([signal isKindOf:[MagicUITextField TEXTFIELDDIDBEGINEDITING]]) {
         
         [scrollView setContentSize:CGSizeMake(320.0f, CGRectGetHeight(self.view.frame))];
         //        [viewBG setCenter:CGPointMake(160, self.view.frame.size.height/2 -30)];
         
-    }else if ([signal isKindOf:[DragonUITextField TEXTFIELDDIDENDEDITING]]){
+    }else if ([signal isKindOf:[MagicUITextField TEXTFIELDDIDENDEDITING]]){
         
         //        [viewBG setCenter:CGPointMake(160, self.view.frame.size.height/2 +10 )];
         
-    }else if ([signal isKindOf:[DragonUITextField TEXTFIELDSHOULDRETURN]]){
+    }else if ([signal isKindOf:[MagicUITextField TEXTFIELDSHOULDRETURN]]){
         
         //        [viewBG setCenter:CGPointMake(160, self.view.bounds.size.height/2 +10 )];
-        DragonUITextField *filed = (DragonUITextField *)[signal source];
+        MagicUITextField *filed = (MagicUITextField *)[signal source];
         [filed resignFirstResponder];
         
     }

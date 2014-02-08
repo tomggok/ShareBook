@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface DYBCellForAT : UITableViewCell{
-    DragonUIImageView *_imgV_showImg/*左边展示图*/,*_imgV_selectImg/*选择联系人cell右边的对号*/;
-    DragonUILabel *_lb_newContent,*_lb_nickName;
-    DragonUIButton *_btn_check;
+    MagicUIImageView *_imgV_showImg/*左边展示图*/,*_imgV_selectImg/*选择联系人cell右边的对号*/;
+    MagicUILabel *_lb_newContent,*_lb_nickName;
+    MagicUIButton *_btn_check;
 }
 
 -(void)setContent:(id)data indexPath:(NSIndexPath *)indexPath tbv:(UITableView *)tbv;

@@ -9,7 +9,7 @@
 //#import "Jastor.h"
 #import "news.h"
 
-@interface news_detail_info : DragonJSONReflection
+@interface news_detail_info : MagicJSONReflection
 
 @property(nonatomic, retain)news *news;
 

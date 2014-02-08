@@ -9,7 +9,7 @@
 #import "DYBLocalDataManager.h"
 
 #import "user.h"
-#import "Dragon_Sandbox.h"
+#import "Magic_Sandbox.h"
 #import "UserSettingMode.h"
 #import "UserLoginModel.h"
 #import "NSObject+SBJSON.h"
@@ -121,7 +121,7 @@ static DYBLocalDataManager *sharedInstance = nil;
 //保存和更新用户资料
 - (void)saveAllUserWithDict:(NSMutableDictionary *)userInfo{
     
-    NSString *path = [NSString stringWithFormat:@"%@/%@/%@",[DragonSandbox docPath], FILENAMEUSERINFOFILE, FILENAMEUSERINFOPLIST];
+    NSString *path = [NSString stringWithFormat:@"%@/%@/%@",[MagicSandbox docPath], FILENAMEUSERINFOFILE, FILENAMEUSERINFOPLIST];
     NSMutableDictionary *userInfoDict = [self userInfoFileManager:path];
     if ([userInfo objectForKey:@"userid"] && userInfo) {
         [userInfoDict setValue:userInfo forKey:[userInfo objectForKey:@"userid"]];
@@ -133,7 +133,7 @@ static DYBLocalDataManager *sharedInstance = nil;
 
 //删除用户资料
 - (void)deleteUserInfo:(NSMutableArray *)userInfo{
-    NSString *path = [NSString stringWithFormat:@"%@/%@/%@",[DragonSandbox docPath], FILENAMEUSERINFOFILE, FILENAMEUSERINFOPLIST];
+    NSString *path = [NSString stringWithFormat:@"%@/%@/%@",[MagicSandbox docPath], FILENAMEUSERINFOFILE, FILENAMEUSERINFOPLIST];
     NSMutableDictionary *userInfoDict = [[NSMutableDictionary alloc] init];
     for (int i = 0; i < [userInfo count]; i++) {
         UserLoginModel *model = [userInfo objectAtIndex:i];
@@ -146,7 +146,7 @@ static DYBLocalDataManager *sharedInstance = nil;
 
 //获得特定用户资料
 - (UserLoginModel *)getUserInfoMessage:(NSString *)userId{
-    NSString *path = [NSString stringWithFormat:@"%@/%@/%@",[DragonSandbox docPath], FILENAMEUSERINFOFILE, FILENAMEUSERINFOPLIST];
+    NSString *path = [NSString stringWithFormat:@"%@/%@/%@",[MagicSandbox docPath], FILENAMEUSERINFOFILE, FILENAMEUSERINFOPLIST];
     NSMutableDictionary *userInfoDict = [self userInfoFileManager:path];
     UserLoginModel *u = [[[UserLoginModel alloc] initDict:[userInfoDict objectForKey:userId]] autorelease];
     RELEASE(userInfoDict);
@@ -155,7 +155,7 @@ static DYBLocalDataManager *sharedInstance = nil;
 
 //获得全部用户资料
 - (NSMutableArray *)getAllUserInfo{
-    NSString *path = [NSString stringWithFormat:@"%@/%@/%@",[DragonSandbox docPath], FILENAMEUSERINFOFILE, FILENAMEUSERINFOPLIST];
+    NSString *path = [NSString stringWithFormat:@"%@/%@/%@",[MagicSandbox docPath], FILENAMEUSERINFOFILE, FILENAMEUSERINFOPLIST];
     NSMutableDictionary *userInfoDict = [self userInfoFileManager:path];
     
     NSMutableArray *userInfoArray = [[[NSMutableArray alloc] initWithCapacity:3] autorelease];
@@ -176,7 +176,7 @@ static DYBLocalDataManager *sharedInstance = nil;
     if (key.length == 0) {
         return;
     }
-    NSString *path = [NSString stringWithFormat:@"%@/%@/%@.plist",[DragonSandbox docPath], FILENAMEUSERINFOFILE, key];
+    NSString *path = [NSString stringWithFormat:@"%@/%@/%@.plist",[MagicSandbox docPath], FILENAMEUSERINFOFILE, key];
     NSMutableDictionary *userInfoDict = [self userInfoFileManager:path];
     [userInfoDict setValue:userSetting forKey:key];
     [userInfoDict writeToFile:path atomically:YES];
@@ -188,7 +188,7 @@ static DYBLocalDataManager *sharedInstance = nil;
     if (!key || key.length == 0) {
         key = [[[DYBLocalDataManager sharedInstance] currentUser] userid];
     }
-    NSString *path = [NSString stringWithFormat:@"%@/%@/%@.plist",[DragonSandbox docPath], FILENAMEUSERINFOFILE, key];
+    NSString *path = [NSString stringWithFormat:@"%@/%@/%@.plist",[MagicSandbox docPath], FILENAMEUSERINFOFILE, key];
     NSDictionary *userInfoDict = [self userInfoFileManager:path];
     NSDictionary *result = [[userInfoDict objectForKey:key] JSONValue];
     if (!result) {
@@ -200,7 +200,7 @@ static DYBLocalDataManager *sharedInstance = nil;
 //删除用户设置
 - (void)deleteUserSetting:(NSString *)key{
     NSFileManager *file = [NSFileManager defaultManager];
-    NSString *path = [NSString stringWithFormat:@"%@/%@/%@.plist",[DragonSandbox docPath], FILENAMEUSERINFOFILE, key];
+    NSString *path = [NSString stringWithFormat:@"%@/%@/%@.plist",[MagicSandbox docPath], FILENAMEUSERINFOFILE, key];
     BOOL ifSu = [file removeItemAtPath:path error:nil];
     if (!ifSu) {
     }

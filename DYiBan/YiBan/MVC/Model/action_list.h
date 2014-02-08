@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface action_list : DragonJSONReflection
+@interface action_list : MagicJSONReflection
 @property (nonatomic, retain) NSString *desc; //用户心情
 @property (nonatomic, retain) NSString *fullname;
 @property (nonatomic, retain) NSString *is_vip;

@@ -17,13 +17,13 @@
 //发私信页
 @interface DYBSendPrivateLetterViewController : DYBBaseViewController <UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,faceDelegate>
 {
-//    DragonUITableView *_tbv;//
+//    MagicUITableView *_tbv;//
 //    NSMutableArray *_muA_data;
-//    DragonUIButton *_bt_mayKnow/*可能认识的*/,*_bt_nearBy/*附近的*/;
+//    MagicUIButton *_bt_mayKnow/*可能认识的*/,*_bt_nearBy/*附近的*/;
     
-    DragonUIImageView *_imgV_headView/*对方头像*/;
+    MagicUIImageView *_imgV_headView/*对方头像*/;
     UIView *_v_bottomView/*底部白色tabbar*/,*_v_threeBtView/*点加号后出现的3个bt的背景*/;
-    DragonUIButton *_bt_add/*加号*/,*_bt_send,*_bt_face/*表情*/,*_bt_photo,*_bt_location;
+    MagicUIButton *_bt_add/*加号*/,*_bt_send,*_bt_face/*表情*/,*_bt_photo,*_bt_location;
     DYBCustomInputView *_v_inputV;
     DYBPhotoView *_v_filter/*滤镜*/;
     BOOL bONface,isChangeOriFrame;

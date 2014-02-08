@@ -42,15 +42,15 @@ DEF_NOTIFICATION(DELETEMAGE) //删除信号
     return self;
 }
 
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
     
-    if ([signal is:[DragonViewController CREATE_VIEWS]])
+    if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
-        DragonUIImageView *imageView = nil;
+        MagicUIImageView *imageView = nil;
         
         if (_nInitYpe == 1) {
-            imageView = [[DragonUIImageView alloc] initWithImage:[UIImage imageNamed:@"info_at_new.png"]];//换背景图
+            imageView = [[MagicUIImageView alloc] initWithImage:[UIImage imageNamed:@"info_at_new.png"]];//换背景图
             
             NSString *encondeUrl= [_strIMAGEurl stringByAddingPercentEscapesUsingEncoding];
             if ([NSURL URLWithString:encondeUrl] == nil) {
@@ -63,17 +63,17 @@ DEF_NOTIFICATION(DELETEMAGE) //删除信号
             [imageView setContentMode:UIViewContentModeScaleToFill];
         }else{
             if (_image) {
-                 imageView = [[DragonUIImageView alloc] initWithImage:_image];
+                 imageView = [[MagicUIImageView alloc] initWithImage:_image];
             }
         }
         
-        DragonUIZoomView *zoomView = [[DragonUIZoomView alloc] initWithFrame:CGRectMake(0, 44, 320, self.view.frame.size.height - self.headHeight)];
+        MagicUIZoomView *zoomView = [[MagicUIZoomView alloc] initWithFrame:CGRectMake(0, 44, 320, self.view.frame.size.height - self.headHeight)];
         [zoomView setBackgroundColor:[UIColor blackColor]];
         [zoomView setContent:imageView animated:NO];
         [self.view addSubview:zoomView];
         RELEASE(imageView);
         RELEASE(zoomView);
-    }else if([signal is:[DragonViewController WILL_APPEAR]])
+    }else if([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.view setBackgroundColor:[UIColor blackColor]];
         [self.headview setBackgroundColor:[UIColor clearColor]];
@@ -89,7 +89,7 @@ DEF_NOTIFICATION(DELETEMAGE) //删除信号
 }
 
 #pragma mark - 返回Button处理
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
         if (!_bIsNeedDeleBt) {
@@ -108,10 +108,10 @@ DEF_NOTIFICATION(DELETEMAGE) //删除信号
         
         
         [self.drNavigationController popVCAnimated:YES];
-        [self sendViewSignal:[DragonViewController VCBACKSUCCESS]];
+        [self sendViewSignal:[MagicViewController VCBACKSUCCESS]];
     }else if ([signal is:[DYBBaseViewController BACKBUTTON]]){
         [self.drNavigationController popVCAnimated:YES];
-        [self sendViewSignal:[DragonViewController VCBACKSUCCESS]];
+        [self sendViewSignal:[MagicViewController VCBACKSUCCESS]];
     }
     
 }

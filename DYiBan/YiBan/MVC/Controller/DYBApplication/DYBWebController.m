@@ -16,14 +16,14 @@
 
 @implementation DYBWebController
 
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         
         [self.rightButton setHidden:YES];
         [self.headview setTitle:@"易码通"];
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         isAppStore = NO;
         NSRange range = [self.url rangeOfString:@"http://itunes.apple."];

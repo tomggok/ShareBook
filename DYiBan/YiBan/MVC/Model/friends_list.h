@@ -8,7 +8,7 @@
 
 //#import "Jastor.h"
 
-@interface friends_list : DragonJSONReflection
+@interface friends_list : MagicJSONReflection
 @property(nonatomic,retain)NSArray* user;
 //+(Class)user_class;
 

@@ -13,21 +13,21 @@
 #import "DYBPhotoEditorView.h"
 
 @interface DYBPublishViewController : DYBBaseViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UIActionSheetDelegate,DYBImagePickerControllerDelegate, faceDelegate>{
-    DragonUIButton *_btnLocation;
-    DragonUIButton *_btnPrivate;
-    DragonUIButton *_btnShareRenRen;
-    DragonUIButton *_btnShareTencent;
-    DragonUIButton *_btnSelImage;
-    DragonUIButton *_btnSelEmoji;
-    DragonUIButton *_btnSelAt;
+    MagicUIButton *_btnLocation;
+    MagicUIButton *_btnPrivate;
+    MagicUIButton *_btnShareRenRen;
+    MagicUIButton *_btnShareTencent;
+    MagicUIButton *_btnSelImage;
+    MagicUIButton *_btnSelEmoji;
+    MagicUIButton *_btnSelAt;
 
     int _sync_tag;
     int _sync_btn;
     
-    DragonUITextView *_txtViewPublish;
+    MagicUITextView *_txtViewPublish;
     DYBMenuBLueView *_menuPrivate;
     DYBFaceView *_viewFace;
-    DragonUILabel *_textCount;
+    MagicUILabel *_textCount;
     DYBPhotoEditorView *_photoEditor;
     NSArray *_arrMenu;
     UIScrollView *_viewPicBKG;

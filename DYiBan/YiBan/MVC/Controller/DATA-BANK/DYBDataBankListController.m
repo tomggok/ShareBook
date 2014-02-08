@@ -18,7 +18,7 @@
 #import "scrollerData.h"
 #import "DYBScroller.h"
 #import "DYBUITabbarViewController.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "DYBUITabbarViewController.h"
 #import "UITableView+property.h"
 #import "DYBDataBankSelectBtn.h"
@@ -29,7 +29,7 @@
 #import <MediaPlayer/MediaPlayer.h> 
 #import "DYBDataBnakSchoolAndCollegeViewController.h"
 #import "DYBDataBankShareEnterView.h"
-#import "Dragon_Device.h"
+#import "Magic_Device.h"
 #import "UserSettingMode.h"
 #import "DYBGuideView.h"
 
@@ -78,11 +78,11 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
     return shareInstanceDataList;
 }
 
--(void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal{
 
     DLogInfo(@"name -- %@",signal.name);
     
-    if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         [self.rightButton setHidden:YES];
         [self.headview setTitle:@"所有资料"];
@@ -99,7 +99,7 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
             }
         }
     }
-   else if ([signal is:[DragonViewController CREATE_VIEWS]]) {
+   else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
         [self.rightButton setHidden:YES];
        
@@ -108,7 +108,7 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
        
         [self.view setBackgroundColor:[UIColor clearColor]];
         
-        DragonRequest *request = [DYBHttpMethod dataBankList_navi_id:@"" order:@"1" asc:@"1" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod dataBankList_navi_id:@"" order:@"1" asc:@"1" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:YES receive:self];
         [request setTag:REQUESTTAG_FIRIST];
 
         tbDataBank = [[DYBUITableView alloc]initWithFrame:CGRectMake(0.0f, SEARCHBAT_HIGH + 44, 320.0f, self.view.frame.size.height - SEARCHBAT_HIGH - 44 - 20) isNeedUpdate:YES];
@@ -130,10 +130,10 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
     }
 
 
-   else if ([signal is:[DragonViewController DID_APPEAR]]) {
+   else if ([signal is:[MagicViewController DID_APPEAR]]) {
         
               DLogInfo(@"rrr");
-   } else if ([signal is:[DragonViewController DID_DISAPPEAR]]){
+   } else if ([signal is:[MagicViewController DID_DISAPPEAR]]){
    
    
    
@@ -144,7 +144,7 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
 
 #pragma makr -
 #pragma mark - back button signal
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -155,7 +155,7 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
 }
 
 
--(void)handleViewSignal_DYBDtaBankSearchView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDtaBankSearchView:(MagicViewSignal *)signal{
 
     if ([signal is:[DYBDtaBankSearchView FIRSTTOUCH]]) {
         
@@ -237,7 +237,7 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
     [tbDataBank reloadData];
 }
 
--(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
 
     DLogInfo(@"ddddd");
     if ([signal is:[DYBDataBankShotView LEFT]]) {
@@ -254,7 +254,7 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
         switch ([type integerValue]) {
             case BTNTAG_DEL:{
                 
-                DragonRequest *request = [DYBHttpMethod document_deldoc_doc:fileURL indexDataBack:[NSString stringWithFormat:@"%@",row] isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod document_deldoc_doc:fileURL indexDataBack:[NSString stringWithFormat:@"%@",row] isAlert:YES receive:self];
                 [request setTag:BTNTAG_DEL];
                 
             }
@@ -286,7 +286,7 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
                     
                 }
                 
-                DragonRequest *request = [DYBHttpMethod document_rename_doc_id:doc_id name:text is_dir:dir indexDataBank:[NSString stringWithFormat:@"%@",row]  sAlert:YES receive:self ];
+                MagicRequest *request = [DYBHttpMethod document_rename_doc_id:doc_id name:text is_dir:dir indexDataBank:[NSString stringWithFormat:@"%@",row]  sAlert:YES receive:self ];
                 
                 [request setTag:BTNTAG_RENAME];
             }
@@ -303,7 +303,7 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
 
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     
 
@@ -344,7 +344,7 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
             
             NSString *strMSG = [response.data objectForKey:@"msg"];
             
-            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
         
         }
     }else if (request.tag == REQUESTTAG_MORE){
@@ -422,42 +422,42 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
 #pragma mark- 只接受tbv信号
 //--
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal{
 
     
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
     {
         NSNumber *s = [NSNumber numberWithInteger:arrayFolderList.count];
         [signal setReturnValue:s];
         
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
     {
         NSNumber *s = [NSNumber numberWithInteger:1];
         [signal setReturnValue:s];
         
     }
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
     {
         
 
 
         [signal setReturnValue:[NSNumber numberWithInteger:CELLHIGHT]];
     }
-    else if ([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
     {
         [signal setReturnValue:nil];
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
     {
         [signal setReturnValue:nil];
         
     }
-    else if ([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
     {
         [signal setReturnValue:[NSNumber numberWithFloat:0.0]];
     }
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -476,7 +476,7 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
         [signal setReturnValue:cell ];
         
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
     {
         
         NSDictionary *dict = (NSDictionary *)[signal object];
@@ -511,18 +511,18 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
         
         [self cancelSelect];
         
-    }else if([signal is:[DragonUITableView TABLESCROLLVIEWDIDENDDRAGGING]])/*滚动停止*/{
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDENDDRAGGING]])/*滚动停止*/{
         
         
-    }else if([signal is:[DragonUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
         
-    }else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]]) //刷新
+    }else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]]) //刷新
     {
-        DragonUIUpdateView *uptableview = (DragonUIUpdateView *)[signal object];
+        MagicUIUpdateView *uptableview = (MagicUIUpdateView *)[signal object];
         
         page = 1;
         
-        DragonRequest *request = [DYBHttpMethod dataBankList_navi_id:@"" order:@"1" asc:@"1"  num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:NO receive:self];
+        MagicRequest *request = [DYBHttpMethod dataBankList_navi_id:@"" order:@"1" asc:@"1"  num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:NO receive:self];
         [request setTag:REQUESTTAG_FIRIST];
         
         if (!request) {//无网路
@@ -530,14 +530,14 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
             [tbDataBank reloadData:NO];
         }        
         
-    }else if([signal is:[DragonUITableView TAbLEVIEWLODATA]]) //加载更多
+    }else if([signal is:[MagicUITableView TAbLEVIEWLODATA]]) //加载更多
     {
         
-        DragonUIUpdateView *uptableview = (DragonUIUpdateView *)[signal object];
+        MagicUIUpdateView *uptableview = (MagicUIUpdateView *)[signal object];
         
         page ++;
         
-        DragonRequest *request = [DYBHttpMethod dataBankList_navi_id:@"" order:@"1" asc:@"1"  num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod dataBankList_navi_id:@"" order:@"1" asc:@"1"  num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:YES receive:self];
         [request setTag:REQUESTTAG_MORE];
         
         if (!request) {//无网路
@@ -546,12 +546,12 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
         }
         
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLUP]]){ //上滑动
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLUP]]){ //上滑动
         
         [tbDataBank StretchingUpOrDown:0];
         [DYBShareinstaceDelegate opeartionTabBarShow:YES];
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLDOWN]]){ //下滑动
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLDOWN]]){ //下滑动
         
         [tbDataBank StretchingUpOrDown:1];
         [DYBShareinstaceDelegate opeartionTabBarShow:NO];
@@ -567,11 +567,11 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
 }
 
 //转存完成要刷新根目录列表
--(void)handleViewSignal_DYBDataBankChildrenListViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankChildrenListViewController:(MagicViewSignal *)signal{
 
     if ([signal is:[DYBDataBankChildrenListViewController REFRESH]]) {        
         
-        DragonRequest *request = [DYBHttpMethod dataBankList_navi_id:@"" order:@"1" asc:@"1" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",1] keyword:@""   sAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod dataBankList_navi_id:@"" order:@"1" asc:@"1" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",1] keyword:@""   sAlert:YES receive:self];
         [request setTag:REQUESTTAG_FIRIST];
         
     }else if ([signal is:[DYBDataBankChildrenListViewController SUCCESSCHANGEFOLDER]]){
@@ -596,7 +596,7 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
         }
 }
 
--(void)handleViewSignal_DYBDataBankSelectBtn:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankSelectBtn:(MagicViewSignal *)signal{
     
     if ([signal is:[DYBDataBankSelectBtn TOUCHSIGLEBTN]]) {
         NSDictionary *dict = (NSDictionary *)[signal object];
@@ -656,7 +656,7 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
                 NSDictionary *dict = [arrayFolderList objectAtIndex:row];
                 
                 
-                if ([DragonDevice hasInternetConnection] == NO/*无网络*/ || (SHARED.currentUserSetting.wifiForPush && ![[DragonDevice networkType] isEqualToString:@"wifi"]/*开了wifi下才能下载但不是wifi环境*/)) {//
+                if ([MagicDevice hasInternetConnection] == NO/*无网络*/ || (SHARED.currentUserSetting.wifiForPush && ![[MagicDevice networkType] isEqualToString:@"wifi"]/*开了wifi下才能下载但不是wifi环境*/)) {//
                     
                     [self addOrHideDownIcan:[dict objectForKey:@"file_urlencode"] add:NO];
 
@@ -691,7 +691,7 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
     }
 }
 
--(void)handleViewSignal_DYBDataBankFileDetailViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankFileDetailViewController:(MagicViewSignal *)signal{
     
     if ([signal is:[DYBDataBankFileDetailViewController NEWNAME]]) {
        
@@ -733,7 +733,7 @@ DEF_SIGNAL(OPEATTIONTABBARSHOW)
 -(void)refreshList{
 
     page = 1;
-    DragonRequest *request = [DYBHttpMethod dataBankList_navi_id:@"" order:@"1" asc:@"1"  num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:NO receive:self];
+    MagicRequest *request = [DYBHttpMethod dataBankList_navi_id:@"" order:@"1" asc:@"1"  num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:NO receive:self];
     [request setTag:REQUESTTAG_FIRIST];
     
     if (!request) {//无网路

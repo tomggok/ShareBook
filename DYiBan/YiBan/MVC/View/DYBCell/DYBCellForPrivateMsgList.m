@@ -8,14 +8,14 @@
 
 #import "DYBCellForPrivateMsgList.h"
 #import "contact.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "NSString+Count.h"
 #import "UIImageView+WebCache.h"
 #import "UITableView+property.h"
 #import "UIView+Gesture.h"
-#import "UITableViewCell+DragonCategory.h"
+#import "UITableViewCell+MagicCategory.h"
 #import "DYBUITabbarViewController.h"
-#import "Dragon_Device.h"
+#import "Magic_Device.h"
 
 @implementation DYBCellForPrivateMsgList
 
@@ -33,11 +33,11 @@
         
         if (!_bt_delete) {
             UIImage *img= [UIImage imageNamed:@"msg_del_def"];
-            _bt_delete = [[DragonUIButton alloc] initWithFrame:CGRectMake(self.frame.size.width-img.size.width/2, 0,img.size.width/2, img.size.height/2)];
+            _bt_delete = [[MagicUIButton alloc] initWithFrame:CGRectMake(self.frame.size.width-img.size.width/2, 0,img.size.width/2, img.size.height/2)];
             _bt_delete.tag=-7;
             _bt_delete.backgroundColor=[UIColor clearColor];//self.headview.backgroundColor;
             //            _bt_DropDown.alpha=0.9;
-            [_bt_delete addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
+            [_bt_delete addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
             [_bt_delete setImage:img forState:UIControlStateNormal];
             [_bt_delete setImage:[UIImage imageNamed:@"msg_del_press"] forState:UIControlStateHighlighted];
             //            [_bt_delete setTitle:@"删除"];
@@ -70,7 +70,7 @@
         }
         
         if (!_imgV_showImg) {
-            _imgV_showImg=[[DragonUIImageView alloc]initWithFrame:CGRectMake(15,0, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_showImg.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            _imgV_showImg=[[MagicUIImageView alloc]initWithFrame:CGRectMake(15,0, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_showImg.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             [_imgV_showImg setNeedRadius:YES];
             RELEASE(_imgV_showImg);
             
@@ -86,7 +86,7 @@
 //        _lb_nickName._constrainedSize=CGSizeMake(screenShows.size.width-20, 100);
         _lb_nickName.text=model.user_info.name;
         [_lb_nickName setNeedCoretext:NO];
-        _lb_nickName.textColor=[DragonCommentMethod color:51 green:51 blue:51 alpha:1];
+        _lb_nickName.textColor=[MagicCommentMethod color:51 green:51 blue:51 alpha:1];
         _lb_nickName.numberOfLines=1;
         
         _lb_nickName.lineBreakMode=NSLineBreakByTruncatingTail;
@@ -105,7 +105,7 @@
             _lb_newContent.textAlignment=NSTextAlignmentLeft;
             _lb_newContent.font=[DYBShareinstaceDelegate DYBFoutStyle:13];
             _lb_newContent.text=/*@"[敲打][敲打][难过][敲打]带我去打网球地区温度我带我去的[难过][难过][难过][难过][难过][敲打][敲打][难过][敲打]";// @"dqdqwdqwdwqdwqdqdwqdqwdqdwqdqwdqwdqwdqwdwqdwqd"; //*/  model.content;
-            _lb_newContent.textColor=(model.view==0)?(_lb_nickName.textColor):([DragonCommentMethod color:170 green:170 blue:170 alpha:1]);
+            _lb_newContent.textColor=(model.view==0)?(_lb_nickName.textColor):([MagicCommentMethod color:170 green:170 blue:170 alpha:1]);
 //            [_lb_newContent sizeToFit];
             _lb_newContent.maxLineNum=1;//只一行
             [_lb_newContent sizeToFitByconstrainedSize:CGSizeMake(175, 40)];
@@ -137,7 +137,7 @@
             _lb_time.textAlignment=NSTextAlignmentLeft;
             _lb_time.font=_lb_newContent.font;
             _lb_time.text=[NSString transFormTimeStamp:[model.time intValue]];
-            _lb_time.textColor=(model.view==0)?(_lb_newContent.textColor):([DragonCommentMethod color:170 green:170 blue:170 alpha:1]);
+            _lb_time.textColor=(model.view==0)?(_lb_newContent.textColor):([MagicCommentMethod color:170 green:170 blue:170 alpha:1]);
             _lb_time.numberOfLines=1;//只一行时不能用 sizeToFitByconstrainedSize 方法,并要设置 宽高
             _lb_time.lineBreakMode=NSLineBreakByTruncatingTail;
             [_lb_time sizeToFitByconstrainedSize:CGSizeMake(self.frame.size.width, self.frame.size.height)];
@@ -165,7 +165,7 @@
 }
 
 #pragma mark- 接受UIView信号
-- (void)handleViewSignal_UIView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_UIView:(MagicViewSignal *)signal{
     if ([signal is:[UIView PAN]]) {//拖动信号
         NSDictionary *d=(NSDictionary *)signal.object;
         UIPanGestureRecognizer *recognizer=[d objectForKey:@"sender"];
@@ -250,7 +250,7 @@
         
         //关闭上次展开的cell
         if (tbv._selectIndex_now) {
-            if ([DragonDevice sysVersion]<6) {//IOS 6.0以下
+            if ([MagicDevice sysVersion]<6) {//IOS 6.0以下
                 UITapGestureRecognizer *tap=[object objectForKey:@"sender"];
                 CGPoint p=[tap locationInView:self];
                 if (p.x>CGRectGetMinX(_bt_delete.frame) && p.y>CGRectGetMinY(_bt_delete.frame)) {
@@ -264,7 +264,7 @@
             tbv._selectIndex_now=nil;
         }else{//选中cell
             NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:tbv, @"tableView", [d objectForKey:@"indexPath"], @"indexPath", nil];
-            [self sendViewSignal:[DragonUITableView TABLEDIDSELECT] withObject:dict];
+            [self sendViewSignal:[MagicUITableView TABLEDIDSELECT] withObject:dict];
         }
         
         [self resetContentView];

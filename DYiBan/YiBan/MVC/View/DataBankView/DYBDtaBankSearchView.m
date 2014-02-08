@@ -8,7 +8,7 @@
 
 #import "DYBDtaBankSearchView.h"
 #import "DYBDataBankListCell.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "DYBDataBankChildrenListViewController.h"
 #import "DYBDataBankFileDetailViewController.h"
 #import "DYBDataBankShareEnterView.h"
@@ -89,7 +89,7 @@ DEF_SIGNAL(CANCELSHARE)
     badRow = 0;
     goodRow = 0;
     
-    _searchbar = [[DragonUISearchBar alloc]initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(frame), CGRectGetHeight(frame)) backgroundColor:[UIColor clearColor] placeholder:@"文件名" isHideOutBackImg:NO isHideLeftView:NO];
+    _searchbar = [[MagicUISearchBar alloc]initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(frame), CGRectGetHeight(frame)) backgroundColor:[UIColor clearColor] placeholder:@"文件名" isHideOutBackImg:NO isHideLeftView:NO];
     for (UIView *subview in [_searchbar subviews]) {
         if ([subview isKindOfClass:NSClassFromString(@"UISearchBarBackground")])
         {
@@ -207,10 +207,10 @@ DEF_SIGNAL(CANCELSHARE)
     [DYBShareinstaceDelegate opeartionTabBarShow:NO];
 }
 
--(void)handleViewSignal_DragonUISearchBar:(DragonViewSignal *)signal{
+-(void)handleViewSignal_MagicUISearchBar:(MagicViewSignal *)signal{
     
     
-    if ([signal is:[DragonUISearchBar BEGINEDITING]]) {
+    if ([signal is:[MagicUISearchBar BEGINEDITING]]) {
         
 //        [arraySearchResult removeAllObjects]; //清除内容
 
@@ -221,7 +221,7 @@ DEF_SIGNAL(CANCELSHARE)
             [btnSearch setHidden:NO];
         }
         
-        DragonUISearchBar *obj = (DragonUISearchBar *)[signal object];
+        MagicUISearchBar *obj = (MagicUISearchBar *)[signal object];
         [obj setShowsCancelButton:YES];
        
        
@@ -239,9 +239,9 @@ DEF_SIGNAL(CANCELSHARE)
             
         }
         
-    }else if([signal is:[DragonUISearchBar CANCEL]]){
+    }else if([signal is:[MagicUISearchBar CANCEL]]){
         
-        DragonUISearchBar *obj = (DragonUISearchBar *)[signal object];
+        MagicUISearchBar *obj = (MagicUISearchBar *)[signal object];
         [obj resignFirstResponder];
         [obj setShowsCancelButton:YES];
         [self sendViewSignal:[DYBDtaBankSearchView RECOVERBAR] withObject:nil from:self];
@@ -256,11 +256,11 @@ DEF_SIGNAL(CANCELSHARE)
         
          [((DYBBaseViewController *)[self superCon]).rightButton setHidden:NO];
         
-    }else if([signal is:[DragonUISearchBar SEARCH]]){
+    }else if([signal is:[MagicUISearchBar SEARCH]]){
         
         
         
-        DragonUISearchBar *obj = (DragonUISearchBar *)[signal object];
+        MagicUISearchBar *obj = (MagicUISearchBar *)[signal object];
         [obj resignFirstResponder];
         [obj setShowsCancelButton:YES];
 //        [self addOBjToArray:obj.text];
@@ -272,9 +272,9 @@ DEF_SIGNAL(CANCELSHARE)
         
         
         
-    }else if ([signal is:[DragonUISearchBar CHANGEWORD]]){
+    }else if ([signal is:[MagicUISearchBar CHANGEWORD]]){
     
-//        DragonUISearchBar *search=(DragonUISearchBar *)signal.source;
+//        MagicUISearchBar *search=(MagicUISearchBar *)signal.source;
 //        [self addOBjToArray:search.text];
         
     }
@@ -284,7 +284,7 @@ DEF_SIGNAL(CANCELSHARE)
 
 -(void)resolutionRequest:(int)tag{
 
-    DragonRequest *request = nil;
+    MagicRequest *request = nil;
     
     int asc = 1;
     if (_iOrder == 1) {
@@ -407,40 +407,40 @@ DEF_SIGNAL(CANCELSHARE)
     [self doCancel];
 }
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal{
     
     
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
     {
         NSNumber *s = [NSNumber numberWithInteger:arrayCell.count];
         [signal setReturnValue:s];
         
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
     {
         NSNumber *s = [NSNumber numberWithInteger:1];
         [signal setReturnValue:s];
         
     }
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
     {
                 
         [signal setReturnValue:[NSNumber numberWithInteger:CELLHIGHT]];
     }
-    else if ([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
     {
         [signal setReturnValue:nil];
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
     {
         [signal setReturnValue:nil];
         
     }//
-    else if ([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
     {
         [signal setReturnValue:[NSNumber numberWithFloat:0.0]];
     }
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
      
@@ -458,7 +458,7 @@ DEF_SIGNAL(CANCELSHARE)
         [signal setReturnValue:cell];
         
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
     {
         
        
@@ -514,7 +514,7 @@ DEF_SIGNAL(CANCELSHARE)
         [((DYBBaseViewController *)[self superCon]).drNavigationController pushViewController:childerListController animated:YES];
         [childerListController release];
 
-    }else if ([signal is:[DragonUITableView TABLESCROLLVIEWDIDSCROLL]])
+    }else if ([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])
     {
         if (_searchbar) {
             
@@ -523,30 +523,30 @@ DEF_SIGNAL(CANCELSHARE)
         }
         
     }
-    else if ([signal is:[DragonUITableView TABLESCROLLVIEWDIDENDDRAGGING]])
+    else if ([signal is:[MagicUITableView TABLESCROLLVIEWDIDENDDRAGGING]])
     {
         DLogInfo(@"1111");
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLUP]]){
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLUP]]){
         
         [tbDataBank StretchingUpOrDown:0];
         [DYBShareinstaceDelegate opeartionTabBarShow:YES];
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLDOWN]]){
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLDOWN]]){
         
         [tbDataBank StretchingUpOrDown:1];
         [DYBShareinstaceDelegate opeartionTabBarShow:NO];
-    }else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]])
+    }else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]])
     {
 
         page = 1;
         
         [self resolutionRequest:1];
 
-    }else if([signal is:[DragonUITableView TAbLEVIEWLODATA]]) //加载更多
+    }else if([signal is:[MagicUITableView TAbLEVIEWLODATA]]) //加载更多
     {
         
-        DragonUIUpdateView *uptableview = (DragonUIUpdateView *)[signal object];
+        MagicUIUpdateView *uptableview = (MagicUIUpdateView *)[signal object];
         
         page ++;
         
@@ -560,12 +560,12 @@ DEF_SIGNAL(CANCELSHARE)
 
 }
 
--(void)handleViewSignal_DYBDtaBankSearchView_TOUCHSIGLEBTN:(DragonViewSignal *)signal
+-(void)handleViewSignal_DYBDtaBankSearchView_TOUCHSIGLEBTN:(MagicViewSignal *)signal
 {
     [self handleViewSignal_DYBDataBankSelectBtn_TOUCHSIGLEBTN:signal];
 }
 
--(void)handleViewSignal_DYBDataBankSelectBtn_TOUCHSIGLEBTN:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankSelectBtn_TOUCHSIGLEBTN:(MagicViewSignal *)signal{
 
     if ([signal is:[DYBDtaBankSearchView TOUCHSIGLEBTN]]) {
         NSDictionary *dict = (NSDictionary *)[signal object];
@@ -730,7 +730,7 @@ DEF_SIGNAL(CANCELSHARE)
                 
                 NSDictionary *dict = [arraySearchResult objectAtIndex:row];
                 
-                DragonRequest *request = [DYBHttpMethod document_estimate_id:[dict objectForKey:@"oid"] type:@"2" isAlert:NO receive:self];
+                MagicRequest *request = [DYBHttpMethod document_estimate_id:[dict objectForKey:@"oid"] type:@"2" isAlert:NO receive:self];
                 [request setTag:BTNTAG_BAD];
             }
                 break;
@@ -745,7 +745,7 @@ DEF_SIGNAL(CANCELSHARE)
                 [btn setEnabled:NO];
                 _goodBtn = btn;
                 
-                DragonRequest *request = [DYBHttpMethod document_estimate_id:[dict objectForKey:@"oid"] type:@"1" isAlert:NO receive:self];
+                MagicRequest *request = [DYBHttpMethod document_estimate_id:[dict objectForKey:@"oid"] type:@"1" isAlert:NO receive:self];
                 [request setTag:BTNTAG_GOOD];
             }
                 break;
@@ -785,7 +785,7 @@ DEF_SIGNAL(CANCELSHARE)
     }
 }
 
--(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
     
     DLogInfo(@"ddddd");
     if ([signal is:[DYBDataBankShotView LEFT]]) {
@@ -804,7 +804,7 @@ DEF_SIGNAL(CANCELSHARE)
                 
                 strEncodeUrl = [dictResult objectForKey:@"file_urlencode"];
                 
-                DragonRequest *request = [DYBHttpMethod document_deldoc_doc:fileURL indexDataBack:[NSString stringWithFormat:@"%@",row] isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod document_deldoc_doc:fileURL indexDataBack:[NSString stringWithFormat:@"%@",row] isAlert:YES receive:self];
                 
                 [request setTag:BTNTAG_DEL];
                 
@@ -841,7 +841,7 @@ DEF_SIGNAL(CANCELSHARE)
                 
                 strEncodeUrl =  [dictResult objectForKey:@"file_urlencode"];
                 
-                DragonRequest *request = [DYBHttpMethod document_rename_doc_id:doc_id name:text is_dir:dir indexDataBank:[NSString stringWithFormat:@"%@",row]  sAlert:YES receive:self ];                
+                MagicRequest *request = [DYBHttpMethod document_rename_doc_id:doc_id name:text is_dir:dir indexDataBank:[NSString stringWithFormat:@"%@",row]  sAlert:YES receive:self ];                
                 [request setTag:BTNTAG_RENAME];
             }
                 break;
@@ -853,7 +853,7 @@ DEF_SIGNAL(CANCELSHARE)
                 
                 NSString *strDoc = [dictResult objectForKey:@"file_path"];
                 
-                DragonRequest *request = [DYBHttpMethod document_share_doc:strDoc target:@"" isAlert:YES receive:self ];
+                MagicRequest *request = [DYBHttpMethod document_share_doc:strDoc target:@"" isAlert:YES receive:self ];
                 [request setTag:BTNTAG_CANCELSHARE];
 
             }
@@ -865,7 +865,7 @@ DEF_SIGNAL(CANCELSHARE)
 
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     
     
@@ -881,13 +881,13 @@ DEF_SIGNAL(CANCELSHARE)
             
                         
             [self creatCell];
-            [DYBShareinstaceDelegate popViewText:@"删除成功！" target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+            [DYBShareinstaceDelegate popViewText:@"删除成功！" target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
             
             [self sendViewSignal:[DYBDtaBankSearchView  DELOBJ] withObject:strEncodeUrl from:self target:[self superview]];
             
         }else{
         
-            [DYBShareinstaceDelegate popViewText:@"删除失败！" target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+            [DYBShareinstaceDelegate popViewText:@"删除失败！" target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
         }
         
     }if (request.tag == BTNTAG_RENAME) {
@@ -911,7 +911,7 @@ DEF_SIGNAL(CANCELSHARE)
 
         }
         
-            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
         
         }else if (request.tag == BTNTAG_CANCELSHARE){
         
@@ -932,7 +932,7 @@ DEF_SIGNAL(CANCELSHARE)
             
         }else{
             
-            [DYBShareinstaceDelegate popViewText:@"取消共享失败" target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+            [DYBShareinstaceDelegate popViewText:@"取消共享失败" target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
             
         }
     }
@@ -1300,7 +1300,7 @@ DEF_SIGNAL(CANCELSHARE)
 }
 
 
--(void)handleViewSignal_DYBDataBankFileDetailViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankFileDetailViewController:(MagicViewSignal *)signal{
     
     if ([signal is:[DYBDataBankFileDetailViewController NEWNAME]]) {
         
@@ -1371,14 +1371,14 @@ DEF_SIGNAL(CANCELSHARE)
         UIImage *image = [UIImage imageNamed:@"ybx_big.png"];
         float BearHeadStartX = (CGRectGetWidth(self.frame)-image.size.width/2)/2;
         float BearHeadStartY = self.frame.size.height -44 - SEARCHBAT_HIGH;
-        DragonUIImageView *viewBearHead = [[DragonUIImageView alloc] initWithFrame:CGRectMake(BearHeadStartX, BearHeadStartY, image.size.width/2, image.size.height/2)];
+        MagicUIImageView *viewBearHead = [[MagicUIImageView alloc] initWithFrame:CGRectMake(BearHeadStartX, BearHeadStartY, image.size.width/2, image.size.height/2)];
         [viewBearHead setBackgroundColor:[UIColor clearColor]];
         [viewBearHead setCenter:CGPointMake(160, 44)];
         [viewBearHead setImage:image];
         [view addSubview:viewBearHead];
         RELEASE(viewBearHead);
         
-        DragonUILabel *labelMsg = [[DragonUILabel alloc]initWithFrame:CGRectMake((320 - 250)/2, viewBearHead.frame.size.height + viewBearHead.frame.origin.y + 15, 250.0f, 40.0f)];
+        MagicUILabel *labelMsg = [[MagicUILabel alloc]initWithFrame:CGRectMake((320 - 250)/2, viewBearHead.frame.size.height + viewBearHead.frame.origin.y + 15, 250.0f, 40.0f)];
         [labelMsg setText:strMsg];
         //        [labelMsg setFont:[UIFont systemFontOfSize:14]];
         [labelMsg setTextColor:ColorGray];

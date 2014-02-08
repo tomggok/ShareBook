@@ -9,16 +9,16 @@
 #import "DYBSettingNotesViewController.h"
 #import "DYBSetButton.h"
 #import "UserSettingMode.h"
-#import "NSObject+DragonDatabase.h"
-#import "NSObject+DragonRequestResponder.h"
+#import "NSObject+MagicDatabase.h"
+#import "NSObject+MagicRequestResponder.h"
 #import "DYBUseBootstrapViewController.h"
-#import "Dragon_Device.h"
+#import "Magic_Device.h"
 @interface DYBSettingNotesViewController (){
     
-    DragonUILabel *uselabel;
-    DragonUILabel *reduelabel;
-    DragonUILabel *datelabel;
-    DragonUILabel *drislabel;
+    MagicUILabel *uselabel;
+    MagicUILabel *reduelabel;
+    MagicUILabel *datelabel;
+    MagicUILabel *drislabel;
     DYBSwitchButton *btnWifi;
     
     int WifiIsOn;
@@ -32,21 +32,21 @@ DEF_SIGNAL(DATABASEBUTTON)
 
 
 
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.rightButton setHidden:YES];
         [self.headview setTitle:@"笔记设置"];
         [self backImgType:0];
         WifiIsOn = 0;
-        DragonRequest *request = [DYBHttpMethod notes_setting:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod notes_setting:YES receive:self];
         [request setTag:1];
         
         
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
-        DragonUIScrollView *scroll = [[DragonUIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        MagicUIScrollView *scroll = [[MagicUIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         [scroll setShowsVerticalScrollIndicator:NO];
         [self.view addSubview:scroll];
         RELEASE(scroll);
@@ -100,25 +100,25 @@ DEF_SIGNAL(DATABASEBUTTON)
         scroll.contentSize = CGSizeMake(SCREEN_WIDTH, [settingButton[[textArray count]-1] getLowy]+30);
         
         //已用流量
-        uselabel = [[DragonUILabel alloc]initWithFrame:CGRectMake(115, 8, 65, BUTTONHEIGHT-10)];
+        uselabel = [[MagicUILabel alloc]initWithFrame:CGRectMake(115, 8, 65, BUTTONHEIGHT-10)];
         [self setLabel:uselabel setText:@"" setButton:settingButton[0] setColor:[UIColor redColor]];
         //剩余流量
-        reduelabel = [[DragonUILabel alloc]initWithFrame:CGRectMake(223, 8, BUTTONWIDTH-223, BUTTONHEIGHT-10)];
+        reduelabel = [[MagicUILabel alloc]initWithFrame:CGRectMake(223, 8, BUTTONWIDTH-223, BUTTONHEIGHT-10)];
         [self setLabel:reduelabel setText:@"" setButton:settingButton[0] setColor:[UIColor greenColor]];
         //文字提示
-        drislabel = [[DragonUILabel alloc]initWithFrame:CGRectMake(15, BUTTONHEIGHT-10, BUTTONWIDTH-15, offect)];
-        [self setLabel:drislabel setText:@"可将笔记转存到个人资料库，节省笔记空间" setButton:settingButton[0] setColor:[DragonCommentMethod colorWithHex:@"aaaaaa"]];
+        drislabel = [[MagicUILabel alloc]initWithFrame:CGRectMake(15, BUTTONHEIGHT-10, BUTTONWIDTH-15, offect)];
+        [self setLabel:drislabel setText:@"可将笔记转存到个人资料库，节省笔记空间" setButton:settingButton[0] setColor:[MagicCommentMethod colorWithHex:@"aaaaaa"]];
         drislabel.font = [DYBShareinstaceDelegate DYBFoutStyle:14];
         
         //最后同步时间
-        datelabel = [[DragonUILabel alloc]initWithFrame:CGRectMake(150, 8, BUTTONWIDTH-150, BUTTONHEIGHT-10)];
-        [self setLabel:datelabel setText:@"" setButton:settingButton[1] setColor:[DragonCommentMethod colorWithHex:@"333333"]];
+        datelabel = [[MagicUILabel alloc]initWithFrame:CGRectMake(150, 8, BUTTONWIDTH-150, BUTTONHEIGHT-10)];
+        [self setLabel:datelabel setText:@"" setButton:settingButton[1] setColor:[MagicCommentMethod colorWithHex:@"333333"]];
         datelabel.font = [DYBShareinstaceDelegate DYBFoutStyle:14];  //字体和大小设置
     }
 }
 
 //添加label
-- (void)setLabel:(DragonUILabel *)label setText:(NSString *)string setButton:(DYBSetButton *)btn setColor:(UIColor *)color{
+- (void)setLabel:(MagicUILabel *)label setText:(NSString *)string setButton:(DYBSetButton *)btn setColor:(UIColor *)color{
     
     label.textAlignment = UIControlContentVerticalAlignmentCenter;
     label.textAlignment = NSTextAlignmentLeft;
@@ -131,7 +131,7 @@ DEF_SIGNAL(DATABASEBUTTON)
 }
 
 #pragma mark-
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -217,7 +217,7 @@ DEF_SIGNAL(DATABASEBUTTON)
 
 }
 
-- (void)handleViewSignal_DYBSetButton:(DragonViewSignal *)signal {
+- (void)handleViewSignal_DYBSetButton:(MagicViewSignal *)signal {
     
     if (WifiIsOn == 1) {
         WifiIsOn = 0;
@@ -276,16 +276,16 @@ DEF_SIGNAL(DATABASEBUTTON)
         time = @"22-8";
     }
     
-    DragonRequest *request = [DYBHttpMethod user_setpush:tagHttp isDisturb:SHARED.currentUserSetting.timeForNoPush disturb_time:time isAlert:YES receive:self];
+    MagicRequest *request = [DYBHttpMethod user_setpush:tagHttp isDisturb:SHARED.currentUserSetting.timeForNoPush disturb_time:time isAlert:YES receive:self];
     [request setTag:2];
     
 }
 
--(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
     
     if ([signal is:[DYBDataBankShotView RIGHT]]) {
         WifiIsOn = 0;
-        if (![DragonDevice hasInternetConnection]){
+        if (![MagicDevice hasInternetConnection]){
             DLogInfo(@"确定是否网络连接");
             return;
         }
@@ -322,7 +322,7 @@ DEF_SIGNAL(DATABASEBUTTON)
             time = @"22-8";
         }
         
-        DragonRequest *request = [DYBHttpMethod user_setpush:tagHttp isDisturb:SHARED.currentUserSetting.timeForNoPush disturb_time:time isAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod user_setpush:tagHttp isDisturb:SHARED.currentUserSetting.timeForNoPush disturb_time:time isAlert:YES receive:self];
         [request setTag:2];
 
         
@@ -337,7 +337,7 @@ DEF_SIGNAL(DATABASEBUTTON)
 }
 
 #pragma mark- 按钮点击
-- (void)handleViewSignal_DYBSettingNotesViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBSettingNotesViewController:(MagicViewSignal *)signal
 {
     DYBSetButton *btn = signal.source;
     
@@ -441,7 +441,7 @@ DEF_SIGNAL(DATABASEBUTTON)
 }
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     
     if ([request succeed])

@@ -13,8 +13,8 @@
 
 @interface DYBSignViewController () {
     
-    DragonUITextView *textView;
-    DragonUILabel *numLabel;
+    MagicUITextView *textView;
+    MagicUILabel *numLabel;
     NSString *_stringCode;
     
     int maxLength;
@@ -30,11 +30,11 @@
 @synthesize str_newSign=_str_newSign,bDataBank = _bDataBank,oid = _oid,dictInfo = _dictInfo;
 
 #pragma mark- ViewController信号
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
     [super handleViewSignal:signal];
     
-    if ([signal is:DragonViewController.CREATE_VIEWS]) {
+    if ([signal is:MagicViewController.CREATE_VIEWS]) {
         
         UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(15, self.headHeight+15, CGRectGetWidth(self.view.frame)-30, 90)];
         backView.layer.borderWidth = 1;
@@ -42,7 +42,7 @@
         [self.view addSubview:backView];
         RELEASE(backView);
         
-        textView = [[DragonUITextView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame)-30, 70)];
+        textView = [[MagicUITextView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame)-30, 70)];
         [textView setBackgroundColor:[UIColor whiteColor]];
         
         maxLength = 40;
@@ -55,7 +55,7 @@
         
         
         
-        numLabel = [[DragonUILabel alloc]initWithFrame:CGRectMake(textView.frame.origin.x+textView.frame.size.width-50, 70, 50, 20)];
+        numLabel = [[MagicUILabel alloc]initWithFrame:CGRectMake(textView.frame.origin.x+textView.frame.size.width-50, 70, 50, 20)];
         numLabel.backgroundColor = [UIColor clearColor];
         numLabel.textColor = ColorGray;
         numLabel.text = [NSString stringWithFormat:@"0/%d",maxLength];
@@ -65,7 +65,7 @@
         RELEASE(numLabel);
   
         
-    }else if ([signal is:DragonViewController.WILL_APPEAR]){
+    }else if ([signal is:MagicViewController.WILL_APPEAR]){
         //        [self backImgType:0];
         
         if (_bDataBank) {
@@ -84,16 +84,16 @@
         [self.rightButton setHidden:NO];
         [self sizeStatus];
         
-    }else if ([signal is:DragonViewController.DID_DISAPPEAR]){
+    }else if ([signal is:MagicViewController.DID_DISAPPEAR]){
         //        RELEASEVIEW(_tbv);//界面不显示时彻底释放TBV,已释放cell
         
-    }else if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    }else if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         
-    }else if ([signal is:[DragonViewController FREE_DATAS]])//dealloc时回调,先释放数据
+    }else if ([signal is:[MagicViewController FREE_DATAS]])//dealloc时回调,先释放数据
     {
         
-    }else if ([signal is:[DragonViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
+    }else if ([signal is:[MagicViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
         
         
     }
@@ -101,7 +101,7 @@
 }
 
 #pragma mark- 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -118,7 +118,7 @@
             if (_bDataBank) {
                 
                 
-                DragonRequest *request = [DYBHttpMethod document_publicreport_oid:[_dictInfo objectForKey:@"oid"] type:@"1" reason:textView.text isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod document_publicreport_oid:[_dictInfo objectForKey:@"oid"] type:@"1" reason:textView.text isAlert:YES receive:self];
                 [request setTag:2];
                 
                 _str_newSign=textView.text;
@@ -126,7 +126,7 @@
                 
             }else{
             
-                DragonRequest *request = [DYBHttpMethod user_setdesc:textView.text isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod user_setdesc:textView.text isAlert:YES receive:self];
                 [request setTag:1];
                 
                 _str_newSign=textView.text;
@@ -150,24 +150,24 @@
     return YES;
 }
 
-#pragma mark- DragonUITextView
-- (void)handleViewSignal_DragonUITextView:(DragonViewSignal *)signal
+#pragma mark- MagicUITextView
+- (void)handleViewSignal_MagicUITextView:(MagicViewSignal *)signal
 {
     //正在输入
-    if ([signal is:[DragonUITextView TEXT_OVERFLOW]])
+    if ([signal is:[MagicUITextView TEXT_OVERFLOW]])
     {
         [signal returnNO];
     }
     
-    if ([signal is:[DragonUITextView TEXTVIEW]])
+    if ([signal is:[MagicUITextView TEXTVIEW]])
     {
         [NSTimer scheduledTimerWithTimeInterval:.1f target:self selector:@selector(sizeStatus) userInfo:nil repeats:NO];
     }
-    if ([signal is:[DragonUITextView TEXTVIEW]])
+    if ([signal is:[MagicUITextView TEXTVIEW]])
     {
         [NSTimer scheduledTimerWithTimeInterval:.1f target:self selector:@selector(sizeStatus) userInfo:nil repeats:NO];
     }
-    if ([signal is:[DragonUITextView TEXTVIEWDIDCHANGE]])
+    if ([signal is:[MagicUITextView TEXTVIEWDIDCHANGE]])
     {
         numLabel.text = [@"" stringByAppendingFormat:@"%d/%d",textView.text.length,maxLength];
     }
@@ -177,7 +177,7 @@
 }
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if ([request succeed])
     {
@@ -222,7 +222,7 @@
 
             }
                 
-                [DYBShareinstaceDelegate popViewText:_stringCode target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+                [DYBShareinstaceDelegate popViewText:_stringCode target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
                 
             
 }

@@ -7,7 +7,7 @@
 //
 
 #import "DYBCellForPersonalPhotoList.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "NSString+Count.h"
 #import "UITableView+property.h"
 #import "UIView+Gesture.h"
@@ -27,7 +27,7 @@
         photoList *model = data;
         
         if (!_lb_newContent) {
-            _lb_newContent = [[DragonUILabel alloc]initWithFrame:CGRectMake(66, 0, 0,0)];
+            _lb_newContent = [[MagicUILabel alloc]initWithFrame:CGRectMake(66, 0, 0,0)];
             _lb_newContent.backgroundColor=[UIColor clearColor];
             _lb_newContent.textAlignment=NSTextAlignmentLeft;
             _lb_newContent.font=[DYBShareinstaceDelegate DYBFoutStyle:18];
@@ -48,7 +48,7 @@
         }
         
         if (!_imgV_star) {
-            _imgV_star=[[DragonUIImageView alloc]initWithFrame:CGRectMake(0,0, tbv._cellH/*-8*/,tbv._cellH/*-8*/)];
+            _imgV_star=[[MagicUIImageView alloc]initWithFrame:CGRectMake(0,0, tbv._cellH/*-8*/,tbv._cellH/*-8*/)];
 //            _imgV_star.contentMode=UIViewContentModeScaleToFill;
             [_imgV_star setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"btn_msg_high.png"]];
             [self addSubview:_imgV_star];
@@ -65,7 +65,7 @@
         
         if (!_lb_photolistnum) {
             
-            _lb_photolistnum = [[DragonUILabel alloc]initWithFrame:CGRectMake(_lb_newContent.frame.origin.x+_lb_newContent.frame.size.width+10, 0, 0,0)];
+            _lb_photolistnum = [[MagicUILabel alloc]initWithFrame:CGRectMake(_lb_newContent.frame.origin.x+_lb_newContent.frame.size.width+10, 0, 0,0)];
             _lb_photolistnum.backgroundColor=[UIColor clearColor];
             _lb_photolistnum.textAlignment=NSTextAlignmentLeft;
             _lb_photolistnum.font=[DYBShareinstaceDelegate DYBFoutStyle:17];
@@ -96,7 +96,7 @@
         
         {
             UIImage *arrowImage = [UIImage imageNamed:@"list_arrow"];
-            _arrowImv = [[DragonUIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width-24, (self.frame.size.height-arrowImage.size.height/2)/2, arrowImage.size.width/2, arrowImage.size.height/2)];
+            _arrowImv = [[MagicUIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width-24, (self.frame.size.height-arrowImage.size.height/2)/2, arrowImage.size.width/2, arrowImage.size.height/2)];
             _arrowImv.image = arrowImage;
             [self addSubview:_arrowImv];
             RELEASE(_arrowImv);

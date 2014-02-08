@@ -15,7 +15,7 @@
 @property (nonatomic, retain) ALAssetsLibrary *assetsLibrary;
 @property (nonatomic, retain) NSMutableArray *assetsGroups;
 
-@property (nonatomic, retain) DragonUITableView *tableView;
+@property (nonatomic, retain) MagicUITableView *tableView;
 
 - (void)cancel;
 - (NSDictionary *)mediaInfoFromAsset:(ALAsset *)asset;
@@ -26,15 +26,15 @@
 
 @synthesize father = _father;
 
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.rightButton setHidden:YES];
         [self.headview setTitle:@"本地照片"];
         [self setButtonImage:self.leftButton setImage:@"btn_back_def"];
         [self willAppearView];
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         [self initView];
         [self addSubView];
@@ -45,7 +45,7 @@
 }
 
 #pragma mark- 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -75,7 +75,7 @@
     self.assetsGroups = [NSMutableArray array];
     
     // Table View
-    _tableView = [[DragonUITableView alloc] initWithFrame:CGRectMake(0, self.headHeight, SCREEN_WIDTH, SCREEN_HEIGHT-self.headHeight) isNeedUpdate:NO];
+    _tableView = [[MagicUITableView alloc] initWithFrame:CGRectMake(0, self.headHeight, SCREEN_WIDTH, SCREEN_HEIGHT-self.headHeight) isNeedUpdate:NO];
     _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self setExtraCellLineHidden:self.tableView];
     [self.view addSubview:_tableView];
@@ -155,25 +155,25 @@
 #pragma mark - UITableViewDataSource
 
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
         NSNumber *s = [NSNumber numberWithInteger:self.assetsGroups.count];
         [signal setReturnValue:s];
         
-    }else if([signal is:[DragonUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
+    }else if([signal is:[MagicUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
         NSNumber *s = [NSNumber numberWithInteger:1];
         [signal setReturnValue:s];
         
-    }else if([signal is:[DragonUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
+    }else if([signal is:[MagicUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
        
         NSNumber *s = [NSNumber numberWithInteger:56];
         [signal setReturnValue:s];
         
-    }else if([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])/*heightForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])/*heightForHeaderInSection*/{
         [signal setReturnValue:[NSNumber numberWithFloat:0.0]];
         
-    }else if([signal is:[DragonUITableView TABLECELLFORROW]])/*cell*/{
+    }else if([signal is:[MagicUITableView TABLECELLFORROW]])/*cell*/{
         
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -200,7 +200,7 @@
         [signal setReturnValue:cell];
         
         
-    }else if([signal is:[DragonUITableView TABLEDIDSELECT]])/*选中cell*/{
+    }else if([signal is:[MagicUITableView TABLEDIDSELECT]])/*选中cell*/{
         
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];

@@ -10,7 +10,7 @@
 
 @interface DYBPersonalPhotoImageController : DYBBaseViewController{
     
-//    DragonUITableView *_tbv;
+//    MagicUITableView *_tbv;
 }
 @property (nonatomic, retain)NSString *userId;//查看相册用户的id
 @property (nonatomic, retain)NSString *photoid;//查看相册id

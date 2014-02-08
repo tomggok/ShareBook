@@ -9,10 +9,10 @@
 #import "DYBBaseViewController.h"
 #import "DYBInputView.h"
 @interface DYBLoginViewController : DYBBaseViewController
-@property(nonatomic,retain)DragonUIImageView *imLog;
+@property(nonatomic,retain)MagicUIImageView *imLog;
 @property(nonatomic,retain)DYBInputView *nameInput;
 @property(nonatomic,retain)DYBInputView *passInput;
-@property(nonatomic,retain)DragonUIButton *loginButton;
+@property(nonatomic,retain)MagicUIButton *loginButton;
 AS_SIGNAL(LOGINBUTTON)
 AS_SIGNAL(REGISTBUTTON)
 AS_SIGNAL(FORGETBUTTON)

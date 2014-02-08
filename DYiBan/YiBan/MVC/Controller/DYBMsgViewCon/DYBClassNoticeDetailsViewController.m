@@ -19,11 +19,11 @@
 @synthesize str_url=_str_url;
 
 #pragma mark- ViewController信号
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
     [super handleViewSignal:signal];
     
-    if ([signal is:DragonViewController.CREATE_VIEWS]) {
+    if ([signal is:MagicViewController.CREATE_VIEWS]) {
         
         NSRange range = [self.str_url rangeOfString:@"http://itunes.apple."];
         if (range.location == 0 && range.length == 20) {
@@ -41,19 +41,19 @@
         [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.str_url]]];
         [self.view addSubview:webView];
         
-    }else if ([signal is:DragonViewController.WILL_APPEAR]){
+    }else if ([signal is:MagicViewController.WILL_APPEAR]){
     
         [self backImgType:0];
 
-    }else if ([signal is:DragonViewController.DID_DISAPPEAR]){
+    }else if ([signal is:MagicViewController.DID_DISAPPEAR]){
         
-    }else if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    }else if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         
-    }else if ([signal is:[DragonViewController FREE_DATAS]])//dealloc时回调,先释放数据
+    }else if ([signal is:[MagicViewController FREE_DATAS]])//dealloc时回调,先释放数据
     {
         
-    }else if ([signal is:[DragonViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
+    }else if ([signal is:[MagicViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
         
     }
     
@@ -61,9 +61,9 @@
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     if (!isAppStore) {
-        DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+        MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
         [pop setDelegate:self];
-        [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+        [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
         [pop setText:@"请求失败"];
         [pop alertViewAutoHidden:.5f isRelease:YES];
     }

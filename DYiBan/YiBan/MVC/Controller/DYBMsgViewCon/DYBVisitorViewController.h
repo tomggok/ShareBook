@@ -11,7 +11,7 @@
 //访客列表页
 @interface DYBVisitorViewController : DYBBaseViewController
 {
-//    DragonUITableView *_tbv;//
+//    MagicUITableView *_tbv;//
 //    NSMutableArray *_muA_data;
 }
 

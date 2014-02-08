@@ -10,11 +10,11 @@
 #import "DYBCustomLabel.h"
 #import "status_notice_model.h"
 #import "NSString+Count.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 
 @interface DYBCellForNoticeDetail ()
 {
-    DragonUIImageView *_imgV_showImg/*左边展示图*/,*_imgV_newMsgNums/*新消息数量图*/;
+    MagicUIImageView *_imgV_showImg/*左边展示图*/,*_imgV_newMsgNums/*新消息数量图*/;
     DYBCustomLabel *_lb_newContent,*_lb_nickName,*_lb_time;
     UIView *_v_bigContent/*主要内容背景*/,*_v_toBeSlidingView/*要被滑动的view*/;
 }
@@ -30,7 +30,7 @@
         status_notice_model *model=data;
         
         if (!_imgV_showImg) {
-            _imgV_showImg=[[DragonUIImageView alloc]initWithFrame:CGRectMake(15,10, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_showImg.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            _imgV_showImg=[[MagicUIImageView alloc]initWithFrame:CGRectMake(15,10, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_showImg.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             _imgV_showImg.needRadius=YES;
             RELEASE(_imgV_showImg);
             
@@ -44,7 +44,7 @@
             _lb_nickName.font=[DYBShareinstaceDelegate DYBFoutStyle:18];
             _lb_nickName.text=model.status.user_info.name;
             [_lb_nickName setNeedCoretext:NO];
-            _lb_nickName.textColor=[DragonCommentMethod color:51 green:51 blue:51 alpha:1];
+            _lb_nickName.textColor=[MagicCommentMethod color:51 green:51 blue:51 alpha:1];
             _lb_nickName.numberOfLines=1;
             
             _lb_nickName.lineBreakMode=NSLineBreakByTruncatingTail;
@@ -104,7 +104,7 @@
             NSInteger nIMAGECount  = [arrIMG count];
             
             for (int nIndex = 0; nIndex < nIMAGECount; nIndex ++) {
-                DragonUIImageView *_imgDynamicIMAGE = [[DragonUIImageView alloc] initWithFrame:CGRectMake(_lb_newContent.frame.origin.x+70*nIndex, CGRectGetMaxY(_lb_newContent.frame)+15+nIndex/3*85, 60, 75) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleToFill stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                MagicUIImageView *_imgDynamicIMAGE = [[MagicUIImageView alloc] initWithFrame:CGRectMake(_lb_newContent.frame.origin.x+70*nIndex, CGRectGetMaxY(_lb_newContent.frame)+15+nIndex/3*85, 60, 75) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleToFill stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                 _imgDynamicIMAGE.tag=6;
                 
                 if (nIndex > 2) {

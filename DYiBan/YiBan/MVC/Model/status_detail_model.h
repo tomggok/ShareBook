@@ -11,7 +11,7 @@
 #import "status.h"
 #import "comment.h"
 #import "user_list.h"
-@interface status_detail_model : DragonJSONReflection
+@interface status_detail_model : MagicJSONReflection
 @property(nonatomic,retain)NSString *is_exit;//动态是否存在 0 存在 1 不存在
 @property(nonatomic,retain)status *status;// 数据字典 博客数据结构
 

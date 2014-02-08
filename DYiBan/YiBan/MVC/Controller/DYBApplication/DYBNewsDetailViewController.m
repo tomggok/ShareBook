@@ -18,17 +18,17 @@
 
 @implementation DYBNewsDetailViewController
 @synthesize items;
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         
         [self.rightButton setHidden:YES];
         [self.headview setTitle:@"新闻详情"];
         [self backImgType:0];
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
-        _tableView = [[DragonUITableView alloc] initWithFrame:CGRectMake(0, self.headHeight, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-self.headHeight-20)];
+        _tableView = [[MagicUITableView alloc] initWithFrame:CGRectMake(0, self.headHeight, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-self.headHeight-20)];
         [_tableView setShowsHorizontalScrollIndicator:NO];
         [_tableView setShowsVerticalScrollIndicator:NO];
         [_tableView setBackgroundColor:[UIColor clearColor]];
@@ -49,19 +49,19 @@
 }
 
 #pragma mark - UITableViewDataSource
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
         
         NSNumber *s= [NSNumber numberWithInteger:2];
         
         [signal setReturnValue:s];
         
-    }else if([signal is:[DragonUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
+    }else if([signal is:[MagicUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
         NSNumber *s = [NSNumber numberWithInteger:1];
         [signal setReturnValue:s];
         
-    }else if([signal is:[DragonUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
+    }else if([signal is:[MagicUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
         
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -76,7 +76,7 @@
         
         [signal setReturnValue:s];
         
-    }else if([signal is:[DragonUITableView TABLECELLFORROW]])/*cell*/{
+    }else if([signal is:[MagicUITableView TABLECELLFORROW]])/*cell*/{
         
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -106,20 +106,20 @@
         [signal setReturnValue:cell];
         
         
-    }else if([signal is:[DragonUITableView TABLEDIDSELECT]])/*选中cell*/{
+    }else if([signal is:[MagicUITableView TABLEDIDSELECT]])/*选中cell*/{
         
         
     }
-    else if([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])/*viewForHeaderInSection*/{
+    else if([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])/*viewForHeaderInSection*/{
         
         [signal setReturnValue:nil];
-    }else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]])//刷新
+    }else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]])//刷新
     {
         
-        DragonUITableView *tableView = (DragonUITableView *)[signal source];
+        MagicUITableView *tableView = (MagicUITableView *)[signal source];
         
         {//HTTP请求
-            DragonRequest *request = [DYBHttpMethod xinhuanews_detail:info.id category_id:info.category_id isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod xinhuanews_detail:info.id category_id:info.category_id isAlert:YES receive:self];
             [request setTag:1];
             
             if (!request) {//无网路
@@ -129,7 +129,7 @@
     }
 }
 
-- (void)handleViewSignal_DYBXinhuaNewsContentCellView:(DragonViewSignal *)signal {
+- (void)handleViewSignal_DYBXinhuaNewsContentCellView:(MagicViewSignal *)signal {
     
     if ([signal is:[DYBXinhuaNewsContentCellView IMAGECLICKEEND]]) {
         
@@ -157,12 +157,12 @@
 {
     info = news_info;
     NSLog(@"=======%@",news_info.id);
-    DragonRequest *request = [DYBHttpMethod xinhuanews_detail:news_info.id category_id:news_info.category_id isAlert:YES receive:self];
+    MagicRequest *request = [DYBHttpMethod xinhuanews_detail:news_info.id category_id:news_info.category_id isAlert:YES receive:self];
     [request setTag:1];
 }
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     
     if ([request succeed])

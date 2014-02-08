@@ -9,15 +9,15 @@
 #import "DYBDataBaseViewController.h"
 #import "DYBSetButton.h"
 #import "UserSettingMode.h"
-#import "NSObject+DragonDatabase.h"
-#import "NSObject+DragonRequestResponder.h"
+#import "NSObject+MagicDatabase.h"
+#import "NSObject+MagicRequestResponder.h"
 #import "DYBUseBootstrapViewController.h"
 @interface DYBDataBaseViewController () {
     
-    DragonUILabel *uselabel;
-    DragonUILabel *reduelabel;
-    DragonUILabel *datelabel;
-    DragonUILabel *drislabel;
+    MagicUILabel *uselabel;
+    MagicUILabel *reduelabel;
+    MagicUILabel *datelabel;
+    MagicUILabel *drislabel;
 }
 
 @end
@@ -27,26 +27,26 @@ DEF_SIGNAL(DATABASEBUTTON)
 
 
 
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.rightButton setHidden:YES];
         [self.headview setTitle:@"资料库"];
         [self backImgType:0];
         
-        DragonRequest *request = [DYBHttpMethod document_userspace:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod document_userspace:YES receive:self];
         [request setTag:1];
         
         
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
-        DragonUIScrollView *scroll = [[DragonUIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        MagicUIScrollView *scroll = [[MagicUIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         [scroll setShowsVerticalScrollIndicator:NO];
         [self.view addSubview:scroll];
         RELEASE(scroll);
         
-        NSArray *textArray = [[NSArray alloc]initWithObjects:@"容量：已用             总量",@"最近同步时间：",@"仅在wifi下，上传下载",[@"" stringByAppendingFormat:@"清除本地缓存(%@)",[self stringFromFileSize:[NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask, YES)objectAtIndex:0]]],[@"" stringByAppendingFormat:@"清除离线文件(%@)",[self stringFromFileSize:[DragonCommentMethod downloadPath]]],@"消息提醒推送",@"使用引导", nil];
+        NSArray *textArray = [[NSArray alloc]initWithObjects:@"容量：已用             总量",@"最近同步时间：",@"仅在wifi下，上传下载",[@"" stringByAppendingFormat:@"清除本地缓存(%@)",[self stringFromFileSize:[NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask, YES)objectAtIndex:0]]],[@"" stringByAppendingFormat:@"清除离线文件(%@)",[self stringFromFileSize:[MagicCommentMethod downloadPath]]],@"消息提醒推送",@"使用引导", nil];
         
         ;
         DYBSetButton *settingButton[[textArray count]];
@@ -101,25 +101,25 @@ DEF_SIGNAL(DATABASEBUTTON)
         scroll.contentSize = CGSizeMake(SCREEN_WIDTH, [settingButton[[textArray count]-1] getLowy]+30);
         
         //已用流量
-        uselabel = [[DragonUILabel alloc]initWithFrame:CGRectMake(115, 8, 65, BUTTONHEIGHT-10)];
+        uselabel = [[MagicUILabel alloc]initWithFrame:CGRectMake(115, 8, 65, BUTTONHEIGHT-10)];
         [self setLabel:uselabel setText:@"1002M" setButton:settingButton[0] setColor:[UIColor redColor]];
         //剩余流量
-        reduelabel = [[DragonUILabel alloc]initWithFrame:CGRectMake(223, 8, BUTTONWIDTH-223, BUTTONHEIGHT-10)];
+        reduelabel = [[MagicUILabel alloc]initWithFrame:CGRectMake(223, 8, BUTTONWIDTH-223, BUTTONHEIGHT-10)];
         [self setLabel:reduelabel setText:@"4.1G" setButton:settingButton[0] setColor:[UIColor greenColor]];
         //最后同步时间
-        datelabel = [[DragonUILabel alloc]initWithFrame:CGRectMake(150, 8, BUTTONWIDTH-150, BUTTONHEIGHT-10)];
-        [self setLabel:datelabel setText:@"2013-8-20" setButton:settingButton[1] setColor:[DragonCommentMethod colorWithHex:@"333333"]];
+        datelabel = [[MagicUILabel alloc]initWithFrame:CGRectMake(150, 8, BUTTONWIDTH-150, BUTTONHEIGHT-10)];
+        [self setLabel:datelabel setText:@"2013-8-20" setButton:settingButton[1] setColor:[MagicCommentMethod colorWithHex:@"333333"]];
         datelabel.font = [DYBShareinstaceDelegate DYBFoutStyle:14];  //字体和大小设置
         
         //文字提示
-        drislabel = [[DragonUILabel alloc]initWithFrame:CGRectMake(15, BUTTONHEIGHT-10, BUTTONWIDTH-15, offect)];
-        [self setLabel:drislabel setText:@"清除用于离线查看的文件可释放本地存储空间" setButton:settingButton[4] setColor:[DragonCommentMethod colorWithHex:@"aaaaaa"]];
+        drislabel = [[MagicUILabel alloc]initWithFrame:CGRectMake(15, BUTTONHEIGHT-10, BUTTONWIDTH-15, offect)];
+        [self setLabel:drislabel setText:@"清除用于离线查看的文件可释放本地存储空间" setButton:settingButton[4] setColor:[MagicCommentMethod colorWithHex:@"aaaaaa"]];
         drislabel.font = [DYBShareinstaceDelegate DYBFoutStyle:12];
     }    
 }
 
 //添加label
-- (void)setLabel:(DragonUILabel *)label setText:(NSString *)string setButton:(DYBSetButton *)btn setColor:(UIColor *)color{
+- (void)setLabel:(MagicUILabel *)label setText:(NSString *)string setButton:(DYBSetButton *)btn setColor:(UIColor *)color{
     
     label.textAlignment = UIControlContentVerticalAlignmentCenter;
     label.textAlignment = NSTextAlignmentLeft;
@@ -132,7 +132,7 @@ DEF_SIGNAL(DATABASEBUTTON)
 }
 
 #pragma mark- 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -150,7 +150,7 @@ DEF_SIGNAL(DATABASEBUTTON)
     
 }
 
-- (void)handleViewSignal_DYBSetButton:(DragonViewSignal *)signal {
+- (void)handleViewSignal_DYBSetButton:(MagicViewSignal *)signal {
     
     NSDictionary *dict = (NSDictionary *)[signal object];
     DYBSwitchButton *btn = [dict objectForKey:@"switchButton"];
@@ -268,13 +268,13 @@ DEF_SIGNAL(DATABASEBUTTON)
         time = @"22-8";
     }
     
-    DragonRequest *request = [DYBHttpMethod user_setpush:tagHttp isDisturb:SHARED.currentUserSetting.timeForNoPush disturb_time:time isAlert:YES receive:self];
+    MagicRequest *request = [DYBHttpMethod user_setpush:tagHttp isDisturb:SHARED.currentUserSetting.timeForNoPush disturb_time:time isAlert:YES receive:self];
     [request setTag:2];
     
 }
 
 #pragma mark- 按钮点击
-- (void)handleViewSignal_DYBDataBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBDataBaseViewController:(MagicViewSignal *)signal
 {
     DYBSetButton *btn = signal.source;
     
@@ -298,7 +298,7 @@ DEF_SIGNAL(DATABASEBUTTON)
                 }completion:^(BOOL b){
                     if (b) {
                         
-                        [self cleanCaches:btn atPath:[DragonCommentMethod downloadPath]];
+                        [self cleanCaches:btn atPath:[MagicCommentMethod downloadPath]];
                         
                     }
                 }];
@@ -340,7 +340,7 @@ DEF_SIGNAL(DATABASEBUTTON)
         self.DB.FROM(KDATABANKDOWNLIST).WHERE(@"url", url).WHERE(@"userid", SHARED.userId).DELETE();
         self.DB.FROM(kDATABANKDOWNDETAIL).WHERE(@"file_urlencode", url).WHERE(@"userid", SHARED.userId).DELETE();
         NSString *downName = [self downPathFileNameWithUrl:url];
-        [DragonSandbox deleteFile:downName];
+        [MagicSandbox deleteFile:downName];
     }
     
 }
@@ -396,7 +396,7 @@ DEF_SIGNAL(DATABASEBUTTON)
     
     if (btn.tag == 4) {
         
-        [btn.textLabel setText:[@"" stringByAppendingFormat:@"清除离线文件(%@)",[self stringFromFileSize:[DragonCommentMethod downloadPath]]]];
+        [btn.textLabel setText:[@"" stringByAppendingFormat:@"清除离线文件(%@)",[self stringFromFileSize:[MagicCommentMethod downloadPath]]]];
         [DYBShareinstaceDelegate loadFinishAlertView:@"离线文件清除成功" target:self];
         
     }else {
@@ -440,7 +440,7 @@ DEF_SIGNAL(DATABASEBUTTON)
 }
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     
     if ([request succeed])

@@ -11,7 +11,7 @@
 //找人搜索结果页
 @interface DYBSearchResultViewController : DYBBaseViewController
 {
-//    DragonUITableView *_tbv;
+//    MagicUITableView *_tbv;
 }
 
 @property (nonatomic,copy) NSString *str_searchContent;

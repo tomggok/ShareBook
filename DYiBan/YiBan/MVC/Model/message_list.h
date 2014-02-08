@@ -11,7 +11,7 @@
 
 //私信列表message_contact
 
-@interface message_list : DragonJSONReflection
+@interface message_list : MagicJSONReflection
 @property(assign,nonatomic)int havenext;
 @property(retain,nonatomic)NSArray * contact;
 //+(Class)contact_class;

@@ -27,16 +27,16 @@
 //笔记详情|笔记编辑|新建笔记
 @interface DYBNoteDetailViewController : DYBBaseViewController <UIImagePickerControllerDelegate,DYBImagePickerControllerDelegate,AVAudioPlayerDelegate,AVAudioRecorderDelegate>
 {
-    DragonUIButton *_bt_Right;
+    MagicUIButton *_bt_Right;
     DYBBaseView *_v_dropDown/*下拉view*/,*_v_dropUp/*非编辑模式下底部上拉view*/;
-//    DragonUIButton *_bt_more[5]/*下拉列表里的bt*/;
-    DragonUIButton *_bt_edit,*_bt_share,*_bt_moveToDataBase,*_bt_star,*_bt_del/*,*_bt_cancelDropDown取消下拉view*//*,*_bt_AddTag添加标签*/,*_bt_audio,*_bt_photo/*相册*/,*_bt_camera/*拍照*/,*_bt_StartRecording/*开始录音*/,*_bt_stopRecording/*停止录音*/;
+//    MagicUIButton *_bt_more[5]/*下拉列表里的bt*/;
+    MagicUIButton *_bt_edit,*_bt_share,*_bt_moveToDataBase,*_bt_star,*_bt_del/*,*_bt_cancelDropDown取消下拉view*//*,*_bt_AddTag添加标签*/,*_bt_audio,*_bt_photo/*相册*/,*_bt_camera/*拍照*/,*_bt_StartRecording/*开始录音*/,*_bt_stopRecording/*停止录音*/;
     noteModel *_model;
     DYBVariableTbvView *_tbvView;//封装的公用tbv
-    DragonUIImageView *_v_dropUpInEditing/*编辑模式下底部上拉view*/;
-    DragonUIScrollView *_scrV_back/*整体背景*/,*_scrV_Tip/*标签背景滚动*//*,*_scrV_Content文本非编辑状态时的滚动背景*/;
-    DragonUITextView *_textView;
-//    DragonUILabel *_lb_content/*文本展示时的lb*/;
+    MagicUIImageView *_v_dropUpInEditing/*编辑模式下底部上拉view*/;
+    MagicUIScrollView *_scrV_back/*整体背景*/,*_scrV_Tip/*标签背景滚动*//*,*_scrV_Content文本非编辑状态时的滚动背景*/;
+    MagicUITextView *_textView;
+//    MagicUILabel *_lb_content/*文本展示时的lb*/;
     NSMutableArray *_muA_audioData/*音频数据*/,*_muA_ImgViewData/*图片数据*/,*_muA_audioView/*放音频视图*/,*_muA_showImgView/*放展示图视图*//*,*_muA_fid编辑笔记进来时音频和图片文件的ID,在点 右上角保存编辑修改时和最新的 文件IDS对比,如果给有新的文件,就调 notes_uploadfile 接口上传新文件*/;
     DYBPhotoEditorView *_photoEditor;
     
@@ -47,7 +47,7 @@
     NSTimer *_t_recodeTime;
     AVAudioPlayer *_audioPlayer;//音频播放器
     DYBAudioProgressView *_v_Progress;//进度条
-    DragonUILabel *_lb_ProgressTime;//进度条时间
+    MagicUILabel *_lb_ProgressTime;//进度条时间
     
     int typeTop;
     NSString *userId;

@@ -8,7 +8,7 @@
 
 #import "DYBMenuView.h"
 #import "DYBDynamicViewController.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "DYBDataBankShareViewController.h"
 #import "DYBDataBankDownloadManageViewController.h"
 #import "DYBDataBankSearchViewController.h"
@@ -46,7 +46,7 @@ DEF_SIGNAL(MENUSELECTCELL)
         [self setBackgroundColor:[UIColor whiteColor]];
         [self setAlpha:0.9f];
         
-        _tableMenu = [[DragonUITableView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame)) isNeedUpdate:NO];
+        _tableMenu = [[MagicUITableView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame)) isNeedUpdate:NO];
         [_tableMenu setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         [_tableMenu setBackgroundColor:[UIColor clearColor]];
         [self addSubview:_tableMenu];
@@ -61,7 +61,7 @@ DEF_SIGNAL(MENUSELECTCELL)
         [self selectCell:cell];
         
         UIImage *img = [UIImage imageNamed:@"slide_shadow.png"];
-        DragonUIImageView *imgLine = [[DragonUIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.frame), CGRectGetWidth(self.frame), 4)];
+        MagicUIImageView *imgLine = [[MagicUIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.frame), CGRectGetWidth(self.frame), 4)];
         [imgLine setBackgroundColor:[UIColor clearColor]];
         [imgLine setImage:img];
         [self addSubview:imgLine];
@@ -78,7 +78,7 @@ DEF_SIGNAL(MENUSELECTCELL)
     
 }
 
-- (void)handleViewSignal_DYBMenuView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_DYBMenuView:(MagicViewSignal *)signal{
     if ([signal is:[DYBMenuView MENUDOWN]]){
         DYBBaseViewController *vc = (DYBBaseViewController *)[signal object];
         bDown = YES;
@@ -134,30 +134,30 @@ DEF_SIGNAL(MENUSELECTCELL)
 }
 
 #pragma mark- 只接受UITableView信号
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
         NSNumber *nRow = [NSNumber numberWithInteger:[_arrMenu count]];
         [signal setReturnValue:nRow];
         
-    }else if([signal is:[DragonUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
+    }else if([signal is:[MagicUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
         NSNumber *nSection = [NSNumber numberWithInteger:1];
         [signal setReturnValue:nSection];
         
-    }else if([signal is:[DragonUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
+    }else if([signal is:[MagicUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
         NSNumber *nRowHeight = [NSNumber numberWithInteger:60];
         [signal setReturnValue:nRowHeight];
         
-    }else if([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])/*titleForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])/*titleForHeaderInSection*/{
         [signal setReturnValue:nil];
         
-    }else if([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])/*viewForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])/*viewForHeaderInSection*/{
         [signal setReturnValue:nil];
         
-    }else if([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])/*heightForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])/*heightForHeaderInSection*/{
         [signal setReturnValue:[NSNumber numberWithFloat:0.0]];
         
-    }else if([signal is:[DragonUITableView TABLECELLFORROW]])/*cell*/{
+    }else if([signal is:[MagicUITableView TABLECELLFORROW]])/*cell*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableview = [dict objectForKey:@"tableView"];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -178,7 +178,7 @@ DEF_SIGNAL(MENUSELECTCELL)
         
 
         
-        DragonUIImageView *_BKGView = [[DragonUIImageView alloc] initWithFrame:CGRectMake(15, 7.5, 290, 45)];
+        MagicUIImageView *_BKGView = [[MagicUIImageView alloc] initWithFrame:CGRectMake(15, 7.5, 290, 45)];
         [_BKGView setBackgroundColor:[UIColor clearColor]];
         [cell addSubview:_BKGView];
         RELEASE(_BKGView);
@@ -187,7 +187,7 @@ DEF_SIGNAL(MENUSELECTCELL)
             [_BKGView setImage:[UIImage imageNamed:@"bg_slidemenu.png"]];
         }
         
-        DragonUILabel *_lbText = [[DragonUILabel alloc] initWithFrame:CGRectMake(10, 10, 270, 25)];
+        MagicUILabel *_lbText = [[MagicUILabel alloc] initWithFrame:CGRectMake(10, 10, 270, 25)];
         [_lbText setFont:[DYBShareinstaceDelegate DYBFoutStyle:18]];
         [_lbText setBackgroundColor:[UIColor clearColor]];
         [_lbText setTextColor:ColorBlack];
@@ -201,7 +201,7 @@ DEF_SIGNAL(MENUSELECTCELL)
         }
         
         [signal setReturnValue:cell];
-    }else if([signal is:[DragonUITableView TABLEDIDSELECT]])/*选中cell*/{
+    }else if([signal is:[MagicUITableView TABLEDIDSELECT]])/*选中cell*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableview = [dict objectForKey:@"tableView"];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -212,12 +212,12 @@ DEF_SIGNAL(MENUSELECTCELL)
              UITableViewCell *cell = [_tableMenu cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
             
             for (UIView *view in cell.subviews) {
-                if ([view isKindOfClass:[DragonUIImageView class]]) {
-                    [(DragonUIImageView *)view setImage:nil];
+                if ([view isKindOfClass:[MagicUIImageView class]]) {
+                    [(MagicUIImageView *)view setImage:nil];
                     
                     for (UIView *viewSub in view.subviews) {
-                        if([viewSub isKindOfClass:[DragonUILabel class]]){
-                            [(DragonUILabel *)viewSub setTextColor:ColorBlack];
+                        if([viewSub isKindOfClass:[MagicUILabel class]]){
+                            [(MagicUILabel *)viewSub setTextColor:ColorBlack];
                             break;
                         }
                     }
@@ -252,21 +252,21 @@ DEF_SIGNAL(MENUSELECTCELL)
             return;
         }
         
-    }else if([signal is:[DragonUITableView TABLESCROLLVIEWDIDENDDRAGGING]])/*滚动停止*/{
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDENDDRAGGING]])/*滚动停止*/{
         
-    }else if([signal is:[DragonUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
 //        [_tableMenu tableViewDidDragging];
     }
 }
 
 -(void)selectCell:(UITableViewCell *)cell{
     for (UIView *view in cell.subviews) {
-        if ([view isKindOfClass:[DragonUIImageView class]]) {
-            [(DragonUIImageView *)view setImage:[UIImage imageNamed:@"bg_slidemenu.png"]];
+        if ([view isKindOfClass:[MagicUIImageView class]]) {
+            [(MagicUIImageView *)view setImage:[UIImage imageNamed:@"bg_slidemenu.png"]];
             
             for (UIView *viewSub in view.subviews) {
-                if([viewSub isKindOfClass:[DragonUILabel class]]){
-                    [(DragonUILabel *)viewSub setTextColor:[UIColor whiteColor]];
+                if([viewSub isKindOfClass:[MagicUILabel class]]){
+                    [(MagicUILabel *)viewSub setTextColor:[UIColor whiteColor]];
                     break;
                 }
             }

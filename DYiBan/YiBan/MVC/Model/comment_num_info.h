@@ -6,10 +6,10 @@
 //  Copyright (c) 2013年 ZzL. All rights reserved.
 //
 
-#import "Dragon_JSONReflection.h"
+#import "Magic_JSONReflection.h"
 #import "target.h"
 
-@interface comment_num_info : DragonJSONReflection
+@interface comment_num_info : MagicJSONReflection
 
 @property (nonatomic,retain) NSString *id;
 @property (nonatomic,retain) NSString *uid;

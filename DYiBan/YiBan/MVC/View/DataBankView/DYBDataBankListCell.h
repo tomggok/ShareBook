@@ -24,7 +24,7 @@
 @property (nonatomic,retain) UIImageView *imageViewStats;
 @property (nonatomic,retain) UILabel *labelProgress;
 @property (nonatomic,retain) UILabel *labelGood;
-@property (nonatomic,retain) DragonUILabel *labelName;
+@property (nonatomic,retain) MagicUILabel *labelName;
 @property (nonatomic,retain) UILabel *labelBad;
 @property (nonatomic, readonly) DYBDataBankSelectBtn* btnBottom;
 @property (nonatomic, assign)BOOL beginOrPause;//暂停或开始 为了DYBDataBankSelectBtn* btnBottom（ begin:YES pause:NO）

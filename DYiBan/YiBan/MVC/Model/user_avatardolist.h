@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 //user_avatardolist接口返回的数据
-@interface user_avatardolist : DragonJSONReflection
+@interface user_avatardolist : MagicJSONReflection
 
 @property (nonatomic, retain)NSString *topCount;//顶的次数
 @property (nonatomic, retain)NSString *pics;//

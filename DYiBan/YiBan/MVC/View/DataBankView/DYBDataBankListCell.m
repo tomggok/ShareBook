@@ -9,21 +9,21 @@
 //
 
 #import "DYBDataBankListCell.h"
-#import "Dragon_UILabel.h"
-#import "Dragon_UIImageView.h"
+#import "Magic_UILabel.h"
+#import "Magic_UIImageView.h"
 #import "UITableView+property.h"
 #import "UIView+Gesture.h"
-#import "UIView+DragonCategory.h"
-#import "UITableViewCell+DragonCategory.h"
+#import "UIView+MagicCategory.h"
+#import "UITableViewCell+MagicCategory.h"
 #import "DYBUITabbarViewController.h"
 #import "DYBDataBankSelectBtn.h"
 #import "UIImageView+WebCache.h"
-#import "NSObject+DragonRequestResponder.h"
+#import "NSObject+MagicRequestResponder.h"
 #import "UIImageView+WebCache.h"
-#import "Dragon_Device.h"
+#import "Magic_Device.h"
 #import "user.h"
 #import "DYBDtaBankSearchView.h"
-#import "NSObject+DragonDatabase.h"
+#import "NSObject+MagicDatabase.h"
 #import "DYBDataBankChildrenListViewController.h"
 #define  TAPVIEWTAG  110
 @interface DYBDataBankListCell()
@@ -39,10 +39,10 @@
     CGPoint currentCenter; //cell当前的中心
     BOOL isOpen;
     
-    DragonUILabel *labelFrom;
+    MagicUILabel *labelFrom;
     
     DYBDataBankSelectBtn* btnBottom;
-    DragonUIImageView *swipIcan;
+    MagicUIImageView *swipIcan;
         
 }
 
@@ -227,7 +227,7 @@ DEF_SIGNAL(FINISHSWIP)
         
     }
     
-    _labelName = [[DragonUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP + 5 + 3 , 200 , 20)];
+    _labelName = [[MagicUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP + 5 + 3 , 200 , 20)];
     [_labelName setText:[dict objectForKey:@"title"]];
     [swipView addSubview:_labelName];
     [_labelName setFont:[DYBShareinstaceDelegate DYBFoutStyle:13]];
@@ -236,23 +236,23 @@ DEF_SIGNAL(FINISHSWIP)
     [_labelName release];
 
     
-    DragonUILabel *labelSize = [[DragonUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME + 5 + 5, 150 , 20)];
+    MagicUILabel *labelSize = [[MagicUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME + 5 + 5, 150 , 20)];
     [labelSize setText:[self strSize:[dict objectForKey:@"size"]]];
     [swipView addSubview:labelSize];
     [labelSize setTextAlignment:NSTextAlignmentLeft];
     [labelSize setFont:[DYBShareinstaceDelegate DYBFoutStyle:11]];
-    [labelSize setTextColor:[DragonCommentMethod colorWithHex:@"0xaaaaaa"]];
+    [labelSize setTextColor:[MagicCommentMethod colorWithHex:@"0xaaaaaa"]];
     [labelSize setBackgroundColor:[UIColor clearColor]];
     [labelSize sizeToFit];
     [labelSize sizeToFit];
     [labelSize release];
     
-    DragonUILabel *labelTime = [[DragonUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN + labelSize.frame.size.width + 10, NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME + 5 + 7,  150 , 20)];
+    MagicUILabel *labelTime = [[MagicUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN + labelSize.frame.size.width + 10, NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME + 5 + 7,  150 , 20)];
     [labelTime setText:[dict objectForKey:@"create_time"]];
     [swipView addSubview:labelTime];
     [labelTime setTextAlignment:NSTextAlignmentLeft];
     [labelTime setFont:[DYBShareinstaceDelegate DYBFoutStyle:11]];
-    [labelTime setTextColor:[DragonCommentMethod colorWithHex:@"0xaaaaaa"]];
+    [labelTime setTextColor:[MagicCommentMethod colorWithHex:@"0xaaaaaa"]];
     [labelTime setBackgroundColor:[UIColor clearColor]];
     [labelTime sizeToFit];
     [labelTime release];
@@ -260,7 +260,7 @@ DEF_SIGNAL(FINISHSWIP)
     
     if (![_bSwip isEqualToString:@"NO"]) {
         
-        swipIcan = [[DragonUIImageView alloc]initWithFrame:CGRectMake(320 - SWIPICAN_WIDTH, (84 - SWIPICAN_HIGHT)/2, SWIPICAN_WIDTH,SWIPICAN_HIGHT )];
+        swipIcan = [[MagicUIImageView alloc]initWithFrame:CGRectMake(320 - SWIPICAN_WIDTH, (84 - SWIPICAN_HIGHT)/2, SWIPICAN_WIDTH,SWIPICAN_HIGHT )];
         [swipIcan setImage:[UIImage imageNamed:@"slide_more"]];
         [swipIcan setBackgroundColor:[UIColor clearColor]];
         [swipView addSubview:swipIcan];
@@ -270,7 +270,7 @@ DEF_SIGNAL(FINISHSWIP)
 
 -(void)addDownLoadCell:(NSDictionary *)dict{
 
-    DragonUIImageView *iconImageView = [[DragonUIImageView alloc]initWithFrame:CGRectMake(ICAN_LEFT, ICAN_TOP, ICAN_WIDTH, ICAN_LENGHT)];
+    MagicUIImageView *iconImageView = [[MagicUIImageView alloc]initWithFrame:CGRectMake(ICAN_LEFT, ICAN_TOP, ICAN_WIDTH, ICAN_LENGHT)];
     
     NSString *strIcon = [self getFileIcon:[dict objectForKey:@"type"]];
     
@@ -283,7 +283,7 @@ DEF_SIGNAL(FINISHSWIP)
     _labelProgress = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, ICAN_WIDTH, ICAN_LENGHT)];
     [_labelProgress setText:@"0%"];
     [_labelProgress setTag:600];
-    [_labelProgress setBackgroundColor:[DragonCommentMethod colorWithHex:@"6eab44"]];
+    [_labelProgress setBackgroundColor:[MagicCommentMethod colorWithHex:@"6eab44"]];
     [_labelProgress setTextColor:[UIColor whiteColor]];
     [_labelProgress setFont:[DYBShareinstaceDelegate DYBFoutStyle:13]];
     [_labelProgress setTextAlignment:NSTextAlignmentCenter];
@@ -292,7 +292,7 @@ DEF_SIGNAL(FINISHSWIP)
     [_labelProgress release];
 
     
-    _labelName = [[DragonUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP , 160 , 20)];
+    _labelName = [[MagicUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP , 160 , 20)];
     [_labelName setText:[dict objectForKey:@"title"]];
     [swipView addSubview:_labelName];
     [_labelName setFont:[DYBShareinstaceDelegate DYBFoutStyle:13]];
@@ -303,8 +303,8 @@ DEF_SIGNAL(FINISHSWIP)
     _progressView = [[DYBProgressView alloc] initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME,180, 10)];
     [_progressView setProgress:0.0];
     [_progressView setOuterColor: [UIColor clearColor]] ;
-    [_progressView setInnerColor: [DragonCommentMethod colorWithHex:@"6eab44"]] ;
-    [_progressView setEmptyColor: [DragonCommentMethod colorWithHex:@"f8f8f8"]] ;
+    [_progressView setInnerColor: [MagicCommentMethod colorWithHex:@"6eab44"]] ;
+    [_progressView setEmptyColor: [MagicCommentMethod colorWithHex:@"f8f8f8"]] ;
     [swipView addSubview: _progressView] ;
     [_progressView release] ;
     
@@ -314,7 +314,7 @@ DEF_SIGNAL(FINISHSWIP)
     [swipView addSubview:_imageViewStats];
     RELEASE(_imageViewStats);
 
-    swipIcan = [[DragonUIImageView alloc]initWithFrame:CGRectMake(320 - SWIPICAN_WIDTH, (84 - SWIPICAN_HIGHT)/2, SWIPICAN_WIDTH,SWIPICAN_HIGHT )];
+    swipIcan = [[MagicUIImageView alloc]initWithFrame:CGRectMake(320 - SWIPICAN_WIDTH, (84 - SWIPICAN_HIGHT)/2, SWIPICAN_WIDTH,SWIPICAN_HIGHT )];
     [swipIcan setImage:[UIImage imageNamed:@"slide_more"]];
     [swipIcan setBackgroundColor:[UIColor clearColor]];
     [swipView addSubview:swipIcan];
@@ -323,7 +323,7 @@ DEF_SIGNAL(FINISHSWIP)
     
     if (_beginOrPause) { //暂停状态
         
-        [_labelProgress setBackgroundColor:[DragonCommentMethod colorWithHex:@"aaaaaa"]];
+        [_labelProgress setBackgroundColor:[MagicCommentMethod colorWithHex:@"aaaaaa"]];
         [_imageViewStats setImage:[UIImage imageNamed:@"下载--3"] ];
     }
     
@@ -370,14 +370,14 @@ DEF_SIGNAL(FINISHSWIP)
 -(void)addCommonFolder:(NSDictionary *)dict{
 
 
-    DragonUIImageView *iconImageView = [[DragonUIImageView alloc]initWithFrame:CGRectMake(ICAN_LEFT, ICAN_TOP, ICAN_WIDTH, ICAN_LENGHT)];
+    MagicUIImageView *iconImageView = [[MagicUIImageView alloc]initWithFrame:CGRectMake(ICAN_LEFT, ICAN_TOP, ICAN_WIDTH, ICAN_LENGHT)];
     [iconImageView setImage:[UIImage imageNamed:[self getPicName:[dict objectForKey:@"icon"]]]];
     [iconImageView setBackgroundColor:[UIColor clearColor]];
     [swipView addSubview:iconImageView];
     [iconImageView release];
     
     
-    DragonUIImageView *numImage = [[DragonUIImageView alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP, NUM_LENGHT, NUM_HIGHT )];
+    MagicUIImageView *numImage = [[MagicUIImageView alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP, NUM_LENGHT, NUM_HIGHT )];
     [numImage setBackgroundColor:[UIColor clearColor]];
     [numImage setImage:[UIImage imageNamed:[self getNumIcon:[dict objectForKey:@"icon"]]]];
     [swipView addSubview:numImage];
@@ -394,7 +394,7 @@ DEF_SIGNAL(FINISHSWIP)
     [numImage addSubview:labelNUM];
     [labelNUM release];
     
-    _labelName = [[DragonUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME, 150 , 20)];
+    _labelName = [[MagicUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME, 150 , 20)];
     [_labelName setText:[dict objectForKey:@"title"]];
     [swipView addSubview:_labelName];
     [_labelName setFont:[DYBShareinstaceDelegate DYBFoutStyle:13]];
@@ -406,7 +406,7 @@ DEF_SIGNAL(FINISHSWIP)
         
         if (![[dict objectForKey:@"is_sys_folder"] boolValue]) {
             
-            swipIcan = [[DragonUIImageView alloc]initWithFrame:CGRectMake(320 - SWIPICAN_WIDTH, (84 - SWIPICAN_HIGHT)/2, SWIPICAN_WIDTH,SWIPICAN_HIGHT )];
+            swipIcan = [[MagicUIImageView alloc]initWithFrame:CGRectMake(320 - SWIPICAN_WIDTH, (84 - SWIPICAN_HIGHT)/2, SWIPICAN_WIDTH,SWIPICAN_HIGHT )];
             [swipIcan setImage:[UIImage imageNamed:@"slide_more"]];
             [swipIcan setBackgroundColor:[UIColor clearColor]];
             [swipView addSubview:swipIcan];
@@ -456,7 +456,7 @@ DEF_SIGNAL(FINISHSWIP)
 
 -(void)addSharePubic:(NSDictionary *)dict{
 
-    DragonUIImageView *iconImageView = [[DragonUIImageView alloc]initWithFrame:CGRectMake(ICAN_LEFT, ICAN_TOP, ICAN_WIDTH, ICAN_LENGHT)];
+    MagicUIImageView *iconImageView = [[MagicUIImageView alloc]initWithFrame:CGRectMake(ICAN_LEFT, ICAN_TOP, ICAN_WIDTH, ICAN_LENGHT)];
     
     NSString *strIcon = [self getFileIcon:[dict objectForKey:@"type"]];
     
@@ -465,7 +465,7 @@ DEF_SIGNAL(FINISHSWIP)
     [swipView addSubview:iconImageView];
     [iconImageView release];
     
-    _labelName = [[DragonUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP , 200 , 20)];
+    _labelName = [[MagicUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP , 200 , 20)];
     [_labelName setText:[dict objectForKey:@"title"]];
     [swipView addSubview:_labelName];
     [_labelName setTextAlignment:NSTextAlignmentLeft];
@@ -493,18 +493,18 @@ DEF_SIGNAL(FINISHSWIP)
     }
     
     
-    DragonUILabel *labelSize = [[DragonUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME - 5, 150 , 20)];
+    MagicUILabel *labelSize = [[MagicUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME - 5, 150 , 20)];
     [labelSize setText:[self strSize:[dict objectForKey:@"size"]]];
     [swipView addSubview:labelSize];
     //    [labelSize setTextAlignment:NSTextAlignmentCenter];
     [labelSize setTextAlignment:NSTextAlignmentLeft];
     [labelSize setFont:[DYBShareinstaceDelegate DYBFoutStyle:11]];
-    [labelSize setTextColor:[DragonCommentMethod colorWithHex:@"0xaaaaaa"]];
+    [labelSize setTextColor:[MagicCommentMethod colorWithHex:@"0xaaaaaa"]];
     [labelSize setBackgroundColor:[UIColor clearColor]];
     [labelSize sizeToFit];
     [labelSize release];
     
-    DragonUILabel *labelTime = [[DragonUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN + labelSize.frame.size.width - 25,  NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME - 8, 150 , 20)];
+    MagicUILabel *labelTime = [[MagicUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN + labelSize.frame.size.width - 25,  NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME - 8, 150 , 20)];
     if (_btnType == 1) {
         
         [labelTime setText:[dict objectForKey:@"share_time"]];
@@ -515,7 +515,7 @@ DEF_SIGNAL(FINISHSWIP)
     [swipView addSubview:labelTime];
     [labelTime setTextAlignment:NSTextAlignmentCenter];
     [labelTime setFont:[DYBShareinstaceDelegate DYBFoutStyle:11]];
-    [labelTime setTextColor:[DragonCommentMethod colorWithHex:@"0xaaaaaa"]];
+    [labelTime setTextColor:[MagicCommentMethod colorWithHex:@"0xaaaaaa"]];
     [labelTime setBackgroundColor:[UIColor clearColor]];
     //    [labelName sizeToFit];
     [labelTime release];
@@ -534,7 +534,7 @@ DEF_SIGNAL(FINISHSWIP)
         [_labelGood sizeToFit];
         [_labelGood setFont:[DYBShareinstaceDelegate DYBFoutStyle:11]];
         [_labelGood setBackgroundColor:[UIColor clearColor]];
-        [_labelGood setTextColor:[DragonCommentMethod colorWithHex:@"0xaaaaaa"]];
+        [_labelGood setTextColor:[MagicCommentMethod colorWithHex:@"0xaaaaaa"]];
         [swipView addSubview:_labelGood];
         RELEASE(_labelGood);
         
@@ -548,7 +548,7 @@ DEF_SIGNAL(FINISHSWIP)
         [_labelBad setText:[dict objectForKey:@"down"]];
         [_labelBad sizeToFit];
         [_labelBad setFont:[DYBShareinstaceDelegate DYBFoutStyle:11]];
-        [_labelBad setTextColor:[DragonCommentMethod colorWithHex:@"0xaaaaaa"]];
+        [_labelBad setTextColor:[MagicCommentMethod colorWithHex:@"0xaaaaaa"]];
         [_labelBad setBackgroundColor:[UIColor clearColor]];
         [swipView addSubview:_labelBad];
         RELEASE(_labelBad);
@@ -559,7 +559,7 @@ DEF_SIGNAL(FINISHSWIP)
     
     
     
-    labelFrom = [[DragonUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME + 5 + 3, 150 , 20)];
+    labelFrom = [[MagicUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME + 5 + 3, 150 , 20)];
     
     if ([[dict objectForKey:@"is_public"] boolValue] || _btnType == 2 ) { //我的共享和共享给我的，没有来自
         
@@ -575,7 +575,7 @@ DEF_SIGNAL(FINISHSWIP)
         
         [labelFrom setText:[NSString stringWithFormat:@"%@ %@",strType,[dict objectForKey:@"author"]]];
         [swipView addSubview:labelFrom];
-        [labelFrom setTextColor:[DragonCommentMethod colorWithHex:@"0xaaaaaa"]];
+        [labelFrom setTextColor:[MagicCommentMethod colorWithHex:@"0xaaaaaa"]];
         [labelFrom setFont:[DYBShareinstaceDelegate DYBFoutStyle:11]];
         [labelFrom setBackgroundColor:[UIColor clearColor]];
         [labelFrom release];
@@ -585,7 +585,7 @@ DEF_SIGNAL(FINISHSWIP)
      
         [self setPublicString:[dict objectForKey:@"perm"]];
         [swipView addSubview:labelFrom];
-        [labelFrom setTextColor:[DragonCommentMethod colorWithHex:@"0xaaaaaa"]];
+        [labelFrom setTextColor:[MagicCommentMethod colorWithHex:@"0xaaaaaa"]];
         [labelFrom setFont:[DYBShareinstaceDelegate DYBFoutStyle:11]];
         [labelFrom setBackgroundColor:[UIColor clearColor]];
         [labelFrom release];
@@ -593,7 +593,7 @@ DEF_SIGNAL(FINISHSWIP)
     }
     
     if (![_bSwip isEqualToString:@"NO"]) {
-        swipIcan = [[DragonUIImageView alloc]initWithFrame:CGRectMake(320 - SWIPICAN_WIDTH, (84 - SWIPICAN_HIGHT)/2, SWIPICAN_WIDTH,SWIPICAN_HIGHT )];
+        swipIcan = [[MagicUIImageView alloc]initWithFrame:CGRectMake(320 - SWIPICAN_WIDTH, (84 - SWIPICAN_HIGHT)/2, SWIPICAN_WIDTH,SWIPICAN_HIGHT )];
         [swipIcan setImage:[UIImage imageNamed:@"slide_more"]];
         [swipIcan setBackgroundColor:[UIColor clearColor]];
         [swipView addSubview:swipIcan];
@@ -609,7 +609,7 @@ DEF_SIGNAL(FINISHSWIP)
         return;
     }
     
-    DragonUIImageView *iconImageView = [[DragonUIImageView alloc]initWithFrame:CGRectMake(ICAN_LEFT, ICAN_TOP, ICAN_WIDTH, ICAN_LENGHT)];
+    MagicUIImageView *iconImageView = [[MagicUIImageView alloc]initWithFrame:CGRectMake(ICAN_LEFT, ICAN_TOP, ICAN_WIDTH, ICAN_LENGHT)];
     
      NSString *strIcon = [self getFileIcon:[dict objectForKey:@"type"]];
     
@@ -618,7 +618,7 @@ DEF_SIGNAL(FINISHSWIP)
     [swipView addSubview:iconImageView];
     [iconImageView release];
     
-    _labelName = [[DragonUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP , 200 , 20)];
+    _labelName = [[MagicUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP , 200 , 20)];
     [_labelName setText:[dict objectForKey:@"title"]]; 
     [swipView addSubview:_labelName];
     [_labelName setTextAlignment:NSTextAlignmentLeft];
@@ -640,7 +640,7 @@ DEF_SIGNAL(FINISHSWIP)
         [_labelGood sizeToFit];
         [_labelGood setFont:[DYBShareinstaceDelegate DYBFoutStyle:11]];
         [_labelGood setBackgroundColor:[UIColor clearColor]];
-        [_labelGood setTextColor:[DragonCommentMethod colorWithHex:@"0xaaaaaa"]];
+        [_labelGood setTextColor:[MagicCommentMethod colorWithHex:@"0xaaaaaa"]];
         [swipView addSubview:_labelGood];
         RELEASE(_labelGood);
           
@@ -654,7 +654,7 @@ DEF_SIGNAL(FINISHSWIP)
           [_labelBad setText:[dict objectForKey:@"down"]];
           [_labelBad sizeToFit];
           [_labelBad setFont:[DYBShareinstaceDelegate DYBFoutStyle:11]];
-          [_labelBad setTextColor:[DragonCommentMethod colorWithHex:@"0xaaaaaa"]];
+          [_labelBad setTextColor:[MagicCommentMethod colorWithHex:@"0xaaaaaa"]];
           [_labelBad setBackgroundColor:[UIColor clearColor]];
           [swipView addSubview:_labelBad];
           RELEASE(_labelBad);
@@ -680,18 +680,18 @@ DEF_SIGNAL(FINISHSWIP)
             }
     
     
-    DragonUILabel *labelSize = [[DragonUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME - 5, 150 , 20)];
+    MagicUILabel *labelSize = [[MagicUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME - 5, 150 , 20)];
     [labelSize setText:[self strSize:[dict objectForKey:@"size"]]];
     [swipView addSubview:labelSize];
     //    [labelSize setTextAlignment:NSTextAlignmentCenter];
     [labelSize setTextAlignment:NSTextAlignmentLeft];
     [labelSize setFont:[DYBShareinstaceDelegate DYBFoutStyle:11]];
-    [labelSize setTextColor:[DragonCommentMethod colorWithHex:@"0xaaaaaa"]];
+    [labelSize setTextColor:[MagicCommentMethod colorWithHex:@"0xaaaaaa"]];
     [labelSize setBackgroundColor:[UIColor clearColor]];
     [labelSize sizeToFit];
     [labelSize release];
     
-    DragonUILabel *labelTime = [[DragonUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN + labelSize.frame.size.width - 15,  NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME - 8, 150 , 20)];
+    MagicUILabel *labelTime = [[MagicUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN + labelSize.frame.size.width - 15,  NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME - 8, 150 , 20)];
     if (_btnType == 1) {
   
         [labelTime setText:[dict objectForKey:@"share_time"]];
@@ -702,12 +702,12 @@ DEF_SIGNAL(FINISHSWIP)
         [swipView addSubview:labelTime];
     [labelTime setTextAlignment:NSTextAlignmentCenter];
     [labelTime setFont:[DYBShareinstaceDelegate DYBFoutStyle:11]];
-    [labelTime setTextColor:[DragonCommentMethod colorWithHex:@"0xaaaaaa"]];
+    [labelTime setTextColor:[MagicCommentMethod colorWithHex:@"0xaaaaaa"]];
     [labelTime setBackgroundColor:[UIColor clearColor]];
     //    [labelName sizeToFit];
     [labelTime release];
 
-    labelFrom = [[DragonUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME + 5 + 3, 150 , 20)];
+    labelFrom = [[MagicUILabel alloc]initWithFrame:CGRectMake(ICAN_LEFT + ICAN_WIDTH + LABELDISTANCEICAN, NUM_TOP + NUM_HIGHT + DISTANCE_NUM_NAME + 5 + 3, 150 , 20)];
   
        if ([[dict objectForKey:@"is_public"] boolValue] || _btnType == 2 ) { //我的共享和共享给我的，没有来自
            
@@ -723,7 +723,7 @@ DEF_SIGNAL(FINISHSWIP)
             
             [labelFrom setText:[NSString stringWithFormat:@"%@ %@",strType,[dict objectForKey:@"author"]]];
             [swipView addSubview:labelFrom];
-            [labelFrom setTextColor:[DragonCommentMethod colorWithHex:@"0xaaaaaa"]];
+            [labelFrom setTextColor:[MagicCommentMethod colorWithHex:@"0xaaaaaa"]];
             [labelFrom setFont:[DYBShareinstaceDelegate DYBFoutStyle:11]];
             [labelFrom setBackgroundColor:[UIColor clearColor]];
             [labelFrom release];
@@ -733,7 +733,7 @@ DEF_SIGNAL(FINISHSWIP)
 
            [self setPublicString:[dict objectForKey:@"perm"]];
            [swipView addSubview:labelFrom];
-           [labelFrom setTextColor:[DragonCommentMethod colorWithHex:@"0xaaaaaa"]];
+           [labelFrom setTextColor:[MagicCommentMethod colorWithHex:@"0xaaaaaa"]];
            [labelFrom setFont:[DYBShareinstaceDelegate DYBFoutStyle:11]];
            [labelFrom setBackgroundColor:[UIColor clearColor]];
            [labelFrom release];
@@ -741,7 +741,7 @@ DEF_SIGNAL(FINISHSWIP)
        }
     
     if (![_bSwip isEqualToString:@"NO"]) {
-        swipIcan = [[DragonUIImageView alloc]initWithFrame:CGRectMake(320 - SWIPICAN_WIDTH, (84 - SWIPICAN_HIGHT)/2, SWIPICAN_WIDTH,SWIPICAN_HIGHT )];
+        swipIcan = [[MagicUIImageView alloc]initWithFrame:CGRectMake(320 - SWIPICAN_WIDTH, (84 - SWIPICAN_HIGHT)/2, SWIPICAN_WIDTH,SWIPICAN_HIGHT )];
         [swipIcan setImage:[UIImage imageNamed:@"slide_more"]];
         [swipIcan setBackgroundColor:[UIColor clearColor]];
         [swipView addSubview:swipIcan];
@@ -910,7 +910,7 @@ DEF_SIGNAL(FINISHSWIP)
 }
 
 #pragma mark- 接受UIView信号
-- (void)handleViewSignal_UIView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_UIView:(MagicViewSignal *)signal{
 //    DLogInfo(@"pan");
     if ([signal is:[UIView PAN]]) {//拖动信号
         NSDictionary *d=(NSDictionary *)signal.object;
@@ -932,7 +932,7 @@ DEF_SIGNAL(FINISHSWIP)
                     //恢复swip view frame
                         [swipView setFrame:CGRectMake(0.0f, 0, swipView.frame.size.width, swipView.frame.size.height)];
                         
-                        DragonViewController *con=(DragonViewController *)[self superCon];
+                        MagicViewController *con=(MagicViewController *)[self superCon];
                         if ([con isKindOfClass:[DYBDataBankChildrenListViewController class]])
                         {
                             [con.drNavigationController handleSwitchView:recognizer];
@@ -1016,7 +1016,7 @@ DEF_SIGNAL(FINISHSWIP)
             tbv._selectIndex_now=nil;
         }else{//选中cell
             NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:tbv, @"tableView", [d objectForKey:@"indexPath"], @"indexPath", nil];
-            [self sendViewSignal:[DragonUITableView TABLEDIDSELECT] withObject:dict];
+            [self sendViewSignal:[MagicUITableView TABLEDIDSELECT] withObject:dict];
         }
         
         [self resetContentView];

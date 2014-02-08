@@ -6,11 +6,11 @@
 //  Copyright (c) 2013年 ZzL. All rights reserved.
 //
 
-#import "Dragon_UIScrollView.h"
+#import "Magic_UIScrollView.h"
 
 @class DYBBoxView;
 
-@interface DYBScrollerView : DragonUIScrollView {
+@interface DYBScrollerView : MagicUIScrollView {
     
 	NSMutableArray *views;
     

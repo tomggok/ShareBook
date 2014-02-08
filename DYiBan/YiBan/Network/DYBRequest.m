@@ -8,14 +8,14 @@
 
 #import "DYBRequest.h"
 
-#import "Dragon_Device.h"
-#import "Dragon_CommentMethod.h"
+#import "Magic_Device.h"
+#import "Magic_CommentMethod.h"
 #import "JSONKit.h"
 #import "JSON.h"
-#import "UIView+DragonViewSignal.h"
-#import "NSObject+DragonRequestResponder.h"
-#import "Dragon_Device.h"
-#import "NSObject+DragonDatabase.h"
+#import "UIView+MagicViewSignal.h"
+#import "NSObject+MagicRequestResponder.h"
+#import "Magic_Device.h"
+#import "NSObject+MagicDatabase.h"
 
 #import "user.h"
 #import "UserSettingMode.h"
@@ -26,7 +26,7 @@
 #import "DYBLoadingView.h"
 
 #import "DYBMapView.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "DYBDataBankShotView.h"
 
 #import "DYBLocalDataManager.h"
@@ -66,7 +66,7 @@
     [super dealloc];
 }
 
-- (DragonRequest *)POSTORGET:(NSMutableDictionary *)params
+- (MagicRequest *)POSTORGET:(NSMutableDictionary *)params
                      isAlert:(BOOL)isAlert
                      receive:(id)_receive
                     fileData:(NSDictionary *)fileDatas
@@ -106,7 +106,7 @@
     //    _cacheArr = nil;
     if (_cacheArr && [_cacheArr count] > 0)
     {
-        DragonRequest *request = [self GET:@""];
+        MagicRequest *request = [self GET:@""];
         
         return request;
     }else
@@ -115,11 +115,11 @@
     }
     
     
-    if ([DragonDevice hasInternetConnection] == NO) {
+    if ([MagicDevice hasInternetConnection] == NO) {
         
-        DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+        MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
         [pop setDelegate:receiver];
-        [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+        [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
         [pop setText:@"检测不到网络连接！"];
         [pop alertViewAutoHidden:.5f isRelease:YES];
         
@@ -134,7 +134,7 @@
     
     
     NSString *url = [self encodeUrl:params];
-    DragonRequest *request = nil;
+    MagicRequest *request = nil;
     if (isPost)
     {
         request = self.HTTP_POST(url);
@@ -195,7 +195,7 @@
         
     }
     
-    if ([DragonDevice sysVersion] == 5.0)
+    if ([MagicDevice sysVersion] == 5.0)
     {
         [request setValidatesSecureCertificate:NO];
     }
@@ -205,43 +205,43 @@
 }
 
 //网络POST请求上传文件
-- (DragonRequest *)DYBPOSTFILE:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive fileData:(NSDictionary *)fileDatas
+- (MagicRequest *)DYBPOSTFILE:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive fileData:(NSDictionary *)fileDatas
 {
-    DragonRequest *request = [self POSTORGET:params isAlert:isAlert receive:_receive fileData:fileDatas isPost:YES noCache:NO postType:POSTFILETYPE];
+    MagicRequest *request = [self POSTORGET:params isAlert:isAlert receive:_receive fileData:fileDatas isPost:YES noCache:NO postType:POSTFILETYPE];
     
     return request;
 }
 
 //网络POST请求为上传图片
-- (DragonRequest *)DYBPOSTIMG:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive imageData:(NSArray *)imageDatas
+- (MagicRequest *)DYBPOSTIMG:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive imageData:(NSArray *)imageDatas
 {
     NSDictionary *dictArr = [NSDictionary dictionaryWithObjectsAndKeys:imageDatas, POSTIMG, nil];
-    DragonRequest *request = [self POSTORGET:params isAlert:isAlert receive:_receive fileData:dictArr isPost:YES noCache:NO postType:POSTIMGTYPE];
+    MagicRequest *request = [self POSTORGET:params isAlert:isAlert receive:_receive fileData:dictArr isPost:YES noCache:NO postType:POSTIMGTYPE];
     
     return request;
 }
 
 //网络POST请求
-- (DragonRequest *)DYBPOST:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive
+- (MagicRequest *)DYBPOST:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive
 {
     
-    DragonRequest *request = [self POSTORGET:params isAlert:isAlert receive:_receive fileData:nil isPost:YES noCache:NO postType:POSTIMGTYPE];
+    MagicRequest *request = [self POSTORGET:params isAlert:isAlert receive:_receive fileData:nil isPost:YES noCache:NO postType:POSTIMGTYPE];
     
     return request;
 }
 
 //网络请求GET请求
-- (DragonRequest *)DYBGET:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive
+- (MagicRequest *)DYBGET:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive
 {
-    DragonRequest *request = [self POSTORGET:params isAlert:isAlert receive:_receive fileData:nil isPost:NO noCache:NO postType:POSTIMGTYPE];
+    MagicRequest *request = [self POSTORGET:params isAlert:isAlert receive:_receive fileData:nil isPost:NO noCache:NO postType:POSTIMGTYPE];
     
     return request;
 }
 
 //网络请求GET请求不需要缓存
-- (DragonRequest *)DYBGETNOCACHE:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive
+- (MagicRequest *)DYBGETNOCACHE:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive
 {
-    DragonRequest *request = [self POSTORGET:params isAlert:isAlert receive:_receive fileData:nil isPost:NO noCache:YES postType:POSTIMGTYPE];
+    MagicRequest *request = [self POSTORGET:params isAlert:isAlert receive:_receive fileData:nil isPost:NO noCache:YES postType:POSTIMGTYPE];
     
     return request;
 }
@@ -262,8 +262,8 @@
     }
     
     
-    NSString *apn = [DragonDevice networkType];
-    NSString *platom = [NSString stringWithFormat:@"ios%.f",[DragonDevice sysVersion]];
+    NSString *apn = [MagicDevice networkType];
+    NSString *platom = [NSString stringWithFormat:@"ios%.f",[MagicDevice sysVersion]];
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setValue:[dict objectForKey:INTERFACEDOACTION] forKey:@"do"];
     
@@ -288,7 +288,7 @@
     self.requestDict = params;
     
     NSString *strParam = [self getUrlParams:[params objectForKey:@"data"]];
-    NSString *jsonStr = [DragonCommentMethod encodeURL:strParam];
+    NSString *jsonStr = [MagicCommentMethod encodeURL:strParam];
     
     NSString *url = [NSString stringWithFormat:@"%@%@?%@",sendURL, [params objectForKey:@"do"], jsonStr];
     DLogInfo(@"%@ 接口的 url === %@",[params objectForKey:@"do"],url);
@@ -330,7 +330,7 @@
     }
 }
 //网络响应处理
-- (void)handleRequest:(DragonRequest *)request
+- (void)handleRequest:(MagicRequest *)request
 {
     
     DLogInfo(@"request.responseString ----- %@",request.responseString);
@@ -503,7 +503,7 @@
 }
 
 //数据库处理
-- (void)handleSql:(DragonRequest *)request response:(id)_response
+- (void)handleSql:(MagicRequest *)request response:(id)_response
 {
     JsonResponse *response = (JsonResponse *)_response;
     
@@ -708,7 +708,7 @@
 //有网删除databank数据
 -(void)haveNETdelDataBank:(NSString *)strNav  page:(NSString *)page{
     
-    if ([DragonDevice hasInternetConnection] == YES) {
+    if ([MagicDevice hasInternetConnection] == YES) {
         
         self.DB.FROM(kDATABANKCACHE).WHERE(@"userid", SHARED.userId).WHERE(@"navlist", strNav).WHERE(@"page",page).DELETE();
         
@@ -784,7 +784,7 @@
 }
 
 //保存个人动态和好友动态
-- (void)saveStatus:(NSString *)type request:(DragonRequest *)request statusList:(status_list *)statusList firstStatu:(status *)firstStatu
+- (void)saveStatus:(NSString *)type request:(MagicRequest *)request statusList:(status_list *)statusList firstStatu:(status *)firstStatu
 {
     self.DB.FROM(kYIBANSTATUSLISTTABLE).WHERE(@"type", type).WHERE(@"userid",SHARED.userId).GET();
     
@@ -856,7 +856,7 @@
 }
 
 //保存动态
-- (void)insertStatusList:(id)_response request:(DragonRequest *)request type:(NSInteger)type
+- (void)insertStatusList:(id)_response request:(MagicRequest *)request type:(NSInteger)type
 {
     JsonResponse *response = (JsonResponse *)_response;
     status_list *statusList = [status_list JSONReflection:[response data]];

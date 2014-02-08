@@ -13,11 +13,11 @@
 #import "user.h"
 #import "eclass_notice.h"
 #import "DYBCellForAnnouncement.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "DYBClassListViewController.h"
 #import "DYBClassMemberViewController.h"
 #import "eclass_topiclist.h"
-#import "UITableViewCell+DragonCategory.h"
+#import "UITableViewCell+MagicCategory.h"
 #import "UILabel+ReSize.h"
 #import "target.h"
 #import "DYBClassNoticeDetailsViewController.h"
@@ -35,11 +35,11 @@
 @synthesize str_userid=_str_userid,modelClass=_modelClass,muA_data_classList=_muA_data_classList,b_isRefresh=_b_isRefresh;
 
 #pragma mark- ViewController信号
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
     [super handleViewSignal:signal];
     
-    if ([signal is:DragonViewController.CREATE_VIEWS]) {
+    if ([signal is:MagicViewController.CREATE_VIEWS]) {
         
         if (!_str_userid) {
             _str_userid=SHARED.curUser.userid;
@@ -48,17 +48,17 @@
         
         [self refreshClassInfo];
         
-    }else if ([signal is:DragonViewController.WILL_APPEAR]){
+    }else if ([signal is:MagicViewController.WILL_APPEAR]){
         [self.headview setTitle:@"班级主页"];
 //        [self backImgType:0];
         self.rightButton.hidden=YES;
         
         if (!_bt_classList) {
             UIImage *img= [UIImage imageNamed:@"btn_classlist_def"];
-            _bt_classList = [[DragonUIButton alloc] initWithFrame:CGRectMake(self.headview.frame.size.width-img.size.width/2, 0, img.size.width/2, img.size.height/2)];
+            _bt_classList = [[MagicUIButton alloc] initWithFrame:CGRectMake(self.headview.frame.size.width-img.size.width/2, 0, img.size.width/2, img.size.height/2)];
             _bt_classList.backgroundColor=[UIColor clearColor];
             _bt_classList.tag=-4;
-            [_bt_classList addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [_bt_classList addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
 //            [_bt_classList setImage:img forState:UIControlStateNormal];
 //            [_bt_classList setImage:[UIImage imageNamed:@"btn_classlist_high"] forState:UIControlStateHighlighted];
             [_bt_classList setTitle:@"更多"];
@@ -81,7 +81,7 @@
             {//HTTP请求已加入的班级列表
                 [self.view setUserInteractionEnabled:NO];
                 
-                DragonRequest *request = [DYBHttpMethod user_myeclass_list:_str_userid isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod user_myeclass_list:_str_userid isAlert:YES receive:self];
                 [request setTag:1];
                 
             (_b_isRefresh)=NO;
@@ -100,13 +100,13 @@
             }
         }
         
-    }else if ([signal is:DragonViewController.DID_DISAPPEAR]){
+    }else if ([signal is:MagicViewController.DID_DISAPPEAR]){
         //        RELEASEVIEW(_tbv);//界面不显示时彻底释放TBV,已释放cell
         
-    }else if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    }else if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         
-    }else if ([signal is:[DragonViewController FREE_DATAS]])//dealloc时回调,先释放数据
+    }else if ([signal is:[MagicViewController FREE_DATAS]])//dealloc时回调,先释放数据
     {
         [_tbv releaseDataResource];
       
@@ -115,7 +115,7 @@
         RELEASEDICTARRAYOBJ(_muA_data_classSize);
         RELEASEDICTARRAYOBJ(_muA_data_topic);
 
-    }else if ([signal is:[DragonViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
+    }else if ([signal is:[MagicViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
         
         [_tbv release_muA_differHeightCellView];
 
@@ -156,7 +156,7 @@
     RELEASE(imgV);
     
     {
-        DragonUILabel *lb=[[DragonUILabel alloc]initWithFrame:CGRectMake(imgV.frame.origin.x+imgV.frame.size.width+10, imgV.frame.origin.y, 0, 0)];
+        MagicUILabel *lb=[[MagicUILabel alloc]initWithFrame:CGRectMake(imgV.frame.origin.x+imgV.frame.size.width+10, imgV.frame.origin.y, 0, 0)];
         lb.backgroundColor=[UIColor clearColor];
         lb.textAlignment=NSTextAlignmentLeft;
         lb.font=[DYBShareinstaceDelegate DYBFoutStyle:15];
@@ -180,7 +180,7 @@
 
 #pragma makr -
 #pragma mark - back button signal
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -193,7 +193,7 @@
 #pragma mark-
 -(void)creatTbv{
     if (!_tbv) {
-        _tbv = [[DragonUITableView alloc] initWithFrame:CGRectMake(0, _bt_topic.frame.size.height, _v_announcement_topic.frame.size.width, _v_announcement_topic.frame.size.height-_bt_topic.frame.size.height) isNeedUpdate:YES];
+        _tbv = [[MagicUITableView alloc] initWithFrame:CGRectMake(0, _bt_topic.frame.size.height, _v_announcement_topic.frame.size.width, _v_announcement_topic.frame.size.height-_bt_topic.frame.size.height) isNeedUpdate:YES];
         _tbv._cellH=45;
         //        [_tbv setTableViewType:DTableViewSlime];
         [_v_announcement_topic addSubview:_tbv];
@@ -203,7 +203,7 @@
         _tbv.i_pageNums=10;
         _tbv.separatorStyle=UITableViewCellSeparatorStyleNone;
         [_tbv setTableViewType:DTableViewSlime];
-        [_tbv setSlimeViewRefreshHeight:DragonReHeightMiddle];
+        [_tbv setSlimeViewRefreshHeight:MagicReHeightMiddle];
     }
     
 }
@@ -224,7 +224,7 @@
     RELEASE(imgV);
     
     {
-        DragonUILabel *lb=[[DragonUILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imgV.frame)+20, 0, 0)];
+        MagicUILabel *lb=[[MagicUILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imgV.frame)+20, 0, 0)];
         lb.backgroundColor=[UIColor clearColor];
         lb.textAlignment=NSTextAlignmentLeft;
         lb.font=[DYBShareinstaceDelegate DYBFoutStyle:20];
@@ -246,7 +246,7 @@
     //    [self.headview setTitle:_modelClass.name];
     
     if (!_imgV_classImg) {
-        _imgV_classImg=[[DragonUIImageView alloc]initWithFrame:CGRectMake(15,self.headHeight+15, 125,125) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self.view Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        _imgV_classImg=[[MagicUIImageView alloc]initWithFrame:CGRectMake(15,self.headHeight+15, 125,125) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self.view Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         RELEASE(_imgV_classImg);
         [_imgV_classImg setImgWithUrl:_modelClass.pic  defaultImg:@"bg_class"];
 
@@ -257,7 +257,7 @@
     }
     
     if (!_lb_name) {
-        _lb_name=[[DragonUILabel alloc]initWithFrame:CGRectMake(_imgV_classImg.frame.origin.x+_imgV_classImg.frame.size.width+10, _imgV_classImg.frame.origin.y, 160, 1000)];
+        _lb_name=[[MagicUILabel alloc]initWithFrame:CGRectMake(_imgV_classImg.frame.origin.x+_imgV_classImg.frame.size.width+10, _imgV_classImg.frame.origin.y, 160, 1000)];
         _lb_name.backgroundColor=[UIColor clearColor];
         _lb_name.textAlignment=NSTextAlignmentLeft;
         _lb_name.font=[DYBShareinstaceDelegate DYBFoutStyle:15];
@@ -265,7 +265,7 @@
 //        NSArray *array=[_modelClass.name componentsSeparatedByString:@"_"];
         NSString *muS=[NSString stringWithFormat:@"%@\n\%@\n\%@",((_modelClass.year)?(_modelClass.year):(@"")),((_modelClass.college)?(_modelClass.college):(@"")),((_modelClass.name)?(_modelClass.name):(@""))];
         _lb_name.text=muS;
-        _lb_name.textColor=[DragonCommentMethod colorWithHex:@"0x333333"];
+        _lb_name.textColor=[MagicCommentMethod colorWithHex:@"0x333333"];
         _lb_name.numberOfLines=5;
         _lb_name.lineBreakMode=NSLineBreakByTruncatingTail;
         _lb_name.linesSpacing=10;
@@ -292,16 +292,16 @@
     
     if (!_imgV_dashed) {//虚线
         UIImage *img=[UIImage imageNamed:@"class_dotline"];
-        _imgV_dashed=[[DragonUIImageView alloc]initWithFrame:CGRectMake(_lb_name.frame.origin.x,self.headHeight+110, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self.view Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        _imgV_dashed=[[MagicUIImageView alloc]initWithFrame:CGRectMake(_lb_name.frame.origin.x,self.headHeight+110, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self.view Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         RELEASE(_imgV_dashed);
     }
     
     if (!_lb_classSizeTab) {//班级人数标签
-        _lb_classSizeTab=[[DragonUILabel alloc]initWithFrame:CGRectMake(_lb_name.frame.origin.x, _imgV_dashed.frame.origin.y+5, 0, 0)];
+        _lb_classSizeTab=[[MagicUILabel alloc]initWithFrame:CGRectMake(_lb_name.frame.origin.x, _imgV_dashed.frame.origin.y+5, 0, 0)];
         _lb_classSizeTab.backgroundColor=[UIColor clearColor];
         _lb_classSizeTab.textAlignment=NSTextAlignmentLeft;
         _lb_classSizeTab.font=[DYBShareinstaceDelegate DYBFoutStyle:15];
-        _lb_classSizeTab.textColor=[DragonCommentMethod colorWithHex:@"0x333333"];
+        _lb_classSizeTab.textColor=[MagicCommentMethod colorWithHex:@"0x333333"];
         _lb_classSizeTab.numberOfLines=1;
         //        _lb_classSize.lineBreakMode=NSLineBreakByTruncatingTail;
         _lb_classSizeTab.text=@"班级人数";
@@ -319,7 +319,7 @@
     }
     
     if (!_lb_classSize) {//实际人数
-        _lb_classSize=[[DragonUILabel alloc]initWithFrame:CGRectMake(_lb_classSizeTab.frame.origin.x+_lb_classSizeTab.frame.size.width+5/**/, 0, 0, 0)];
+        _lb_classSize=[[MagicUILabel alloc]initWithFrame:CGRectMake(_lb_classSizeTab.frame.origin.x+_lb_classSizeTab.frame.size.width+5/**/, 0, 0, 0)];
         _lb_classSize.backgroundColor=[UIColor clearColor];
         _lb_classSize.textAlignment=NSTextAlignmentLeft;
         _lb_classSize.font=[DYBShareinstaceDelegate DYBFoutStyle:30];
@@ -344,16 +344,16 @@
     
     if (!_imgV_arrow) {//右箭头
         UIImage *img=[UIImage imageNamed:@"doublearrow_left"];
-        _imgV_arrow=[[DragonUIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width-15-img.size.width/2,_lb_classSizeTab.frame.origin.y+_lb_classSizeTab.frame.size.height-img.size.height/2-2, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self.view Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        _imgV_arrow=[[MagicUIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width-15-img.size.width/2,_lb_classSizeTab.frame.origin.y+_lb_classSizeTab.frame.size.height-img.size.height/2-2, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self.view Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         RELEASE(_imgV_arrow);
     }
     
     if (!_bt_gotoClassDetail) {
         //        UIImage *img= [UIImage imageNamed:@"info_notes_def"];
-        _bt_gotoClassDetail = [[DragonUIButton alloc] initWithFrame:CGRectMake(_lb_classSizeTab.frame.origin.x, _imgV_dashed.frame.origin.y, self.view.frame.size.width-_lb_classSizeTab.frame.origin.x, 35)];
+        _bt_gotoClassDetail = [[MagicUIButton alloc] initWithFrame:CGRectMake(_lb_classSizeTab.frame.origin.x, _imgV_dashed.frame.origin.y, self.view.frame.size.width-_lb_classSizeTab.frame.origin.x, 35)];
         _bt_gotoClassDetail.backgroundColor=[UIColor clearColor];
         _bt_gotoClassDetail.tag=-1;
-        [_bt_gotoClassDetail addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+        [_bt_gotoClassDetail addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
         //        [_bt_gotoClassDetail setImage:img forState:UIControlStateNormal];
         //        [_bt_notice setImage:[UIImage imageNamed:@"info_notes_high"] forState:UIControlStateHighlighted];
         [self.view addSubview:_bt_gotoClassDetail];
@@ -378,13 +378,13 @@
     
     if (!_bt_announcement) {//公告
         //        UIImage *img= [UIImage imageNamed:@"info_notes_def"];
-        _bt_announcement = [[DragonUIButton alloc] initWithFrame:CGRectMake(0, 0, 95, 37)];
+        _bt_announcement = [[MagicUIButton alloc] initWithFrame:CGRectMake(0, 0, 95, 37)];
         _bt_announcement.backgroundColor=[UIColor clearColor];
         _bt_announcement.tag=-2;
         [_bt_announcement setTitle:@"公告"];
         [_bt_announcement setTitleFont:[DYBShareinstaceDelegate DYBFoutStyle:15]];
         [_bt_announcement setTitleColor:ColorBlack];
-        [_bt_announcement addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+        [_bt_announcement addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
         //        [_bt_gotoClassDetail setImage:img forState:UIControlStateNormal];
         //        [_bt_notice setImage:[UIImage imageNamed:@"info_notes_high"] forState:UIControlStateHighlighted];
         [_v_announcement_topic addSubview:_bt_announcement];
@@ -395,19 +395,19 @@
     
     if (!_imgv_verticalDashedLine) {//竖虚线
         UIImage *img=[UIImage imageNamed:@"dotsepline"];
-        _imgv_verticalDashedLine=[[DragonUIImageView alloc]initWithFrame:CGRectMake(_bt_announcement.frame.origin.x+_bt_announcement.frame.size.width+img.size.width/2,_bt_announcement.frame.origin.y+_bt_announcement.frame.size.height/2-img.size.height/4, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_announcement_topic Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        _imgv_verticalDashedLine=[[MagicUIImageView alloc]initWithFrame:CGRectMake(_bt_announcement.frame.origin.x+_bt_announcement.frame.size.width+img.size.width/2,_bt_announcement.frame.origin.y+_bt_announcement.frame.size.height/2-img.size.height/4, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_announcement_topic Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         _imgv_verticalDashedLine.hidden=YES;
         RELEASE(_imgv_verticalDashedLine);
     }
     if (!_bt_topic) {//话题
         //        UIImage *img= [UIImage imageNamed:@"info_notes_def"];
-        _bt_topic = [[DragonUIButton alloc] initWithFrame:CGRectMake(_imgv_verticalDashedLine.frame.origin.x+_imgv_verticalDashedLine.frame.size.width+2, 0, _bt_announcement.frame.size.width, _bt_announcement.frame.size.height)];
+        _bt_topic = [[MagicUIButton alloc] initWithFrame:CGRectMake(_imgv_verticalDashedLine.frame.origin.x+_imgv_verticalDashedLine.frame.size.width+2, 0, _bt_announcement.frame.size.width, _bt_announcement.frame.size.height)];
         _bt_topic.backgroundColor=[UIColor clearColor];
         _bt_topic.tag=-3;
         [_bt_topic setTitle:@"话题"];
         [_bt_topic setTitleFont:[DYBShareinstaceDelegate DYBFoutStyle:15]];
         [_bt_topic setTitleColor:ColorGray];
-        [_bt_topic addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+        [_bt_topic addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
         //        [_bt_gotoClassDetail setImage:img forState:UIControlStateNormal];
         //        [_bt_notice setImage:[UIImage imageNamed:@"info_notes_high"] forState:UIControlStateHighlighted];
         [_v_announcement_topic addSubview:_bt_topic];
@@ -419,7 +419,7 @@
     
     if (!_imgV_arrowUp) {//tbv顶部的箭头
         UIImage *img=[UIImage imageNamed:@"icon_arrow_up"];
-        _imgV_arrowUp=[[DragonUIImageView alloc]initWithFrame:CGRectMake(_bt_announcement.frame.origin.x+_bt_announcement.frame.size.width/2-img.size.width/4,_tbv.frame.origin.y-img.size.height/2, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_announcement_topic Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        _imgV_arrowUp=[[MagicUIImageView alloc]initWithFrame:CGRectMake(_bt_announcement.frame.origin.x+_bt_announcement.frame.size.width/2-img.size.width/4,_tbv.frame.origin.y-img.size.height/2, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_announcement_topic Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         
         RELEASE(_imgV_arrowUp);
     }
@@ -429,19 +429,19 @@
 
 static NSString *cellName = @"cellName";
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
     {
         NSNumber *s = [NSNumber numberWithInteger:((_bt_announcement.selected)?(_muA_data_announcement.count):(_muA_data_topic.count))];
         [signal setReturnValue:s];
         
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
     {
         NSNumber *s = [NSNumber numberWithInteger:1];
         [signal setReturnValue:s];
     }
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -471,11 +471,11 @@ static NSString *cellName = @"cellName";
         }
         
     }
-    else if ([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
     {
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
     {
         //        NSDictionary *dict = (NSDictionary *)[signal object];
         //        UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -483,12 +483,12 @@ static NSString *cellName = @"cellName";
         [signal setReturnValue:nil];
         
     }//
-    else if ([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
     {
         [signal setReturnValue:[NSNumber numberWithFloat:0.0]];
         
     }
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell  只返回显示的cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell  只返回显示的cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableview = [dict objectForKey:@"tableView"];
@@ -502,7 +502,7 @@ static NSString *cellName = @"cellName";
         
         [signal setReturnValue:cell];
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableview = [dict objectForKey:@"tableView"];
@@ -530,9 +530,9 @@ static NSString *cellName = @"cellName";
 
         
     }    
-    else if ([signal is:[DragonUITableView TAbLEVIEWLODATA]])//加载更多
+    else if ([signal is:[MagicUITableView TAbLEVIEWLODATA]])//加载更多
     {
-        DragonUITableView *tableView = (DragonUITableView *)[signal source];
+        MagicUITableView *tableView = (MagicUITableView *)[signal source];
         
         if (_bt_announcement.selected) {
             
@@ -540,7 +540,7 @@ static NSString *cellName = @"cellName";
             {//HTTP请求,话题
                 [self.view setUserInteractionEnabled:NO];
                 
-                DragonRequest *request = [DYBHttpMethod eclass_topiclist:_modelClass.id offset:[NSString stringWithFormat:@"%d",_muA_data_topic.count] limit:[NSString stringWithFormat:@"%d",_tbv.i_pageNums] isAlert:NO receive:self];
+                MagicRequest *request = [DYBHttpMethod eclass_topiclist:_modelClass.id offset:[NSString stringWithFormat:@"%d",_muA_data_topic.count] limit:[NSString stringWithFormat:@"%d",_tbv.i_pageNums] isAlert:NO receive:self];
                 [request setTag:5];
                 
                 if (!request) {//无网路
@@ -549,17 +549,17 @@ static NSString *cellName = @"cellName";
             }
         }
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]])//刷新
+    else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]])//刷新
     {
         
-        DragonUITableView *tableView = (DragonUITableView *)[signal source];
+        MagicUITableView *tableView = (MagicUITableView *)[signal source];
         
         {//HTTP请求,班级公告|话题
             
             if (_bt_announcement.selected) {
                 [self.view setUserInteractionEnabled:NO];
                 
-                DragonRequest *request = [DYBHttpMethod classNoticeList_id:_modelClass.id isAlert:NO receive:self];
+                MagicRequest *request = [DYBHttpMethod classNoticeList_id:_modelClass.id isAlert:NO receive:self];
                 [request setTag:3];
                 
                 if (!request) {//无网路
@@ -570,7 +570,7 @@ static NSString *cellName = @"cellName";
                 {//HTTP请求,话题
                     [self.view setUserInteractionEnabled:NO];
                     
-                    DragonRequest *request = [DYBHttpMethod eclass_topiclist:_modelClass.id offset:@"0" limit:[NSString stringWithFormat:@"%d",_tbv.i_pageNums] isAlert:NO receive:self];
+                    MagicRequest *request = [DYBHttpMethod eclass_topiclist:_modelClass.id offset:@"0" limit:[NSString stringWithFormat:@"%d",_tbv.i_pageNums] isAlert:NO receive:self];
                     [request setTag:4];
                     
                     if (!request) {//无网路
@@ -588,9 +588,9 @@ static NSString *cellName = @"cellName";
 }
 
 #pragma mark- 接受按钮信号
-- (void)handleViewSignal_DragonUIButton:(DragonViewSignal *)signal{
-    if ([signal is:[DragonUIButton TOUCH_UP_INSIDE]]) {
-        DragonUIButton *bt=(DragonUIButton *)signal.source;
+- (void)handleViewSignal_MagicUIButton:(MagicViewSignal *)signal{
+    if ([signal is:[MagicUIButton TOUCH_UP_INSIDE]]) {
+        MagicUIButton *bt=(MagicUIButton *)signal.source;
         if (bt)
         {
             switch (bt.tag) {
@@ -624,7 +624,7 @@ static NSString *cellName = @"cellName";
                         {//HTTP请求,班级公告
                             [self.view setUserInteractionEnabled:NO];
                             
-                            DragonRequest *request = [DYBHttpMethod classNoticeList_id:_modelClass.id isAlert:YES receive:self];
+                            MagicRequest *request = [DYBHttpMethod classNoticeList_id:_modelClass.id isAlert:YES receive:self];
                             [request setTag:3];
                             
                             
@@ -665,7 +665,7 @@ static NSString *cellName = @"cellName";
                         {//HTTP请求,话题
                             [self.view setUserInteractionEnabled:NO];
                             
-                            DragonRequest *request = [DYBHttpMethod eclass_topiclist:_modelClass.id offset:@"0" limit:[NSString stringWithFormat:@"%d",_tbv.i_pageNums] isAlert:YES receive:self];
+                            MagicRequest *request = [DYBHttpMethod eclass_topiclist:_modelClass.id offset:@"0" limit:[NSString stringWithFormat:@"%d",_tbv.i_pageNums] isAlert:YES receive:self];
                             [request setTag:4];
                             
                             
@@ -705,7 +705,7 @@ static NSString *cellName = @"cellName";
 }
 
 #pragma mark- 只接受HTTP信号
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if ([request succeed])
     {
@@ -765,7 +765,7 @@ static NSString *cellName = @"cellName";
                             {//HTTP请求,班级(人数)详情
                                 [self.view setUserInteractionEnabled:NO];
                                 
-                                DragonRequest *request = [DYBHttpMethod eclass_detail:_modelClass.id num:10000 page:1 isAlert:YES receive:self];
+                                MagicRequest *request = [DYBHttpMethod eclass_detail:_modelClass.id num:10000 page:1 isAlert:YES receive:self];
                                 [request setTag:2];
                                 
 //                                if (!request) {//无网路
@@ -776,7 +776,7 @@ static NSString *cellName = @"cellName";
                             if(_bt_announcement.selected){//HTTP请求,班级公告
                                 [self.view setUserInteractionEnabled:NO];
                                 
-                                DragonRequest *request = [DYBHttpMethod classNoticeList_id:_modelClass.id isAlert:YES receive:self];
+                                MagicRequest *request = [DYBHttpMethod classNoticeList_id:_modelClass.id isAlert:YES receive:self];
                                 [request setTag:3];
                                 
 //                                if (!request) {//无网路
@@ -786,7 +786,7 @@ static NSString *cellName = @"cellName";
                                 {//HTTP请求,话题
                                     [self.view setUserInteractionEnabled:NO];
                                     
-                                    DragonRequest *request = [DYBHttpMethod eclass_topiclist:_modelClass.id offset:@"0" limit:[NSString stringWithFormat:@"%d",_tbv.i_pageNums] isAlert:YES receive:self];
+                                    MagicRequest *request = [DYBHttpMethod eclass_topiclist:_modelClass.id offset:@"0" limit:[NSString stringWithFormat:@"%d",_tbv.i_pageNums] isAlert:YES receive:self];
                                     [request setTag:4];
                                     
                                     if (!request) {//无网路

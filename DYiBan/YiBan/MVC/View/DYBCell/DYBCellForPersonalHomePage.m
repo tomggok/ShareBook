@@ -7,7 +7,7 @@
 //
 
 #import "DYBCellForPersonalHomePage.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "status.h"
 #import "UITableView+property.h"
 #import "NSString+Count.h"
@@ -16,7 +16,7 @@
 #import "good_num_info.h"
 #import "comment_num_info.h"
 #import "UIView+Animations.h"
-#import "UITableViewCell+DragonCategory.h"
+#import "UITableViewCell+MagicCategory.h"
 
 @implementation DYBCellForPersonalHomePage
 
@@ -31,7 +31,7 @@
     switch (indexPath.row) {
         case 0://透明展示图
         {
-            DragonUIScrollView *scrV=data;
+            MagicUIScrollView *scrV=data;
             
             self.backgroundColor             = [UIColor clearColor];
             self.contentView.backgroundColor = [UIColor clearColor];
@@ -108,7 +108,7 @@
     
     if(!_imgV_headBack){//头像背景
 //        UIImage *img=[UIImage imageNamed:@"no_pic_50.png"];
-        _imgV_headBack = [[DragonUIImageView alloc] initWithFrame:CGRectMake(10, -30, 80,80) backgroundColor:[UIColor whiteColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        _imgV_headBack = [[MagicUIImageView alloc] initWithFrame:CGRectMake(10, -30, 80,80) backgroundColor:[UIColor whiteColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         [_imgV_headBack setNeedRadius:YES];
 //        _imgV_headBack.center=CGPointMake(self.center.x, 0);
         RELEASE(_imgV_headBack);
@@ -120,7 +120,7 @@
     
     if(!_imgV_head){//头像
         UIImage *img=[UIImage imageNamed:@"no_pic_50.png"];
-        _imgV_head = [[DragonUIImageView alloc] initWithFrame:CGRectMake(0, 0, 75,75) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_imgV_headBack Alignment:2 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        _imgV_head = [[MagicUIImageView alloc] initWithFrame:CGRectMake(0, 0, 75,75) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_imgV_headBack Alignment:2 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         [_imgV_head setNeedRadius:YES];
 //        _imgV_head.layer.borderWidth=4;
 //        _imgV_head.layer.borderColor=ColorWhite.CGColor;
@@ -128,9 +128,9 @@
         _imgV_head.tag=7;
         [_imgV_head addSignal:[UIView TAP] object:nil];
 //        {
-//            DragonUIButton *bt=[[DragonUIButton alloc]initWithFrame:_imgV_head.bounds];
+//            MagicUIButton *bt=[[MagicUIButton alloc]initWithFrame:_imgV_head.bounds];
 //            bt.backgroundColor=[UIColor redColor];
-//            [bt addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+//            [bt addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
 //            [_imgV_head addSubview:bt];
 //            bt.tag=15;
 //            RELEASE(bt);
@@ -156,9 +156,9 @@
     
 //    if(!_bt_pushUpNumsArea){//顶的人数区域
 //        UIImage *img= [UIImage imageNamed:@"grzy_5"];
-//        _bt_pushUpNumsArea = [[DragonUIButton alloc] initWithFrame:CGRectMake(12, 11, img.size.width/2, img.size.height/2)];
+//        _bt_pushUpNumsArea = [[MagicUIButton alloc] initWithFrame:CGRectMake(12, 11, img.size.width/2, img.size.height/2)];
 //        _bt_pushUpNumsArea.tag=-8;
-//        [_bt_pushUpNumsArea addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
+//        [_bt_pushUpNumsArea addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
 //        [_bt_pushUpNumsArea setBackgroundImage:img forState:UIControlStateNormal];
 //        [_bt_pushUpNumsArea setTitle:(([data isKindOfClass:[user class]])?(model_user.avatarTopCount):(@"0"))];
 //        _bt_pushUpNumsArea.showsTouchWhenHighlighted=YES;
@@ -173,9 +173,9 @@
     
 //    if(!_bt_pushUp){//顶
 //        UIImage *img= [UIImage imageNamed:@"grzy_6"];
-//        _bt_pushUp = [[DragonUIButton alloc] initWithFrame:CGRectMake(_bt_pushUpNumsArea.frame.origin.x+_bt_pushUpNumsArea.frame.size.width-2, _bt_pushUpNumsArea.frame.origin.y, img.size.width/2,img.size.height/2)];
+//        _bt_pushUp = [[MagicUIButton alloc] initWithFrame:CGRectMake(_bt_pushUpNumsArea.frame.origin.x+_bt_pushUpNumsArea.frame.size.width-2, _bt_pushUpNumsArea.frame.origin.y, img.size.width/2,img.size.height/2)];
 //        _bt_pushUp.tag=-6;
-//        [_bt_pushUp addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
+//        [_bt_pushUp addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
 //        [_bt_pushUp setBackgroundImage:img forState:UIControlStateNormal];
 //        [_bt_pushUp setTitle:@"顶"];
 //        [_bt_pushUpNumsArea setTitleFont:/*[DYBShareinstaceDelegate DYBFoutStyle:15]*/ [UIFont systemFontOfSize:15]];
@@ -189,9 +189,9 @@
     
 //    if(!_bt_stamp){//踩
 //        UIImage *img= [UIImage imageNamed:@"grzy_7"];
-//        _bt_stamp = [[DragonUIButton alloc] initWithFrame:CGRectMake(_imgV_headBack.frame.origin.x+_imgV_headBack.frame.size.width+5, _bt_pushUp.frame.origin.y, _bt_pushUp.frame.size.width, _bt_pushUp.frame.size.height)];
+//        _bt_stamp = [[MagicUIButton alloc] initWithFrame:CGRectMake(_imgV_headBack.frame.origin.x+_imgV_headBack.frame.size.width+5, _bt_pushUp.frame.origin.y, _bt_pushUp.frame.size.width, _bt_pushUp.frame.size.height)];
 //        _bt_stamp.tag=-7;
-//        [_bt_stamp addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
+//        [_bt_stamp addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
 //        [_bt_stamp setBackgroundImage:img forState:UIControlStateNormal];
 //        [_bt_stamp setTitle:@"踩"];
 //        [_bt_stamp setTitleFont:/*[DYBShareinstaceDelegate DYBFoutStyle:15]*/ [UIFont systemFontOfSize:15]];
@@ -205,9 +205,9 @@
     
 //    if(!_bt_stampNumsArea){//踩的人数区域
 //        UIImage *img= [UIImage imageNamed:@"grzy_8"];
-//        _bt_stampNumsArea = [[DragonUIButton alloc] initWithFrame:CGRectMake(_bt_stamp.frame.origin.x+_bt_stamp.frame.size.width-1, _bt_stamp.frame.origin.y, _bt_pushUpNumsArea.frame.size.width, _bt_pushUpNumsArea.frame.size.height)];
+//        _bt_stampNumsArea = [[MagicUIButton alloc] initWithFrame:CGRectMake(_bt_stamp.frame.origin.x+_bt_stamp.frame.size.width-1, _bt_stamp.frame.origin.y, _bt_pushUpNumsArea.frame.size.width, _bt_pushUpNumsArea.frame.size.height)];
 //        _bt_stampNumsArea.tag=-9;
-//        [_bt_stampNumsArea addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
+//        [_bt_stampNumsArea addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
 //        [_bt_stampNumsArea setBackgroundImage:img forState:UIControlStateNormal];
 //        [_bt_stampNumsArea setTitle:(([data isKindOfClass:[user class]])?(model_user.avatarTreadCount):(@"0"))];
 //        [_bt_stampNumsArea setTitleFont:/*[DYBShareinstaceDelegate DYBFoutStyle:15]*/ [UIFont systemFontOfSize:15]];
@@ -231,7 +231,7 @@
     
 //    if (!_imgV_signRightView) {/*签名右边的图标*/
 //        UIImage *img=[UIImage imageNamed:@"grzy_13"];
-//        _imgV_signRightView=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(_v_sign.frame)-img.size.width/2-5, 0, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_v_sign Alignment:1 contentMode:UIViewContentModeScaleToFill stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+//        _imgV_signRightView=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(_v_sign.frame)-img.size.width/2-5, 0, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_v_sign Alignment:1 contentMode:UIViewContentModeScaleToFill stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
 ////        _imgV_signRightView.tag=0;
 ////        [_v_sign addSignal:[UIView TAP] object:nil];
 ////        [_v_sign addSubview:_imgV_signRightView];
@@ -281,9 +281,9 @@
     
     if(!_bt_friend){//好友
         //                UIImage *img= [UIImage imageNamed:@"noinfo.png"];
-        _bt_friend = [[DragonUIButton alloc] initWithFrame:CGRectMake(0, _v_sepLine1.frame.origin.y+_v_sepLine1.frame.size.height, self.frame.size.width/4, 50)];
+        _bt_friend = [[MagicUIButton alloc] initWithFrame:CGRectMake(0, _v_sepLine1.frame.origin.y+_v_sepLine1.frame.size.height, self.frame.size.width/4, 50)];
         _bt_friend.tag=-1;
-        [_bt_friend addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
+        [_bt_friend addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
         //                [_bt_noInfo setBackgroundImage:img forState:UIControlStateNormal];
 //        [_bt_friend setTitle:@"好友"];
 //        [_bt_friend setTitleColor:[UIColor yellowColor]];
@@ -337,7 +337,7 @@
         
     {//竖线
         UIImage *img=[UIImage imageNamed:@"grzy_15_03.png"];
-        DragonUIImageView *imgV = [[DragonUIImageView alloc] initWithFrame:CGRectMake(_bt_friend.frame.size.width-img.size.width/4, 0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_bt_friend Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        MagicUIImageView *imgV = [[MagicUIImageView alloc] initWithFrame:CGRectMake(_bt_friend.frame.size.width-img.size.width/4, 0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_bt_friend Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         //        _imgV_head.center=CGPointMake(self.center.x, 0);
         RELEASE(imgV);
     }
@@ -345,9 +345,9 @@
 
     if(!_bt_visitor){//访客
         //                UIImage *img= [UIImage imageNamed:@"noinfo.png"];
-        _bt_visitor = [[DragonUIButton alloc] initWithFrame:CGRectMake(_bt_friend.frame.origin.x+_bt_friend.frame.size.width, _bt_friend.frame.origin.y, _bt_friend.frame.size.width, _bt_friend.frame.size.height)];
+        _bt_visitor = [[MagicUIButton alloc] initWithFrame:CGRectMake(_bt_friend.frame.origin.x+_bt_friend.frame.size.width, _bt_friend.frame.origin.y, _bt_friend.frame.size.width, _bt_friend.frame.size.height)];
         _bt_visitor.tag=-2;
-        [_bt_visitor addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
+        [_bt_visitor addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
         //                [_bt_noInfo setBackgroundImage:img forState:UIControlStateNormal];
 //        [_bt_visitor setTitle:@"访客"];
 //        [_bt_visitor setTitleColor:[UIColor yellowColor]];
@@ -399,7 +399,7 @@
         
         {//竖线
             UIImage *img=[UIImage imageNamed:@"grzy_15_03.png"];
-            DragonUIImageView *imgV = [[DragonUIImageView alloc] initWithFrame:CGRectMake(_bt_visitor.frame.size.width-img.size.width/4, 0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_bt_visitor Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            MagicUIImageView *imgV = [[MagicUIImageView alloc] initWithFrame:CGRectMake(_bt_visitor.frame.size.width-img.size.width/4, 0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_bt_visitor Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             //        _imgV_head.center=CGPointMake(self.center.x, 0);
             RELEASE(imgV);
         }
@@ -407,9 +407,9 @@
     
     if(!_bt_PhotoAlbum){//相册
         //                UIImage *img= [UIImage imageNamed:@"noinfo.png"];
-        _bt_PhotoAlbum = [[DragonUIButton alloc] initWithFrame:CGRectMake(_bt_visitor.frame.origin.x+_bt_visitor.frame.size.width, _bt_visitor.frame.origin.y, _bt_visitor.frame.size.width, _bt_visitor.frame.size.height)];
+        _bt_PhotoAlbum = [[MagicUIButton alloc] initWithFrame:CGRectMake(_bt_visitor.frame.origin.x+_bt_visitor.frame.size.width, _bt_visitor.frame.origin.y, _bt_visitor.frame.size.width, _bt_visitor.frame.size.height)];
         _bt_PhotoAlbum.tag=-3;
-        [_bt_PhotoAlbum addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
+        [_bt_PhotoAlbum addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
         //                [_bt_noInfo setBackgroundImage:img forState:UIControlStateNormal];
 //        [_bt_PhotoAlbum setTitle:@"相册"];
 //        [_bt_PhotoAlbum setTitleColor:[UIColor yellowColor]];
@@ -461,7 +461,7 @@
         
         {//竖线
             UIImage *img=[UIImage imageNamed:@"grzy_15_03.png"];
-            DragonUIImageView *imgV = [[DragonUIImageView alloc] initWithFrame:CGRectMake(_bt_PhotoAlbum.frame.size.width-img.size.width/4, 0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_bt_PhotoAlbum Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            MagicUIImageView *imgV = [[MagicUIImageView alloc] initWithFrame:CGRectMake(_bt_PhotoAlbum.frame.size.width-img.size.width/4, 0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_bt_PhotoAlbum Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             //        _imgV_head.center=CGPointMake(self.center.x, 0);
             RELEASE(imgV);
         }
@@ -469,9 +469,9 @@
     
     if(!_bt_datum){//资料
         //                UIImage *img= [UIImage imageNamed:@"noinfo.png"];
-        _bt_datum = [[DragonUIButton alloc] initWithFrame:CGRectMake(_bt_PhotoAlbum.frame.origin.x+_bt_PhotoAlbum.frame.size.width, _bt_PhotoAlbum.frame.origin.y, _bt_PhotoAlbum.frame.size.width, _bt_PhotoAlbum.frame.size.height)];
+        _bt_datum = [[MagicUIButton alloc] initWithFrame:CGRectMake(_bt_PhotoAlbum.frame.origin.x+_bt_PhotoAlbum.frame.size.width, _bt_PhotoAlbum.frame.origin.y, _bt_PhotoAlbum.frame.size.width, _bt_PhotoAlbum.frame.size.height)];
         _bt_datum.tag=-4;
-        [_bt_datum addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
+        [_bt_datum addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
         //                [_bt_noInfo setBackgroundImage:img forState:UIControlStateNormal];
 //        [_bt_datum setTitle:@"资料"];
 //        [_bt_datum setTitleColor:[UIColor yellowColor]];
@@ -548,7 +548,7 @@
     
     if(!_imgV_icon){//
         UIImage *img=[UIImage imageNamed:@"grzy_4.png"];
-        _imgV_icon = [[DragonUIImageView alloc] initWithFrame:CGRectMake(35, 20, img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        _imgV_icon = [[MagicUIImageView alloc] initWithFrame:CGRectMake(35, 20, img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         //        _imgV_head.center=CGPointMake(self.center.x, 0);
         RELEASE(_imgV_icon);
     }
@@ -616,7 +616,7 @@
     
     {//
         UIImage *img=[UIImage imageNamed:@"ybx_small.png"];
-        _imgV_icon = [[DragonUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMinX(_lb_content.frame)-5-img.size.width/2, CGRectGetMinY(_lb_content.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        _imgV_icon = [[MagicUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMinX(_lb_content.frame)-5-img.size.width/2, CGRectGetMinY(_lb_content.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         //        _imgV_head.center=CGPointMake(self.center.x, 0);
         RELEASE(_imgV_icon);
     }
@@ -639,7 +639,7 @@
     
     if(!_imgV_icon){//
         UIImage *img=[UIImage imageNamed:@"grzy_3.png"];
-        _imgV_icon = [[DragonUIImageView alloc] initWithFrame:CGRectMake(35, 20, img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        _imgV_icon = [[MagicUIImageView alloc] initWithFrame:CGRectMake(35, 20, img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         //        _imgV_head.center=CGPointMake(self.center.x, 0);
         RELEASE(_imgV_icon);
     }
@@ -831,7 +831,7 @@
                 }
 
                 if ([_dynamicStatus.good_num intValue] > 0 && _dynamicStatus.type !=15) {
-                    DragonUIImageView *_imgDevingLine = [[DragonUIImageView alloc] initWithFrame:CGRectMake(/*58*/ CGRectGetMinX(v_back.frame), fHeight+13, /*250*/ CGRectGetWidth(v_back.frame), 1) backgroundColor:[UIColor clearColor] image:[UIImage imageNamed:@"comment_sepline.png"] isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                    MagicUIImageView *_imgDevingLine = [[MagicUIImageView alloc] initWithFrame:CGRectMake(/*58*/ CGRectGetMinX(v_back.frame), fHeight+13, /*250*/ CGRectGetWidth(v_back.frame), 1) backgroundColor:[UIColor clearColor] image:[UIImage imageNamed:@"comment_sepline.png"] isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
 
                     [self addSubview:_imgDevingLine];
                     RELEASE(_imgDevingLine);
@@ -883,7 +883,7 @@
             }
             //
             if (fHeight > fTailHeight) {//有评论或赞
-                DragonUIImageView *viewBKG = [self DynamicLikeandCommentBackground:fTailHeight bottomHeight:fHeight :v_back];
+                MagicUIImageView *viewBKG = [self DynamicLikeandCommentBackground:fTailHeight bottomHeight:fHeight :v_back];
                 [self addSubview:viewBKG];
 //                [self sendSubviewToBack:viewBKG];
                 [self insertSubview:viewBKG aboveSubview:v_back];
@@ -897,7 +897,7 @@
 //            fHeight = fHeight+10;
             
 //            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, fHeight-1, self.frame.size.width, .5f)];
-//            [lineView setBackgroundColor:[DragonCommentMethod colorWithHex:@"e5e5e5"]];
+//            [lineView setBackgroundColor:[MagicCommentMethod colorWithHex:@"e5e5e5"]];
 //            [self addSubview:lineView];
 //            RELEASE(lineView);
             
@@ -919,7 +919,7 @@
 -(float)DynamicUserInfo:(NSString *)userName userPortraitURL:(NSString *)userPortraitURL{
     float fHeight = 50.0f;
     
-    DragonUIImageView *_imgUserPortrait = [[DragonUIImageView alloc] initWithFrame:CGRectMake(15, 15, 30, 30) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+    MagicUIImageView *_imgUserPortrait = [[MagicUIImageView alloc] initWithFrame:CGRectMake(15, 15, 30, 30) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
     [_imgUserPortrait setNeedRadius:YES];
     
     NSString *encondeUrl= [userPortraitURL stringByAddingPercentEscapesUsingEncoding];
@@ -933,7 +933,7 @@
     }
     RELEASE(_imgUserPortrait);
     
-    DragonUILabel *_lbUserName = [[DragonUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_imgUserPortrait.frame)+10, CGRectGetMinY(_imgUserPortrait.frame), 200, 30)];
+    MagicUILabel *_lbUserName = [[MagicUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_imgUserPortrait.frame)+10, CGRectGetMinY(_imgUserPortrait.frame), 200, 30)];
     [_lbUserName setBackgroundColor:[UIColor clearColor]];
     [_lbUserName setTextAlignment:NSTextAlignmentLeft];
     [_lbUserName setFont:[UIFont boldSystemFontOfSize:16.0f]];
@@ -954,7 +954,7 @@
     UIImage *_imgDividingLine = [UIImage imageNamed:@"share_dotline.png"];//转的内容的上下的横分割线
     
     if (bShare) {//转发部分的顶部横虚线
-        DragonUIImageView * _topDividingLine = [[DragonUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMinX(backView.frame)+10, fHeight+15 , /*backView.frame.size.width*/ backView.frame.size.width-20, /*2*/ _imgDividingLine.size.height) backgroundColor:[UIColor clearColor] image:_imgDividingLine isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        MagicUIImageView * _topDividingLine = [[MagicUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMinX(backView.frame)+10, fHeight+15 , /*backView.frame.size.width*/ backView.frame.size.width-20, /*2*/ _imgDividingLine.size.height) backgroundColor:[UIColor clearColor] image:_imgDividingLine isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         RELEASE(_topDividingLine);
         fHeight=CGRectGetMaxY(_topDividingLine.frame);
         
@@ -1006,7 +1006,7 @@
         NSInteger nIMAGECount  = [arrIMG count];
         
         for (int nIndex = 0; nIndex < nIMAGECount; nIndex ++) {
-            DragonUIImageView *_imgDynamicIMAGE = [[DragonUIImageView alloc] initWithFrame:CGRectMake(_lbSelfContent.frame.origin.x+70*nIndex, CGRectGetMaxY(_lbSelfContent.frame)+15+nIndex/3*85, 60, 75) backgroundColor:[UIColor redColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleToFill stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            MagicUIImageView *_imgDynamicIMAGE = [[MagicUIImageView alloc] initWithFrame:CGRectMake(_lbSelfContent.frame.origin.x+70*nIndex, CGRectGetMaxY(_lbSelfContent.frame)+15+nIndex/3*85, 60, 75) backgroundColor:[UIColor redColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleToFill stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             _imgDynamicIMAGE.tag=6;
             
             if (nIndex > 2) {
@@ -1039,11 +1039,11 @@
     
     if (bShare) {//转发部分的底部横虚线
         if ([arrIMG count] > 0) {
-            DragonUIImageView *_bottomDividingLine = [[DragonUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMinX(backView.frame)+10, /*fStartY*/ fHeight+15, backView.frame.size.width-20, _imgDividingLine.size.height) backgroundColor:[UIColor clearColor] image:_imgDividingLine isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            MagicUIImageView *_bottomDividingLine = [[MagicUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMinX(backView.frame)+10, /*fStartY*/ fHeight+15, backView.frame.size.width-20, _imgDividingLine.size.height) backgroundColor:[UIColor clearColor] image:_imgDividingLine isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             RELEASE(_bottomDividingLine);
             fHeight = /*CGRectGetMaxY*/ CGRectGetMaxY(_bottomDividingLine.frame);
         }else{
-            DragonUIImageView *_bottomDividingLine = [[DragonUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMinX(backView.frame)+10, /*fStartY*/ fHeight+15, backView.frame.size.width-20, _imgDividingLine.size.height) backgroundColor:[UIColor clearColor] image:_imgDividingLine isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            MagicUIImageView *_bottomDividingLine = [[MagicUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMinX(backView.frame)+10, /*fStartY*/ fHeight+15, backView.frame.size.width-20, _imgDividingLine.size.height) backgroundColor:[UIColor clearColor] image:_imgDividingLine isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             RELEASE(_bottomDividingLine);
             fHeight = /*CGRectGetMaxY*/ CGRectGetMaxY(_bottomDividingLine.frame);
         }
@@ -1070,10 +1070,10 @@
     
     _strLikers = [_strLikers stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
-    DragonUIImageView *_iconLike = [[DragonUIImageView alloc] initWithFrame:CGRectMake(65+25, fStartY + 10, 20, 20) backgroundColor:[UIColor clearColor] image:_imgLike isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+    MagicUIImageView *_iconLike = [[MagicUIImageView alloc] initWithFrame:CGRectMake(65+25, fStartY + 10, 20, 20) backgroundColor:[UIColor clearColor] image:_imgLike isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
     
     
-    DragonUILabel *_lbLikeCount = [[DragonUILabel alloc] initWithFrame:CGRectMake(/*247*/ CGRectGetMaxX(_iconLike.frame)+10, CGRectGetMinY(_iconLike.frame)+4, 59, 25)];
+    MagicUILabel *_lbLikeCount = [[MagicUILabel alloc] initWithFrame:CGRectMake(/*247*/ CGRectGetMaxX(_iconLike.frame)+10, CGRectGetMinY(_iconLike.frame)+4, 59, 25)];
     [_lbLikeCount setBackgroundColor:[UIColor clearColor]];
     [_lbLikeCount setTextAlignment:NSTextAlignmentRight];
     [_lbLikeCount setFont:[DYBShareinstaceDelegate DYBFoutStyle:11]];
@@ -1085,7 +1085,7 @@
     //调整frame，保证离屏幕右边距20px
     [_lbLikeCount setFrame:CGRectMake(CGRectGetWidth(self.frame)-20-CGRectGetWidth(_lbLikeCount.frame), CGRectGetMinY(_lbLikeCount.frame), CGRectGetWidth(_lbLikeCount.frame), CGRectGetHeight(_lbLikeCount.frame))];
     
-    DragonUILabel *_lbLiker = [[DragonUILabel alloc] initWithFrame:CGRectMake(/*93*/ CGRectGetMaxX(_iconLike.frame)+10, CGRectGetMinY(_iconLike.frame)-2, 125-5, 25)];
+    MagicUILabel *_lbLiker = [[MagicUILabel alloc] initWithFrame:CGRectMake(/*93*/ CGRectGetMaxX(_iconLike.frame)+10, CGRectGetMinY(_iconLike.frame)-2, 125-5, 25)];
     [_lbLiker setBackgroundColor:[UIColor clearColor]];
     [_lbLiker setTextAlignment:NSTextAlignmentLeft];
     [_lbLiker setFont:[DYBShareinstaceDelegate DYBFoutStyle:13]];
@@ -1119,10 +1119,10 @@
     
     _strComments = [_strComments stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
-    DragonUIImageView *_iconComment = [[DragonUIImageView alloc] initWithFrame:CGRectMake(65+25, fStartY+14, 20, 20) backgroundColor:[UIColor clearColor] image:_imgComment isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+    MagicUIImageView *_iconComment = [[MagicUIImageView alloc] initWithFrame:CGRectMake(65+25, fStartY+14, 20, 20) backgroundColor:[UIColor clearColor] image:_imgComment isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
     
     
-    DragonUILabel *_lbCommentCount = [[DragonUILabel alloc] initWithFrame:CGRectMake(/*247*/ CGRectGetMaxX(_iconComment.frame)+10, CGRectGetMinY(_iconComment.frame)+4, 59, 25)];
+    MagicUILabel *_lbCommentCount = [[MagicUILabel alloc] initWithFrame:CGRectMake(/*247*/ CGRectGetMaxX(_iconComment.frame)+10, CGRectGetMinY(_iconComment.frame)+4, 59, 25)];
     [_lbCommentCount setBackgroundColor:[UIColor clearColor]];
     [_lbCommentCount setTextAlignment:NSTextAlignmentRight];
     [_lbCommentCount setFont:[DYBShareinstaceDelegate DYBFoutStyle:11]];
@@ -1134,7 +1134,7 @@
     //调整frame，保证离屏幕右边距20px
     [_lbCommentCount setFrame:CGRectMake(CGRectGetWidth(self.frame)-20-CGRectGetWidth(_lbCommentCount.frame), CGRectGetMinY(_lbCommentCount.frame), CGRectGetWidth(_lbCommentCount.frame), CGRectGetHeight(_lbCommentCount.frame))];
     
-    DragonUILabel *_lbComment = [[DragonUILabel alloc] initWithFrame:CGRectMake(/*93*/ CGRectGetMaxX(_iconComment.frame)+10, CGRectGetMinY(_iconComment.frame)-2, 125-5, 25)];
+    MagicUILabel *_lbComment = [[MagicUILabel alloc] initWithFrame:CGRectMake(/*93*/ CGRectGetMaxX(_iconComment.frame)+10, CGRectGetMinY(_iconComment.frame)-2, 125-5, 25)];
     [_lbComment setBackgroundColor:[UIColor clearColor]];
     [_lbComment setTextAlignment:NSTextAlignmentLeft];
     [_lbComment setLineBreakMode:NSLineBreakByTruncatingTail];
@@ -1155,12 +1155,12 @@
 }
 
 #pragma mark- 赞和评论的背景
--(DragonUIImageView *)DynamicLikeandCommentBackground:(float)fStartY bottomHeight:(float)fBotomY :(UIView *)v{
+-(MagicUIImageView *)DynamicLikeandCommentBackground:(float)fStartY bottomHeight:(float)fBotomY :(UIView *)v{
     
-    DragonUIImageView *_imgArrow = [[DragonUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMinX(v.frame)+25, fStartY-4, 11, 4) backgroundColor:[UIColor clearColor] image:[UIImage imageNamed:@"icon_arrow_up.png"] isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+    MagicUIImageView *_imgArrow = [[MagicUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMinX(v.frame)+25, fStartY-4, 11, 4) backgroundColor:[UIColor clearColor] image:[UIImage imageNamed:@"icon_arrow_up.png"] isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
     RELEASE(_imgArrow);
     
-    DragonUIImageView *_BKGView = [[DragonUIImageView alloc] initWithFrame:CGRectMake(/*55*/ CGRectGetMinX(v.frame), fStartY, /*255*/ CGRectGetWidth(v.frame), fBotomY - fStartY)];
+    MagicUIImageView *_BKGView = [[MagicUIImageView alloc] initWithFrame:CGRectMake(/*55*/ CGRectGetMinX(v.frame), fStartY, /*255*/ CGRectGetWidth(v.frame), fBotomY - fStartY)];
     [_BKGView setBackgroundColor:BKGGray];
     CALayer *lay  = _BKGView.layer;//获取ImageView的层
     [lay setMasksToBounds:YES];
@@ -1176,7 +1176,7 @@
 -(float)DynamicCommetContent:(NSString *)commenterName commenterPortraitURL:(NSString *)portraitURL commentContent:(NSString *)content StartY:(float)fStartY{
     float fHeight = 0;
     
-    DragonUIImageView *_imgUserPortrait = [[DragonUIImageView alloc] initWithFrame:CGRectMake(65+25, fStartY+8, 30, 30) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+    MagicUIImageView *_imgUserPortrait = [[MagicUIImageView alloc] initWithFrame:CGRectMake(65+25, fStartY+8, 30, 30) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
     [_imgUserPortrait setNeedRadius:YES];
     
     NSString *encondeUrl= [portraitURL stringByAddingPercentEscapesUsingEncoding];
@@ -1188,7 +1188,7 @@
         
     }
     
-    DragonUILabel *_lbUserName = [[DragonUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_imgUserPortrait.frame)+8, CGRectGetMinY(_imgUserPortrait.frame), 200, 30)];
+    MagicUILabel *_lbUserName = [[MagicUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_imgUserPortrait.frame)+8, CGRectGetMinY(_imgUserPortrait.frame), 200, 30)];
     [_lbUserName setBackgroundColor:[UIColor clearColor]];
     [_lbUserName setTextAlignment:NSTextAlignmentLeft];
     [_lbUserName setFont:[UIFont boldSystemFontOfSize:12.0f]];
@@ -1241,7 +1241,7 @@
         _strTail = [NSString stringWithFormat:@"%@ •　%@ • %@", strTime, strLocation, strFrom];
     }
     
-    DragonUILabel *_lbComment = [[DragonUILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(backView.frame)+10, fStartY+15, 255, fHeight)];
+    MagicUILabel *_lbComment = [[MagicUILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(backView.frame)+10, fStartY+15, 255, fHeight)];
     [_lbComment setBackgroundColor:[UIColor clearColor]];
     [_lbComment setTextAlignment:NSTextAlignmentLeft];
     [_lbComment setFont:[DYBShareinstaceDelegate DYBFoutStyle:11]];
@@ -1263,7 +1263,7 @@
     NSInteger nIMAGECount  = [arrIMAGE count];
     
     for (int nIndex = 0; nIndex < nIMAGECount; nIndex ++) {
-        DragonUIImageView *_imgDynamicIMAGE = [[DragonUIImageView alloc] initWithFrame:CGRectMake(65+70*nIndex, fStartY+15+nIndex/3*85, 60, 75) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleToFill stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        MagicUIImageView *_imgDynamicIMAGE = [[MagicUIImageView alloc] initWithFrame:CGRectMake(65+70*nIndex, fStartY+15+nIndex/3*85, 60, 75) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleToFill stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         
         if (nIndex > 2) {
             [_imgDynamicIMAGE setFrame:CGRectMake(65+70*(nIndex-3), CGRectGetMinY(_imgDynamicIMAGE.frame), CGRectGetWidth(_imgDynamicIMAGE.frame), CGRectGetHeight(_imgDynamicIMAGE.frame))];
@@ -1345,7 +1345,7 @@
 {
     if (!_imgV_SpreadDayViewBack) {//展开的day视图的蓝色背景
         UIImage *img=[UIImage imageNamed:@"grzy_10.png"];
-        _imgV_SpreadDayViewBack = [[DragonUIImageView alloc] initWithFrame:CGRectMake(_v_day.frame.origin.x-5, _v_day.frame.origin.y, /*img.size.width/2*/0,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        _imgV_SpreadDayViewBack = [[MagicUIImageView alloc] initWithFrame:CGRectMake(_v_day.frame.origin.x-5, _v_day.frame.origin.y, /*img.size.width/2*/0,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
 //        [_imgV_headBack setNeedRadius:YES];
 //        _imgV_headBack.center=CGPointMake(self.center.x, 0);
         [_imgV_SpreadDayViewBack addSignal:[UIView TAP] object:self];
@@ -1361,7 +1361,7 @@
             }completion:^(BOOL b){
                 {//太阳
                     UIImage *img=[UIImage imageNamed:@"grzy_9.png"];
-                    DragonUIImageView *imgV = [[DragonUIImageView alloc] initWithFrame:CGRectMake(12 ,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_imgV_SpreadDayViewBack Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                    MagicUIImageView *imgV = [[MagicUIImageView alloc] initWithFrame:CGRectMake(12 ,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_imgV_SpreadDayViewBack Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                     //        [_imgV_headBack setNeedRadius:YES];
                     //        _imgV_headBack.center=CGPointMake(self.center.x, 0);
                     //            [_imgV_SpreadDayViewBack addSignal:[UIView TAP] object:self];
@@ -1456,7 +1456,7 @@
         
         if (!_imgV_footMark) {
             UIImage *img=[UIImage imageNamed:@"ftz6.png"];
-            DragonUIImageView *imgV = [[DragonUIImageView alloc] initWithFrame:CGRectMake(0 ,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:0 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            MagicUIImageView *imgV = [[MagicUIImageView alloc] initWithFrame:CGRectMake(0 ,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:0 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             _imgV_footMark=imgV;
             _imgV_footMark.hidden=YES;
             _imgV_footMark.transform = CGAffineTransformMakeScale(114, 114);

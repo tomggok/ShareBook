@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 ZzL. All rights reserved.
 //
 
-#import "Dragon_JSONReflection.h"
+#import "Magic_JSONReflection.h"
 
-@interface file_list : DragonJSONReflection
+@interface file_list : MagicJSONReflection
 
 @property (nonatomic, retain) NSString *author;
 @property (nonatomic, retain) NSString *createdTime;//内容

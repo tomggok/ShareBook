@@ -40,7 +40,7 @@
         
         {
             UIImage *arrowImage = [UIImage imageNamed:@"list_arrow"];
-            DragonUIImageView *_arrowImv = [[DragonUIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width-24, (self.frame.size.height-arrowImage.size.height/2)/2+5, arrowImage.size.width/2, arrowImage.size.height/2)];
+            MagicUIImageView *_arrowImv = [[MagicUIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width-24, (self.frame.size.height-arrowImage.size.height/2)/2+5, arrowImage.size.width/2, arrowImage.size.height/2)];
             _arrowImv.image = arrowImage;
             [self addSubview:_arrowImv];
             RELEASE(_arrowImv);

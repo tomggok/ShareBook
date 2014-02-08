@@ -178,9 +178,9 @@
  
 }
 
-- (void)handleViewSignal_DragonUILabel:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUILabel:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUILabel TOUCHESBEGAN]]){
+    if ([signal is:[MagicUILabel TOUCHESBEGAN]]){
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSString *strValue = [dict objectForKey:@"value"];
         DLogInfo(@"%@", strValue);

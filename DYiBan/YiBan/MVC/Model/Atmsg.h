@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 //#import "Jastor.h"
-@interface Atmsg : DragonJSONReflection
+@interface Atmsg : MagicJSONReflection
 @property (assign,nonatomic) int havenext;//是否有下一页
 @property (assign,nonatomic) int newcount;//新消息数量
 @property (retain,nonatomic) NSArray *ma;// 评论提醒列表

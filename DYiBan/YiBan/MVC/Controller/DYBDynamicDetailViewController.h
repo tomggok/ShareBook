@@ -13,31 +13,31 @@
 #import "DYBFaceView.h"
 
 @interface DYBDynamicDetailViewController : DYBBaseViewController<UITextViewDelegate, faceDelegate>{
-    DragonUITableView *_tabDynamicDetail;
+    MagicUITableView *_tabDynamicDetail;
     status *_dynamicStatus;
     DYBCellForDynamicDetail *_cellDetail;
     DYBCellForDynamicStatus *_cellStatus;
     
-    DragonUIImageView *_viewComment;
-    DragonUIImageView *_viewLike;
-    DragonUIImageView *_viewShare;
-    DragonUIImageView *_viewArrow;
+    MagicUIImageView *_viewComment;
+    MagicUIImageView *_viewLike;
+    MagicUIImageView *_viewShare;
+    MagicUIImageView *_viewArrow;
     
-    DragonUILabel *_lbComment;
-    DragonUILabel *_lbLike;
-    DragonUILabel *_lbShare;
+    MagicUILabel *_lbComment;
+    MagicUILabel *_lbLike;
+    MagicUILabel *_lbShare;
     
-    DragonUIButton *_btnMoreComment;
-    DragonUIButton *_btnMoreLike;
-    DragonUIButton *_btnMoreShare;
-    DragonUIButton *_btnMoreDel;
+    MagicUIButton *_btnMoreComment;
+    MagicUIButton *_btnMoreLike;
+    MagicUIButton *_btnMoreShare;
+    MagicUIButton *_btnMoreDel;
     
     NSMutableArray *_arrStatusData;
     NSMutableArray *_arrStatusCell;
     UIView *_viewMore;
-    DragonUIButton *TraparentView;//透明层
+    MagicUIButton *TraparentView;//透明层
     UIView *_viewCommentBKG;
-    DragonUITextView *_txtViewComment;
+    MagicUITextView *_txtViewComment;
     DYBFaceView *_viewFace;
     
     int nStatus;//1,评论 2,赞 3,转发

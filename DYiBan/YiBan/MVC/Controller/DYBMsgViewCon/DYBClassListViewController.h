@@ -11,9 +11,9 @@
 //班级列表|选择班级
 @interface DYBClassListViewController : DYBBaseViewController
 {
-//    DragonUITableView *_tbv;
+//    MagicUITableView *_tbv;
     NSIndexPath *_index;//被选中要被设置成的活跃班级
-    DragonUIButton *_bt_ok/*选择通知范围时的右上角确认按钮*/;
+    MagicUIButton *_bt_ok/*选择通知范围时的右上角确认按钮*/;
 }
 
 @property (nonatomic,assign) int type/*0:选活跃班级  1:选通知范围*/;

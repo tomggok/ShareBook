@@ -7,7 +7,7 @@
 //
 
 #import "DYBCellForDYBMsgViewController.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "msg_count.h"
 
 @implementation DYBCellForDYBMsgViewController
@@ -42,12 +42,12 @@
             default:
                 break;
         }
-        _imgV_showImg=[[DragonUIImageView alloc]initWithFrame:CGRectMake(10,0, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        _imgV_showImg=[[MagicUIImageView alloc]initWithFrame:CGRectMake(10,0, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         RELEASE(_imgV_showImg);
     }
     
     if (!_lb_content) {
-        _lb_content=[[DragonUILabel alloc]initWithFrame:CGRectMake(_imgV_showImg.frame.origin.x+_imgV_showImg.frame.size.width+20, 0, 0, 0)];
+        _lb_content=[[MagicUILabel alloc]initWithFrame:CGRectMake(_imgV_showImg.frame.origin.x+_imgV_showImg.frame.size.width+20, 0, 0, 0)];
         _lb_content.backgroundColor=[UIColor clearColor];
 //        _lb_content.textAlignment=UITextAlignmentLeft;
         _lb_content.font=[UIFont systemFontOfSize:18];

@@ -9,13 +9,13 @@
 #import "WOSLogInViewController.h"
 #import "DYBInputView.h"
 #import "CALayer+Custom.h"
-//#import "DragonRequest.h"
-#import "NSObject+DragonDatabase.h"
+//#import "MagicRequest.h"
+#import "NSObject+MagicDatabase.h"
 
 #import "DYBHttpMethod.h"
 #import "JSONKit.h"
 #import "JSON.h"
-#import "Dragon_Database.h"
+#import "Magic_Database.h"
 
 @interface WOSLogInViewController (){
 
@@ -52,20 +52,22 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
--(void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal{
     
     DLogInfo(@"name -- %@",signal.name);
-    
-    if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+//    22 29 36
+    if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
-        [self.headview setTitle:@"登陆注册"];
+        [self.headview setTitle:@"登陆"];
         
         [self.headview setTitleColor:[UIColor colorWithRed:193.0f/255 green:193.0f/255 blue:193.0f/255 alpha:1.0f]];
-        [self.headview setBackgroundColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
+        [self.headview setBackgroundColor:[UIColor colorWithRed:22.0f/255 green:29.0f/255 blue:36.0f/255 alpha:1.0f]];
+
+        [self setButtonImage:self.rightButton setImage:@"more.png"];
         
-//        [self.view setBackgroundColor:[UIColor colorWithRed:97.0f/255 green:97.0f/255 blue:97.0f/255 alpha:1.0f]];
+        //        [self.view setBackgroundColor:[UIColor colorWithRed:97.0f/255 green:97.0f/255 blue:97.0f/255 alpha:1.0f]];
     }
-    else if ([signal is:[DragonViewController CREATE_VIEWS]]) {
+    else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
         [self.view setBackgroundColor:[UIColor clearColor]];
         
@@ -204,6 +206,8 @@
 
         
         
+        
+        
         UIButton *btnBack= [[UIButton alloc]initWithFrame:CGRectMake(10.0f, CGRectGetHeight(_phoneInputAddr.frame) + CGRectGetMinY(_phoneInputAddr.frame) + 20 + 10, 300, 44)];        
         [btnBack setBackgroundColor:[UIColor clearColor]];
         [btnBack setImage:[UIImage imageNamed:@"button"] forState:UIControlStateNormal];        
@@ -222,14 +226,33 @@
         
     }
     
-    else if ([signal is:[DragonViewController DID_APPEAR]]) {
+    else if ([signal is:[MagicViewController DID_APPEAR]]) {
         
         DLogInfo(@"rrr");
-    } else if ([signal is:[DragonViewController DID_DISAPPEAR]]){
+    } else if ([signal is:[MagicViewController DID_DISAPPEAR]]){
         
         
     }
 }
+
+-(void)addViewforAutoLogin{
+    UIButton *btnAutoLogin = [[UIButton alloc]initWithFrame:CGRectMake(10.0f, CGRectGetHeight(_phoneInputAddr.frame) + CGRectGetMinY(_phoneInputAddr.frame) + 20 , 20.0f, 10.0f)];
+    [btnAutoLogin setBackgroundColor:[UIColor redColor]];
+    [viewLogin addSubview:btnAutoLogin];
+    [btnAutoLogin addTarget:self action:@selector(atuoLogin) forControlEvents:UIControlEventTouchUpInside];
+    
+    RELEASE(btnAutoLogin);
+    
+    
+
+}
+
+-(void)atuoLogin{
+
+    NSLog(@"auto");
+
+}
+
 
 -(void)addlabel_title:(NSString *)title frame:(CGRect)frame view:(UIView *)view{
     
@@ -277,21 +300,21 @@
 //DEF_SIGNAL(TEXTFIELDSHOULDRETURN)
 //DEF_SIGNAL(TEXT_OVERFLOW)//文字超长
 
-//DragonUITextField
--(void)handleViewSignal_DragonUITextField:(DragonViewSignal *)signal{
-    if ([signal isKindOf:[DragonUITextField TEXTFIELDDIDBEGINEDITING]]) {
+//MagicUITextField
+-(void)handleViewSignal_MagicUITextField:(MagicViewSignal *)signal{
+    if ([signal isKindOf:[MagicUITextField TEXTFIELDDIDBEGINEDITING]]) {
         
         [scrollView setContentSize:CGSizeMake(320.0f, CGRectGetHeight(self.view.frame))];
 //        [viewBG setCenter:CGPointMake(160, self.view.frame.size.height/2 -30)];
         
-    }else if ([signal isKindOf:[DragonUITextField TEXTFIELDDIDENDEDITING]]){
+    }else if ([signal isKindOf:[MagicUITextField TEXTFIELDDIDENDEDITING]]){
     
 //        [viewBG setCenter:CGPointMake(160, self.view.frame.size.height/2 +10 )];
     
-    }else if ([signal isKindOf:[DragonUITextField TEXTFIELDSHOULDRETURN]]){
+    }else if ([signal isKindOf:[MagicUITextField TEXTFIELDSHOULDRETURN]]){
     
 //        [viewBG setCenter:CGPointMake(160, self.view.bounds.size.height/2 +10 )];
-      DragonUITextField *filed = (DragonUITextField *)[signal source];
+      MagicUITextField *filed = (MagicUITextField *)[signal source];
         [filed resignFirstResponder];
     
     }
@@ -304,7 +327,7 @@
 -(void)addRisgin{
 
 
-        DragonRequest *request = [DYBHttpMethod wosRegion_nickName:_phoneInputNameR.nameField.text passwd:_phoneInputAddrR.nameField.text sex:_phoneInputMORF.nameField.text sAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod wosRegion_nickName:_phoneInputNameR.nameField.text passwd:_phoneInputAddrR.nameField.text sex:_phoneInputMORF.nameField.text sAlert:YES receive:self];
         [request setTag:3];
     
 }
@@ -314,14 +337,14 @@
     DYBUITabbarViewController *vc = [[DYBUITabbarViewController sharedInstace] init:self];
    [self.drNavigationController pushViewController:vc animated:YES];
     
-//    DragonRequest *request = [DYBHttpMethod wosLongin_nickName:_phoneInputName.nameField.text passwd:_phoneInputAddr.nameField.text sAlert:YES receive:self];
+//    MagicRequest *request = [DYBHttpMethod wosLongin_nickName:_phoneInputName.nameField.text passwd:_phoneInputAddr.nameField.text sAlert:YES receive:self];
 //    [request setTag:2];
     
 }
 
 
 #pragma mark- 只接受HTTP信号
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     
     if ([request succeed])
@@ -351,7 +374,7 @@
             }else{
                 NSString *strMSG = [dict objectForKey:@"message"];
                 
-                [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+                [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
                 
             
             }
@@ -371,7 +394,7 @@
                 else{
                     NSString *strMSG = [dict objectForKey:@"message"];
                     
-                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
                     
                     
                 }
@@ -381,7 +404,7 @@
               NSDictionary *dict = [request.responseString JSONValue];
             NSString *strMSG = [dict objectForKey:@"message"];
             
-            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
             
             
         }

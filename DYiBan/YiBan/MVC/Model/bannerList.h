@@ -8,7 +8,7 @@
 
 //#import "Jastor.h"
 #import "banner.h"
-@interface bannerList : DragonJSONReflection
+@interface bannerList : MagicJSONReflection
 @property(retain,nonatomic)NSArray *banner;
 //+(Class)banner_class;
 @end

@@ -74,7 +74,7 @@
     float fHeight = 80.0f;
     NSString *_strTail = nil;
     
-    DragonUIImageView *_imgUserPortrait = [[DragonUIImageView alloc] initWithFrame:CGRectMake(15, 15, 50, 50) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+    MagicUIImageView *_imgUserPortrait = [[MagicUIImageView alloc] initWithFrame:CGRectMake(15, 15, 50, 50) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
     [_imgUserPortrait setNeedRadius:YES];
     [_imgUserPortrait setUserInteractionEnabled:YES];
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserWithGesture:)];
@@ -91,7 +91,7 @@
     }
     RELEASE(_imgUserPortrait);
     
-    DragonUILabel *_lbUserName = [[DragonUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_imgUserPortrait.frame)+15, CGRectGetMinY(_imgUserPortrait.frame)+3, 200, 30)];
+    MagicUILabel *_lbUserName = [[MagicUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_imgUserPortrait.frame)+15, CGRectGetMinY(_imgUserPortrait.frame)+3, 200, 30)];
     [_lbUserName setBackgroundColor:[UIColor clearColor]];
     [_lbUserName setTextAlignment:NSTextAlignmentLeft];
     [_lbUserName setFont:[UIFont boldSystemFontOfSize:16.0f]];
@@ -111,7 +111,7 @@
         _strTail = [NSString stringWithFormat:@"%@ •　%@ • %@", strTime, strLocation, strFrom];
     }
     
-    DragonUILabel *_lbComment = [[DragonUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_imgUserPortrait.frame)+15, CGRectGetMaxY(_lbUserName.frame), 255, fHeight)];
+    MagicUILabel *_lbComment = [[MagicUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_imgUserPortrait.frame)+15, CGRectGetMaxY(_lbUserName.frame), 255, fHeight)];
     [_lbComment setBackgroundColor:[UIColor clearColor]];
     [_lbComment setTextAlignment:NSTextAlignmentLeft];
     [_lbComment setFont:[DYBShareinstaceDelegate DYBFoutStyle:11]];
@@ -133,7 +133,7 @@
     UIImage *_imgDividingLine = [UIImage imageNamed:@"share_dotline.png"];
     
     if (bShare) {
-        DragonUIImageView * _topDividingLine = [[DragonUIImageView alloc] initWithFrame:CGRectMake(15, fStartY+15, 290, 2) backgroundColor:[UIColor clearColor] image:_imgDividingLine isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        MagicUIImageView * _topDividingLine = [[MagicUIImageView alloc] initWithFrame:CGRectMake(15, fStartY+15, 290, 2) backgroundColor:[UIColor clearColor] image:_imgDividingLine isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         [self addSubview:_topDividingLine];
         RELEASE(_topDividingLine);
         
@@ -187,7 +187,7 @@
         NSInteger nIMAGECount  = [arrIMG count];
         
         for (int nIndex = 0; nIndex < nIMAGECount; nIndex ++) {
-            DragonUIImageView *_imgDynamicIMAGE = [[DragonUIImageView alloc] initWithFrame:CGRectMake(15+70*nIndex, CGRectGetMaxY(_lbSelfContent.frame)+15+nIndex/3*85, 60, 75) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleToFill stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            MagicUIImageView *_imgDynamicIMAGE = [[MagicUIImageView alloc] initWithFrame:CGRectMake(15+70*nIndex, CGRectGetMaxY(_lbSelfContent.frame)+15+nIndex/3*85, 60, 75) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleToFill stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             
             [_imgDynamicIMAGE setTag:nIndex];
             
@@ -217,12 +217,12 @@
     
     if (bShare) {
         if ([arrIMG count] > 0) {
-            DragonUIImageView *_bottomDividingLine = [[DragonUIImageView alloc] initWithFrame:CGRectMake(15, fHeight+15, 290, 2) backgroundColor:[UIColor clearColor] image:_imgDividingLine isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            MagicUIImageView *_bottomDividingLine = [[MagicUIImageView alloc] initWithFrame:CGRectMake(15, fHeight+15, 290, 2) backgroundColor:[UIColor clearColor] image:_imgDividingLine isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             [self addSubview:_bottomDividingLine];
             RELEASE(_bottomDividingLine);
             fHeight = CGRectGetMaxY(_bottomDividingLine.frame);
         }else{
-            DragonUIImageView *_bottomDividingLine = [[DragonUIImageView alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(_lbSelfContent.frame)+10, 290, 2) backgroundColor:[UIColor clearColor] image:_imgDividingLine isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            MagicUIImageView *_bottomDividingLine = [[MagicUIImageView alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(_lbSelfContent.frame)+10, 290, 2) backgroundColor:[UIColor clearColor] image:_imgDividingLine isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             [self addSubview:_bottomDividingLine];
             RELEASE(_bottomDividingLine);
             fHeight = CGRectGetMaxY(_lbSelfContent.frame)+10;
@@ -240,10 +240,10 @@
     float fHeight = 0.0f;
     UIImage *_imgDividingLine = [UIImage imageNamed:@"share_dotline.png"];
     
-    DragonUIImageView * _topDividingLine = [[DragonUIImageView alloc] initWithFrame:CGRectMake(15, fStartY+15, 290, 2) backgroundColor:[UIColor clearColor] image:_imgDividingLine isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+    MagicUIImageView * _topDividingLine = [[MagicUIImageView alloc] initWithFrame:CGRectMake(15, fStartY+15, 290, 2) backgroundColor:[UIColor clearColor] image:_imgDividingLine isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
     RELEASE(_topDividingLine);
     
-    DragonUILabel *_lbSelfContent = [[DragonUILabel alloc] initWithFrame:CGRectMake(15, fStartY+30, 290, 60)];
+    MagicUILabel *_lbSelfContent = [[MagicUILabel alloc] initWithFrame:CGRectMake(15, fStartY+30, 290, 60)];
     [_lbSelfContent setBackgroundColor:[UIColor clearColor]];
     [_lbSelfContent setTextAlignment:NSTextAlignmentLeft];
     [_lbSelfContent setFont:[DYBShareinstaceDelegate DYBFoutStyle:17]];
@@ -255,7 +255,7 @@
     
     fHeight = CGRectGetMaxY(_lbSelfContent.frame);
     
-    DragonUIImageView *_bottomDividingLine = [[DragonUIImageView alloc] initWithFrame:CGRectMake(15, fHeight+10, 290, 2) backgroundColor:[UIColor clearColor] image:_imgDividingLine isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+    MagicUIImageView *_bottomDividingLine = [[MagicUIImageView alloc] initWithFrame:CGRectMake(15, fHeight+10, 290, 2) backgroundColor:[UIColor clearColor] image:_imgDividingLine isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
     RELEASE(_bottomDividingLine);
     
     fHeight = CGRectGetMaxY(_bottomDividingLine.frame);

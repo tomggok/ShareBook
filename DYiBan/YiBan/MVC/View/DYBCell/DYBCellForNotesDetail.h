@@ -11,12 +11,12 @@
 
 @interface DYBCellForNotesDetail : UITableViewCell
 {
-    DragonUIScrollView *_scrV_Tip/*标签的背景滚动*/;
-    DragonUIButton *_bt_AddTag/*添加标签*/,*_bt_del/*删除*/;
-    DragonUITextView *_textView;
-    DragonUIImageView *_imgV_show,*_imgV_voice/*喇叭*/;
+    MagicUIScrollView *_scrV_Tip/*标签的背景滚动*/;
+    MagicUIButton *_bt_AddTag/*添加标签*/,*_bt_del/*删除*/;
+    MagicUITextView *_textView;
+    MagicUIImageView *_imgV_show,*_imgV_voice/*喇叭*/;
     int _state;//0:正常状态 1:编辑状态
-    DragonUILabel *_lb_addTag/*添加标签*/;
+    MagicUILabel *_lb_addTag/*添加标签*/;
 }
 
 -(void)changeState:(int)state;

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 //用户好友及同班同学生日提醒接口user_birthday 接口
-@interface user_birthday : DragonJSONReflection
+@interface user_birthday : MagicJSONReflection
 
 @property (nonatomic, retain)NSString *days;//
 @property (nonatomic, retain)NSString *name;//

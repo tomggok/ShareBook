@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
     //附近的人数据模型
-@interface nearByFriends : DragonJSONReflection
+@interface nearByFriends : MagicJSONReflection
 
 @property (copy, nonatomic) NSString *distance;
 @property (copy, nonatomic) NSString *lng;

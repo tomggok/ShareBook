@@ -11,7 +11,7 @@
 //就业信息详情
 @interface DYBEmployInfoDetailViewController : DYBBaseViewController
 {
-    DragonUIButton *_bt_Right;
+    MagicUIButton *_bt_Right;
 }
 @property (nonatomic,assign) int i_id;
 

@@ -12,30 +12,30 @@
 #import "photoList.h"
 #import "DYBPersonalPhotoImageController.h"
 #import "UILabel+ReSize.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 @interface DYBPersonalPhotoViewController ()
 
 @end
 
 @implementation DYBPersonalPhotoViewController
 @synthesize str_userid=_str_userid;
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
     [super handleViewSignal:signal];
     
-    if ([signal is:DragonViewController.CREATE_VIEWS]) {
+    if ([signal is:MagicViewController.CREATE_VIEWS]) {
         
         [self.view setUserInteractionEnabled:NO];
         
         
         
         
-    }else if ([signal is:DragonViewController.WILL_APPEAR]){
+    }else if ([signal is:MagicViewController.WILL_APPEAR]){
         [self.headview setTitle:@"手机相册"];
         [self backImgType:0];
         self.rightButton.hidden = YES;
         self.headview.lineView.hidden=NO;
-        DragonRequest *request = [DYBHttpMethod albumList:_str_userid num:10 page:1 isAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod albumList:_str_userid num:10 page:1 isAlert:YES receive:self];
         [request setTag:1];
         
         if (!request) {//网络请求失败
@@ -45,17 +45,17 @@
     
        
         
-    }else if ([signal is:DragonViewController.DID_DISAPPEAR]){
+    }else if ([signal is:MagicViewController.DID_DISAPPEAR]){
         RELEASEVIEW(_tbv);//界面不显示时彻底释放TBV,已释放cell
         
-    }else if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    }else if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         
-    }else if ([signal is:[DragonViewController FREE_DATAS]])//dealloc时回调,先释放数据
+    }else if ([signal is:[MagicViewController FREE_DATAS]])//dealloc时回调,先释放数据
     {
         [_tbv releaseDataResource];
         
-    }else if ([signal is:[DragonViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
+    }else if ([signal is:[MagicViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
         
         [_tbv release_muA_differHeightCellView];
         
@@ -68,7 +68,7 @@
 #pragma mark-
 -(void)creatTbv{
     if (!_tbv) {
-        _tbv = [[DragonUITableView alloc] initWithFrame:CGRectMake(0, self.headHeight+1, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-self.headHeight-1) isNeedUpdate:YES];
+        _tbv = [[MagicUITableView alloc] initWithFrame:CGRectMake(0, self.headHeight+1, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-self.headHeight-1) isNeedUpdate:YES];
         _tbv._cellH=56;
         [self.view addSubview:_tbv];
         _tbv.tag=-1;
@@ -92,7 +92,7 @@
     RELEASE(imgV);
     
     {
-        DragonUILabel *lb=[[DragonUILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imgV.frame)+20, 0, 0)];
+        MagicUILabel *lb=[[MagicUILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imgV.frame)+20, 0, 0)];
         lb.backgroundColor=[UIColor clearColor];
         lb.textAlignment=NSTextAlignmentLeft;
         lb.font=[DYBShareinstaceDelegate DYBFoutStyle:20];
@@ -115,9 +115,9 @@
 
 static NSString *cellName = @"cellName";//前4个cell
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -133,7 +133,7 @@ static NSString *cellName = @"cellName";//前4个cell
             [signal setReturnValue:s];
         }
         
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -147,7 +147,7 @@ static NSString *cellName = @"cellName";//前4个cell
         }
         
     }
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
     {
         
         NSDictionary *dict = (NSDictionary *)[signal object];
@@ -200,7 +200,7 @@ static NSString *cellName = @"cellName";//前4个cell
         }
         
     }
-    else if ([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -213,7 +213,7 @@ static NSString *cellName = @"cellName";//前4个cell
         }
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -224,7 +224,7 @@ static NSString *cellName = @"cellName";//前4个cell
         }
         
     }//
-    else if ([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -232,7 +232,7 @@ static NSString *cellName = @"cellName";//前4个cell
         [signal setReturnValue:[NSNumber numberWithFloat:((tableView.muA_allSectionKeys.count==0/*一个section模式*/)?(0):(27))]];
         
     }
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell  只返回显示的cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell  只返回显示的cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -249,7 +249,7 @@ static NSString *cellName = @"cellName";//前4个cell
         
         [signal setReturnValue:cell];
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableview = [dict objectForKey:@"tableView"];
@@ -270,22 +270,22 @@ static NSString *cellName = @"cellName";//前4个cell
         [tableview deselectRowAtIndexPath:indexPath animated:YES];
         
     }
-    else if ([signal is:[DragonUITableView TAbLEVIEWLODATA]])//加载更多
+    else if ([signal is:[MagicUITableView TAbLEVIEWLODATA]])//加载更多
     {
-        DragonRequest *request = [DYBHttpMethod albumList:_str_userid num:10 page:++_tbv._page isAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod albumList:_str_userid num:10 page:++_tbv._page isAlert:YES receive:self];
         [request setTag:2];
         
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]])//刷新
+    else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]])//刷新
     {
         
-        //        DragonUITableView *tableView = (DragonUITableView *)[signal source];
+        //        MagicUITableView *tableView = (MagicUITableView *)[signal source];
         
         {//HTTP请求已加入的班级列表
             [self.view setUserInteractionEnabled:NO];
             _tbv._page = 1;
-            DragonRequest *request = [DYBHttpMethod albumList:_str_userid num:10 page:1 isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod albumList:_str_userid num:10 page:1 isAlert:YES receive:self];
             [request setTag:1];
             
             if (!request) {//无网路
@@ -299,7 +299,7 @@ static NSString *cellName = @"cellName";//前4个cell
 
 
 #pragma mark- 只接受HTTP信号
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if ([request succeed])
     {

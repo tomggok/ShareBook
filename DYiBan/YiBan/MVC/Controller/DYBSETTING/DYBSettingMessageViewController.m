@@ -16,18 +16,18 @@
 
 @implementation DYBSettingMessageViewController
 
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.rightButton setHidden:YES];
         [self.headview setTitle:@"消息提醒"];
         [self backImgType:0];
         
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         
-        DragonUIScrollView *scroll = [[DragonUIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        MagicUIScrollView *scroll = [[MagicUIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         [scroll setShowsVerticalScrollIndicator:NO];
         [self.view addSubview:scroll];
         RELEASE(scroll);
@@ -73,7 +73,7 @@
 }
 
 #pragma mark- 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -92,7 +92,7 @@
 }
 
 
-- (void)handleViewSignal_DYBSetButton:(DragonViewSignal *)signal {
+- (void)handleViewSignal_DYBSetButton:(MagicViewSignal *)signal {
     
     self.view.userInteractionEnabled = NO;
     NSString *tagHttp = @"";
@@ -234,7 +234,7 @@
             time = @"22-8";
         }
         
-        DragonRequest *request = [DYBHttpMethod user_setpush:tagHttp isDisturb:SHARED.currentUserSetting.timeForNoPush disturb_time:time isAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod user_setpush:tagHttp isDisturb:SHARED.currentUserSetting.timeForNoPush disturb_time:time isAlert:YES receive:self];
         [request setTag:1];
         
         
@@ -245,7 +245,7 @@
 
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if ([request succeed])
     {

@@ -769,7 +769,7 @@
 -(void)initShadeBt
 {
     if (!_bt_Shade && pickerStyle==PagePickerViewWithNote) {
-        _bt_Shade=[[DragonUIButton alloc]initWithFrame:self.superview.bounds];
+        _bt_Shade=[[MagicUIButton alloc]initWithFrame:self.superview.bounds];
         _bt_Shade.tag=k_tag_releaseBT;
         _bt_Shade.backgroundColor=[UIColor blackColor];
         [self.superview addSubview:_bt_Shade];
@@ -788,11 +788,11 @@
 {
     if (!_bt_Ok&& pickerStyle==PagePickerViewWithNote) {
         UIImage *img=[UIImage imageNamed:@"btn_confirm"];
-        _bt_Ok = [[DragonUIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMinY(self.frame)-img.size.height/2, img.size.width/2, img.size.height/2)];
+        _bt_Ok = [[MagicUIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMinY(self.frame)-img.size.height/2, img.size.width/2, img.size.height/2)];
         _bt_Ok.tag=k_tag_OKBT;
         _bt_Ok.backgroundColor=[UIColor clearColor];//self.headview.backgroundColor;
         //            _bt_DropDown.alpha=0.9;
-        [_bt_Ok addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+        [_bt_Ok addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
         [_bt_Ok setImage:img forState:UIControlStateNormal];
         [_bt_Ok setImage:img forState:UIControlStateHighlighted];
         //            [_bt_DropDown setTitle:@"好友"];

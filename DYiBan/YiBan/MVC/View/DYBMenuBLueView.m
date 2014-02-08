@@ -36,7 +36,7 @@ DEF_SIGNAL(SELCELL)
         [self.layer setShadowColor:[UIColor blackColor].CGColor];
         
         
-        _tableMenu = [[DragonUITableView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame)) isNeedUpdate:NO];
+        _tableMenu = [[MagicUITableView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame)) isNeedUpdate:NO];
         [_tableMenu setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         [_tableMenu setBackgroundColor:[UIColor clearColor]];
         [self addSubview:_tableMenu];
@@ -46,30 +46,30 @@ DEF_SIGNAL(SELCELL)
 }
 
 #pragma mark- 只接受UITableView信号
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
         NSNumber *nRow = [NSNumber numberWithInteger:[_arrMenu count]];
         [signal setReturnValue:nRow];
         
-    }else if([signal is:[DragonUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
+    }else if([signal is:[MagicUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
         NSNumber *nSection = [NSNumber numberWithInteger:1];
         [signal setReturnValue:nSection];
         
-    }else if([signal is:[DragonUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
+    }else if([signal is:[MagicUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
         NSNumber *nRowHeight = [NSNumber numberWithInteger:45];
         [signal setReturnValue:nRowHeight];
         
-    }else if([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])/*titleForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])/*titleForHeaderInSection*/{
         [signal setReturnValue:nil];
         
-    }else if([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])/*viewForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])/*viewForHeaderInSection*/{
         [signal setReturnValue:nil];
         
-    }else if([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])/*heightForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])/*heightForHeaderInSection*/{
         [signal setReturnValue:[NSNumber numberWithFloat:0.0]];
         
-    }else if([signal is:[DragonUITableView TABLECELLFORROW]])/*cell*/{
+    }else if([signal is:[MagicUITableView TABLECELLFORROW]])/*cell*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableview = [dict objectForKey:@"tableView"];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -89,7 +89,7 @@ DEF_SIGNAL(SELCELL)
         }
         
         if (_nCellType == 1) {
-            DragonUIButton *btnCell = [[DragonUIButton alloc] initWithFrame:CGRectMake(10, 2.5, 120, 40)];
+            MagicUIButton *btnCell = [[MagicUIButton alloc] initWithFrame:CGRectMake(10, 2.5, 120, 40)];
             [btnCell setBackgroundImage:nil forState:UIControlStateNormal];
             [btnCell setBackgroundImage:[UIImage imageNamed:@"btn_private_highlight.png"] forState:UIControlStateHighlighted];
             [btnCell setBackgroundColor:[UIColor clearColor]];
@@ -102,7 +102,7 @@ DEF_SIGNAL(SELCELL)
             [cell addSubview:btnCell];
             RELEASE(btnCell);
         }else{
-            DragonUILabel *lbCell = [[DragonUILabel alloc] initWithFrame:CGRectMake(10, 2.5, 120, 40)];
+            MagicUILabel *lbCell = [[MagicUILabel alloc] initWithFrame:CGRectMake(10, 2.5, 120, 40)];
             [lbCell setBackgroundColor:[UIColor clearColor]];
             [lbCell setText:[_arrMenu objectAtIndex:indexPath.row]];
             [lbCell setTextColor:[UIColor whiteColor]];
@@ -120,7 +120,7 @@ DEF_SIGNAL(SELCELL)
         }
   
         [signal setReturnValue:cell];
-    }else if([signal is:[DragonUITableView TABLEDIDSELECT]])/*选中cell*/{
+    }else if([signal is:[MagicUITableView TABLEDIDSELECT]])/*选中cell*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
@@ -132,9 +132,9 @@ DEF_SIGNAL(SELCELL)
                 UITableViewCell *cell = [_tableMenu cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
                 
                 for (UIView *view in cell.subviews) {
-                    if ([view isKindOfClass:[DragonUILabel class]]) {
-                        [(DragonUILabel *)view setBackgroundColor:[UIColor clearColor]];
-                        [(DragonUILabel *)view setTextColor:[UIColor whiteColor]];
+                    if ([view isKindOfClass:[MagicUILabel class]]) {
+                        [(MagicUILabel *)view setBackgroundColor:[UIColor clearColor]];
+                        [(MagicUILabel *)view setTextColor:[UIColor whiteColor]];
                     }
                 }
             }
@@ -146,27 +146,27 @@ DEF_SIGNAL(SELCELL)
          NSMutableDictionary *mutabledict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", indexPath.row], @"row", nil];
          [self sendViewSignal:[DYBPublishViewController PRIVATESELECT] withObject:mutabledict];
         
-    }else if([signal is:[DragonUITableView TABLESCROLLVIEWDIDENDDRAGGING]])/*滚动停止*/{
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDENDDRAGGING]])/*滚动停止*/{
         
-    }else if([signal is:[DragonUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
 //        [_tableMenu tableViewDidDragging];
     }
 }
 
 -(void)selectCell:(UITableViewCell *)cell{
     for (UIView *view in cell.subviews) {
-        if ([view isKindOfClass:[DragonUILabel class]]) {
-            [(DragonUILabel *)view setBackgroundColor:[UIColor whiteColor]];
-            [(DragonUILabel *)view setTextColor:ColorBlue];
+        if ([view isKindOfClass:[MagicUILabel class]]) {
+            [(MagicUILabel *)view setBackgroundColor:[UIColor whiteColor]];
+            [(MagicUILabel *)view setTextColor:ColorBlue];
         }
     }
 }
 
 #pragma mark- 接受其他信号
-- (void)handleViewSignal_DYBMenuBLueView:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBMenuBLueView:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBMenuBLueView SELCELL]]){
-      DragonUIButton *bt=(DragonUIButton *)signal.source;
+      MagicUIButton *bt=(MagicUIButton *)signal.source;
         NSMutableDictionary *mutabledict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", bt.tag], @"row", nil];
         [self sendViewSignal:[DYBPublishViewController PRIVATESELECT] withObject:mutabledict];
     }

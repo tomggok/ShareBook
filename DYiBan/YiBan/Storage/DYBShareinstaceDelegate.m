@@ -9,10 +9,10 @@
 #import "DYBShareinstaceDelegate.h"
 #import "user.h"
 #import "DYBUITabbarViewController.h"
-#import "NSObject+DragonDatabase.h"
+#import "NSObject+MagicDatabase.h"
 #import "JSONKit.h"
 #import "JSON.h"
-#import "Dragon_Device.h"
+#import "Magic_Device.h"
 
 @interface DYBShareinstaceDelegate()
 {
@@ -58,7 +58,7 @@ static DYBShareinstaceDelegate *sharedInstace = nil;
     self = [super init];
     if (self)
     {
-        [DragonCommentMethod reachForDefaultHost];
+        [MagicCommentMethod reachForDefaultHost];
         [self observeNotification:@"kNetworkConnectTypeChange"];
     }
     return self;
@@ -85,20 +85,20 @@ static DYBShareinstaceDelegate *sharedInstace = nil;
 //处理nsnotifaction
 - (void)handleNotification:(NSNotification *)notification
 {
-    if (_isLogined && [DragonDevice hasInternetConnection])
+    if (_isLogined && [MagicDevice hasInternetConnection])
     {
         if ([notification is:@"kNetworkConnectTypeChange"])
         {
             if (!_curUser)
             {
                 //获得用户信息
-                DragonRequest *request = [DYBHttpMethod user_detail:SHARED.userId isAlert:NO receive:self];
+                MagicRequest *request = [DYBHttpMethod user_detail:SHARED.userId isAlert:NO receive:self];
                 [request setTag:1];
             }
             if (!_isLogin)
             {
                 //自动登陆
-                DragonRequest *request = [DYBHttpMethod user_security_autologin:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod user_security_autologin:YES receive:self];
                 [request setTag:2];
             }
         }
@@ -106,7 +106,7 @@ static DYBShareinstaceDelegate *sharedInstace = nil;
     
 }
 
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if (request.tag == 1)
     {
@@ -406,15 +406,15 @@ static DYBShareinstaceDelegate *sharedInstace = nil;
 }
 
 //加载提示可以设置时间
-+ (DragonUIPopAlertView *)loadFinishAlertView:(NSString *)text target:(id)target showTime:(CGFloat)time
++ (MagicUIPopAlertView *)loadFinishAlertView:(NSString *)text target:(id)target showTime:(CGFloat)time
 {
     CGSize frame = MAINSIZE;
     UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
     
     
-    DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+    MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
     [pop setDelegate:target];
-    [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+    [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
     [pop setNeedSelfY:YES];
     [pop setAlertViewY:(frame.height - 66)];
     
@@ -427,18 +427,18 @@ static DYBShareinstaceDelegate *sharedInstace = nil;
 }
 
 //提示数据加载完毕
-+ (DragonUIPopAlertView *)loadFinishAlertView:(NSString *)text target:(id)target
++ (MagicUIPopAlertView *)loadFinishAlertView:(NSString *)text target:(id)target
 {
     return [DYBShareinstaceDelegate loadFinishAlertView:text target:target showTime:.5f];
 }
 
-+(void)popViewText:(NSString *)text target:(id)_target hideTime:(float)time isRelease:(BOOL)key mode:(DragonpopViewType )type{
++(void)popViewText:(NSString *)text target:(id)_target hideTime:(float)time isRelease:(BOOL)key mode:(MagicpopViewType )type{
     
     if (text.length == 0) {
         //        text = @"操作失败";
     }
     
-    DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+    MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
     [pop setDelegate:_target];
     [pop setMode:type];
     [pop setText:text];
@@ -451,7 +451,7 @@ static DYBShareinstaceDelegate *sharedInstace = nil;
     NSArray *array = [[NSArray alloc]initWithObjects:@"doc",@"docx",@"ppt",@"pptx",@"xls",@"xlsx",@"pdf",@"mp3",@"wma",@"mp4",@"html",@"gif", @"png",@"jpg",@"htm",@"acc",@"3gp",@"avi",@"avc",@"arm",@"bmp",@"txt",nil];
     if (![array containsObject:[type lowercaseString]]) {
         
-        [self popViewText:@"暂不能预览该文件" target:_target hideTime:1.0f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+        [self popViewText:@"暂不能预览该文件" target:_target hideTime:1.0f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
         return NO;
     }
     

@@ -12,10 +12,10 @@
 //通知的cell
 @interface DYBCellForNotice : UITableViewCell
 {
-    DragonUIImageView *_imgV_showImg/*左边展示图*/,*_imgV_newMsgNums/*新消息数量图*/;
+    MagicUIImageView *_imgV_showImg/*左边展示图*/,*_imgV_newMsgNums/*新消息数量图*/;
     DYBCustomLabel *_lb_newContent,*_lb_nickName,*_lb_time;
     UIView *_v_bigContent/*主要内容背景*/,*_v_toBeSlidingView/*要被滑动的view*/;
-    DragonUIButton *_bt_delete;
+    MagicUIButton *_bt_delete;
 }
 
 -(void)setContent:(id)data indexPath:(NSIndexPath *)indexPath tbv:(UITableView *)tbv;

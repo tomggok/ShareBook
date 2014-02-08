@@ -8,7 +8,7 @@
 
 //#import "Jastor.h"
 
-@interface YiBanApp_list : DragonJSONReflection
+@interface YiBanApp_list : MagicJSONReflection
 
 @property (nonatomic,retain) NSArray *list;
 

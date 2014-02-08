@@ -18,17 +18,17 @@
 @synthesize d_model=_d_model;
 
 #pragma mark- ViewController信号
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
     [super handleViewSignal:signal];
     
-    if ([signal is:DragonViewController.CREATE_VIEWS]) {
+    if ([signal is:MagicViewController.CREATE_VIEWS]) {
         
 //        if(!_muA_data)
         {//HTTP请求,班级详情
             [self.view setUserInteractionEnabled:NO];
             
-            DragonRequest *request = [DYBHttpMethod message_chat_sixin:1 pageNum:10 type:@"0" userid:[_d_model objectForKey:@"userid"] maxid:@"0" last_id:@"0" isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod message_chat_sixin:1 pageNum:10 type:@"0" userid:[_d_model objectForKey:@"userid"] maxid:@"0" last_id:@"0" isAlert:YES receive:self];
             [request setTag:1];
             
             if (!request) {//无网路
@@ -37,24 +37,24 @@
         }
         
         
-    }else if ([signal is:DragonViewController.WILL_APPEAR]){
+    }else if ([signal is:MagicViewController.WILL_APPEAR]){
         [self.headview setTitle:[_d_model objectForKey:@"name"]];
         [self backImgType:0];
         self.rightButton.hidden=YES;
         
-    }else if ([signal is:DragonViewController.DID_DISAPPEAR]){
+    }else if ([signal is:MagicViewController.DID_DISAPPEAR]){
         //        RELEASEVIEW(_tbv);//界面不显示时彻底释放TBV,已释放cell
         
-    }else if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    }else if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         
-    }else if ([signal is:[DragonViewController FREE_DATAS]])//dealloc时回调,先释放数据
+    }else if ([signal is:[MagicViewController FREE_DATAS]])//dealloc时回调,先释放数据
     {
         [_tbv releaseDataResource];
         
 //        RELEASE(_muA_data);
         
-    }else if ([signal is:[DragonViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
+    }else if ([signal is:[MagicViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
         
         [_tbv release_muA_differHeightCellView];
         
@@ -65,7 +65,7 @@
 }
 
 #pragma mark- 只接受HTTP信号
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if ([request succeed])
     {

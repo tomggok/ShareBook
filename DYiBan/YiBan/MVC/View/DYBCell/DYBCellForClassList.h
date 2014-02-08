@@ -11,8 +11,8 @@
 //班级列表|选择班级cell
 @interface DYBCellForClassList : UITableViewCell
 {
-    DragonUILabel *_lb_newContent;
-    DragonUIImageView *_imgV_sepline/*分割线*/,*_imgV_star/**/,*_imgV_YES/*对号*/;
+    MagicUILabel *_lb_newContent;
+    MagicUIImageView *_imgV_sepline/*分割线*/,*_imgV_star/**/,*_imgV_YES/*对号*/;
 }
 
 -(void)setContent:(id)data indexPath:(NSIndexPath *)indexPath tbv:(UITableView *)tbv;

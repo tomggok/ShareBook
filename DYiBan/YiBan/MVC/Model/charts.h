@@ -8,6 +8,6 @@
 
 //#import "Jastor.h"
 
-@interface charts : DragonJSONReflection
+@interface charts : MagicJSONReflection
 @property (nonatomic, retain)NSString *id, *name, *pic, *rank, *totalpoints, *weekpoints;
 @end

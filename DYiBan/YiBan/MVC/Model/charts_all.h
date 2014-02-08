@@ -8,7 +8,7 @@
 
 //#import "Jastor.h"
 
-@interface charts_all : DragonJSONReflection
+@interface charts_all : MagicJSONReflection
 @property (nonatomic, retain)NSArray *charts;
 @property (nonatomic, retain)NSString *chartstype;
 @property (nonatomic, retain)NSString *havenext;

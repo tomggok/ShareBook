@@ -28,7 +28,7 @@
 #import "DYBApplicationViewController.h"
 
 #import "DYBRegisterStep2ViewController.h"
-#import "NSObject+DragonDatabase.h"
+#import "NSObject+MagicDatabase.h"
 #import "DYBMyNotesViewController.h"
 #import "DYBTabViewController.h"
 #import "DYBShareInNotesViewController.h"
@@ -40,7 +40,7 @@
 #import "WOSPersonInfoViewController.h"
 @interface DYBUITabbarViewController ()
 {
-    DragonUIThirdView *threeview;//三屏的view
+    MagicUIThirdView *threeview;//三屏的view
     DYBBaseViewLeftView *view;
     
     NSInteger selectBtIndex;//左边视图选择的bt
@@ -55,7 +55,7 @@
 
 DEF_SIGNAL(HIDDENBUTTONACTION)
 
--(DragonUIThirdView *)getThreeview{
+-(MagicUIThirdView *)getThreeview{
     return threeview;
 }
 
@@ -85,7 +85,7 @@ static DYBUITabbarViewController *sharedInstace = nil;
     
 }
 
-- (id)init:(DragonViewController *)dVc
+- (id)init:(MagicViewController *)dVc
 {
     self.vc = dVc;
     
@@ -120,18 +120,18 @@ static DYBUITabbarViewController *sharedInstace = nil;
     
     leftViewWidth = 266;
     
-    [self initDragonUITabBarView:vcs imageArray:arr reduceHeight:reduceHeight barHeight:barHeight withClass:clazz];
+    [self initMagicUITabBarView:vcs imageArray:arr reduceHeight:reduceHeight barHeight:barHeight withClass:clazz];
     
-    threeview = [[DragonUIThirdView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    threeview = [[MagicUIThirdView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     
     [threeview setUserInteractionEnabled:YES];
     [threeview setLeftWidth:leftViewWidth];
     
     [sharedInstace initLeftView];
-    [threeview setViewType:DragonUILeftView];
+    [threeview setViewType:MagicUILeftView];
     [self.view addSubview:threeview];
     
-    DragonUIImageView *lineImg = [[DragonUIImageView alloc] initWithFrame:CGRectMake(-5, 0, 5, 640)];
+    MagicUIImageView *lineImg = [[MagicUIImageView alloc] initWithFrame:CGRectMake(-5, 0, 5, 640)];
     [lineImg setImage:[UIImage imageNamed:@"bg_shadow.png"]];
     [threeview.firstView addSubview:lineImg];
     RELEASE(lineImg);
@@ -145,13 +145,13 @@ static DYBUITabbarViewController *sharedInstace = nil;
     return self;
 }
 
-DragonUIButton *hiddenView;
+MagicUIButton *hiddenView;
 - (void)handleNoVerity
 {
 
     if ([SHARED.curUser.verify isEqualToString:@"0"] && !hiddenView) {
         
-        hiddenView = [[DragonUIButton alloc] initWithFrame:CGRectMake(65, 0, self.view.frame.size.width-65, 50)];
+        hiddenView = [[MagicUIButton alloc] initWithFrame:CGRectMake(65, 0, self.view.frame.size.width-65, 50)];
         hiddenView.backgroundColor = [UIColor clearColor];
         [hiddenView addSignal:[DYBUITabbarViewController HIDDENBUTTONACTION] forControlEvents:UIControlEventTouchUpInside];
         
@@ -166,7 +166,7 @@ DragonUIButton *hiddenView;
     
     [self handleNoVerity];
     
-    [threeview setViewType:DragonUILeftView];
+    [threeview setViewType:MagicUILeftView];
     if (threeview)
     {
         if (view)
@@ -369,8 +369,8 @@ DragonUIButton *hiddenView;
     return VCIMGArr;
 }
 
-//初始化dragonuitabbarview
-- (DragonUITabBarView *)initDragonUITabBarView:(NSArray *)vcs imageArray:(NSArray *)arr reduceHeight:(CGFloat)reduceHeight barHeight:(CGFloat)barHeight withClass:(Class)clazz
+//初始化Magicuitabbarview
+- (MagicUITabBarView *)initMagicUITabBarView:(NSArray *)vcs imageArray:(NSArray *)arr reduceHeight:(CGFloat)reduceHeight barHeight:(CGFloat)barHeight withClass:(Class)clazz
 {
     
     if (_containerView)
@@ -378,7 +378,7 @@ DragonUIButton *hiddenView;
         RELEASEVIEW(_containerView);
     }
     
-    _containerView = [[DragonUITabBarView alloc] initWithViewControllers:vcs imageArray:arr reduceHeight:reduceHeight barHeight:barHeight withClass:clazz];
+    _containerView = [[MagicUITabBarView alloc] initWithViewControllers:vcs imageArray:arr reduceHeight:reduceHeight barHeight:barHeight withClass:clazz];
     
     [_containerView.tabBar setBackgroundColor:[UIColor clearColor]];
     [_containerView setTabBarTransparent:YES];
@@ -388,7 +388,7 @@ DragonUIButton *hiddenView;
 }
 
 
-- (DragonNavigationController *)drNavigationController
+- (MagicNavigationController *)drNavigationController
 {
     return _vc.drNavigationController;
 }
@@ -571,7 +571,7 @@ DragonUIButton *hiddenView;
 //            [_containerView addSubview:_v_totalNumOfUnreadMsg];
 //            RELEASE(_v_totalNumOfUnreadMsg);
 ////            _containerView.tabBar.hidden=YES;
-//            [_containerView.tabBar addObserverObj:_v_totalNumOfUnreadMsg forKeyPath:@"frame" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:[DragonUITabBar class]];
+//            [_containerView.tabBar addObserverObj:_v_totalNumOfUnreadMsg forKeyPath:@"frame" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:[MagicUITabBar class]];
 //        }else{
 //            UIImage *img=[UIImage imageNamed:@"tabtip_bottom"];
 //            [_v_totalNumOfUnreadMsg refreshByimg:img nums:[NSString stringWithFormat:@"%d",num]];
@@ -586,9 +586,9 @@ DragonUIButton *hiddenView;
 
 #pragma mark -
 #pragma mark - DYBBaseViewLeftView
-- (void)handleViewSignal_DYBBaseViewLeftView:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewLeftView:(MagicViewSignal *)signal
 {
-    DragonUIButton *button = signal.source;
+    MagicUIButton *button = signal.source;
     if ([signal is:[DYBBaseViewLeftView SELECTBUTTON]])
     {
         
@@ -644,7 +644,7 @@ DragonUIButton *hiddenView;
 
 #pragma mark -
 #pragma mark - handleButton
-- (void)handleViewSignal_DYBUITabbarViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBUITabbarViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBUITabbarViewController HIDDENBUTTONACTION]])
     {

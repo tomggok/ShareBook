@@ -15,6 +15,6 @@
 }
 
 @property (strong, nonatomic) UIWindow *window;
-@property (nonatomic, retain)DragonNavigationController *navi;
+@property (nonatomic, retain)MagicNavigationController *navi;
 
 @end

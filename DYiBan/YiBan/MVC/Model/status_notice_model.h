@@ -10,7 +10,7 @@
 #import "status.h"
 
 //通知详情
-@interface status_notice_model : DragonJSONReflection
+@interface status_notice_model : MagicJSONReflection
 @property(nonatomic,retain)status* status;
 @property (nonatomic,retain)NSString *havenext;
 @property (nonatomic,retain)NSString* eclass_num;

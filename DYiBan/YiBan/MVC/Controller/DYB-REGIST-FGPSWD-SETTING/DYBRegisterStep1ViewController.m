@@ -20,19 +20,19 @@
 DEF_SIGNAL(BOYBUTTON)
 DEF_SIGNAL(GIRLTBUTTON)
 
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.headview setTitle:@"注册"];
         [self sizeStatus];
         self.view.backgroundColor =ColorBackgroundGray;
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         selectSex = -1;
         
         UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 20+self.headHeight, INPUTWIDTH, INPUTHEIGHT*3-3)];
-        [bgView.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[DragonCommentMethod color:229 green:229 blue:229 alpha:1.0] CGColor]];
+        [bgView.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[MagicCommentMethod color:229 green:229 blue:229 alpha:1.0] CGColor]];
         [self.view addSubview:bgView];
         RELEASE(bgView)
         
@@ -59,15 +59,15 @@ DEF_SIGNAL(GIRLTBUTTON)
         //性别选择按钮
         for (int i = 0; i < 2; i++) {
             
-            btnSex[i] = [[DragonUIButton alloc] initWithFrame:CGRectMake(bgView.frame.origin.x+(sexImage.size.width/2+40)*i, bgView.frame.origin.y+bgView.frame.size.height, sexImage.size.width/2, sexImage.size.height/2)];
+            btnSex[i] = [[MagicUIButton alloc] initWithFrame:CGRectMake(bgView.frame.origin.x+(sexImage.size.width/2+40)*i, bgView.frame.origin.y+bgView.frame.size.height, sexImage.size.width/2, sexImage.size.height/2)];
             
             if (i == 1) {
                 
-                [self setDragonUIButton:btnSex[i] setImageNorm:[UIImage imageNamed:@"female_off"] setImageHigh:[UIImage imageNamed:@"female_off"]  signal:[DYBRegisterStep1ViewController GIRLTBUTTON] setControl:self];
+                [self setMagicUIButton:btnSex[i] setImageNorm:[UIImage imageNamed:@"female_off"] setImageHigh:[UIImage imageNamed:@"female_off"]  signal:[DYBRegisterStep1ViewController GIRLTBUTTON] setControl:self];
                 
             }else {
                 
-                [self setDragonUIButton:btnSex[i] setImageNorm:[UIImage imageNamed:@"male_off"] setImageHigh:[UIImage imageNamed:@"male_off"]  signal:[DYBRegisterStep1ViewController BOYBUTTON] setControl:self];
+                [self setMagicUIButton:btnSex[i] setImageNorm:[UIImage imageNamed:@"male_off"] setImageHigh:[UIImage imageNamed:@"male_off"]  signal:[DYBRegisterStep1ViewController BOYBUTTON] setControl:self];
                 
             }
             
@@ -79,7 +79,7 @@ DEF_SIGNAL(GIRLTBUTTON)
 }
 
 #pragma mark- 点击按钮
-- (void)handleViewSignal_DYBRegisterStep1ViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBRegisterStep1ViewController:(MagicViewSignal *)signal
 {
     
     if ([signal is:[DYBRegisterStep1ViewController BOYBUTTON]]) {
@@ -129,7 +129,7 @@ DEF_SIGNAL(GIRLTBUTTON)
 }
 
 #pragma mark- 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -147,7 +147,7 @@ DEF_SIGNAL(GIRLTBUTTON)
             SHARED.registUserSetting.registName = textInput[2].nameField.text;
             SHARED.registUserSetting.registSex = [@"" stringByAppendingFormat:@"%d",selectSex];
             
-            DragonRequest *request = [DYBHttpMethod security_reg:textInput[0].nameField.text nickname:textInput[2].nameField.text password:textInput[1].nameField.text sex:[@"" stringByAppendingFormat:@"%d",selectSex] isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod security_reg:textInput[0].nameField.text nickname:textInput[2].nameField.text password:textInput[1].nameField.text sex:[@"" stringByAppendingFormat:@"%d",selectSex] isAlert:YES receive:self];
             [request setTag:1];
             
         }
@@ -193,29 +193,29 @@ DEF_SIGNAL(GIRLTBUTTON)
 
 
 #pragma mark- UITextField
-- (void)handleViewSignal_DragonUITextField:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITextField:(MagicViewSignal *)signal
 {
-    if ([signal.source isKindOfClass:[DragonUITextField class]])
+    if ([signal.source isKindOfClass:[MagicUITextField class]])
     {
-        DragonUITextField *textField = [signal source];
+        MagicUITextField *textField = [signal source];
         
-        if ([signal is:[DragonUITextField TEXTFIELDDIDENDEDITING]])
+        if ([signal is:[MagicUITextField TEXTFIELDDIDENDEDITING]])
         {
             [self animateTextField:[textField superview] up:NO getContrl:self];
             
-        }else if ([signal is:[DragonUITextField TEXTFIELD]])
+        }else if ([signal is:[MagicUITextField TEXTFIELD]])
         {
             [NSTimer scheduledTimerWithTimeInterval:.1f target:self selector:@selector(sizeStatus) userInfo:nil repeats:NO];
             
-        }else if ([signal is:[DragonUITextField TEXTFIELDSHOULDRETURN]])
+        }else if ([signal is:[MagicUITextField TEXTFIELDSHOULDRETURN]])
         {
             [textField resignFirstResponder];
             
-        }else if ([signal is:[DragonUITextField TEXTFIELDDIDBEGINEDITING]]) //开始编辑
+        }else if ([signal is:[MagicUITextField TEXTFIELDDIDBEGINEDITING]]) //开始编辑
         {
             [self animateTextField:[textField superview] up:YES getContrl:self];
             
-        }else if ([signal is:[DragonUITextField TEXTFIELDSHOULDCLEAR]])
+        }else if ([signal is:[MagicUITextField TEXTFIELDSHOULDCLEAR]])
         {
             [self setButtonImage:self.rightButton setImage:@"btn_next_dis"];
         }
@@ -225,7 +225,7 @@ DEF_SIGNAL(GIRLTBUTTON)
 }
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     
     if ([request succeed])

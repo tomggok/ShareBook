@@ -15,18 +15,18 @@
 
 @implementation DYBResetPassWordViewController
 @synthesize passwordInput = _passwordInput,passwordInput2 = _passwordInput2,codeString = _codeString,loginName = _loginName,userId = _userId;
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.headview setTitle:@"重置密码"];
         [self sizeStatus];
         self.view.backgroundColor =ColorBackgroundGray;
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         
         UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 20+self.headHeight, INPUTWIDTH, INPUTHEIGHT*2-1)];
-        [bgView.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[DragonCommentMethod color:229 green:229 blue:229 alpha:1.0] CGColor]];
+        [bgView.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[MagicCommentMethod color:229 green:229 blue:229 alpha:1.0] CGColor]];
         [self.view addSubview:bgView];
         RELEASE(bgView)
         
@@ -40,20 +40,20 @@
         [bgView addSubview:_passwordInput2];
         RELEASE(_passwordInput2);
         
-        DragonUILabel *textLabel = [[DragonUILabel alloc]initWithFrame:CGRectMake(bgView.frame.origin.x, bgView.frame.origin.y+bgView.frame.size.height+12, INPUTWIDTH, 20)];
+        MagicUILabel *textLabel = [[MagicUILabel alloc]initWithFrame:CGRectMake(bgView.frame.origin.x, bgView.frame.origin.y+bgView.frame.size.height+12, INPUTWIDTH, 20)];
         textLabel.text = @"验证通过，本次重置密码的帐号是：";
-        [self setLabel:textLabel sizeFont:18 setColor:[DragonCommentMethod colorWithHex:@"aaaaaa"]];
+        [self setLabel:textLabel sizeFont:18 setColor:[MagicCommentMethod colorWithHex:@"aaaaaa"]];
         
         //帐号名称
-        DragonUILabel *userLabel = [[DragonUILabel alloc]initWithFrame:CGRectMake([_passwordInput2 getOrginx], textLabel.frame.origin.y+textLabel.frame.size.height+12, INPUTWIDTH, 20)];
+        MagicUILabel *userLabel = [[MagicUILabel alloc]initWithFrame:CGRectMake([_passwordInput2 getOrginx], textLabel.frame.origin.y+textLabel.frame.size.height+12, INPUTWIDTH, 20)];
         userLabel.text = _loginName;
-        [self setLabel:userLabel sizeFont:15 setColor:[DragonCommentMethod colorWithHex:@"333333"]];
+        [self setLabel:userLabel sizeFont:15 setColor:[MagicCommentMethod colorWithHex:@"333333"]];
            
     }
 }
 
 //设置label属性
-- (void)setLabel:(DragonUILabel*)label sizeFont:(int)size setColor:(UIColor *)color{
+- (void)setLabel:(MagicUILabel*)label sizeFont:(int)size setColor:(UIColor *)color{
     
     label.font = [DYBShareinstaceDelegate DYBFoutStyle:size];
     label.textAlignment = NSTextAlignmentCenter;
@@ -93,24 +93,24 @@
 
 
 #pragma mark- UITextField
-- (void)handleViewSignal_DragonUITextField:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITextField:(MagicViewSignal *)signal
 {
-    if ([signal.source isKindOfClass:[DragonUITextField class]])
+    if ([signal.source isKindOfClass:[MagicUITextField class]])
     {
-        DragonUITextField *textField = [signal source];
+        MagicUITextField *textField = [signal source];
         
-        if ([signal is:[DragonUITextField TEXTFIELDDIDENDEDITING]])
+        if ([signal is:[MagicUITextField TEXTFIELDDIDENDEDITING]])
         {
             
-        }else if ([signal is:[DragonUITextField TEXTFIELD]])
+        }else if ([signal is:[MagicUITextField TEXTFIELD]])
         {
             [NSTimer scheduledTimerWithTimeInterval:.1f target:self selector:@selector(sizeStatus) userInfo:nil repeats:NO];
             
-        }else if ([signal is:[DragonUITextField TEXTFIELDSHOULDRETURN]])
+        }else if ([signal is:[MagicUITextField TEXTFIELDSHOULDRETURN]])
         {
             [textField resignFirstResponder];
             
-        } else if ([signal is:[DragonUITextField TEXTFIELDSHOULDCLEAR]])
+        } else if ([signal is:[MagicUITextField TEXTFIELDSHOULDCLEAR]])
         {
             [self setButtonImage:self.rightButton setImage:@"btn_ok_dis"];
         }
@@ -120,7 +120,7 @@
 }
 
 #pragma mark- 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -132,7 +132,7 @@
     {
         if ([self sizeStatus]) {
             
-            DragonRequest *request = [DYBHttpMethod security_resetpwd:_userId authcode:_codeString password:_passwordInput2.nameField.text isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod security_resetpwd:_userId authcode:_codeString password:_passwordInput2.nameField.text isAlert:YES receive:self];
             [request setTag:1];
             
         }
@@ -144,7 +144,7 @@
 }
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     
     if ([request succeed])

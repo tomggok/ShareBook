@@ -9,9 +9,9 @@
 #import "DYBCustomInputView.h"
 #import "UIImageView+Init.h"
 #import "DYBParameter.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "UITextView+Property.h"
-#import "Dragon_Device.h"
+#import "Magic_Device.h"
 #import "NSString+Count.h"
 
 @implementation DYBCustomInputView
@@ -23,7 +23,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.userInteractionEnabled=YES;
-        _textV = [[DragonUITextView alloc]initWithFrame:CGRectMake(0, 3, self.bounds.size.width, self.bounds.size.height-k_offsite)];
+        _textV = [[MagicUITextView alloc]initWithFrame:CGRectMake(0, 3, self.bounds.size.width, self.bounds.size.height-k_offsite)];
         _textV._originFrame=CGRectMake(0, k_offsite, self.bounds.size.width, self.bounds.size.height-k_offsite);
         [_textV setBackgroundColor:[UIColor clearColor]];
         [_textV setPlaceHolder:placeHolder];
@@ -49,7 +49,7 @@
         _imgV_input_bg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) backgroundColor:[UIColor clearColor] image:input_bg isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFill stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         [_imgV_input_bg release];
         
-        _textV = [[DragonUITextView alloc]initWithFrame:CGRectMake(2, 3, _imgV_input_bg.frame.size.width-40, _imgV_input_bg.frame.size.height-4)];
+        _textV = [[MagicUITextView alloc]initWithFrame:CGRectMake(2, 3, _imgV_input_bg.frame.size.width-40, _imgV_input_bg.frame.size.height-4)];
         [_textV setBackgroundColor:[UIColor clearColor]];
         [_textV setPlaceHolder:placeHolder];
         //        _textV.returnKeyType=UIReturnKeySend;
@@ -79,7 +79,7 @@
                 
                 UIImage *img=[UIImage imageNamed:@"btn_foot_a.png"];
                 
-                _bt_send = [[DragonUIButton alloc]initWithFrame:CGRectMake(_imgV_input_bg.frame.size.width-(img.size.width/3), _imgV_input_bg.frame.size.height-img.size.height/3, img.size.width/3, img.size.height/3)];
+                _bt_send = [[MagicUIButton alloc]initWithFrame:CGRectMake(_imgV_input_bg.frame.size.width-(img.size.width/3), _imgV_input_bg.frame.size.height-img.size.height/3, img.size.width/3, img.size.height/3)];
 //                [_bt_send setBackgroundImage:img forState:UIControlStateNormal];
 //                [_bt_send setBackgroundImage:img forState:UIControlStateSelected];
 //                {
@@ -118,7 +118,7 @@
 #pragma mark- 判断各种发送限制
 -(BOOL)couldSend
 {
-//    if ([DragonDevice hasInternetConnection] == NO) {
+//    if ([MagicDevice hasInternetConnection] == NO) {
 ////        [DYBShareinstaceDelegate addConfirmViewTitle:@"网络异常" MSG:@"发送失败，请检查网络！" targetView:[self superCon].view targetObj:self btnType:1];
 //        return NO;
 //    }
@@ -146,7 +146,7 @@
 -(void)initShadeBt
 {
     if (!_bt_Shade){
-        _bt_Shade = [[DragonUIButton alloc]initWithFrame:CGRectMake(0, kH_UINavigationController, screenShows.size.width, screenShows.size.height)];
+        _bt_Shade = [[MagicUIButton alloc]initWithFrame:CGRectMake(0, kH_UINavigationController, screenShows.size.width, screenShows.size.height)];
         //                [_bt_send setBackgroundImage:img forState:UIControlStateNormal];
         //                [_bt_send setBackgroundImage:img forState:UIControlStateSelected];
         //                {
@@ -156,7 +156,7 @@
         //                }
         
         _bt_Shade._originFrame=CGRectMake(_bt_Shade.frame.origin.x, _bt_Shade.frame.origin.y, _bt_Shade.frame.size.width, _bt_Shade.frame.size.height);
-        [_bt_Shade addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+        [_bt_Shade addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
         [self.superCon.view addSubview:_bt_Shade];
         //        [_bt_send changePosInSuperViewWithAlignment:1];
         _bt_send.tag=k_tag_bt_Shade;

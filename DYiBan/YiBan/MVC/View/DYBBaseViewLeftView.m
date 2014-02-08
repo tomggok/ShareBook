@@ -9,7 +9,7 @@
 #import "DYBBaseViewLeftView.h"
 #import "user.h"
 #import "NSObject+KVO.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "DYBDataBankListCell.h"
 #import "Cell2.h"
 #import "Cell1.h"
@@ -17,9 +17,9 @@
 //#import "DYBImagePickerController.h"
 @interface DYBBaseViewLeftView () {
     
-    DragonUILabel *labelText[6];
-    DragonUIButton *SelectBtn[6];
-    DragonUIImageView *imvNew;
+    MagicUILabel *labelText[6];
+    MagicUIButton *SelectBtn[6];
+    MagicUIImageView *imvNew;
     
     DYBUITableView *tbDataBank;
     NSMutableArray *_dataList;
@@ -43,7 +43,7 @@ DEF_SIGNAL(SELECTBUTTON)//选择按钮
     if (self) {
         
 
-        self.backgroundColor = [DragonCommentMethod colorWithHex:@"f8f8f8"];
+        self.backgroundColor = [MagicCommentMethod colorWithHex:@"f8f8f8"];
         _newTag = -1;
         _oldTag = -1;
         
@@ -79,7 +79,7 @@ DEF_SIGNAL(SELECTBUTTON)//选择按钮
         
         
         for (int i = 1; i < 5; i++) {
-            [labelText[i] setTextColor:[DragonCommentMethod colorWithHex:@"aaaaaa"]];
+            [labelText[i] setTextColor:[MagicCommentMethod colorWithHex:@"aaaaaa"]];
             [SelectBtn[i] setImage:[UIImage imageNamed:[@"" stringByAppendingFormat:@"icon_leftmenu%d_dis",i+1]] forState:UIControlStateNormal];
             SelectBtn[i].userInteractionEnabled = NO;
         }
@@ -88,7 +88,7 @@ DEF_SIGNAL(SELECTBUTTON)//选择按钮
 }
 
 //btn 属性 按钮 名称 信号 颜色 所属类
-- (void)setDragonUIButton:(DragonUIButton *)btn setImageNorm:(UIImage *)ImageNorm setImageHigh:(UIImage *)ImageHigh signal:(NSString *)signal {
+- (void)setMagicUIButton:(MagicUIButton *)btn setImageNorm:(UIImage *)ImageNorm setImageHigh:(UIImage *)ImageHigh signal:(NSString *)signal {
     
     [btn setBackgroundImage:ImageNorm forState:UIControlStateNormal];
     [btn setBackgroundImage:ImageHigh forState:UIControlStateHighlighted];
@@ -100,7 +100,7 @@ DEF_SIGNAL(SELECTBUTTON)//选择按钮
 
 
 //设置label属性
-- (void)setLabel:(DragonUILabel*)label sizeFont:(int)size setColor:(UIColor *)color{
+- (void)setLabel:(MagicUILabel*)label sizeFont:(int)size setColor:(UIColor *)color{
     
     label.font = [DYBShareinstaceDelegate DYBFoutStyle:size];
     label.textAlignment = NSTextAlignmentLeft;
@@ -128,13 +128,13 @@ DEF_SIGNAL(SELECTBUTTON)//选择按钮
     
     for (int i = 0; i < 6; i++) {
         
-        labelText[i].textColor = [DragonCommentMethod colorWithHex:@"333333"];
-        SelectBtn[i].backgroundColor = [DragonCommentMethod colorWithHex:@"f8f8f8"];
+        labelText[i].textColor = [MagicCommentMethod colorWithHex:@"333333"];
+        SelectBtn[i].backgroundColor = [MagicCommentMethod colorWithHex:@"f8f8f8"];
     }
     
     [self handleNoVerify];
     
-    labelText[tag].textColor = [DragonCommentMethod colorWithHex:@"009cd5"];
+    labelText[tag].textColor = [MagicCommentMethod colorWithHex:@"009cd5"];
     SelectBtn[tag].backgroundColor = [UIColor whiteColor];
     
 }
@@ -145,10 +145,10 @@ DEF_SIGNAL(SELECTBUTTON)//选择按钮
 
 
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal{
     
     
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         int  section = [[dict objectForKey:@"section"] integerValue];
@@ -164,7 +164,7 @@ DEF_SIGNAL(SELECTBUTTON)//选择按钮
         
         [signal setReturnValue:[NSNumber numberWithInteger:num]];
                 
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
     {
         
         
@@ -174,28 +174,28 @@ DEF_SIGNAL(SELECTBUTTON)//选择按钮
         
         
     }
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
     {
         
         
         
         [signal setReturnValue:[NSNumber numberWithInteger:40]];
     }
-    else if ([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
     {
         [signal setReturnValue:nil];
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
     {
         [signal setReturnValue:nil];
         
     }
-    else if ([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
     {
         [signal setReturnValue:[NSNumber numberWithFloat:0.0]];
     }
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -231,7 +231,7 @@ DEF_SIGNAL(SELECTBUTTON)//选择按钮
         [signal setReturnValue:sendCell ];
         
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
     {
         
         NSDictionary *dict = (NSDictionary *)[signal object];
@@ -269,28 +269,28 @@ DEF_SIGNAL(SELECTBUTTON)//选择按钮
         }
 
         
-    }else if([signal is:[DragonUITableView TABLESCROLLVIEWDIDENDDRAGGING]])/*滚动停止*/{
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDENDDRAGGING]])/*滚动停止*/{
         
         
-    }else if([signal is:[DragonUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
         
-    }else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]]) //刷新
+    }else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]]) //刷新
     {
-//        DragonUIUpdateView *uptableview = (DragonUIUpdateView *)[signal object];
+//        MagicUIUpdateView *uptableview = (MagicUIUpdateView *)[signal object];
         
                
-    }else if([signal is:[DragonUITableView TAbLEVIEWLODATA]]) //加载更多
+    }else if([signal is:[MagicUITableView TAbLEVIEWLODATA]]) //加载更多
     {
         
-//        DragonUIUpdateView *uptableview = (DragonUIUpdateView *)[signal object];
+//        MagicUIUpdateView *uptableview = (MagicUIUpdateView *)[signal object];
         
                
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLUP]]){ //上滑动
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLUP]]){ //上滑动
         
 //        [tbDataBank StretchingUpOrDown:0];
 //        [DYBShareinstaceDelegate opeartionTabBarShow:YES];
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLDOWN]]){ //下滑动
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLDOWN]]){ //下滑动
         
 //        [tbDataBank StretchingUpOrDown:1];
 //        [DYBShareinstaceDelegate opeartionTabBarShow:NO];

@@ -17,7 +17,7 @@
 
 @implementation DYBBaseView
 {
-//    DragonUIBlurView *blurView;
+//    MagicUIBlurView *blurView;
 }
 
 @synthesize blurLevel = _blurLevel;
@@ -53,7 +53,7 @@
 {
 //    if (!blurView)
 //    {
-//        blurView = [[DragonUIBlurView alloc] initWithFrame:self.frame];
+//        blurView = [[MagicUIBlurView alloc] initWithFrame:self.frame];
 //        
 //        [self addSubview:blurView];
 //        [self sendSubviewToBack:blurView];

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface status_detail_comment : DragonJSONReflection
+@interface status_detail_comment : MagicJSONReflection
 @property(nonatomic,retain)NSString *is_exit;//动态是否存在 0 存在 1 不存在
 @property(nonatomic,retain)NSString *havenext;//是否有更多评论 0否1是
 @property(nonatomic,retain)NSMutableArray *comment;//数组 评论列表 数据结构

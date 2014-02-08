@@ -9,8 +9,8 @@
 #import "DYBBaseViewController.h"
 #import "DYBSetButton.h"
 @interface DYBSynchroViewController : DYBBaseViewController
-@property(retain,nonatomic)DragonUIImageView *btnSelectT;
-@property(retain,nonatomic)DragonUIImageView *btnSelectR;
+@property(retain,nonatomic)MagicUIImageView *btnSelectT;
+@property(retain,nonatomic)MagicUIImageView *btnSelectR;
 @property(retain,nonatomic)DYBSetButton *btnSelect;
 
 AS_SIGNAL(SYNCHROBUTTON)

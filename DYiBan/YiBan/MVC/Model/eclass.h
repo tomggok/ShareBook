@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 //#import "Jastor.h"
-@interface eclass : DragonJSONReflection{
+@interface eclass : MagicJSONReflection{
     
 }
 @property (retain,nonatomic) NSString *userid;

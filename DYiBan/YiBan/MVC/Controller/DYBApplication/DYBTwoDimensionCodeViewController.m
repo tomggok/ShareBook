@@ -13,7 +13,7 @@
 #import "DYBWebController.h"
 #import "active.h"
 #import "DYBActivityViewController.h"
-#import "Dragon_Device.h"
+#import "Magic_Device.h"
 
 @interface DYBTwoDimensionCodeViewController (){
     
@@ -25,8 +25,8 @@
     BOOL stopAnimation;
     BOOL isPush ;
     
-    DragonUILabel *labeText;
-    DragonUIButton *selectbtn[2];
+    MagicUILabel *labeText;
+    MagicUIButton *selectbtn[2];
     int selectIndex;
 }
 
@@ -36,9 +36,9 @@
 DEF_SIGNAL(ACTIVITYBUTTON)//登陆
 DEF_SIGNAL(WEBBUTTON) //注册按钮
 
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         
         
@@ -48,7 +48,7 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
         [self backImgType:0];
         [self addWillAppear];
         [self.view bringSubviewToFront:self.headview];
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         selectIndex = 0;
         
@@ -56,7 +56,7 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
         
         
     }
-    else if ([signal is:[DragonViewController WILL_DISAPPEAR]])
+    else if ([signal is:[MagicViewController WILL_DISAPPEAR]])
     {
         isPush = YES;
         [readerZbar.readerView stop];
@@ -154,12 +154,12 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
     if (labeText) {
         RELEASEVIEW(labeText);
     }
-    labeText = [[DragonUILabel alloc]initWithFrame:CGRectMake(30, self.view.frame.size.height-88-20-44, self.view.frame.size.width-60, 54)];
+    labeText = [[MagicUILabel alloc]initWithFrame:CGRectMake(30, self.view.frame.size.height-88-20-44, self.view.frame.size.width-60, 54)];
     labeText.backgroundColor = [UIColor clearColor];
     labeText.textAlignment = UITextAlignmentCenter;
     labeText.numberOfLines = 2;
     labeText.font = [DYBShareinstaceDelegate DYBFoutStyle:15];
-    labeText.textColor = [DragonCommentMethod colorWithHex:@"aaaaaa"];
+    labeText.textColor = [MagicCommentMethod colorWithHex:@"aaaaaa"];
     [labeText setText:@"活动二维码"];
     [self.view addSubview:labeText];
     
@@ -173,7 +173,7 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
     
     UIImage *imageSize = [UIImage imageNamed:@"tab_huodong_sel"];
     for (int i = 0; i < 2; i++) {
-        selectbtn[i] = [[DragonUIButton alloc]initWithFrame:CGRectMake(imageSize.size.width/2*i, self.view.frame.size.height-imageSize.size.height/2, imageSize.size.width/2, imageSize.size.height/2)];
+        selectbtn[i] = [[MagicUIButton alloc]initWithFrame:CGRectMake(imageSize.size.width/2*i, self.view.frame.size.height-imageSize.size.height/2, imageSize.size.width/2, imageSize.size.height/2)];
         if (i == 0) {
             [self setButtonImage:selectbtn[i] setImage:@"tab_huodong" setHighString:@"tab_huodong_sel"];
             [selectbtn[i] addSignal:[DYBTwoDimensionCodeViewController ACTIVITYBUTTON] forControlEvents:UIControlEventTouchUpInside];
@@ -193,7 +193,7 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
 
 
 #pragma mark- 点击按钮
-- (void)handleViewSignal_DYBTwoDimensionCodeViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBTwoDimensionCodeViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBTwoDimensionCodeViewController ACTIVITYBUTTON]])
     {
@@ -222,7 +222,7 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
         [laser setFrame:CGRectMake(41.0f, self.view.frame.size.height-405+10+5, 235.0f, 13.0f)];
         
     }else{
-        if ([DragonDevice sysVersion] - 6.14 > 0) {
+        if ([MagicDevice sysVersion] - 6.14 > 0) {
             
             [laser setFrame:CGRectMake(41.0f, self.view.frame.size.height-305+20-150+9, 235.0f, 13.0f)];
             
@@ -243,7 +243,7 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
         [laser setFrame:CGRectMake(41.0f, self.view.frame.size.height-169+10, 235.0f, 13.0f)];
         
     }else{
-        if ([DragonDevice sysVersion] - 6.14 > 0) {
+        if ([MagicDevice sysVersion] - 6.14 > 0) {
             
             [laser setFrame:CGRectMake(41.0f, self.view.frame.size.height-169+10-50+20-23+12, 235.0f, 13.0f)];
             
@@ -307,7 +307,7 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
         
     }else if ([self isPureInt:self.strData]>0 &&selectIndex == 0) {
         
-        DragonRequest *request = [DYBHttpMethod active_detail:self.strData isAlert:NO receive:self];
+        MagicRequest *request = [DYBHttpMethod active_detail:self.strData isAlert:NO receive:self];
         [request setTag:1];
         
         if (!request) {//无网路
@@ -377,7 +377,7 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
 
 #pragma makr -
 #pragma mark - back button signal
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -396,7 +396,7 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
 }
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     
     if ([request succeed])
@@ -410,7 +410,7 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
                 active *ac = [active JSONReflection:[[response data] objectForKey:@"active"]];
                 
                 if ([ac.enabled isEqualToString:@"1"]) {
-                    DragonRequest *request = [DYBHttpMethod active_action:ac.id action:@"1" op:@"1" isAlert:NO receive:self];
+                    MagicRequest *request = [DYBHttpMethod active_action:ac.id action:@"1" op:@"1" isAlert:NO receive:self];
                     [request setTag:2];
                 }
                 

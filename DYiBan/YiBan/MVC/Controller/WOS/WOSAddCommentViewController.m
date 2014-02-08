@@ -14,7 +14,7 @@
 
 @interface WOSAddCommentViewController (){
     UIScrollView *scrollView;
-    DragonUITextView *textView;
+    MagicUITextView *textView;
     WOSTouchStar *touchStar;
 }
 
@@ -39,11 +39,11 @@
 }
 
 
--(void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal{
     
     DLogInfo(@"name -- %@",signal.name);
     
-    if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         [self.headview setTitle:@"添加评论"];
         
@@ -51,7 +51,7 @@
         [self.view setBackgroundColor:ColorBG];
         [self setButtonImage:self.leftButton setImage:@"back"];
     }
-    else if ([signal is:[DragonViewController CREATE_VIEWS]]) {
+    else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
         [self.view setBackgroundColor:[UIColor clearColor]];
         
@@ -91,7 +91,7 @@
         RELEASE(imageViewTextBG);
         
         
-        textView = [[DragonUITextView alloc]initWithFrame:CGRectMake(10.0f, 60.0f + 40 + 60,300.0f, 170.0f)];
+        textView = [[MagicUITextView alloc]initWithFrame:CGRectMake(10.0f, 60.0f + 40 + 60,300.0f, 170.0f)];
         [textView setBackgroundColor:[UIColor clearColor]];
         [textView setTextColor:[UIColor whiteColor]];
         [scrollView addSubview:textView];
@@ -112,10 +112,10 @@
     }
     
     
-    else if ([signal is:[DragonViewController DID_APPEAR]]) {
+    else if ([signal is:[MagicViewController DID_APPEAR]]) {
         
         DLogInfo(@"rrr");
-    } else if ([signal is:[DragonViewController DID_DISAPPEAR]]){
+    } else if ([signal is:[MagicViewController DID_DISAPPEAR]]){
         
         
     }
@@ -139,19 +139,19 @@
 
 -(void)addOK{
 
-    DragonRequest *request = [DYBHttpMethod wosKitchenInfo_commentadd:[_dictInfo objectForKey:@"kitchenIndex"] orderIndex:@"2" userIndex:SHARED.userId commentType:@"1" starLevel:[NSString stringWithFormat:@"%d",touchStar.numStar] comment:textView.text sAlert:YES receive:self];
+    MagicRequest *request = [DYBHttpMethod wosKitchenInfo_commentadd:[_dictInfo objectForKey:@"kitchenIndex"] orderIndex:@"2" userIndex:SHARED.userId commentType:@"1" starLevel:[NSString stringWithFormat:@"%d",touchStar.numStar] comment:textView.text sAlert:YES receive:self];
     [request setTag:2];
 
 }
 
--(void)handleViewSignal_DragonUITextView:(DragonViewSignal *)signal{
-    if ([signal isKindOf:[DragonUITextView TEXTVIEWSHOULDBEGINEDITING]]) {
+-(void)handleViewSignal_MagicUITextView:(MagicViewSignal *)signal{
+    if ([signal isKindOf:[MagicUITextView TEXTVIEWSHOULDBEGINEDITING]]) {
         
         [scrollView setContentSize:CGSizeMake(320.0f, CGRectGetHeight(self.view.frame)*1.2)];
     }
-    else if ([signal isKindOf:[DragonUITextView TEXTVIEWDIDENDEDITING]]){
+    else if ([signal isKindOf:[MagicUITextView TEXTVIEWDIDENDEDITING]]){
         
-        DragonUITextField *filed = (DragonUITextField *)[signal source];
+        MagicUITextField *filed = (MagicUITextField *)[signal source];
         [filed resignFirstResponder];
         
     }
@@ -161,7 +161,7 @@
 }
 
 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -173,7 +173,7 @@
 
 
 #pragma mark- 只接受HTTP信号
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     
     if ([request succeed])
@@ -195,7 +195,7 @@
                 }else{
                     NSString *strMSG = [dict objectForKey:@"message"];
                     
-                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
                     
                     
                 }
@@ -215,7 +215,7 @@
                 else{
                     NSString *strMSG = [dict objectForKey:@"message"];
                     
-                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
                     
                     
                 }
@@ -225,7 +225,7 @@
             NSDictionary *dict = [request.responseString JSONValue];
             NSString *strMSG = [dict objectForKey:@"message"];
             
-            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
             
             
         }

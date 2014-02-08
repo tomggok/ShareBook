@@ -13,7 +13,7 @@
 #import "DYBBirthdayReminderViewController.h"
 #import "UITableView+property.h"
 #import "DYBCellForPersonalHomePage.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "status.h"
 #import "NSString+Count.h"
 #import "DYBSignViewController.h"
@@ -21,7 +21,7 @@
 #import "DYBDynamicDetailViewController.h"
 #import "DYBImagePickerController.h"
 #import "UserSettingMode.h"
-#import "Dragon_Device.h"
+#import "Magic_Device.h"
 #import "DYBPersonalPhotoViewController.h"
 #import "DYBCheckImageViewController.h"
 #import "user_avatardolist.h"
@@ -29,13 +29,13 @@
 #import "DYBSendWishViewController.h"
 #import "DYBPublishViewController.h"
 #import "DYBSendPrivateLetterViewController.h"
-#import "UIImage+DragonCategory.h"
+#import "UIImage+MagicCategory.h"
 #import "DYBCheckMultiImageViewController.h"
 #import "DYBTop_StampListViewController.h"
 #import "DYBDataBankShotView.h"
 #import "UIView+Animations.h"
 #import "NSObject+KVO.h"
-#import "UIViewController+DragonCategory.h"
+#import "UIViewController+MagicCategory.h"
 #import "UITableView+property.h"
 #import "DYBNoticeDetailViewController.h"
 
@@ -60,14 +60,14 @@ DEF_SIGNAL(ATUILABLEACTION)
 @synthesize d_model=_d_model,b_isInMainPage=_b_isInMainPage,user=_user;
 
 #pragma mark- ViewController信号
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
     [super handleViewSignal:signal];
     
-    if ([signal is:DragonViewController.CREATE_VIEWS])
+    if ([signal is:MagicViewController.CREATE_VIEWS])
     {
         
-//        DragonRequest *request = [DYBHttpMethod setstatus_list:@"0" max_id:@"" last_id:@"0" num:@"10" page:[NSString stringWithFormat:@"%d", _tbv._page=1] type:@"1" userid:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+//        MagicRequest *request = [DYBHttpMethod setstatus_list:@"0" max_id:@"" last_id:@"0" num:@"10" page:[NSString stringWithFormat:@"%d", _tbv._page=1] type:@"1" userid:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
 //        [request setTag:2];
         
         [self observeNotification:[DYBPhotoEditorView DOSAVEIMAGE]];
@@ -82,7 +82,7 @@ DEF_SIGNAL(ATUILABLEACTION)
         _b_isMyHome=([[_d_model objectForKey:@"userid"] intValue]==[SHARED.curUser.userid intValue]);
         
         {//self.view上盖的一层,也是封面的父视图;  支持多图
-            _scr_All  = [[DragonUIScrollView alloc] initWithFrame:CGRectMake(0, 0, ImageWidth, self.view.bounds.size.height)];
+            _scr_All  = [[MagicUIScrollView alloc] initWithFrame:CGRectMake(0, 0, ImageWidth, self.view.bounds.size.height)];
             _scr_All.backgroundColor                  = [UIColor clearColor];
             _scr_All.showsHorizontalScrollIndicator   = NO;
             _scr_All.showsVerticalScrollIndicator     = NO;
@@ -106,7 +106,7 @@ DEF_SIGNAL(ATUILABLEACTION)
             [self.view addSubview:_scr_All];
             RELEASE(_scr_All);
             
-            _imgV_show = [[DragonUIImageView alloc] initWithFrame:CGRectMake(0, 0, _scr_All.frame.size.width, ImageHeight)
+            _imgV_show = [[MagicUIImageView alloc] initWithFrame:CGRectMake(0, 0, _scr_All.frame.size.width, ImageHeight)
                                                   backgroundColor:[UIColor clearColor]
                                                             image:nil
                                             isAdjustSizeByImgSize:NO
@@ -127,7 +127,7 @@ DEF_SIGNAL(ATUILABLEACTION)
         }
         
         {
-            _scr_showImgBack = [[DragonUIScrollView alloc] initWithFrame:CGRectMake(0, 0, ImageWidth, ImageHeight)];
+            _scr_showImgBack = [[MagicUIScrollView alloc] initWithFrame:CGRectMake(0, 0, ImageWidth, ImageHeight)];
             _scr_showImgBack.backgroundColor = [UIColor clearColor];
             _scr_showImgBack.pagingEnabled = YES;
             _scr_showImgBack.showsVerticalScrollIndicator = NO;
@@ -159,7 +159,7 @@ DEF_SIGNAL(ATUILABLEACTION)
             }
             if (!creatNoDetail)
             {
-                DragonRequest *request = [DYBHttpMethod user_detail:[_d_model objectForKey:@"userid"] isAlert:NO receive:self];
+                MagicRequest *request = [DYBHttpMethod user_detail:[_d_model objectForKey:@"userid"] isAlert:NO receive:self];
                 [request setTag:1];
             }
             
@@ -171,7 +171,7 @@ DEF_SIGNAL(ATUILABLEACTION)
 //            
 //        }
         
-    }else if ([signal is:DragonViewController.WILL_APPEAR]){
+    }else if ([signal is:MagicViewController.WILL_APPEAR]){
         if (!_b_isInMainPage) {
             [self backImgType:10];
         }else{
@@ -180,16 +180,16 @@ DEF_SIGNAL(ATUILABLEACTION)
         
         [self.headview setTitle:[_d_model objectForKey:@"name"]];
         [self.headview setTitleColor:ColorWhite];
-        self.headview.backgroundColor=[DragonCommentMethod color:0 green:0 blue:0 alpha:0.2];
+        self.headview.backgroundColor=[MagicCommentMethod color:0 green:0 blue:0 alpha:0.2];
 //        _tbv.v_headerVForHide=self.headview;
         self.headview.lineView.hidden=YES;
         
         if (!_bt_sendDynamic && _b_isMyHome) {//发动态
             UIImage *img= [UIImage imageNamed:@"grzy_2"];
-            _bt_sendDynamic = [[DragonUIButton alloc] initWithFrame:CGRectMake(self.headview.frame.size.width-img.size.width/2, 0, img.size.width/2, img.size.height/2)];
+            _bt_sendDynamic = [[MagicUIButton alloc] initWithFrame:CGRectMake(self.headview.frame.size.width-img.size.width/2, 0, img.size.width/2, img.size.height/2)];
             _bt_sendDynamic.backgroundColor=[UIColor clearColor];
             _bt_sendDynamic.tag=-10;
-            [_bt_sendDynamic addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [_bt_sendDynamic addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
             [_bt_sendDynamic setImage:img forState:UIControlStateNormal];
             [_bt_sendDynamic setImage:img forState:UIControlStateHighlighted];
             [self.headview addSubview:_bt_sendDynamic];
@@ -216,7 +216,7 @@ DEF_SIGNAL(ATUILABLEACTION)
         
         if (creatNoDetail || self.b_isAutoRefreshTbvInViewWillAppear)
         {
-            DragonRequest *request = [DYBHttpMethod user_detail:[_d_model objectForKey:@"userid"] isAlert:NO receive:self];
+            MagicRequest *request = [DYBHttpMethod user_detail:[_d_model objectForKey:@"userid"] isAlert:NO receive:self];
             [request setTag:1];
             creatNoDetail = NO;
             
@@ -225,13 +225,13 @@ DEF_SIGNAL(ATUILABLEACTION)
         
         DLogInfo(@"WILL_APPEAR=================================");
         
-    }else if ([signal is:DragonViewController.DID_DISAPPEAR]){
+    }else if ([signal is:MagicViewController.DID_DISAPPEAR]){
         //        RELEASEVIEW(_tbv);//界面不显示时彻底释放TBV,已释放cell
         
-    }else if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    }else if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         
-    }else if ([signal is:[DragonViewController FREE_DATAS]])//dealloc时回调,先释放数据
+    }else if ([signal is:[MagicViewController FREE_DATAS]])//dealloc时回调,先释放数据
     {
         [_tbv releaseDataResource];
         
@@ -239,7 +239,7 @@ DEF_SIGNAL(ATUILABLEACTION)
         
         [self unobserveAllNotification];
         
-    }else if ([signal is:[DragonViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
+    }else if ([signal is:[MagicViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
         
 //        RELEASE(_v_tabbar);
         
@@ -251,7 +251,7 @@ DEF_SIGNAL(ATUILABLEACTION)
     
 }
 
-- (void)handleViewSignal_DYBPersonalHomePageViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBPersonalHomePageViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBPersonalHomePageViewController ATUILABLEACTION]])
     {
@@ -270,7 +270,7 @@ DEF_SIGNAL(ATUILABLEACTION)
     }
     
     if (!_tbv) {
-        _tbv = [[DragonUITableView alloc] initWithFrame:self.view.bounds isNeedUpdate:YES];
+        _tbv = [[MagicUITableView alloc] initWithFrame:self.view.bounds isNeedUpdate:YES];
         _tbv._cellH=65;
         [_tbv setTableViewType:DTableViewSlime];
         [self.view addSubview:_tbv];
@@ -308,7 +308,7 @@ DEF_SIGNAL(ATUILABLEACTION)
     RELEASE(imgV);
     
     {
-        DragonUILabel *lb=[[DragonUILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imgV.frame)+20, 0, 0)];
+        MagicUILabel *lb=[[MagicUILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imgV.frame)+20, 0, 0)];
         lb.backgroundColor=[UIColor clearColor];
         lb.textAlignment=NSTextAlignmentLeft;
         lb.font=[DYBShareinstaceDelegate DYBFoutStyle:20];
@@ -369,7 +369,7 @@ DEF_SIGNAL(ATUILABLEACTION)
 {
     if (!_v_tabbar && !_b_isMyHome) {
         _v_tabbar=[[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame)-50-kH_StateBar, CGRectGetWidth(self.view.frame), 50)];
-        _v_tabbar.backgroundColor=[DragonCommentMethod color:255 green:255 blue:255 alpha:0.9];
+        _v_tabbar.backgroundColor=[MagicCommentMethod color:255 green:255 blue:255 alpha:0.9];
         _v_tabbar.layer.shadowColor=ColorBlack.CGColor;
         _v_tabbar.layer.shadowOffset=CGSizeMake(0, -1);
         
@@ -386,10 +386,10 @@ DEF_SIGNAL(ATUILABLEACTION)
     
     if (_v_tabbar && !_bt_AddFriends) {//
         UIImage *img= [UIImage imageNamed:@"add_friend_def"];
-        _bt_AddFriends = [[DragonUIButton alloc] initWithFrame:CGRectMake(0, 0, img.size.width/2, img.size.height/2)];
+        _bt_AddFriends = [[MagicUIButton alloc] initWithFrame:CGRectMake(0, 0, img.size.width/2, img.size.height/2)];
         _bt_AddFriends.backgroundColor=[UIColor clearColor];
         _bt_AddFriends.tag=-12;
-        [_bt_AddFriends addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+        [_bt_AddFriends addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
         [_bt_AddFriends setImage:img forState:UIControlStateNormal];
         [_bt_AddFriends setImage:[UIImage imageNamed:@"add_friend_press"] forState:UIControlStateHighlighted];
         [_v_tabbar addSubview:_bt_AddFriends];
@@ -400,10 +400,10 @@ DEF_SIGNAL(ATUILABLEACTION)
     
     if (_v_tabbar && !_bt_sendPriLetter) {//
         UIImage *img= [UIImage imageNamed:@"msg_def"];
-        _bt_sendPriLetter = [[DragonUIButton alloc] initWithFrame:CGRectMake(0, 0, img.size.width/2, img.size.height/2)];
+        _bt_sendPriLetter = [[MagicUIButton alloc] initWithFrame:CGRectMake(0, 0, img.size.width/2, img.size.height/2)];
         _bt_sendPriLetter.backgroundColor=[UIColor clearColor];
         _bt_sendPriLetter.tag=-13;
-        [_bt_sendPriLetter addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+        [_bt_sendPriLetter addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
         [_bt_sendPriLetter setImage:img forState:UIControlStateNormal];
         [_bt_sendPriLetter setImage:[UIImage imageNamed:@"msg_press"] forState:UIControlStateHighlighted];
         [_v_tabbar addSubview:_bt_sendPriLetter];
@@ -414,10 +414,10 @@ DEF_SIGNAL(ATUILABLEACTION)
     
     if (_v_tabbar && !_bt_refresh) {//
         UIImage *img= [UIImage imageNamed:@"refresh_def"];
-        _bt_refresh = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(_v_tabbar.frame)-img.size.width/2, 0, img.size.width/2, img.size.height/2)];
+        _bt_refresh = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(_v_tabbar.frame)-img.size.width/2, 0, img.size.width/2, img.size.height/2)];
         _bt_refresh.backgroundColor=[UIColor clearColor];
         _bt_refresh.tag=-14;
-        [_bt_refresh addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+        [_bt_refresh addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
         [_bt_refresh setImage:img forState:UIControlStateNormal];
         [_bt_refresh setImage:[UIImage imageNamed:@"refresh_press"] forState:UIControlStateHighlighted];
         [_v_tabbar addSubview:_bt_refresh];
@@ -486,9 +486,9 @@ DEF_SIGNAL(ATUILABLEACTION)
 
 static NSString *cellName = @"cellName";//
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -504,7 +504,7 @@ static NSString *cellName = @"cellName";//
             [signal setReturnValue:s];
         }
         
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -518,7 +518,7 @@ static NSString *cellName = @"cellName";//
         }
         
     }
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -571,11 +571,11 @@ static NSString *cellName = @"cellName";//
         }
         
     }
-    else if ([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
     {
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -586,13 +586,13 @@ static NSString *cellName = @"cellName";//
         }
         
     }//
-    else if ([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
     {
         
         [signal setReturnValue:[NSNumber numberWithFloat:0]];
         
     }
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell  只返回显示的cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell  只返回显示的cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -609,7 +609,7 @@ static NSString *cellName = @"cellName";//
         
         [signal setReturnValue:cell];
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableview = [dict objectForKey:@"tableView"];
@@ -617,7 +617,7 @@ static NSString *cellName = @"cellName";//
         
 
     }
-    else if ([signal is:[DragonUITableView TABLESCROLLVIEWDIDSCROLL]])//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+    else if ([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"scrollView"];
@@ -627,10 +627,10 @@ static NSString *cellName = @"cellName";//
             if (_tbv.contentOffset.y>CGRectGetHeight(self.view.frame)) {
                 if (!_bt_backToTop) {//
                     UIImage *img= [UIImage imageNamed:@"grzy_11"];
-                    _bt_backToTop = [[DragonUIButton alloc] initWithFrame:CGRectMake(img.size.width/6-5, CGRectGetMaxY(self.view.frame)-img.size.height/2-45-5, img.size.width/2, img.size.height/2)];
+                    _bt_backToTop = [[MagicUIButton alloc] initWithFrame:CGRectMake(img.size.width/6-5, CGRectGetMaxY(self.view.frame)-img.size.height/2-45-5, img.size.width/2, img.size.height/2)];
                     _bt_backToTop.backgroundColor=[UIColor clearColor];
                     _bt_backToTop.tag=-11;
-                    [_bt_backToTop addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+                    [_bt_backToTop addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
                     [_bt_backToTop setImage:img forState:UIControlStateNormal];
                     //            [_bt_backToTop setImage:img forState:UIControlStateHighlighted];
                     [self.view addSubview:_bt_backToTop];
@@ -644,7 +644,7 @@ static NSString *cellName = @"cellName";//
         }
         
     }
-    else if ([signal is:[DragonUITableView TABLESECTIONINDEXTITLESFORTABLEVIEW]])//右侧索引列表
+    else if ([signal is:[MagicUITableView TABLESECTIONINDEXTITLESFORTABLEVIEW]])//右侧索引列表
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -652,7 +652,7 @@ static NSString *cellName = @"cellName";//
         if (![tableView isOneSection]) {/*多个section模式*/
             //            [signal setReturnValue:tableView.muA_allSectionKeys];
         }
-    }else if ([signal is:[DragonUITableView TABLESECTIONFORSECTIONINDEXTITLE]])//点击右测是索引列表上的某个字母时回调,参数index和title是 右侧索引列表上被点击的字母在 索引列表的下标和名字,返回被点击的字母对应的section的下标
+    }else if ([signal is:[MagicUITableView TABLESECTIONFORSECTIONINDEXTITLE]])//点击右测是索引列表上的某个字母时回调,参数index和title是 右侧索引列表上被点击的字母在 索引列表的下标和名字,返回被点击的字母对应的section的下标
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableview = [dict objectForKey:@"tableView"];
@@ -671,9 +671,9 @@ static NSString *cellName = @"cellName";//
             count ++;
         }
     }
-    else if ([signal is:[DragonUITableView TAbLEVIEWLODATA]])//加载更多
+    else if ([signal is:[MagicUITableView TAbLEVIEWLODATA]])//加载更多
     {
-        DragonUITableView *tableView = (DragonUITableView *)[signal source];
+        MagicUITableView *tableView = (MagicUITableView *)[signal source];
         
         {//HTTP请求,私信列表
             
@@ -689,7 +689,7 @@ static NSString *cellName = @"cellName";//
                 str_id=[NSString stringWithFormat:@"%d",((status *)lastObj).id];
             }
             
-            DragonRequest *request = [DYBHttpMethod setstatus_list:nil max_id:@"0" last_id:str_id num:[NSString stringWithFormat:@"%d",tableView.i_pageNums] page:[NSString stringWithFormat:@"%d", ++_tbv._page] type:@"1" userid:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod setstatus_list:nil max_id:@"0" last_id:str_id num:[NSString stringWithFormat:@"%d",tableView.i_pageNums] page:[NSString stringWithFormat:@"%d", ++_tbv._page] type:@"1" userid:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
             [request setTag:3];
             
 //            if (!request) {//无网路
@@ -697,17 +697,17 @@ static NSString *cellName = @"cellName";//
 //            }
         }
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]])//刷新
+    else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]])//刷新
     {
         
-//        DragonUITableView *tableView = (DragonUITableView *)[signal source];
+//        MagicUITableView *tableView = (MagicUITableView *)[signal source];
         
         {//HTTP请求
             
-            DragonRequest *request = [DYBHttpMethod user_detail:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod user_detail:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
             [request setTag:1];
             
-            DragonRequest *request2 = [DYBHttpMethod noCacheSetstatus_list:@"0" max_id:@"" last_id:@"0" num:@"10" page:[NSString stringWithFormat:@"%d", _tbv._page=1] type:@"1" userid:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+            MagicRequest *request2 = [DYBHttpMethod noCacheSetstatus_list:@"0" max_id:@"" last_id:@"0" num:@"10" page:[NSString stringWithFormat:@"%d", _tbv._page=1] type:@"1" userid:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
             [request2 setTag:2];
             
             if (!request) {//无网路
@@ -717,7 +717,7 @@ static NSString *cellName = @"cellName";//
         
 //        for (status *model in tableView.muA_singelSectionData) {
 //            if ([model isKindOfClass:[status class]]&&model.type==0) {//动态列表
-//                DragonRequest *request = [DYBHttpMethod setstatus_list:nil max_id:[NSString stringWithFormat:@"%d",model.id] last_id:@"0" num:[NSString stringWithFormat:@"%d",tableView.i_pageNums] page:[NSString stringWithFormat:@"%d", _tbv._page=1] type:@"1" userid:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+//                MagicRequest *request = [DYBHttpMethod setstatus_list:nil max_id:[NSString stringWithFormat:@"%d",model.id] last_id:@"0" num:[NSString stringWithFormat:@"%d",tableView.i_pageNums] page:[NSString stringWithFormat:@"%d", _tbv._page=1] type:@"1" userid:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
 //                [request setTag:2];
 //                break;
 //            }
@@ -726,17 +726,17 @@ static NSString *cellName = @"cellName";//
     
     }
     
-    else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLUP]]){//上滑
+    else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLUP]]){//上滑
         
         [_tbv StretchingUpOrDown:0];
         [[DYBUITabbarViewController sharedInstace] hideTabBar:YES animated:YES];
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLDOWN]]){//下滑
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLDOWN]]){//下滑
         [_tbv StretchingUpOrDown:1];
         [[DYBUITabbarViewController sharedInstace] hideTabBar:NO animated:YES];
         
     }
-    else if ([signal is:[DragonUITableView TAbLEVIERELOADOVER]])//reload完毕
+    else if ([signal is:[MagicUITableView TAbLEVIERELOADOVER]])//reload完毕
     {
         //        NSDictionary *dict = (NSDictionary *)[signal object];
         //        NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -747,7 +747,7 @@ static NSString *cellName = @"cellName";//
 }
 
 #pragma mark- 创建sectionHeaderView
--(void)createSectionHeaderView:(DragonViewSignal *)signal
+-(void)createSectionHeaderView:(MagicViewSignal *)signal
 {
     NSDictionary *dict = (NSDictionary *)[signal object];
     UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -766,23 +766,23 @@ static NSString *cellName = @"cellName";//
         case 1:
         {
             UIView *v=[[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 190)];
-            v.backgroundColor=[DragonCommentMethod color:255 green:255 blue:255 alpha:1];
+            v.backgroundColor=[MagicCommentMethod color:255 green:255 blue:255 alpha:1];
             
             //            if(!_imgV_head){//头像
             //                UIImage *img=[UIImage imageNamed:@"no_pic_50.png"];
-            //                _imgV_head = [[DragonUIImageView alloc] initWithFrame:CGRectMake(0, 0, 80,80) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:v Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            //                _imgV_head = [[MagicUIImageView alloc] initWithFrame:CGRectMake(0, 0, 80,80) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:v Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             //                _imgV_head.center=CGPointMake(v.center.x, 0);
             //                RELEASE(_imgV_head);
             //            }
             
             //    {
-            //        DragonUILabel *lb_title=[[DragonUILabel alloc]initWithFrame:CGRectMake(15,0, 0, 0)];
+            //        MagicUILabel *lb_title=[[MagicUILabel alloc]initWithFrame:CGRectMake(15,0, 0, 0)];
             //        lb_title.backgroundColor=[UIColor clearColor];
             //        lb_title.textAlignment=NSTextAlignmentLeft;
             //        lb_title.font=[DYBShareinstaceDelegate DYBFoutStyle:20];
             //        lb_title.text=[_tbv_friends_myConcern_RecentContacts.muA_allSectionKeys objectAtIndex:section];
             //        [lb_title setNeedCoretext:NO];
-            //        lb_title.textColor=[DragonCommentMethod color:51 green:51 blue:51 alpha:1];
+            //        lb_title.textColor=[MagicCommentMethod color:51 green:51 blue:51 alpha:1];
             //        lb_title.numberOfLines=1;
             //        lb_title.lineBreakMode=NSLineBreakByCharWrapping;
             //        [lb_title sizeToFitByconstrainedSize:CGSizeMake(screenShows.size.width-20, 100)];
@@ -834,7 +834,7 @@ static NSString *cellName = @"cellName";//
 
 #pragma makr -
 #pragma mark - back button signal
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -861,7 +861,7 @@ static NSString *cellName = @"cellName";//
 }
 
 #pragma mark- 接受UIView信号
-- (void)handleViewSignal_UIView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_UIView:(MagicViewSignal *)signal{
     if ([signal is:[UIView TAP]]) {
         UIView *v=signal.source;
         switch (v.tag) {
@@ -1126,7 +1126,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
             
             DYBRequest *request1 = [[DYBRequest alloc]init];
             NSArray *a = @[data];
-            DragonRequest *request = [request1 DYBPOSTIMG:params isAlert:YES receive:self imageData:a];
+            MagicRequest *request = [request1 DYBPOSTIMG:params isAlert:YES receive:self imageData:a];
             [request setTag:4];
             
         }
@@ -1138,7 +1138,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
             
             DYBRequest *request1 = [[DYBRequest alloc]init];
             NSArray *a = @[data];
-            DragonRequest *request = [request1 DYBPOSTIMG:params isAlert:YES receive:self imageData:a];
+            MagicRequest *request = [request1 DYBPOSTIMG:params isAlert:YES receive:self imageData:a];
             [request setTag:13];
         }
             break;
@@ -1150,7 +1150,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
 //修改个性头像最后一步
 - (void)changeOwnIcon:(NSString *)picId{
     
-    DragonRequest *request = [DYBHttpMethod user_setavatar:picId isAlert:YES receive:self];
+    MagicRequest *request = [DYBHttpMethod user_setavatar:picId isAlert:YES receive:self];
     
     [request setTag:5];
     
@@ -1204,9 +1204,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
 
 
 #pragma mark- 接受按钮信号
-- (void)handleViewSignal_DragonUIButton:(DragonViewSignal *)signal{
-    if ([signal is:[DragonUIButton TOUCH_UP_INSIDE]]) {
-        DragonUIButton *bt=(DragonUIButton *)signal.source;
+- (void)handleViewSignal_MagicUIButton:(MagicViewSignal *)signal{
+    if ([signal is:[MagicUIButton TOUCH_UP_INSIDE]]) {
+        MagicUIButton *bt=(MagicUIButton *)signal.source;
         if (bt)
         {
             switch (bt.tag) {
@@ -1267,7 +1267,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                 {
                     {//HTTP请求
                         
-                        DragonRequest *request = [DYBHttpMethod user_avatartop:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+                        MagicRequest *request = [DYBHttpMethod user_avatartop:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
                         [request setTag:6];
                         
                         if (!request) {//无网路
@@ -1278,7 +1278,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                     _user.i_playTop_stampTag=1;
                     {//HTTP请求
                         
-                        DragonRequest *request = [DYBHttpMethod user_detail:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+                        MagicRequest *request = [DYBHttpMethod user_detail:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
                         [request setTag:1];
                         
                         if (!request) {//无网路
@@ -1291,7 +1291,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                 {
                     {//HTTP请求
                         
-                        DragonRequest *request = [DYBHttpMethod user_avatartread:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+                        MagicRequest *request = [DYBHttpMethod user_avatartread:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
                         [request setTag:7];
                         
                         if (!request) {//无网路
@@ -1338,7 +1338,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
 //                            {
 //                                {//HTTP请求
 //                                    
-//                                    DragonRequest *request = [DYBHttpMethod message_reqfriend:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+//                                    MagicRequest *request = [DYBHttpMethod message_reqfriend:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
 //                                    [request setTag:12];
 //                                    
 //                                    if (!request) {//无网路
@@ -1361,7 +1361,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                             {
                                 {//HTTP请求
                                     
-                                    DragonRequest *request = [DYBHttpMethod message_applyfriend:[_d_model objectForKey:@"userid"] op:@"1" isAlert:YES receive:self];
+                                    MagicRequest *request = [DYBHttpMethod message_applyfriend:[_d_model objectForKey:@"userid"] op:@"1" isAlert:YES receive:self];
                                     [request setTag:14];
                                 }
                             }
@@ -1375,7 +1375,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                             if ([_user.isfollow intValue]==0) {//是否已关注 0否 1是
                                 {//HTTP请求 加关注
                                     
-                                    DragonRequest *request = [DYBHttpMethod message_reqfriend:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+                                    MagicRequest *request = [DYBHttpMethod message_reqfriend:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
                                     [request setTag:12];
                                     
                                     if (!request) {//无网路
@@ -1388,7 +1388,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                         }else if ([_user.canfriend intValue]==1){//加好友
                             {//HTTP请求
                                 
-                                DragonRequest *request = [DYBHttpMethod message_reqfriend:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+                                MagicRequest *request = [DYBHttpMethod message_reqfriend:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
                                 [request setTag:12];
                                 
                                 if (!request) {//无网路
@@ -1415,7 +1415,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                 {
                     {//HTTP请求
                         
-                        DragonRequest *request = [DYBHttpMethod user_detail:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+                        MagicRequest *request = [DYBHttpMethod user_detail:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
                         [request setTag:1];
                         
                         if (!request) {//无网路
@@ -1424,7 +1424,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                     }
                     
 //                    {//动态列表
-//                        DragonRequest *request = [DYBHttpMethod setstatus_list:nil max_id:nil last_id:@"0" num:[NSString stringWithFormat:@"%d",_tbv.i_pageNums] page:[NSString stringWithFormat:@"%d", _tbv._page=1] type:@"1" userid:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+//                        MagicRequest *request = [DYBHttpMethod setstatus_list:nil max_id:nil last_id:@"0" num:[NSString stringWithFormat:@"%d",_tbv.i_pageNums] page:[NSString stringWithFormat:@"%d", _tbv._page=1] type:@"1" userid:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
 //                        [request setTag:2];
 //                    }
                 }
@@ -1443,7 +1443,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
     
 }
 
-- (void)handleViewSignal_UIImageView:(DragonViewSignal *)signal
+- (void)handleViewSignal_UIImageView:(MagicViewSignal *)signal
 {
     if ([signal is:[UIImageView SDWEBIMGDOWNSUCCESS]]) {
         UIImage *img=(UIImage *)signal.object;
@@ -1454,11 +1454,11 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
 }
 
 #pragma mark- 选择提示框按键回调
--(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
     if ([signal is:[DYBDataBankShotView RIGHT]]) {
         {//HTTP请求
             
-            DragonRequest *request = [DYBHttpMethod user_delfriend:nil oneId:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod user_delfriend:nil oneId:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
             [request setTag:15];
         }
         
@@ -1495,7 +1495,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
 }
 
 #pragma mark- 只接受HTTP信号
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if ([request succeed])
     {
@@ -1528,7 +1528,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
 //                            if ([model isKindOfClass:[NSMutableArray class]]) {
 //                                for (status *ob in model) {
 //                                    if ([ob isKindOfClass:[status class]]&&ob.type==0) {//动态列表
-//                                        DragonRequest *request = [DYBHttpMethod setstatus_list:nil max_id:[NSString stringWithFormat:@"%d",ob.id] last_id:@"0" num:[NSString stringWithFormat:@"%d",_tbv.i_pageNums] page:[NSString stringWithFormat:@"%d", _tbv._page=1] type:@"1" userid:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+//                                        MagicRequest *request = [DYBHttpMethod setstatus_list:nil max_id:[NSString stringWithFormat:@"%d",ob.id] last_id:@"0" num:[NSString stringWithFormat:@"%d",_tbv.i_pageNums] page:[NSString stringWithFormat:@"%d", _tbv._page=1] type:@"1" userid:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
 //                                        [request setTag:2];
 //                                        b=YES;
 //                                        break;
@@ -1541,7 +1541,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                         
                         if (!b) {
                             {//动态列表
-                                DragonRequest *request = [DYBHttpMethod setstatus_list:@"0" max_id:@"" last_id:@"0" num:@"10" page:[NSString stringWithFormat:@"%d", _tbv._page=1] type:@"1" userid:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+                                MagicRequest *request = [DYBHttpMethod setstatus_list:@"0" max_id:@"" last_id:@"0" num:@"10" page:[NSString stringWithFormat:@"%d", _tbv._page=1] type:@"1" userid:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
                                 [request setTag:2];
                             }
                         }
@@ -1560,7 +1560,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                         [self backImgType:0];
                         [self.headview setTitleColor:ColorBlack];
                         [self.headview setTitle:[_d_model objectForKey:@"name"]];
-                        self.headview.backgroundColor=[DragonCommentMethod color:248 green:248 blue:248 alpha:1];
+                        self.headview.backgroundColor=[MagicCommentMethod color:248 green:248 blue:248 alpha:1];
                         
                         [self initNoDataView];
                     }
@@ -1872,9 +1872,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                 {
                     user_avatartop__user_avatartread *model = [user_avatartop__user_avatartread JSONReflection:response.data];
                     
-                    DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                    MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                     [pop setDelegate:self];
-                    [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                    [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                     [pop setText:model.content4c];
                     [pop alertViewAutoHidden:3 isRelease:YES];
                     
@@ -1882,7 +1882,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                     
                     {//HTTP请求
                         
-                        DragonRequest *request = [DYBHttpMethod user_detail:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+                        MagicRequest *request = [DYBHttpMethod user_detail:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
                         [request setTag:1];
                         
                         if (!request) {//无网路
@@ -1892,9 +1892,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                     
                 }else if ([response response] ==khttpfailCode)
                 {
-                    //                    DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                    //                    MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                     //                    [pop setDelegate:self];
-                    //                    [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                    //                    [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                     //                    [pop setText:response.message];
                     //                    [pop alertViewAutoHidden:3 isRelease:YES];
                 }
@@ -1911,9 +1911,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                 {
                     user_avatartop__user_avatartread *model = [user_avatartop__user_avatartread JSONReflection:response.data];
                     
-                    DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                    MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                     [pop setDelegate:self];
-                    [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                    [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                     [pop setText:model.content4c];
                     [pop alertViewAutoHidden:3 isRelease:YES];
                     
@@ -1921,7 +1921,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                     
                     {//HTTP请求
                         
-                        DragonRequest *request = [DYBHttpMethod user_detail:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+                        MagicRequest *request = [DYBHttpMethod user_detail:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
                         [request setTag:1];
                         
                         if (!request) {//无网路
@@ -1931,9 +1931,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                     
                 }else if ([response response] ==khttpfailCode)
                 {
-                    //                    DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                    //                    MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                     //                    [pop setDelegate:self];
-                    //                    [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                    //                    [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                     //                    [pop setText:response.message];
                     //                    [pop alertViewAutoHidden:3 isRelease:YES];
                 }
@@ -1973,9 +1973,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                                 _user.isfriend=@"1";
                                 
                                 {
-                                    DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                                    MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                                     [pop setDelegate:self];
-                                    [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                                    [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                                     [pop setText:@"同意被添加好友"];
                                     [pop alertViewAutoHidden:.5f isRelease:YES];
                                 }
@@ -1983,9 +1983,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                                 _user.isfriend=@"2";
                                 
                                 {
-                                    DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                                    MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                                     [pop setDelegate:self];
-                                    [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                                    [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                                     [pop setText:@"好友申请已发送"];
                                     [pop alertViewAutoHidden:.5f isRelease:YES];
                                 }
@@ -1995,9 +1995,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                         }else if([_user.canfriend isEqualToString:@"0"]){//添加关注操作成功
                             _user.isfollow=@"1";
                             {
-                                DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                                MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                                 [pop setDelegate:self];
-                                [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                                [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                                 [pop setText:@"添加关注成功"];
                                 [pop alertViewAutoHidden:.5f isRelease:YES];
                             }
@@ -2023,7 +2023,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                 {
                     {//HTTP请求 用户详情
                         
-                        DragonRequest *request = [DYBHttpMethod user_detail:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+                        MagicRequest *request = [DYBHttpMethod user_detail:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
                         [request setTag:1];
                         
                         if (!request) {//无网路
@@ -2032,7 +2032,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                     }
                     
 //                    {//动态列表
-//                        DragonRequest *request = [DYBHttpMethod setstatus_list:nil max_id:nil last_id:@"0" num:@"10" page:[NSString stringWithFormat:@"%d", _tbv._page] type:@"1" userid:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+//                        MagicRequest *request = [DYBHttpMethod setstatus_list:nil max_id:nil last_id:@"0" num:@"10" page:[NSString stringWithFormat:@"%d", _tbv._page] type:@"1" userid:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
 //                        [request setTag:2];
 //                    }
                 }else if ([response response] ==khttpfailCode)
@@ -2052,9 +2052,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                         [self initTabbar];
                         
                         {
-                            DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                            MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                             [pop setDelegate:self];
-                            [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                            [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                             [pop setText:@"同意被添加好友成功"];
                             [pop alertViewAutoHidden:.5f isRelease:YES];
                         }
@@ -2080,18 +2080,18 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                             if ([_user.isfriend intValue]==1) {  //0否 1是 2我发过好友请求 3对方发过好友请求
                                 _user.isfriend=0;
                                 {
-                                    DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                                    MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                                     [pop setDelegate:self];
-                                    [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                                    [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                                     [pop setText:@"删除好友成功"];
                                     [pop alertViewAutoHidden:.5f isRelease:YES];
                                 }
                             }else if ([_user.isfriend intValue]==0){
                                 _user.isfollow=@"0";
                                 {
-                                    DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                                    MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                                     [pop setDelegate:self];
-                                    [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                                    [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                                     [pop setText:@"删除关注成功"];
                                     [pop alertViewAutoHidden:.5f isRelease:YES];
                                 }
@@ -2099,7 +2099,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
 //                            [self initTabbar];
                             {//HTTP请求
                                 
-                                DragonRequest *request = [DYBHttpMethod user_detail:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+                                MagicRequest *request = [DYBHttpMethod user_detail:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
                                 [request setTag:1];
                                 
                                 if (!request) {//无网路

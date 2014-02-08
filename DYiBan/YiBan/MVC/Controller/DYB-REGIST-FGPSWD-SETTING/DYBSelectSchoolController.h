@@ -10,8 +10,8 @@
 #import "scrollerData.h"
 @interface DYBSelectSchoolController : DYBBaseViewController {
     
-//    DragonUITableView *_tbv;
-    DragonUISearchBar *_search;
+//    MagicUITableView *_tbv;
+    MagicUISearchBar *_search;
     
     int oldIndex;
     int newIndex;

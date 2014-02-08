@@ -12,7 +12,7 @@
     
     news *items;
     news *info;
-    DragonUITableView *_tableView;
+    MagicUITableView *_tableView;
     int Page;
 }
 

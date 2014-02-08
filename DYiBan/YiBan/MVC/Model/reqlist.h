@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 //#import "Jastor.h"
 #import "user.h"
-@interface reqlist : DragonJSONReflection
+@interface reqlist : MagicJSONReflection
 @property(assign,nonatomic)int id;
 @property(assign,nonatomic)int time;
 @property(retain,nonatomic)NSString * content;

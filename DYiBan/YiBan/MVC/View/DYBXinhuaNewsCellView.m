@@ -79,7 +79,7 @@
             
             
             //头像
-            DragonUIImageView *imageViewUser = [[[DragonUIImageView alloc]initWithFrame:CGRectMake(NewsLeftWith, NewsTopHeight+3, NEIconWith, NEIconHeight)] autorelease];
+            MagicUIImageView *imageViewUser = [[[MagicUIImageView alloc]initWithFrame:CGRectMake(NewsLeftWith, NewsTopHeight+3, NEIconWith, NEIconHeight)] autorelease];
             
             
             [imageViewUser setImageWithURL:[NSURL URLWithString:news.thumb]];

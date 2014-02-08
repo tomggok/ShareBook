@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 ZzL. All rights reserved.
 //
 
-#import "Dragon_JSONReflection.h"
+#import "Magic_JSONReflection.h"
 
-@interface eclass_topiclist : DragonJSONReflection
+@interface eclass_topiclist : MagicJSONReflection
 
 @property (nonatomic, retain)NSString *areaid;//
 @property (nonatomic, retain)NSString *classify;//

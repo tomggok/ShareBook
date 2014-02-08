@@ -11,8 +11,8 @@
 //可能认识的人cell
 @interface DYBCellForMayKnowFriends : UITableViewCell
 {
-    DragonUIImageView *_imgV_showImg/*左边展示图*/,*_imgV_arrow;
-    DragonUILabel *_lb_newContent,*_lb_nickName,*_lb_check;
+    MagicUIImageView *_imgV_showImg/*左边展示图*/,*_imgV_arrow;
+    MagicUILabel *_lb_newContent,*_lb_nickName,*_lb_check;
 }
 
 -(void)setContent:(id)data indexPath:(NSIndexPath *)indexPath tbv:(UITableView *)tbv;

@@ -11,8 +11,8 @@
 //私信页的4个cell
 @interface DYBCellForDYBMsgViewController : UITableViewCell
 {
-    DragonUIImageView *_imgV_showImg/*左边展示图*/,*_imgV_newMsgNums/*新消息数量图*/;
-    DragonUILabel *_lb_content;
+    MagicUIImageView *_imgV_showImg/*左边展示图*/,*_imgV_newMsgNums/*新消息数量图*/;
+    MagicUILabel *_lb_content;
 }
 
 -(void)setContent:(id)data indexPath:(NSIndexPath *)indexPath tbv:(UITableView *)tbv;

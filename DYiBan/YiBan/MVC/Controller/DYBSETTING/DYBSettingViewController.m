@@ -11,12 +11,12 @@
 #import "DYBSettingImageViewController.h"
 #import "DYBDataBaseViewController.h"
 #import "DYBSynchroViewController.h"
-#import "Dragon_UIAlertView.h"
+#import "Magic_UIAlertView.h"
 #import "DYBSetButton.h"
 #import "DYBScroller.h"
 #import "DYBHelp-protocolViewController.h"
 #import "version.h"
-#import "Dragon_Device.h"
+#import "Magic_Device.h"
 #import "DYBSettingSendMessViewController.h"
 #import "DYBDataBankShotView.h"
 #import "DYBLoginViewController.h"
@@ -27,7 +27,7 @@
 #import "user.h"
 #import "DYBSettingNotesViewController.h"
 
-#import "NSObject+DragonDatabase.h"
+#import "NSObject+MagicDatabase.h"
 
 @interface DYBSettingViewController () {
     
@@ -46,16 +46,16 @@ DEF_SIGNAL(MUSICBUTTON)//音乐按钮
 DEF_SIGNAL(LOGOUTBUTTON)//退出系统
 DEF_SIGNAL(TOUCHBUTTON)//点击消息
 
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.rightButton setHidden:YES];
         [self.headview setTitle:@"设置"];
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         
-        DragonUIScrollView *scroll = [[DragonUIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        MagicUIScrollView *scroll = [[MagicUIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         [scroll setShowsVerticalScrollIndicator:NO];
         [self.view addSubview:scroll];
         RELEASE(scroll);
@@ -119,7 +119,7 @@ DEF_SIGNAL(TOUCHBUTTON)//点击消息
         
         
         //退出系统
-        DragonUIButton *logoutButton = [[DragonUIButton alloc] initWithFrame:CGRectMake(OFFSETFROM, OFFSETFROM+self.headHeight+(BUTTONHEIGHT-1)*10+60, BUTTONWIDTH, BUTTONHEIGHT)];
+        MagicUIButton *logoutButton = [[MagicUIButton alloc] initWithFrame:CGRectMake(OFFSETFROM, OFFSETFROM+self.headHeight+(BUTTONHEIGHT-1)*10+60, BUTTONWIDTH, BUTTONHEIGHT)];
         [logoutButton addSignal:[DYBSettingViewController LOGOUTBUTTON] forControlEvents:UIControlEventTouchUpInside];
         logoutButton.titleLabel.font = [DYBShareinstaceDelegate DYBFoutStyle:20];
         [logoutButton setTitle:@"退出帐号" forState:UIControlStateNormal];
@@ -134,7 +134,7 @@ DEF_SIGNAL(TOUCHBUTTON)//点击消息
 
 #pragma makr -
 #pragma mark - back button signal
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -144,7 +144,7 @@ DEF_SIGNAL(TOUCHBUTTON)//点击消息
     
 }
 
-- (void)handleViewSignal_DYBSetButton:(DragonViewSignal *)signal {
+- (void)handleViewSignal_DYBSetButton:(MagicViewSignal *)signal {
     
     NSDictionary *dict = (NSDictionary *)[signal object];
     DYBSwitchButton *btn = [dict objectForKey:@"switchButton"];
@@ -157,9 +157,9 @@ DEF_SIGNAL(TOUCHBUTTON)//点击消息
 
 
 #pragma mark- 按钮点击
-- (void)handleViewSignal_DYBSettingViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBSettingViewController:(MagicViewSignal *)signal
 {
-    DragonUIButton *btn = signal.source;
+    MagicUIButton *btn = signal.source;
     
     if ([signal is:[DYBSettingViewController MUSICBUTTON]])
     {
@@ -240,7 +240,7 @@ DEF_SIGNAL(TOUCHBUTTON)//点击消息
             case 9:{
             
                 self.view.userInteractionEnabled = NO;
-                if (![DragonDevice hasInternetConnection]){
+                if (![MagicDevice hasInternetConnection]){
                     DLogInfo(@"确定是否网络连接");
                     self.view.userInteractionEnabled = YES;
                     return;
@@ -280,21 +280,21 @@ DEF_SIGNAL(TOUCHBUTTON)//点击消息
     }
     self.view.userInteractionEnabled = YES;
     settingButton[9].textLabel.hidden = NO;
-    DragonRequest *request = [DYBHttpMethod site_version:YES receive:self];
+    MagicRequest *request = [DYBHttpMethod site_version:YES receive:self];
     [request setTag:1];
 }
 
 
--(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
     
     if (_showTag == 1) {
         if ([signal is:[DYBDataBankShotView RIGHT]]) {
             
-            if (![DragonDevice hasInternetConnection]){
+            if (![MagicDevice hasInternetConnection]){
                 DLogInfo(@"确定是否网络连接");
                 return;
             }
-            DragonRequest *request = [DYBHttpMethod user_security_logout:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod user_security_logout:YES receive:self];
             [request setTag:2];
             
         }
@@ -321,7 +321,7 @@ DEF_SIGNAL(TOUCHBUTTON)//点击消息
 
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if ([request succeed])
     {

@@ -7,26 +7,26 @@
 //
 
 #import "DYBDataBankChildrenListViewController.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "scrollerData.h"
 #import "DYBScroller.h"
 #import "DYBDataBankShotView.h"
 #import "DYBSelectContactViewController.h"
 #import "DYBDataBankEclassListsViewController.h"
 #import "DYBDataBankSelectBtn.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "UITableView+property.h"
 #import "DYBHttpMethod.h"
-#import "Dragon_Request.h"
+#import "Magic_Request.h"
 #import "DYBDataBankFileDetailViewController.h"
 #import "DYBDataBankDownloadManageViewController.h"
 #import "DYBDataBankShareEnterView.h"
 #import "DYBDataBankTopRightCornerView.h"
 #import "DYBUITabbarViewController.h"
 #import "DYBDataBankListController.h"
-#import "Dragon_Device.h"
+#import "Magic_Device.h"
 #import "UserSettingMode.h"
-#import "NSObject+DragonDatabase.h"
+#import "NSObject+MagicDatabase.h"
 #import "NSString+Count.h"
 #import "DYBDataBankFileDetailViewController.h"
 
@@ -76,9 +76,9 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
 }
 
 
--(void)handleViewSignal:(DragonViewSignal *)signal{
+-(void)handleViewSignal:(MagicViewSignal *)signal{
 
-    if ([signal is:[DragonViewController CREATE_VIEWS]]) {
+    if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
         [self.view setBackgroundColor:[UIColor whiteColor]];
         arrayCellView = [[NSMutableArray alloc]init];
@@ -87,7 +87,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
         page = 1;
         num = 10;
         
-        DragonRequest *request = [DYBHttpMethod dataBankList_navi_id:folderID order:@"1" asc:@"2" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod dataBankList_navi_id:folderID order:@"1" asc:@"2" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:YES receive:self];
         [request setTag:REQUESTTAG_FIRIST];
         
         float tabelViewHigh = 0;
@@ -110,7 +110,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
         tbDataBank.v_headerVForHide = searchView;
         [tbDataBank setTableViewType:DTableViewSlime];
         
-    }else if ([signal is:[DragonViewController LAYOUT_VIEWS]]){
+    }else if ([signal is:[MagicViewController LAYOUT_VIEWS]]){
     
         [self setButtonImage:self.leftButton setImage:@"btn_back_def" setHighString:@"btn_back_hlt"];
         [self.headview setTitle:_strTitle];
@@ -136,7 +136,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
         }
     }
 }
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -151,7 +151,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
                 strCurrent_dir = @"";                
             }
             
-            DragonRequest *request = [DYBHttpMethod document_move_name:[_dictInfo objectForKey:@"title"] old_dir:[_dictInfo objectForKey:@"file_path"] new_dir:strCurrent_dir isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod document_move_name:[_dictInfo objectForKey:@"title"] old_dir:[_dictInfo objectForKey:@"file_path"] new_dir:strCurrent_dir isAlert:YES receive:self];
             [request setTag:3];
             
         }else if(_bChangeSave){
@@ -164,7 +164,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
 
             }
             
-            DragonRequest *request = [DYBHttpMethod document_changestore_from_id:userID doc_from:strFrom doc_to:strCurrent_dir type:_strChangeType isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod document_changestore_from_id:userID doc_from:strFrom doc_to:strCurrent_dir type:_strChangeType isAlert:YES receive:self];
             [request setTag:13];
             
         }else{
@@ -218,7 +218,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
     return NO;
 }
 
--(void)handleViewSignal_DYBDataBankTopRightCornerView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankTopRightCornerView:(MagicViewSignal *)signal{
     
     if ([signal is:[DYBDataBankTopRightCornerView TOUCHSINGLEBTN]]) {
         
@@ -231,7 +231,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
             {
                 
                 right = 1;
-                DragonRequest *request = [DYBHttpMethod dataBankList_navi_id:folderID order:@"1" asc:@"2" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod dataBankList_navi_id:folderID order:@"1" asc:@"2" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:YES receive:self];
                 [request setTag:REQUESTTAG_FIRIST];
 
             
@@ -240,14 +240,14 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
             case 2:{
             
                 right = 3;
-                DragonRequest *request = [DYBHttpMethod dataBankList_navi_id:folderID order:@"3" asc:@"1" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod dataBankList_navi_id:folderID order:@"3" asc:@"1" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:YES receive:self];
                 [request setTag:REQUESTTAG_FIRIST];
             }
                 
                 break;
 //            case 3:{
 //            
-//                DragonRequest *request = [DYBHttpMethod dataBankList_navi_id:folderID order:@"3" asc:@"1" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""
+//                MagicRequest *request = [DYBHttpMethod dataBankList_navi_id:folderID order:@"3" asc:@"1" num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""
 //                                                                      sAlert:YES receive:self];
 //                [request setTag:REQUESTTAG_FIRIST];
 //            }
@@ -256,7 +256,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
 //            case 4:
 //            {
 //            
-//                DragonRequest *request = [DYBHttpMethod dataBankList_navi_id:folderID order:@"4" asc:@"1"  num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:YES receive:self];
+//                MagicRequest *request = [DYBHttpMethod dataBankList_navi_id:folderID order:@"4" asc:@"1"  num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:YES receive:self];
 //                [request setTag:REQUESTTAG_FIRIST];
 //            
 //            }
@@ -274,7 +274,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
 
 
 
--(void)handleViewSignal_DYBDataBankChildrenListViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankChildrenListViewController:(MagicViewSignal *)signal{
 
      if ([signal is:[DYBDataBankChildrenListViewController ADDFOLDER]])
     {
@@ -319,7 +319,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
         [self.view addSubview:barView];
         RELEASE(barView);
         
-        DragonUIButton *btn = [[DragonUIButton alloc]initWithFrame:CGRectMake(320 - image.size.width/2 , 2.0f, image.size.width/2, image.size.height/2 )];
+        MagicUIButton *btn = [[MagicUIButton alloc]initWithFrame:CGRectMake(320 - image.size.width/2 , 2.0f, image.size.width/2, image.size.height/2 )];
         [btn setImage:[UIImage imageNamed:@"btn_newfolder_def"] forState:UIControlStateNormal];
         [btn setImage:[UIImage imageNamed:@"btn_newfolder_hlt"] forState:UIControlStateHighlighted];
         [btn setBackgroundColor:[UIColor clearColor]];
@@ -378,42 +378,42 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
 #pragma mark- 只接受tbv信号
 //static NSString *reuseIdentifier = @"reuseIdentifier";
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal{
     
     
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
     {
         NSNumber *s = [NSNumber numberWithInteger:arrayFolderList.count];
         [signal setReturnValue:s];
         
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
     {
         NSNumber *s = [NSNumber numberWithInteger:1];
         [signal setReturnValue:s];
         
     }
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
     {
         
         
         
         [signal setReturnValue:[NSNumber numberWithInteger:CELLHIGHT]];
     }
-    else if ([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
     {
         [signal setReturnValue:nil];
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
     {
         [signal setReturnValue:nil];
         
     }//
-    else if ([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
     {
         [signal setReturnValue:[NSNumber numberWithFloat:0.0]];
     }
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell
     {
         
         NSDictionary *dict = (NSDictionary *)[signal object];
@@ -432,7 +432,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
         [signal setReturnValue:cell];
         
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
     {
         if ([self hideRightView]) {
             return;
@@ -492,18 +492,18 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
 
         [tbDataBank deselectRowAtIndexPath:[tbDataBank indexPathForSelectedRow] animated:YES];        
         
-    }else if ([signal is:[DragonUITableView TABLESCROLLVIEWDIDSCROLL]])
+    }else if ([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])
     {
         
     }
-    else if ([signal is:[DragonUITableView TABLESCROLLVIEWDIDENDDRAGGING]])
+    else if ([signal is:[MagicUITableView TABLESCROLLVIEWDIDENDDRAGGING]])
     {
         DLogInfo(@"1111");
         [self hideRightView];
-//        DragonUITableView *tableview = (DragonUITableView *)[signal source];
+//        MagicUITableView *tableview = (MagicUITableView *)[signal source];
 //        [tableview reloadData:NO];
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLUP]]){
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLUP]]){
         [tbDataBank StretchingUpOrDown:0];
         
         if (_bChangeFolder) {
@@ -513,7 +513,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
                 [self hideTabBar:YES animated:YES opeartionView:view];
             }
         }
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLDOWN]]){
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLDOWN]]){
         [tbDataBank StretchingUpOrDown:1];
         
         if (_bChangeFolder) {
@@ -524,7 +524,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
                 
             }
         }
-    }else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]])
+    }else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]])
     {
 
         [self.view setUserInteractionEnabled:NO];
@@ -539,14 +539,14 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
             asc = 1;
         }
         
-        DragonRequest *request = [DYBHttpMethod dataBankList_navi_id:folderID order:[NSString stringWithFormat:@"%d",right] asc:[NSString stringWithFormat:@"%d",asc] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod dataBankList_navi_id:folderID order:[NSString stringWithFormat:@"%d",right] asc:[NSString stringWithFormat:@"%d",asc] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:YES receive:self];
         [request setTag:REQUESTTAG_FIRIST];
         
         if (!request) {//无网路
             [tbDataBank reloadData:NO];
         }
         
-    }else if([signal is:[DragonUITableView TAbLEVIEWLODATA]])
+    }else if([signal is:[MagicUITableView TAbLEVIEWLODATA]])
     {
         page ++ ;
         int asc = 1;
@@ -557,7 +557,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
             asc = 1;
         }
 
-        DragonRequest *request = [DYBHttpMethod dataBankList_navi_id:folderID order:[NSString stringWithFormat:@"%d",right] asc:[NSString stringWithFormat:@"%d",asc] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod dataBankList_navi_id:folderID order:[NSString stringWithFormat:@"%d",right] asc:[NSString stringWithFormat:@"%d",asc] num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:YES receive:self];
         [request setTag:REQUESTTAG_MORE];
         
         if (!request) {//无网路
@@ -568,7 +568,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
 
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     [self.view setUserInteractionEnabled:YES];
     JsonResponse *response = (JsonResponse *)receiveObj;
@@ -605,7 +605,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
         
         NSString *strMSG = [response.data objectForKey:@"msg"];
         
-        [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+        [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
     }else if (request.tag == REQUESTTAG_MORE){
         
         if ([[response.data objectForKey:@"result"] boolValue]) {
@@ -706,13 +706,13 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
         
         if ([[response.data objectForKey:@"result"] boolValue]) {
             
-            DragonRequest *request = [DYBHttpMethod dataBankList_navi_id:folderID order:@"1" asc:@"2"  num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod dataBankList_navi_id:folderID order:@"1" asc:@"2"  num:[NSString stringWithFormat:@"%d",num] page:[NSString stringWithFormat:@"%d",page] keyword:@""  sAlert:YES receive:self];
             [request setTag:REQUESTTAG_FIRIST];
             
         }else{
         
         NSString *strMSG = [response.data objectForKey:@"msg"];
-        [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+        [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
         }
     }else if (request.tag == 3){ // yidong zhuancun
     
@@ -770,9 +770,9 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
                 
                 
                 NSString *encodeURL = [_dictInfo objectForKey:@"file_urlencode"];
-                NSString *downFileNameOld = [DragonCommentMethod md5:encodeURL];
+                NSString *downFileNameOld = [MagicCommentMethod md5:encodeURL];
                 downFileNameOld = [downFileNameOld stringByAppendingString:[NSString stringWithFormat:@".%@",[_dictInfo objectForKey:@"type"]]];
-                NSString *downloadPathOld = [NSString stringWithFormat:@"%@%@", [DragonCommentMethod downloadPath], downFileNameOld];
+                NSString *downloadPathOld = [NSString stringWithFormat:@"%@%@", [MagicCommentMethod downloadPath], downFileNameOld];
                 
                 NSString *strType = [[_dictInfo objectForKey:@"type"] lowercaseString];
                 
@@ -781,13 +781,13 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
                     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
                     NSString * diskCachePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"ImageCache"];
                     NSString *encoderUrl= [[_dictInfo objectForKey:@"file_url"] stringByAddingPercentEscapesUsingEncoding];
-                    NSString *md5 =  [DragonCommentMethod dataBankMD5:encoderUrl];
+                    NSString *md5 =  [MagicCommentMethod dataBankMD5:encoderUrl];
                     NSString *pathtt = [diskCachePath stringByAppendingPathComponent:md5];
                     
                     NSFileManager* fm=[NSFileManager defaultManager];
                     if([fm fileExistsAtPath:pathtt]){
                         
-                        NSString *md5New =  [DragonCommentMethod dataBankMD5:[dict objectForKey:@"file_url"]];
+                        NSString *md5New =  [MagicCommentMethod dataBankMD5:[dict objectForKey:@"file_url"]];
                         NSString *pathttNew = [diskCachePath stringByAppendingPathComponent:md5New];
                         NSData *data = [fm contentsAtPath:pathtt];
                         [data writeToFile:pathttNew atomically:YES];
@@ -802,7 +802,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
                     NSFileManager* fm=[NSFileManager defaultManager];
                     if([fm fileExistsAtPath:downloadPathOld]){
                         
-                        NSString *downloadPathNew = [NSString stringWithFormat:@"%@%@", [DragonCommentMethod downloadPath], downFileNameNew];
+                        NSString *downloadPathNew = [NSString stringWithFormat:@"%@%@", [MagicCommentMethod downloadPath], downFileNameNew];
                         NSData *data = [fm contentsAtPath:downloadPathOld];
                         [data writeToFile:downloadPathNew atomically:YES];
                         
@@ -865,7 +865,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
             }            
         }
             NSString *name = [response.data objectForKey:@"msg"];
-            [DYBShareinstaceDelegate popViewText:name target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+            [DYBShareinstaceDelegate popViewText:name target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
         
     }else if (request.tag == 13){ // yidong zhuancun
         
@@ -879,7 +879,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
             [self.drNavigationController popToViewController:tb animated:YES];
         }
         NSString *name = [response.data objectForKey:@"msg"];
-        [DYBShareinstaceDelegate popViewText:name target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+        [DYBShareinstaceDelegate popViewText:name target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
     }
 }
 
@@ -888,7 +888,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
     NSArray *typeArr = [url componentsSeparatedByString:@"."];
     NSString *type = [typeArr lastObject];
     
-    NSString *downFileName = [NSString stringWithFormat:@"%@.%@", [DragonCommentMethod md5:url], type];
+    NSString *downFileName = [NSString stringWithFormat:@"%@.%@", [MagicCommentMethod md5:url], type];
     
     return downFileName;
 }
@@ -909,13 +909,13 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
         UIImage *image = [UIImage imageNamed:@"ybx_big.png"];
         float BearHeadStartX = (CGRectGetWidth(self.view.frame)-image.size.width/2)/2;
         float BearHeadStartY = (self.frameHeight-self.headHeight-image.size.height/2 - 70)/2 - 150;
-        DragonUIImageView *viewBearHead = [[DragonUIImageView alloc] initWithFrame:CGRectMake(BearHeadStartX, BearHeadStartY, image.size.width/2, image.size.height/2)];
+        MagicUIImageView *viewBearHead = [[MagicUIImageView alloc] initWithFrame:CGRectMake(BearHeadStartX, BearHeadStartY, image.size.width/2, image.size.height/2)];
         [viewBearHead setBackgroundColor:[UIColor clearColor]];
         [viewBearHead setImage:image];
         [view addSubview:viewBearHead];
         RELEASE(viewBearHead);
         
-        DragonUILabel *labelMsg = [[DragonUILabel alloc]initWithFrame:CGRectMake((320 - 250)/2, viewBearHead.frame.size.height + viewBearHead.frame.origin.y + 15, 250.0f, 40.0f)];
+        MagicUILabel *labelMsg = [[MagicUILabel alloc]initWithFrame:CGRectMake((320 - 250)/2, viewBearHead.frame.size.height + viewBearHead.frame.origin.y + 15, 250.0f, 40.0f)];
         [labelMsg setText:strMsg];
         [labelMsg setTextColor:ColorGray];
         [labelMsg setFont:[DYBShareinstaceDelegate DYBFoutStyle:20]];
@@ -953,7 +953,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
     [searchView.tbDataBank setHidden:YES];
 }
 
--(void)handleViewSignal_DYBDtaBankSearchView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDtaBankSearchView:(MagicViewSignal *)signal{
     
     if ([signal is:[DYBDtaBankSearchView FIRSTTOUCH]]) {
         
@@ -1014,7 +1014,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
 }
 
 
--(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
     
     DLogInfo(@"ddddd");
     if ([signal is:[DYBDataBankShotView LEFT]]) {
@@ -1034,7 +1034,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
         switch ([type integerValue]) {
             case BTNTAG_DEL:{
                 
-                DragonRequest *request = [DYBHttpMethod document_deldoc_doc:fileURL indexDataBack:[NSString stringWithFormat:@"%@",row] isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod document_deldoc_doc:fileURL indexDataBack:[NSString stringWithFormat:@"%@",row] isAlert:YES receive:self];
                 
                 [request setTag:BTNTAG_DEL];
                 
@@ -1046,7 +1046,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
                 
                 if (text.length == 0) {
                     
-                    [DYBShareinstaceDelegate popViewText:@"文件名不能为空！" target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+                    [DYBShareinstaceDelegate popViewText:@"文件名不能为空！" target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
                     return;
                 }
                 
@@ -1060,7 +1060,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
                     return;
                 }
                 
-                DragonRequest *request = [DYBHttpMethod document_createdir_name:text dir:folderID isAlert:YES receive:self  ];
+                MagicRequest *request = [DYBHttpMethod document_createdir_name:text dir:folderID isAlert:YES receive:self  ];
                 
                 [request setTag:BTNTAG_ADDFOLDER];            
             }
@@ -1088,7 +1088,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
                     return;
                     
                 }                
-                DragonRequest *request = [DYBHttpMethod document_rename_doc_id:doc_id name:text is_dir:dir indexDataBank:[NSString stringWithFormat:@"%@",row]  sAlert:YES receive:self ];                
+                MagicRequest *request = [DYBHttpMethod document_rename_doc_id:doc_id name:text is_dir:dir indexDataBank:[NSString stringWithFormat:@"%@",row]  sAlert:YES receive:self ];                
                 [request setTag:BTNTAG_RENAME];
             }
                 break;
@@ -1102,7 +1102,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
     }
 }
 
--(void)handleViewSignal_DYBDataBankFileDetailViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankFileDetailViewController:(MagicViewSignal *)signal{
     
 
     
@@ -1148,7 +1148,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
     }
 }
 
--(void)handleViewSignal_DYBDataBankSelectBtn:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankSelectBtn:(MagicViewSignal *)signal{
     
     if ([signal is:[DYBDataBankSelectBtn TOUCHSIGLEBTN]]) {
         NSDictionary *dict = (NSDictionary *)[signal object];
@@ -1219,7 +1219,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
                 
                 NSDictionary *dict = [arrayFolderList objectAtIndex:row];
                 
-                if ([DragonDevice hasInternetConnection] == NO/*无网络*/ || (SHARED.currentUserSetting.wifiForPush && ![[DragonDevice networkType] isEqualToString:@"wifi"]/*开了wifi下才能下载但不是wifi环境*/)) {//
+                if ([MagicDevice hasInternetConnection] == NO/*无网络*/ || (SHARED.currentUserSetting.wifiForPush && ![[MagicDevice networkType] isEqualToString:@"wifi"]/*开了wifi下才能下载但不是wifi环境*/)) {//
                     
                     [self addOrHideDownIcan:[dict objectForKey:@"file_urlencode"] add:NO];
                     
@@ -1245,7 +1245,7 @@ DEF_SIGNAL(SUCCESSCHANGEFOLDER)
         }
     }
 }
--(void)handleViewSignal_DYBDataBankListCell:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankListCell:(MagicViewSignal *)signal{
     
     if ([signal is:[DYBDataBankListCell FINISHSWIP]]) {
         [self hideRightView];

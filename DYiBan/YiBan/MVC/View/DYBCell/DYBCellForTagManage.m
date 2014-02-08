@@ -7,11 +7,11 @@
 //
 
 #import "DYBCellForTagManage.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "DYBUITabbarViewController.h"
 #import "UITableView+property.h"
-#import "UITableViewCell+DragonCategory.h"
-#import "Dragon_Device.h"
+#import "UITableViewCell+MagicCategory.h"
+#import "Magic_Device.h"
 #import "DYBTagManageViewController.h"
 
 @implementation DYBCellForTagManage
@@ -32,7 +32,7 @@ DEF_SIGNAL(DELTAG)
         RELEASE(_viewDelBKG);
         
         UIImage *iconDel = [UIImage imageNamed:@"more_del.png"];
-        _btnDelete = [[DragonUIButton alloc] initWithFrame:CGRectMake(10, 0, iconDel.size.width/2, iconDel.size.height/2)];
+        _btnDelete = [[MagicUIButton alloc] initWithFrame:CGRectMake(10, 0, iconDel.size.width/2, iconDel.size.height/2)];
         [_btnDelete setBackgroundColor:[UIColor clearColor]];
         [_btnDelete setImage:iconDel forState:UIControlStateNormal];
         [_btnDelete addSignal:[DYBCellForTagManage DELTAG] forControlEvents:UIControlEventTouchUpInside];
@@ -44,7 +44,7 @@ DEF_SIGNAL(DELTAG)
         [self addSubview:_viewCover];
         RELEASE(_viewCover);
         
-        _lbTagName = [[DragonUILabel alloc] initWithFrame:CGRectMake(10, 11, 100, 30)];
+        _lbTagName = [[MagicUILabel alloc] initWithFrame:CGRectMake(10, 11, 100, 30)];
         [_lbTagName setBackgroundColor:ColorBlue];
         [_lbTagName setTextAlignment:NSTextAlignmentCenter];
         [_lbTagName setFont:[DYBShareinstaceDelegate DYBFoutStyle:18]];
@@ -59,7 +59,7 @@ DEF_SIGNAL(DELTAG)
         
         if ([_tlinfo.sys intValue] == 1) {
             UIImage *iconMore = [UIImage imageNamed:@"arrow_more.png"];
-            DragonUIButton *btnMore = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-15-iconMore.size.width/2, (fHeight-iconMore.size.height/2)/2, iconMore.size.width/2, iconMore.size.height/2)];
+            MagicUIButton *btnMore = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-15-iconMore.size.width/2, (fHeight-iconMore.size.height/2)/2, iconMore.size.width/2, iconMore.size.height/2)];
             [btnMore setBackgroundColor:[UIColor clearColor]];
             [btnMore setImage:iconMore forState:UIControlStateNormal];
             [_viewCover addSubview:btnMore];
@@ -91,7 +91,7 @@ DEF_SIGNAL(DELTAG)
         _tlinfo = data;
         self.index=[[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section] retain];
         
-        _lbTagName = [[DragonUILabel alloc] initWithFrame:CGRectMake(10, 11, 100, 30)];
+        _lbTagName = [[MagicUILabel alloc] initWithFrame:CGRectMake(10, 11, 100, 30)];
         [_lbTagName setTextAlignment:NSTextAlignmentCenter];
         [_lbTagName setFont:[DYBShareinstaceDelegate DYBFoutStyle:18]];
         [_lbTagName setText:_tlinfo.tag];
@@ -129,7 +129,7 @@ DEF_SIGNAL(DELTAG)
     [_lbTagName setBackgroundColor:ColorBlue];
 }
 
-- (void)handleViewSignal_DYBCellForTagManage:(DragonViewSignal *)signal{
+- (void)handleViewSignal_DYBCellForTagManage:(MagicViewSignal *)signal{
     if ([signal is:[DYBCellForTagManage DELTAG]]) {
         DLogInfo(@"DELTAG");
         [self sendViewSignal:[DYBTagManageViewController DELTAG] withObject:_tlinfo.tag_id];
@@ -138,7 +138,7 @@ DEF_SIGNAL(DELTAG)
 }
 
 #pragma mark- 接受UIView信号
-- (void)handleViewSignal_UIView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_UIView:(MagicViewSignal *)signal{
     if ([signal is:[UIView PAN]]) {//拖动信号
         NSDictionary *d=(NSDictionary *)signal.object;
         UIPanGestureRecognizer *recognizer=[d objectForKey:@"sender"];
@@ -249,7 +249,7 @@ DEF_SIGNAL(DELTAG)
                     
                     //关闭上次展开的cell
                     if (tbv._selectIndex_now) {
-                        if ([DragonDevice sysVersion]<6) {
+                        if ([MagicDevice sysVersion]<6) {
                             UITapGestureRecognizer *tap=[object objectForKey:@"sender"];
                             CGPoint p=[tap locationInView:self];
                             if (p.x>CGRectGetMinX(_btnDelete.frame) && p.y>CGRectGetMinY(_btnDelete.frame)) {
@@ -263,7 +263,7 @@ DEF_SIGNAL(DELTAG)
                         tbv._selectIndex_now=nil;
                     }else{//选中cell
                         NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:tbv, @"tableView", [d objectForKey:@"indexPath"], @"indexPath", nil];
-                        [self sendViewSignal:[DragonUITableView TABLEDIDSELECT] withObject:dict];
+                        [self sendViewSignal:[MagicUITableView TABLEDIDSELECT] withObject:dict];
                     }
                 }
                 

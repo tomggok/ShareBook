@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface databanklist : DragonJSONReflection
+@interface databanklist : MagicJSONReflection
 
 @property (nonatomic,assign) int  count;
 @property (nonatomic,retain) NSString *type;

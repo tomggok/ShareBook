@@ -8,7 +8,7 @@
 
 //#import "Jastor.h"
 
-@interface news_detail : DragonJSONReflection
+@interface news_detail : MagicJSONReflection
 @property(nonatomic,retain)NSArray* news_list;
 
 //+(Class)news_list_class;

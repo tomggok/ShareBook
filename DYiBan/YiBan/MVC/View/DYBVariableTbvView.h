@@ -14,7 +14,7 @@
 }
 
 @property (nonatomic,retain) Class cellClass;
-@property (nonatomic,retain) DragonUITableView *tbv;
+@property (nonatomic,retain) MagicUITableView *tbv;
 @property (nonatomic,retain) UIView *v_headerVForHide;//上滑时此view上边需要被上移的view
 
 AS_SIGNAL(createSectionHeaderView);//创建 定制的 SectionHeaderView 消息

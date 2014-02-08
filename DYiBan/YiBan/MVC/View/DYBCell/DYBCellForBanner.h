@@ -14,7 +14,7 @@
     BOOL bStop;
     NSInteger nCurViewTag;
     
-    DragonUIButton *_btnClose;
+    MagicUIButton *_btnClose;
     
     dispatch_queue_t _bannerQ;
 }

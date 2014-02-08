@@ -9,10 +9,10 @@
 #import "DYBBaseView.h"
 #import "DYBSwitchButton.h"
 
-@interface DYBSetButton : DragonUIButton
-@property (nonatomic, retain)DragonUILabel *textLabel;
+@interface DYBSetButton : MagicUIButton
+@property (nonatomic, retain)MagicUILabel *textLabel;
 @property (nonatomic, retain)DYBSwitchButton *switchButton;
-@property (nonatomic, retain)DragonUIImageView *arrowImv;
+@property (nonatomic, retain)MagicUIImageView *arrowImv;
 AS_SIGNAL(SWITCHBTN);//选择switch
 - (CGFloat)getOrginx;
 - (CGFloat)getOrginy;

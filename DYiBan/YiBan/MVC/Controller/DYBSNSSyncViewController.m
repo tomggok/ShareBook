@@ -25,14 +25,14 @@
 }
 
 #pragma mark- ViewController信号
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.headview setTitle:@"连接中..."];
         [self backImgType:0];
         
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]]){
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]]){
         
         NSHTTPCookie *cookie;
         NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
@@ -41,7 +41,7 @@
         }
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        DragonUIWebView *webView = [[DragonUIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, self.view.frame.size.height - self.headHeight)];
+        MagicUIWebView *webView = [[MagicUIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, self.view.frame.size.height - self.headHeight)];
         
         if (_snsType == 1) {
             _strURL = [SHARED.curUser.auth_tencent stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -57,11 +57,11 @@
     }
 }
 
-- (void)handleViewSignal_DragonUIWebView:(DragonViewSignal *)signal{
-    if ([signal is:[DragonUIWebView DIDLOADFINISH]]){
-        DragonUIWebView *webView = (DragonUIWebView *)[signal source];
+- (void)handleViewSignal_MagicUIWebView:(MagicViewSignal *)signal{
+    if ([signal is:[MagicUIWebView DIDLOADFINISH]]){
+        MagicUIWebView *webView = (MagicUIWebView *)[signal source];
         [self.headview setTitle: [webView stringByEvaluatingJavaScriptFromString:@"document.title"]];
-    }else if ([signal is:[DragonUIWebView WILLSTART]]){        
+    }else if ([signal is:[MagicUIWebView WILLSTART]]){        
         NSString *linkStr = (NSString *)[signal object];
         
         if ([linkStr length] <= 0) {
@@ -70,7 +70,7 @@
         
         if ([linkStr rangeOfString:@"tag=yiban_sync"].location != NSNotFound){
             if ([linkStr rangeOfString:@"tag=yiban_sync_ok"].location != NSNotFound){
-                DragonUIWebView *webView = (DragonUIWebView *)[signal source];
+                MagicUIWebView *webView = (MagicUIWebView *)[signal source];
                 [webView setHidden:YES];
                 
                 [DYBShareinstaceDelegate addConfirmViewTitle:@"提示" MSG:@"绑定成功!" targetView:APPDELEGATE.window targetObj:self btnType:BTNTAG_SINGLE rowNum:[NSString stringWithFormat:@"%d",3]];
@@ -101,14 +101,14 @@
                 RELEASE(dicResult);
                 
                 [self.drNavigationController popVCAnimated:YES];
-                [self sendViewSignal:[DragonViewController VCBACKSUCCESS]];
+                [self sendViewSignal:[MagicViewController VCBACKSUCCESS]];
             }
         }
     }
     
 }
 
--(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
     if ([signal is:[DYBDataBankShotView RIGHT]]) {
         NSDictionary *dicType = (NSDictionary *)[signal object];
         NSString *strType = [dicType objectForKey:@"type"];
@@ -117,7 +117,7 @@
         if ([strType intValue] == BTNTAG_SINGLE) {
             if (row == 3) {
                 [self.drNavigationController popVCAnimated:YES];
-                [self sendViewSignal:[DragonViewController VCBACKSUCCESS]];
+                [self sendViewSignal:[MagicViewController VCBACKSUCCESS]];
             }
         }
     }

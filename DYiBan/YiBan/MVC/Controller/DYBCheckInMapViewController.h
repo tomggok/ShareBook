@@ -14,15 +14,15 @@
 //    BMKSearch* _search;/*百度地图Marker*/
 //    BMKPointAnnotation *_annotation;/*百度地图Marker*/
     
-    DragonUITableView *_tabMapAddress;
-    DragonUIImageView *_viewPrivateBKG;
-    DragonUIImageView *_ICONPrivate;
+    MagicUITableView *_tabMapAddress;
+    MagicUIImageView *_viewPrivateBKG;
+    MagicUIImageView *_ICONPrivate;
     
-    DragonUIButton *_btnPrivate;
-    DragonUIButton *_btnPrivateSelected;
-    DragonUIButton *_btnSelPrivate;
-    DragonUIButton *_btnSelUnPrivate;
-    DragonUIButton *_btnSelFriends;
+    MagicUIButton *_btnPrivate;
+    MagicUIButton *_btnPrivateSelected;
+    MagicUIButton *_btnSelPrivate;
+    MagicUIButton *_btnSelUnPrivate;
+    MagicUIButton *_btnSelFriends;
     
     NSMutableArray *_arrAnnotation;
     NSString *_address;

@@ -15,7 +15,7 @@
     
     NSMutableDictionary *arrayDict;
     NSMutableArray *arrayIndexKey;
-    DragonUITableView *_tableView;
+    MagicUITableView *_tableView;
     
     int Page;
 }

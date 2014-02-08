@@ -9,11 +9,11 @@
 #import "DYBCellForSendPrivateLetter.h"
 #import "chat.h"
 #import "UITableView+property.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "NSString+Count.h"
 #import "UILabel+ReSize.h"
 #import "UIImageView+WebCache.h"
-#import "UITableViewCell+DragonCategory.h"
+#import "UITableViewCell+MagicCategory.h"
 #import "target.h"
 #import "RegexKitLite.h"
 @implementation DYBCellForSendPrivateLetter
@@ -39,7 +39,7 @@
                         _lb_content.textAlignment=NSTextAlignmentLeft;
                         _lb_content.font=[DYBShareinstaceDelegate DYBFoutStyle:17];
                         _lb_content.text=model.content;
-                        _lb_content.textColor=ColorWhite;  //(model.view==0/*未读*/)?([DragonCommentMethod colorWithHex:@"0x333333"]):([DragonCommentMethod colorWithHex:@"0xaaaaaa"]);
+                        _lb_content.textColor=ColorWhite;  //(model.view==0/*未读*/)?([MagicCommentMethod colorWithHex:@"0x333333"]):([MagicCommentMethod colorWithHex:@"0xaaaaaa"]);
 //                        _lb_content.numberOfLines=0;
 //                        _lb_content.lineBreakMode=NSLineBreakByCharWrapping;
                         
@@ -75,7 +75,7 @@
                         
                         {//右侧蓝色箭头
                             UIImage *img=[UIImage imageNamed:@"tail_blue"];
-                            DragonUIImageView *imgV_Arrow=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_v_Contentback.frame)-img.size.width/2- floor(CGRectGetWidth(_v_Contentback.frame)/10), CGRectGetMaxY(_v_Contentback.frame), img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                            MagicUIImageView *imgV_Arrow=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_v_Contentback.frame)-img.size.width/2- floor(CGRectGetWidth(_v_Contentback.frame)/10), CGRectGetMaxY(_v_Contentback.frame), img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                             RELEASE(imgV_Arrow);
                             _imgV_ArrowR=imgV_Arrow;
                         }
@@ -104,7 +104,7 @@
                     if (!_imagV_fail) {
                         UIImage *imag = [UIImage imageNamed:@"send_fail.png"];
                         
-                        _imagV_fail=[[DragonUIImageView alloc]initWithFrame:CGRectMake(_v_Contentback.frame.origin.x-10-imag.size.width/2, 15, imag.size.width/2, imag.size.height/2)];
+                        _imagV_fail=[[MagicUIImageView alloc]initWithFrame:CGRectMake(_v_Contentback.frame.origin.x-10-imag.size.width/2, 15, imag.size.width/2, imag.size.height/2)];
                         NSDictionary *_dicInfo = [[NSDictionary alloc] initWithObjectsAndKeys:model, @"model", @"我是失败的-11111文字", @"type", nil];
                         [_imagV_fail addSignal:[UIView TAP] object:_dicInfo];
                         [_imagV_fail setImage:imag];
@@ -159,7 +159,7 @@
                         
                         {//左侧箭头
                             UIImage *img=[UIImage imageNamed:@"tail_gray"];
-                            DragonUIImageView *imgV_Arrow=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMinX(_v_Contentback.frame)+floor(CGRectGetWidth(_v_Contentback.frame)/10), CGRectGetMaxY(_v_Contentback.frame), img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                            MagicUIImageView *imgV_Arrow=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMinX(_v_Contentback.frame)+floor(CGRectGetWidth(_v_Contentback.frame)/10), CGRectGetMaxY(_v_Contentback.frame), img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                             RELEASE(imgV_Arrow);
                             _imgV_ArrowL=imgV_Arrow;
                         }
@@ -199,7 +199,7 @@
                 if (!_imagV_fail) {
                     UIImage *imag = [UIImage imageNamed:@"send_fail.png"];
                     
-                    _imagV_fail=[[DragonUIImageView alloc]initWithFrame:CGRectMake(_v_Contentback.frame.origin.x+10+_v_Contentback.frame.size.width, 15, imag.size.width/2, imag.size.height/2)];
+                    _imagV_fail=[[MagicUIImageView alloc]initWithFrame:CGRectMake(_v_Contentback.frame.origin.x+10+_v_Contentback.frame.size.width, 15, imag.size.width/2, imag.size.height/2)];
                     
                     NSDictionary *_dicInfo = [[NSDictionary alloc] initWithObjectsAndKeys:model, @"model", @"我是失败的-11111文字", @"type", nil];
                     [_imagV_fail addSignal:[UIView TAP] object:_dicInfo];
@@ -221,7 +221,7 @@
                 if ([model.user_info.userid isEqualToString:SHARED.curUser.userid]) {//右侧
                     
                     if (!_imgV_showImg) {
-                        _imgV_showImg=[[DragonUIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width-15-5-img.size.width/2,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                        _imgV_showImg=[[MagicUIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width-15-5-img.size.width/2,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                         RELEASE(_imgV_showImg);
 
                     }
@@ -265,7 +265,7 @@
                         
                         {//右侧蓝色箭头
                             UIImage *img=[UIImage imageNamed:@"tail_blue"];
-                            DragonUIImageView *imgV_Arrow=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_v_Contentback.frame)-img.size.width/2-floor(CGRectGetWidth(_v_Contentback.frame)/10), CGRectGetMaxY(_v_Contentback.frame), img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                            MagicUIImageView *imgV_Arrow=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_v_Contentback.frame)-img.size.width/2-floor(CGRectGetWidth(_v_Contentback.frame)/10), CGRectGetMaxY(_v_Contentback.frame), img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                             RELEASE(imgV_Arrow);
                             _imgV_ArrowR=imgV_Arrow;
                         }
@@ -301,7 +301,7 @@
                     if (!_imagV_fail) {
                         UIImage *imag = [UIImage imageNamed:@"send_fail.png"];
                         
-                        _imagV_fail=[[DragonUIImageView alloc]initWithFrame:CGRectMake(_v_Contentback.frame.origin.x-10-imag.size.width/2, 15, imag.size.width/2, imag.size.height/2)];
+                        _imagV_fail=[[MagicUIImageView alloc]initWithFrame:CGRectMake(_v_Contentback.frame.origin.x-10-imag.size.width/2, 15, imag.size.width/2, imag.size.height/2)];
                         
                         
                         NSDictionary *_dicInfo = [[NSDictionary alloc] initWithObjectsAndKeys:model, @"model", @"我是失败的-11111定位", @"type", nil];
@@ -318,7 +318,7 @@
                 }else{//左侧
                     
                     if (!_imgV_showImg) {
-                        _imgV_showImg=[[DragonUIImageView alloc]initWithFrame:CGRectMake(20,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                        _imgV_showImg=[[MagicUIImageView alloc]initWithFrame:CGRectMake(20,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                         RELEASE(_imgV_showImg);
                         [_imgV_showImg setImgWithUrl:model.ext.img_url defaultImg:@"map_mini.png"];
                     }
@@ -361,7 +361,7 @@
                         
                         {//左侧蓝色箭头
                             UIImage *img=[UIImage imageNamed:@"tail_gray"];
-                            DragonUIImageView *imgV_Arrow=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMinX(_v_Contentback.frame)+floor(CGRectGetWidth(_v_Contentback.frame)/10), CGRectGetMaxY(_v_Contentback.frame), img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                            MagicUIImageView *imgV_Arrow=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMinX(_v_Contentback.frame)+floor(CGRectGetWidth(_v_Contentback.frame)/10), CGRectGetMaxY(_v_Contentback.frame), img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                             RELEASE(imgV_Arrow);
                             _imgV_ArrowL=imgV_Arrow;
                         }
@@ -398,7 +398,7 @@
                     if (!_imagV_fail) {
                         UIImage *imag = [UIImage imageNamed:@"send_fail.png"];
                         
-                        _imagV_fail=[[DragonUIImageView alloc]initWithFrame:CGRectMake(_v_Contentback.frame.origin.x+10+_v_Contentback.frame.size.width, 15, imag.size.width/2, imag.size.height/2)];
+                        _imagV_fail=[[MagicUIImageView alloc]initWithFrame:CGRectMake(_v_Contentback.frame.origin.x+10+_v_Contentback.frame.size.width, 15, imag.size.width/2, imag.size.height/2)];
                         
                         NSDictionary *_dicInfo = [[NSDictionary alloc] initWithObjectsAndKeys:model, @"model", @"我是失败的-11111定位", @"type", nil];
                         [_imagV_fail addSignal:[UIView TAP] object:_dicInfo];
@@ -422,7 +422,7 @@
                     UIImage *img=[UIImage imageNamed:@"img_loading_blue.png"];
 
                     if (!_imgV_showImg) {
-                        _imgV_showImg=[[DragonUIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width-15-5-img.size.width/2,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:model.photoImage isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                        _imgV_showImg=[[MagicUIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width-15-5-img.size.width/2,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:model.photoImage isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                         RELEASE(_imgV_showImg);
                         
                         
@@ -458,7 +458,7 @@
                         
                         {//右侧蓝色箭头
                             UIImage *img=[UIImage imageNamed:@"tail_blue"];
-                            DragonUIImageView *imgV_Arrow=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_v_Contentback.frame)-img.size.width/2-floor(CGRectGetWidth(_v_Contentback.frame)/10), CGRectGetMaxY(_v_Contentback.frame)+42, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                            MagicUIImageView *imgV_Arrow=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_v_Contentback.frame)-img.size.width/2-floor(CGRectGetWidth(_v_Contentback.frame)/10), CGRectGetMaxY(_v_Contentback.frame)+42, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                             RELEASE(imgV_Arrow);
                             _imgV_ArrowR=imgV_Arrow;
                         }
@@ -495,7 +495,7 @@
                         
                         DLogInfo(@"======%@",model.ext.img_url);
                         
-                        _imagV_fail=[[DragonUIImageView alloc]initWithFrame:CGRectMake(_v_Contentback.frame.origin.x-10-imag.size.width/2, 15, imag.size.width/2, imag.size.height/2)];
+                        _imagV_fail=[[MagicUIImageView alloc]initWithFrame:CGRectMake(_v_Contentback.frame.origin.x-10-imag.size.width/2, 15, imag.size.width/2, imag.size.height/2)];
                         
                         NSDictionary *_dicInfo = [[NSDictionary alloc] initWithObjectsAndKeys:model, @"model", @"我是失败的-11111图片", @"type", nil];
                         [_imagV_fail addSignal:[UIView TAP] object:_dicInfo];
@@ -512,7 +512,7 @@
                     UIImage *img=[UIImage imageNamed:@"img_loading.png"];
                     
                     if (!_imgV_showImg) {
-                        _imgV_showImg=[[DragonUIImageView alloc]initWithFrame:CGRectMake(20,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                        _imgV_showImg=[[MagicUIImageView alloc]initWithFrame:CGRectMake(20,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                         RELEASE(_imgV_showImg);
                         NSDictionary *_dicInfo = [[NSDictionary alloc] initWithObjectsAndKeys:model, @"model", @"我是成功的-11111图片", @"type", nil];
                         [_imgV_showImg addSignal:[UIView TAP] object:_dicInfo];
@@ -532,7 +532,7 @@
                         
                         {//左侧蓝色箭头
                             UIImage *img=[UIImage imageNamed:@"tail_gray"];
-                            DragonUIImageView *imgV_Arrow=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMinX(_v_Contentback.frame)+floor(CGRectGetWidth(_v_Contentback.frame)/10), CGRectGetMaxY(_v_Contentback.frame)+42, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                            MagicUIImageView *imgV_Arrow=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMinX(_v_Contentback.frame)+floor(CGRectGetWidth(_v_Contentback.frame)/10), CGRectGetMaxY(_v_Contentback.frame)+42, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                             RELEASE(imgV_Arrow);
                             _imgV_ArrowL=imgV_Arrow;
                         }
@@ -571,7 +571,7 @@
                 if (!_imagV_fail) {
                     UIImage *imag = [UIImage imageNamed:@"send_fail.png"];
                     
-                    _imagV_fail=[[DragonUIImageView alloc]initWithFrame:CGRectMake(_v_Contentback.frame.origin.x+10+_v_Contentback.frame.size.width, 15, imag.size.width/2, imag.size.height/2)];
+                    _imagV_fail=[[MagicUIImageView alloc]initWithFrame:CGRectMake(_v_Contentback.frame.origin.x+10+_v_Contentback.frame.size.width, 15, imag.size.width/2, imag.size.height/2)];
                     
                     NSDictionary *_dicInfo = [[NSDictionary alloc] initWithObjectsAndKeys:model, @"model", @"我是失败的-11111图片", @"type", nil];
                     [_imagV_fail addSignal:[UIView TAP] object:_dicInfo];
@@ -595,7 +595,7 @@
 
 //{//分割线
 //    UIView *v=[[UIView alloc]initWithFrame:CGRectMake(0, (self.frame.size.height-1), self.frame.size.width, 0.5)];
-//    [v setBackgroundColor:[DragonCommentMethod colorWithHex:@"0xeeeeee"]];
+//    [v setBackgroundColor:[MagicCommentMethod colorWithHex:@"0xeeeeee"]];
 //    [self addSubview:v];
 //    RELEASE(v);
 //}

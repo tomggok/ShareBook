@@ -8,7 +8,7 @@
 
 //#import "Jastor.h"
 #import "user.h"
-@interface notice : DragonJSONReflection
+@interface notice : MagicJSONReflection
 @property(assign,nonatomic)int id;
 @property(nonatomic,retain)NSString* time;
 @property(retain,nonatomic)user *user;

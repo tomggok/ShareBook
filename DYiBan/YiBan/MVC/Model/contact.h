@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 //#import "Jastor.h"
 #import "user.h"
-@interface contact : DragonJSONReflection
+@interface contact : MagicJSONReflection
 @property(retain,nonatomic)NSString * new_message;
 @property(retain,nonatomic)NSString * title;
 @property(retain,nonatomic)NSString * content;

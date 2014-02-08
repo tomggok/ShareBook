@@ -8,7 +8,7 @@
 
 #import "DYBBaseViewController.h"
 
-@interface userRegistModel : DragonJSONReflection
+@interface userRegistModel : MagicJSONReflection
 @property (nonatomic, retain)NSString *registMail;//注册邮箱
 @property (nonatomic, retain)NSString *registName;//注册昵称
 @property (nonatomic, retain)NSString *registSex;//注册性别

@@ -8,7 +8,7 @@
 
 //#import "Jastor.h"
 
-@interface school_list : DragonJSONReflection
+@interface school_list : MagicJSONReflection
 @property (nonatomic, retain)NSString *cert_key;
 @property (nonatomic, retain)NSString *cert_name;
 @property (nonatomic, retain)NSString *hasData;

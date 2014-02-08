@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 //#import "Jastor.h"
-@interface UserSettingMode : DragonJSONReflection
+@interface UserSettingMode : MagicJSONReflection
 
 @property (nonatomic, retain)NSString *userId;//userId
 @property (nonatomic, retain)NSString *upSendImgType;//上传图片的质量

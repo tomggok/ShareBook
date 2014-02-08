@@ -12,11 +12,11 @@
 //个人资料cell
 @interface DYBCellForPersonalProfile : UITableViewCell
 {
-    DragonUIImageView *_imgV_icon;
+    MagicUIImageView *_imgV_icon;
     DYBCustomLabel *_lbTitle,*_lb_content;
     UIView *_vBack;
-    DragonUIButton *_btIcon;
-    DragonUITextField *_nameInput;
+    MagicUIButton *_btIcon;
+    MagicUITextField *_nameInput;
 }
 
 -(void)setContent:(id)data indexPath:(NSIndexPath *)indexPath tbv:(UITableView *)tbv;

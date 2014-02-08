@@ -11,7 +11,7 @@
 #import "DYBDataBankListCell.h"
 #import "DYBSideSwipeTableViewCell.h"
 #import "DYBDataBankListCell.h"
-#import "Dragon_UITableView.h"
+#import "Magic_UITableView.h"
 #import "DYBDtaBankSearchView.h"
 #import <AVFoundation/AVFoundation.h>
 

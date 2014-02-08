@@ -12,7 +12,7 @@
 #import "JSON.h"
 @interface WOSFindFoodViewController (){
 
-    DragonUITableView *tbleView;
+    MagicUITableView *tbleView;
 //    WOSGoodFoodDownView *downView;
     UILabel *labelTopName;
     NSMutableArray *arrayInfoForCai;
@@ -36,11 +36,11 @@
     return self;
 }
 
--(void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal{
     
     DLogInfo(@"name -- %@",signal.name);
     
-    if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         //        [self.rightButton setHidden:YES];
         [self.headview setTitle:@"寻找美食"];
@@ -50,7 +50,7 @@
         
         [self setButtonImage:self.leftButton setImage:@"back"];
     }
-    else if ([signal is:[DragonViewController CREATE_VIEWS]]) {
+    else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
         page = 0;
         count = 2;
@@ -65,7 +65,7 @@
         
         //        arrayInfoForCai = [[NSMutableArray alloc]init];
         strKey = [[NSString alloc]init];
-      DragonUISearchBar *_searchbar = [[DragonUISearchBar alloc]initWithFrame:CGRectMake(0.0f, 44.0f, 320, 30) backgroundColor:[UIColor clearColor] placeholder:@"文件名" isHideOutBackImg:NO isHideLeftView:NO];
+      MagicUISearchBar *_searchbar = [[MagicUISearchBar alloc]initWithFrame:CGRectMake(0.0f, 44.0f, 320, 30) backgroundColor:[UIColor clearColor] placeholder:@"文件名" isHideOutBackImg:NO isHideLeftView:NO];
         for (UIView *subview in [_searchbar subviews]) {
             if ([subview isKindOfClass:NSClassFromString(@"UISearchBarBackground")])
             {
@@ -84,12 +84,12 @@
         [self.view addSubview:_searchbar];
         RELEASE(_searchbar);
         
-//        DragonRequest *request = [DYBHttpMethod wosgoodFood_typeIndex:@"100" orderBy:@"1" page:@"0" count:@"4" orderType:@"1"  sAlert:YES receive:self];
+//        MagicRequest *request = [DYBHttpMethod wosgoodFood_typeIndex:@"100" orderBy:@"1" page:@"0" count:@"4" orderType:@"1"  sAlert:YES receive:self];
 //        [request setTag:3];
         
         
         
-        tbleView = [[DragonUITableView alloc]initWithFrame:CGRectMake(0.0f, 44 + 30, 320,self.view.frame.size.height - 74 ) isNeedUpdate:YES];
+        tbleView = [[MagicUITableView alloc]initWithFrame:CGRectMake(0.0f, 44 + 30, 320,self.view.frame.size.height - 74 ) isNeedUpdate:YES];
         //        tableView setTableViewType:
         [tbleView setTableViewType:DTableViewSlime];
         [tbleView setBackgroundColor:ColorBG];
@@ -100,10 +100,10 @@
     }
     
     
-    else if ([signal is:[DragonViewController WILL_APPEAR]]) {
+    else if ([signal is:[MagicViewController WILL_APPEAR]]) {
         [self.navigationController.navigationBar setHidden:YES];
         DLogInfo(@"rrr");
-    } else if ([signal is:[DragonViewController DID_DISAPPEAR]]){
+    } else if ([signal is:[MagicViewController DID_DISAPPEAR]]){
         
         
     }
@@ -122,7 +122,7 @@
     
     if (strCode) {
         
-//        DragonRequest *request = [DYBHttpMethod wosgoodFood_typeIndex:strCode orderBy:@"1" page:@"0" count:@"4" orderType:@"1"  sAlert:YES receive:self];
+//        MagicRequest *request = [DYBHttpMethod wosgoodFood_typeIndex:strCode orderBy:@"1" page:@"0" count:@"4" orderType:@"1"  sAlert:YES receive:self];
 //        [request setTag:3];
     }
     
@@ -155,16 +155,16 @@
 
 -(void)resolutionRequest{
 
-    DragonRequest *request = [DYBHttpMethod wosKitchenInfo_searchKitch_keywords:strKey page:[NSString stringWithFormat:@"%d",page] count:[NSString stringWithFormat:@"%d",count] sAlert:YES receive:self];
+    MagicRequest *request = [DYBHttpMethod wosKitchenInfo_searchKitch_keywords:strKey page:[NSString stringWithFormat:@"%d",page] count:[NSString stringWithFormat:@"%d",count] sAlert:YES receive:self];
     [request setTag:3];
 
 }
 
 
--(void)handleViewSignal_DragonUISearchBar:(DragonViewSignal *)signal{
+-(void)handleViewSignal_MagicUISearchBar:(MagicViewSignal *)signal{
     
     
-    if ([signal is:[DragonUISearchBar BEGINEDITING]]) {
+    if ([signal is:[MagicUISearchBar BEGINEDITING]]) {
         
         //        [arraySearchResult removeAllObjects]; //清除内容
         
@@ -175,7 +175,7 @@
 //            [btnSearch setHidden:NO];
 //        }
         
-        DragonUISearchBar *obj = (DragonUISearchBar *)[signal object];
+        MagicUISearchBar *obj = (MagicUISearchBar *)[signal object];
         [obj setShowsCancelButton:YES];
         
         
@@ -193,9 +193,9 @@
 //            
 //        }
         
-    }else if([signal is:[DragonUISearchBar CANCEL]]){
+    }else if([signal is:[MagicUISearchBar CANCEL]]){
         
-        DragonUISearchBar *obj = (DragonUISearchBar *)[signal object];
+        MagicUISearchBar *obj = (MagicUISearchBar *)[signal object];
         [obj resignFirstResponder];
         [obj setShowsCancelButton:YES];
 //        [self sendViewSignal:[DYBDtaBankSearchView RECOVERBAR] withObject:nil from:self];
@@ -210,11 +210,11 @@
         
 //        [((DYBBaseViewController *)[self superCon]).rightButton setHidden:NO];
         
-    }else if([signal is:[DragonUISearchBar SEARCH]]){
+    }else if([signal is:[MagicUISearchBar SEARCH]]){
         
         
         
-        DragonUISearchBar *obj = (DragonUISearchBar *)[signal object];
+        MagicUISearchBar *obj = (MagicUISearchBar *)[signal object];
         [obj resignFirstResponder];
         [obj setShowsCancelButton:YES];
         //        [self addOBjToArray:obj.text];
@@ -226,9 +226,9 @@
         
         
         
-    }else if ([signal is:[DragonUISearchBar CHANGEWORD]]){
+    }else if ([signal is:[MagicUISearchBar CHANGEWORD]]){
         
-        //        DragonUISearchBar *search=(DragonUISearchBar *)signal.source;
+        //        MagicUISearchBar *search=(MagicUISearchBar *)signal.source;
         //        [self addOBjToArray:search.text];
         
     }
@@ -326,42 +326,42 @@
 
 
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal{
     
     
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
     {
         NSNumber *s = [NSNumber numberWithInteger:arrayInfoForCai.count];
         [signal setReturnValue:s];
         
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
     {
         NSNumber *s = [NSNumber numberWithInteger:1];
         [signal setReturnValue:s];
         
     }
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
     {
         
         
         
         [signal setReturnValue:[NSNumber numberWithInteger:100]];
     }
-    else if ([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
     {
         [signal setReturnValue:nil];
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
     {
         [signal setReturnValue:nil];
         
     }
-    else if ([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
     {
         [signal setReturnValue:[NSNumber numberWithFloat:0.0]];
     }
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -381,7 +381,7 @@
         [signal setReturnValue:cell];
         
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
     {
         
         NSDictionary *dict = (NSDictionary *)[signal object];
@@ -392,28 +392,28 @@
         [self.drNavigationController pushViewController:shop animated:YES];
         RELEASE(shop);
         
-    }else if([signal is:[DragonUITableView TABLESCROLLVIEWDIDENDDRAGGING]])/*滚动停止*/{
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDENDDRAGGING]])/*滚动停止*/{
         
         
-    }else if([signal is:[DragonUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
         
-    }else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]]) //刷新
+    }else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]]) //刷新
     {
-        //        DragonUIUpdateView *uptableview = (DragonUIUpdateView *)[signal object];
-        DragonRequest *request = [DYBHttpMethod wosgoodFood_typeIndex:@"1" orderBy:@"1" page:@"0" count:@"4" orderType:@"1"  sAlert:YES receive:self];
+        //        MagicUIUpdateView *uptableview = (MagicUIUpdateView *)[signal object];
+        MagicRequest *request = [DYBHttpMethod wosgoodFood_typeIndex:@"1" orderBy:@"1" page:@"0" count:@"4" orderType:@"1"  sAlert:YES receive:self];
         [request setTag:3];
         
-    }else if([signal is:[DragonUITableView TAbLEVIEWLODATA]]) //加载更多
+    }else if([signal is:[MagicUITableView TAbLEVIEWLODATA]]) //加载更多
     {
-        DragonRequest *request = [DYBHttpMethod wosgoodFood_typeIndex:@"1" orderBy:@"1" page:@"0" count:@"8" orderType:@"1"  sAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod wosgoodFood_typeIndex:@"1" orderBy:@"1" page:@"0" count:@"8" orderType:@"1"  sAlert:YES receive:self];
         [request setTag:3];
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLUP]]){ //上滑动
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLUP]]){ //上滑动
         
         //        [tbDataBank StretchingUpOrDown:0];
         //        [DYBShareinstaceDelegate opeartionTabBarShow:YES];
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLDOWN]]){ //下滑动
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLDOWN]]){ //下滑动
         
         //        [tbDataBank StretchingUpOrDown:1];
         //        [DYBShareinstaceDelegate opeartionTabBarShow:NO];
@@ -422,7 +422,7 @@
 }
 
 
-//- (void)handleViewSignal_WOSGoodFoodDownView:(DragonViewSignal *)signal{
+//- (void)handleViewSignal_WOSGoodFoodDownView:(MagicViewSignal *)signal{
 //    
 //    if ([signal is:[WOSGoodFoodDownView SELECTCELL]]) {
 //        
@@ -438,7 +438,7 @@
 //}
 
 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -456,7 +456,7 @@
 }
 
 
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if ([request succeed])
     {
@@ -484,7 +484,7 @@
                 else{
                     NSString *strMSG = [dict objectForKey:@"message"];
                     
-                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
                     
                     
                 }
@@ -494,7 +494,7 @@
             NSDictionary *dict = [request.responseString JSONValue];
             NSString *strMSG = [dict objectForKey:@"message"];
             
-            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
             
             
         }

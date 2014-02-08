@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 ZzL. All rights reserved.
 //
 
-#import "Dragon_JSONReflection.h"
+#import "Magic_JSONReflection.h"
 
-@interface notesUserinfo : DragonJSONReflection
+@interface notesUserinfo : MagicJSONReflection
 @property (nonatomic, retain) NSString *id;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *nick;

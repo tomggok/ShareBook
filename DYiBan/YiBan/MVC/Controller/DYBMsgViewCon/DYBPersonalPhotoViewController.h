@@ -10,7 +10,7 @@
 
 @interface DYBPersonalPhotoViewController : DYBBaseViewController {
     
-//    DragonUITableView *_tbv;
+//    MagicUITableView *_tbv;
 }
 @property (nonatomic,copy) NSString *str_userid;
 AS_SIGNAL(SELECTBUTTON)

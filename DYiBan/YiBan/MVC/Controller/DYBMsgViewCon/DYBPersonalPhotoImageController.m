@@ -21,7 +21,7 @@
 #define imgSpeceBetL    4
 #import "DYBCustomLabel.h"
 #import "UILabel+ReSize.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 @interface DYBPersonalPhotoImageController (){
     
     BOOL isWillRead;//是否还要加载
@@ -30,16 +30,16 @@
     
 }
 @property (nonatomic, retain) DYBCustomLabel *numLabel;
-@property (nonatomic, retain) DragonUILabel *numLabel1;
+@property (nonatomic, retain) MagicUILabel *numLabel1;
 @end
 
 @implementation DYBPersonalPhotoImageController
 @synthesize userId = _userId,photoid = _photoid,allImgCount = _allImgCount,albumName= _albumName;
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
     [super handleViewSignal:signal];
     
-    if ([signal is:DragonViewController.CREATE_VIEWS]) {
+    if ([signal is:MagicViewController.CREATE_VIEWS]) {
         
         [self.view setUserInteractionEnabled:NO];
         
@@ -65,7 +65,7 @@
         _numLabel.text = _allImgCount;
         [_numLabel sizeToFitByconstrainedSize:CGSizeMake(100/*最宽*/, 57)];
         
-        _numLabel1 = [[DragonUILabel alloc]initWithFrame:CGRectMake(_numLabel.frame.size.width, 0, SCREEN_WIDTH-_numLabel.frame.size.width, 57)];
+        _numLabel1 = [[MagicUILabel alloc]initWithFrame:CGRectMake(_numLabel.frame.size.width, 0, SCREEN_WIDTH-_numLabel.frame.size.width, 57)];
         _numLabel1.text = @"张图片";
         _numLabel1.textAlignment = NSTextAlignmentLeft;
         _numLabel1.textColor = ColorBlack;
@@ -79,7 +79,7 @@
         
         
         
-    }else if ([signal is:DragonViewController.WILL_APPEAR]){
+    }else if ([signal is:MagicViewController.WILL_APPEAR]){
         [self.headview setTitle:_albumName];
         self.rightButton.hidden = YES;
         [self backImgType:0];
@@ -87,7 +87,7 @@
         DLogInfo(@"======_userId=====%@",_userId);
         DLogInfo(@"======_photoid=====%@",_photoid);
         
-        DragonRequest *request = [DYBHttpMethod albumList:_userId albumId:_photoid num:24 page:1 isAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod albumList:_userId albumId:_photoid num:24 page:1 isAlert:YES receive:self];
         [request setTag:1];
         
         if (!request) {//无网路
@@ -95,17 +95,17 @@
 //            [_tbv.footerView changeState:VIEWTYPEFOOTER];
         }
         
-    }else if ([signal is:DragonViewController.DID_DISAPPEAR]){
+    }else if ([signal is:MagicViewController.DID_DISAPPEAR]){
         RELEASEVIEW(_tbv);//界面不显示时彻底释放TBV,已释放cell
         
-    }else if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    }else if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         
-    }else if ([signal is:[DragonViewController FREE_DATAS]])//dealloc时回调,先释放数据
+    }else if ([signal is:[MagicViewController FREE_DATAS]])//dealloc时回调,先释放数据
     {
         [_tbv releaseDataResource];
         
-    }else if ([signal is:[DragonViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
+    }else if ([signal is:[MagicViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
         
         [_tbv release_muA_differHeightCellView];
         
@@ -125,7 +125,7 @@
     RELEASE(imgV);
     
     {
-        DragonUILabel *lb=[[DragonUILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imgV.frame)+20, 0, 0)];
+        MagicUILabel *lb=[[MagicUILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imgV.frame)+20, 0, 0)];
         lb.backgroundColor=[UIColor clearColor];
         lb.textAlignment=NSTextAlignmentLeft;
         lb.font=[DYBShareinstaceDelegate DYBFoutStyle:20];
@@ -150,9 +150,9 @@
 #pragma mark- 接受tbv信号
 
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -175,7 +175,7 @@
             [signal setReturnValue:s];
         }
         
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -189,14 +189,14 @@
         }
         
     }
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
     {
             
             NSNumber *s = [NSNumber numberWithInteger:imgBgHeight];
             [signal setReturnValue:s];
         
     }
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell  只返回显示的cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell  只返回显示的cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -249,17 +249,17 @@
         
         [signal setReturnValue:cell];
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
     {
         
     }
-    else if ([signal is:[DragonUITableView TAbLEVIEWLODATA]])//加载更多
+    else if ([signal is:[MagicUITableView TAbLEVIEWLODATA]])//加载更多
     {
         
         {//HTTP请求已加入的班级列表
             [self.view setUserInteractionEnabled:NO];
             
-            DragonRequest *request = [DYBHttpMethod albumList:_userId albumId:_photoid num:24 page:++_tbv._page isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod albumList:_userId albumId:_photoid num:24 page:++_tbv._page isAlert:YES receive:self];
             [request setTag:2];
             
             if (!request) {//无网路
@@ -269,15 +269,15 @@
         
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]])//刷新
+    else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]])//刷新
     {
         
-        //        DragonUITableView *tableView = (DragonUITableView *)[signal source];
+        //        MagicUITableView *tableView = (MagicUITableView *)[signal source];
         
         {//HTTP请求已加入的班级列表
             [self.view setUserInteractionEnabled:NO];
             _tbv._page = 1;
-            DragonRequest *request = [DYBHttpMethod albumList:_userId albumId:_photoid num:24 page:1 isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod albumList:_userId albumId:_photoid num:24 page:1 isAlert:YES receive:self];
             [request setTag:1];
             
             if (!request) {//无网路
@@ -322,7 +322,7 @@
 -(void)creatTbv{
     
     if (!_tbv) {
-        _tbv = [[DragonUITableView alloc] initWithFrame:CGRectMake(0, self.headHeight, SCREEN_WIDTH, SCREEN_HEIGHT-self.headHeight-20) isNeedUpdate:YES];
+        _tbv = [[MagicUITableView alloc] initWithFrame:CGRectMake(0, self.headHeight, SCREEN_WIDTH, SCREEN_HEIGHT-self.headHeight-20) isNeedUpdate:YES];
         _tbv._cellH=50;
         [self.view addSubview:_tbv];
         _tbv.tag=-1;
@@ -339,7 +339,7 @@
 }
 
 #pragma mark- 只接受HTTP信号
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if ([request succeed])
     {

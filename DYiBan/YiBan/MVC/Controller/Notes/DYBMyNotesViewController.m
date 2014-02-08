@@ -15,12 +15,12 @@
 #import "NSString+Count.h"
 #import "noteModel.h"
 #import "DYBCellForNotes.h"
-#import "Dragon_Runtime.h"
-#import "UIView+DragonCategory.h"
+#import "Magic_Runtime.h"
+#import "UIView+MagicCategory.h"
 #import "DYBSelectContactViewController.h"
 #import "UserSettingMode.h"
 #import "DYBNoteDetailViewController.h"
-#import "UIViewController+DragonCategory.h"
+#import "UIViewController+MagicCategory.h"
 #import "DYBGuideView.h"
 @interface DYBMyNotesViewController ()
 {
@@ -34,16 +34,16 @@
 @synthesize isGotoNewDote=_isGotoNewDote;
 
 #pragma mark- ViewController信号
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
     [super handleViewSignal:signal];
     
-    if ([signal is:DragonViewController.CREATE_VIEWS]) {
+    if ([signal is:MagicViewController.CREATE_VIEWS]) {
         
         self.view.backgroundColor=[UIColor redColor];
         
         if (!_search) {
-            _search=[[DragonUISearchBar alloc]initWithFrame:CGRectMake(0, self.headHeight+1, self.view.frame.size.width, 50) backgroundColor:ColorNav placeholder:@"标签" isHideOutBackImg:YES isHideLeftView:NO];
+            _search=[[MagicUISearchBar alloc]initWithFrame:CGRectMake(0, self.headHeight+1, self.view.frame.size.width, 50) backgroundColor:ColorNav placeholder:@"标签" isHideOutBackImg:YES isHideLeftView:NO];
             [_search customBackGround:[[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bg_search"]] autorelease]];
             _search.tag=-1;
             [self.view addSubview:_search];
@@ -57,14 +57,14 @@
 
         
         {//HTTP请求,笔记列表
-            DragonRequest *request = [DYBHttpMethod notes_listByKeywords:@"" tagid:@"" favorite:((_tbv_dropDown.row==0)?(@"0"):(@"1")) page:@"1" num:@"10" searchmonth:@"" delnum:@"" isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod notes_listByKeywords:@"" tagid:@"" favorite:((_tbv_dropDown.row==0)?(@"0"):(@"1")) page:@"1" num:@"10" searchmonth:@"" delnum:@"" isAlert:YES receive:self];
             [request setTag:1];
         }
         
         [self observeNotification:[DYBNoteDetailViewController AutoRefreshTbvInViewWillAppear]];
 
         
-    }else if ([signal is:DragonViewController.WILL_APPEAR]){
+    }else if ([signal is:MagicViewController.WILL_APPEAR]){
         
 //        if (_isGotoNewDote) {
 //            DYBNoteDetailViewController *vc = [[DYBNoteDetailViewController alloc] init];
@@ -80,11 +80,11 @@
         
         if (!_bt_DropDown) {
             //            UIImage *img= [UIImage imageNamed:@"btn_mainmenu_default"];
-            _bt_DropDown = [[DragonUIButton alloc] initWithFrame:CGRectMake(0, 0,90, self.headHeight)];
+            _bt_DropDown = [[MagicUIButton alloc] initWithFrame:CGRectMake(0, 0,90, self.headHeight)];
             _bt_DropDown.tag=-1;
             _bt_DropDown.backgroundColor=[UIColor clearColor];//self.headview.backgroundColor;
             //            _bt_DropDown.alpha=0.9;
-            [_bt_DropDown addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [_bt_DropDown addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
             //            [_bt_mayKnow setBackgroundImage:img forState:UIControlStateNormal];
             //            [_bt_sendNotice setBackgroundImage:[UIImage imageNamed:@"btn_mainmenu_hilight"] forState:UIControlStateHighlighted];
             //            [_bt_DropDown setTitle:@"好友"];
@@ -101,10 +101,10 @@
         
         if (!_bt_creatNote) {
             UIImage *img= [UIImage imageNamed:@"btn_addtag_def"];
-            _bt_creatNote = [[DragonUIButton alloc] initWithFrame:CGRectMake(self.headview.frame.size.width-img.size.width/2, 0, img.size.width/2, img.size.height/2)];
+            _bt_creatNote = [[MagicUIButton alloc] initWithFrame:CGRectMake(self.headview.frame.size.width-img.size.width/2, 0, img.size.width/2, img.size.height/2)];
             _bt_creatNote.backgroundColor=[UIColor clearColor];
             _bt_creatNote.tag=-2;
-            [_bt_creatNote addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [_bt_creatNote addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
             [_bt_creatNote setImage:img forState:UIControlStateNormal];
             [_bt_creatNote setImage:[UIImage imageNamed:@"btn_addtag_press"] forState:UIControlStateHighlighted];
 //            [_bt_creatNote setTitle:@"更多"];
@@ -117,10 +117,10 @@
         
         if (!_bt_date) {
             UIImage *img= [UIImage imageNamed:@"btn_date_def"];
-            _bt_date = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(_bt_creatNote.frame)-img.size.width/2, 0, img.size.width/2, img.size.height/2)];
+            _bt_date = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(_bt_creatNote.frame)-img.size.width/2, 0, img.size.width/2, img.size.height/2)];
             _bt_date.backgroundColor=[UIColor clearColor];
             _bt_date.tag=-7;
-            [_bt_date addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [_bt_date addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
             [_bt_date setImage:img forState:UIControlStateNormal];
             [_bt_date setImage:[UIImage imageNamed:@"btn_date_press"] forState:UIControlStateHighlighted];
             //            [_bt_creatNote setTitle:@"更多"];
@@ -133,7 +133,7 @@
         
         if (self.b_isAutoRefreshTbvInViewWillAppear) {
             {//HTTP请求,笔记列表
-                DragonRequest *request = [DYBHttpMethod notes_listByKeywords:@"" tagid:@"" favorite:((_tbv_dropDown.row==0)?(@"0"):(@"1")) page:@"1" num:@"10" searchmonth:@"" delnum:@""  isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod notes_listByKeywords:@"" tagid:@"" favorite:((_tbv_dropDown.row==0)?(@"0"):(@"1")) page:@"1" num:@"10" searchmonth:@"" delnum:@""  isAlert:YES receive:self];
                 [request setTag:1];
             }
             self.b_isAutoRefreshTbvInViewWillAppear=NO;
@@ -168,17 +168,17 @@
         }
 
         
-    }else if ([signal is:DragonViewController.DID_DISAPPEAR]){
+    }else if ([signal is:MagicViewController.DID_DISAPPEAR]){
         
-    }else if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    }else if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         
-    }else if ([signal is:[DragonViewController FREE_DATAS]])//dealloc时回调,先释放数据
+    }else if ([signal is:[MagicViewController FREE_DATAS]])//dealloc时回调,先释放数据
     {
 //        RELEASEDICTARRAYOBJ(_muA_favoriteNoteData);
 //        RELEASEDICTARRAYOBJ(_muA_AllNoteData);
 
-    }else if ([signal is:[DragonViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
+    }else if ([signal is:[MagicViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
         REMOVEFROMSUPERVIEW(_tbvView);
     }
     
@@ -196,7 +196,7 @@
 }
 
 #pragma mark - back button signal
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -210,40 +210,40 @@
 
 //static NSString *cellName = @"cellName";//
 //
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
     {
 
         
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
     {
     
         
     }
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
     {
         
     }
-    else if ([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
     {
     
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
     {
      
         
     }//
-    else if ([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
     {
         
         
     }
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell  只返回显示的cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell  只返回显示的cell
     {
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableview = [dict objectForKey:@"tableView"];
@@ -261,52 +261,52 @@
         [tableview deselectRowAtIndexPath:indexPath animated:YES];
         
     }
-    else if ([signal is:[DragonUITableView TAbLEVIEWLODATA]])//加载更多
+    else if ([signal is:[MagicUITableView TAbLEVIEWLODATA]])//加载更多
     {
-        DragonUITableView *tableView = ((DYBVariableTbvView *)[signal source]).tbv;
+        MagicUITableView *tableView = ((DYBVariableTbvView *)[signal source]).tbv;
         {//HTTP请求
-            DragonRequest *request = [DYBHttpMethod notes_listByKeywords:@"" tagid:@"" favorite:((_tbv_dropDown.row==0)?(@"0"):(@"1")) page:[NSString stringWithFormat:@"%d",++tableView._page ]num:[NSString stringWithFormat:@"%d",tableView.i_pageNums ] searchmonth:@"" delnum:[NSString stringWithFormat:@"%d",delnum]  isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod notes_listByKeywords:@"" tagid:@"" favorite:((_tbv_dropDown.row==0)?(@"0"):(@"1")) page:[NSString stringWithFormat:@"%d",++tableView._page ]num:[NSString stringWithFormat:@"%d",tableView.i_pageNums ] searchmonth:@"" delnum:[NSString stringWithFormat:@"%d",delnum]  isAlert:YES receive:self];
             [request setTag:2];
         }
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]])//刷新
+    else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]])//刷新
     {
         
-        DragonUITableView *tableView = ((DYBVariableTbvView *)[signal source]).tbv;
+        MagicUITableView *tableView = ((DYBVariableTbvView *)[signal source]).tbv;
         
         {//HTTP请求,笔记列表
-            DragonRequest *request = [DYBHttpMethod notes_listByKeywords:@"" tagid:@"" favorite:((_tbv_dropDown.row==0)?(@"0"):(@"1")) page:[NSString stringWithFormat:@"%d",tableView._page=1 ] num:[NSString stringWithFormat:@"%d",tableView.i_pageNums ] searchmonth:_str_CalendarContent delnum:@"" isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod notes_listByKeywords:@"" tagid:@"" favorite:((_tbv_dropDown.row==0)?(@"0"):(@"1")) page:[NSString stringWithFormat:@"%d",tableView._page=1 ] num:[NSString stringWithFormat:@"%d",tableView.i_pageNums ] searchmonth:_str_CalendarContent delnum:@"" isAlert:YES receive:self];
             [request setTag:1];
             delnum=0;
         }
         
     }
     
-    else if ([signal is:[DragonUITableView TABLESECTIONINDEXTITLESFORTABLEVIEW]])//右侧索引列表
+    else if ([signal is:[MagicUITableView TABLESECTIONINDEXTITLESFORTABLEVIEW]])//右侧索引列表
     {
 
-    }else if ([signal is:[DragonUITableView TABLESECTIONFORSECTIONINDEXTITLE]])//点击右测是索引列表上的某个字母时回调,参数index和title是 右侧索引列表上被点击的字母在 索引列表的下标和名字,返回被点击的字母对应的section的下标
+    }else if ([signal is:[MagicUITableView TABLESECTIONFORSECTIONINDEXTITLE]])//点击右测是索引列表上的某个字母时回调,参数index和title是 右侧索引列表上被点击的字母在 索引列表的下标和名字,返回被点击的字母对应的section的下标
     {
       
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLUP]]){//上滑
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLUP]]){//上滑
         
         [[DYBUITabbarViewController sharedInstace] hideTabBar:YES animated:YES];
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLDOWN]]){//下滑
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLDOWN]]){//下滑
         
         [[DYBUITabbarViewController sharedInstace] hideTabBar:NO animated:YES];
         
-    }else if ([signal is:[DragonUITableView TAbLEVIERETOUCH]]){//点击事件
+    }else if ([signal is:[MagicUITableView TAbLEVIERETOUCH]]){//点击事件
         
         [self cancelPagePicker];
     }
 }
 
 #pragma mark- 只接受searchBar信号
-- (void)handleViewSignal_DragonUISearchBar:(DragonViewSignal *)signal{
-    if ([signal is:[DragonUISearchBar BEGINEDITING]]) {//第一次按下搜索框
+- (void)handleViewSignal_MagicUISearchBar:(MagicViewSignal *)signal{
+    if ([signal is:[MagicUISearchBar BEGINEDITING]]) {//第一次按下搜索框
         
-        DragonUISearchBar *search=(DragonUISearchBar *)signal.object;
+        MagicUISearchBar *search=(MagicUISearchBar *)signal.object;
         {
             search.showsScopeBar = YES;//控制搜索栏下部的选择栏是否显示出来
             [search setShowsCancelButton:YES animated:YES];
@@ -315,22 +315,22 @@
             
         }
         
-    }else if ([signal is:[DragonUISearchBar CANCEL]]){//
-        //        DragonUISearchBar *search=(DragonUISearchBar *)signal.object;
+    }else if ([signal is:[MagicUISearchBar CANCEL]]){//
+        //        MagicUISearchBar *search=(MagicUISearchBar *)signal.object;
         
         [self changeTbv];
         
-    }else if ([signal is:[DragonUISearchBar SEARCH]]){//按下搜索按钮
-        DragonUISearchBar *search=(DragonUISearchBar *)signal.object;
+    }else if ([signal is:[MagicUISearchBar SEARCH]]){//按下搜索按钮
+        MagicUISearchBar *search=(MagicUISearchBar *)signal.object;
         
         {//HTTP请求
-            DragonRequest *request = [DYBHttpMethod notes_listByKeywords:search.text tagid:@"" favorite:@"" page:[NSString stringWithFormat:@"%d",_tbvView.tbv._page ]num:[NSString stringWithFormat:@"%d",_tbvView.tbv.i_pageNums ] searchmonth:@"" delnum:@"" isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod notes_listByKeywords:search.text tagid:@"" favorite:@"" page:[NSString stringWithFormat:@"%d",_tbvView.tbv._page ]num:[NSString stringWithFormat:@"%d",_tbvView.tbv.i_pageNums ] searchmonth:@"" delnum:@"" isAlert:YES receive:self];
             [request setTag:1];
         }
         
-    }else if ([signal is:[DragonUISearchBar CHANGEWORD]]){//内容改变
+    }else if ([signal is:[MagicUISearchBar CHANGEWORD]]){//内容改变
         NSString *str=(NSString *)signal.object;
-        DragonUISearchBar *search=(DragonUISearchBar *)signal.source;
+        MagicUISearchBar *search=(MagicUISearchBar *)signal.source;
         
         if ([str length] == 0) {//删除完search里的内容
             //            if (!_tbv_mayKnow.hidden) {
@@ -345,19 +345,19 @@
             return;
         }
         
-        //        [search sendViewSignal:[DragonUISearchBar SEARCHING] withObject:[NSDictionary dictionaryWithObjectsAndKeys:str,@"searchContent",((!_tbv_mayKnow.hidden)?(_tbv_mayKnow):(_tbv_nearBy)),@"tbv", nil]];
+        //        [search sendViewSignal:[MagicUISearchBar SEARCHING] withObject:[NSDictionary dictionaryWithObjectsAndKeys:str,@"searchContent",((!_tbv_mayKnow.hidden)?(_tbv_mayKnow):(_tbv_nearBy)),@"tbv", nil]];
         
         
-    }else if ([signal is:[DragonUISearchBar SEARCHING]]){
+    }else if ([signal is:[MagicUISearchBar SEARCHING]]){
         
     }
 }
 
 
 #pragma mark- 按钮信号
-- (void)handleViewSignal_DragonUIButton:(DragonViewSignal *)signal{
-    if ([signal is:[DragonUIButton TOUCH_UP_INSIDE]]) {
-        DragonUIButton *bt=(DragonUIButton *)signal.source;
+- (void)handleViewSignal_MagicUIButton:(MagicViewSignal *)signal{
+    if ([signal is:[MagicUIButton TOUCH_UP_INSIDE]]) {
+        MagicUIButton *bt=(MagicUIButton *)signal.source;
         
         if (bt)
         {
@@ -424,10 +424,10 @@
                     [cell resetContentView];
 
                     if ([model.favorite intValue]==0) {//HTTP请求,收藏
-                        DragonRequest *request = [DYBHttpMethod notes_addfavorite:model.nid isAlert:YES receive:self];
+                        MagicRequest *request = [DYBHttpMethod notes_addfavorite:model.nid isAlert:YES receive:self];
                         [request setTag:3];
                     }else{
-                        DragonRequest *request = [DYBHttpMethod notes_delfavorite:model.nid isAlert:YES receive:self];
+                        MagicRequest *request = [DYBHttpMethod notes_delfavorite:model.nid isAlert:YES receive:self];
                         [request setTag:4];
                     }
                 }
@@ -450,7 +450,7 @@
                     [cell resetContentView];
 
                     {//HTTP请求
-                        DragonRequest *request = [DYBHttpMethod notes_dumpnote:model.nid del:((SHARED.currentUserSetting.notesSaveForPush)?(@"1"):(@"2")) isAlert:YES receive:self];
+                        MagicRequest *request = [DYBHttpMethod notes_dumpnote:model.nid del:((SHARED.currentUserSetting.notesSaveForPush)?(@"1"):(@"2")) isAlert:YES receive:self];
                         [request setTag:6];
                     }
                     }
@@ -485,7 +485,7 @@
                 case k_tag_fadeBt://取消search的背景按钮
                 {
                     if ([_search cancelSearch]) {
-                        [_search sendViewSignal:[DragonUISearchBar CANCEL] withObject:_search];
+                        [_search sendViewSignal:[MagicUISearchBar CANCEL] withObject:_search];
                         
                     }
                     
@@ -506,7 +506,7 @@
                 {
                     if (bt.tag==k_tag_OKBT) {//HTTP请求,笔记列表
                         
-                        DragonRequest *request = [DYBHttpMethod notes_listByKeywords:@"" tagid:@"" favorite:((_tbv_dropDown.row==0)?(@"0"):(@"1")) page:@"1" num:@"10" searchmonth:_str_CalendarContent=[_pickerView result] delnum:@"" isAlert:YES receive:self];
+                        MagicRequest *request = [DYBHttpMethod notes_listByKeywords:@"" tagid:@"" favorite:((_tbv_dropDown.row==0)?(@"0"):(@"1")) page:@"1" num:@"10" searchmonth:_str_CalendarContent=[_pickerView result] delnum:@"" isAlert:YES receive:self];
                         [request setTag:1];
 //                        _isCalendar=YES;
                     }
@@ -520,7 +520,7 @@
                 case -8://取消日历筛选
                 {
                     {//HTTP请求,笔记列表
-                        DragonRequest *request = [DYBHttpMethod notes_listByKeywords:@"" tagid:@"" favorite:((_tbv_dropDown.row==0)?(@"0"):(@"1")) page:[NSString stringWithFormat:@"%d",_tbvView.tbv._page=1 ] num:[NSString stringWithFormat:@"%d",_tbvView.tbv.i_pageNums ] searchmonth:_str_CalendarContent=@"" delnum:@"" isAlert:YES receive:self];
+                        MagicRequest *request = [DYBHttpMethod notes_listByKeywords:@"" tagid:@"" favorite:((_tbv_dropDown.row==0)?(@"0"):(@"1")) page:[NSString stringWithFormat:@"%d",_tbvView.tbv._page=1 ] num:[NSString stringWithFormat:@"%d",_tbvView.tbv.i_pageNums ] searchmonth:_str_CalendarContent=@"" delnum:@"" isAlert:YES receive:self];
                         [request setTag:1];
                     }
                 }
@@ -535,7 +535,7 @@
 }
 
 #pragma mark- 接受UIView信号
-- (void)handleViewSignal_UIView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_UIView:(MagicViewSignal *)signal{
     if ([signal is:[UIView TAP]]) {
         UIView *v=signal.source;
         switch (v.tag) {
@@ -546,10 +546,10 @@
 
                 noteModel *model=[d valueForKeyPath:@"object.model"];
                 if ([model.favorite intValue]==0) {//HTTP请求,收藏
-                    DragonRequest *request = [DYBHttpMethod notes_addfavorite:model.nid isAlert:YES receive:self];
+                    MagicRequest *request = [DYBHttpMethod notes_addfavorite:model.nid isAlert:YES receive:self];
                     [request setTag:3];
                 }else{
-                    DragonRequest *request = [DYBHttpMethod notes_delfavorite:model.nid isAlert:YES receive:self];
+                    MagicRequest *request = [DYBHttpMethod notes_delfavorite:model.nid isAlert:YES receive:self];
                     [request setTag:4];
                 }
             }
@@ -570,13 +570,13 @@
     }
     
             {//HTTP请求,笔记列表
-                DragonRequest *request = [DYBHttpMethod notes_listByKeywords:@"" tagid:@"" favorite:((_tbv_dropDown.row==0)?(@"0"):(@"1")) page:[NSString stringWithFormat:@"%d",_tbvView.tbv._page=1 ] num:[NSString stringWithFormat:@"%d",_tbvView.tbv.i_pageNums ] searchmonth:_str_CalendarContent=@""  delnum:@"" isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod notes_listByKeywords:@"" tagid:@"" favorite:((_tbv_dropDown.row==0)?(@"0"):(@"1")) page:[NSString stringWithFormat:@"%d",_tbvView.tbv._page=1 ] num:[NSString stringWithFormat:@"%d",_tbvView.tbv.i_pageNums ] searchmonth:_str_CalendarContent=@""  delnum:@"" isAlert:YES receive:self];
                 [request setTag:1];
             }
 }
 
 #pragma mark- DYBPullDownMenuView 信号
-- (void)handleViewSignal_DYBDynamicViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBDynamicViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBDynamicViewController MENUSELECT]]) {
         
@@ -602,13 +602,13 @@
     }
     
     UIImage *img=[UIImage imageNamed:@"ybx_big"];
-    _imgV_noDataTip=[[DragonUIImageView alloc]initWithFrame:CGRectMake(0, 0, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self.view Alignment:2 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+    _imgV_noDataTip=[[MagicUIImageView alloc]initWithFrame:CGRectMake(0, 0, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self.view Alignment:2 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
     [_imgV_noDataTip setFrame:CGRectMake(CGRectGetMinX(_imgV_noDataTip.frame), CGRectGetMinY(_imgV_noDataTip.frame)-20, CGRectGetWidth(_imgV_noDataTip.frame), CGRectGetHeight(_imgV_noDataTip.frame))];
     RELEASE(_imgV_noDataTip);
     [self.view sendSubviewToBack:_imgV_noDataTip];
     
     {
-        _lb_noDataTip=[[DragonUILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_imgV_noDataTip.frame)+20, 0, 0)];
+        _lb_noDataTip=[[MagicUILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_imgV_noDataTip.frame)+20, 0, 0)];
         _lb_noDataTip.backgroundColor=[UIColor clearColor];
         _lb_noDataTip.textAlignment=NSTextAlignmentLeft;
         _lb_noDataTip.font=[DYBShareinstaceDelegate DYBFoutStyle:20];
@@ -633,7 +633,7 @@
     if ([notification is:[DYBNoteDetailViewController AutoRefreshTbvInViewWillAppear]]){
         if ([self.view window]) {//已显示
             {//HTTP请求,笔记列表
-                DragonRequest *request = [DYBHttpMethod notes_listByKeywords:@"" tagid:@"" favorite:((_tbv_dropDown.row==0)?(@"0"):(@"1")) page:@"1" num:@"10" searchmonth:@"" delnum:@""  isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod notes_listByKeywords:@"" tagid:@"" favorite:((_tbv_dropDown.row==0)?(@"0"):(@"1")) page:@"1" num:@"10" searchmonth:@"" delnum:@""  isAlert:YES receive:self];
                 [request setTag:1];
             }
         }else{
@@ -646,7 +646,7 @@
 }
 
 #pragma mark- 只接受HTTP信号
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if ([request succeed])
     {
@@ -898,7 +898,7 @@
                             _tbvView.tbv.indexAfterRequest=Nil;
 
                             {//HTTP请求,笔记列表
-                                DragonRequest *request = [DYBHttpMethod notes_listByKeywords:@"" tagid:@"" favorite:((_tbv_dropDown.row==0)?(@"0"):(@"1")) page:[NSString stringWithFormat:@"%d",_tbvView.tbv._page=1 ] num:[NSString stringWithFormat:@"%d",_tbvView.tbv.i_pageNums ] searchmonth:_str_CalendarContent delnum:@"" isAlert:YES receive:self];
+                                MagicRequest *request = [DYBHttpMethod notes_listByKeywords:@"" tagid:@"" favorite:((_tbv_dropDown.row==0)?(@"0"):(@"1")) page:[NSString stringWithFormat:@"%d",_tbvView.tbv._page=1 ] num:[NSString stringWithFormat:@"%d",_tbvView.tbv.i_pageNums ] searchmonth:_str_CalendarContent delnum:@"" isAlert:YES receive:self];
                                 [request setTag:1];
                                 delnum=0;
                             }
@@ -913,9 +913,9 @@
                     }
                 }else if ([response response] ==khttpfailCode){
                     {
-                        DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                        MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                         [pop setDelegate:self];
-                        [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                        [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                         [pop setText:@"删除失败"];
                         [pop alertViewAutoHidden:.5f isRelease:YES];
                     }
@@ -942,9 +942,9 @@
 //                            [DYBShareinstaceDelegate addConfirmViewTitle:@"" MSG:@"成功转存至资料库,原笔记已自动删除" targetView:APPDELEGATE.window targetObj:self btnType:BTNTAG_DEL];
                             
                             {
-                                DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                                MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                                 [pop setDelegate:self];
-                                [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                                [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                                 [pop setText:@"成功转存至资料库,原笔记已自动删除"];
                                 [pop alertViewAutoHidden:.5f isRelease:YES];
                             }
@@ -970,9 +970,9 @@
                         }else{
 
                             {
-                                DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                                MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                                 [pop setDelegate:self];
-                                [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                                [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                                 [pop setText:@"成功转存至资料库,原笔记已保留"];
                                 [pop alertViewAutoHidden:.5f isRelease:YES];
                             }
@@ -985,9 +985,9 @@
                 }
                 
                 {
-                    DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                    MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                     [pop setDelegate:self];
-                    [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                    [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                     [pop setText:@"转存失败"];
                     [pop alertViewAutoHidden:.5f isRelease:YES];
                 }
@@ -1003,7 +1003,7 @@
 }
 
 #pragma mark- 二次确认框
--(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
     
     DLogInfo(@"ddddd");
     if ([signal is:[DYBDataBankShotView LEFT]]) {
@@ -1026,7 +1026,7 @@
                     [cell resetContentView];
 
                     {//HTTP请求
-                        DragonRequest *request = [DYBHttpMethod notes_dumpnote:model.nid del:((SHARED.currentUserSetting.notesSaveForPush)?(@"1"):(@"2")) isAlert:YES receive:self];
+                        MagicRequest *request = [DYBHttpMethod notes_dumpnote:model.nid del:((SHARED.currentUserSetting.notesSaveForPush)?(@"1"):(@"2")) isAlert:YES receive:self];
                         [request setTag:6];
                     }
                 return;
@@ -1049,7 +1049,7 @@
                 noteModel *model=[_tbvView.tbv.muA_singelSectionData objectAtIndex:index.row];
                 
                 {//HTTP请求
-                    DragonRequest *request = [DYBHttpMethod notes_delnote:model.nid isAlert:YES receive:self];
+                    MagicRequest *request = [DYBHttpMethod notes_delnote:model.nid isAlert:YES receive:self];
                     [request setTag:5];
                 }
             }

@@ -25,7 +25,7 @@
         fadd = 0;
         
         if (indexPath.row != 0) {
-            DragonUIImageView *imgSpLine = [[DragonUIImageView alloc] initWithFrame:CGRectMake(27, 0, 266, 1) backgroundColor:[UIColor clearColor] image:[UIImage imageNamed:@"sepline2.png"] isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            MagicUIImageView *imgSpLine = [[MagicUIImageView alloc] initWithFrame:CGRectMake(27, 0, 266, 1) backgroundColor:[UIColor clearColor] image:[UIImage imageNamed:@"sepline2.png"] isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             
             RELEASE(imgSpLine);
         }else{
@@ -67,7 +67,7 @@
 -(float)DynamicCommetContent:(NSString *)commenterName commenterPortraitURL:(NSString *)portraitURL commentContent:(NSString *)content time:(NSString *)time targrt:(NSArray *)target{
     float fHeight = 0;
     
-    DragonUIImageView *_imgUserPortrait = [[DragonUIImageView alloc] initWithFrame:CGRectMake(27, 8+fadd, 30, 30) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+    MagicUIImageView *_imgUserPortrait = [[MagicUIImageView alloc] initWithFrame:CGRectMake(27, 8+fadd, 30, 30) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
     [_imgUserPortrait setNeedRadius:YES];
     [_imgUserPortrait setUserInteractionEnabled:YES];
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserWithGesture:)];
@@ -82,7 +82,7 @@
         
     }
     
-    DragonUILabel *_lbUserName = [[DragonUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_imgUserPortrait.frame)+8, CGRectGetMinY(_imgUserPortrait.frame)-8, 200, 30)];
+    MagicUILabel *_lbUserName = [[MagicUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_imgUserPortrait.frame)+8, CGRectGetMinY(_imgUserPortrait.frame)-8, 200, 30)];
     [_lbUserName setBackgroundColor:[UIColor clearColor]];
     [_lbUserName setTextAlignment:NSTextAlignmentLeft];
     [_lbUserName setFont:[UIFont boldSystemFontOfSize:12.0f]];
@@ -94,7 +94,7 @@
     
     time = [NSString transFormTimeStamp:[time intValue]];
 
-    DragonUILabel *_lbTime = [[DragonUILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-105, CGRectGetMinY(_lbUserName.frame), 80, 30)];
+    MagicUILabel *_lbTime = [[MagicUILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-105, CGRectGetMinY(_lbUserName.frame), 80, 30)];
     [_lbTime setBackgroundColor:[UIColor clearColor]];
     [_lbTime setTextAlignment:NSTextAlignmentRight];
     [_lbTime setFont:[DYBShareinstaceDelegate DYBFoutStyle:12]];
@@ -136,7 +136,7 @@
 -(float)DynamicLike:(NSString *)commenterName time:(NSString *)time commenterPortraitURL:(NSString *)portraitURL{
     float fHeight = 0;
     
-    DragonUIImageView *_imgUserPortrait = [[DragonUIImageView alloc] initWithFrame:CGRectMake(27, 8+fadd, 30, 30) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+    MagicUIImageView *_imgUserPortrait = [[MagicUIImageView alloc] initWithFrame:CGRectMake(27, 8+fadd, 30, 30) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
     [_imgUserPortrait setNeedRadius:YES];
     [_imgUserPortrait setUserInteractionEnabled:YES];
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserWithGesture:)];
@@ -151,7 +151,7 @@
         
     }
 
-    DragonUILabel *_lbUserName = [[DragonUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_imgUserPortrait.frame)+8, CGRectGetMinY(_imgUserPortrait.frame)-8, 200, 30)];
+    MagicUILabel *_lbUserName = [[MagicUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_imgUserPortrait.frame)+8, CGRectGetMinY(_imgUserPortrait.frame)-8, 200, 30)];
     [_lbUserName setBackgroundColor:[UIColor clearColor]];
     [_lbUserName setTextAlignment:NSTextAlignmentLeft];
     [_lbUserName setFont:[UIFont boldSystemFontOfSize:12.0f]];
@@ -162,7 +162,7 @@
 
     time = [NSString transFormTimeStamp:[time intValue]];
     
-    DragonUILabel *_lbTime = [[DragonUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_imgUserPortrait.frame)+8, CGRectGetMaxY(_lbUserName.frame)-13, 228, 30)];
+    MagicUILabel *_lbTime = [[MagicUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_imgUserPortrait.frame)+8, CGRectGetMaxY(_lbUserName.frame)-13, 228, 30)];
     [_lbTime setBackgroundColor:[UIColor clearColor]];
     [_lbTime setTextAlignment:NSTextAlignmentLeft];
     [_lbTime setFont:[DYBShareinstaceDelegate DYBFoutStyle:12]];
@@ -187,7 +187,7 @@
     float fHeight = 43;
     
     UIImage *imgBear = [UIImage imageNamed:@"ybx_small.png"];
-    DragonUIImageView *viewBear = [[DragonUIImageView alloc] initWithFrame:CGRectMake(105, 10, 25, 22)];
+    MagicUIImageView *viewBear = [[MagicUIImageView alloc] initWithFrame:CGRectMake(105, 10, 25, 22)];
     [viewBear setBackgroundColor:[UIColor clearColor]];
     [viewBear setImage:imgBear];
     [self addSubview:viewBear];
@@ -206,7 +206,7 @@
             break;
     }
     
-    DragonUILabel *lbWaring = [[DragonUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(viewBear.frame)+5, 10, 60, 22)];
+    MagicUILabel *lbWaring = [[MagicUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(viewBear.frame)+5, 10, 60, 22)];
     [lbWaring setTag:199];
     [lbWaring setBackgroundColor:[UIColor clearColor]];
     [lbWaring setFont:[DYBShareinstaceDelegate DYBFoutStyle:18]];

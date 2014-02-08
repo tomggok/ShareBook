@@ -8,16 +8,16 @@
 
 #import "DYBCellForEmployAndMyCollect.h"
 #import "EmployInfo.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "NSString+Count.h"
 
 @interface DYBCellForEmployAndMyCollect ()
 {
-    DragonUIImageView *_imgV_icon;
+    MagicUIImageView *_imgV_icon;
     DYBCustomLabel *_lbTitle,*_lb_content,*_lb_time,*_lb_collectNums/*收藏量*/,*_lb_click_num/*浏览量*/;
     UIView *_vBack;
-    DragonUIButton *_btIcon;
-    DragonUITextField *_nameInput;
+    MagicUIButton *_btIcon;
+    MagicUITextField *_nameInput;
 }
 
 
@@ -113,7 +113,7 @@
                 
                 {//竖线
                     UIImage *img=[UIImage imageNamed:@"dotted_info_line.png"];
-                    DragonUIImageView *imgV = [[DragonUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_lb_time.frame)+10, CGRectGetMinY(_lb_time.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                    MagicUIImageView *imgV = [[MagicUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_lb_time.frame)+10, CGRectGetMinY(_lb_time.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                     RELEASE(imgV);
                     
                     if (!_lb_click_num) {//浏览量
@@ -133,7 +133,7 @@
                     
                     {//竖线
                         UIImage *img=[UIImage imageNamed:@"dotted_info_line.png"];
-                        DragonUIImageView *imgV = [[DragonUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_lb_click_num.frame)+10, CGRectGetMinY(_lb_click_num.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                        MagicUIImageView *imgV = [[MagicUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_lb_click_num.frame)+10, CGRectGetMinY(_lb_click_num.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                         RELEASE(imgV);
                         
                         if (!_lb_collectNums) {//收藏
@@ -222,7 +222,7 @@
     
     {//竖线
         UIImage *img=[UIImage imageNamed:@"dotted_info_line.png"];
-        DragonUIImageView *imgV = [[DragonUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_lb_time.frame)+10, CGRectGetMinY(_lb_time.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        MagicUIImageView *imgV = [[MagicUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_lb_time.frame)+10, CGRectGetMinY(_lb_time.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         RELEASE(imgV);
         
         if (!_lb_click_num) {//浏览量
@@ -242,7 +242,7 @@
         
         {//竖线
             UIImage *img=[UIImage imageNamed:@"dotted_info_line.png"];
-            DragonUIImageView *imgV = [[DragonUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_lb_click_num.frame)+10, CGRectGetMinY(_lb_click_num.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            MagicUIImageView *imgV = [[MagicUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_lb_click_num.frame)+10, CGRectGetMinY(_lb_click_num.frame), img.size.width/2,img.size.height/2) backgroundColor:[UIColor whiteColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             RELEASE(imgV);
             
             if (!_lb_collectNums) {//收藏

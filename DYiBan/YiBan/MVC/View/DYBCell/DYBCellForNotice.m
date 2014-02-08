@@ -7,14 +7,14 @@
 //
 
 #import "DYBCellForNotice.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "NSString+Count.h"
 #import "UIImageView+WebCache.h"
 #import "chat.h"
 #import "UITableView+property.h"
 #import "UIView+Gesture.h"
-#import "UITableViewCell+DragonCategory.h"
-#import "Dragon_Device.h"
+#import "UITableViewCell+MagicCategory.h"
+#import "Magic_Device.h"
 
 @implementation DYBCellForNotice
 
@@ -27,11 +27,11 @@
         
         if (!_bt_delete) {
             UIImage *img= [UIImage imageNamed:@"msg_del_def"];
-            _bt_delete = [[DragonUIButton alloc] initWithFrame:CGRectMake(self.frame.size.width-img.size.width/2/*-15*/, 0,img.size.width/2, img.size.height/2)];
+            _bt_delete = [[MagicUIButton alloc] initWithFrame:CGRectMake(self.frame.size.width-img.size.width/2/*-15*/, 0,img.size.width/2, img.size.height/2)];
             _bt_delete.tag=-1;
             _bt_delete.backgroundColor=[UIColor clearColor];//self.headview.backgroundColor;
             //            _bt_DropDown.alpha=0.9;
-            [_bt_delete addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:model.id];
+            [_bt_delete addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:model.id];
             [_bt_delete setImage:img forState:UIControlStateNormal];
             [_bt_delete setImage:[UIImage imageNamed:@"msg_del_press"] forState:UIControlStateHighlighted];
             //            [_bt_delete setTitle:@"删除"];
@@ -57,7 +57,7 @@
         }
 
         if (!_imgV_showImg) {
-            _imgV_showImg=[[DragonUIImageView alloc]initWithFrame:CGRectMake(15,5, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_showImg.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            _imgV_showImg=[[MagicUIImageView alloc]initWithFrame:CGRectMake(15,5, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_showImg.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             _imgV_showImg.needRadius=YES;
             RELEASE(_imgV_showImg);
             
@@ -76,7 +76,7 @@
             
 //            {//圆形遮盖
 //                UIImage *img=[UIImage imageNamed:@"midface_mask_def"];
-//                DragonUIImageView *imgV=[[DragonUIImageView alloc]initWithFrame:CGRectMake(0,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_imgV_showImg Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+//                MagicUIImageView *imgV=[[MagicUIImageView alloc]initWithFrame:CGRectMake(0,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_imgV_showImg Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
 //                RELEASE(imgV);
 //            }
         }
@@ -88,7 +88,7 @@
             _lb_nickName.font=[DYBShareinstaceDelegate DYBFoutStyle:18];
             _lb_nickName.text=model.user_info.name;
             [_lb_nickName setNeedCoretext:NO];
-            _lb_nickName.textColor=[DragonCommentMethod color:51 green:51 blue:51 alpha:1];
+            _lb_nickName.textColor=[MagicCommentMethod color:51 green:51 blue:51 alpha:1];
             _lb_nickName.numberOfLines=1;
             
             _lb_nickName.lineBreakMode=NSLineBreakByTruncatingTail;
@@ -129,7 +129,7 @@
             
             {
                 UIImage *img=[UIImage imageNamed:@"icon_arrow_up"];
-                DragonUIImageView *imgV_Arrow=[[DragonUIImageView alloc]initWithFrame:CGRectMake(_v_bigContent.frame.origin.x+20, _v_bigContent.frame.origin.y-img.size.height/2, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                MagicUIImageView *imgV_Arrow=[[MagicUIImageView alloc]initWithFrame:CGRectMake(_v_bigContent.frame.origin.x+20, _v_bigContent.frame.origin.y-img.size.height/2, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_v_toBeSlidingView Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                 RELEASE(imgV_Arrow);
             }
             
@@ -180,7 +180,7 @@
 }
 
 #pragma mark- 接受UIView信号
-- (void)handleViewSignal_UIView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_UIView:(MagicViewSignal *)signal{
     if ([signal is:[UIView PAN]]) {//拖动信号
         NSDictionary *d=(NSDictionary *)signal.object;
         UIPanGestureRecognizer *recognizer=[d objectForKey:@"sender"];
@@ -195,7 +195,7 @@
                 
                 if (translation.x>0&& self.initialTouchPositionX!=0 &&CGRectEqualToRect(_v_toBeSlidingView.frame, _v_toBeSlidingView._originFrame) && !(((UITableView *)(self.superview))._selectIndex_now)/*避免 朝右拖动未关闭的cell时 把viewCon.view朝右拖动*/) {/*此cell是否是在未展开状态右划*/
                     
-                    DragonViewController *con=(DragonViewController *)[self superCon];
+                    MagicViewController *con=(MagicViewController *)[self superCon];
                     [con.drNavigationController handleSwitchView:recognizer];
                     return;
                 }
@@ -265,7 +265,7 @@
         
         UITableView *tbv=[d objectForKey:@"tbv"];
         
-        if ([DragonDevice sysVersion]<6) {
+        if ([MagicDevice sysVersion]<6) {
             UITapGestureRecognizer *tap=[object objectForKey:@"sender"];
             CGPoint p=[tap locationInView:self];
             if (p.x>CGRectGetMinX(_bt_delete.frame) && p.y>CGRectGetMinY(_bt_delete.frame)) {
@@ -282,7 +282,7 @@
             tbv._selectIndex_now=nil;
         }else{//选中cell
             NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:tbv, @"tableView", [d objectForKey:@"indexPath"], @"indexPath", nil];
-            [self sendViewSignal:[DragonUITableView TABLEDIDSELECT] withObject:dict];
+            [self sendViewSignal:[MagicUITableView TABLEDIDSELECT] withObject:dict];
         }
         
         [self resetContentView];

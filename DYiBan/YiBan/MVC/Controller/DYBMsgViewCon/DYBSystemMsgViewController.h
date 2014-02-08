@@ -11,7 +11,7 @@
 //系统消息页
 @interface DYBSystemMsgViewController : DYBBaseViewController
 {
-//    DragonUITableView *_tbv;//
+//    MagicUITableView *_tbv;//
 //    NSMutableArray *_muA_data;
 }
 

@@ -6,8 +6,8 @@
 //  Copyright (c) 2013年 ZzL. All rights reserved.
 //
 
-#import "Dragon_UITableView.h"
+#import "Magic_UITableView.h"
 
-@interface DYBUITableView : DragonUITableView
+@interface DYBUITableView : MagicUITableView
 
 @end

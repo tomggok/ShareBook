@@ -14,15 +14,15 @@
 
 @implementation DYBHelp_protocolViewController
 @synthesize tag = _tag,tle = _tle;
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.leftButton setHidden:NO];
         [self.rightButton setHidden:YES];
         [self.headview setTitle:_tle];
         [self backImgType:0];
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         [self addWebView:_tag];
         

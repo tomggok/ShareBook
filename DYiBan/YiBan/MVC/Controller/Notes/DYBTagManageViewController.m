@@ -8,7 +8,7 @@
 
 #import "DYBTagManageViewController.h"
 #import "DYBCellForTagManage.h"
-#import "Dragon_Device.h"
+#import "Magic_Device.h"
 #import "UITableView+property.h"
 #import "DYBInputView.h"
 #import "ChineseToPinyin.h"
@@ -44,11 +44,11 @@ DEF_SIGNAL(DELTAG)
 }
 
 #pragma mark- ViewController信号
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
     [super handleViewSignal:signal];
     
-    if ([signal is:DragonViewController.CREATE_VIEWS]) {
+    if ([signal is:MagicViewController.CREATE_VIEWS]) {
         if (nPage <= 0) {
             nPage = 1;
         }
@@ -58,11 +58,11 @@ DEF_SIGNAL(DELTAG)
         _arrayTagManageCell = [[NSMutableArray alloc] init];
         _strNewTag = nil;
         
-        DragonUIImageView *_viewBKG = [[DragonUIImageView alloc] initWithFrame:self.view.bounds];
+        MagicUIImageView *_viewBKG = [[MagicUIImageView alloc] initWithFrame:self.view.bounds];
         [_viewBKG setBackgroundColor:[UIColor clearColor]];
         [_viewBKG setUserInteractionEnabled:YES];
         
-        if ([DragonDevice boundSizeType]==1) {
+        if ([MagicDevice boundSizeType]==1) {
             [_viewBKG setImage:[UIImage imageNamed:@"bg_note_ip5.png"]];
         }else{
             [_viewBKG setImage:[UIImage imageNamed:@"bg_note.png"]];
@@ -73,7 +73,7 @@ DEF_SIGNAL(DELTAG)
         
         
         if (!_Tagsearch) {
-            _Tagsearch=[[DragonUISearchBar alloc]initWithFrame:CGRectMake(0, self.headHeight+1, self.view.frame.size.width, 50) backgroundColor:ColorNav placeholder:@"标签" isHideOutBackImg:YES isHideLeftView:NO];
+            _Tagsearch=[[MagicUISearchBar alloc]initWithFrame:CGRectMake(0, self.headHeight+1, self.view.frame.size.width, 50) backgroundColor:ColorNav placeholder:@"标签" isHideOutBackImg:YES isHideLeftView:NO];
             [_Tagsearch customBackGround:[[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bg_search"]] autorelease]];
             _Tagsearch.tag=-1;
             [_viewBKG addSubview:_Tagsearch];
@@ -106,11 +106,11 @@ DEF_SIGNAL(DELTAG)
                 [_tabTagManage reloadData:YES];
             }
         }else{
-            DragonRequest *request = [DYBHttpMethod notes_taglist:nil showcount:@"1" page:@"1" num:[NSString stringWithFormat:@"%d", nPageSize] isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod notes_taglist:nil showcount:@"1" page:@"1" num:[NSString stringWithFormat:@"%d", nPageSize] isAlert:YES receive:self];
             request.tag = -1;
         }
         
-    }else if ([signal is:DragonViewController.WILL_APPEAR]){
+    }else if ([signal is:MagicViewController.WILL_APPEAR]){
         [self.headview setTitle:@"标签管理"];
         
         [self backImgType:0];
@@ -119,7 +119,7 @@ DEF_SIGNAL(DELTAG)
 }
 
 #pragma mark - back button signal
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -134,7 +134,7 @@ DEF_SIGNAL(DELTAG)
     
 }
 
--(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
     if ([signal is:[DYBDataBankShotView RIGHT]]) {
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSString *type = [dict objectForKey:@"type"];
@@ -153,11 +153,11 @@ DEF_SIGNAL(DELTAG)
                 
             }
             
-            DragonRequest *request = [DYBHttpMethod notes_addtag:_strNewTag isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod notes_addtag:_strNewTag isAlert:YES receive:self];
             request.tag = -6;
 
         }else if(![row isEqualToString:@"0"]){
-            DragonRequest *request = [DYBHttpMethod notes_deltag:_strTagID isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod notes_deltag:_strTagID isAlert:YES receive:self];
             request.tag = -5;
         }
     }else if ([signal is:[DYBDataBankShotView LEFT]]){
@@ -175,7 +175,7 @@ DEF_SIGNAL(DELTAG)
     }
 }
 
-- (void)handleViewSignal_DYBTagManageViewController:(DragonViewSignal *)signal{
+- (void)handleViewSignal_DYBTagManageViewController:(MagicViewSignal *)signal{
     if ([signal is:[DYBTagManageViewController DELTAG]]) {
         _strTagID = (NSString *)[signal object];
 
@@ -187,17 +187,17 @@ DEF_SIGNAL(DELTAG)
 #pragma mark- 只接受UITableView信号
 static NSString *cellName = @"cellName";
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
         NSNumber *s = [NSNumber numberWithInteger:_arrayTagManage.count];
         [signal setReturnValue:s];
         
-    }else if([signal is:[DragonUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
+    }else if([signal is:[MagicUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
         NSNumber *s = [NSNumber numberWithInteger:1];
         [signal setReturnValue:s];
         
-    }else if([signal is:[DragonUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
+    }else if([signal is:[MagicUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -218,15 +218,15 @@ static NSString *cellName = @"cellName";
         [signal setReturnValue:s];
         
         
-    }else if([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])/*titleForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])/*titleForHeaderInSection*/{
         
-    }else if([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])/*viewForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])/*viewForHeaderInSection*/{
         [signal setReturnValue:nil];
         
-    }else if([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])/*heightForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])/*heightForHeaderInSection*/{
         [signal setReturnValue:[NSNumber numberWithFloat:0.0]];
         
-    }else if([signal is:[DragonUITableView TABLECELLFORROW]])/*cell*/{
+    }else if([signal is:[MagicUITableView TABLECELLFORROW]])/*cell*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
@@ -239,40 +239,40 @@ static NSString *cellName = @"cellName";
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [signal setReturnValue:cell];
         
-    }else if([signal is:[DragonUITableView TABLEDIDSELECT]])/*选中cell*/{
+    }else if([signal is:[MagicUITableView TABLEDIDSELECT]])/*选中cell*/{
         
-    }else if([signal is:[DragonUITableView TABLESCROLLVIEWDIDENDDRAGGING]])/*滚动停止*/{
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDENDDRAGGING]])/*滚动停止*/{
         
-    }else if([signal is:[DragonUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
         
-    }else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]]){
+    }else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]]){
         nPage = 1;
         
         [self.view setUserInteractionEnabled:NO];
         
-        DragonRequest *request = [DYBHttpMethod notes_taglist:nil showcount:@"1" page:@"1" num:[NSString stringWithFormat:@"%d", nPageSize] isAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod notes_taglist:nil showcount:@"1" page:@"1" num:[NSString stringWithFormat:@"%d", nPageSize] isAlert:YES receive:self];
         request.tag = -1;
         
         if (!request) {//无网路
             [_tabTagManage reloadData:NO];
         }
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWLODATA]]){
+    }else if ([signal is:[MagicUITableView TAbLEVIEWLODATA]]){
         nPage ++;
         
         [self.view setUserInteractionEnabled:NO];
         
-        DragonRequest *request = [DYBHttpMethod notes_taglist:nil showcount:@"1" page:[NSString stringWithFormat:@"%d", nPage] num:[NSString stringWithFormat:@"%d", nPageSize] isAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod notes_taglist:nil showcount:@"1" page:[NSString stringWithFormat:@"%d", nPage] num:[NSString stringWithFormat:@"%d", nPageSize] isAlert:YES receive:self];
         request.tag = -2;
         
         if (!request) {//无网路
             [_tabTagManage reloadData:NO];
         }
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLUP]]){//上滑
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLUP]]){//上滑
         
         [[DYBUITabbarViewController sharedInstace] hideTabBar:YES animated:YES];
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLDOWN]]){//下滑
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLDOWN]]){//下滑
         
         [[DYBUITabbarViewController sharedInstace] hideTabBar:NO animated:YES];
         
@@ -281,10 +281,10 @@ static NSString *cellName = @"cellName";
 }
 
 #pragma mark- 只接受searchBar信号
-- (void)handleViewSignal_DragonUISearchBar:(DragonViewSignal *)signal{
-    if ([signal is:[DragonUISearchBar BEGINEDITING]]) {//第一次按下搜索框
+- (void)handleViewSignal_MagicUISearchBar:(MagicViewSignal *)signal{
+    if ([signal is:[MagicUISearchBar BEGINEDITING]]) {//第一次按下搜索框
         
-        DragonUISearchBar *search=(DragonUISearchBar *)signal.object;
+        MagicUISearchBar *search=(MagicUISearchBar *)signal.object;
         {
             search.showsScopeBar = YES;//控制搜索栏下部的选择栏是否显示出来
             [search setShowsCancelButton:YES animated:YES];
@@ -293,7 +293,7 @@ static NSString *cellName = @"cellName";
             
         }
         
-    }else if ([signal is:[DragonUISearchBar CANCEL]]){//
+    }else if ([signal is:[MagicUISearchBar CANCEL]]){//
         
         [_Tagsearch cancelSearch];
         
@@ -316,19 +316,19 @@ static NSString *cellName = @"cellName";
                 [_tabTagManage reloadData:YES];
             }
         }else{
-            DragonRequest *request = [DYBHttpMethod notes_taglist:nil showcount:@"1" page:@"1" num:[NSString stringWithFormat:@"%d", nPageSize] isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod notes_taglist:nil showcount:@"1" page:@"1" num:[NSString stringWithFormat:@"%d", nPageSize] isAlert:YES receive:self];
             request.tag = -1;
         }
         
-    }else if ([signal is:[DragonUISearchBar SEARCH]]){//按下搜索按钮
-        DragonUISearchBar *search=(DragonUISearchBar *)signal.object;
+    }else if ([signal is:[MagicUISearchBar SEARCH]]){//按下搜索按钮
+        MagicUISearchBar *search=(MagicUISearchBar *)signal.object;
         
-        DragonRequest *request = [DYBHttpMethod notes_taglist:search.text showcount:@"1" page:@"1" num:[NSString stringWithFormat:@"%d", nPageSize] isAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod notes_taglist:search.text showcount:@"1" page:@"1" num:[NSString stringWithFormat:@"%d", nPageSize] isAlert:YES receive:self];
         request.tag = -10;
         
-    }else if ([signal is:[DragonUISearchBar CHANGEWORD]]){//内容改变
+    }else if ([signal is:[MagicUISearchBar CHANGEWORD]]){//内容改变
         
-    }else if ([signal is:[DragonUISearchBar SEARCHING]]){
+    }else if ([signal is:[MagicUISearchBar SEARCHING]]){
         
     }
 }
@@ -384,7 +384,7 @@ NSInteger DYBtagSort(id tinfo1, id tinfo2, void *context)
 }
 
 #pragma mark- 消息返回处理
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj{
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj{
     
     [self.view setUserInteractionEnabled:YES];
     
@@ -594,7 +594,7 @@ NSInteger DYBtagSort(id tinfo1, id tinfo2, void *context)
         [_tabTagManage addSubview:_viewWarning];
         RELEASE(_viewWarning);
         
-        DragonUILabel *labWarning = [[DragonUILabel alloc] initWithFrame:CGRectMake((CGRectGetWidth(self.view.frame)-250)/2, 0, 250, 60)];
+        MagicUILabel *labWarning = [[MagicUILabel alloc] initWithFrame:CGRectMake((CGRectGetWidth(self.view.frame)-250)/2, 0, 250, 60)];
         [labWarning setBackgroundColor:[UIColor clearColor]];
         [labWarning setText:@"一条标签也没有\n请猛戳右上角的按钮来新建"];
         [labWarning setNumberOfLines:2];
@@ -606,7 +606,7 @@ NSInteger DYBtagSort(id tinfo1, id tinfo2, void *context)
         UIImage *image = [UIImage imageNamed:@"ybx_big.png"];
         float BearHeadStartX = (CGRectGetWidth(self.view.frame)-image.size.width/2)/2;
         float BearHeadStartY = (self.frameHeight-self.headHeight-image.size.height/2 - 150)/2-44;
-        DragonUIImageView *viewBearHead = [[DragonUIImageView alloc] initWithFrame:CGRectMake(BearHeadStartX, BearHeadStartY, image.size.width/2, image.size.height/2)];
+        MagicUIImageView *viewBearHead = [[MagicUIImageView alloc] initWithFrame:CGRectMake(BearHeadStartX, BearHeadStartY, image.size.width/2, image.size.height/2)];
         [viewBearHead setBackgroundColor:[UIColor clearColor]];
         [viewBearHead setImage:image];
         [viewBearHead setUserInteractionEnabled:YES];

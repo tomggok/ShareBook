@@ -7,7 +7,7 @@
 //
 
 #import "DYBCellForVisitor.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "NSString+Count.h"
 #import "UIImageView+WebCache.h"
 #import "guest_list.h"
@@ -25,7 +25,7 @@
         guest_list *model=data;
         
         if (!_imgV_showImg) {
-            _imgV_showImg=[[DragonUIImageView alloc]initWithFrame:CGRectMake(15,0, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_showImg.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            _imgV_showImg=[[MagicUIImageView alloc]initWithFrame:CGRectMake(15,0, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_showImg.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             _imgV_showImg.needRadius=YES;
             RELEASE(_imgV_showImg);
             
@@ -42,13 +42,13 @@
         }
         
         if (!_lb_nickName) {
-            _lb_nickName=[[DragonUILabel alloc]initWithFrame:CGRectMake(_imgV_showImg.frame.origin.x+_imgV_showImg.frame.size.width+10, 15, 0, 0)];
+            _lb_nickName=[[MagicUILabel alloc]initWithFrame:CGRectMake(_imgV_showImg.frame.origin.x+_imgV_showImg.frame.size.width+10, 15, 0, 0)];
             _lb_nickName.backgroundColor=[UIColor clearColor];
             _lb_nickName.textAlignment=NSTextAlignmentLeft;
             _lb_nickName.font=[DYBShareinstaceDelegate DYBFoutStyle:18];
             _lb_nickName.text=model.user.name;
             [_lb_nickName setNeedCoretext:NO];
-            _lb_nickName.textColor=[DragonCommentMethod color:51 green:51 blue:51 alpha:1];
+            _lb_nickName.textColor=[MagicCommentMethod color:51 green:51 blue:51 alpha:1];
             _lb_nickName.numberOfLines=1;
             
             _lb_nickName.lineBreakMode=NSLineBreakByTruncatingTail;
@@ -61,7 +61,7 @@
         }
         
         if (!_lb_newContent) {
-            _lb_newContent=[[DragonUILabel alloc]initWithFrame:CGRectMake(_lb_nickName.frame.origin.x, _lb_nickName.frame.origin.y+_lb_nickName.frame.size.height+4, /*self.frame.size.width-_lb_nickName.frame.origin.x-80, _lb_nickName.frame.size.height*/ 0,0)];
+            _lb_newContent=[[MagicUILabel alloc]initWithFrame:CGRectMake(_lb_nickName.frame.origin.x, _lb_nickName.frame.origin.y+_lb_nickName.frame.size.height+4, /*self.frame.size.width-_lb_nickName.frame.origin.x-80, _lb_nickName.frame.size.height*/ 0,0)];
             _lb_newContent.backgroundColor=[UIColor clearColor];
             _lb_newContent.textAlignment=NSTextAlignmentLeft;
             _lb_newContent.font=[DYBShareinstaceDelegate DYBFoutStyle:13];
@@ -131,7 +131,7 @@
         }
         
         if (!_lb_time) {
-            _lb_time=[[DragonUILabel alloc]initWithFrame:CGRectMake(_lb_newContent.frame.origin.x+_lb_newContent.frame.size.width+5, _lb_newContent.frame.origin.y, 0, 0)];
+            _lb_time=[[MagicUILabel alloc]initWithFrame:CGRectMake(_lb_newContent.frame.origin.x+_lb_newContent.frame.size.width+5, _lb_newContent.frame.origin.y, 0, 0)];
             _lb_time.backgroundColor=[UIColor clearColor];
             _lb_time.textAlignment=NSTextAlignmentLeft;
             _lb_time.font=[DYBShareinstaceDelegate DYBFoutStyle:13];

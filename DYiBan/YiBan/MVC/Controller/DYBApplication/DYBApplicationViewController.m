@@ -14,40 +14,40 @@
 
 @interface DYBApplicationViewController () {
     
-    DragonUIButton *appBtn[3];
-    DragonUILabel *label[3];
+    MagicUIButton *appBtn[3];
+    MagicUILabel *label[3];
 }
 
 @end
 
 @implementation DYBApplicationViewController
 DEF_SIGNAL(SELECTBUTTON)//按钮点击
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         
         [self.rightButton setHidden:YES];
         [self.headview setTitle:@"应用"];
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         NSArray *a = @[@"应用_01",@"应用_03",@"应用_02"];
         NSArray *b = @[@"新华e讯",@"易码通",@"就业信息"];
         for (int i = 0; i < 3; i++) {
             
-            appBtn[i] = [[DragonUIButton alloc]initWithFrame:CGRectMake(20+80*i, self.headHeight+20, 60, 60)];
+            appBtn[i] = [[MagicUIButton alloc]initWithFrame:CGRectMake(20+80*i, self.headHeight+20, 60, 60)];
             appBtn[i].tag = i;
             
-            label[i] = [[DragonUILabel alloc]initWithFrame:CGRectMake(20+80*i, self.headHeight+20+70, 60, 30)];
+            label[i] = [[MagicUILabel alloc]initWithFrame:CGRectMake(20+80*i, self.headHeight+20+70, 60, 30)];
             label[i].textAlignment = NSTextAlignmentCenter;
             label[i].font = [DYBShareinstaceDelegate DYBFoutStyle:15];  //字体和大小设置
-            label[i].textColor = [DragonCommentMethod colorWithHex:@"333333"];
+            label[i].textColor = [MagicCommentMethod colorWithHex:@"333333"];
             label[i].backgroundColor = [UIColor clearColor];
             label[i].text = [b objectAtIndex:i];
             [self.view addSubview:label[i]];
             RELEASE(label[i]);
             
-            [self setDragonUIButton:appBtn[i] setImageNorm:[UIImage imageNamed:[a objectAtIndex:i]] setImageHigh:[UIImage imageNamed:[a objectAtIndex:i]]  signal:[DYBApplicationViewController SELECTBUTTON] setControl:self];
+            [self setMagicUIButton:appBtn[i] setImageNorm:[UIImage imageNamed:[a objectAtIndex:i]] setImageHigh:[UIImage imageNamed:[a objectAtIndex:i]]  signal:[DYBApplicationViewController SELECTBUTTON] setControl:self];
             
         }
         
@@ -57,7 +57,7 @@ DEF_SIGNAL(SELECTBUTTON)//按钮点击
 
 #pragma makr -
 #pragma mark - back button signal
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -68,12 +68,12 @@ DEF_SIGNAL(SELECTBUTTON)//按钮点击
 }
 
 #pragma mark- 点击按钮
-- (void)handleViewSignal_DYBApplicationViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBApplicationViewController:(MagicViewSignal *)signal
 {
     self.view.userInteractionEnabled = NO;
     if ([signal is:[DYBApplicationViewController SELECTBUTTON]])
     {
-        DragonUIButton *btn = signal.source;
+        MagicUIButton *btn = signal.source;
         
         if (btn.tag == 0) {
             

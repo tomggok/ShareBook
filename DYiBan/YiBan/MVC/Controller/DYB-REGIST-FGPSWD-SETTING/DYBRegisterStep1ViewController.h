@@ -11,7 +11,7 @@
 @interface DYBRegisterStep1ViewController : DYBBaseViewController {
     
     DYBInputView *textInput[3];
-    DragonUIButton *btnSex[3];
+    MagicUIButton *btnSex[3];
     int selectSex;
 }
 AS_SIGNAL(BOYBUTTON)

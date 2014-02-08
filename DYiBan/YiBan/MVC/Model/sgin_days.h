@@ -8,7 +8,7 @@
 
 //#import "Jastor.h"
 
-@interface sgin_days : DragonJSONReflection
+@interface sgin_days : MagicJSONReflection
 
 @property(nonatomic, retain) NSString *allday;
 @property(nonatomic, retain) NSString *realline;

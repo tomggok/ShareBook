@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 ZzL. All rights reserved.
 //
 
-#import "Dragon_JSONReflection.h"
+#import "Magic_JSONReflection.h"
 
-@interface source_schoollist : DragonJSONReflection
+@interface source_schoollist : MagicJSONReflection
 @property (nonatomic, retain)NSString *schoolId;
 @property (nonatomic, retain)NSString *schoolName;
 @end

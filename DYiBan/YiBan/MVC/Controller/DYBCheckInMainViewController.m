@@ -46,13 +46,13 @@ DEF_SIGNAL(REFREASHINFO)
 
 
 #pragma mark- ViewController信号
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.headview setTitle:@"签到"];
         [self backImgType:2];
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]]){
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]]){
         
         _arrAnnotation = [[NSMutableArray alloc] init];
         _arrAnnInfo = [[NSMutableArray alloc] init];
@@ -79,11 +79,11 @@ DEF_SIGNAL(REFREASHINFO)
         
         if (!_btnMySelf) {
             UIImage *img= [UIImage imageNamed:@"2tabs_left_def"];
-            _btnMySelf = [[DragonUIButton alloc] initWithFrame:CGRectMake(0, 0,img.size.width/2, img.size.height/2)];
+            _btnMySelf = [[MagicUIButton alloc] initWithFrame:CGRectMake(0, 0,img.size.width/2, img.size.height/2)];
             _btnMySelf.tag=-1;
             _btnMySelf.showsTouchWhenHighlighted=YES;
             _btnMySelf.backgroundColor=[UIColor clearColor];
-            [_btnMySelf addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [_btnMySelf addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
             [_btnMySelf setBackgroundImage:img forState:UIControlStateNormal];
             [_btnMySelf setBackgroundImage:[UIImage imageNamed:@"2tabs_left_sel"] forState:UIControlStateSelected];
             [_btnMySelf setTitle:@"我"];
@@ -95,11 +95,11 @@ DEF_SIGNAL(REFREASHINFO)
         
         if (!_btnFriends) {
             UIImage *img= [UIImage imageNamed:@"2tabs_right_def"];
-            _btnFriends = [[DragonUIButton alloc] initWithFrame:CGRectMake(_btnMySelf.frame.origin.x+_btnMySelf.frame.size.width, _btnMySelf.frame.origin.y,_btnMySelf.frame.size.width, _btnMySelf.frame.size.height)];
+            _btnFriends = [[MagicUIButton alloc] initWithFrame:CGRectMake(_btnMySelf.frame.origin.x+_btnMySelf.frame.size.width, _btnMySelf.frame.origin.y,_btnMySelf.frame.size.width, _btnMySelf.frame.size.height)];
             _btnFriends.tag=-2;
             _btnFriends.showsTouchWhenHighlighted=YES;
             _btnFriends.backgroundColor=[UIColor clearColor];
-            [_btnFriends addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [_btnFriends addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
             [_btnFriends setBackgroundImage:img forState:UIControlStateNormal];
             [_btnFriends setBackgroundImage:[UIImage imageNamed:@"2tabs_right_sel"] forState:UIControlStateSelected];
             [_btnFriends setTitle:@"好友"];
@@ -126,20 +126,20 @@ DEF_SIGNAL(REFREASHINFO)
 
 #pragma mark- 签到信息面板初始化
 - (void)creatCheckinInfoView{
-//    DragonUIImageView *_imgShadowLine = [[DragonUIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 2)];
+//    MagicUIImageView *_imgShadowLine = [[MagicUIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 2)];
 //    [_imgShadowLine setImage:[UIImage imageNamed:@"line_shadow.png"]];
 //    [_imgShadowLine setBackgroundColor:[UIColor clearColor]];
 //    [_viewCheckinInfo addSubview:_imgShadowLine];
 //    RELEASE(_imgShadowLine);
  
     UIImage *imgContinuous= [UIImage imageNamed:@"icon_continuousdays.png"];
-    DragonUIImageView *_imgContinuousdays = [[DragonUIImageView alloc] initWithFrame:CGRectMake(55, 34, imgContinuous.size.width/2, imgContinuous.size.height/2)];
+    MagicUIImageView *_imgContinuousdays = [[MagicUIImageView alloc] initWithFrame:CGRectMake(55, 34, imgContinuous.size.width/2, imgContinuous.size.height/2)];
     [_imgContinuousdays setImage:imgContinuous];
     [_imgContinuousdays setBackgroundColor:[UIColor clearColor]];
     [_viewCheckinInfo addSubview:_imgContinuousdays];
     RELEASE(_imgContinuousdays);
     
-    DragonUILabel *lbContinuous = [[DragonUILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(_imgContinuousdays.frame)-5, CGRectGetMaxY(_imgContinuousdays.frame)+6, 60, 16)];
+    MagicUILabel *lbContinuous = [[MagicUILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(_imgContinuousdays.frame)-5, CGRectGetMaxY(_imgContinuousdays.frame)+6, 60, 16)];
     [lbContinuous setBackgroundColor:[UIColor clearColor]];
     [lbContinuous setTextAlignment:NSTextAlignmentCenter];
     [lbContinuous setText:@"连续天数"];
@@ -148,7 +148,7 @@ DEF_SIGNAL(REFREASHINFO)
     [_viewCheckinInfo addSubview:lbContinuous];
     RELEASE(lbContinuous);
     
-    _lbContinuousCount = [[DragonUILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(lbContinuous.frame)-15, CGRectGetMaxY(lbContinuous.frame)+15, 90, 40)];
+    _lbContinuousCount = [[MagicUILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(lbContinuous.frame)-15, CGRectGetMaxY(lbContinuous.frame)+15, 90, 40)];
     [_lbContinuousCount setBackgroundColor:[UIColor clearColor]];
     [_lbContinuousCount setTextAlignment:NSTextAlignmentCenter];
     [_lbContinuousCount setFont:[DYBShareinstaceDelegate DYBFoutStyle:40]];
@@ -157,13 +157,13 @@ DEF_SIGNAL(REFREASHINFO)
     RELEASE(_lbContinuousCount);
 
     UIImage *imgTotal= [UIImage imageNamed:@"icon_totaldays.png"];
-    DragonUIImageView *_imgTotaldays = [[DragonUIImageView alloc] initWithFrame:CGRectMake(111+CGRectGetMaxX(_imgContinuousdays.frame), 34, imgContinuous.size.width/2, imgContinuous.size.height/2)];
+    MagicUIImageView *_imgTotaldays = [[MagicUIImageView alloc] initWithFrame:CGRectMake(111+CGRectGetMaxX(_imgContinuousdays.frame), 34, imgContinuous.size.width/2, imgContinuous.size.height/2)];
     [_imgTotaldays setImage:imgTotal];
     [_imgTotaldays setBackgroundColor:[UIColor clearColor]];
     [_viewCheckinInfo addSubview:_imgTotaldays];
     RELEASE(_imgTotaldays);
     
-    DragonUILabel *lbTotal = [[DragonUILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(_imgTotaldays.frame)-5, CGRectGetMaxY(_imgTotaldays.frame)+6, 60, 16)];
+    MagicUILabel *lbTotal = [[MagicUILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(_imgTotaldays.frame)-5, CGRectGetMaxY(_imgTotaldays.frame)+6, 60, 16)];
     [lbTotal setBackgroundColor:[UIColor clearColor]];
     [lbTotal setTextAlignment:NSTextAlignmentCenter];
     [lbTotal setText:@"累计天数"];
@@ -172,7 +172,7 @@ DEF_SIGNAL(REFREASHINFO)
     [_viewCheckinInfo addSubview:lbTotal];
     RELEASE(lbTotal);
 
-    _lbTotalCount = [[DragonUILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(lbTotal.frame)-15, CGRectGetMaxY(lbTotal.frame)+15, 90, 40)];
+    _lbTotalCount = [[MagicUILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(lbTotal.frame)-15, CGRectGetMaxY(lbTotal.frame)+15, 90, 40)];
     [_lbTotalCount setBackgroundColor:[UIColor clearColor]];
     [_lbTotalCount setTextAlignment:NSTextAlignmentCenter];
     [_lbTotalCount setFont:[DYBShareinstaceDelegate DYBFoutStyle:40]];
@@ -181,10 +181,10 @@ DEF_SIGNAL(REFREASHINFO)
     RELEASE(_lbTotalCount);
     
     UIImage *img= [UIImage imageNamed:@"btn_fold.png"];
-    _btnInfoViewFold = [[DragonUIButton alloc] initWithFrame:CGRectMake(0, 2,img.size.width/2, img.size.height/2)];
+    _btnInfoViewFold = [[MagicUIButton alloc] initWithFrame:CGRectMake(0, 2,img.size.width/2, img.size.height/2)];
     [_btnInfoViewFold setTag:-3];
     [_btnInfoViewFold setBackgroundColor:[UIColor clearColor]];
-    [_btnInfoViewFold addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+    [_btnInfoViewFold addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
     [_btnInfoViewFold setBackgroundImage:img forState:UIControlStateNormal];
     [_btnInfoViewFold setBackgroundImage:[UIImage imageNamed:@"btn_unfold.png"] forState:UIControlStateSelected];
     [_btnInfoViewFold setSelected:NO];
@@ -201,7 +201,7 @@ DEF_SIGNAL(REFREASHINFO)
 }
 
 #pragma mark- 接受其他信号
-- (void)handleViewSignal_DYBCheckInMainViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBCheckInMainViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBCheckInMainViewController REFREASHINFO]]){
         [self DYB_GetUserSignDatelog];
@@ -209,9 +209,9 @@ DEF_SIGNAL(REFREASHINFO)
 }
 
 #pragma mark- Button点击事件处理
-- (void)handleViewSignal_DragonUIButton:(DragonViewSignal *)signal{
-    if ([signal is:[DragonUIButton TOUCH_UP_INSIDE]]) {
-        DragonUIButton *bt=(DragonUIButton *)signal.source;
+- (void)handleViewSignal_MagicUIButton:(MagicViewSignal *)signal{
+    if ([signal is:[MagicUIButton TOUCH_UP_INSIDE]]) {
+        MagicUIButton *bt=(MagicUIButton *)signal.source;
         if (bt){
             switch (bt.tag) {
                 case -1:
@@ -261,7 +261,7 @@ DEF_SIGNAL(REFREASHINFO)
 }
 
 #pragma mark - 返回Button处理
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -299,7 +299,7 @@ DEF_SIGNAL(REFREASHINFO)
 
 
 -(void)DYB_GetUserSignDatelog{
-    DragonRequest *request = [DYBHttpMethod user_sign_datelog:NO receive:self];
+    MagicRequest *request = [DYBHttpMethod user_sign_datelog:NO receive:self];
     request.tag = -1;
 }
 
@@ -314,12 +314,12 @@ DEF_SIGNAL(REFREASHINFO)
         strType = [NSString stringWithFormat:@"1"];
     }
 
-    DragonRequest *request = [DYBHttpMethod user_sign_map:SHARED.curUser.userid type:strType isAlert:YES receive:self];
+    MagicRequest *request = [DYBHttpMethod user_sign_map:SHARED.curUser.userid type:strType isAlert:YES receive:self];
     request.tag = -2;
 }
 
 
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj{
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj{
     if ([request succeed]){
         if (request.tag == -1){/*初始化*/
             JsonResponse *respose =(JsonResponse *)receiveObj;

@@ -6,19 +6,19 @@
 //  Copyright (c) 2013年 ZzL. All rights reserved.
 //
 
-#import "Dragon_UITabBarController.h"
+#import "Magic_UITabBarController.h"
 #import "DYBUnreadMsgView.h"
 
-@interface DYBUITabbarViewController : DragonUITabBarController
+@interface DYBUITabbarViewController : MagicUITabBarController
 {
 }
 AS_SIGNAL(HIDDENBUTTONACTION)
-@property (nonatomic, assign)DragonViewController *vc;
+@property (nonatomic, assign)MagicViewController *vc;
 @property (nonatomic,retain) DYBUnreadMsgView *v_totalNumOfUnreadMsg/*未读信息总数视图*/;
 
 + (DYBUITabbarViewController *)sharedInstace;
 
-- (id)init:(DragonViewController *)dVc;
+- (id)init:(MagicViewController *)dVc;
 
 -(void)addAndRefreshTotalMsgView:(int)num;
 
@@ -31,7 +31,7 @@ AS_SIGNAL(HIDDENBUTTONACTION)
 //释放自己
 - (void)clearSelf;
 
--(DragonUIThirdView *)getThreeview;
+-(MagicUIThirdView *)getThreeview;
 
 //改变计数view位置
 -(void)changeMsgTotalFrame;

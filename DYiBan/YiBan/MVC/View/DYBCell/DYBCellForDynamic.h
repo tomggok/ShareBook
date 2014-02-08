@@ -11,13 +11,13 @@
 
 @interface DYBCellForDynamic : UITableViewCell{
     status *_dynamicStatus;
-    DragonUIImageView *_viewQuick;
+    MagicUIImageView *_viewQuick;
     
-    DragonUILabel *_lbLikeCount;
-    DragonUILabel *_lbLiker;
-    DragonUIButton *_btnQuick;
-    DragonUIButton *_btnQuickLike;
-    DragonUIButton *_btnQuickCommment;
+    MagicUILabel *_lbLikeCount;
+    MagicUILabel *_lbLiker;
+    MagicUIButton *_btnQuick;
+    MagicUIButton *_btnQuickLike;
+    MagicUIButton *_btnQuickCommment;
     NSInteger _nRow;
 }
 

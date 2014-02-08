@@ -13,8 +13,8 @@
     UIView *_viewDelBKG;
     UIView *_viewCover;
     
-    DragonUIButton *_btnDelete;
-    DragonUILabel *_lbTagName;
+    MagicUIButton *_btnDelete;
+    MagicUILabel *_lbTagName;
     
     float fHeight;
     float fMaxMove;

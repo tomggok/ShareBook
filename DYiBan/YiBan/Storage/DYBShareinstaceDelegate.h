@@ -58,14 +58,14 @@
 + (DYBDataBankShotView *)addConfirmViewTitle:(NSString *)title MSG:(NSString *)strMSG targetView:(UIView *)view targetObj:(id)Obj btnType:(int)type dic:(NSMutableDictionary *)dic;
 
 //提示数据加载完毕
-+ (DragonUIPopAlertView *)loadFinishAlertView:(NSString *)text target:(id)target;
++ (MagicUIPopAlertView *)loadFinishAlertView:(NSString *)text target:(id)target;
 //加载提示可以设置时间
-+ (DragonUIPopAlertView *)loadFinishAlertView:(NSString *)text target:(id)target showTime:(CGFloat)time;
++ (MagicUIPopAlertView *)loadFinishAlertView:(NSString *)text target:(id)target showTime:(CGFloat)time;
 
 + (DYBDataBankShotView *)addConfirmViewTitle:(NSString *)title MSG:(NSString *)strMSG targetView:(UIView *)view targetObj:(id)Obj btnType:(int)type rowNum:(NSString *)row;
 
 
-+(void)popViewText:(NSString *)text target:(id)_target hideTime:(float)time isRelease:(BOOL)key mode:(DragonpopViewType )type;
++(void)popViewText:(NSString *)text target:(id)_target hideTime:(float)time isRelease:(BOOL)key mode:(MagicpopViewType )type;
 
 //不能预览文件
 +(BOOL)noShowTypeFileTarget:(id)_target type:(NSString *)type;

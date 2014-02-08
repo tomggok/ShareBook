@@ -9,24 +9,24 @@
 #import "DYBSendNoticeViewController.h"
 #import "UITextView+Property.h"
 #import "NSString+Count.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "DYBClassListViewController.h"
 #import "XiTongFaceCode.h"
 #import "DYBImagePickerController.h"
 #import "DYBCheckImageViewController.h"
 #import "user.h"
 #import "DYBPhotoEditorView.h"
-#import "UIImage+DragonCategory.h"
+#import "UIImage+MagicCategory.h"
 
 @interface DYBSendNoticeViewController ()
 {
     
-    DragonUITextView *_textView;
-    DragonUILabel *_lb_nums/*当前字数*/;
+    MagicUITextView *_textView;
+    MagicUILabel *_lb_nums/*当前字数*/;
     DYBFaceView *_viewFace;
     NSMutableArray *_muA_SelPic;//保存选择的展示图
     UIScrollView *_scrV_showImg;//展示图滚动背景
-    DragonUIButton *_bt_send,*_bt_face/*表情*/,*_bt_addImg/*加图片按钮*/,*_bt_noticeArea;
+    MagicUIButton *_bt_send,*_bt_face/*表情*/,*_bt_addImg/*加图片按钮*/,*_bt_noticeArea;
     DYBPhotoEditorView *_photoEditor;
 }
 @end
@@ -36,16 +36,16 @@
 @synthesize muA_noticeArea=_muA_noticeArea;
 
 #pragma mark- ViewController信号
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
     [super handleViewSignal:signal];
     
-    if ([signal is:DragonViewController.CREATE_VIEWS]) {
+    if ([signal is:MagicViewController.CREATE_VIEWS]) {
         
         [self observeNotification:[DYBPhotoEditorView DOSAVEIMAGE]];//添加 选滤镜成功信号
         [self observeNotification:[DYBCheckImageViewController DELETEMAGE]];//添加 查看大图页删除图片信号
 
-        _textView = [[DragonUITextView alloc] initWithFrame:CGRectMake(15, self.headHeight+15, CGRectGetWidth(self.view.frame)-30, 90)];
+        _textView = [[MagicUITextView alloc] initWithFrame:CGRectMake(15, self.headHeight+15, CGRectGetWidth(self.view.frame)-30, 90)];
         [_textView setBackgroundColor:[UIColor whiteColor]];
         _textView.layer.borderWidth = 1;
         _textView.layer.borderColor = [ColorDivLine CGColor];
@@ -64,10 +64,10 @@
 
         if (!_bt_face) {//表情
             UIImage *img= [UIImage imageNamed:@"ftz6"];
-            _bt_face = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_textView.frame)-10-img.size.width/2, CGRectGetMaxY(_textView.lb_textLength.frame)-img.size.height/2, img.size.width/2, img.size.height/2)];
+            _bt_face = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_textView.frame)-10-img.size.width/2, CGRectGetMaxY(_textView.lb_textLength.frame)-img.size.height/2, img.size.width/2, img.size.height/2)];
             _bt_face.backgroundColor=[UIColor clearColor];
             _bt_face.tag=-2;
-            [_bt_face addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [_bt_face addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
             [_bt_face setImage:img forState:UIControlStateNormal];
 //            [_bt_face setImage:img forState:UIControlStateHighlighted];
             [self.view addSubview:_bt_face];
@@ -95,10 +95,10 @@
         
         if (!_bt_addImg) {//加图片
             UIImage *img= [UIImage imageNamed:@"ftz3"];
-            _bt_addImg = [[DragonUIButton alloc] initWithFrame:CGRectMake(5, 0, img.size.width/2, img.size.height/2)];
+            _bt_addImg = [[MagicUIButton alloc] initWithFrame:CGRectMake(5, 0, img.size.width/2, img.size.height/2)];
             _bt_addImg.backgroundColor=[UIColor clearColor];
             _bt_addImg.tag=-3;
-            [_bt_addImg addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [_bt_addImg addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
             [_bt_addImg setImage:img forState:UIControlStateNormal];
             //            [_bt_face setImage:img forState:UIControlStateHighlighted];
             [_scrV_showImg addSubview:_bt_addImg];
@@ -109,10 +109,10 @@
         
         if (!_bt_noticeArea) {//通知范围
             UIImage *img= [UIImage imageNamed:@"ftz10"];
-            _bt_noticeArea = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(_textView.frame), CGRectGetMaxY(_scrV_showImg.frame)+10, img.size.width/2, img.size.height/2)];
+            _bt_noticeArea = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(_textView.frame), CGRectGetMaxY(_scrV_showImg.frame)+10, img.size.width/2, img.size.height/2)];
             _bt_noticeArea.backgroundColor=[UIColor clearColor];
             _bt_noticeArea.tag=-4;
-            [_bt_noticeArea addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [_bt_noticeArea addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
             [_bt_noticeArea setImage:img forState:UIControlStateNormal];
 //            [_bt_face setImage:img forState:UIControlStateHighlighted];
             [self.view addSubview:_bt_noticeArea];
@@ -123,17 +123,17 @@
         
         _muA_SelPic = [[NSMutableArray alloc] initWithCapacity:6];
         
-    }else if ([signal is:DragonViewController.WILL_APPEAR]){
+    }else if ([signal is:MagicViewController.WILL_APPEAR]){
         [self.headview setTitle:@"发布通知"];
         self.view.backgroundColor=self.headview.backgroundColor;
         [self backImgType:0];
         
         if (!_bt_send) {//发
             UIImage *img= [UIImage imageNamed:@"ftz1"];
-            _bt_send = [[DragonUIButton alloc] initWithFrame:CGRectMake(self.headview.frame.size.width-img.size.width/2, 0, img.size.width/2, img.size.height/2)];
+            _bt_send = [[MagicUIButton alloc] initWithFrame:CGRectMake(self.headview.frame.size.width-img.size.width/2, 0, img.size.width/2, img.size.height/2)];
             _bt_send.backgroundColor=[UIColor clearColor];
             _bt_send.tag=-1;
-            [_bt_send addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [_bt_send addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
             [_bt_send setImage:img forState:UIControlStateNormal];
             [_bt_send setImage:[UIImage imageNamed:@"ftz2"] forState:UIControlStateHighlighted];//btn_send_dis.png
             [_bt_send setImage:[UIImage imageNamed:@"btn_send_dis.png"] forState:UIControlStateDisabled];//
@@ -147,21 +147,21 @@
         _bt_send.enabled=(_muA_noticeArea.count>0&&[self convertSystemEmoji:_textView.text].length>0);
 
        
-    }else if ([signal is:DragonViewController.DID_APPEAR]){
+    }else if ([signal is:MagicViewController.DID_APPEAR]){
         
         
-    }else if ([signal is:DragonViewController.DID_DISAPPEAR]){
+    }else if ([signal is:MagicViewController.DID_DISAPPEAR]){
         
         
-    }else if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    }else if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
        
-    }else if ([signal is:[DragonViewController FREE_DATAS]])//dealloc时回调,先释放数据
+    }else if ([signal is:[MagicViewController FREE_DATAS]])//dealloc时回调,先释放数据
     {
         RELEASEDICTARRAYOBJ(_muA_noticeArea);
         RELEASEDICTARRAYOBJ(_muA_SelPic);
         
-    }else if ([signal is:[DragonViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
+    }else if ([signal is:[MagicViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
         
         
     }
@@ -179,15 +179,15 @@
 
 
 #pragma mark- 只接受UITextView信号
-- (void)handleViewSignal_DragonUITextView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITextView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITextView TEXTVIEWSHOULDBEGINEDITING]])//textViewShouldBeginEditing
+    if ([signal is:[MagicUITextView TEXTVIEWSHOULDBEGINEDITING]])//textViewShouldBeginEditing
     {
 
-    }else  if ([signal is:[DragonUITextView TEXTVIEWDIDBEGINEDITING]])//textViewDidBeginEditing
+    }else  if ([signal is:[MagicUITextView TEXTVIEWDIDBEGINEDITING]])//textViewDidBeginEditing
     {
         NSMutableDictionary *muD = (NSMutableDictionary *)[signal object];
-        DragonUITextView *textView=[muD objectForKey:@"textView"];
+        MagicUITextView *textView=[muD objectForKey:@"textView"];
         //        [self.view bringSubviewToFront:_v_bottomView];
         
         {//收表情view
@@ -200,11 +200,11 @@
             _bt_face.selected=!_bt_face.selected;
         }
         
-    }else  if ([signal is:[DragonUITextView TEXT_OVERFLOW]])//文字超长
+    }else  if ([signal is:[MagicUITextView TEXT_OVERFLOW]])//文字超长
     {
         [signal returnNO];
 
-    }else  if ([signal is:[DragonUITextView TEXTVIEW]])//shouldChangeTextInRange
+    }else  if ([signal is:[MagicUITextView TEXTVIEW]])//shouldChangeTextInRange
     {
         NSMutableDictionary *muD = (NSMutableDictionary *)[signal object];
         NSString *emString=[muD objectForKey:@"text"];
@@ -213,10 +213,10 @@
             [_textView setActive:NO];
         }
     }
-    else  if ([signal is:[DragonUITextView TEXTVIEWDIDCHANGE]])//textViewDidChange
+    else  if ([signal is:[MagicUITextView TEXTVIEWDIDCHANGE]])//textViewDidChange
     {
         NSMutableDictionary *muD = (NSMutableDictionary *)[signal object];
-        DragonUITextView *textView=[muD objectForKey:@"textView"];
+        MagicUITextView *textView=[muD objectForKey:@"textView"];
         
         NSString *_strContent = [self convertSystemEmoji:textView.text];
 
@@ -224,19 +224,19 @@
         
         _bt_send.enabled=(_muA_noticeArea.count>0&&[self convertSystemEmoji:_textView.text].length>0);
         
-    }else  if ([signal is:[DragonUITextView TEXTVIEWDIDCHANGESELECTION]])//textViewDidChangeSelection
+    }else  if ([signal is:[MagicUITextView TEXTVIEWDIDCHANGESELECTION]])//textViewDidChangeSelection
     {
-    }else  if ([signal is:[DragonUITextView TEXTVIEWSHOULDENDEDITING]])//textViewShouldEndEditing
+    }else  if ([signal is:[MagicUITextView TEXTVIEWSHOULDENDEDITING]])//textViewShouldEndEditing
     {
-    }else  if ([signal is:[DragonUITextView TEXTVIEWDIDENDEDITING]])//textViewDidEndEditing
+    }else  if ([signal is:[MagicUITextView TEXTVIEWDIDENDEDITING]])//textViewDidEndEditing
     {
     }
 }
 
 #pragma mark- 接受按钮信号
-- (void)handleViewSignal_DragonUIButton:(DragonViewSignal *)signal{
-    if ([signal is:[DragonUIButton TOUCH_UP_INSIDE]]) {
-        DragonUIButton *bt=(DragonUIButton *)signal.source;
+- (void)handleViewSignal_MagicUIButton:(MagicViewSignal *)signal{
+    if ([signal is:[MagicUIButton TOUCH_UP_INSIDE]]) {
+        MagicUIButton *bt=(MagicUIButton *)signal.source;
         if (bt)
         {
             switch (bt.tag) {
@@ -261,7 +261,7 @@
                     
                     NSMutableDictionary *dict = [DYBHttpInterface status_add_content:[self convertSystemEmoji:_textView.text] add_notice:@"1" sync_tag:[SHARED.curUser.sync_tag intValue] refuse:@"" at_eclass:mus address:@""];
                     DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
-                    DragonRequest *dre = [request DYBPOSTIMG:dict isAlert:YES receive:self imageData:_arrIMGData];
+                    MagicRequest *dre = [request DYBPOSTIMG:dict isAlert:YES receive:self imageData:_arrIMGData];
                     dre.tag =  -1;
                     RELEASEDICTARRAYOBJ(_arrIMGData);
 
@@ -279,7 +279,7 @@
                         RELEASE(_viewFace);
                         
                         UIImage *imgShadowLine = [UIImage imageNamed:@"line_padshadow"];
-                        DragonUIImageView *viewShadowLine = [[DragonUIImageView alloc] initWithFrame:CGRectMake(0, -3, imgShadowLine.size.width/2, imgShadowLine.size.height/2)];
+                        MagicUIImageView *viewShadowLine = [[MagicUIImageView alloc] initWithFrame:CGRectMake(0, -3, imgShadowLine.size.width/2, imgShadowLine.size.height/2)];
                         [viewShadowLine setImage:imgShadowLine];
                         [viewShadowLine setBackgroundColor:[UIColor clearColor]];
                         [_viewFace addSubview:viewShadowLine];
@@ -365,7 +365,7 @@
     
     {
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:_textView, @"textView", nil];
-        [self sendViewSignal:[DragonUITextView TEXTVIEWDIDCHANGE] withObject:dict];
+        [self sendViewSignal:[MagicUITextView TEXTVIEWDIDCHANGE] withObject:dict];
         RELEASEDICTARRAYOBJ(dict);
 
     }
@@ -514,12 +514,12 @@
                 
                 if ([_muA_SelPic count] < 7) {
                     int nIndex = [_muA_SelPic count] -1;
-                    DragonUIButton *btnPic = [[DragonUIButton alloc] initWithFrame:CGRectMake(7+nIndex*57, 7, CGRectGetWidth(_bt_addImg.frame), CGRectGetHeight(_bt_addImg.frame))];
+                    MagicUIButton *btnPic = [[MagicUIButton alloc] initWithFrame:CGRectMake(7+nIndex*57, 7, CGRectGetWidth(_bt_addImg.frame), CGRectGetHeight(_bt_addImg.frame))];
                     [btnPic setBackgroundColor:[UIColor clearColor]];
                     [btnPic setImage:img forState:UIControlStateNormal];
                     btnPic.tag=-5;
                     [btnPic setContentMode:UIViewContentModeScaleToFill];
-                    [btnPic addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+                    [btnPic addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
                     [_scrV_showImg addSubview:btnPic];
                     RELEASE(btnPic);
                 }
@@ -616,11 +616,11 @@
         
         if ([_muA_SelPic count] < 7) {
             int nIndex = [_muA_SelPic count] -1;
-            DragonUIButton *btnPic = [[DragonUIButton alloc] initWithFrame:CGRectMake(7+nIndex*57, 7, 50, 50)];
+            MagicUIButton *btnPic = [[MagicUIButton alloc] initWithFrame:CGRectMake(7+nIndex*57, 7, 50, 50)];
             [btnPic setBackgroundColor:[UIColor clearColor]];
             [btnPic setImage:img forState:UIControlStateNormal];
             [btnPic setContentMode:UIViewContentModeScaleToFill];
-            [btnPic addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [btnPic addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
             btnPic.tag=-5;
             [_scrV_showImg addSubview:btnPic];
             RELEASE(btnPic);
@@ -644,19 +644,19 @@
         UIImage *img = (UIImage *)[notification object];
         [_muA_SelPic removeObject:img];
         
-        for (DragonUIButton *btn in [_scrV_showImg subviews]) {
-            if ([btn isKindOfClass:[DragonUIButton class]] && btn != _bt_addImg) {
+        for (MagicUIButton *btn in [_scrV_showImg subviews]) {
+            if ([btn isKindOfClass:[MagicUIButton class]] && btn != _bt_addImg) {
                 [btn removeFromSuperview];
             }
         }
         
         for (int i = 0; i < [_muA_SelPic count]; i++) {
             UIImage *imgSel = (UIImage *)[_muA_SelPic objectAtIndex:i];
-            DragonUIButton *btnPic = [[DragonUIButton alloc] initWithFrame:CGRectMake(7+i*57, 7, 50, 50)];
+            MagicUIButton *btnPic = [[MagicUIButton alloc] initWithFrame:CGRectMake(7+i*57, 7, 50, 50)];
             [btnPic setBackgroundColor:[UIColor clearColor]];
             [btnPic setImage:imgSel forState:UIControlStateNormal];
             [btnPic setContentMode:UIViewContentModeScaleToFill];
-            [btnPic addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [btnPic addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
             btnPic.tag=-5;
             [_scrV_showImg addSubview:btnPic];
             RELEASE(btnPic);
@@ -676,7 +676,7 @@
 }
 
 #pragma mark- 网络
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if ([request succeed]){
         if (request.tag == -1){/*发通知*/

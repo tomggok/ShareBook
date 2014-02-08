@@ -47,7 +47,7 @@ DEF_SIGNAL(TOUCHSINGLEBTN)
     int offset = 44;
     for (int i = 1; i <= result.count; i++) {
         
-        DragonUIButton *btn = [[DragonUIButton alloc]initWithFrame:CGRectMake( 0, offset * (i - 1) + HIGHIMG, BTNWIDTH, 44)];
+        MagicUIButton *btn = [[MagicUIButton alloc]initWithFrame:CGRectMake( 0, offset * (i - 1) + HIGHIMG, BTNWIDTH, 44)];
         
         [btn addSignal:[DYBDataBankTopRightCornerView TOUCHBTN] forControlEvents:UIControlEventTouchUpInside object:btn];
         [btn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
@@ -88,11 +88,11 @@ DEF_SIGNAL(TOUCHSINGLEBTN)
     
 }
 
--(void)handleViewSignal_DYBDataBankTopRightCornerView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankTopRightCornerView:(MagicViewSignal *)signal{
 
     if ([signal is:[DYBDataBankTopRightCornerView TOUCHBTN]]) {
                DLogInfo(@"test");
-        DragonUIButton *btn = (DragonUIButton *)[signal object];
+        MagicUIButton *btn = (MagicUIButton *)[signal object];
         int tag = btn.tag;
         
         [self setOPeartion:tag];

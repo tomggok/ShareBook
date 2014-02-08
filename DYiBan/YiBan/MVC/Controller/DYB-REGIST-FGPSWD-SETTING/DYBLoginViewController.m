@@ -13,13 +13,13 @@
 #import "DYBSettingViewController.h"
 #import "user.h"
 #import "DYBDataBankListController.h"
-#import "Dragon_Sandbox.h"
+#import "Magic_Sandbox.h"
 #import "userRegistModel.h"
 
 #import "DYBUITabbarViewController.h"
 #import "CALayer+Custom.h"
 
-#import "NSObject+DragonRequestResponder.h"
+#import "NSObject+MagicRequestResponder.h"
 #import "UserSettingMode.h"
 #import "DYBLocalDataManager.h"
 #import "NSObject+SBJSON.h"
@@ -41,9 +41,9 @@ DEF_SIGNAL(REGISTBUTTON) //注册按钮
 DEF_SIGNAL(FORGETBUTTON) //忘记密码
 DEF_SIGNAL(ENTERDATABANK)
 
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.leftButton setHidden:YES];
         [self.rightButton setHidden:YES];
@@ -53,15 +53,15 @@ DEF_SIGNAL(ENTERDATABANK)
         [self setButtonStatus];
         SHARED.isSessionTimeOut = NO;
         
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
 
-//        DragonRequest *request = [DYBHttpMethod security_newchannel:YES receive:self];
+//        MagicRequest *request = [DYBHttpMethod security_newchannel:YES receive:self];
 //        [request setTag:2];
 
         
         //新生通道
-//        DragonRequest *request = [DYBHttpMethod security_newchannel:YES receive:self];
+//        MagicRequest *request = [DYBHttpMethod security_newchannel:YES receive:self];
 //        [request setTag:2];
 
         
@@ -72,9 +72,9 @@ DEF_SIGNAL(ENTERDATABANK)
         //logo图标
         if (SCREEN_HEIGHT  > 480) {
             
-            _imLog = [[DragonUIImageView alloc] initWithFrame:CGRectMake((320-115)/2, 100, 115, 50)];
+            _imLog = [[MagicUIImageView alloc] initWithFrame:CGRectMake((320-115)/2, 100, 115, 50)];
         }else {
-            _imLog = [[DragonUIImageView alloc] initWithFrame:CGRectMake((320-115)/2, 60, 115, 50)];
+            _imLog = [[MagicUIImageView alloc] initWithFrame:CGRectMake((320-115)/2, 60, 115, 50)];
             
         }
         
@@ -87,15 +87,15 @@ DEF_SIGNAL(ENTERDATABANK)
         
         //注册按钮
         UIImage *registImage = [UIImage imageNamed:@"btn_reg_def"];
-        DragonUIButton *btnRegist = [[DragonUIButton alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-registImage.size.height/2-20, registImage.size.width/2, registImage.size.height/2)];
-        [self setDragonUIButton:btnRegist setImageNorm:[UIImage imageNamed:@"btn_reg_def"] setImageHigh:[UIImage imageNamed:@"btn_reg_high"] signal:[DYBLoginViewController REGISTBUTTON] setControl:self];
+        MagicUIButton *btnRegist = [[MagicUIButton alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-registImage.size.height/2-20, registImage.size.width/2, registImage.size.height/2)];
+        [self setMagicUIButton:btnRegist setImageNorm:[UIImage imageNamed:@"btn_reg_def"] setImageHigh:[UIImage imageNamed:@"btn_reg_high"] signal:[DYBLoginViewController REGISTBUTTON] setControl:self];
         
         //忘记密码按钮
-        DragonUIButton *btnForget = [[DragonUIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-registImage.size.width/2, btnRegist.frame.origin.y, registImage.size.width/2, registImage.size.height/2)];
-        [self setDragonUIButton:btnForget setImageNorm:[UIImage imageNamed:@"btn_forgetpass_def"] setImageHigh:[UIImage imageNamed:@"btn_forgetpass_high"] signal:[DYBLoginViewController FORGETBUTTON] setControl:self];
+        MagicUIButton *btnForget = [[MagicUIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-registImage.size.width/2, btnRegist.frame.origin.y, registImage.size.width/2, registImage.size.height/2)];
+        [self setMagicUIButton:btnForget setImageNorm:[UIImage imageNamed:@"btn_forgetpass_def"] setImageHigh:[UIImage imageNamed:@"btn_forgetpass_high"] signal:[DYBLoginViewController FORGETBUTTON] setControl:self];
         
         UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 20+_imLog.frame.origin.y+_imLog.frame.size.height, INPUTWIDTH, INPUTHEIGHT*2-1)];
-        [bgView.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[DragonCommentMethod color:229 green:229 blue:229 alpha:1.0] CGColor]];
+        [bgView.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[MagicCommentMethod color:229 green:229 blue:229 alpha:1.0] CGColor]];
         [self.view addSubview:bgView];
         RELEASE(bgView)
         
@@ -112,27 +112,27 @@ DEF_SIGNAL(ENTERDATABANK)
         RELEASE(_passInput);
         
         //登陆按钮
-        _loginButton = [[DragonUIButton alloc] initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 15+bgView.frame.size.height+bgView.frame.origin.y, INPUTWIDTH, 44)];
+        _loginButton = [[MagicUIButton alloc] initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 15+bgView.frame.size.height+bgView.frame.origin.y, INPUTWIDTH, 44)];
         [_loginButton.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:0 borderColor:nil];
         
         
         if (_nameInput.nameField.text.length >0 &&_passInput.nameField.text.length) {
             
-            [self setDragonUIButton:_loginButton setImageNorm:[UIImage imageNamed:@"btn_login_def"] setImageHigh:[UIImage imageNamed:@"btn_login_high"]  signal:[DYBLoginViewController LOGINBUTTON] setControl:self];
+            [self setMagicUIButton:_loginButton setImageNorm:[UIImage imageNamed:@"btn_login_def"] setImageHigh:[UIImage imageNamed:@"btn_login_high"]  signal:[DYBLoginViewController LOGINBUTTON] setControl:self];
         }else {
             
-            [self setDragonUIButton:_loginButton setImageNorm:[UIImage imageNamed:@"btn_login_dis"] setImageHigh:[UIImage imageNamed:@"btn_login_dis"]  signal:[DYBLoginViewController LOGINBUTTON] setControl:self];
+            [self setMagicUIButton:_loginButton setImageNorm:[UIImage imageNamed:@"btn_login_dis"] setImageHigh:[UIImage imageNamed:@"btn_login_dis"]  signal:[DYBLoginViewController LOGINBUTTON] setControl:self];
         }
         
         [_loginButton retain];
         
-//      DragonUIButton*  enter = [[DragonUIButton alloc] initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 15+[_passInput getLowy] +100, INPUTWIDTH, 44)];
+//      MagicUIButton*  enter = [[MagicUIButton alloc] initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 15+[_passInput getLowy] +100, INPUTWIDTH, 44)];
 //        [enter setBackgroundColor:[UIColor redColor]];
-//       [self setDragonUIButton:enter setImageNorm:[UIImage imageNamed:@"btn_login_def"] setImageHigh:[UIImage imageNamed:@"btn_login_high"]  signal:[DYBLoginViewController ENTERDATABANK] setControl:self];
+//       [self setMagicUIButton:enter setImageNorm:[UIImage imageNamed:@"btn_login_def"] setImageHigh:[UIImage imageNamed:@"btn_login_high"]  signal:[DYBLoginViewController ENTERDATABANK] setControl:self];
         
     }
 }
-- (void)downloadProgress:(CGFloat)newProgress request:(DragonRequest *)request
+- (void)downloadProgress:(CGFloat)newProgress request:(MagicRequest *)request
 {
 
 }
@@ -156,34 +156,34 @@ DEF_SIGNAL(ENTERDATABANK)
 }
 
 #pragma mark- UITextField
-- (void)handleViewSignal_DragonUITextField:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITextField:(MagicViewSignal *)signal
 {
-    if ([signal.source isKindOfClass:[DragonUITextField class]])//完成编辑
+    if ([signal.source isKindOfClass:[MagicUITextField class]])//完成编辑
     {
-        DragonUITextField *textField = [signal source];
+        MagicUITextField *textField = [signal source];
     
-        if ([signal is:[DragonUITextField TEXTFIELDDIDENDEDITING]])
+        if ([signal is:[MagicUITextField TEXTFIELDDIDENDEDITING]])
         {
             [self animateTextField:[textField superview] up:NO getContrl:self];
-        }else if ([signal is:[DragonUITextField TEXTFIELD]])
+        }else if ([signal is:[MagicUITextField TEXTFIELD]])
         {
             
             [NSTimer scheduledTimerWithTimeInterval:.1f target:self selector:@selector(setButtonStatus) userInfo:nil repeats:NO];
 
             
-        }else if ([signal is:[DragonUITextField TEXTFIELDSHOULDRETURN]])
+        }else if ([signal is:[MagicUITextField TEXTFIELDSHOULDRETURN]])
         {
             [textField resignFirstResponder];
             
         }
-        else if ([signal is:[DragonUITextField TEXTFIELDSHOULDCLEAR]])
+        else if ([signal is:[MagicUITextField TEXTFIELDSHOULDCLEAR]])
         {
             
             [_loginButton setImage:[UIImage imageNamed:@"btn_login_dis"] forState:UIControlStateNormal];
             [_loginButton setImage:[UIImage imageNamed:@"btn_login_dis"] forState:UIControlStateHighlighted];
             [_loginButton addSignal:[DYBLoginViewController LOGINBUTTON] forControlEvents:UIControlEventTouchUpInside];
             
-        }else if ([signal is:[DragonUITextField TEXTFIELDDIDBEGINEDITING]]) //开始编辑
+        }else if ([signal is:[MagicUITextField TEXTFIELDDIDBEGINEDITING]]) //开始编辑
         {
             
             
@@ -198,7 +198,7 @@ DEF_SIGNAL(ENTERDATABANK)
 
 
 #pragma mark- 点击按钮
-- (void)handleViewSignal_DYBLoginViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBLoginViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBLoginViewController LOGINBUTTON]])
     {
@@ -209,7 +209,7 @@ DEF_SIGNAL(ENTERDATABANK)
         if (_nameInput.nameField.text.length > 0 && _passInput.nameField.text.length > 0) {
 
             
-            DragonRequest *request = [DYBHttpMethod login:_nameInput.nameField.text password:_passInput.nameField.text isAlert:YES isRemberPsd:NO receive:self];
+            MagicRequest *request = [DYBHttpMethod login:_nameInput.nameField.text password:_passInput.nameField.text isAlert:YES isRemberPsd:NO receive:self];
             [request setTag:1];
             
             if (!request) {//无网路
@@ -244,7 +244,7 @@ DEF_SIGNAL(ENTERDATABANK)
 
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     
     if ([request succeed])

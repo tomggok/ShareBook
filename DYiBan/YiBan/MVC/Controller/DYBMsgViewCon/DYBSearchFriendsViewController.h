@@ -11,10 +11,10 @@
 //找人页
 @interface DYBSearchFriendsViewController : DYBBaseViewController
 {
-    DragonUISearchBar *_search;
-    //    DragonUITableView *_tbv_mayKnow,*_tbv_nearBy;//
+    MagicUISearchBar *_search;
+    //    MagicUITableView *_tbv_mayKnow,*_tbv_nearBy;//
     //    NSMutableArray *_muA_data_mayKnow,*_muA_data_nearBy;
-    DragonUIButton *_bt_mayKnow/*可能认识的*/,*_bt_nearBy/*附近的*/;
+    MagicUIButton *_bt_mayKnow/*可能认识的*/,*_bt_nearBy/*附近的*/;
     
     UIView *_v_btBack/*按钮背景*/,*_v_bt_tbv/*按钮和tbv背景*/;
 }

@@ -7,7 +7,7 @@
 //
 
 #import "DYBBaseViewController.h"
-#import "Dragon_Device.h"
+#import "Magic_Device.h"
 #import "UserSettingMode.h"
 
 @interface DYBBaseViewController ()
@@ -31,7 +31,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
 - (float)headViewHeight
 {
     float h = CGRectGetHeight(_headview.frame);
-    if ([DragonDevice sysVersion] >= 7)
+    if ([MagicDevice sysVersion] >= 7)
     {
         h -= 20;
     }
@@ -44,7 +44,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
     self.view.backgroundColor = [UIColor whiteColor];
 //    CGSize mainSize = MAINSIZE;
 //    UIView *barColorView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, mainSize.width, 20)];
-////    [barColorView setBackgroundColor:[DragonCommentMethod colorWithHex:@"f8f8f8"]];
+////    [barColorView setBackgroundColor:[MagicCommentMethod colorWithHex:@"f8f8f8"]];
 //    [barColorView setBackgroundColor:[UIColor yellowColor]];
 //    [self.view addSubview:barColorView];
 //    RELEASE(barColorView);
@@ -52,7 +52,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
     _headview = [[DYBNaviView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     
     float y = 0;
-    if ([DragonDevice sysVersion] >= 7)
+    if ([MagicDevice sysVersion] >= 7)
     {
         y = 20;
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= IOS_7        
@@ -60,10 +60,10 @@ DEF_SIGNAL(NoInternetConnection)//无网
 #endif
     }
     
-    _leftButton = [[DragonUIButton alloc] initWithFrame:CGRectMake(0, y, 60, self.headViewHeight)];
+    _leftButton = [[MagicUIButton alloc] initWithFrame:CGRectMake(0, y, 60, self.headViewHeight)];
     
     //临时
-    _rightButton = [[DragonUIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-60, y, 60,  self.headViewHeight)];
+    _rightButton = [[MagicUIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-60, y, 60,  self.headViewHeight)];
     [_rightButton addSignal:[DYBBaseViewController NEXTSTEPBUTTON] forControlEvents:UIControlEventTouchUpInside];
     
 //    [_headview setTitle:@"登陆"];
@@ -102,7 +102,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
 - (float)getOffset {
     
     float y = 0;
-    if ([DragonDevice sysVersion] >= 7)
+    if ([MagicDevice sysVersion] >= 7)
     {
         y = 20;
     }
@@ -209,25 +209,25 @@ DEF_SIGNAL(NoInternetConnection)//无网
 }
 
 
-- (void)setButtonImage:(DragonUIButton *)button setImage:(NSString *)string {
+- (void)setButtonImage:(MagicUIButton *)button setImage:(NSString *)string {
     
     [button setImage:[UIImage imageNamed:string] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:string] forState:UIControlStateHighlighted];
 }
 
-- (void)setButtonImage:(DragonUIButton *)button setImage:(NSString *)string  setHighString:(NSString *)hight{
+- (void)setButtonImage:(MagicUIButton *)button setImage:(NSString *)string  setHighString:(NSString *)hight{
     
     [button setImage:[UIImage imageNamed:string] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:hight] forState:UIControlStateHighlighted];
 }
 
 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
         [self.drNavigationController popVCAnimated:YES];
-        [self sendViewSignal:[DragonViewController VCBACKSUCCESS]];
+        [self sendViewSignal:[MagicViewController VCBACKSUCCESS]];
     }
     if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]])
     {
@@ -237,7 +237,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
 }
 
 //textFeild 属性 输入框 默认字符 颜色 所属类
-- (void)setTextFeild:(DragonUITextField *)textFeild setPlaceholder:(NSString *)placeholder setColor:(UIColor *)color setControl:(UIViewController *)control {
+- (void)setTextFeild:(MagicUITextField *)textFeild setPlaceholder:(NSString *)placeholder setColor:(UIColor *)color setControl:(UIViewController *)control {
     
     textFeild.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     textFeild.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -249,7 +249,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
 }
 
 //btn 属性 按钮 名称 信号 颜色 所属类
-- (void)setDragonUIButton:(DragonUIButton *)btn setImageNorm:(UIImage *)ImageNorm setImageHigh:(UIImage *)ImageHigh signal:(NSString *)signal setControl:(UIViewController *)control {
+- (void)setMagicUIButton:(MagicUIButton *)btn setImageNorm:(UIImage *)ImageNorm setImageHigh:(UIImage *)ImageHigh signal:(NSString *)signal setControl:(UIViewController *)control {
     
     [btn setBackgroundImage:ImageNorm forState:UIControlStateNormal];
     [btn setBackgroundImage:ImageHigh forState:UIControlStateHighlighted];
@@ -302,7 +302,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
 {
     CGSize mainSize = MAINSIZE;
     float height = mainSize.height;
-    /*if ([DragonDevice sysVersion] >= 7)
+    /*if ([MagicDevice sysVersion] >= 7)
     {
         height += 20;
     }*/
@@ -313,7 +313,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
 - (float)headHeight
 {
     float screenY = 44;
-    if ([DragonDevice sysVersion] >= 7)
+    if ([MagicDevice sysVersion] >= 7)
     {
         screenY += 20;
     }
@@ -321,7 +321,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
     return screenY;
 }
 
-- (DragonNavigationController *)drNavigationController
+- (MagicNavigationController *)drNavigationController
 {
     if (![super drNavigationController]) {
         return _vc.drNavigationController;
@@ -371,7 +371,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
     int qu = type;
     if (qu == 0)//图片质量自动
     {
-        if ([[DragonDevice networkType] isEqualToString:@"wifi"])
+        if ([[MagicDevice networkType] isEqualToString:@"wifi"])
         {
             qu = 3;//wifi
         }

@@ -12,12 +12,12 @@
 //选择联系人页
 @interface DYBSelectContactViewController : DYBBaseViewController
 {
-    DragonUISearchBar *_search;
-//    DragonUITableView *_tbv;//
+    MagicUISearchBar *_search;
+//    MagicUITableView *_tbv;//
     NSMutableArray *_muA_data/*好友数据源*/,*_muA_data_class/*班级列表数据源*/,*_muA_data_classDetail/*班级成员数据源*/;
-    DragonUIButton *TraparentView;//下拉列表
+    MagicUIButton *TraparentView;//下拉列表
     DYBMenuView *_tbv_dropDown;//下拉列表
-    DragonUIButton *_bt_DropDown/*下拉按钮*/;
+    MagicUIButton *_bt_DropDown/*下拉按钮*/;
     BOOL bPullDown;
 
 }

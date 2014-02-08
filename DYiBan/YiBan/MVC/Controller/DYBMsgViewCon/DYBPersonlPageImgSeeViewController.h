@@ -19,7 +19,7 @@
     NSString *userId;//查看相册用户的id
     
     BOOL ifReadOne;//是否读取一张
-    DragonUIScrollListView *scroller;
+    MagicUIScrollListView *scroller;
     NSMutableArray *array;
     
     int currentImg;

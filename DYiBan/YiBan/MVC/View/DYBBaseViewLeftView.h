@@ -10,7 +10,7 @@
 //#import "DYBImagePickerController.h"
 //DYBImagePickerControllerDelegate   Delegate
 @interface DYBBaseViewLeftView: DYBBaseView<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITableViewDataSource,UITableViewDelegate>
-@property(nonatomic,retain)DragonUIButton *photoBtn;
+@property(nonatomic,retain)MagicUIButton *photoBtn;
 @property(nonatomic,assign)int newTag;
 @property(nonatomic,assign)int oldTag;
 AS_SIGNAL(PHOTOBUTTON)//图片按钮

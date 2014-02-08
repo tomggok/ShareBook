@@ -15,17 +15,17 @@
 @implementation DYBButterflyandBeeViewController
 
 #pragma mark- ViewController信号
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.headview setTitle:@"访客列表"];
         [self backImgType:0];
 
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]]){
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]]){
         
         UIImage *imgButterflyandBee = [UIImage imageNamed:@"bkg_butterflyandbee.png"];
-        DragonUIImageView *viewButterflyandBee = [[DragonUIImageView alloc] initWithFrame:CGRectMake((CGRectGetWidth(self.view.frame)-imgButterflyandBee.size.width/2)/2, (self.frameHeight-self.headHeight-imgButterflyandBee.size.height/2)/2, imgButterflyandBee.size.width/2, imgButterflyandBee.size.height/2)];
+        MagicUIImageView *viewButterflyandBee = [[MagicUIImageView alloc] initWithFrame:CGRectMake((CGRectGetWidth(self.view.frame)-imgButterflyandBee.size.width/2)/2, (self.frameHeight-self.headHeight-imgButterflyandBee.size.height/2)/2, imgButterflyandBee.size.width/2, imgButterflyandBee.size.height/2)];
 
         [viewButterflyandBee setBackgroundColor:[UIColor clearColor]];
         [viewButterflyandBee setImage:imgButterflyandBee];

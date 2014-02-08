@@ -10,8 +10,8 @@
 
 @interface DYBCellForNearBy : UITableViewCell
 {
-    DragonUIImageView *_imgV_showImg/*左边展示图*/;
-    DragonUILabel *_lb_newContent,*_lb_nickName,*_lb_time,*_lb_distance;
+    MagicUIImageView *_imgV_showImg/*左边展示图*/;
+    MagicUILabel *_lb_newContent,*_lb_nickName,*_lb_time,*_lb_distance;
 }
 
 -(void)setContent:(id)data indexPath:(NSIndexPath *)indexPath tbv:(UITableView *)tbv;

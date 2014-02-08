@@ -6,12 +6,12 @@
 //  Copyright (c) 2013年 ZzL. All rights reserved.
 //
 
-#import "Dragon_JSONReflection.h"
+#import "Magic_JSONReflection.h"
 #import "notesUserinfo.h"
 #import "file_list.h"
 #import "tag_list_info.h"
 
-@interface noteModel : DragonJSONReflection
+@interface noteModel : MagicJSONReflection
 
 @property (nonatomic, retain) NSString *nid;
 @property (nonatomic, retain) NSString *lng;//经度

@@ -8,9 +8,9 @@
 
 #import "DYBVariableTbvView.h"
 #import "UITableView+property.h"
-#import "UITableViewCell+DragonCategory.h"
-#import "Dragon_Runtime.h"
-#import "UIView+DragonCategory.h"
+#import "UITableViewCell+MagicCategory.h"
+#import "Magic_Runtime.h"
+#import "UIView+MagicCategory.h"
 
 @implementation DYBVariableTbvView
 
@@ -45,7 +45,7 @@ DEF_SIGNAL(createCell);//创建 cell 消息
 -(void)creatTbv{
     
     if (!_tbv) {
-        _tbv = [[DragonUITableView alloc] initWithFrame:self.bounds isNeedUpdate:YES];
+        _tbv = [[MagicUITableView alloc] initWithFrame:self.bounds isNeedUpdate:YES];
         _tbv._cellH=kH_cellDefault*2;
         [_tbv setTableViewType:DTableViewSlime];
         [self addSubview:_tbv];
@@ -95,9 +95,9 @@ DEF_SIGNAL(createCell);//创建 cell 消息
 
 static NSString *cellName = @"cellName";//
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -113,7 +113,7 @@ static NSString *cellName = @"cellName";//
             [signal setReturnValue:s];
         }
         
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -128,7 +128,7 @@ static NSString *cellName = @"cellName";//
         }
         
     }
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -161,11 +161,11 @@ static NSString *cellName = @"cellName";//
             UITableViewCell *cell=Nil;
             
             if (_cellClass) {
-                cell = [[((UITableViewCell *)[DragonRuntime allocByClass:_cellClass]) initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName] autorelease];
+                cell = [[((UITableViewCell *)[MagicRuntime allocByClass:_cellClass]) initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName] autorelease];
                 [cell setContent:[(([tableView isOneSection])?(tableView.muA_singelSectionData):(arr_curSectionForModel)) objectAtIndex:indexPath.row] indexPath:indexPath tbv:tableView];
                 
             }else{
-                DragonViewSignal *viewSignal=[self sendViewSignal:[DragonUITableView TABLEHEIGHTFORROW] withObject:dict from:self target:[self superCon]];//外部创建自己的cell
+                MagicViewSignal *viewSignal=[self sendViewSignal:[MagicUITableView TABLEHEIGHTFORROW] withObject:dict from:self target:[self superCon]];//外部创建自己的cell
                 cell = (UITableViewCell *)[viewSignal returnValue];
             }
 
@@ -187,7 +187,7 @@ static NSString *cellName = @"cellName";//
         }
         
     }
-    else if ([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -200,7 +200,7 @@ static NSString *cellName = @"cellName";//
         }
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -209,13 +209,13 @@ static NSString *cellName = @"cellName";//
         }else{
 //            [self createSectionHeaderView:signal]; 
             
-//            DragonViewSignal *viewSignal = [self sendViewSignal:[DYBVariableTbvView createSectionHeaderView] withObject:dict];
+//            MagicViewSignal *viewSignal = [self sendViewSignal:[DYBVariableTbvView createSectionHeaderView] withObject:dict];
 //            UIView *v = (UIView *)[viewSignal returnValue];
 //            [signal setReturnValue:v];
         }
         
     }//
-    else if ([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -223,7 +223,7 @@ static NSString *cellName = @"cellName";//
         [signal setReturnValue:[NSNumber numberWithFloat:(([tableView isOneSection]/*一个section模式*/)?(0):(kH_tbvForHeaderViewInSection))]];
         
     }
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell  只返回显示的cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell  只返回显示的cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -240,29 +240,29 @@ static NSString *cellName = @"cellName";//
         
         [signal setReturnValue:cell];
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
     {
         
-        [self sendViewSignal:[DragonUITableView TABLEDIDSELECT] withObject:[signal object] from:self target:[self superCon]];
+        [self sendViewSignal:[MagicUITableView TABLEDIDSELECT] withObject:[signal object] from:self target:[self superCon]];
 
         
     }
-    else if ([signal is:[DragonUITableView TAbLEVIEWLODATA]])//加载更多
+    else if ([signal is:[MagicUITableView TAbLEVIEWLODATA]])//加载更多
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         
-        [self sendViewSignal:[DragonUITableView TAbLEVIEWLODATA] withObject:dict from:self target:[self superCon]];
+        [self sendViewSignal:[MagicUITableView TAbLEVIEWLODATA] withObject:dict from:self target:[self superCon]];
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]])//刷新
+    else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]])//刷新
     {
         
         NSDictionary *dict = (NSDictionary *)[signal object];
         
-        [self sendViewSignal:[DragonUITableView TABLEVIEWUPDATA] withObject:dict from:self target:[self superCon]];
+        [self sendViewSignal:[MagicUITableView TABLEVIEWUPDATA] withObject:dict from:self target:[self superCon]];
 
     }
     
-    else if ([signal is:[DragonUITableView TABLESECTIONINDEXTITLESFORTABLEVIEW]])//右侧索引列表
+    else if ([signal is:[MagicUITableView TABLESECTIONINDEXTITLESFORTABLEVIEW]])//右侧索引列表
     {
 //        NSDictionary *dict = (NSDictionary *)[signal object];
 //        UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -270,7 +270,7 @@ static NSString *cellName = @"cellName";//
 //        if (![tableView isOneSection]) {/*多个section模式*/
 //            [signal setReturnValue:tableView.muA_allSectionKeys];
 //        }
-    }else if ([signal is:[DragonUITableView TABLESECTIONFORSECTIONINDEXTITLE]])//点击右测是索引列表上的某个字母时回调,参数index和title是 右侧索引列表上被点击的字母在 索引列表的下标和名字,返回被点击的字母对应的section的下标
+    }else if ([signal is:[MagicUITableView TABLESECTIONFORSECTIONINDEXTITLE]])//点击右测是索引列表上的某个字母时回调,参数index和title是 右侧索引列表上被点击的字母在 索引列表的下标和名字,返回被点击的字母对应的section的下标
     {
 //        NSDictionary *dict = (NSDictionary *)[signal object];
 //        UITableView *tableview = [dict objectForKey:@"tableView"];
@@ -289,18 +289,18 @@ static NSString *cellName = @"cellName";//
 //            }
 //            count ++;
 //        }
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLUP]]){//上滑
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLUP]]){//上滑
         
         NSDictionary *dict = (NSDictionary *)[signal object];
         
-        [self sendViewSignal:[DragonUITableView TAbLEVIEWSCROLLUP] withObject:dict from:self target:[self superCon]];
+        [self sendViewSignal:[MagicUITableView TAbLEVIEWSCROLLUP] withObject:dict from:self target:[self superCon]];
 
         [_tbv StretchingUpOrDown:0];
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLDOWN]]){//下滑
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLDOWN]]){//下滑
         NSDictionary *dict = (NSDictionary *)[signal object];
         
-        [self sendViewSignal:[DragonUITableView TAbLEVIEWSCROLLDOWN] withObject:dict from:self target:[self superCon]];
+        [self sendViewSignal:[MagicUITableView TAbLEVIEWSCROLLDOWN] withObject:dict from:self target:[self superCon]];
 
         [_tbv StretchingUpOrDown:1];
         

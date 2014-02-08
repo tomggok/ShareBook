@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SyncType : DragonJSONReflection
+@interface SyncType : MagicJSONReflection
 {
     BOOL isSyncTenct;//是否同步腾讯
     BOOL isSyncRenren;//是否同步人人

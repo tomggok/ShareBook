@@ -8,7 +8,7 @@
 
 #import "DYBCheckInMapViewController.h"
 #import "DYBCheckInMainViewController.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 @interface DYBCheckInMapViewController ()
 
 @end
@@ -39,15 +39,15 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
 
 }
 
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.headview setTitle:@"我的位置"];
         [self backImgType:0];
         [self backImgType:3];
         
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]]){
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]]){
         _arrAnnotation = [[NSMutableArray alloc] init];
         nSelRow = 0;
 
@@ -71,7 +71,7 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
         /*************************************************************/
         
         
-//        _tabMapAddress = [[DragonUITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_mapView.frame), self.view.frame.size.width, self.frameHeight-self.headHeight-CGRectGetHeight(_mapView.frame)) isNeedUpdate:NO];
+//        _tabMapAddress = [[MagicUITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_mapView.frame), self.view.frame.size.width, self.frameHeight-self.headHeight-CGRectGetHeight(_mapView.frame)) isNeedUpdate:NO];
         [_tabMapAddress setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         [self.view addSubview:_tabMapAddress];
         RELEASE(_tabMapAddress);
@@ -84,7 +84,7 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
 
 -(void)initFonctionButton{
     UIImage *imgLoca = [UIImage imageNamed:@"btn_selflocation.png"];
-    DragonUIButton *_btnLocate = [[DragonUIButton alloc] initWithFrame:CGRectMake(8, 10, imgLoca.size.width/2, imgLoca.size.height/2)];
+    MagicUIButton *_btnLocate = [[MagicUIButton alloc] initWithFrame:CGRectMake(8, 10, imgLoca.size.width/2, imgLoca.size.height/2)];
     [_btnLocate setImage:imgLoca forState:UIControlStateNormal];
     [_btnLocate addSignal:[DYBCheckInMapViewController SELFLOCATION] forControlEvents:UIControlEventTouchUpInside];
 //    [_mapView addSubview:_btnLocate];/*百度地图Marker*/
@@ -92,7 +92,7 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
     RELEASE(_btnLocate);
     
     UIImage *imgprivate = [UIImage imageNamed:@"btn_loctionprivate.png"];
-    _btnPrivate = [[DragonUIButton alloc] initWithFrame:CGRectMake(8, CGRectGetMaxY(_btnLocate.frame)+10, imgLoca.size.width/2, imgLoca.size.height/2)];
+    _btnPrivate = [[MagicUIButton alloc] initWithFrame:CGRectMake(8, CGRectGetMaxY(_btnLocate.frame)+10, imgLoca.size.width/2, imgLoca.size.height/2)];
     [_btnPrivate setImage:imgprivate forState:UIControlStateNormal];
     [_btnPrivate addSignal:[DYBCheckInMapViewController LOCATIONPRIVATE] forControlEvents:UIControlEventTouchUpInside];
 //    [_mapView addSubview:_btnPrivate];/*百度地图Marker*/
@@ -102,7 +102,7 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
     
     
     UIImage *imgICOC = [self GetPrivacyStatus];
-    _ICONPrivate= [[DragonUIImageView alloc] initWithFrame:CGRectMake(8.5, 8.5, 38, 38)];
+    _ICONPrivate= [[MagicUIImageView alloc] initWithFrame:CGRectMake(8.5, 8.5, 38, 38)];
     [_ICONPrivate setBackgroundColor:[UIColor clearColor]];
     [_ICONPrivate setImage:imgICOC];
     [_ICONPrivate setUserInteractionEnabled:NO];
@@ -110,7 +110,7 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
     RELEASE(_ICONPrivate);
     
     UIImage *imgprivateBKG = [UIImage imageNamed:@"bkg_loctionprivate.png"];
-    _viewPrivateBKG= [[DragonUIImageView alloc] initWithFrame:CGRectMake(8, 44+10+10+imgLoca.size.height/2, imgLoca.size.width/2, imgLoca.size.height/2)];
+    _viewPrivateBKG= [[MagicUIImageView alloc] initWithFrame:CGRectMake(8, 44+10+10+imgLoca.size.height/2, imgLoca.size.width/2, imgLoca.size.height/2)];
     [_viewPrivateBKG setBackgroundColor:[UIColor clearColor]];
     [_viewPrivateBKG setImage:imgprivateBKG];
     [_viewPrivateBKG setHidden:YES];
@@ -120,7 +120,7 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
     RELEASE(_viewPrivateBKG);
     
     UIImage *imgunprivate = [UIImage imageNamed:@"btn_private_unlock.png"];
-    _btnSelUnPrivate = [[DragonUIButton alloc] initWithFrame:CGRectMake(41, 11, imgunprivate.size.width/2, imgunprivate.size.height/2)];
+    _btnSelUnPrivate = [[MagicUIButton alloc] initWithFrame:CGRectMake(41, 11, imgunprivate.size.width/2, imgunprivate.size.height/2)];
     [_btnSelUnPrivate setImage:imgunprivate forState:UIControlStateNormal];
     [_btnSelUnPrivate setTag:-1];
     [_btnSelUnPrivate addSignal:[DYBCheckInMapViewController BTNPRIVATE] forControlEvents:UIControlEventTouchUpInside];
@@ -128,7 +128,7 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
     RELEASE(_btnSelUnPrivate);
     
     UIImage *imgprivatefriend = [UIImage imageNamed:@"btn_private_friend.png"];
-    _btnSelFriends = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_btnSelUnPrivate.frame)+3, CGRectGetMinY(_btnSelUnPrivate.frame)+1, imgprivatefriend.size.width/2, imgprivatefriend.size.height/2)];
+    _btnSelFriends = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_btnSelUnPrivate.frame)+3, CGRectGetMinY(_btnSelUnPrivate.frame)+1, imgprivatefriend.size.width/2, imgprivatefriend.size.height/2)];
     [_btnSelFriends setImage:imgprivatefriend forState:UIControlStateNormal];
     [_btnSelFriends setTag:-2];
     [_btnSelFriends addSignal:[DYBCheckInMapViewController BTNPRIVATE] forControlEvents:UIControlEventTouchUpInside];
@@ -136,14 +136,14 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
     RELEASE(_btnSelFriends);
     
     UIImage *imgselprivate = [UIImage imageNamed:@"btn_private_self.png"];
-    _btnSelPrivate = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_btnSelFriends.frame)+1, CGRectGetMinY(_btnSelFriends.frame), imgselprivate.size.width/2, imgselprivate.size.height/2)];
+    _btnSelPrivate = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_btnSelFriends.frame)+1, CGRectGetMinY(_btnSelFriends.frame), imgselprivate.size.width/2, imgselprivate.size.height/2)];
     [_btnSelPrivate setImage:imgselprivate forState:UIControlStateNormal];
     [_btnSelPrivate setTag:-3];
     [_btnSelPrivate addSignal:[DYBCheckInMapViewController BTNPRIVATE] forControlEvents:UIControlEventTouchUpInside];
     [_viewPrivateBKG addSubview:_btnSelPrivate];
     RELEASE(_btnSelPrivate);
     
-    _btnPrivateSelected = [[DragonUIButton alloc] initWithFrame:CGRectMake(8.5, 8.5, 38, 38)];
+    _btnPrivateSelected = [[MagicUIButton alloc] initWithFrame:CGRectMake(8.5, 8.5, 38, 38)];
     [_btnPrivateSelected setImage:imgICOC forState:UIControlStateNormal];
     [_btnPrivateSelected addSignal:[DYBCheckInMapViewController BTNPRIVATESELECTED] forControlEvents:UIControlEventTouchUpInside];
     [_viewPrivateBKG addSubview:_btnPrivateSelected];
@@ -151,7 +151,7 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
 }
 
 #pragma mark - 返回Button处理
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
 //        BMKPointAnnotation* ann;/*百度地图Marker*/
@@ -182,16 +182,16 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
 //            strPlace = nil;
 //        }
 //        
-//        DragonRequest *request = [DYBHttpMethod user_sign_add:[NSString stringWithFormat:@"%f", ann.coordinate.longitude] lat:[NSString stringWithFormat:@"%f", ann.coordinate.latitude] address:strPlace refulse:strRefulse isAlert:YES receive:self];
+//        MagicRequest *request = [DYBHttpMethod user_sign_add:[NSString stringWithFormat:@"%f", ann.coordinate.longitude] lat:[NSString stringWithFormat:@"%f", ann.coordinate.latitude] address:strPlace refulse:strRefulse isAlert:YES receive:self];
 //        request.tag = -1;        
     }else if ([signal is:[DYBBaseViewController BACKBUTTON]]){
         [self.drNavigationController popVCAnimated:YES];
-        [self sendViewSignal:[DragonViewController VCBACKSUCCESS]];
+        [self sendViewSignal:[MagicViewController VCBACKSUCCESS]];
     }
     
 }
 
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj{
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj{
     if ([request succeed]){
         if (request.tag == -1){/*初始化*/
             JsonResponse *respose =(JsonResponse *)receiveObj;
@@ -201,7 +201,7 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
                 
                 if ([strResult isEqualToString:@"1"]){
                     [self.drNavigationController popVCAnimated:YES];
-                    [self sendViewSignal:[DragonViewController VCBACKSUCCESS]];
+                    [self sendViewSignal:[MagicViewController VCBACKSUCCESS]];
                     [self sendViewSignal:[DYBCheckInMainViewController REFREASHINFO] withObject:nil from:self target:[[DYBUITabbarViewController sharedInstace] getFirstViewVC]];
 //                    [self postNotification:[DYBCheckInMapViewController CHECKINMAINVIEWREFREASH]];
                 }
@@ -216,7 +216,7 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
 }
 
 #pragma mark- 接受其他信号
-- (void)handleViewSignal_DYBCheckInMapViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBCheckInMapViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBCheckInMapViewController SELFLOCATION]]){
 //        BMKCoordinateRegion region;
@@ -247,7 +247,7 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
         
         [self performSelector:@selector(HiddenPrivateBKG) withObject:nil afterDelay:0.3f];
     }else if ([signal is:[DYBCheckInMapViewController BTNPRIVATE]]){
-        DragonUIButton *bt=(DragonUIButton *)signal.source;
+        MagicUIButton *bt=(MagicUIButton *)signal.source;
         if (bt){
             switch (bt.tag) {
                 case -1:
@@ -272,7 +272,7 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
 
 }
 
--(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
     if ([signal is:[DYBDataBankShotView RIGHT]]) {
     }
 }
@@ -314,30 +314,30 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
 }
 
 #pragma mark- 只接受UITableView信号
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
         NSNumber *s = [NSNumber numberWithInteger:_arrPlaceList.count];
         [signal setReturnValue:s];
         
-    }else if([signal is:[DragonUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
+    }else if([signal is:[MagicUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
         NSNumber *s = [NSNumber numberWithInteger:1];
         [signal setReturnValue:s];
         
-    }else if([signal is:[DragonUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
+    }else if([signal is:[MagicUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
         NSNumber *s = [NSNumber numberWithInteger:45];
         [signal setReturnValue:s];
         
         
-    }else if([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])/*titleForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])/*titleForHeaderInSection*/{
         
-    }else if([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])/*viewForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])/*viewForHeaderInSection*/{
         [signal setReturnValue:nil];
         
-    }else if([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])/*heightForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])/*heightForHeaderInSection*/{
         [signal setReturnValue:[NSNumber numberWithFloat:0.0]];
         
-    }else if([signal is:[DragonUITableView TABLECELLFORROW]])/*cell*/{
+    }else if([signal is:[MagicUITableView TABLECELLFORROW]])/*cell*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableview = [dict objectForKey:@"tableView"];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -364,13 +364,13 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
             imgRound = [UIImage imageNamed:@"radio_off.png"];
         }
         
-        DragonUIImageView *_selStatus = [[DragonUIImageView alloc] initWithFrame:CGRectMake(15, 10, imgRound.size.width/2, imgRound.size.height/2)];
+        MagicUIImageView *_selStatus = [[MagicUIImageView alloc] initWithFrame:CGRectMake(15, 10, imgRound.size.width/2, imgRound.size.height/2)];
         [_selStatus setBackgroundColor:[UIColor clearColor]];
         [_selStatus setImage:imgRound];
         [cell addSubview:_selStatus];
         RELEASE(_selStatus);
         
-        DragonUILabel *_lbText = [[DragonUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_selStatus.frame)+15, 10, 270, 25)];
+        MagicUILabel *_lbText = [[MagicUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_selStatus.frame)+15, 10, 270, 25)];
         [_lbText setFont:[DYBShareinstaceDelegate DYBFoutStyle:17]];
         [_lbText setBackgroundColor:[UIColor clearColor]];
         [_lbText setTextColor:ColorBlack];
@@ -387,7 +387,7 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
         
         [signal setReturnValue:cell];
         
-    }else if([signal is:[DragonUITableView TABLEDIDSELECT]])/*选中cell*/{
+    }else if([signal is:[MagicUITableView TABLEDIDSELECT]])/*选中cell*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         nSelRow = indexPath.row;
@@ -400,8 +400,8 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
             UITableViewCell *cell = [_tabMapAddress cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
             
             for (UIView *view in cell.subviews) {
-                if ([view isKindOfClass:[DragonUIImageView class]]) {
-                    [(DragonUIImageView *)view setImage:imgRound];
+                if ([view isKindOfClass:[MagicUIImageView class]]) {
+                    [(MagicUIImageView *)view setImage:imgRound];
                 }
             }
             
@@ -410,17 +410,17 @@ DEF_NOTIFICATION(CHECKINMAINVIEWREFREASH)
         UITableViewCell *cell = [_tabMapAddress cellForRowAtIndexPath:indexPath];
         [self selectCell:cell];
         
-    }else if([signal is:[DragonUITableView TABLESCROLLVIEWDIDENDDRAGGING]])/*滚动停止*/{
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDENDDRAGGING]])/*滚动停止*/{
 
-    }else if([signal is:[DragonUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
         
     }
 }
 
 -(void)selectCell:(UITableViewCell *)cell{
     for (UIView *view in cell.subviews) {
-        if ([view isKindOfClass:[DragonUIImageView class]]) {
-            [(DragonUIImageView *)view setImage:[UIImage imageNamed:@"radio_on.png"]];
+        if ([view isKindOfClass:[MagicUIImageView class]]) {
+            [(MagicUIImageView *)view setImage:[UIImage imageNamed:@"radio_on.png"]];
         }
     }
 }

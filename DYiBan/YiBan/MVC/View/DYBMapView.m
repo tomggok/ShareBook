@@ -108,11 +108,11 @@
 }
 
 - (void)DYB_signPosition{
-    DragonRequest *request = [DYBHttpMethod user_sign_position:_lng lat:_lat address:nil isAlert:NO receive:self];
+    MagicRequest *request = [DYBHttpMethod user_sign_position:_lng lat:_lat address:nil isAlert:NO receive:self];
     request.tag = -1;
 }
 */
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj{
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj{
     if ([request succeed]){
         if (request.tag == -1){/*发送动态*/
             JsonResponse *respose =(JsonResponse *)receiveObj;

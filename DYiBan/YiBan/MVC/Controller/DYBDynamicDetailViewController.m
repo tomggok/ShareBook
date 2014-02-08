@@ -24,7 +24,7 @@
 #import "DYBPublishViewController.h"
 #import "DYBPersonalHomePageViewController.h"
 #import "NSObject+KVO.h"
-#import "UIViewController+DragonCategory.h"
+#import "UIViewController+MagicCategory.h"
 #import "good_num_info.h"
 #import "comment_num_info.h"
 #import "active.h"
@@ -78,20 +78,20 @@ DEF_SIGNAL(TRANSPARENT)//透明按钮
 }
 
 #pragma mark- ViewController信号
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.headview setTitle:@"动态详情"];
         [self backImgType:0];
         [self backImgType:9];
         
-        DragonUIButton *btnS = (DragonUIButton *)[_viewCommentBKG viewWithTag:916];
+        MagicUIButton *btnS = (MagicUIButton *)[_viewCommentBKG viewWithTag:916];
         if (btnS && [_txtViewComment.text length] > 0) {
             btnS.enabled = YES;
         }
         
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]]){
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]]){
         _arrStatusData = [[NSMutableArray alloc] init];
         _arrStatusCell = [[NSMutableArray alloc] init];
         
@@ -134,12 +134,12 @@ DEF_SIGNAL(TRANSPARENT)//透明按钮
         [view addSubview:btnRight];
         RELEASE(btnRight);
         
-        DragonUITableView *orderTableView = [[DragonUITableView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.frameHeight-self.headHeight) isNeedUpdate:YES];
+        MagicUITableView *orderTableView = [[MagicUITableView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.frameHeight-self.headHeight) isNeedUpdate:YES];
         [self.view addSubview:orderTableView];
         RELEASE(orderTableView);
         
         
-        _tabDynamicDetail = [[DragonUITableView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.frameHeight-self.headHeight) isNeedUpdate:YES];
+        _tabDynamicDetail = [[MagicUITableView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.frameHeight-self.headHeight) isNeedUpdate:YES];
         [_tabDynamicDetail setTableViewType:DTableViewSlime];
         [_tabDynamicDetail setShowsVerticalScrollIndicator:NO];
         [_tabDynamicDetail setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -166,8 +166,8 @@ DEF_SIGNAL(TRANSPARENT)//透明按钮
 //        }
 //        
 //        //接受键盘的消息
-//        [self observeNotification:[DragonUIKeyboard SHOWN]];
-//        [self observeNotification:[DragonUIKeyboard HIDDEN]];        
+//        [self observeNotification:[MagicUIKeyboard SHOWN]];
+//        [self observeNotification:[MagicUIKeyboard HIDDEN]];        
         
     }
 }
@@ -197,10 +197,10 @@ DEF_SIGNAL(TRANSPARENT)//透明按钮
 #pragma mark - notification
 - (void)handleNotification:(NSNotification *)notification
 {
-    if ([notification is:[DragonUIKeyboard SHOWN]])
+    if ([notification is:[MagicUIKeyboard SHOWN]])
     {
         [self setVCBackAnimation:SWIPELASTIMAGEBACKTYPE canBackPageNumber:0];
-    }else if ([notification is:[DragonUIKeyboard HIDDEN]])
+    }else if ([notification is:[MagicUIKeyboard HIDDEN]])
     {
         [self setVCBackAnimation:SWIPELASTIMAGEBACKTYPE canBackPageNumber:2];
     }
@@ -208,7 +208,7 @@ DEF_SIGNAL(TRANSPARENT)//透明按钮
 }
 
 #pragma mark - 返回Button处理
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
         
@@ -266,7 +266,7 @@ DEF_SIGNAL(TRANSPARENT)//透明按钮
         }
         
         [self.drNavigationController popVCAnimated:YES];
-        [self sendViewSignal:[DragonViewController VCBACKSUCCESS]];
+        [self sendViewSignal:[MagicViewController VCBACKSUCCESS]];
     }    
 }
 
@@ -278,7 +278,7 @@ DEF_SIGNAL(TRANSPARENT)//透明按钮
     
     
     if (!TraparentView) {
-        TraparentView = [[DragonUIButton alloc]initWithFrame:CGRectMake(0, self.headHeight, SCREEN_WIDTH, SCREEN_HEIGHT-self.headHeight)];
+        TraparentView = [[MagicUIButton alloc]initWithFrame:CGRectMake(0, self.headHeight, SCREEN_WIDTH, SCREEN_HEIGHT-self.headHeight)];
         TraparentView.tag = -1000;
         [TraparentView addSignal:[DYBDynamicDetailViewController TRANSPARENT] forControlEvents:UIControlEventTouchUpInside];
         TraparentView.backgroundColor = [UIColor clearColor];
@@ -298,7 +298,7 @@ DEF_SIGNAL(TRANSPARENT)//透明按钮
         RELEASE(_viewMore);
         
         UIImage *imgShadow = [UIImage imageNamed:@"more_slide_shadow.png"];
-        DragonUIImageView *viewShadow = [[DragonUIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(_viewMore.frame), imgShadow.size.width/2, imgShadow.size.height/2)];
+        MagicUIImageView *viewShadow = [[MagicUIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(_viewMore.frame), imgShadow.size.width/2, imgShadow.size.height/2)];
         [viewShadow setImage:imgShadow];
         [viewShadow setBackgroundColor:[UIColor clearColor]];
         [_viewMore addSubview:viewShadow];
@@ -308,7 +308,7 @@ DEF_SIGNAL(TRANSPARENT)//透明按钮
     if (!_btnMoreComment) {
         UIImage *imgCom = [UIImage imageNamed:@"more_comment_def.png"];
         UIImage *imgComPress = [UIImage imageNamed:@"more_comment_press.png"];
-         _btnMoreComment =[[DragonUIButton alloc] initWithFrame:CGRectMake(0, 20, imgCom.size.width/2, imgCom.size.height/2)];
+         _btnMoreComment =[[MagicUIButton alloc] initWithFrame:CGRectMake(0, 20, imgCom.size.width/2, imgCom.size.height/2)];
         [_btnMoreComment setImage:imgCom forState:UIControlStateNormal];
         [_btnMoreComment setImage:imgComPress forState:UIControlStateHighlighted];
         [_btnMoreComment setBackgroundColor:[UIColor clearColor]];
@@ -322,7 +322,7 @@ DEF_SIGNAL(TRANSPARENT)//透明按钮
     if (!_btnMoreLike) {
         UIImage *imgCom = [UIImage imageNamed:@"more_like_def.png"];
         UIImage *imgComPress = [UIImage imageNamed:@"more_like_press.png"];
-        _btnMoreLike =[[DragonUIButton alloc] initWithFrame:CGRectMake(0, 20, imgCom.size.width/2, imgCom.size.height/2)];
+        _btnMoreLike =[[MagicUIButton alloc] initWithFrame:CGRectMake(0, 20, imgCom.size.width/2, imgCom.size.height/2)];
         [_btnMoreLike setImage:imgCom forState:UIControlStateNormal];
         [_btnMoreLike setImage:imgComPress forState:UIControlStateHighlighted];
         [_btnMoreLike setBackgroundColor:[UIColor clearColor]];
@@ -335,7 +335,7 @@ DEF_SIGNAL(TRANSPARENT)//透明按钮
     if (!_btnMoreShare) {
         UIImage *imgCom = [UIImage imageNamed:@"more_forward_def.png"];
         UIImage *imgComPress = [UIImage imageNamed:@"more_forward_press.png"];
-        _btnMoreShare =[[DragonUIButton alloc] initWithFrame:CGRectMake(0, 20, imgCom.size.width/2, imgCom.size.height/2)];
+        _btnMoreShare =[[MagicUIButton alloc] initWithFrame:CGRectMake(0, 20, imgCom.size.width/2, imgCom.size.height/2)];
         [_btnMoreShare setImage:imgCom forState:UIControlStateNormal];
         [_btnMoreShare setImage:imgComPress forState:UIControlStateHighlighted];
         [_btnMoreShare setBackgroundColor:[UIColor clearColor]];
@@ -349,7 +349,7 @@ DEF_SIGNAL(TRANSPARENT)//透明按钮
     if (!_btnMoreDel) {
         UIImage *imgCom = [UIImage imageNamed:@"more_del_def.png"];
         UIImage *imgComPress = [UIImage imageNamed:@"more_del_press.png"];
-        _btnMoreDel =[[DragonUIButton alloc] initWithFrame:CGRectMake(0, 20, imgCom.size.width/2, imgCom.size.height/2)];
+        _btnMoreDel =[[MagicUIButton alloc] initWithFrame:CGRectMake(0, 20, imgCom.size.width/2, imgCom.size.height/2)];
         [_btnMoreDel setImage:imgCom forState:UIControlStateNormal];
         [_btnMoreDel setImage:imgComPress forState:UIControlStateHighlighted];
         [_btnMoreDel setBackgroundColor:[UIColor clearColor]];
@@ -430,11 +430,11 @@ DEF_SIGNAL(TRANSPARENT)//透明按钮
 #pragma mark- 只接受UITableView信号
 static NSString *cellName = @"cellName";
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
 
     
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSNumber *_section = [dict objectForKey:@"section"];
         NSNumber *s;
@@ -447,11 +447,11 @@ static NSString *cellName = @"cellName";
         
         [signal setReturnValue:s];
         
-    }else if([signal is:[DragonUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
+    }else if([signal is:[MagicUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
         NSNumber *s = [NSNumber numberWithInteger:2];
         [signal setReturnValue:s];
         
-    }else if([signal is:[DragonUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
+    }else if([signal is:[MagicUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -480,9 +480,9 @@ static NSString *cellName = @"cellName";
 
         [signal setReturnValue:s];
     
-    }else if([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])/*titleForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])/*titleForHeaderInSection*/{
         
-    }else if([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])/*viewForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])/*viewForHeaderInSection*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSNumber *_section = [dict objectForKey:@"section"];
         
@@ -500,7 +500,7 @@ static NSString *cellName = @"cellName";
             [signal setReturnValue:nil];            
         }
         
-    }else if([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])/*heightForHeaderInSection*/{
+    }else if([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])/*heightForHeaderInSection*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSNumber *_section = [dict objectForKey:@"section"];
         
@@ -510,7 +510,7 @@ static NSString *cellName = @"cellName";
         }else{
             [signal setReturnValue:[NSNumber numberWithFloat:39.0]];
         } 
-    }else if([signal is:[DragonUITableView TABLECELLFORROW]])/*cell*/{
+    }else if([signal is:[MagicUITableView TABLECELLFORROW]])/*cell*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
@@ -534,7 +534,7 @@ static NSString *cellName = @"cellName";
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [signal setReturnValue:cell];
         
-    }else if([signal is:[DragonUITableView TABLEDIDSELECT]])/*选中cell*/{
+    }else if([signal is:[MagicUITableView TABLEDIDSELECT]])/*选中cell*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
@@ -555,10 +555,10 @@ static NSString *cellName = @"cellName";
         }
         
         
-    }else if([signal is:[DragonUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
         
-    }else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]]){
-        DragonRequest *request = nil;
+    }else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]]){
+        MagicRequest *request = nil;
         nPage = 1;
         _bScoll = NO;
         
@@ -581,8 +581,8 @@ static NSString *cellName = @"cellName";
             [_tabDynamicDetail reloadData:NO];
         }
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWLODATA]]){
-        DragonRequest *request = nil;
+    }else if ([signal is:[MagicUITableView TAbLEVIEWLODATA]]){
+        MagicRequest *request = nil;
         nPage++;
         
         switch (nStatus) {
@@ -603,7 +603,7 @@ static NSString *cellName = @"cellName";
         if (!request) {//无网路
            [_tabDynamicDetail reloadData:NO];
         }
-    }else if ([signal is:[DragonUITableView TAbLEVIERETOUCH]]){
+    }else if ([signal is:[MagicUITableView TAbLEVIERETOUCH]]){
         
         [self cleanInterface];
     }
@@ -612,7 +612,7 @@ static NSString *cellName = @"cellName";
     
 }
 
-- (void)handleViewSignal_DYBDynamicDetailViewController:(DragonViewSignal *)signal{
+- (void)handleViewSignal_DYBDynamicDetailViewController:(MagicViewSignal *)signal{
     if([signal is:[DYBDynamicDetailViewController DYNAMICDIMAGEETAIL]]){
         NSDictionary *dic = (NSDictionary *)[signal object];
 
@@ -674,7 +674,7 @@ static NSString *cellName = @"cellName";
     }else if ([signal is:[DYBDynamicDetailViewController MORECOMMENT]]){
         [self sendViewSignal:[DYBBaseViewController NEXTSTEPBUTTON]];
         
-        DragonUIButton *btn = (DragonUIButton *)signal.source;
+        MagicUIButton *btn = (MagicUIButton *)signal.source;
         _btnMoreShare.selected = NO;
         
         if (btn.selected == NO) {
@@ -693,13 +693,13 @@ static NSString *cellName = @"cellName";
             return;
         }
 
-        DragonRequest *request = [DYBHttpMethod status_feedaction_id:[NSString stringWithFormat:@"%d", _dynamicStatus.id] action:@"1" type:@"1" isAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod status_feedaction_id:[NSString stringWithFormat:@"%d", _dynamicStatus.id] action:@"1" type:@"1" isAlert:YES receive:self];
         request.tag = -6;
         
     }else if ([signal is:[DYBDynamicDetailViewController MORESHARE]]){
         [self sendViewSignal:[DYBBaseViewController NEXTSTEPBUTTON]];
         
-        DragonUIButton *btn = (DragonUIButton *)signal.source;
+        MagicUIButton *btn = (MagicUIButton *)signal.source;
         _btnMoreComment.selected = NO;
 
         if (btn.selected == NO) {
@@ -729,7 +729,7 @@ static NSString *cellName = @"cellName";
             return;
         }
         
-        DragonRequest *request = nil;
+        MagicRequest *request = nil;
         
         if (_btnMoreComment.selected == YES) {
             request = [DYBHttpMethod status_addcomment_id:[NSString stringWithFormat:@"%d", _dynamicStatus.id] content:strComment isAlert:YES receive:self];
@@ -743,7 +743,7 @@ static NSString *cellName = @"cellName";
         }
 
     }else if ([signal is:[DYBDynamicDetailViewController CLICKEMOJI]]){
-       DragonUIButton *_btnSelEmoji = (DragonUIButton *)signal.source;
+       MagicUIButton *_btnSelEmoji = (MagicUIButton *)signal.source;
         
         if (!_viewFace) {
             _viewFace = [[DYBFaceView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame), 320, 200)];
@@ -800,7 +800,7 @@ static NSString *cellName = @"cellName";
     }else if ([signal is:[DYBDynamicDetailViewController ACTIVITYPAGE]]){
         NSString *strActivityID  = (NSString *)[signal object];
         
-        DragonRequest *request = [DYBHttpMethod active_detail:strActivityID isAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod active_detail:strActivityID isAlert:YES receive:self];
         [request setTag:-10];
     }else if ([signal is:[DYBDynamicDetailViewController TRANSPARENT]]){
         if (TraparentView) {
@@ -860,7 +860,7 @@ static NSString *cellName = @"cellName";
     [_txtViewComment resignFirstResponder];
 }
 
--(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
     
     if ([signal is:[DYBDataBankShotView RIGHT]]) {
         DLogInfo(@"DEL");
@@ -872,7 +872,7 @@ static NSString *cellName = @"cellName";
         if ([strType intValue] == BTNTAG_DEL){
             [_btnMoreDel setUserInteractionEnabled:NO];
             
-            DragonRequest *request = [DYBHttpMethod status_del_id:[NSString stringWithFormat:@"%d", _dynamicStatus.id] type:[NSString stringWithFormat:@"%d",_dynamicStatus.type] isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod status_del_id:[NSString stringWithFormat:@"%d", _dynamicStatus.id] type:[NSString stringWithFormat:@"%d",_dynamicStatus.type] isAlert:YES receive:self];
             request.tag = -8;
         }else if ([strType intValue] == BTNTAG_SINGLE){
             if (row == 3) {
@@ -888,7 +888,7 @@ static NSString *cellName = @"cellName";
 - (UIView *) viewHeardSection:(NSInteger)nSelTab commentCount:(NSString *)nComCount shareCount:(NSString *)nShareCount likeCount:(NSString *)nlikeCount bShared:(BOOL)bShare{
     UIView *viewSectionHead = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
 
-    DragonUIImageView *viewSectionHeadBKG = [[DragonUIImageView alloc] initWithFrame:CGRectMake(15, 0, 290, 40)];
+    MagicUIImageView *viewSectionHeadBKG = [[MagicUIImageView alloc] initWithFrame:CGRectMake(15, 0, 290, 40)];
     [viewSectionHeadBKG setBackgroundColor:[UIColor clearColor]];
     [viewSectionHeadBKG setImage:[UIImage imageNamed:@"bg_details_tab.png"]];
     [viewSectionHeadBKG setUserInteractionEnabled:YES];
@@ -896,17 +896,17 @@ static NSString *cellName = @"cellName";
     [viewSectionHead sendSubviewToBack:viewSectionHeadBKG];
     RELEASE(viewSectionHeadBKG);
     
-    _viewComment = [[DragonUIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_comment.png"]];
-    _viewLike = [[DragonUIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_like.png"]];
+    _viewComment = [[MagicUIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_comment.png"]];
+    _viewLike = [[MagicUIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_like.png"]];
     
-    _lbComment = [[DragonUILabel alloc] initWithFrame:CGRectMake([self GetNumLableStart:nComCount], 2, 60, 39)];
+    _lbComment = [[MagicUILabel alloc] initWithFrame:CGRectMake([self GetNumLableStart:nComCount], 2, 60, 39)];
     [_lbComment setText:nComCount];
     [_lbComment setTextColor:[UIColor clearColor]];
     [_lbComment setBackgroundColor:[UIColor clearColor]];
     [_lbComment setTextAlignment:NSTextAlignmentLeft];
     [_lbComment setFont:[DYBShareinstaceDelegate DYBFoutStyle:18]];
     
-    DragonUIButton *_btnComment = [[DragonUIButton alloc] initWithFrame:CGRectMake(15.0f, 0.0f, 96.0f, 39.0f)];
+    MagicUIButton *_btnComment = [[MagicUIButton alloc] initWithFrame:CGRectMake(15.0f, 0.0f, 96.0f, 39.0f)];
     [_btnComment setBackgroundColor:[UIColor clearColor]];
     [_btnComment addSignal:[DYBDynamicDetailViewController DETAILCOMMENT] forControlEvents:UIControlEventTouchUpInside];
     [_viewComment setFrame:CGRectMake(CGRectGetMinX(_lbComment.frame)-iconWidth-3, 10, iconWidth, 20)];
@@ -915,17 +915,17 @@ static NSString *cellName = @"cellName";
     [viewSectionHead addSubview:_btnComment];
     RELEASE(_btnComment);
     
-    DragonUIButton *_btnLike = nil;
+    MagicUIButton *_btnLike = nil;
     
     if (_dynamicStatus.type != 15) {
-        _lbLike = [[DragonUILabel alloc] initWithFrame:CGRectMake([self GetNumLableStart:nlikeCount], 2, 60, 39)];
+        _lbLike = [[MagicUILabel alloc] initWithFrame:CGRectMake([self GetNumLableStart:nlikeCount], 2, 60, 39)];
         [_lbLike setText:nlikeCount];
         [_lbLike setTextColor:ColorGray];
         [_lbLike setBackgroundColor:[UIColor clearColor]];
         [_lbLike setTextAlignment:NSTextAlignmentLeft];
         [_lbLike setFont:[DYBShareinstaceDelegate DYBFoutStyle:18]];
         
-        _btnLike = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_btnComment.frame)+1, 0.0f, 96.0f, 39.0f)];
+        _btnLike = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_btnComment.frame)+1, 0.0f, 96.0f, 39.0f)];
         [_btnLike setBackgroundColor:[UIColor clearColor]];
         [_btnLike addSignal:[DYBDynamicDetailViewController DETAILLIKE] forControlEvents:UIControlEventTouchUpInside];
         [_viewLike setFrame:CGRectMake(CGRectGetMinX(_lbLike.frame)-iconWidth-3, 10, iconWidth, 20)];
@@ -939,16 +939,16 @@ static NSString *cellName = @"cellName";
 
     
     if (bShare) {
-        _viewShare = [[DragonUIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_share.png"]];
+        _viewShare = [[MagicUIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_share.png"]];
         
-        _lbShare = [[DragonUILabel alloc] initWithFrame:CGRectMake([self GetNumLableStart:nShareCount], 2, 60, 39)];
+        _lbShare = [[MagicUILabel alloc] initWithFrame:CGRectMake([self GetNumLableStart:nShareCount], 2, 60, 39)];
         [_lbShare setText:nShareCount];
         [_lbShare setTextColor:ColorGray];
         [_lbShare setBackgroundColor:[UIColor clearColor]];
         [_lbShare setTextAlignment:NSTextAlignmentLeft];
         [_lbShare setFont:[DYBShareinstaceDelegate DYBFoutStyle:18]];
         
-        DragonUIButton *_btnShare = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_btnLike.frame)+1, 0.0f, 96.0f, 39.0f)];
+        MagicUIButton *_btnShare = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_btnLike.frame)+1, 0.0f, 96.0f, 39.0f)];
         [_btnShare setBackgroundColor:[UIColor clearColor]];
         [_btnShare addSignal:[DYBDynamicDetailViewController DETAILSHARE] forControlEvents:UIControlEventTouchUpInside];
         [_viewShare setFrame:CGRectMake(CGRectGetMinX(_lbShare.frame)-iconWidth-3, 10, iconWidth, 20)];
@@ -962,7 +962,7 @@ static NSString *cellName = @"cellName";
     }
     
     UIImage *imgArrow = [UIImage imageNamed:@"arrow_details_tab.png"];
-    _viewArrow = [[DragonUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMidX(_btnComment.frame)-imgArrow.size.width/4, CGRectGetMaxY(_btnComment.frame)-imgArrow.size.height/2+1, imgArrow.size.width/2, imgArrow.size.height/2)];
+    _viewArrow = [[MagicUIImageView alloc] initWithFrame:CGRectMake(CGRectGetMidX(_btnComment.frame)-imgArrow.size.width/4, CGRectGetMaxY(_btnComment.frame)-imgArrow.size.height/2+1, imgArrow.size.width/2, imgArrow.size.height/2)];
     [_viewArrow setImage:imgArrow];
     [_viewArrow setBackgroundColor:[UIColor clearColor]];
     [viewSectionHead addSubview:_viewArrow];
@@ -1053,35 +1053,35 @@ static NSString *cellName = @"cellName";
 
 #pragma mark- 动态详情请求
 - (void)DYB_GetStatusDetail{
-    DragonRequest *request = [DYBHttpMethod status_detail_id:_dynamicStatus.id type:1 since_id:nil max_id:nil num:@"100" page:@"1" message_id:nil isAlert:NO receive:self];
+    MagicRequest *request = [DYBHttpMethod status_detail_id:_dynamicStatus.id type:1 since_id:nil max_id:nil num:@"100" page:@"1" message_id:nil isAlert:NO receive:self];
     [request setTag:-1];
 }
 
 //评论列表
-- (DragonRequest *)DYB_GetStatusCommentlist{
-    DragonRequest *request = [DYBHttpMethod status_comments:[NSString stringWithFormat:@"%d", _dynamicStatus.id] type:1 since_id:@"0" max_id:@"0" num:nPageSize page:nPage isAlert:YES receive:self];
+- (MagicRequest *)DYB_GetStatusCommentlist{
+    MagicRequest *request = [DYBHttpMethod status_comments:[NSString stringWithFormat:@"%d", _dynamicStatus.id] type:1 since_id:@"0" max_id:@"0" num:nPageSize page:nPage isAlert:YES receive:self];
     [request setTag:-2];
     
     return request;
 }
 
 //赞列表
-- (DragonRequest *)DYB_GetStatusLikelist{
-    DragonRequest *request = [DYBHttpMethod status_actionlist:[NSString stringWithFormat:@"%d", _dynamicStatus.id] action:1 page:nPage num:nPageSize isAlert:YES receive:self];
+- (MagicRequest *)DYB_GetStatusLikelist{
+    MagicRequest *request = [DYBHttpMethod status_actionlist:[NSString stringWithFormat:@"%d", _dynamicStatus.id] action:1 page:nPage num:nPageSize isAlert:YES receive:self];
     [request setTag:-3];
     
     return request;
 }
 
 //转发列表
-- (DragonRequest *)DYB_GetStatusSharelist{
-    DragonRequest *request = [DYBHttpMethod status_followlist:[NSString stringWithFormat:@"%d", _dynamicStatus.id] num:nPageSize page:nPage isAlert:YES receive:self];
+- (MagicRequest *)DYB_GetStatusSharelist{
+    MagicRequest *request = [DYBHttpMethod status_followlist:[NSString stringWithFormat:@"%d", _dynamicStatus.id] num:nPageSize page:nPage isAlert:YES receive:self];
     [request setTag:-4];
     
     return request;
 }
 
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj{
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj{
     if ([request succeed]){
         if (request.tag == -1){/*初始化*/
             JsonResponse *respose =(JsonResponse *)receiveObj;
@@ -1398,7 +1398,7 @@ static NSString *cellName = @"cellName";
                 DYBCellForDynamicStatus *_cellAdd = [[[DYBCellForDynamicStatus alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName] autorelease];
                 [_cellAdd setContent:[_arrStatusData objectAtIndex:0] type:nStatus indexPath:indexPath tbv:_tabDynamicDetail];
                 
-                DragonUIImageView *imgSpLine = [[DragonUIImageView alloc] initWithFrame:CGRectMake(27, _cellAdd.frame.size.height-1, 266, 1) backgroundColor:[UIColor clearColor] image:[UIImage imageNamed:@"sepline2.png"] isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_cellAdd Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                MagicUIImageView *imgSpLine = [[MagicUIImageView alloc] initWithFrame:CGRectMake(27, _cellAdd.frame.size.height-1, 266, 1) backgroundColor:[UIColor clearColor] image:[UIImage imageNamed:@"sepline2.png"] isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_cellAdd Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                 
                 RELEASE(imgSpLine);
                 
@@ -1464,7 +1464,7 @@ static NSString *cellName = @"cellName";
                 DYBCellForDynamicStatus *_cellAdd = [[[DYBCellForDynamicStatus alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName] autorelease];
                 [_cellAdd setContent:[_arrStatusData objectAtIndex:0] type:nStatus indexPath:indexPath tbv:_tabDynamicDetail];
                 
-                DragonUIImageView *imgSpLine = [[DragonUIImageView alloc] initWithFrame:CGRectMake(27, _cellAdd.frame.size.height-1, 266, 1) backgroundColor:[UIColor clearColor] image:[UIImage imageNamed:@"sepline2.png"] isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_cellAdd Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                MagicUIImageView *imgSpLine = [[MagicUIImageView alloc] initWithFrame:CGRectMake(27, _cellAdd.frame.size.height-1, 266, 1) backgroundColor:[UIColor clearColor] image:[UIImage imageNamed:@"sepline2.png"] isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_cellAdd Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                 
                 RELEASE(imgSpLine);
                 
@@ -1518,7 +1518,7 @@ static NSString *cellName = @"cellName";
                 DYBCellForDynamicStatus *_cellAdd = [[[DYBCellForDynamicStatus alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName] autorelease];
                 [_cellAdd setContent:[_arrStatusData objectAtIndex:0] type:nStatus indexPath:indexPath tbv:_tabDynamicDetail];
                 
-                DragonUIImageView *imgSpLine = [[DragonUIImageView alloc] initWithFrame:CGRectMake(27, _cellAdd.frame.size.height-1, 266, 1) backgroundColor:[UIColor clearColor] image:[UIImage imageNamed:@"sepline2.png"] isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_cellAdd Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                MagicUIImageView *imgSpLine = [[MagicUIImageView alloc] initWithFrame:CGRectMake(27, _cellAdd.frame.size.height-1, 266, 1) backgroundColor:[UIColor clearColor] image:[UIImage imageNamed:@"sepline2.png"] isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_cellAdd Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                 
                 RELEASE(imgSpLine);
                 
@@ -1594,13 +1594,13 @@ static NSString *cellName = @"cellName";
         RELEASE(_viewCommentBKG);
         
         UIImage *imgShadow  = [UIImage imageNamed:@"txtbox_shadow.png"];
-        DragonUIImageView *shadowLine = [[DragonUIImageView alloc] initWithFrame:CGRectMake(0, -3, CGRectGetWidth(self.view.frame), 3)];
+        MagicUIImageView *shadowLine = [[MagicUIImageView alloc] initWithFrame:CGRectMake(0, -3, CGRectGetWidth(self.view.frame), 3)];
         [shadowLine setBackgroundColor:[UIColor clearColor]];
         [shadowLine setImage:imgShadow];
         [_viewCommentBKG addSubview:shadowLine];
         RELEASE(shadowLine);
         
-        _txtViewComment = [[DragonUITextView alloc] initWithFrame:CGRectMake(50, CGRectGetHeight(self.view.frame)+7, 220, 36)];
+        _txtViewComment = [[MagicUITextView alloc] initWithFrame:CGRectMake(50, CGRectGetHeight(self.view.frame)+7, 220, 36)];
         [_txtViewComment setBackgroundColor:[UIColor whiteColor]];
         _txtViewComment.layer.masksToBounds=YES;
         _txtViewComment.layer.cornerRadius=3;
@@ -1617,7 +1617,7 @@ static NSString *cellName = @"cellName";
         _nRowCount = 1;
         
         UIImage *imgEmoji = [UIImage imageNamed:@"comment_face_def.png"];
-        DragonUIButton *btnEmoji = [[DragonUIButton alloc] initWithFrame:CGRectMake(0, 0, imgEmoji.size.width/2, imgEmoji.size.height/2)];
+        MagicUIButton *btnEmoji = [[MagicUIButton alloc] initWithFrame:CGRectMake(0, 0, imgEmoji.size.width/2, imgEmoji.size.height/2)];
         [btnEmoji setTag:914];
         [btnEmoji setBackgroundColor:[UIColor clearColor]];
         [btnEmoji setBackgroundImage:imgEmoji forState:UIControlStateNormal];
@@ -1628,7 +1628,7 @@ static NSString *cellName = @"cellName";
         
         UIImage *imgAT = [UIImage imageNamed:@"forward_at_def.png"];
         UIImage *imgATPress = [UIImage imageNamed:@"forward_at_press.png"];
-        DragonUIButton *btnAT = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(btnEmoji.frame), 0, imgAT.size.width/2, imgAT.size.height/2)];
+        MagicUIButton *btnAT = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(btnEmoji.frame), 0, imgAT.size.width/2, imgAT.size.height/2)];
         [btnAT setTag:915];
         [btnAT setBackgroundColor:[UIColor clearColor]];
         [btnAT setBackgroundImage:imgAT forState:UIControlStateNormal];
@@ -1641,7 +1641,7 @@ static NSString *cellName = @"cellName";
          
         UIImage *imgSend = [UIImage imageNamed:@"btn_quick_send.png"];
         UIImage *imgSendDis = [UIImage imageNamed:@"btn_quick_send_dis.png"];
-        DragonUIButton *btnSend = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_txtViewComment.frame), 0, imgSend.size.width/2, imgSend.size.height/2)];
+        MagicUIButton *btnSend = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_txtViewComment.frame), 0, imgSend.size.width/2, imgSend.size.height/2)];
         [btnSend setBackgroundColor:[UIColor clearColor]];
         [btnSend setTag:916];
         [btnSend setBackgroundImage:imgSend forState:UIControlStateNormal];
@@ -1659,8 +1659,8 @@ static NSString *cellName = @"cellName";
         }
     }
 
-    DragonUIButton *btnE = (DragonUIButton *)[_viewCommentBKG viewWithTag:914];
-    DragonUIButton *btnA = (DragonUIButton *)[_viewCommentBKG viewWithTag:915];
+    MagicUIButton *btnE = (MagicUIButton *)[_viewCommentBKG viewWithTag:914];
+    MagicUIButton *btnA = (MagicUIButton *)[_viewCommentBKG viewWithTag:915];
 
     if (!bComment) {
         [_txtViewComment setText:@""];
@@ -1682,7 +1682,7 @@ static NSString *cellName = @"cellName";
     [btnA setFrame:CGRectMake(CGRectGetMinX(btnA.frame), CGRectGetHeight(_viewCommentBKG.frame)-CGRectGetHeight(btnA.frame), CGRectGetWidth(btnA.frame), CGRectGetHeight(btnA.frame))];
     
     [_txtViewComment becomeFirstResponder];
-    [_txtViewComment sendViewSignal:[DragonUITextView TEXTVIEWDIDCHANGE]];
+    [_txtViewComment sendViewSignal:[MagicUITextView TEXTVIEWDIDCHANGE]];
 
 }
 
@@ -1706,7 +1706,7 @@ static NSString *cellName = @"cellName";
     [_txtViewComment setFrame:CGRectMake(CGRectGetMinX(_txtViewComment.frame), keyboardEndRect.origin.y-CGRectGetHeight(_viewCommentBKG.frame)-13, CGRectGetWidth(_txtViewComment.frame), CGRectGetHeight(_txtViewComment.frame))];
     
     if (keyboardEndRect.origin.y <  self.view.frame.size.height) {
-        DragonUIButton *btnE = (DragonUIButton *)[_viewCommentBKG viewWithTag:914];
+        MagicUIButton *btnE = (MagicUIButton *)[_viewCommentBKG viewWithTag:914];
         btnE.selected = NO;
 
         [UIView beginAnimations:nil context:nil];
@@ -1718,15 +1718,15 @@ static NSString *cellName = @"cellName";
 }
 
 #pragma mark- 只接受UITextView信号
-- (void)handleViewSignal_DragonUITextView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITextView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITextView TEXTVIEWSHOULDBEGINEDITING]])/*textViewShouldBeginEditing*/{
+    if ([signal is:[MagicUITextView TEXTVIEWSHOULDBEGINEDITING]])/*textViewShouldBeginEditing*/{
         
-    }else  if ([signal is:[DragonUITextView TEXTVIEWDIDBEGINEDITING]])/*textViewDidBeginEditing*/{
+    }else  if ([signal is:[MagicUITextView TEXTVIEWDIDBEGINEDITING]])/*textViewDidBeginEditing*/{
         
-    }else  if ([signal is:[DragonUITextView TEXT_OVERFLOW]])/*文字超长*/{
+    }else  if ([signal is:[MagicUITextView TEXT_OVERFLOW]])/*文字超长*/{
         
-    }else  if ([signal is:[DragonUITextView TEXTVIEW]])/*shouldChangeTextInRange*/{
+    }else  if ([signal is:[MagicUITextView TEXTVIEW]])/*shouldChangeTextInRange*/{
         NSMutableDictionary *muD = (NSMutableDictionary *)[signal object];
         NSString *emString=[muD objectForKey:@"text"];
         if ([emString isEqualToString:@"\n"]) {
@@ -1736,11 +1736,11 @@ static NSString *cellName = @"cellName";
             _btnMoreComment.selected = NO;
         }
         
-    }else  if ([signal is:[DragonUITextView TEXTVIEWDIDCHANGE]])/*textViewDidChange*/{
+    }else  if ([signal is:[MagicUITextView TEXTVIEWDIDCHANGE]])/*textViewDidChange*/{
         DLogInfo(@"change");
         
-        DragonUITextView *textView= signal.source;
-        DragonUIButton *btnS = (DragonUIButton *)[_viewCommentBKG viewWithTag:916];
+        MagicUITextView *textView= signal.source;
+        MagicUIButton *btnS = (MagicUIButton *)[_viewCommentBKG viewWithTag:916];
         
         NSString *_strContent = [textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         
@@ -1792,8 +1792,8 @@ static NSString *cellName = @"cellName";
             
             [UIView commitAnimations];
         
-            DragonUIButton *btnE = (DragonUIButton *)[_viewCommentBKG viewWithTag:914];
-            DragonUIButton *btnA = (DragonUIButton *)[_viewCommentBKG viewWithTag:915];
+            MagicUIButton *btnE = (MagicUIButton *)[_viewCommentBKG viewWithTag:914];
+            MagicUIButton *btnA = (MagicUIButton *)[_viewCommentBKG viewWithTag:915];
            
             
             [btnE setFrame:CGRectMake(CGRectGetMinX(btnE.frame), CGRectGetHeight(_viewCommentBKG.frame)-CGRectGetHeight(btnE.frame), CGRectGetWidth(btnE.frame), CGRectGetHeight(btnE.frame))];
@@ -1805,11 +1805,11 @@ static NSString *cellName = @"cellName";
         
         _nRowCount = colomNumber;
         
-    }else  if ([signal is:[DragonUITextView TEXTVIEWDIDCHANGESELECTION]])/*textViewDidChangeSelection*/{
+    }else  if ([signal is:[MagicUITextView TEXTVIEWDIDCHANGESELECTION]])/*textViewDidChangeSelection*/{
         
-    }else  if ([signal is:[DragonUITextView TEXTVIEWSHOULDENDEDITING]])/*textViewShouldEndEditing*/{
+    }else  if ([signal is:[MagicUITextView TEXTVIEWSHOULDENDEDITING]])/*textViewShouldEndEditing*/{
         
-    }else  if ([signal is:[DragonUITextView TEXTVIEWDIDENDEDITING]])/*textViewDidEndEditing*/{
+    }else  if ([signal is:[MagicUITextView TEXTVIEWDIDENDEDITING]])/*textViewDidEndEditing*/{
     }
 }
 
@@ -1831,7 +1831,7 @@ static NSString *cellName = @"cellName";
     NSRange ragne1 = NSMakeRange(range.location+beforeString.length, 0);
     _txtViewComment.selectedRange = ragne1;
     
-    [_txtViewComment sendViewSignal:[DragonUITextView TEXTVIEWDIDCHANGE]];
+    [_txtViewComment sendViewSignal:[MagicUITextView TEXTVIEWDIDCHANGE]];
 }
 
 //操作字符串
@@ -1940,7 +1940,7 @@ static NSString *cellName = @"cellName";
         [_txtViewComment setSelectedRange:range];
     }
 
-    [_txtViewComment sendViewSignal:[DragonUITextView TEXTVIEWDIDCHANGE]];
+    [_txtViewComment sendViewSignal:[MagicUITextView TEXTVIEWDIDCHANGE]];
     [_txtViewComment setContentOffset:CGPointMake(0,0) animated:YES];
 }
 

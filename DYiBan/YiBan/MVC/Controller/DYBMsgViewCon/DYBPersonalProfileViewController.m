@@ -9,7 +9,7 @@
 #import "DYBPersonalProfileViewController.h"
 #import "UITableView+property.h"
 #import "DYBCellForPersonalProfile.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "user.h"
 #import "DYBPagePickerView.h"
 #import "PagePickerModel.h"
@@ -17,7 +17,7 @@
 #import "school_list_all.h"
 #import "NSDictionary+JSON.h"
 #import "RegexKitLite.h"
-#import "Dragon_CommentMethod.h"
+#import "Magic_CommentMethod.h"
 #import "DYBForgetPassWordViewController.h"
 #import "DYBContributionValueViewController.h"
 #import "UILabel+ReSize.h"
@@ -35,15 +35,15 @@
 @synthesize model=_model;
 
 #pragma mark- ViewController信号
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
     [super handleViewSignal:signal];
     
-    if ([signal is:DragonViewController.CREATE_VIEWS]) {
+    if ([signal is:MagicViewController.CREATE_VIEWS]) {
         
         //        {//HTTP请求
         //            [self.view setUserInteractionEnabled:NO];
-        //            DragonRequest *request = [DYBHttpMethod user_perguest:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
+        //            MagicRequest *request = [DYBHttpMethod user_perguest:[_d_model objectForKey:@"userid"] isAlert:YES receive:self];
         //            [request setTag:1];
         //
         //            if (!request) {//无网路
@@ -52,7 +52,7 @@
         //        }
         [self creatTbv];
         
-    }else if ([signal is:DragonViewController.WILL_APPEAR]){
+    }else if ([signal is:MagicViewController.WILL_APPEAR]){
         [self.headview setTitle:@"个人资料"];
         [self backImgType:0];
         
@@ -73,17 +73,17 @@
 //        [_tbv reloadData];
         
         
-    }else if ([signal is:DragonViewController.DID_DISAPPEAR]){
+    }else if ([signal is:MagicViewController.DID_DISAPPEAR]){
         //        RELEASEVIEW(_tbv);//界面不显示时彻底释放TBV,已释放cell
         
-    }else if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    }else if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         
-    }else if ([signal is:[DragonViewController FREE_DATAS]])//dealloc时回调,先释放数据
+    }else if ([signal is:[MagicViewController FREE_DATAS]])//dealloc时回调,先释放数据
     {
         [_tbv releaseDataResource];
         
-    }else if ([signal is:[DragonViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
+    }else if ([signal is:[MagicViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
         
         [_tbv release_muA_differHeightCellView];
 
@@ -96,7 +96,7 @@
 #pragma mark- creatTbv
 -(void)creatTbv{
     if (!_tbv) {
-        _tbv = [[DragonUITableView alloc] initWithFrame:CGRectMake(0, self.headHeight, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-self.headHeight-kH_StateBar) isNeedUpdate:YES];
+        _tbv = [[MagicUITableView alloc] initWithFrame:CGRectMake(0, self.headHeight, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-self.headHeight-kH_StateBar) isNeedUpdate:YES];
         _tbv._cellH=50;
         _tbv.backgroundColor=/*[UIColor colorWithRed:248 green:248 blue:255 alpha:1]*/ [UIColor clearColor];//248 248 255
         _tbv.tag=-1;
@@ -129,9 +129,9 @@
 
 static NSString *cellName = @"cellName";//
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -147,7 +147,7 @@ static NSString *cellName = @"cellName";//
             [signal setReturnValue:s];
         }
         
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
 //        NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -162,7 +162,7 @@ static NSString *cellName = @"cellName";//
         }
         
     }
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -213,7 +213,7 @@ static NSString *cellName = @"cellName";//
         }
         
     }
-    else if ([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -226,7 +226,7 @@ static NSString *cellName = @"cellName";//
         }
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -237,7 +237,7 @@ static NSString *cellName = @"cellName";//
         }
         
     }//
-    else if ([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -245,7 +245,7 @@ static NSString *cellName = @"cellName";//
         [signal setReturnValue:[NSNumber numberWithFloat:((tableView.muA_allSectionKeys.count==0/*一个section模式*/)?(0):(50))]];
         
     }
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell  只返回显示的cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell  只返回显示的cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -262,7 +262,7 @@ static NSString *cellName = @"cellName";//
         
         [signal setReturnValue:cell];
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableview = [dict objectForKey:@"tableView"];
@@ -296,21 +296,21 @@ static NSString *cellName = @"cellName";//
         
         
     }
-    else if ([signal is:[DragonUITableView TAbLEVIEWLODATA]])//加载更多
+    else if ([signal is:[MagicUITableView TAbLEVIEWLODATA]])//加载更多
     {
-//        DragonUITableView *tableView = (DragonUITableView *)[signal source];
+//        MagicUITableView *tableView = (MagicUITableView *)[signal source];
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]])//刷新
+    else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]])//刷新
     {
         
-//        DragonUITableView *tableView = (DragonUITableView *)[signal source];
+//        MagicUITableView *tableView = (MagicUITableView *)[signal source];
         
         [_tbv reloadData:YES];
         
     }
     
-    else if ([signal is:[DragonUITableView TABLESECTIONINDEXTITLESFORTABLEVIEW]])//右侧索引列表
+    else if ([signal is:[MagicUITableView TABLESECTIONINDEXTITLESFORTABLEVIEW]])//右侧索引列表
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableView = [dict objectForKey:@"tableView"];
@@ -318,7 +318,7 @@ static NSString *cellName = @"cellName";//
         if (![tableView isOneSection]) {/*多个section模式*/
 //            [signal setReturnValue:tableView.muA_allSectionKeys];
         }
-    }else if ([signal is:[DragonUITableView TABLESECTIONFORSECTIONINDEXTITLE]])//点击右测是索引列表上的某个字母时回调,参数index和title是 右侧索引列表上被点击的字母在 索引列表的下标和名字,返回被点击的字母对应的section的下标
+    }else if ([signal is:[MagicUITableView TABLESECTIONFORSECTIONINDEXTITLE]])//点击右测是索引列表上的某个字母时回调,参数index和title是 右侧索引列表上被点击的字母在 索引列表的下标和名字,返回被点击的字母对应的section的下标
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableview = [dict objectForKey:@"tableView"];
@@ -337,14 +337,14 @@ static NSString *cellName = @"cellName";//
             }
             count ++;
         }
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLUP]]){//上滑
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLUP]]){//上滑
         
         [self cancelPagePicker];
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLDOWN]]){//下滑
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLDOWN]]){//下滑
         
         [self cancelPagePicker];
     }
-    else if ([signal is:[DragonUITableView TAbLEVIERETOUCH]]){//点击事件
+    else if ([signal is:[MagicUITableView TAbLEVIERETOUCH]]){//点击事件
         
         [self cancelPagePicker];
     }
@@ -365,23 +365,23 @@ static NSString *cellName = @"cellName";//
 }
 
 #pragma mark- 创建sectionHeaderView
--(void)createSectionHeaderView:(DragonViewSignal *)signal
+-(void)createSectionHeaderView:(MagicViewSignal *)signal
 {
     NSDictionary *dict = (NSDictionary *)[signal object];
     UITableView *tableView = [dict objectForKey:@"tableView"];
     NSInteger section = [[dict objectForKey:@"section"] integerValue];
     
     UIView *v=[[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
-    v.backgroundColor=[DragonCommentMethod color:255 green:255 blue:255 alpha:1];
+    v.backgroundColor=[MagicCommentMethod color:255 green:255 blue:255 alpha:1];
     
     {
-        DragonUILabel *lb_title=[[DragonUILabel alloc]initWithFrame:CGRectMake(25,0, 0, 0)];
+        MagicUILabel *lb_title=[[MagicUILabel alloc]initWithFrame:CGRectMake(25,0, 0, 0)];
         lb_title.backgroundColor=[UIColor clearColor];
         lb_title.textAlignment=NSTextAlignmentLeft;
         lb_title.font=[DYBShareinstaceDelegate DYBFoutStyle:18];
         lb_title.text=[_tbv.muA_allSectionKeys objectAtIndex:section];
         [lb_title setNeedCoretext:NO];
-        lb_title.textColor=[DragonCommentMethod color:51 green:51 blue:51 alpha:1];
+        lb_title.textColor=[MagicCommentMethod color:51 green:51 blue:51 alpha:1];
         lb_title.numberOfLines=1;
         lb_title.lineBreakMode=NSLineBreakByCharWrapping;
         [lb_title sizeToFitByconstrainedSize:CGSizeMake(screenShows.size.width-20, 100)];
@@ -397,19 +397,19 @@ static NSString *cellName = @"cellName";//
 }
 
 #pragma mark- UITextField
-- (void)handleViewSignal_DragonUITextField:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITextField:(MagicViewSignal *)signal
 {
-    if ([signal.source isKindOfClass:[DragonUITextField class]])//完成编辑
+    if ([signal.source isKindOfClass:[MagicUITextField class]])//完成编辑
     {
-        DragonUITextField *textField = [signal source];
+        MagicUITextField *textField = [signal source];
         
-        if ([signal is:[DragonUITextField TEXTFIELDDIDENDEDITING]])
+        if ([signal is:[MagicUITextField TEXTFIELDDIDENDEDITING]])
         {
             
             
-        }else if ([signal is:[DragonUITextField TEXTFIELD]])
+        }else if ([signal is:[MagicUITextField TEXTFIELD]])
         {
-        }else if ([signal is:[DragonUITextField TEXTFIELDSHOULDRETURN]])
+        }else if ([signal is:[MagicUITextField TEXTFIELDSHOULDRETURN]])
         {
             NSString *rex = @"[ ,，\\`,\\｀,\\~,\\～,\\!,\\！,\\@,\\@,\\#,\\＃,\\$,\\¥,\\%,\\％,\\^,\\⋯⋯,\\+,\\＋,\\*,\\＊,\\&,\\—,\\\\,\\、,\\/,\\／,\\?,\\？,\\|,\\｜,\\:,\\：,\\.,\\。,\\<,\\《,\\>,\\》,\\{,\\｛,\\},\\｝,\\(,\\（,\\),\\）,\\',\\‘,\\;,\\；,\\「,\\」,\\=,\\＝,\"]";
             BOOL isHaveSomg = [[nickTextField text] isMatchedByRegex:rex];
@@ -419,7 +419,7 @@ static NSString *cellName = @"cellName";//
                 [DYBShareinstaceDelegate loadFinishAlertView:@"昵称不能含有特殊字符" target:self showTime:1.f];
             }else {
                 
-                NSInteger length = [DragonCommentMethod convertToInt:[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+                NSInteger length = [MagicCommentMethod convertToInt:[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
                 
                 if (length > 16) {
                     [nickTextField setText:[_model name]];
@@ -430,7 +430,7 @@ static NSString *cellName = @"cellName";//
                 }else{
                     if (![_model.name isEqualToString:[textField text]]) {
                         //修改昵称
-                        DragonRequest *request = [DYBHttpMethod user_setnick:nickTextField.text isAlert:YES receive:self];
+                        MagicRequest *request = [DYBHttpMethod user_setnick:nickTextField.text isAlert:YES receive:self];
                         [request setTag:2];
                         [textField resignFirstResponder];
                         
@@ -454,18 +454,18 @@ static NSString *cellName = @"cellName";//
 }
 
 //drangonuibutton  点击事件
-- (void)handleViewSignal_DragonUIButton:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUIButton:(MagicViewSignal *)signal
 {
     
     NSDictionary *dict = (NSDictionary *)[signal object];
     nickTextField = [dict objectForKey:@"textfeild"];
     
-    DragonUIButton *btn = signal.source;
+    MagicUIButton *btn = signal.source;
     
     if (pickerView) {
         RELEASEVIEW(pickerView);
     }
-    if ([signal is:[DragonUIButton TOUCH_UP_INSIDE]]) {
+    if ([signal is:[MagicUIButton TOUCH_UP_INSIDE]]) {
         
         //修改昵称
         if (btn.tag == 02) {
@@ -505,7 +505,7 @@ static NSString *cellName = @"cellName";//
         //修改学院
         if (btn.tag == 12) {
             
-            DragonRequest *request = [DYBHttpMethod school_collegelist:@"123" isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod school_collegelist:@"123" isAlert:YES receive:self];
             [request setTag:-1];
             pickerView = [[DYBPagePickerView alloc] initWithdelegate:CGRectMake(0, 50, 320, 200) style:PagePickerViewWithCollege delegate:self];
             
@@ -595,7 +595,7 @@ static NSString *cellName = @"cellName";//
 }
 
 #pragma mark- 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -703,13 +703,13 @@ static NSString *cellName = @"cellName";//
                 [DYBShareinstaceDelegate loadFinishAlertView:@"入学年份早于生日年份，请重新选择" target:self showTime:1.f];
             }else
             {
-                DragonRequest *request = [DYBHttpMethod user_setbase:value type:type isAlert:YES receive:self];
+                MagicRequest *request = [DYBHttpMethod user_setbase:value type:type isAlert:YES receive:self];
                 [request setTag:[tag intValue]];
             }
         }
     }else
     {
-        DragonRequest *request = [DYBHttpMethod user_setbase:value type:type isAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod user_setbase:value type:type isAlert:YES receive:self];
         [request setTag:[tag intValue]];
     }
    
@@ -720,7 +720,7 @@ static NSString *cellName = @"cellName";//
 //修改个人隐私
 - (void)changePrivate:(NSString *)value type:(NSInteger)type tag:(NSString *)tag{
     
-    DragonRequest *request = [DYBHttpMethod user_setdesc:value type:type isAlert:YES receive:self];
+    MagicRequest *request = [DYBHttpMethod user_setdesc:value type:type isAlert:YES receive:self];
     [request setTag:[tag intValue]];
     
     
@@ -749,7 +749,7 @@ static NSString *cellName = @"cellName";//
 
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     
     if ([request succeed])

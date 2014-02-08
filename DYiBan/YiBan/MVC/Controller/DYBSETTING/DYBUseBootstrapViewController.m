@@ -8,10 +8,10 @@
 
 #import "DYBUseBootstrapViewController.h"
 #import "UIView+Gesture.h"
-#import "Dragon_Device.h"
+#import "Magic_Device.h"
 @interface DYBUseBootstrapViewController () {
     
-    DragonUIScrollView *scroll;
+    MagicUIScrollView *scroll;
 }
 
 @end
@@ -19,9 +19,9 @@
 @implementation DYBUseBootstrapViewController
 @synthesize type = _type;
 
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.rightButton setHidden:YES];
         [self.headview setTitle:@"使用引导"];
@@ -29,7 +29,7 @@
 //        self.headview.hidden = YES;
         
         
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         
         NSArray *imageArray = nil;
@@ -38,7 +38,7 @@
         if (_type == 2)
         {
             count = 5;
-            if ([DragonDevice boundSizeType] == 1)
+            if ([MagicDevice boundSizeType] == 1)
             {
                 imageArray = @[@"noteteaching01_ip5",@"noteteaching02_ip5",@"noteteaching03_ip5",@"noteteaching04_ip5",@"noteteaching05_ip5"];
             }else
@@ -47,7 +47,7 @@
             }
         }else
         {
-            if ([DragonDevice boundSizeType] == 1)
+            if ([MagicDevice boundSizeType] == 1)
             {
                 imageArray = @[@"databasehelp1-568h@2x",@"databasehelp2-568h@2x",@"databasehelp3-568h@2x",@"databasehelp4-568h@2x",@"databasehelp5-568h@2x",@"databasehelp6-568h@2x"];
             }else
@@ -58,7 +58,7 @@
         
         
         
-        scroll = [[DragonUIScrollView alloc]initWithFrame:CGRectMake(0, 0,CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-20)];
+        scroll = [[MagicUIScrollView alloc]initWithFrame:CGRectMake(0, 0,CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-20)];
         scroll.tag = 1;
         scroll.pagingEnabled = YES;
         [self.view addSubview:scroll];
@@ -70,7 +70,7 @@
         
         for (int i = 0; i < count; i++) {
             
-            DragonUIImageView *imv = [[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)*i, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-20)];
+            MagicUIImageView *imv = [[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)*i, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-20)];
             UIImage *image = [UIImage imageNamed:[imageArray objectAtIndex:i]];
             [imv setImage:image];
             [scroll addSubview:imv];
@@ -94,9 +94,9 @@
     
 }
 
-- (void)handleViewSignal_DragonUIScrollView:(DragonViewSignal *)signal {
+- (void)handleViewSignal_MagicUIScrollView:(MagicViewSignal *)signal {
     
-    if ([signal is:[DragonUIScrollView SCROLLVIEWDIDSCROLL]])/*numberOfRowsInSection*/{
+    if ([signal is:[MagicUIScrollView SCROLLVIEWDIDSCROLL]])/*numberOfRowsInSection*/{
         
         self.headview.hidden = YES;
         scroll.tag = 1;

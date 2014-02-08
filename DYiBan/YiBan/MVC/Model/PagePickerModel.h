@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PagePickerModel : DragonJSONReflection
+@interface PagePickerModel : MagicJSONReflection
 {
 
 }

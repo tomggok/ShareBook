@@ -10,8 +10,8 @@
 #import "tag_list.h"
 
 @interface DYBListSelViewController : DYBBaseViewController{
-    DragonUITableView *_tabTagManage;
-    DragonUILabel *_lbTagCount;
+    MagicUITableView *_tabTagManage;
+    MagicUILabel *_lbTagCount;
     tag_list *_Tlist;
     UIScrollView *_viewSelBKG;
     

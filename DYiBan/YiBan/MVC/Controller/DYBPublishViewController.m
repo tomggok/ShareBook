@@ -13,11 +13,11 @@
 #import "DYBCheckImageViewController.h"
 #import "DYBATViewController.h"
 #import "XiTongFaceCode.h"
-#import "UIViewController+DragonViewSignal.h"
-#import "UIImage+DragonCategory.h"
+#import "UIViewController+MagicViewSignal.h"
+#import "UIImage+MagicCategory.h"
 #import "DYBDynamicViewController.h"
 #import "DYBDataBankSelectBtn.h"
-#import "UIViewController+DragonCategory.h"
+#import "UIViewController+MagicCategory.h"
 #import "NSObject+KVO.h"
 #import "DYBPersonalHomePageViewController.h"
 #import "DYBGuideView.h"
@@ -62,9 +62,9 @@ DEF_SIGNAL(SELECTATLIST)
 }
 
 #pragma mark- ViewController信号
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]]){
+    if ([signal is:[MagicViewController WILL_APPEAR]]){
         [self.headview setTitle:@"发动态"];
         [self backImgType:0];
         [self backImgType:6];
@@ -93,7 +93,7 @@ DEF_SIGNAL(SELECTATLIST)
             }
         }
   
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]]){
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]]){
         _sync_tag = [SHARED.curUser.sync_tag intValue];
         _arrMenu = [[NSArray alloc] initWithArray:@[@"", @"   公开", @"   好友可见", @"   班级可见"]];
         _arrSelPic = [[NSMutableArray alloc] initWithCapacity:6];
@@ -104,8 +104,8 @@ DEF_SIGNAL(SELECTATLIST)
         
         [self observeNotification:[DYBPhotoEditorView DOSAVEIMAGE]];
         //键盘消息
-        [self observeNotification:[DragonUIKeyboard SHOWN]];
-        [self observeNotification:[DragonUIKeyboard HIDDEN]];
+        [self observeNotification:[MagicUIKeyboard SHOWN]];
+        [self observeNotification:[MagicUIKeyboard HIDDEN]];
     }
 }
 
@@ -143,7 +143,7 @@ DEF_SIGNAL(SELECTATLIST)
     [viewBKG addSubview:viewBKGWhite];
     RELEASE(viewBKGWhite);
     
-    _txtViewPublish = [[DragonUITextView alloc] initWithFrame:CGRectMake(0, 0, 288, 58)];
+    _txtViewPublish = [[MagicUITextView alloc] initWithFrame:CGRectMake(0, 0, 288, 58)];
     [_txtViewPublish setTextColor:ColorBlack];
     [_txtViewPublish setFont:[DYBShareinstaceDelegate DYBFoutStyle:16]];
     [_txtViewPublish setBackgroundColor:[UIColor clearColor]];
@@ -157,7 +157,7 @@ DEF_SIGNAL(SELECTATLIST)
     }
 
     UIImage *imgAt = [UIImage imageNamed:@"btn_at_nor.png"];
-    _btnSelAt = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(viewBKGWhite.frame)-imgAt.size.width/2, CGRectGetHeight(viewBKGWhite.frame)-imgAt.size.height/2, imgAt.size.width/2, imgAt.size.height/2)];
+    _btnSelAt = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(viewBKGWhite.frame)-imgAt.size.width/2, CGRectGetHeight(viewBKGWhite.frame)-imgAt.size.height/2, imgAt.size.width/2, imgAt.size.height/2)];
     [_btnSelAt setBackgroundColor:[UIColor clearColor]];
     [_btnSelAt setBackgroundImage:imgAt forState:UIControlStateNormal];
     [_btnSelAt addSignal:[DYBPublishViewController SELECTAT] forControlEvents:UIControlEventTouchUpInside];
@@ -165,7 +165,7 @@ DEF_SIGNAL(SELECTATLIST)
     RELEASE(_btnSelAt);
     
     UIImage *imgEmoji = [UIImage imageNamed:@"btn_emoji_nor.png"];
-    _btnSelEmoji = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(_btnSelAt.frame)-imgEmoji.size.height/2, CGRectGetMinY(_btnSelAt.frame), imgEmoji.size.width/2, imgEmoji.size.height/2)];
+    _btnSelEmoji = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(_btnSelAt.frame)-imgEmoji.size.height/2, CGRectGetMinY(_btnSelAt.frame), imgEmoji.size.width/2, imgEmoji.size.height/2)];
     [_btnSelEmoji setBackgroundColor:[UIColor clearColor]];
     [_btnSelEmoji setBackgroundImage:imgEmoji forState:UIControlStateNormal];
     [_btnSelEmoji addSignal:[DYBPublishViewController SELECTEMOJI] forControlEvents:UIControlEventTouchUpInside];
@@ -173,7 +173,7 @@ DEF_SIGNAL(SELECTATLIST)
     [_btnSelEmoji setSelected:NO];
     RELEASE(_btnSelEmoji);
     
-    _textCount = [[DragonUILabel alloc] initWithFrame:CGRectMake(10, CGRectGetHeight(viewBKGWhite.frame)-21, 70, 25)];
+    _textCount = [[MagicUILabel alloc] initWithFrame:CGRectMake(10, CGRectGetHeight(viewBKGWhite.frame)-21, 70, 25)];
     [_textCount setBackgroundColor:[UIColor clearColor]];
     [_textCount setFont:[DYBShareinstaceDelegate DYBFoutStyle:13]];
     [_textCount setTextColor:ColorTextCount];
@@ -198,7 +198,7 @@ DEF_SIGNAL(SELECTATLIST)
     }
 
     UIImage *imgSel = [UIImage imageNamed:@"btn_imgSelect_nor"];
-    _btnSelImage = [[DragonUIButton alloc] initWithFrame:CGRectMake(6, 7, 50, 50)];
+    _btnSelImage = [[MagicUIButton alloc] initWithFrame:CGRectMake(6, 7, 50, 50)];
     [_btnSelImage setBackgroundColor:[UIColor clearColor]];
     [_btnSelImage setBackgroundImage:imgSel forState:UIControlStateNormal];
     [_btnSelImage addSignal:[DYBPublishViewController SELECTIMAGE] forControlEvents:UIControlEventTouchUpInside];
@@ -212,7 +212,7 @@ DEF_SIGNAL(SELECTATLIST)
     }
     
     if (!_bActive) {
-        _btnLocation = [[DragonUIButton alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(_viewPicBKG.frame)+10, 140, 45)];
+        _btnLocation = [[MagicUIButton alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(_viewPicBKG.frame)+10, 140, 45)];
         [_btnLocation setBackgroundColor:[UIColor clearColor]];
         [_btnLocation setBackgroundImage:[UIImage imageNamed:@"btn_locate_off.png"] forState:UIControlStateNormal];
         [_btnLocation setBackgroundImage:[UIImage imageNamed:@"btn_locate_on.png"] forState:UIControlStateSelected];
@@ -228,7 +228,7 @@ DEF_SIGNAL(SELECTATLIST)
         [self.view addSubview:_btnLocation];
         RELEASE(_btnLocation);
         
-        _btnPrivate = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_btnLocation.frame)+10, CGRectGetMinY(_btnLocation.frame), 140, 45)];
+        _btnPrivate = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_btnLocation.frame)+10, CGRectGetMinY(_btnLocation.frame), 140, 45)];
         [_btnPrivate setBackgroundColor:[UIColor clearColor]];
         [_btnPrivate setBackgroundImage:[UIImage imageNamed:@"btn_private_normal.png"] forState:UIControlStateNormal];
         [_btnPrivate setTitleFont:[DYBShareinstaceDelegate DYBFoutStyle:18]];
@@ -247,7 +247,7 @@ DEF_SIGNAL(SELECTATLIST)
             [_btnPrivate setTitle:[_arrMenu objectAtIndex:1] forState:UIControlStateNormal];
         }
         
-        _btnShareRenRen = [[DragonUIButton alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(_btnLocation.frame)+20, 30, 30)];
+        _btnShareRenRen = [[MagicUIButton alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(_btnLocation.frame)+20, 30, 30)];
         [_btnShareRenRen setBackgroundColor:[UIColor clearColor]];
         [_btnShareRenRen setBackgroundImage:[UIImage imageNamed:@"btn_renren_off.png"] forState:UIControlStateNormal];
         [_btnShareRenRen setBackgroundImage:[UIImage imageNamed:@"btn_renren_on.png"] forState:UIControlStateSelected];
@@ -255,7 +255,7 @@ DEF_SIGNAL(SELECTATLIST)
         [self.view addSubview:_btnShareRenRen];
         RELEASE(_btnShareRenRen);
         
-        _btnShareTencent = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_btnShareRenRen.frame)+15, CGRectGetMinY(_btnShareRenRen.frame), 30, 30)];
+        _btnShareTencent = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_btnShareRenRen.frame)+15, CGRectGetMinY(_btnShareRenRen.frame), 30, 30)];
         [_btnShareTencent setBackgroundColor:[UIColor clearColor]];
         [_btnShareTencent setBackgroundImage:[UIImage imageNamed:@"btn_tencent_off.png"] forState:UIControlStateNormal];
         [_btnShareTencent setBackgroundImage:[UIImage imageNamed:@"btn_tencent_on.png"] forState:UIControlStateSelected];
@@ -276,7 +276,7 @@ DEF_SIGNAL(SELECTATLIST)
                 break;
         }
     }else{
-        [_txtViewPublish sendViewSignal:[DragonUITextView TEXTVIEWDIDCHANGE]];
+        [_txtViewPublish sendViewSignal:[MagicUITextView TEXTVIEWDIDCHANGE]];
     }
 }
 
@@ -294,7 +294,7 @@ DEF_SIGNAL(SELECTATLIST)
 
 
 #pragma mark - 返回Button处理
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
         
@@ -330,13 +330,13 @@ DEF_SIGNAL(SELECTATLIST)
         if (_bActive) {
             dict = [DYBHttpInterface active_addfeed:_strContent active_id:_strActiveid];
         }else{
-            DragonUIButton *bt = [signal source];
+            MagicUIButton *bt = [signal source];
             [bt setNetClickOne];
             dict = [DYBHttpInterface status_add_content:_strContent add_notice:@"0" sync_tag:_sync_tag refuse:[self GetDynamicPrivateStatus] at_eclass:@"" address:strAdd];
         }
 
         DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
-        DragonRequest *dre = [request DYBPOSTIMG:dict isAlert:YES receive:self imageData:_arrIMGData];
+        MagicRequest *dre = [request DYBPOSTIMG:dict isAlert:YES receive:self imageData:_arrIMGData];
         dre.tag =  -1;
         
         RELEASEDICTARRAYOBJ(_arrIMGData);
@@ -347,7 +347,7 @@ DEF_SIGNAL(SELECTATLIST)
             [DYBShareinstaceDelegate addConfirmViewTitle:@"提示" MSG:@"是否放弃发布动态？" targetView:APPDELEGATE.window targetObj:self btnType:BTNTAG_DEL rowNum:@"1"];
         }else{
             [self.drNavigationController popVCAnimated:YES];
-            [self sendViewSignal:[DragonViewController VCBACKSUCCESS]];
+            [self sendViewSignal:[MagicViewController VCBACKSUCCESS]];
         }
     }
     
@@ -396,7 +396,7 @@ DEF_SIGNAL(SELECTATLIST)
     return strConvert;
 }
 
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj{
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj{
     if ([request succeed]){
         if (request.tag == -1){/*发送动态*/
             JsonResponse *respose =(JsonResponse *)receiveObj;
@@ -417,7 +417,7 @@ DEF_SIGNAL(SELECTATLIST)
                 [self postNotification:[UIViewController AutoRefreshTbvInViewWillAppear] withObject:Nil userInfo:Nil];
                 
                 [self.drNavigationController popVCAnimated:YES];
-//                [self sendViewSignal:[DragonViewController VCBACKSUCCESS]];
+//                [self sendViewSignal:[MagicViewController VCBACKSUCCESS]];
                 
             }
         }else if (request.tag == -3){
@@ -478,7 +478,7 @@ DEF_SIGNAL(SELECTATLIST)
         
         if ([_arrSelPic count] < 7) {
             int nIndex = [_arrSelPic count] -1;
-            DragonUIButton *btnPic = [[DragonUIButton alloc] initWithFrame:CGRectMake(7+nIndex*57, 7, 50, 50)];
+            MagicUIButton *btnPic = [[MagicUIButton alloc] initWithFrame:CGRectMake(7+nIndex*57, 7, 50, 50)];
             [btnPic setBackgroundColor:[UIColor clearColor]];
             [btnPic setImage:[UIImage imageWithData:imageData] forState:UIControlStateNormal];
             [btnPic setContentMode:UIViewContentModeScaleToFill];
@@ -502,16 +502,16 @@ DEF_SIGNAL(SELECTATLIST)
         
         [self.rightButton setEnabled:YES];
         
-    }else if([notification is:[DragonUIKeyboard SHOWN]]){
+    }else if([notification is:[MagicUIKeyboard SHOWN]]){
         
         if (_btnSelEmoji.selected == YES) {
             [self sendViewSignal:[DYBPublishViewController SELECTEMOJI]];
         }
         [self setVCBackAnimation:SWIPELASTIMAGEBACKTYPE canBackPageNumber:0];
-    }else if ([notification is:[DragonUIKeyboard HIDDEN]])
+    }else if ([notification is:[MagicUIKeyboard HIDDEN]])
     {
         [self setVCBackAnimation:SWIPELASTIMAGEBACKTYPE canBackPageNumber:2];
-    }else if ([notification is:[DragonUIKeyboard HEIGHT_CHANGED]]){
+    }else if ([notification is:[MagicUIKeyboard HEIGHT_CHANGED]]){
         if (_btnSelEmoji.selected == YES) {
             [self sendViewSignal:[DYBPublishViewController SELECTEMOJI]];
         }
@@ -543,7 +543,7 @@ DEF_SIGNAL(SELECTATLIST)
 }
 
 
--(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
     if ([signal is:[DYBDataBankShotView RIGHT]]) {
         NSDictionary *dicType = (NSDictionary *)[signal object];
         NSString *strType = [dicType objectForKey:@"type"];
@@ -551,7 +551,7 @@ DEF_SIGNAL(SELECTATLIST)
         
         if (row == 1) {
             [self.drNavigationController popVCAnimated:YES];
-            [self sendViewSignal:[DragonViewController VCBACKSUCCESS]];
+            [self sendViewSignal:[MagicViewController VCBACKSUCCESS]];
         }else if ([strType intValue] == BTNTAG_DEL){
             [self DYB_DelSNSSync:_sync_btn];
         }
@@ -560,7 +560,7 @@ DEF_SIGNAL(SELECTATLIST)
 
 
 - (void)DYB_DelSNSSync:(NSInteger)nType{
-    DragonRequest *request = [DYBHttpMethod user_delsync_m:[NSString stringWithFormat:@"%d",nType] isAlert:YES receive:self];
+    MagicRequest *request = [DYBHttpMethod user_delsync_m:[NSString stringWithFormat:@"%d",nType] isAlert:YES receive:self];
     if (nType == 2) {
         request.tag = -3;
     }else{
@@ -571,7 +571,7 @@ DEF_SIGNAL(SELECTATLIST)
 
 
 #pragma mark- 接受其他信号
-- (void)handleViewSignal_DYBPublishViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBPublishViewController:(MagicViewSignal *)signal
 {
     [self hideKeyBoard];
     
@@ -683,7 +683,7 @@ DEF_SIGNAL(SELECTATLIST)
         RELEASE(actionView);
         
     }else if ([signal is:[DYBPublishViewController SHOWIMAGE]]){
-        DragonUIButton *bt = (DragonUIButton *)signal.source;
+        MagicUIButton *bt = (MagicUIButton *)signal.source;
         
         int nindex = (bt.frame.origin.x-7)/57;
         
@@ -694,15 +694,15 @@ DEF_SIGNAL(SELECTATLIST)
         UIImage *img = (UIImage *)[signal object];
         [_arrSelPic removeObject:img];
         
-        for (DragonUIButton *btn in [_viewPicBKG subviews]) {
-            if ([btn isKindOfClass:[DragonUIButton class]] && btn != _btnSelImage) {
+        for (MagicUIButton *btn in [_viewPicBKG subviews]) {
+            if ([btn isKindOfClass:[MagicUIButton class]] && btn != _btnSelImage) {
                 [btn removeFromSuperview];
             }
         }
 
         for (int i = 0; i < [_arrSelPic count]; i++) {
             UIImage *imgSel = (UIImage *)[_arrSelPic objectAtIndex:i];
-            DragonUIButton *btnPic = [[DragonUIButton alloc] initWithFrame:CGRectMake(7+i*57, 7, 50, 50)];
+            MagicUIButton *btnPic = [[MagicUIButton alloc] initWithFrame:CGRectMake(7+i*57, 7, 50, 50)];
             [btnPic setBackgroundColor:[UIColor clearColor]];
             [btnPic setImage:imgSel forState:UIControlStateNormal];
             [btnPic setContentMode:UIViewContentModeScaleToFill];
@@ -731,7 +731,7 @@ DEF_SIGNAL(SELECTATLIST)
             RELEASE(_viewFace);
             
             UIImage *imgShadowLine = [UIImage imageNamed:@"line_padshadow"];
-            DragonUIImageView *viewShadowLine = [[DragonUIImageView alloc] initWithFrame:CGRectMake(0, -3, imgShadowLine.size.width/2, imgShadowLine.size.height/2)];
+            MagicUIImageView *viewShadowLine = [[MagicUIImageView alloc] initWithFrame:CGRectMake(0, -3, imgShadowLine.size.width/2, imgShadowLine.size.height/2)];
             [viewShadowLine setImage:imgShadowLine];
             [viewShadowLine setBackgroundColor:[UIColor clearColor]];
             [_viewFace addSubview:viewShadowLine];
@@ -790,7 +790,7 @@ DEF_SIGNAL(SELECTATLIST)
         NSRange ragne1 = NSMakeRange(range.location+beforeString.length, 0);
         _txtViewPublish.selectedRange = ragne1;
         
-        [_txtViewPublish sendViewSignal:[DragonUITextView TEXTVIEWDIDCHANGE]];
+        [_txtViewPublish sendViewSignal:[MagicUITextView TEXTVIEWDIDCHANGE]];
     }
 }
 
@@ -856,7 +856,7 @@ DEF_SIGNAL(SELECTATLIST)
                 
                 if ([_arrSelPic count] < 7) {
                     int nIndex = [_arrSelPic count] -1;
-                    DragonUIButton *btnPic = [[DragonUIButton alloc] initWithFrame:CGRectMake(7+nIndex*57, 7, 50, 50)];
+                    MagicUIButton *btnPic = [[MagicUIButton alloc] initWithFrame:CGRectMake(7+nIndex*57, 7, 50, 50)];
                     [btnPic setBackgroundColor:[UIColor clearColor]];
                     [btnPic setImage:[UIImage imageWithData:imageData] forState:UIControlStateNormal];
                     [btnPic setContentMode:UIViewContentModeScaleToFill];
@@ -939,15 +939,15 @@ DEF_SIGNAL(SELECTATLIST)
 }
 
 #pragma mark- 只接受UITextView信号
-- (void)handleViewSignal_DragonUITextView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITextView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITextView TEXTVIEWSHOULDBEGINEDITING]])/*textViewShouldBeginEditing*/{
+    if ([signal is:[MagicUITextView TEXTVIEWSHOULDBEGINEDITING]])/*textViewShouldBeginEditing*/{
         
-    }else  if ([signal is:[DragonUITextView TEXTVIEWDIDBEGINEDITING]])/*textViewDidBeginEditing*/{
+    }else  if ([signal is:[MagicUITextView TEXTVIEWDIDBEGINEDITING]])/*textViewDidBeginEditing*/{
         
-    }else  if ([signal is:[DragonUITextView TEXT_OVERFLOW]])/*文字超长*/{
+    }else  if ([signal is:[MagicUITextView TEXT_OVERFLOW]])/*文字超长*/{
 
-    }else  if ([signal is:[DragonUITextView TEXTVIEW]])/*shouldChangeTextInRange*/{
+    }else  if ([signal is:[MagicUITextView TEXTVIEW]])/*shouldChangeTextInRange*/{
         NSMutableDictionary *muD = (NSMutableDictionary *)[signal object];
         
         [NSTimer scheduledTimerWithTimeInterval:.1f target:self selector:@selector(changeLabelColor) userInfo:nil repeats:NO];
@@ -957,7 +957,7 @@ DEF_SIGNAL(SELECTATLIST)
             [self hideKeyBoard];
         }
         
-    }else  if ([signal is:[DragonUITextView TEXTVIEWDIDCHANGE]])/*textViewDidChange*/{
+    }else  if ([signal is:[MagicUITextView TEXTVIEWDIDCHANGE]])/*textViewDidChange*/{
         NSString *_strContent = [self convertSystemEmoji:_txtViewPublish.text];
         _strContent = [_strContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         
@@ -966,9 +966,9 @@ DEF_SIGNAL(SELECTATLIST)
 
         [self changeLabelColor];
         
-    }else  if ([signal is:[DragonUITextView TEXTVIEWDIDCHANGESELECTION]])/*textViewDidChangeSelection*/{
-    }else  if ([signal is:[DragonUITextView TEXTVIEWSHOULDENDEDITING]])/*textViewShouldEndEditing*/{
-    }else  if ([signal is:[DragonUITextView TEXTVIEWDIDENDEDITING]])/*textViewDidEndEditing*/{
+    }else  if ([signal is:[MagicUITextView TEXTVIEWDIDCHANGESELECTION]])/*textViewDidChangeSelection*/{
+    }else  if ([signal is:[MagicUITextView TEXTVIEWSHOULDENDEDITING]])/*textViewShouldEndEditing*/{
+    }else  if ([signal is:[MagicUITextView TEXTVIEWDIDENDEDITING]])/*textViewDidEndEditing*/{
     }
 }
 
@@ -1014,7 +1014,7 @@ DEF_SIGNAL(SELECTATLIST)
     NSRange ragne1 = NSMakeRange(range.location+beforeString.length, 0);
    _txtViewPublish.selectedRange = ragne1;
     
-    [self sendViewSignal:[DragonUITextView TEXTVIEWDIDCHANGE]];
+    [self sendViewSignal:[MagicUITextView TEXTVIEWDIDCHANGE]];
 }
 
 //操作字符串

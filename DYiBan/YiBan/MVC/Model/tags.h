@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 //#import "Jastor.h"
-@interface tags : DragonJSONReflection
+@interface tags : MagicJSONReflection
 @property(nonatomic,assign)int id;//标签
 @property(nonatomic,retain)NSString *color;//颜色 1--12
 @property(nonatomic,retain)NSString*content;//内容

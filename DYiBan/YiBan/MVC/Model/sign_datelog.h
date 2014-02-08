@@ -10,7 +10,7 @@
 #import "sgin_days.h"
 #import "sgin_list.h"
 
-@interface sign_datelog : DragonJSONReflection
+@interface sign_datelog : MagicJSONReflection
 @property(nonatomic, retain) NSString *result;
 @property(nonatomic, retain) NSString *sgin_allday;
 @property(nonatomic, retain) NSString *sign_realline;

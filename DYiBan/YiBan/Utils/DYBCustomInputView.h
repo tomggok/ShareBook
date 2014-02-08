@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Dragon_UIButton.h"
-#import "Dragon_UITableView.h"
+#import "Magic_UIButton.h"
+#import "Magic_UITableView.h"
 
 
 #ifndef k_offsite
@@ -30,13 +30,13 @@
 //自定义输入框
 @interface DYBCustomInputView : UIView{
     
-    DragonUITextView * _textV;
-    DragonUIButton * _bt_send,*_bt_Shade/*用于点开后遮罩键盘外的区域*/;
+    MagicUITextView * _textV;
+    MagicUIButton * _bt_send,*_bt_Shade/*用于点开后遮罩键盘外的区域*/;
     UIImageView *_imgV_input_bg;//UITextView的背景框
 
 }
 
-@property (nonatomic,retain)    DragonUITextView * textV;
+@property (nonatomic,retain)    MagicUITextView * textV;
 @property (nonatomic,assign)    int i_contentType;//1.文字 2.位置 3.图片 4.语音
 
 

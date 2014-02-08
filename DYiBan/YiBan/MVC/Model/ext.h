@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 //音频数据
-@interface ext : DragonJSONReflection
+@interface ext : MagicJSONReflection
 
 @property (nonatomic, retain) NSString *address;
 @property (nonatomic, retain) NSString *filename;

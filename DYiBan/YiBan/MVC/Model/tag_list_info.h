@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 ZzL. All rights reserved.
 //
 
-#import "Dragon_JSONReflection.h"
+#import "Magic_JSONReflection.h"
 
-@interface tag_list_info : DragonJSONReflection
+@interface tag_list_info : MagicJSONReflection
 
 @property (nonatomic, retain) NSString *count;
 @property (nonatomic, retain) NSString *tag;

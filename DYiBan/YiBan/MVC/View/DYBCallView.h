@@ -23,7 +23,7 @@
     
 }
 
-@property (nonatomic,retain) DragonUIButton *bt_cancelViews;
+@property (nonatomic,retain) MagicUIButton *bt_cancelViews;
 
 - (id)initWithFrame:(CGRect)frame model:(friends *)model superV:(UIView *)superV;
 

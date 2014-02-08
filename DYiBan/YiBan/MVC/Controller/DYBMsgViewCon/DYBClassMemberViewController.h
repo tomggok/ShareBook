@@ -13,9 +13,9 @@
 //班级成员
 @interface DYBClassMemberViewController : DYBBaseViewController
 {
-//    DragonUITableView *_tbv;
+//    MagicUITableView *_tbv;
     NSMutableArray *_muA_data;
-    DragonUISearchBar *_search;
+    MagicUISearchBar *_search;
     DYBCallView *_v_call;//打电话view
 }
 

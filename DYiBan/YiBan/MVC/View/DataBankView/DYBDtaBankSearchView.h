@@ -15,8 +15,8 @@
 
 @property (nonatomic,retain) NSMutableArray *arrayResourcesList;
 @property (nonatomic,retain) DYBUITableView *tbDataBank;
-@property (nonatomic,retain) DragonUISearchBar *searchbar;
-@property (nonatomic,retain) DragonViewController *VC;
+@property (nonatomic,retain) MagicUISearchBar *searchbar;
+@property (nonatomic,retain) MagicViewController *VC;
 @property (nonatomic,retain) UIView *slideHideView;
 @property (nonatomic,retain) NSMutableArray *arrayViewCell;
 @property (nonatomic,assign) int iCellType;

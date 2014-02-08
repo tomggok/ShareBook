@@ -7,7 +7,7 @@
 //
 
 #import "DYBCellForClassList.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "NSString+Count.h"
 #import "eclass.h"
 #import "UITableView+property.h"
@@ -36,7 +36,7 @@
         eclass *model=data;
         
         if (!_lb_newContent) {
-            _lb_newContent=[[DragonUILabel alloc]initWithFrame:CGRectMake(10, 0, 0,0)];
+            _lb_newContent=[[MagicUILabel alloc]initWithFrame:CGRectMake(10, 0, 0,0)];
             _lb_newContent.backgroundColor=[UIColor clearColor];
             _lb_newContent.textAlignment=NSTextAlignmentLeft;
             _lb_newContent.font=[DYBShareinstaceDelegate DYBFoutStyle:15];
@@ -59,7 +59,7 @@
             {
                 if (!_imgV_star) {
                     UIImage *img=([model.active isEqualToString:@"1"])?([UIImage imageNamed:@"favclass_yes"]):([UIImage imageNamed:@"favclass_no"]);
-                    _imgV_star=[[DragonUIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width-55,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                    _imgV_star=[[MagicUIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width-55,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                     RELEASE(_imgV_star);
                     [_imgV_star addSignal:[UIView TAP] object:indexPath];
                 }
@@ -69,7 +69,7 @@
             {
                 if (!_imgV_YES) {
                     UIImage *img=[UIImage imageNamed:@"ftz11"];
-                    _imgV_YES=[[DragonUIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width-20-img.size.width/2,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                    _imgV_YES=[[MagicUIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width-20-img.size.width/2,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                     _imgV_YES.hidden=YES;
                     RELEASE(_imgV_YES);
                 }

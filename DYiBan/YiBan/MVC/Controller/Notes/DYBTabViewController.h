@@ -11,8 +11,8 @@
 
 //标签页
 @interface DYBTabViewController : DYBBaseViewController{
-    DragonUITableView *_tabTagList;
-    DragonUISearchBar *_Tagsearch;
+    MagicUITableView *_tabTagList;
+    MagicUISearchBar *_Tagsearch;
     tag_list *_Tlist;
     
     int nPage;

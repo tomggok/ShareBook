@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 //当前登录的用户的信息
-@interface UserLoginModel : DragonJSONReflection
+@interface UserLoginModel : MagicJSONReflection
 @property (nonatomic, retain)NSString *userId,*sessID,*autoLogin,*userName;
 @property (nonatomic, retain)NSString *lastTime;
 

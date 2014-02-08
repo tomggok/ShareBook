@@ -10,8 +10,8 @@
 #import "tag_list.h"
 
 @interface DYBTagManageViewController : DYBBaseViewController{
-    DragonUITableView *_tabTagManage;
-    DragonUISearchBar *_Tagsearch;
+    MagicUITableView *_tabTagManage;
+    MagicUISearchBar *_Tagsearch;
     tag_list *_Tlist;
     
     int nPage;

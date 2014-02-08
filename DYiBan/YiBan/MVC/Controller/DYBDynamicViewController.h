@@ -13,7 +13,7 @@
 #import "DYBFaceView.h"
 
 @interface DYBDynamicViewController : DYBBaseViewController<UITextViewDelegate, faceDelegate>{
-    DragonUITableView *_tabDynamic;
+    MagicUITableView *_tabDynamic;
     DYBMenuView *_tabMenu;
     bannerList *_bnerList;
     
@@ -40,10 +40,10 @@
 
     UIView *_viewCommentBKG;
     UIView *_viewWarning;
-    DragonUITextView *_txtViewComment;
+    MagicUITextView *_txtViewComment;
     DYBFaceView *_viewFace;
-    DragonUIImageView *_viewQuick;
-    DragonUIButton *_btnQuick;
+    MagicUIImageView *_viewQuick;
+    MagicUIButton *_btnQuick;
 }
 
 AS_SIGNAL(SWITCHDYBAMICBUTTON)

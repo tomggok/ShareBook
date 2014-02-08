@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface StatusListModel : DragonJSONReflection
+@interface StatusListModel : MagicJSONReflection
 @property (nonatomic, retain)NSString *sqlid;
 @property (nonatomic, retain)NSString *data;//数据
 @property (nonatomic, retain)NSString *maxId;//响应时最大id

@@ -9,10 +9,10 @@
 #import "DYBCellForNotesDetail.h"
 #import "noteModel.h"
 #import "Tag.h"
-#import "UITableViewCell+DragonCategory.h"
+#import "UITableViewCell+MagicCategory.h"
 #import "DYBNoteDetailViewController.h"
 #import "NSObject+KVO.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "file_list.h"
 #import "UIImageView+Init.h"
 #import "tag_list_info.h"
@@ -64,10 +64,10 @@
                  
                 if (!_bt_AddTag) {//添加标签按钮
                     UIImage *img= [UIImage imageNamed:@"list_arrow.png"];
-                    _bt_AddTag = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-img.size.width/2-15, 0, img.size.width/2, img.size.height/2)];
+                    _bt_AddTag = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-img.size.width/2-15, 0, img.size.width/2, img.size.height/2)];
                     _bt_AddTag.backgroundColor=[UIColor clearColor];
                     _bt_AddTag.tag=-1;
-//                    [_bt_AddTag addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+//                    [_bt_AddTag addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
                     [_bt_AddTag setImage:img forState:UIControlStateNormal];
                     [_bt_AddTag setImage:img forState:UIControlStateHighlighted];
                     //            [_bt_creatNote setTitle:@"更多"];
@@ -82,7 +82,7 @@
                 
                 {
                     {/*标签的背景滚动*/
-                        _scrV_Tip = [[DragonUIScrollView alloc] initWithFrame:CGRectMake(15, 0, CGRectGetWidth(self.frame)-15-CGRectGetWidth(_bt_AddTag.frame)-20, CGRectGetHeight(self.frame))];
+                        _scrV_Tip = [[MagicUIScrollView alloc] initWithFrame:CGRectMake(15, 0, CGRectGetWidth(self.frame)-15-CGRectGetWidth(_bt_AddTag.frame)-20, CGRectGetHeight(self.frame))];
                         [_scrV_Tip setBackgroundColor:[UIColor clearColor]];
                         [_scrV_Tip setContentSize:CGSizeMake(0, CGRectGetHeight(_scrV_Tip.frame))];
                         [_scrV_Tip setShowsHorizontalScrollIndicator:NO];
@@ -180,7 +180,7 @@
                 
 //                {//右箭头
 //                    UIImage *imgListArrow = [UIImage imageNamed:@"list_arrow.png"];
-//                    DragonUIImageView *viewListArrow = [[DragonUIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-25, 10, imgListArrow.size.width/2, imgListArrow.size.height/2)];
+//                    MagicUIImageView *viewListArrow = [[MagicUIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-25, 10, imgListArrow.size.width/2, imgListArrow.size.height/2)];
 //                    [viewListArrow setBackgroundColor:[UIColor clearColor]];
 //                    [viewListArrow setImage:imgListArrow];
 //                    [self addSubview:viewListArrow];
@@ -204,7 +204,7 @@
 
                 [self setFrame:CGRectMake(0, 0, self.frame.size.width, 140)];
                 if (!_textView) {
-                    _textView = [[DragonUITextView alloc] initWithFrame:CGRectMake(15, 10, CGRectGetWidth(self.frame)-30-25, 0)];
+                    _textView = [[MagicUITextView alloc] initWithFrame:CGRectMake(15, 10, CGRectGetWidth(self.frame)-30-25, 0)];
                     [_textView setBackgroundColor:[UIColor clearColor]];
                     _textView.layer.borderWidth = 1;
                     _textView.layer.borderColor = [UIColor clearColor].CGColor;
@@ -264,7 +264,7 @@
 
                 if (!_imgV_show) {
                     UIImage *img=[UIImage imageNamed:@"audiobox"];
-                    _imgV_show=[[DragonUIImageView alloc]initWithFrame:CGRectMake(15, 0, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                    _imgV_show=[[MagicUIImageView alloc]initWithFrame:CGRectMake(15, 0, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                     RELEASE(_imgV_show);
                     _imgV_show.tag=5;
                     [_imgV_show addSignal:[UIView TAP] object:[NSDictionary dictionaryWithObjectsAndKeys:model_file,@"model",self,@"cell", nil] target:[self superCon]];
@@ -284,7 +284,7 @@
                     
                     {//喇叭
                         UIImage *img1=[UIImage imageNamed:@"voice_2"];
-                        DragonUIImageView *imgV=[[DragonUIImageView alloc]initWithFrame:CGRectMake(15, 0, img1.size.width/2, img1.size.height/2) backgroundColor:[UIColor clearColor] image:img1 isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_imgV_show Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                        MagicUIImageView *imgV=[[MagicUIImageView alloc]initWithFrame:CGRectMake(15, 0, img1.size.width/2, img1.size.height/2) backgroundColor:[UIColor clearColor] image:img1 isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_imgV_show Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                         _imgV_voice=imgV;
                         RELEASE(imgV);
                         
@@ -332,7 +332,7 @@
                 _state=model_file.state;
 
                 if (!_imgV_show) {
-                    _imgV_show=[[DragonUIImageView alloc]initWithFrame:CGRectMake(15, 10, CGRectGetWidth(self.frame)-30, CGRectGetHeight(tbv.frame)) backgroundColor:[UIColor clearColor] image:Nil isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+                    _imgV_show=[[MagicUIImageView alloc]initWithFrame:CGRectMake(15, 10, CGRectGetWidth(self.frame)-30, CGRectGetHeight(tbv.frame)) backgroundColor:[UIColor clearColor] image:Nil isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
                     RELEASE(_imgV_show);
                     
                     [self addDELBt:_imgV_show];
@@ -396,9 +396,9 @@
 }
 
 #pragma mark- 图片下载成功回调
-- (void)handleViewSignal_DragonUIImageView_WEBDOWNSUCCESS:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUIImageView_WEBDOWNSUCCESS:(MagicViewSignal *)signal
 {
-    DragonUIImageView *imgV = (DragonUIImageView *)[signal source];
+    MagicUIImageView *imgV = (MagicUIImageView *)[signal source];
     
     CGFloat w=((imgV.image.size.width>CGRectGetWidth(_imgV_show.frame))?(CGRectGetWidth(_imgV_show.frame)):(imgV.image.size.width));
     CGFloat h=((imgV.image.size.height>CGRectGetHeight(_imgV_show.frame)/*最大高度*/)?(CGRectGetHeight(_imgV_show.frame)):(imgV.image.size.height));
@@ -417,7 +417,7 @@
 }
 
 //计算imgview中img的右上角的位置
-- (CGPoint)handleImgSize:(DragonUIImageView *)imgV
+- (CGPoint)handleImgSize:(MagicUIImageView *)imgV
 {
     CGFloat imgHeigth = imgV.image.size.height;
     CGFloat imgWidth = imgV.image.size.width;
@@ -467,10 +467,10 @@
 {//删除按钮
     if (!_bt_del) {
         UIImage *img= [UIImage imageNamed:@"close"];
-        _bt_del= [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(superV.frame), CGRectGetMinY(superV.frame)-img.size.height/4, img.size.width/2, img.size.height/2)];
+        _bt_del= [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(superV.frame), CGRectGetMinY(superV.frame)-img.size.height/4, img.size.width/2, img.size.height/2)];
         _bt_del.backgroundColor=[UIColor clearColor];
         _bt_del.tag=7;
-        [_bt_del addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSDictionary dictionaryWithObjectsAndKeys:self,@"cell",self.model,@"model", nil]];
+        [_bt_del addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[NSDictionary dictionaryWithObjectsAndKeys:self,@"cell",self.model,@"model", nil]];
         [_bt_del setImage:img forState:UIControlStateNormal];
         [_bt_del setImage:img forState:UIControlStateHighlighted];
         //            [_bt_creatNote setTitle:@"更多"];

@@ -6,10 +6,10 @@
 //  Copyright (c) 2013年 ZzL. All rights reserved.
 //
 
-#import "Dragon_JSONReflection.h"
+#import "Magic_JSONReflection.h"
 
 //笔记的标签
-@interface Tag : DragonJSONReflection
+@interface Tag : MagicJSONReflection
 
 @property (nonatomic, retain) NSString *nid;//所在笔记的ID
 @property (nonatomic, retain) NSString *tag;//内容

@@ -17,13 +17,13 @@
         tag_list_info *_tlinfo = data;
         
         UIImage *imgTagIcon = [UIImage imageNamed:@"icon_tag.png"];
-        DragonUIImageView *viewTagIcon = [[DragonUIImageView alloc] initWithFrame:CGRectMake(10, 10, imgTagIcon.size.width/2, imgTagIcon.size.height/2)];
+        MagicUIImageView *viewTagIcon = [[MagicUIImageView alloc] initWithFrame:CGRectMake(10, 10, imgTagIcon.size.width/2, imgTagIcon.size.height/2)];
         [viewTagIcon setBackgroundColor:[UIColor clearColor]];
         [viewTagIcon setImage:imgTagIcon];
         [self addSubview:viewTagIcon];
         RELEASE(viewTagIcon);
 
-        DragonUILabel *_lbTagName = [[DragonUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(viewTagIcon.frame)+10, 3, 100, 30)];
+        MagicUILabel *_lbTagName = [[MagicUILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(viewTagIcon.frame)+10, 3, 100, 30)];
         [_lbTagName setBackgroundColor:[UIColor clearColor]];
         [_lbTagName setTextAlignment:NSTextAlignmentLeft];
         [_lbTagName setFont:[DYBShareinstaceDelegate DYBFoutStyle:16]];
@@ -34,7 +34,7 @@
         [self addSubview:_lbTagName];
         RELEASE(_lbTagName);
         
-        DragonUILabel *_lbTagCount = [[DragonUILabel alloc] initWithFrame:CGRectMake(self.frame.size.width-130, CGRectGetMinY(_lbTagName.frame), 100, 30)];
+        MagicUILabel *_lbTagCount = [[MagicUILabel alloc] initWithFrame:CGRectMake(self.frame.size.width-130, CGRectGetMinY(_lbTagName.frame), 100, 30)];
         [_lbTagCount setBackgroundColor:[UIColor clearColor]];
         [_lbTagCount setTextAlignment:NSTextAlignmentRight];
         [_lbTagCount setFont:[DYBShareinstaceDelegate DYBFoutStyle:16]];
@@ -47,7 +47,7 @@
         RELEASE(_lbTagCount);
         
         UIImage *imgListArrow = [UIImage imageNamed:@"list_arrow.png"];
-        DragonUIImageView *viewListArrow = [[DragonUIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-25, 10, imgListArrow.size.width/2, imgListArrow.size.height/2)];
+        MagicUIImageView *viewListArrow = [[MagicUIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-25, 10, imgListArrow.size.width/2, imgListArrow.size.height/2)];
         [viewListArrow setBackgroundColor:[UIColor clearColor]];
         [viewListArrow setImage:imgListArrow];
         [self addSubview:viewListArrow];

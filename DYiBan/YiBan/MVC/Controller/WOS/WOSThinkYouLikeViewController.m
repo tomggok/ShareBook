@@ -31,11 +31,11 @@
 	// Do any additional setup after loading the view.
 }
 
--(void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal{
     
     DLogInfo(@"name -- %@",signal.name);
     
-    if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         [self.headview setTitle:@"猜猜你喜欢"];
         
@@ -44,7 +44,7 @@
         [self.view setBackgroundColor:ColorBG];
         [self setButtonImage:self.leftButton setImage:@"back"];
     }
-    else if ([signal is:[DragonViewController CREATE_VIEWS]]) {
+    else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
         UIImage *imageCHUAN = [UIImage imageNamed:@"chuan"];
         UIButton *btnCHUAN = [[UIButton alloc]initWithFrame:CGRectMake(20.0f, 44 + 20, imageCHUAN.size.width/2, imageCHUAN.size.height/2)];
@@ -88,10 +88,10 @@
     }
     
     
-    else if ([signal is:[DragonViewController DID_APPEAR]]) {
+    else if ([signal is:[MagicViewController DID_APPEAR]]) {
         
         DLogInfo(@"rrr");
-    } else if ([signal is:[DragonViewController DID_DISAPPEAR]]){
+    } else if ([signal is:[MagicViewController DID_DISAPPEAR]]){
         
         
     }

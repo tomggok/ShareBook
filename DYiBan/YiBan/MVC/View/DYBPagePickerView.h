@@ -61,8 +61,8 @@ typedef enum {
 @property (retain, nonatomic)college_list_all *collegeList;//学院
 @property (nonatomic, assign)BOOL isShowView;//页面是否显示
 //@property (nonatomic,retain) NSString *str_selectContent;//当前选择的内容
-@property (nonatomic,retain) DragonUIButton *bt_Shade/*用于点开后遮罩键盘外的区域*/;
-@property (nonatomic,retain) DragonUIButton *bt_Ok/*确定*/;
+@property (nonatomic,retain) MagicUIButton *bt_Shade/*用于点开后遮罩键盘外的区域*/;
+@property (nonatomic,retain) MagicUIButton *bt_Ok/*确定*/;
 
 
 - (id)initWithdelegate:(CGRect)frame style:(PagePickerViewStyle)_pickerStyle delegate:(id<PagePickDelegate>)_delegate;

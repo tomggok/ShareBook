@@ -6,11 +6,11 @@
 //  Copyright (c) 2013年 ZzL. All rights reserved.
 //
 
-#import "Dragon_JSONReflection.h"
+#import "Magic_JSONReflection.h"
 #import "target.h"
 
 //班级公告
-@interface eclass_notice : DragonJSONReflection
+@interface eclass_notice : MagicJSONReflection
 
 @property (nonatomic, retain)NSString *id;//公告ID
 @property (nonatomic, retain)NSString *areaid;//班级ID

@@ -12,8 +12,8 @@
 
 @interface DYBTagNotesViewController : DYBBaseViewController{
     tag_list_info *_tag_info;
-    DragonUITableView *_tabTagNotes;
-    DragonUISearchBar *_TagNoteSearch;
+    MagicUITableView *_tabTagNotes;
+    MagicUISearchBar *_TagNoteSearch;
     notes_list *_notes_list;
     
     

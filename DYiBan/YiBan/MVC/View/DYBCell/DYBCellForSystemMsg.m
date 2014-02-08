@@ -7,7 +7,7 @@
 //
 
 #import "DYBCellForSystemMsg.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "NSString+Count.h"
 #import "UIImageView+WebCache.h"
 #import "UITableView+property.h"
@@ -22,7 +22,7 @@
         model=data;
         
         if (!_imgV_showImg) {
-            _imgV_showImg=[[DragonUIImageView alloc]initWithFrame:CGRectMake(15,10, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_showImg.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            _imgV_showImg=[[MagicUIImageView alloc]initWithFrame:CGRectMake(15,10, 50,50) backgroundColor:[UIColor clearColor] image:_imgV_showImg.image isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             _imgV_showImg.needRadius=YES;
             RELEASE(_imgV_showImg);
             
@@ -45,19 +45,19 @@
             
 //            {//圆形遮盖
 //                UIImage *img=[UIImage imageNamed:@"midface_mask_def"];
-//                DragonUIImageView *imgV=[[DragonUIImageView alloc]initWithFrame:CGRectMake(0,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_imgV_showImg Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+//                MagicUIImageView *imgV=[[MagicUIImageView alloc]initWithFrame:CGRectMake(0,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_imgV_showImg Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
 //                RELEASE(imgV);
 //            }
         }
         
         if (!_lb_nickName) {
-            _lb_nickName=[[DragonUILabel alloc]initWithFrame:CGRectMake(_imgV_showImg.frame.origin.x+_imgV_showImg.frame.size.width+10, 5, 0, 0)];
+            _lb_nickName=[[MagicUILabel alloc]initWithFrame:CGRectMake(_imgV_showImg.frame.origin.x+_imgV_showImg.frame.size.width+10, 5, 0, 0)];
             _lb_nickName.backgroundColor=[UIColor clearColor];
             _lb_nickName.textAlignment=NSTextAlignmentLeft;
             _lb_nickName.font=[DYBShareinstaceDelegate DYBFoutStyle:18];
             _lb_nickName.text=model.user_info.name;
             [_lb_nickName setNeedCoretext:NO];
-            _lb_nickName.textColor=[DragonCommentMethod color:51 green:51 blue:51 alpha:1];
+            _lb_nickName.textColor=[MagicCommentMethod color:51 green:51 blue:51 alpha:1];
             _lb_nickName.numberOfLines=0;
             
             _lb_nickName.lineBreakMode=NSLineBreakByTruncatingTail;
@@ -72,7 +72,7 @@
         }
         
         if (!_lb_time) {
-            _lb_time=[[DragonUILabel alloc]initWithFrame:CGRectMake(_lb_nickName.frame.origin.x, _lb_nickName.frame.origin.y+_lb_nickName.frame.size.height+3, 0, 0)];
+            _lb_time=[[MagicUILabel alloc]initWithFrame:CGRectMake(_lb_nickName.frame.origin.x, _lb_nickName.frame.origin.y+_lb_nickName.frame.size.height+3, 0, 0)];
             _lb_time.backgroundColor=[UIColor clearColor];
             _lb_time.textAlignment=NSTextAlignmentLeft;
             _lb_time.font=[DYBShareinstaceDelegate DYBFoutStyle:11];
@@ -85,7 +85,7 @@
             }
             
             [_lb_time setNeedCoretext:NO];
-            _lb_time.textColor=(([model.kind isEqualToString:@"1"]))?([DragonCommentMethod colorWithHex:@"0xde341a"]):([DragonCommentMethod color:170 green:170 blue:170 alpha:1])  ;
+            _lb_time.textColor=(([model.kind isEqualToString:@"1"]))?([MagicCommentMethod colorWithHex:@"0xde341a"]):([MagicCommentMethod color:170 green:170 blue:170 alpha:1])  ;
             
             _lb_time.lineBreakMode=NSLineBreakByTruncatingTail;
             [_lb_time sizeToFitByconstrainedSize:CGSizeMake(self.frame.size.width-_lb_time.frame.origin.x-20, 1000)];
@@ -110,16 +110,16 @@
         if ([model.kind isEqualToString:@"1"]) {//申请成为你的好友
             if (!_bt_ignore) {
 //                UIImage *img= [UIImage imageNamed:@"noinfo.png"];
-                _bt_ignore = [[DragonUIButton alloc] initWithFrame:CGRectMake(_lb_time.frame.origin.x, _lb_time.frame.origin.y+_lb_time.frame.size.height+15, 100, 30)];
+                _bt_ignore = [[MagicUIButton alloc] initWithFrame:CGRectMake(_lb_time.frame.origin.x, _lb_time.frame.origin.y+_lb_time.frame.size.height+15, 100, 30)];
                 _bt_ignore.tag=0;
-                [_bt_ignore addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[[NSDictionary dictionaryWithObjectsAndKeys:model.user_info.userid, @"userId",nil] retain]];
+                [_bt_ignore addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[[NSDictionary dictionaryWithObjectsAndKeys:model.user_info.userid, @"userId",nil] retain]];
 //                [_bt_noInfo setBackgroundImage:img forState:UIControlStateNormal];
                 [_bt_ignore setTitle:@"忽略"];
-                [_bt_ignore setTitleColor:[DragonCommentMethod colorWithHex:@"0x999999"]];
+                [_bt_ignore setTitleColor:[MagicCommentMethod colorWithHex:@"0x999999"]];
                 [_bt_ignore setTitleFont:[DYBShareinstaceDelegate DYBFoutStyle:15]];
                 _bt_ignore.layer.masksToBounds=YES;
                 _bt_ignore.layer.cornerRadius=6;
-                _bt_ignore.backgroundColor=[DragonCommentMethod colorWithHex:@"0xeeeeee"];
+                _bt_ignore.backgroundColor=[MagicCommentMethod colorWithHex:@"0xeeeeee"];
                 [self addSubview:_bt_ignore];
 //                [_bt_noInfo changePosInSuperViewWithAlignment:2];
                 RELEASE(_bt_ignore);
@@ -127,9 +127,9 @@
             
             if (!_bt_agree) {
                 //                UIImage *img= [UIImage imageNamed:@"noinfo.png"];
-                _bt_agree = [[DragonUIButton alloc] initWithFrame:CGRectMake(_bt_ignore.frame.origin.x+_bt_ignore.frame.size.width+20, _bt_ignore.frame.origin.y, _bt_ignore.frame.size.width, _bt_ignore.frame.size.height)];
+                _bt_agree = [[MagicUIButton alloc] initWithFrame:CGRectMake(_bt_ignore.frame.origin.x+_bt_ignore.frame.size.width+20, _bt_ignore.frame.origin.y, _bt_ignore.frame.size.width, _bt_ignore.frame.size.height)];
                 _bt_agree.tag=1;
-                [_bt_agree addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[[NSDictionary dictionaryWithObjectsAndKeys:model.user_info.userid, @"userId",nil] retain]];
+                [_bt_agree addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:[[NSDictionary dictionaryWithObjectsAndKeys:model.user_info.userid, @"userId",nil] retain]];
                 //                [_bt_noInfo setBackgroundImage:img forState:UIControlStateNormal];
                 [_bt_agree setTitle:@"同意"];
                 [_bt_agree setTitleFont:[DYBShareinstaceDelegate DYBFoutStyle:15]];
@@ -146,7 +146,7 @@
 
         }else{//已同意您的好友请求
 //            if (!_lb_newContent) {
-//                _lb_newContent=[[DragonUILabel alloc]initWithFrame:CGRectMake(_lb_time.frame.origin.x, _lb_time.frame.origin.y+_lb_time.frame.size.height+5, 0,0)];
+//                _lb_newContent=[[MagicUILabel alloc]initWithFrame:CGRectMake(_lb_time.frame.origin.x, _lb_time.frame.origin.y+_lb_time.frame.size.height+5, 0,0)];
 //                _lb_newContent.backgroundColor=[UIColor clearColor];
 //                _lb_newContent.textAlignment=NSTextAlignmentLeft;
 //                _lb_newContent.font=[DYBShareinstaceDelegate DYBFoutStyle:13];

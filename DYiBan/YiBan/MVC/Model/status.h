@@ -14,7 +14,7 @@
 #import "msg_count.h"
 
 //每个用户的属性
-@interface status : DragonJSONReflection
+@interface status : MagicJSONReflection
 
 @property(nonatomic,assign)int id;
 //动态类型 1 发易班 2 修改头像 3 修改签名 4 上传相册 5 成为好友 6 分享 7 加班级 8 辅导员通知 9 发帖子 10发博文 11上传近照 -1:只显示年月

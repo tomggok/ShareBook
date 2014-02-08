@@ -10,7 +10,7 @@
 #import "reqlist.h"
 //#import "Jastor.h"
 
-@interface friend_request_list : DragonJSONReflection
+@interface friend_request_list : MagicJSONReflection
 @property(assign,nonatomic)int  havenext;
 @property(retain,nonatomic) NSArray *reqlist;
 //+(Class)reqlist_class;

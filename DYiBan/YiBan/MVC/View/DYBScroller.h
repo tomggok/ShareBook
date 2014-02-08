@@ -8,10 +8,10 @@
 
 #import "DYBBaseView.h"
 #import "DYBScrollerView.h"
-#import "Dragon_ViewSignal.h"
+#import "Magic_ViewSignal.h"
 @interface DYBScroller : DYBBaseView {
-    DragonUIButton *selectDoneBtn;
-    DragonUIButton *selectBtn;
+    MagicUIButton *selectDoneBtn;
+    MagicUIButton *selectBtn;
     DYBBoxView *boxScrolEndView;
     
     int typeBox;

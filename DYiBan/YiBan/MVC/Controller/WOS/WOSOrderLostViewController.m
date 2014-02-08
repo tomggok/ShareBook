@@ -39,7 +39,7 @@
 }
 
 
--(void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal{
     
     
     
@@ -47,7 +47,7 @@
     
     
     
-    if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    if ([signal is:[MagicViewController LAYOUT_VIEWS]])
         
     {
         
@@ -62,7 +62,7 @@
         
     }
     
-    else if ([signal is:[DragonViewController CREATE_VIEWS]]) {
+    else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
         for (int i = 0; i< 3; i ++) {
             
@@ -112,11 +112,11 @@
     }
     
     
-    else if ([signal is:[DragonViewController DID_APPEAR]]) {
+    else if ([signal is:[MagicViewController DID_APPEAR]]) {
 
         DLogInfo(@"rrr");
         
-    } else if ([signal is:[DragonViewController DID_DISAPPEAR]]){
+    } else if ([signal is:[MagicViewController DID_DISAPPEAR]]){
         
         
     }
@@ -153,9 +153,9 @@
 }
 
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal{
     
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
         
     {
         
@@ -163,7 +163,7 @@
         
         [signal setReturnValue:s];
 
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
         
     {
         
@@ -173,7 +173,7 @@
 
     }
     
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
         
     {
         
@@ -181,13 +181,13 @@
         
     }
     
-    else if ([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
         
     {
         [signal setReturnValue:nil];
     }
     
-    else if ([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
         
     {
         
@@ -195,7 +195,7 @@
 
     }
     
-    else if ([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
         
     {
         
@@ -203,7 +203,7 @@
         
     }
     
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell
         
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
@@ -215,7 +215,7 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [signal setReturnValue:cell];
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
         
     {
                 
@@ -230,35 +230,35 @@
         
         
         
-    }else if([signal is:[DragonUITableView TABLESCROLLVIEWDIDENDDRAGGING]])/*滚动停止*/{
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDENDDRAGGING]])/*滚动停止*/{
         
         
         
         
         
-    }else if([signal is:[DragonUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
         
         
         
-    }else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]]) //刷新
-        
-    {
-        
-        //        DragonUIUpdateView *uptableview = (DragonUIUpdateView *)[signal object];
-        
-        
-        
-        
-        
-    }else if([signal is:[DragonUITableView TAbLEVIEWLODATA]]) //加载更多
+    }else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]]) //刷新
         
     {
         
+        //        MagicUIUpdateView *uptableview = (MagicUIUpdateView *)[signal object];
         
         
         
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLUP]]){ //上滑动
+        
+    }else if([signal is:[MagicUITableView TAbLEVIEWLODATA]]) //加载更多
+        
+    {
+        
+        
+        
+        
+        
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLUP]]){ //上滑动
         
         
         
@@ -268,7 +268,7 @@
         
         
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLDOWN]]){ //下滑动
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLDOWN]]){ //下滑动
         
         
         
@@ -284,7 +284,7 @@
 
 
 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 
 {
     

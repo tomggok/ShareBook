@@ -9,7 +9,7 @@
 #import "DYBCallView.h"
 #import "NSString+Count.h"
 #import "UIImageView+WebCache.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 
 @implementation DYBCallView
 
@@ -21,7 +21,7 @@
 //        friends *model=(friends *)signal.object;
 
         {//头像
-            DragonUIImageView *_imgV_showImg=[[DragonUIImageView alloc]initWithFrame:CGRectMake(0,15, 50,50) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:0 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            MagicUIImageView *_imgV_showImg=[[MagicUIImageView alloc]initWithFrame:CGRectMake(0,15, 50,50) backgroundColor:[UIColor clearColor] image:nil isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:self Alignment:0 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             _imgV_showImg.needRadius=YES;
             RELEASE(_imgV_showImg);
             
@@ -37,18 +37,18 @@
             
 //            {//圆形遮盖
 //                UIImage *img=[UIImage imageNamed:@"midface_mask_def"];
-//                DragonUIImageView *imgV=[[DragonUIImageView alloc]initWithFrame:CGRectMake(0,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_imgV_showImg Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+//                MagicUIImageView *imgV=[[MagicUIImageView alloc]initWithFrame:CGRectMake(0,0, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:NO masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:Nil superView:_imgV_showImg Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
 //                RELEASE(imgV);
 //            }
             
             {//昵称
-                DragonUILabel *_lb_nickName=[[DragonUILabel alloc]initWithFrame:CGRectMake(0, _imgV_showImg.frame.origin.y+_imgV_showImg.frame.size.height+10, 0, 0)];
+                MagicUILabel *_lb_nickName=[[MagicUILabel alloc]initWithFrame:CGRectMake(0, _imgV_showImg.frame.origin.y+_imgV_showImg.frame.size.height+10, 0, 0)];
                 _lb_nickName.backgroundColor=[UIColor clearColor];
                 _lb_nickName.textAlignment=NSTextAlignmentLeft;
                 _lb_nickName.font=[DYBShareinstaceDelegate DYBFoutStyle:20];
                 _lb_nickName.text=model.name;
                 [_lb_nickName setNeedCoretext:NO];
-                _lb_nickName.textColor=[DragonCommentMethod color:51 green:51 blue:51 alpha:1];
+                _lb_nickName.textColor=[MagicCommentMethod color:51 green:51 blue:51 alpha:1];
                 _lb_nickName.numberOfLines=1;
                 _lb_nickName.lineBreakMode=NSLineBreakByTruncatingTail;
                 [_lb_nickName sizeToFitByconstrainedSize:CGSizeMake(self.frame.size.width-_lb_nickName.frame.origin.x, 1000)];
@@ -58,7 +58,7 @@
                 RELEASE(_lb_nickName);
                 
                 {//电话号
-                    DragonUILabel *_lb_number=[[DragonUILabel alloc]initWithFrame:CGRectMake(0, _lb_nickName.frame.origin.y+_lb_nickName.frame.size.height+30, /*self.frame.size.width-_lb_nickName.frame.origin.x-80, _lb_nickName.frame.size.height*/ 0,0)];
+                    MagicUILabel *_lb_number=[[MagicUILabel alloc]initWithFrame:CGRectMake(0, _lb_nickName.frame.origin.y+_lb_nickName.frame.size.height+30, /*self.frame.size.width-_lb_nickName.frame.origin.x-80, _lb_nickName.frame.size.height*/ 0,0)];
                     _lb_number.backgroundColor=[UIColor clearColor];
                     _lb_number.textAlignment=NSTextAlignmentCenter;
                     _lb_number.font=[DYBShareinstaceDelegate DYBFoutStyle:40];
@@ -69,7 +69,7 @@
                     }
                     
                     _lb_number.text=phone;
-                    _lb_number.textColor=[DragonCommentMethod color:51 green:51 blue:51 alpha:1];
+                    _lb_number.textColor=[MagicCommentMethod color:51 green:51 blue:51 alpha:1];
                     _lb_number.numberOfLines=1;//只一行时不能用 sizeToFitByconstrainedSize 方法,并要设置 宽高
                     
                     _lb_number.lineBreakMode=NSLineBreakByTruncatingTail;
@@ -88,11 +88,11 @@
         {//底部BT
             {//取消
                 UIImage *img= [UIImage imageNamed:@"btn_call_no_def"];
-                DragonUIButton *_bt_cancel = [[DragonUIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height-img.size.height/2,img.size.width/2, img.size.height/2)];
+                MagicUIButton *_bt_cancel = [[MagicUIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height-img.size.height/2,img.size.width/2, img.size.height/2)];
                 _bt_cancel.tag=k_tag_bt_cancelViews;
                 //                                    _bt_cancelViews.backgroundColor=[UIColor blackColor];//self.headview.backgroundColor;
                 //                                    _bt_cancelViews.alpha=0;
-                [_bt_cancel addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+                [_bt_cancel addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
                 [_bt_cancel setImage:img forState:UIControlStateNormal];
                 [_bt_cancel setImage:[UIImage imageNamed:@"btn_call_no_high"] forState:UIControlStateHighlighted];
                 //                        [_bt_DropDown setTitle:@"好友"];
@@ -105,11 +105,11 @@
             
             {//确认
                 UIImage *img= [UIImage imageNamed:@"btn_call_yes_def"];
-                DragonUIButton *_bt_yes = [[DragonUIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2, self.frame.size.height-img.size.height/2,img.size.width/2, img.size.height/2)];
+                MagicUIButton *_bt_yes = [[MagicUIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2, self.frame.size.height-img.size.height/2,img.size.width/2, img.size.height/2)];
                 _bt_yes.tag=k_tag_bt_ensurelViews;
                 //                                    _bt_cancelViews.backgroundColor=[UIColor blackColor];//self.headview.backgroundColor;
                 //                                    _bt_cancelViews.alpha=0;
-                [_bt_yes addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:model.phone];
+                [_bt_yes addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:model.phone];
                 [_bt_yes setImage:img forState:UIControlStateNormal];
                 [_bt_yes setImage:[UIImage imageNamed:@"btn_call_yes_high"] forState:UIControlStateHighlighted];
                 //                        [_bt_DropDown setTitle:@"好友"];
@@ -123,11 +123,11 @@
     
             if (!_bt_cancelViews) {
                 //            UIImage *img= [UIImage imageNamed:@"btn_mainmenu_default"];
-                _bt_cancelViews = [[DragonUIButton alloc] initWithFrame:CGRectMake(0, 0,superV.frame.size.width, superV.frame.size.height)];
+                _bt_cancelViews = [[MagicUIButton alloc] initWithFrame:CGRectMake(0, 0,superV.frame.size.width, superV.frame.size.height)];
                 _bt_cancelViews.tag=k_tag_bt_cancelViews;
                 _bt_cancelViews.backgroundColor=[UIColor blackColor];//self.headview.backgroundColor;
                 _bt_cancelViews.alpha=0;
-                [_bt_cancelViews addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+                [_bt_cancelViews addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
                 //            [_bt_mayKnow setBackgroundImage:img forState:UIControlStateNormal];
                 //                        //            [_bt_sendNotice setBackgroundImage:[UIImage imageNamed:@"btn_mainmenu_hilight"] forState:UIControlStateHighlighted];
                 //                        [_bt_DropDown setTitle:@"好友"];

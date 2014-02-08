@@ -19,7 +19,7 @@
 
 
 //设置输入框属性 默认显示字 输入框类型
-- (void)setTextType:(DragonUITextField*)textFeild placeText:(NSString *)placeText textType:(int)type{
+- (void)setTextType:(MagicUITextField*)textFeild placeText:(NSString *)placeText textType:(int)type{
     
     textFeild.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     textFeild.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -27,7 +27,7 @@
     [textFeild setReturnKeyType:UIReturnKeyDone];
     [textFeild setPlaceholder:placeText];
     textFeild.font = [DYBShareinstaceDelegate DYBFoutStyle:18];  //字体和大小设置
-    textFeild.textColor = [DragonCommentMethod color:51 green:51 blue:51 alpha:1.0];
+    textFeild.textColor = [MagicCommentMethod color:51 green:51 blue:51 alpha:1.0];
     //普通正常输入
     if (type == 0) {
         textFeild.secureTextEntry = NO;
@@ -49,10 +49,10 @@
     if (self) {
         
         self.layer.borderWidth = 1;
-        self.layer.borderColor = [[DragonCommentMethod color:229 green:229 blue:229 alpha:1.0] CGColor];
+        self.layer.borderColor = [[MagicCommentMethod color:229 green:229 blue:229 alpha:1.0] CGColor];
         self.backgroundColor = [UIColor whiteColor];
 
-        _nameField = [[DragonUITextField alloc] initWithFrame:CGRectMake(5, 5, [self getWidth]-10, [self getHeight]-10)];
+        _nameField = [[MagicUITextField alloc] initWithFrame:CGRectMake(5, 5, [self getWidth]-10, [self getHeight]-10)];
         [self setTextType:_nameField placeText:placeText textType:type];
     }
     return self;

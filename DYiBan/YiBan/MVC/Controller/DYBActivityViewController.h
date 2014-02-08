@@ -11,7 +11,7 @@
 #import "DYBFaceView.h"
 
 @interface DYBActivityViewController : DYBBaseViewController<UITextViewDelegate, faceDelegate>{
-    DragonUITableView *_tabActivity;
+    MagicUITableView *_tabActivity;
     active *_active;
     
     NSMutableArray *_arrayActivity;
@@ -19,10 +19,10 @@
     
     UIView *_viewCommentBKG;
     UIView *_viewWarning;
-    DragonUITextView *_txtViewComment;
+    MagicUITextView *_txtViewComment;
     DYBFaceView *_viewFace;
-    DragonUIImageView *_viewQuick;
-    DragonUIButton *_btnQuick;
+    MagicUIImageView *_viewQuick;
+    MagicUIButton *_btnQuick;
     
     int nPage;
     int nPageSize;

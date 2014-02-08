@@ -10,7 +10,7 @@
 
 @interface DYBSettingSendMessViewController () {
     
-    DragonUITextView *textView;
+    MagicUITextView *textView;
 }
 
 
@@ -18,19 +18,19 @@
 
 @implementation DYBSettingSendMessViewController
 
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonViewController WILL_APPEAR]])
+    if ([signal is:[MagicViewController WILL_APPEAR]])
     {
         [self.leftButton setHidden:NO];
         [self.rightButton setHidden:NO];
         [self.headview setTitle:@"意见反馈"];
         [self sizeStatus];
-    }else if ([signal is:[DragonViewController CREATE_VIEWS]])
+    }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
         
         
-        textView = [[DragonUITextView alloc] initWithFrame:CGRectMake(0, self.headHeight, SCREEN_WIDTH, 150)];
+        textView = [[MagicUITextView alloc] initWithFrame:CGRectMake(0, self.headHeight, SCREEN_WIDTH, 150)];
         [textView setBackgroundColor:[UIColor clearColor]];
         [textView becomeFirstResponder];
         textView.font = [DYBShareinstaceDelegate DYBFoutStyle:16];
@@ -41,7 +41,7 @@
 }
 
 #pragma mark- 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -55,7 +55,7 @@
             DLogInfo(@"不能为空");
         }else {
             
-            DragonRequest *request = [DYBHttpMethod sendInfomation:textView.text isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod sendInfomation:textView.text isAlert:YES receive:self];
             [request setTag:1];
         }
         
@@ -80,15 +80,15 @@
 }
 
 #pragma mark- 
-- (void)handleViewSignal_DragonUITextView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITextView:(MagicViewSignal *)signal
 {
     //正在输入
-    if ([signal is:[DragonUITextView TEXT_OVERFLOW]])
+    if ([signal is:[MagicUITextView TEXT_OVERFLOW]])
     {
         [signal returnNO];
     }
     
-    if ([signal is:[DragonUITextView TEXTVIEW]])
+    if ([signal is:[MagicUITextView TEXTVIEW]])
     {
         [NSTimer scheduledTimerWithTimeInterval:.1f target:self selector:@selector(sizeStatus) userInfo:nil repeats:NO];
     }
@@ -106,7 +106,7 @@
 }
 
 #pragma mark- HTTP
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if ([request succeed])
     {

@@ -8,36 +8,36 @@
 
 
 #import "DYBNoteDetailViewController.h"
-#import "UIView+DragonCategory.h"
+#import "UIView+MagicCategory.h"
 #import "UIView+Animations.h"
 #import "DYBCustomLabel.h"
 #import "Tag.h"
 #import "NSString+Count.h"
 #import "notesUserinfo.h"
 #import "UserSettingMode.h"
-#import "UIViewController+DragonCategory.h"
+#import "UIViewController+MagicCategory.h"
 #import "DYBSelectContactViewController.h"
 #import "DYBCellForNotesDetail.h"
 #import "UITableView+property.h"
 #import "NSObject+GCD.h"
-#import "UIImage+DragonCategory.h"
+#import "UIImage+MagicCategory.h"
 #import "file_list.h"
 #import "NSString+Count.h"
 #import "SpeexCodec.h"
 #import "DYBListSelViewController.h"
 #import "tag_list_info.h"
-#import "Dragon_Device.h"
+#import "Magic_Device.h"
 #import "DYBSelectContactViewController.h"
-#import "UIView+DragonViewSignal.h"
-#import "UIImage+DragonCategory.h"
-#import "UITableViewCell+DragonCategory.h"
-#import "NSObject+DragonDatabase.h"
+#import "UIView+MagicViewSignal.h"
+#import "UIImage+MagicCategory.h"
+#import "UITableViewCell+MagicCategory.h"
+#import "NSObject+MagicDatabase.h"
 #import "user.h"
 #import "JSON.h"
-#import "AVAudioPlayer+DragonCategory.h"
+#import "AVAudioPlayer+MagicCategory.h"
 #import "UITextView+Property.h"
 #import "NSObject+GCD.h"
-#import "Dragon_Device.h"
+#import "Magic_Device.h"
 #import "DYBGuideView.h"
 #import "NSObject+KVO.h"
 #import "DYBTagNotesViewController.h"
@@ -54,11 +54,11 @@ DEF_SIGNAL(DELNOTE)
 @synthesize str_nid=_str_nid,isEditing=_isEditing,str_favorite=_str_favorite,typeTop,userId,shareId;
 
 #pragma mark- ViewController信号
-- (void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal
 {
     [super handleViewSignal:signal];
     
-    if ([signal is:DragonViewController.CREATE_VIEWS]) {
+    if ([signal is:MagicViewController.CREATE_VIEWS]) {
                 
         [self observeNotification:[DYBPhotoEditorView DOSAVEIMAGE]];
         
@@ -71,7 +71,7 @@ DEF_SIGNAL(DELNOTE)
         [self creatTbv];
 
         if(!_isEditing && _str_nid){//HTTP请求,笔记详情
-            DragonRequest *request = [DYBHttpMethod notes_detail:_str_nid isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod notes_detail:_str_nid isAlert:YES receive:self];
             [request setTag:1];
         }
         
@@ -86,7 +86,7 @@ DEF_SIGNAL(DELNOTE)
             }
         }
 
-    }else if ([signal is:DragonViewController.WILL_APPEAR]){
+    }else if ([signal is:MagicViewController.WILL_APPEAR]){
         self.rightButton.hidden=YES;
         
         [self.headview setTitle:((_isEditing)?((_str_nid)?(@"笔记编辑"):(@"新建笔记")):(@"笔记详情"))];
@@ -121,7 +121,7 @@ DEF_SIGNAL(DELNOTE)
 
         }
         
-    }else if ([signal is:DragonViewController.WILL_DISAPPEAR]){
+    }else if ([signal is:MagicViewController.WILL_DISAPPEAR]){
         if (![_str_favorite isEqualToString:_model.favorite]  && _str_favorite) {
             [self postNotification:[DYBNoteDetailViewController AutoRefreshTbvInViewWillAppear] withObject:/*[NSDictionary dictionaryWithObjectsAndKeys:_model.nid,@"nid",_model.favorite,@"favorite", nil]*/ nil userInfo:nil];
             
@@ -140,10 +140,10 @@ DEF_SIGNAL(DELNOTE)
         [self cacheUnEdittedNote];
 
 
-    }else if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    }else if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         
-    }else if ([signal is:[DragonViewController FREE_DATAS]])//dealloc时回调,先释放数据
+    }else if ([signal is:[MagicViewController FREE_DATAS]])//dealloc时回调,先释放数据
     {
         RELEASEDICTARRAYOBJ(_muA_audioData);
         RELEASEDICTARRAYOBJ(_muA_audioView);
@@ -151,7 +151,7 @@ DEF_SIGNAL(DELNOTE)
         
         [self unobserveAllNotification];
         
-    }else if ([signal is:[DragonViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
+    }else if ([signal is:[MagicViewController DELETE_VIEWS]]){//dealloc时回调,再释放视图
         
         REMOVEFROMSUPERVIEW(_tbvView);
         if (_model) {
@@ -181,7 +181,7 @@ DEF_SIGNAL(DELNOTE)
 }
 
 #pragma mark- 返回上一页
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -237,40 +237,40 @@ DEF_SIGNAL(DELNOTE)
 
 //static NSString *cellName = @"cellName";//
 //
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
     {
         
         
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
-    {
-        
-        
-    }
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
-    {
-        
-    }
-    else if ([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
     {
         
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath  暂时把每个cell保存,后期有时间优化为只保存高度,返回cell时再异步计算cell的视图,目前刷新后所有cell的view都要重新创建
+    {
+        
+    }
+    else if ([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    {
+        
+        
+    }
+    else if ([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
     {
         
         
     }//
-    else if ([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
     {
         
         
     }
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell  只返回显示的cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell  只返回显示的cell
     {
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         UITableView *tableview = [dict objectForKey:@"tableView"];
@@ -303,43 +303,43 @@ DEF_SIGNAL(DELNOTE)
         [tableview deselectRowAtIndexPath:indexPath animated:YES];
         
     }
-    else if ([signal is:[DragonUITableView TAbLEVIEWLODATA]])//加载更多
+    else if ([signal is:[MagicUITableView TAbLEVIEWLODATA]])//加载更多
     {
        
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWUPDATA]])//刷新
+    else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]])//刷新
     {
-        DragonUITableView *tableView = ((DYBVariableTbvView *)[signal source]).tbv;
+        MagicUITableView *tableView = ((DYBVariableTbvView *)[signal source]).tbv;
 
         [tableView reloadData:YES];
 
     }
-    else if ([signal is:[DragonUITableView TABLESECTIONINDEXTITLESFORTABLEVIEW]])//右侧索引列表
+    else if ([signal is:[MagicUITableView TABLESECTIONINDEXTITLESFORTABLEVIEW]])//右侧索引列表
     {
         
-    }else if ([signal is:[DragonUITableView TABLESECTIONFORSECTIONINDEXTITLE]])//点击右测是索引列表上的某个字母时回调,参数index和title是 右侧索引列表上被点击的字母在 索引列表的下标和名字,返回被点击的字母对应的section的下标
+    }else if ([signal is:[MagicUITableView TABLESECTIONFORSECTIONINDEXTITLE]])//点击右测是索引列表上的某个字母时回调,参数index和title是 右侧索引列表上被点击的字母在 索引列表的下标和名字,返回被点击的字母对应的section的下标
     {
    
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLUP]]){//上滑
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLUP]]){//上滑
         
         [[DYBUITabbarViewController sharedInstace] hideTabBar:YES animated:YES];
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLDOWN]]){//下滑
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLDOWN]]){//下滑
         
         [[DYBUITabbarViewController sharedInstace] hideTabBar:NO animated:YES];
         
-    }else if ([signal is:[DragonUITableView TAbLEVIERETOUCH]]){//点击事件
+    }else if ([signal is:[MagicUITableView TAbLEVIERETOUCH]]){//点击事件
         
     }
 }
 
 #pragma mark- 只接受UITextView信号
-- (void)handleViewSignal_DragonUITextView:(DragonViewSignal *)signal
+- (void)handleViewSignal_MagicUITextView:(MagicViewSignal *)signal
 {
-    if ([signal is:[DragonUITextView TEXTVIEWSHOULDBEGINEDITING]])//textViewShouldBeginEditing
+    if ([signal is:[MagicUITextView TEXTVIEWSHOULDBEGINEDITING]])//textViewShouldBeginEditing
     {
         NSMutableDictionary *muD = (NSMutableDictionary *)[signal object];
-        DragonUITextView *textV=[muD objectForKey:@"textView"];
+        MagicUITextView *textV=[muD objectForKey:@"textView"];
         
         if (_model && _model.user_id && ![_model.user_id isEqualToString:SHARED.curUser.userid]) {//他人笔记不能编辑
             return [signal returnNO];
@@ -355,7 +355,7 @@ DEF_SIGNAL(DELNOTE)
         
         return [signal returnYES];
         
-    }else  if ([signal is:[DragonUITextView TEXTVIEWDIDBEGINEDITING]])//textViewDidBeginEditing
+    }else  if ([signal is:[MagicUITextView TEXTVIEWDIDBEGINEDITING]])//textViewDidBeginEditing
     {
         
         int i=0;
@@ -373,13 +373,13 @@ DEF_SIGNAL(DELNOTE)
         
         [_tbvView reloadData:YES];
         
-    }else  if ([signal is:[DragonUITextView TEXT_OVERFLOW]])//文字超长
+    }else  if ([signal is:[MagicUITextView TEXT_OVERFLOW]])//文字超长
     {
         [signal returnNO];
-    }else  if ([signal is:[DragonUITextView TEXTVIEW]])//shouldChangeTextInRange
+    }else  if ([signal is:[MagicUITextView TEXTVIEW]])//shouldChangeTextInRange
     {
         NSMutableDictionary *muD = (NSMutableDictionary *)[signal object];
-        DragonUITextView *textV=[muD objectForKey:@"textView"];
+        MagicUITextView *textV=[muD objectForKey:@"textView"];
         NSString *emString=[muD objectForKey:@"text"];
         
         if ([emString isEqualToString:@"\n"]) {//收键盘
@@ -393,11 +393,11 @@ DEF_SIGNAL(DELNOTE)
         }
 
     }
-    else  if ([signal is:[DragonUITextView TEXTVIEWDIDCHANGE]])//textViewDidChange
+    else  if ([signal is:[MagicUITextView TEXTVIEWDIDCHANGE]])//textViewDidChange
     {
         
         NSMutableDictionary *muD = (NSMutableDictionary *)[signal object];
-        DragonUITextView *textV=[muD objectForKey:@"textView"];
+        MagicUITextView *textV=[muD objectForKey:@"textView"];
         
         ((noteModel *)[[_tbvView DataSourceArray] objectAtIndex:1]).content=[textV.text TrimmingStringBywhitespaceCharacterSet];
         [textV freshLbTextLengthText:[NSString stringWithFormat:@"%d / %d",textV.text.length,textV.maxLength]];
@@ -488,7 +488,7 @@ DEF_SIGNAL(DELNOTE)
 }
 
 #pragma mark- 进度条走完回调
-- (void)handleViewSignal_DYBAudioProgressView:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBAudioProgressView:(MagicViewSignal *)signal
 {
     if (([signal is:[DYBAudioProgressView LoadDown]])) {
 //        _recodeTime++;
@@ -518,9 +518,9 @@ DEF_SIGNAL(DELNOTE)
 }
 
 #pragma mark- 按钮信号
-- (void)handleViewSignal_DragonUIButton:(DragonViewSignal *)signal{
-    if ([signal is:[DragonUIButton TOUCH_UP_INSIDE]]) {
-        DragonUIButton *bt=(DragonUIButton *)signal.source;
+- (void)handleViewSignal_MagicUIButton:(MagicViewSignal *)signal{
+    if ([signal is:[MagicUIButton TOUCH_UP_INSIDE]]) {
+        MagicUIButton *bt=(MagicUIButton *)signal.source;
         
         if (bt)
         {
@@ -580,7 +580,7 @@ DEF_SIGNAL(DELNOTE)
                         delShotVeiw.tag=-2;
                     }else{
                         {//HTTP请求
-                            DragonRequest *request = [DYBHttpMethod notes_dumpnote:_model.nid del:((SHARED.currentUserSetting.notesSaveForPush)?(@"1"):(@"2")) isAlert:YES receive:self];
+                            MagicRequest *request = [DYBHttpMethod notes_dumpnote:_model.nid del:((SHARED.currentUserSetting.notesSaveForPush)?(@"1"):(@"2")) isAlert:YES receive:self];
                             [request setTag:2];
                         }
                     }
@@ -592,10 +592,10 @@ DEF_SIGNAL(DELNOTE)
                 {
                     
                     if ([_model.favorite intValue]==0) {//HTTP请求,收藏
-                        DragonRequest *request = [DYBHttpMethod notes_addfavorite:_model.nid isAlert:YES receive:self];
+                        MagicRequest *request = [DYBHttpMethod notes_addfavorite:_model.nid isAlert:YES receive:self];
                         [request setTag:3];
                     }else{
-                        DragonRequest *request = [DYBHttpMethod notes_delfavorite:_model.nid isAlert:YES receive:self];
+                        MagicRequest *request = [DYBHttpMethod notes_delfavorite:_model.nid isAlert:YES receive:self];
                         [request setTag:4];
                     }
                 }
@@ -606,7 +606,7 @@ DEF_SIGNAL(DELNOTE)
                    [DYBShareinstaceDelegate addConfirmViewTitle:@"" MSG:@"真的要删除吗？" targetView:APPDELEGATE.window targetObj:self btnType:BTNTAG_DEL rowNum:[NSString stringWithFormat:@"%d",0]];
                     
 //                    {//HTTP请求
-//                        DragonRequest *request = [DYBHttpMethod notes_delnote:_model.nid isAlert:YES receive:self];
+//                        MagicRequest *request = [DYBHttpMethod notes_delnote:_model.nid isAlert:YES receive:self];
 //                        [request setTag:5];
 //                    }
                 }
@@ -622,7 +622,7 @@ DEF_SIGNAL(DELNOTE)
                     file_list *model=[signal.object valueForKeyPath:@"model"];
                     if (model.fid) {//有文件ID的文件都是服务器发来的,删除时调 notes_delfile 接口
                         {//HTTP请求
-                            DragonRequest *request = [DYBHttpMethod notes_delfile:model.fid isAlert:YES receive:self];
+                            MagicRequest *request = [DYBHttpMethod notes_delfile:model.fid isAlert:YES receive:self];
                             [request setTag:10];
                         }
                     }
@@ -665,9 +665,9 @@ DEF_SIGNAL(DELNOTE)
                     }
                     
                     if (i>2) {
-                        DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                        MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                         [pop setDelegate:self];
-                        [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                        [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                         [pop setText:@"您最多能添加3个音频文件"];
                         [pop alertViewAutoHidden:.5f isRelease:YES];
                         break;
@@ -686,9 +686,9 @@ DEF_SIGNAL(DELNOTE)
                     }
                     
                     if (i>5) {
-                        DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                        MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                         [pop setDelegate:self];
-                        [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                        [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                         [pop setText:@"您最多能添加6张图片"];
                         [pop alertViewAutoHidden:.5f isRelease:YES];
                         break;
@@ -710,9 +710,9 @@ DEF_SIGNAL(DELNOTE)
                         }
                     }
                     if (i>5) {
-                        DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                        MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                         [pop setDelegate:self];
-                        [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                        [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                         [pop setText:@"您最多能添加6张图片"];
                         [pop alertViewAutoHidden:.5f isRelease:YES];
                         break;
@@ -749,27 +749,27 @@ DEF_SIGNAL(DELNOTE)
     
     if (![self couldAddnote]) {
         {
-            DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+            MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
             [pop setDelegate:self];
-            [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+            [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
             [pop setText:@"请添加笔记内容"];
             [pop alertViewAutoHidden:.5f isRelease:YES];
         }
         return;
     }
     
-    if ([[DragonDevice networkType] isEqualToString:@"-1"]) {
+    if ([[MagicDevice networkType] isEqualToString:@"-1"]) {
         {
-            DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+            MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
             [pop setDelegate:self];
-            [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+            [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
             [pop setText:@"请检测网络"];
             [pop alertViewAutoHidden:.5f isRelease:YES];
         }
         return;
     }
     
-    if (![[DragonDevice networkType] isEqualToString:@"wifi"] ) {
+    if (![[MagicDevice networkType] isEqualToString:@"wifi"] ) {
          DYBDataBankShotView *delShotVeiw = [DYBShareinstaceDelegate addConfirmViewTitle:@"" MSG:@"2G/3G网络同步会消耗你的数据流量，是否继续操作？" targetView:APPDELEGATE.window targetObj:self btnType:BTNTAG_DEL rowNum:[NSString stringWithFormat:@"%d",0]];
         delShotVeiw.tag=-1;
         return;
@@ -786,9 +786,9 @@ DEF_SIGNAL(DELNOTE)
         
 //        if (![self couldAddnote]) {
 //            {
-//                DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+//                MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
 //                [pop setDelegate:self];
-//                [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+//                [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
 //                [pop setText:@"请添加笔记内容"];
 //                [pop alertViewAutoHidden:.5f isRelease:YES];
 //            }
@@ -808,7 +808,7 @@ DEF_SIGNAL(DELNOTE)
         }
         
         {//HTTP请求,添加新笔记,获取笔记id
-            DragonRequest *request = [DYBHttpMethod notes_addnoteBylng:@"" lat:@"" address:@"" title:@"" content:((noteModel *)[[_tbvView DataSourceArray] objectAtIndex:1]).content tagid:(([str_tagid isEqualToString:@""])?(@""):(str_tagid)) isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod notes_addnoteBylng:@"" lat:@"" address:@"" title:@"" content:((noteModel *)[[_tbvView DataSourceArray] objectAtIndex:1]).content tagid:(([str_tagid isEqualToString:@""])?(@""):(str_tagid)) isAlert:YES receive:self];
             [request setTag:6];
             
         }
@@ -818,9 +818,9 @@ DEF_SIGNAL(DELNOTE)
         
 //        if (![self couldAddnote]) {
 //            {
-//                DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+//                MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
 //                [pop setDelegate:self];
-//                [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+//                [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
 //                [pop setText:@"请添加笔记内容"];
 //                [pop alertViewAutoHidden:.5f isRelease:YES];
 //            }
@@ -840,7 +840,7 @@ DEF_SIGNAL(DELNOTE)
         }
         
         {//HTTP请求,笔记修改
-            DragonRequest *request = [DYBHttpMethod notes_editnote:_str_nid content:((noteModel *)[[_tbvView DataSourceArray] objectAtIndex:1]).content tagid:str_tagid isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod notes_editnote:_str_nid content:((noteModel *)[[_tbvView DataSourceArray] objectAtIndex:1]).content tagid:str_tagid isAlert:YES receive:self];
             [request setTag:11];
         }
         
@@ -907,7 +907,7 @@ DEF_SIGNAL(DELNOTE)
 //                
 //                NSMutableDictionary *muD2 = [DYBHttpInterface notes_uploadfile:_str_nid duration:duration];
 //                DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
-//                DragonRequest *dre = [request DYBPOSTFILE:muD2 isAlert:YES receive:self fileData:mud];
+//                MagicRequest *dre = [request DYBPOSTFILE:muD2 isAlert:YES receive:self fileData:mud];
 //                dre.tag =  11;
 //                
 //            }
@@ -934,10 +934,10 @@ DEF_SIGNAL(DELNOTE)
             
             if (!_bt_moveToDataBase) {
                 UIImage *img= [UIImage imageNamed:@"note_tomynote_def"];
-                _bt_moveToDataBase = [[DragonUIButton alloc] initWithFrame:CGRectMake((320-img.size.width/2)/2 , (205-img.size.height/2)/2, img.size.width/2, img.size.height/2)];
+                _bt_moveToDataBase = [[MagicUIButton alloc] initWithFrame:CGRectMake((320-img.size.width/2)/2 , (205-img.size.height/2)/2, img.size.width/2, img.size.height/2)];
                 _bt_moveToDataBase.backgroundColor=[UIColor clearColor];
                 _bt_moveToDataBase.tag=-10;
-                [_bt_moveToDataBase addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+                [_bt_moveToDataBase addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
                 [_bt_moveToDataBase setImage:img forState:UIControlStateNormal];
                 [_bt_moveToDataBase setImage:img forState:UIControlStateHighlighted];
                 //            [_bt_creatNote setTitle:@"更多"];
@@ -953,10 +953,10 @@ DEF_SIGNAL(DELNOTE)
             
             if (!_bt_edit) {
                 UIImage *img= [UIImage imageNamed:@"note_editshare_def"];
-                _bt_edit = [[DragonUIButton alloc] initWithFrame:CGRectMake(60, (205-img.size.height/2)/2, img.size.width/2, img.size.height/2)];
+                _bt_edit = [[MagicUIButton alloc] initWithFrame:CGRectMake(60, (205-img.size.height/2)/2, img.size.width/2, img.size.height/2)];
                 _bt_edit.backgroundColor=[UIColor clearColor];
                 _bt_edit.tag=-11;
-                [_bt_edit addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+                [_bt_edit addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
                 [_bt_edit setImage:img forState:UIControlStateNormal];
                 [_bt_edit setImage:img forState:UIControlStateHighlighted];
                 [_v_dropDown addSubview:_bt_edit];
@@ -966,10 +966,10 @@ DEF_SIGNAL(DELNOTE)
             //取消共享
             if (!_bt_del) {
                 UIImage *img= [UIImage imageNamed:@"note_cancelshare_def"];
-                _bt_del = [[DragonUIButton alloc] initWithFrame:CGRectMake(320-img.size.width/2-60, (205-img.size.height/2)/2, img.size.width/2, img.size.height/2)];
+                _bt_del = [[MagicUIButton alloc] initWithFrame:CGRectMake(320-img.size.width/2-60, (205-img.size.height/2)/2, img.size.width/2, img.size.height/2)];
                 _bt_del.backgroundColor=[UIColor clearColor];
                 _bt_del.tag=-12;
-                [_bt_del addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+                [_bt_del addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
                 [_bt_del setImage:img forState:UIControlStateNormal];
                 [_bt_del setImage:img forState:UIControlStateHighlighted];
                 [_v_dropDown addSubview:_bt_del];
@@ -981,10 +981,10 @@ DEF_SIGNAL(DELNOTE)
             
             if (!_bt_edit) {
                 UIImage *img= [UIImage imageNamed:@"note_edit_def"];
-                _bt_edit = [[DragonUIButton alloc] initWithFrame:CGRectMake(33, 20, img.size.width/2, img.size.height/2)];
+                _bt_edit = [[MagicUIButton alloc] initWithFrame:CGRectMake(33, 20, img.size.width/2, img.size.height/2)];
                 _bt_edit.backgroundColor=[UIColor clearColor];
                 _bt_edit.tag=1;
-                [_bt_edit addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+                [_bt_edit addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
                 [_bt_edit setImage:img forState:UIControlStateNormal];
                 [_bt_edit setImage:img forState:UIControlStateHighlighted];
                 //            [_bt_creatNote setTitle:@"更多"];
@@ -997,10 +997,10 @@ DEF_SIGNAL(DELNOTE)
             
             if (!_bt_share) {
                 UIImage *img= [UIImage imageNamed:@"note_share_def"];
-                _bt_share = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_bt_edit.frame)+55, CGRectGetMinY(_bt_edit.frame), img.size.width/2, img.size.height/2)];
+                _bt_share = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_bt_edit.frame)+55, CGRectGetMinY(_bt_edit.frame), img.size.width/2, img.size.height/2)];
                 _bt_share.backgroundColor=[UIColor clearColor];
                 _bt_share.tag=2;
-                [_bt_share addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+                [_bt_share addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
                 [_bt_share setImage:img forState:UIControlStateNormal];
                 [_bt_share setImage:img forState:UIControlStateHighlighted];
                 //            [_bt_creatNote setTitle:@"更多"];
@@ -1013,10 +1013,10 @@ DEF_SIGNAL(DELNOTE)
             
             if (!_bt_moveToDataBase) {
                 UIImage *img= [UIImage imageNamed:@"note_move_def"];
-                _bt_moveToDataBase = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_bt_share.frame)+35 , CGRectGetMinY(_bt_edit.frame), img.size.width/2, img.size.height/2)];
+                _bt_moveToDataBase = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_bt_share.frame)+35 , CGRectGetMinY(_bt_edit.frame), img.size.width/2, img.size.height/2)];
                 _bt_moveToDataBase.backgroundColor=[UIColor clearColor];
                 _bt_moveToDataBase.tag=3;
-                [_bt_moveToDataBase addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+                [_bt_moveToDataBase addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
                 [_bt_moveToDataBase setImage:img forState:UIControlStateNormal];
                 [_bt_moveToDataBase setImage:img forState:UIControlStateHighlighted];
                 //            [_bt_creatNote setTitle:@"更多"];
@@ -1029,10 +1029,10 @@ DEF_SIGNAL(DELNOTE)
             
             if (!_bt_star) {
                 UIImage *img= [UIImage imageNamed:@"note_star_def"];
-                _bt_star = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(_bt_edit.frame), CGRectGetMaxY(_bt_edit.frame)+25, img.size.width/2, img.size.height/2)];
+                _bt_star = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(_bt_edit.frame), CGRectGetMaxY(_bt_edit.frame)+25, img.size.width/2, img.size.height/2)];
                 _bt_star.backgroundColor=[UIColor clearColor];
                 _bt_star.tag=4;
-                [_bt_star addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+                [_bt_star addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
                 [_bt_star setImage:img forState:UIControlStateNormal];
                 [_bt_star setImage:img forState:UIControlStateHighlighted];
                 //            [_bt_creatNote setTitle:@"更多"];
@@ -1045,10 +1045,10 @@ DEF_SIGNAL(DELNOTE)
             
             if (!_bt_del) {
                 UIImage *img= [UIImage imageNamed:@"note_del_def"];
-                _bt_del = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_bt_star.frame)+55, CGRectGetMinY(_bt_star.frame), img.size.width/2, img.size.height/2)];
+                _bt_del = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_bt_star.frame)+55, CGRectGetMinY(_bt_star.frame), img.size.width/2, img.size.height/2)];
                 _bt_del.backgroundColor=[UIColor clearColor];
                 _bt_del.tag=5;
-                [_bt_del addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+                [_bt_del addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
                 [_bt_del setImage:img forState:UIControlStateNormal];
                 [_bt_del setImage:img forState:UIControlStateHighlighted];
                 //            [_bt_creatNote setTitle:@"更多"];
@@ -1065,7 +1065,7 @@ DEF_SIGNAL(DELNOTE)
         
         {//底线
             UIView *v=[[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(_v_dropDown.frame)-1, CGRectGetWidth(_v_dropDown.frame), 1)];
-            v.backgroundColor=[DragonCommentMethod colorWithHex:@"e5e5e5"];
+            v.backgroundColor=[MagicCommentMethod colorWithHex:@"e5e5e5"];
             [_v_dropDown addSubview:v];
             RELEASE(v);
         }
@@ -1101,7 +1101,7 @@ DEF_SIGNAL(DELNOTE)
     
     //收底部tabbar
     {
-        DragonUIImageView *_v=(DragonUIImageView *)[_v_dropUp viewWithTag:-1];//
+        MagicUIImageView *_v=(MagicUIImageView *)[_v_dropUp viewWithTag:-1];//
         _v.image=[UIImage imageNamed:@"qt_10_z"];
         
         [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^(){
@@ -1112,16 +1112,16 @@ DEF_SIGNAL(DELNOTE)
     }
 }
 
-//-(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+//-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
 //    
 //    if ([signal is:[DYBDataBankShotView RIGHT]]) {
 //        
-//        if (![DragonDevice hasInternetConnection]){
+//        if (![MagicDevice hasInternetConnection]){
 //            DLogInfo(@"确定是否网络连接");
 //            return;
 //        }
 //        {//转存到资笔记
-//            DragonRequest *request = [DYBHttpMethod notes_savesharenote:userId nid:_str_nid isAlert:YES receive:self];
+//            MagicRequest *request = [DYBHttpMethod notes_savesharenote:userId nid:_str_nid isAlert:YES receive:self];
 //            [request setTag:7];
 //            if (!request) {//无网路
 //                
@@ -1134,7 +1134,7 @@ DEF_SIGNAL(DELNOTE)
 
 
 #pragma mark - DYBNoteDetailViewController自己消息
-- (void)handleViewSignal_DYBNoteDetailViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBNoteDetailViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBNoteDetailViewController SELTAG]])//选择标签
     {
@@ -1186,10 +1186,10 @@ DEF_SIGNAL(DELNOTE)
             
             if (!_bt_StartRecording) {
                 UIImage *img= [UIImage imageNamed:@"h_start"];
-                _bt_StartRecording = [[DragonUIButton alloc] initWithFrame:CGRectMake(20, 0, img.size.width/2, img.size.height/2)];
+                _bt_StartRecording = [[MagicUIButton alloc] initWithFrame:CGRectMake(20, 0, img.size.width/2, img.size.height/2)];
                 _bt_StartRecording.backgroundColor=[UIColor clearColor];
 //                _bt_StartRecording.tag=11;
-//                [_bt_StartRecording addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+//                [_bt_StartRecording addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
                 [_bt_StartRecording setImage:img forState:UIControlStateNormal];
                 [_bt_StartRecording setImage:img forState:UIControlStateHighlighted];
                 //            [_bt_creatNote setTitle:@"更多"];
@@ -1208,10 +1208,10 @@ DEF_SIGNAL(DELNOTE)
             
             if (!_bt_stopRecording) {
                 UIImage *img= [UIImage imageNamed:@"h_stop"];
-                _bt_stopRecording = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(_v_dropUpInEditing.frame)-20-img.size.width/2, 0, img.size.width/2, img.size.height/2)];
+                _bt_stopRecording = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(_v_dropUpInEditing.frame)-20-img.size.width/2, 0, img.size.width/2, img.size.height/2)];
                 _bt_stopRecording.backgroundColor=[UIColor clearColor];
                 _bt_stopRecording.tag=12;
-//                [_bt_stopRecording addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+//                [_bt_stopRecording addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
                 [_bt_stopRecording setImage:img forState:UIControlStateNormal];
                 [_bt_stopRecording setImage:img forState:UIControlStateHighlighted];
                 //            [_bt_creatNote setTitle:@"更多"];
@@ -1275,14 +1275,14 @@ DEF_SIGNAL(DELNOTE)
 
 
 #pragma mark- 接受UIView信号
-- (void)handleViewSignal_UIView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_UIView:(MagicViewSignal *)signal{
     if ([signal is:[UIView TAP]]) {
         UIView *v=signal.source;
         switch (v.tag) {
             case 1://底部上拉view
             {
                 if (CGRectEqualToRect(_v_dropUp.frame, _v_dropUp._originFrame)) {
-                    DragonUIImageView *_v=(DragonUIImageView *)[_v_dropUp viewWithTag:-1];//
+                    MagicUIImageView *_v=(MagicUIImageView *)[_v_dropUp viewWithTag:-1];//
                     _v.image=[UIImage imageNamed:@"qt_10"];
                     
                     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^(){
@@ -1303,7 +1303,7 @@ DEF_SIGNAL(DELNOTE)
                         }];
                     }
                 }else{
-                    DragonUIImageView *_v=(DragonUIImageView *)[_v_dropUp viewWithTag:-1];//
+                    MagicUIImageView *_v=(MagicUIImageView *)[_v_dropUp viewWithTag:-1];//
                     _v.image=[UIImage imageNamed:@"qt_10_z"];
                     
                     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^(){
@@ -1318,8 +1318,8 @@ DEF_SIGNAL(DELNOTE)
                 break;
             case 2://标签cell的scrollview
             {
-//                [self addSignal:[DragonUITableView TABLEDIDSELECT] object:signal.object target:self];
-                [self sendViewSignal:[DragonUITableView TABLEDIDSELECT] withObject:[signal object] from:self target:self];
+//                [self addSignal:[MagicUITableView TABLEDIDSELECT] object:signal.object target:self];
+                [self sendViewSignal:[MagicUITableView TABLEDIDSELECT] withObject:[signal object] from:self target:self];
             }
                 break;
             case 3://开始录音
@@ -1481,9 +1481,9 @@ DEF_SIGNAL(DELNOTE)
                     
 //                    [Static alertView:theApp.window msg:@"没找到音频文件"];
                     
-                    DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                    MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                     [pop setDelegate:self];
-                    [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                    [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                     [pop setText:@"没找到音频文件"];
                     [pop alertViewAutoHidden:.5f isRelease:YES];
                 }
@@ -1492,9 +1492,9 @@ DEF_SIGNAL(DELNOTE)
                     
 //                    [Static alertView:theApp.window msg:@"音频文件有损"];
                     
-                    DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                    MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                     [pop setDelegate:self];
-                    [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                    [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                     [pop setText:@"音频文件有损"];
                     [pop alertViewAutoHidden:.5f isRelease:YES];
                     
@@ -1650,7 +1650,7 @@ DEF_SIGNAL(DELNOTE)
     if (_isEditing) {//初始编辑模式UI
         if (!_v_dropUpInEditing && _isEditing) {//编辑状态底部view
             UIImage *img=[UIImage imageNamed:@"bg_whitefooter"];
-            _v_dropUpInEditing=[[DragonUIImageView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame)-img.size.height/2, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self.view Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+            _v_dropUpInEditing=[[MagicUIImageView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame)-img.size.height/2, img.size.width/2,img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:self.view Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
             _v_dropUpInEditing._originFrame=CGRectMake(0, CGRectGetHeight(self.view.frame)-30, CGRectGetWidth(self.view.frame), 230);
             RELEASE(_v_dropUpInEditing);
             
@@ -1683,10 +1683,10 @@ DEF_SIGNAL(DELNOTE)
         
         if (!_bt_audio) {
             UIImage *img= [UIImage imageNamed:@"btn_voice_def"];
-            _bt_audio = [[DragonUIButton alloc] initWithFrame:CGRectMake(0, 3, img.size.width/2, img.size.height/2)];
+            _bt_audio = [[MagicUIButton alloc] initWithFrame:CGRectMake(0, 3, img.size.width/2, img.size.height/2)];
             _bt_audio.backgroundColor=[UIColor clearColor];
             _bt_audio.tag=8;
-            [_bt_audio addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [_bt_audio addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
             [_bt_audio setImage:img forState:UIControlStateNormal];
             [_bt_audio setImage:[UIImage imageNamed:@"btn_voice_press"] forState:UIControlStateHighlighted];
             //            [_bt_creatNote setTitle:@"更多"];
@@ -1699,10 +1699,10 @@ DEF_SIGNAL(DELNOTE)
         
         if (!_bt_camera) {
             UIImage *img= [UIImage imageNamed:@"btn_camera_def"];
-            _bt_camera = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_bt_audio.frame), 3, img.size.width/2, img.size.height/2)];
+            _bt_camera = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_bt_audio.frame), 3, img.size.width/2, img.size.height/2)];
             _bt_camera.backgroundColor=[UIColor clearColor];
             _bt_camera.tag=9;
-            [_bt_camera addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [_bt_camera addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
             [_bt_camera setImage:img forState:UIControlStateNormal];
             [_bt_camera setImage:[UIImage imageNamed:@"btn_camera_press"] forState:UIControlStateHighlighted];
             //            [_bt_creatNote setTitle:@"更多"];
@@ -1715,10 +1715,10 @@ DEF_SIGNAL(DELNOTE)
         
         if (!_bt_photo) {
             UIImage *img= [UIImage imageNamed:@"btn_album_def"];
-            _bt_photo = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(_v_dropUpInEditing.frame)-img.size.width/2, 3, img.size.width/2, img.size.height/2)];
+            _bt_photo = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(_v_dropUpInEditing.frame)-img.size.width/2, 3, img.size.width/2, img.size.height/2)];
             _bt_photo.backgroundColor=[UIColor clearColor];
             _bt_photo.tag=10;
-            [_bt_photo addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+            [_bt_photo addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
             [_bt_photo setImage:img forState:UIControlStateNormal];
             [_bt_photo setImage:[UIImage imageNamed:@"btn_album_press"] forState:UIControlStateHighlighted];
             //            [_bt_creatNote setTitle:@"更多"];
@@ -1801,10 +1801,10 @@ DEF_SIGNAL(DELNOTE)
 {
     if (!_bt_Right) {
         UIImage *img= [UIImage imageNamed:((_isEditing)?(@"btn_save_def"):(@"btn_morecontrol_def"))];
-        _bt_Right = [[DragonUIButton alloc] initWithFrame:CGRectMake(self.headview.frame.size.width-img.size.width/2, 0, img.size.width/2, /*img.size.height/2*/ CGRectGetHeight(self.headview.frame))];
+        _bt_Right = [[MagicUIButton alloc] initWithFrame:CGRectMake(self.headview.frame.size.width-img.size.width/2, 0, img.size.width/2, /*img.size.height/2*/ CGRectGetHeight(self.headview.frame))];
         _bt_Right.backgroundColor=[UIColor clearColor];
         _bt_Right.tag=-1;
-        [_bt_Right addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
+        [_bt_Right addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside];
         [_bt_Right setImage:img forState:UIControlStateNormal];
         [_bt_Right setImage:[UIImage imageNamed:((_isEditing)?(@"btn_save_press"):(@"btn_morecontrol_high"))] forState:UIControlStateHighlighted];
         //            [_bt_creatNote setTitle:@"更多"];
@@ -2069,15 +2069,15 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
 //-(UIView *)creatAudioView:(file_list *)ob startY:(CGFloat)startY
 //{
 //    UIImage *img=[UIImage imageNamed:@"audiobox.png"];
-//    DragonUIImageView *imgV=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMinX(_scrV_Tip.frame), startY+10, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_scrV_back Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+//    MagicUIImageView *imgV=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMinX(_scrV_Tip.frame), startY+10, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_scrV_back Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
 //    RELEASE(imgV);
 //    
 //    {//删除按钮
 //        UIImage *img= [UIImage imageNamed:@"star_note"];
-//        DragonUIButton *bt = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(imgV.frame)-img.size.width/4, -img.size.height/4, img.size.width/2, img.size.height/2)];
+//        MagicUIButton *bt = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(imgV.frame)-img.size.width/4, -img.size.height/4, img.size.width/2, img.size.height/2)];
 //        bt.backgroundColor=[UIColor clearColor];
 //        bt.tag=7;
-//        [bt addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
+//        [bt addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
 //        [bt setImage:img forState:UIControlStateNormal];
 //        [bt setImage:img forState:UIControlStateHighlighted];
 //        //            [_bt_creatNote setTitle:@"更多"];
@@ -2094,10 +2094,10 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
 //}
 
 //#pragma mark- 创建一个图片view
-//-(DragonUIImageView *)creatShowImgView:(file_list *)ob startY:(CGFloat)startY img:(UIImage *)img
+//-(MagicUIImageView *)creatShowImgView:(file_list *)ob startY:(CGFloat)startY img:(UIImage *)img
 //{
 //    
-//    DragonUIImageView *imgV=[[DragonUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMinX(_scrV_Tip.frame), startY-20-kH_photoEditoredImgCutSize/*图片经过滤镜后上下各被裁减黑了*/, screenShows.size.width-CGRectGetMinX(_scrV_Tip.frame)*2, screenShows.size.height) backgroundColor:[UIColor clearColor] image:(([img isKindOfClass:[UIImage class]])?(img):(nil)) isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_scrV_back Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+//    MagicUIImageView *imgV=[[MagicUIImageView alloc]initWithFrame:CGRectMake(CGRectGetMinX(_scrV_Tip.frame), startY-20-kH_photoEditoredImgCutSize/*图片经过滤镜后上下各被裁减黑了*/, screenShows.size.width-CGRectGetMinX(_scrV_Tip.frame)*2, screenShows.size.height) backgroundColor:[UIColor clearColor] image:(([img isKindOfClass:[UIImage class]])?(img):(nil)) isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_scrV_back Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
 //    RELEASE(imgV);
 //    if (![img isKindOfClass:[UIImage class]] && [ob isKindOfClass:[file_list class]]) {
 //        [imgV setImgWithUrl:ob.location defaultImg:nil];
@@ -2105,10 +2105,10 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
 //    
 //    {//删除按钮
 //        UIImage *img= [UIImage imageNamed:@"star_note"];
-//        DragonUIButton *bt = [[DragonUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(imgV.frame)-img.size.width/4, kH_photoEditoredImgCutSize, img.size.width/2, img.size.height/2)];
+//        MagicUIButton *bt = [[MagicUIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(imgV.frame)-img.size.width/4, kH_photoEditoredImgCutSize, img.size.width/2, img.size.height/2)];
 //        bt.backgroundColor=[UIColor clearColor];
 //        bt.tag=7;
-//        [bt addSignal:[DragonUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
+//        [bt addSignal:[MagicUIButton TOUCH_UP_INSIDE] forControlEvents:UIControlEventTouchUpInside object:nil];
 //        [bt setImage:img forState:UIControlStateNormal];
 //        [bt setImage:img forState:UIControlStateHighlighted];
 //        //            [_bt_creatNote setTitle:@"更多"];
@@ -2206,13 +2206,13 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
     
     {//顶部阴影
         UIImage *img=[UIImage imageNamed:@"line_padshadow"];
-        DragonUIImageView *imgV_line_padshadow=[[DragonUIImageView alloc]initWithFrame:CGRectMake(0, -img.size.height/2, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_v_dropUp Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        MagicUIImageView *imgV_line_padshadow=[[MagicUIImageView alloc]initWithFrame:CGRectMake(0, -img.size.height/2, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_v_dropUp Alignment:-1 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         RELEASE(imgV_line_padshadow);
     }
     
     {//箭头
         UIImage *img=[UIImage imageNamed:@"qt_10_z"];
-        DragonUIImageView *imgV_arrow=[[DragonUIImageView alloc]initWithFrame:CGRectMake(0, 0, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_v_dropUp Alignment:0 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
+        MagicUIImageView *imgV_arrow=[[MagicUIImageView alloc]initWithFrame:CGRectMake(0, 0, img.size.width/2, img.size.height/2) backgroundColor:[UIColor clearColor] image:img isAdjustSizeByImgSize:NO userInteractionEnabled:YES masksToBounds:NO cornerRadius:-1 borderWidth:-1 borderColor:nil superView:_v_dropUp Alignment:0 contentMode:UIViewContentModeScaleAspectFit stretchableImageWithLeftCapWidth:-1 topCapHeight:-1];
         //                RELEASE(imgV_arrow);
         imgV_arrow.tag=-1;
     }
@@ -2241,7 +2241,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
     RELEASE(lb);
     
     {/*标签的背景滚动*/
-        DragonUIScrollView *_scrV_Tip = [[DragonUIScrollView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(lb.frame)+10, CGRectGetMinY(lb.frame)-3, 240, CGRectGetHeight(lb.frame)+6)];
+        MagicUIScrollView *_scrV_Tip = [[MagicUIScrollView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(lb.frame)+10, CGRectGetMinY(lb.frame)-3, 240, CGRectGetHeight(lb.frame)+6)];
         [_scrV_Tip setBackgroundColor:[UIColor clearColor]];
         [_scrV_Tip setContentSize:CGSizeMake(0, CGRectGetHeight(_scrV_Tip.frame))];
         [_scrV_Tip setShowsHorizontalScrollIndicator:NO];
@@ -2373,7 +2373,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                     RELEASE(lb_shareTar);
                     
                     {/*共享对象的背景滚动*/
-                        DragonUIScrollView *_scrV_Tip = [[DragonUIScrollView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(lb_shareTar.frame)+10, CGRectGetMinY(lb_shareTar.frame)-3, CGRectGetWidth(self.view.frame)-(CGRectGetMaxX(lb_shareTar.frame)+10)-10, CGRectGetHeight(lb_shareTar.frame)+6)];
+                        MagicUIScrollView *_scrV_Tip = [[MagicUIScrollView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(lb_shareTar.frame)+10, CGRectGetMinY(lb_shareTar.frame)-3, CGRectGetWidth(self.view.frame)-(CGRectGetMaxX(lb_shareTar.frame)+10)-10, CGRectGetHeight(lb_shareTar.frame)+6)];
                         [_scrV_Tip setBackgroundColor:[UIColor clearColor]];
                         [_scrV_Tip setContentSize:CGSizeMake(0, CGRectGetHeight(_scrV_Tip.frame))];
                         [_scrV_Tip setShowsHorizontalScrollIndicator:NO];
@@ -2480,7 +2480,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
 //}
 
 #pragma mark- 文件上传
--(BOOL)upLoadFile:(int)DragonRequest_tag
+-(BOOL)upLoadFile:(int)MagicRequest_tag
 {//文件上传
     NSString *duration=@"";
     int i=0;
@@ -2545,9 +2545,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
         
         NSMutableDictionary *muD2 = [DYBHttpInterface notes_uploadfile:_str_nid duration:duration];
         DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
-        DragonRequest *dre = [request DYBPOSTFILE:muD2 isAlert:YES receive:self fileData:mud];
+        MagicRequest *dre = [request DYBPOSTFILE:muD2 isAlert:YES receive:self fileData:mud];
         
-        dre.tag =  DragonRequest_tag;
+        dre.tag =  MagicRequest_tag;
         
         return YES;
     }
@@ -2592,7 +2592,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
 }
 
 #pragma mark- 只接受HTTP信号
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if ([request succeed])
     {
@@ -2629,9 +2629,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
 //                            [DYBShareinstaceDelegate addConfirmViewTitle:@"" MSG:@"成功转存至资料库,原笔记已自动删除" targetView:APPDELEGATE.window targetObj:self btnType:BTNTAG_DEL];
                             
                             {
-                                DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                                MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                                 [pop setDelegate:self];
-                                [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                                [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                                 [pop setText:@"成功转存至资料库,原笔记已自动删除"];
                                 [pop alertViewAutoHidden:.5f isRelease:YES];
                             }
@@ -2652,9 +2652,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
 //                            [DYBShareinstaceDelegate addConfirmViewTitle:@"" MSG:@"成功转存至资料库,原笔记已保留" targetView:APPDELEGATE.window targetObj:self btnType:BTNTAG_DEL];
                             
                             {
-                                DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                                MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                                 [pop setDelegate:self];
-                                [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                                [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                                 [pop setText:@"成功转存至资料库,原笔记已保留"];
                                 [pop alertViewAutoHidden:.5f isRelease:YES];
                             }
@@ -2666,9 +2666,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                 }
                 
                 {
-                    DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                    MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                     [pop setDelegate:self];
-                    [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                    [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                     [pop setText:@"转存失败"];
                     [pop alertViewAutoHidden:.5f isRelease:YES];
                 }
@@ -2682,9 +2682,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                     if ([[response.data objectForKey:@"result"] intValue]==1) {//成功
                         _model.favorite=@"1";
                 {
-                    DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                    MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                     [pop setDelegate:self];
-                    [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                    [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                     [pop setText:@"收藏成功"];
                     [pop alertViewAutoHidden:.5f isRelease:YES];
                 }
@@ -2696,9 +2696,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                 }
                 
                 {
-                    DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                    MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                     [pop setDelegate:self];
-                    [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                    [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                     [pop setText:@"收藏失败"];
                     [pop alertViewAutoHidden:.5f isRelease:YES];
                 }
@@ -2713,9 +2713,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                     if ([response.data isKindOfClass:[NSDictionary class]] && [[response.data objectForKey:@"result"] intValue]==1) {//成功
                         _model.favorite=@"0";
                         {
-                            DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                            MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                             [pop setDelegate:self];
-                            [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                            [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                             [pop setText:@"取消收藏成功"];
                             [pop alertViewAutoHidden:.5f isRelease:YES];
                         }
@@ -2727,9 +2727,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                 }
                 
                 {
-                    DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                    MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                     [pop setDelegate:self];
-                    [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                    [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                     [pop setText:@"取消收藏失败"];
                     [pop alertViewAutoHidden:.5f isRelease:YES];
                 }
@@ -2756,9 +2756,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                     }else{
                     
                         
-                        DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                        MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                         [pop setDelegate:self];
-                        [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                        [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                         [pop setText:@"删除笔记失败"];
                         [pop alertViewAutoHidden:.5f isRelease:YES];
                     
@@ -2834,7 +2834,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
 //
 //                            NSMutableDictionary *muD2 = [DYBHttpInterface notes_uploadfile:_str_nid duration:duration];
 //                            DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
-//                            DragonRequest *dre = [request DYBPOSTFILE:muD2 isAlert:YES receive:self fileData:mud];
+//                            MagicRequest *dre = [request DYBPOSTFILE:muD2 isAlert:YES receive:self fileData:mud];
 //                            dre.tag =  9;
 //                            
 //                        }
@@ -2842,9 +2842,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                         if(![self upLoadFile:9])
                         {//上传一个没有文件的纯文本的笔记
                             {
-                                DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                                MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                                 [pop setDelegate:self];
-                                [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                                [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                                 [pop setText:@"保存成功"];
                                 [pop alertViewAutoHidden:.5f isRelease:YES];
                             }
@@ -2927,9 +2927,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                     if ([response.data isKindOfClass:[NSDictionary class]] && [[response.data objectForKey:@"result"] intValue]==1) {//成功
                         
                         {
-                            DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                            MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                             [pop setDelegate:self];
-                            [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                            [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                             [pop setText:@"保存成功"];
                             [pop alertViewAutoHidden:.5f isRelease:YES];
                         }
@@ -2947,9 +2947,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                         
                     }else{
                         {
-                            DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                            MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                             [pop setDelegate:self];
-                            [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                            [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                             [pop setText:[[response.data objectForKey:@"error"] objectAtIndex:0]];
                             [pop alertViewAutoHidden:.5f isRelease:YES];
                         }
@@ -2974,18 +2974,18 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                 {
                     if ([response.data isKindOfClass:[NSDictionary class]] && [[response.data objectForKey:@"result"] intValue]==1) {//成功
                         {
-                            DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                            MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                             [pop setDelegate:self];
-                            [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                            [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                             [pop setText:@"删除成功"];
                             [pop alertViewAutoHidden:.5f isRelease:YES];
                         }
                     }
                 }else if ([response response] ==khttpfailCode){
                     {
-                        DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                        MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                         [pop setDelegate:self];
-                        [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                        [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                         [pop setText:@"删除失败"];
                         [pop alertViewAutoHidden:.5f isRelease:YES];
                     }
@@ -3018,9 +3018,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
 //                            [self refreshTabBar];
                             
                             {
-                                DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                                MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                                 [pop setDelegate:self];
-                                [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                                [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                                 [pop setText:@"修改成功"];
                                 [pop alertViewAutoHidden:.5f isRelease:YES];
                             }
@@ -3043,9 +3043,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                     }else{
                         _bt_Right.enabled=YES;
                         {
-                            DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                            MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                             [pop setDelegate:self];
-                            [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                            [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                             [pop setText:@"修改失败"];
                             [pop alertViewAutoHidden:.5f isRelease:YES];
                         }
@@ -3053,9 +3053,9 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                     }
                 }else if ([response response] ==khttpfailCode){
                     {
-                        DragonUIPopAlertView *pop = [[DragonUIPopAlertView alloc] init];
+                        MagicUIPopAlertView *pop = [[MagicUIPopAlertView alloc] init];
                         [pop setDelegate:self];
-                        [pop setMode:DRAGONPOPALERTVIEWNOINDICATOR];
+                        [pop setMode:MagicPOPALERTVIEWNOINDICATOR];
                         [pop setText:@"删除失败"];
                         [pop alertViewAutoHidden:.5f isRelease:YES];
                     }
@@ -3072,7 +3072,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
 }
 
 #pragma mark- 二次确认框
--(void)handleViewSignal_DYBDataBankShotView:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
     
     if ([signal is:[DYBDataBankShotView LEFT]]) {
         
@@ -3092,7 +3092,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
             {
                 
                 {//HTTP请求
-                    DragonRequest *request = [DYBHttpMethod notes_dumpnote:_model.nid del:((SHARED.currentUserSetting.notesSaveForPush)?(@"1"):(@"2")) isAlert:YES receive:self];
+                    MagicRequest *request = [DYBHttpMethod notes_dumpnote:_model.nid del:((SHARED.currentUserSetting.notesSaveForPush)?(@"1"):(@"2")) isAlert:YES receive:self];
                     [request setTag:2];
                 }
                 
@@ -3105,7 +3105,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
         
         if (source.tag == 2) {
             
-            DragonRequest *request = [DYBHttpMethod notes_delsharenote:shareId isAlert:YES receive:self];
+            MagicRequest *request = [DYBHttpMethod notes_delsharenote:shareId isAlert:YES receive:self];
             [request setTag:8];
             if (!request) {//无网路
                 
@@ -3125,7 +3125,7 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
                 noteModel *model=[_tbvView.tbv.muA_singelSectionData objectAtIndex:index.row];
                 
                 {//HTTP请求
-                    DragonRequest *request = [DYBHttpMethod notes_delnote:model.nid isAlert:YES receive:self];
+                    MagicRequest *request = [DYBHttpMethod notes_delnote:model.nid isAlert:YES receive:self];
                     [request setTag:5];
                 }
             }
@@ -3133,12 +3133,12 @@ didFinishPickingMediaWithInfo: (NSDictionary *)info
             case BTNTAG_CANCELSHARE:{
             
             
-                if (![DragonDevice hasInternetConnection]){
+                if (![MagicDevice hasInternetConnection]){
                     DLogInfo(@"确定是否网络连接");
                     return;
                 }
                 {//转存到资笔记
-                    DragonRequest *request = [DYBHttpMethod notes_savesharenote:userId nid:_str_nid isAlert:YES receive:self];
+                    MagicRequest *request = [DYBHttpMethod notes_savesharenote:userId nid:_str_nid isAlert:YES receive:self];
                     [request setTag:7];
                     if (!request) {//无网路
                         

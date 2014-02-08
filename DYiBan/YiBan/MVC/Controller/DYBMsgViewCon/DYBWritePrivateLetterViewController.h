@@ -11,7 +11,7 @@
 //写私信页
 @interface DYBWritePrivateLetterViewController : DYBBaseViewController
 {
-//    DragonUITableView *_tbv;//
+//    MagicUITableView *_tbv;//
     NSMutableArray *_muA_data;
 }
 @end

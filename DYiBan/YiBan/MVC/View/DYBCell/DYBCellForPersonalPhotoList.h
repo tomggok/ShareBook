@@ -10,11 +10,11 @@
 
 @interface DYBCellForPersonalPhotoList : UITableViewCell
 {
-    DragonUILabel *_lb_newContent,*_lb_photolistnum;
-    DragonUIImageView *_imgV_sepline/*分割线*/,*_imgV_star/**/;
-    DragonUIImageView *_arrowImv;
+    MagicUILabel *_lb_newContent,*_lb_photolistnum;
+    MagicUIImageView *_imgV_sepline/*分割线*/,*_imgV_star/**/;
+    MagicUIImageView *_arrowImv;
 }
-@property(retain,nonatomic)DragonUIImageView *_imgV_star;
+@property(retain,nonatomic)MagicUIImageView *_imgV_star;
 -(void)setContent:(id)data indexPath:(NSIndexPath *)indexPath tbv:(UITableView *)tbv;
 
 @end

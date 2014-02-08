@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Dragon_Request.h"
-#import "Dragon_RequestQueue.h"
+#import "Magic_Request.h"
+#import "Magic_RequestQueue.h"
 
 #define POSTDATAFILETYPE    @"FILETYPE"
 #define POSTDFILEDATA       @"DATA"
@@ -52,18 +52,18 @@ typedef enum HTTPPOSTTYPE{
 
 
 //get请求
-- (DragonRequest *)DYBGET:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive;
+- (MagicRequest *)DYBGET:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive;
 
 //网络请求GET请求不需要缓存
-- (DragonRequest *)DYBGETNOCACHE:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive;
+- (MagicRequest *)DYBGETNOCACHE:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive;
 
 //网络POST请求
-- (DragonRequest *)DYBPOST:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive;
+- (MagicRequest *)DYBPOST:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive;
 
 //post请求上传图片
-- (DragonRequest *)DYBPOSTIMG:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive imageData:(NSArray *)imageDatas;
+- (MagicRequest *)DYBPOSTIMG:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive imageData:(NSArray *)imageDatas;
 
 //网络POST请求上传文件
-- (DragonRequest *)DYBPOSTFILE:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive fileData:(NSArray *)fileDatas;
+- (MagicRequest *)DYBPOSTFILE:(NSMutableDictionary *)params isAlert:(BOOL)isAlert receive:(id)_receive fileData:(NSArray *)fileDatas;
 
 @end

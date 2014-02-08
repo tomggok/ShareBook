@@ -7,14 +7,14 @@
 //
 
 #import "DYBDataBnakSchoolAndCollegeViewController.h"
-#import "Dragon_Request.h"
+#import "Magic_Request.h"
 #import "DYBHttpMethod.h"
 #import "user.h"
 #import "eclass.h"
 
 @interface DYBDataBnakSchoolAndCollegeViewController (){
     
-    DragonUITableView *tbDataBank;
+    MagicUITableView *tbDataBank;
     NSMutableArray *arrayResult;
     NSMutableArray *arrayCell;
     
@@ -42,11 +42,11 @@ DEF_SIGNAL(RIGHTSIGNAL)
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
--(void)handleViewSignal_DragonViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal{
     
     DLogInfo(@"name -- %@",signal.name);
     
-    if ([signal is:[DragonViewController LAYOUT_VIEWS]])
+    if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         [self.rightButton setHidden:NO];
 //        [self setButtonImage:self.leftButton setImage:@"btn_back_def"];
@@ -63,7 +63,7 @@ DEF_SIGNAL(RIGHTSIGNAL)
         [self setButtonImage:self.rightButton setImage:@"btn_ok_def"];
         
     }
-    if ([signal is:[DragonViewController CREATE_VIEWS]]) {
+    if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
         arrayResult = [[NSMutableArray alloc]init];
         arrayCell = [[NSMutableArray alloc]init];
@@ -73,15 +73,15 @@ DEF_SIGNAL(RIGHTSIGNAL)
         
         if (_type == 0) { //学院
             
-            DragonRequest *request = [DYBHttpMethod source_departmentlist_isAlert:YES receive:self ];
+            MagicRequest *request = [DYBHttpMethod source_departmentlist_isAlert:YES receive:self ];
             [request setTag:1];
         }else{
                 // 学校
-            DragonRequest *request = [DYBHttpMethod source_schoolview:YES receive:self ];
+            MagicRequest *request = [DYBHttpMethod source_schoolview:YES receive:self ];
             [request setTag:1];
         }
         
-        tbDataBank = [[DragonUITableView alloc]initWithFrame:CGRectMake(0.0f,   44, 320.0f, self.view.frame.size.height - 44) isNeedUpdate:YES];
+        tbDataBank = [[MagicUITableView alloc]initWithFrame:CGRectMake(0.0f,   44, 320.0f, self.view.frame.size.height - 44) isNeedUpdate:YES];
 //        [tbDataBank.headerView setHidden:YES];
         [tbDataBank.headerView setHidden:YES];
         [tbDataBank.footerView setHidden:YES];
@@ -94,7 +94,7 @@ DEF_SIGNAL(RIGHTSIGNAL)
     }
 }
 
--(void)handleViewSignal_DYBDataBnakSchoolAndCollegeViewController:(DragonViewSignal *)signal{
+-(void)handleViewSignal_DYBDataBnakSchoolAndCollegeViewController:(MagicViewSignal *)signal{
     if ([signal is:[DYBDataBnakSchoolAndCollegeViewController RIGHTSIGNAL]]) {
         
         DLogInfo(@"ffff");
@@ -111,7 +111,7 @@ DEF_SIGNAL(RIGHTSIGNAL)
 
 
 #pragma mark- 
-- (void)handleViewSignal_DYBBaseViewController:(DragonViewSignal *)signal
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
@@ -134,7 +134,7 @@ DEF_SIGNAL(RIGHTSIGNAL)
         
         NSString *target = [NSString stringWithFormat:@"%@,%@",s,strClass];
         
-        DragonRequest *request = [DYBHttpMethod document_share_doc:_docAddr target:target isAlert:YES receive:self ];
+        MagicRequest *request = [DYBHttpMethod document_share_doc:_docAddr target:target isAlert:YES receive:self ];
         [request setTag:5];
         
     }
@@ -185,42 +185,42 @@ DEF_SIGNAL(RIGHTSIGNAL)
 #pragma mark- 只接受tbv信号
 static NSString *reuseIdentifier = @"reuseIdentifier";
 
-- (void)handleViewSignal_DragonUITableView:(DragonViewSignal *)signal{
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal{
     
     
-    if ([signal is:[DragonUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])//numberOfRowsInSection
     {
         NSNumber *s = [NSNumber numberWithInteger:arrayResult.count];
         [signal setReturnValue:s];
         
-    }else if ([signal is:[DragonUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
+    }else if ([signal is:[MagicUITableView TABLENUMOFSEC]])//numberOfSectionsInTableView
     {
         NSNumber *s = [NSNumber numberWithInteger:1];
         [signal setReturnValue:s];
         
     }
-    else if ([signal is:[DragonUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
+    else if ([signal is:[MagicUITableView TABLEHEIGHTFORROW]])//heightForRowAtIndexPath
     {
         
         
         
         [signal setReturnValue:[NSNumber numberWithInteger:CELLHIGHT]];
     }
-    else if ([signal is:[DragonUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])//titleForHeaderInSection
     {
         [signal setReturnValue:nil];
         
     }
-    else if ([signal is:[DragonUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])//viewForHeaderInSection
     {
         [signal setReturnValue:nil];
         
     }
-    else if ([signal is:[DragonUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
+    else if ([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])//heightForHeaderInSection
     {
         [signal setReturnValue:[NSNumber numberWithFloat:0.0]];
     }
-    else if ([signal is:[DragonUITableView TABLECELLFORROW]])//cell
+    else if ([signal is:[MagicUITableView TABLECELLFORROW]])//cell
     {
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
@@ -239,7 +239,7 @@ static NSString *reuseIdentifier = @"reuseIdentifier";
         
         
         
-    }else if ([signal is:[DragonUITableView TABLEDIDSELECT]])//选中cell
+    }else if ([signal is:[MagicUITableView TABLEDIDSELECT]])//选中cell
     {
         
         
@@ -261,26 +261,26 @@ static NSString *reuseIdentifier = @"reuseIdentifier";
         [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
         
         
-    }else if ([signal is:[DragonUITableView TABLESCROLLVIEWDIDENDDRAGGING]])//滚动停止
+    }else if ([signal is:[MagicUITableView TABLESCROLLVIEWDIDENDDRAGGING]])//滚动停止
     {
         
-    }else if ([signal is:[DragonUITableView TABLESCROLLVIEWDIDSCROLL]])
+    }else if ([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])
     {
 //        [tbDataBank tableViewDidDragging];
     }
-    else if ([signal is:[DragonUITableView TABLESCROLLVIEWDIDENDDRAGGING]])
+    else if ([signal is:[MagicUITableView TABLESCROLLVIEWDIDENDDRAGGING]])
     {
         DLogInfo(@"1111");
         
-    }else if ([signal is:[DragonUITableView TABELVIEWBEGAINSCROLL]]){
+    }else if ([signal is:[MagicUITableView TABELVIEWBEGAINSCROLL]]){
         
         //        [sideController removeSideSwipeView:YES];
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLUP]]){
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLUP]]){
         
         
         
-    }else if ([signal is:[DragonUITableView TAbLEVIEWSCROLLDOWN]]){
+    }else if ([signal is:[MagicUITableView TAbLEVIEWSCROLLDOWN]]){
         
     }
     
@@ -290,7 +290,7 @@ static NSString *reuseIdentifier = @"reuseIdentifier";
 
 
 #pragma mark- 只接受HTTP信号
-- (void)handleRequest:(DragonRequest *)request receiveObj:(id)receiveObj
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
     if (request.tag == 1) {
         
@@ -349,7 +349,7 @@ static NSString *reuseIdentifier = @"reuseIdentifier";
             
             //        [self.window setBackgroundColor:[UIColor redColor]];
             
-            [DYBShareinstaceDelegate popViewText:MSG target:self hideTime:.5f isRelease:YES mode:DRAGONPOPALERTVIEWINDICATOR];
+            [DYBShareinstaceDelegate popViewText:MSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
             
         }
         

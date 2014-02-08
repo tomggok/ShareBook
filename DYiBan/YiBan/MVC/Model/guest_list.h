@@ -9,7 +9,7 @@
 //#import "Jastor.h"
 //访客
 @class user;
-@interface guest_list : DragonJSONReflection
+@interface guest_list : MagicJSONReflection
 @property (nonatomic, retain)NSString *time;
 @property (nonatomic, retain)user *user;
 @end

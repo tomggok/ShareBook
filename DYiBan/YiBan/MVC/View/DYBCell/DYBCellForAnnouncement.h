@@ -11,8 +11,8 @@
 //公告cell
 @interface DYBCellForAnnouncement : UITableViewCell
 {
-    DragonUILabel *_lb_newContent,*_lb_time;
-    DragonUIImageView *_imgV_sepline/*分割线*/;
+    MagicUILabel *_lb_newContent,*_lb_time;
+    MagicUIImageView *_imgV_sepline/*分割线*/;
 }
 
 -(void)setContent:(id)data indexPath:(NSIndexPath *)indexPath tbv:(UITableView *)tbv;

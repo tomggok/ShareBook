@@ -10,7 +10,7 @@
 
 @interface DYBInputView : UIView
 
-@property (nonatomic, retain)DragonUITextField *nameField;
+@property (nonatomic, retain)MagicUITextField *nameField;
 - (id)initWithFrame:(CGRect)frame placeText:(NSString *)placeText textType:(int)type;
 - (CGFloat)getOrginx;
 - (CGFloat)getOrginy;
