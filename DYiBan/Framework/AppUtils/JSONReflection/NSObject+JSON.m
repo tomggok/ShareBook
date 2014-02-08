@@ -1,6 +1,6 @@
 //
 //  NSObject+JSON.m
-//  Dragon
+//  Magic
 //
 //  Created by Zzl on 13-3-18.
 //
