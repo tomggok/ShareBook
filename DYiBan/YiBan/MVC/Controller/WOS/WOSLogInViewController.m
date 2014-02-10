@@ -205,16 +205,33 @@
         RELEASE(_phoneInputAddr);
 
         
+        [self addViewforAutoLogin ];
         
         
         
-        UIButton *btnBack= [[UIButton alloc]initWithFrame:CGRectMake(10.0f, CGRectGetHeight(_phoneInputAddr.frame) + CGRectGetMinY(_phoneInputAddr.frame) + 20 + 10, 300, 44)];        
+        UIButton *btnBack= [[UIButton alloc]initWithFrame:CGRectMake(10.0f, CGRectGetHeight(_phoneInputAddr.frame) + CGRectGetMinY(_phoneInputAddr.frame) + 40 + 10, 300, 44)];
         [btnBack setBackgroundColor:[UIColor clearColor]];
         [btnBack setImage:[UIImage imageNamed:@"button"] forState:UIControlStateNormal];        
         [btnBack addTarget:self action:@selector(addOK) forControlEvents:UIControlEventTouchUpInside];
         [self addlabel_title:@"登陆" frame:btnBack.frame view:btnBack];
         [viewLogin addSubview:btnBack];
         [btnBack release];
+        
+        
+        UIButton *btnBackGO= [[UIButton alloc]initWithFrame:CGRectMake(10.0f, CGRectGetHeight(btnBack.frame) + CGRectGetMinY(btnBack.frame) + 20 + 10, 300, 44)];
+        [btnBackGO setBackgroundColor:[UIColor clearColor]];
+        [btnBackGO setImage:[UIImage imageNamed:@"button"] forState:UIControlStateNormal];
+        [btnBackGO addTarget:self action:@selector(addOK) forControlEvents:UIControlEventTouchUpInside];
+        [self addlabel_title:@"逛一逛" frame:btnBackGO.frame view:btnBackGO];
+        [viewLogin addSubview:btnBackGO];
+        [btnBackGO release];
+        
+        
+        UILabel *labelOtherLogin = [[UILabel alloc]initWithFrame:CGRectMake(50.0f, CGRectGetHeight(btnBackGO.frame) + CGRectGetMinY(btnBackGO.frame)  + 10, 200.0f, 40.0f)];
+        
+        [labelOtherLogin setText:@"其他方式登陆"];
+        [viewLogin addSubview:labelOtherLogin];
+        RELEASE(labelOtherLogin);
         
         
         UIView *viewRigen = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 400)];
@@ -236,7 +253,7 @@
 }
 
 -(void)addViewforAutoLogin{
-    UIButton *btnAutoLogin = [[UIButton alloc]initWithFrame:CGRectMake(10.0f, CGRectGetHeight(_phoneInputAddr.frame) + CGRectGetMinY(_phoneInputAddr.frame) + 20 , 20.0f, 10.0f)];
+    UIButton *btnAutoLogin = [[UIButton alloc]initWithFrame:CGRectMake(20.0f, CGRectGetHeight(_phoneInputAddr.frame) + CGRectGetMinY(_phoneInputAddr.frame) + 20 , 20.0f, 20.0f)];
     [btnAutoLogin setBackgroundColor:[UIColor redColor]];
     [viewLogin addSubview:btnAutoLogin];
     [btnAutoLogin addTarget:self action:@selector(atuoLogin) forControlEvents:UIControlEventTouchUpInside];
@@ -244,7 +261,41 @@
     RELEASE(btnAutoLogin);
     
     
+    UILabel *labelAutoLogin = [[UILabel alloc]initWithFrame:CGRectMake(20.0f + 30, CGRectGetHeight(_phoneInputAddr.frame) + CGRectGetMinY(_phoneInputAddr.frame) + 20 , 100.0f, 20.0f)];
+    [labelAutoLogin setText:@"自动登陆"];
+    [viewLogin addSubview:labelAutoLogin];
+    RELEASE(labelAutoLogin);
+    
+    
+    UIButton *btnMissPW = [[UIButton alloc]initWithFrame:CGRectMake(30.0f + 150, CGRectGetHeight(_phoneInputAddr.frame) + CGRectGetMinY(_phoneInputAddr.frame) + 0 + 20 , 20.0f, 20.0f)];
+    [btnMissPW setBackgroundColor:[UIColor redColor]];
+    [viewLogin addSubview:btnMissPW];
+    [btnMissPW addTarget:self action:@selector(atuoLogin) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    RELEASE(btnMissPW);
+    
+    
+    UILabel *labelMissPW = [[UILabel alloc]initWithFrame:CGRectMake(10.0f + 200, CGRectGetHeight(_phoneInputAddr.frame) + CGRectGetMinY(_phoneInputAddr.frame) + 20 , 100.0f, 20.0f)];
+    [labelMissPW setText:@"忘记密码"];
+    [viewLogin addSubview:labelMissPW];
+    RELEASE(labelMissPW);
 
+}
+
+-(void)addOtherLogin{
+
+    UIImage *imageIcon = [UIImage imageNamed:@"icon_qq"];
+    
+    for (int i = 0; i< 3; i++) {
+        
+        UIButton *btnLoginOther = [[UIButton alloc]initWithFrame:CGRectMake(40.0f + imageIcon.size.width/2 + 20, CGRectGetHeight(_phoneInputAddr.frame) + CGRectGetMinY(_phoneInputAddr.frame) + 0 + 20, imageIcon.size.width/2, imageIcon.size.height/2)];
+        [btnLoginOther setTag:10 + i];
+        [viewLogin addSubview:btnLoginOther];
+        RELEASE(btnLoginOther);
+        
+    }
+   
 }
 
 -(void)atuoLogin{
