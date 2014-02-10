@@ -58,7 +58,7 @@ DEF_SIGNAL(TOUCHSINGLEBTN)
         RELEASE(btn);
         
         
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, btn.frame.size.width,btn.frame.size.height)];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(20.0f, 0.0f, btn.frame.size.width,btn.frame.size.height)];
         [btn addSubview:label];
         [label setText:[result objectAtIndex:i - 1]];
         [label setTag:BTNTAG];
@@ -75,23 +75,27 @@ DEF_SIGNAL(TOUCHSINGLEBTN)
             [label setTextColor:[UIColor whiteColor]];
         
         }
+        
+        UIImage *image=[UIImage imageNamed:@"icon_book2"];
 //        UIImage *image = [UIImage image];
-        UIImageView *icon = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, btn.frame.size.width,btn.frame.size.height)];
-
+        UIImageView *imageIcon = [[UIImageView alloc]initWithFrame:CGRectMake(5.0f, 5.0f, image.size.width/2,image.size.height/2)];
+        [btn addSubview:imageIcon];
+        [imageIcon release];
+        
         switch (i) {
             case 1:
-//                [ic];
+                [imageIcon setImage:[UIImage imageNamed:@"icon_message2"]];
                 break;
             case 2:
-                
+                [imageIcon setImage:[UIImage imageNamed:@"icon_book2"]];
                 break;
 
             case 3:
-                
+                [imageIcon setImage:[UIImage imageNamed:@"icon_beans_2"]];
                 break;
 
             case 4:
-                
+                [imageIcon setImage:[UIImage imageNamed:@"icon_circle_2"]];
                 break;
 
                 

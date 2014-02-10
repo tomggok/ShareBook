@@ -80,6 +80,7 @@
 		1893FA5518A87EC400DF758C /* input_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 1893FA0C18A87EC400DF758C /* input_02.png */; };
 		1893FA5618A87EC400DF758C /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 1893FA0D18A87EC400DF758C /* line.png */; };
 		1893FA5718A87EC400DF758C /* 登录.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1893FA0E18A87EC400DF758C /* 登录.jpg */; };
+		1893FA5B18A90C0200DF758C /* ShareMessagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1893FA5A18A90C0200DF758C /* ShareMessagerCell.m */; };
 		B5143ED9186BC552007677E3 /* WOSGoodPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5143ED8186BC552007677E3 /* WOSGoodPriceCell.m */; };
 		B51A12241855BC85006D8F71 /* WOSGoodFoodListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B51A12231855BC85006D8F71 /* WOSGoodFoodListCell.m */; };
 		B51A12271855C5EB006D8F71 /* WOShopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51A12261855C5EB006D8F71 /* WOShopDetailViewController.m */; };
@@ -1412,6 +1413,8 @@
 		1893FA0C18A87EC400DF758C /* input_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = input_02.png; sourceTree = "<group>"; };
 		1893FA0D18A87EC400DF758C /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
 		1893FA0E18A87EC400DF758C /* 登录.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "登录.jpg"; sourceTree = "<group>"; };
+		1893FA5918A90C0200DF758C /* ShareMessagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareMessagerCell.h; sourceTree = "<group>"; };
+		1893FA5A18A90C0200DF758C /* ShareMessagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareMessagerCell.m; sourceTree = "<group>"; };
 		B5143ED7186BC552007677E3 /* WOSGoodPriceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOSGoodPriceCell.h; sourceTree = "<group>"; };
 		B5143ED8186BC552007677E3 /* WOSGoodPriceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOSGoodPriceCell.m; sourceTree = "<group>"; };
 		B51A12221855BC84006D8F71 /* WOSGoodFoodListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOSGoodFoodListCell.h; sourceTree = "<group>"; };
@@ -3407,6 +3410,15 @@
 			path = "登录";
 			sourceTree = "<group>";
 		};
+		1893FA5818A90B6600DF758C /* ShareBook */ = {
+			isa = PBXGroup;
+			children = (
+				1893FA5918A90C0200DF758C /* ShareMessagerCell.h */,
+				1893FA5A18A90C0200DF758C /* ShareMessagerCell.m */,
+			);
+			path = ShareBook;
+			sourceTree = "<group>";
+		};
 		B52549EC184724A000F5B645 /* WOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -4808,6 +4820,7 @@
 		B58CAD501829CF6800F73D66 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1893FA5818A90B6600DF758C /* ShareBook */,
 				B59274F31846F1AC008BE897 /* WOS */,
 				B5D9DC661834A71E002B1C74 /* DYBAudioProgressView.h */,
 				B5D9DC671834A71E002B1C74 /* DYBAudioProgressView.m */,
@@ -7187,6 +7200,7 @@
 				B58CB10F1829CF6A00F73D66 /* DYBNewsDetailViewController.m in Sources */,
 				B58CB1101829CF6A00F73D66 /* DYBTwoDimensionCodeViewController.m in Sources */,
 				B58CB1111829CF6A00F73D66 /* DYBWebController.m in Sources */,
+				1893FA5B18A90C0200DF758C /* ShareMessagerCell.m in Sources */,
 				B58CB1121829CF6A00F73D66 /* DYBXinHualistViewController.m in Sources */,
 				B58CB1131829CF6A00F73D66 /* DYBXinHuaViewController.m in Sources */,
 				B58CB1141829CF6A00F73D66 /* DYBYiMaTongViewController.m in Sources */,

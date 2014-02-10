@@ -9,7 +9,7 @@
 #import "ShareMYHomeViewController.h"
 #import "WOSOrderCell.h"
 #import "DYBDataBankTopRightCornerView.h"
-
+#import "ShareMessagerCell.h"
 @interface ShareMYHomeViewController ()
 
 @end
@@ -72,7 +72,7 @@
         UIImage *image = [UIImage imageNamed:@"menu_inactive"];
         
         
-       DYBUITableView  *tbDataBank1 = [[DYBUITableView alloc]initWithFrame:CGRectMake(image.size.width/2, 44, 320.0f - 50, self.view.frame.size.height -44  ) isNeedUpdate:YES];
+       DYBUITableView  *tbDataBank1 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, self.headHeight, 320.0f , self.view.frame.size.height - self.headHeight  ) isNeedUpdate:YES];
         [tbDataBank1 setBackgroundColor:[UIColor blackColor]];
         [self.view addSubview:tbDataBank1];
         [tbDataBank1 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
@@ -133,10 +133,10 @@ static NSString *cellName = @"cellName";
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
-        WOSOrderCell *cell = [[WOSOrderCell alloc]init];
+        ShareMessagerCell *cell = [[ShareMessagerCell alloc]init];
         
-        NSDictionary *dictInfoFood = Nil;
-        [cell creatCell:dictInfoFood];
+//        NSDictionary *dictInfoFood = Nil;
+//        [cell creatCell:dictInfoFood];
         DLogInfo(@"%d", indexPath.section);
         
         
@@ -173,7 +173,7 @@ static NSString *cellName = @"cellName";
         
     }else if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
         
-        NSArray *arrayType = [[NSArray alloc]initWithObjects:@"按时间",@"按类型", nil];
+        NSArray *arrayType = [[NSArray alloc]initWithObjects:@"消息",@"图书",@"豆",@"圈", nil];
         DYBDataBankTopRightCornerView *rightV = [[DYBDataBankTopRightCornerView alloc]initWithFrame:CGRectMake(320.0f - 95, 40, 90, 99) arrayResult:arrayType target:self];
         [rightV setBackgroundColor:[UIColor clearColor]];
         
@@ -181,7 +181,8 @@ static NSString *cellName = @"cellName";
         [self.view addSubview:rightV];
         RELEASE(rightV);
         RELEASE(arrayType);
-
+        UIImageView *tt = Nil;
+//        [tt setImage:[UIImage imageNamed:<#(NSString *)#>]];
         
     }
 }
