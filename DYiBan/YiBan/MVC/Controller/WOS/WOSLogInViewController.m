@@ -234,6 +234,8 @@
         RELEASE(labelOtherLogin);
         
         
+        [self addOtherLogin];
+        
         UIView *viewRigen = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 400)];
         [viewRigen setHidden:YES];
         [scrollView addSubview:viewRigen];
@@ -289,8 +291,9 @@
     
     for (int i = 0; i< 3; i++) {
         
-        UIButton *btnLoginOther = [[UIButton alloc]initWithFrame:CGRectMake(40.0f + imageIcon.size.width/2 + 20, CGRectGetHeight(_phoneInputAddr.frame) + CGRectGetMinY(_phoneInputAddr.frame) + 0 + 20, imageIcon.size.width/2, imageIcon.size.height/2)];
+        UIButton *btnLoginOther = [[UIButton alloc]initWithFrame:CGRectMake(20.0f + (imageIcon.size.width/2 + 20)* i  + 40, CGRectGetHeight(_phoneInputAddr.frame) + CGRectGetMinY(_phoneInputAddr.frame) + 0 + 20 + 200, imageIcon.size.width/2, imageIcon.size.height/2)];
         [btnLoginOther setTag:10 + i];
+        [btnLoginOther setBackgroundColor:[UIColor redColor]];
         [viewLogin addSubview:btnLoginOther];
         RELEASE(btnLoginOther);
         
