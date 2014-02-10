@@ -1,18 +1,20 @@
 //
-//  ShareSettingViewController.m
+//  ShareBookBankViewController.m
 //  ShareBook
 //
 //  Created by tom zeng on 14-2-10.
 //  Copyright (c) 2014年 Tomgg. All rights reserved.
 //
 
-#import "ShareSettingViewController.h"
+#import "ShareBookBankViewController.h"
 #import "WOSOrderCell.h"
-@interface ShareSettingViewController ()
+
+
+@interface ShareBookBankViewController ()
 
 @end
 
-@implementation ShareSettingViewController
+@implementation ShareBookBankViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,6 +37,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 -(void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal{
     
     DLogInfo(@"name -- %@",signal.name);
@@ -53,10 +56,10 @@
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
         [self.rightButton setHidden:YES];
-        
+      
         [self.view setBackgroundColor:[UIColor blackColor]];
         
-        
+ 
         
         UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44)];
         [viewBG setBackgroundColor:[UIColor blackColor]];
@@ -67,14 +70,14 @@
         UIImage *image = [UIImage imageNamed:@"menu_inactive"];
         
         
-        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(image.size.width/2, 44, 320.0f - 50, self.view.frame.size.height -44  ) isNeedUpdate:YES];
+       DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(image.size.width/2, 44, 320.0f - 50, self.view.frame.size.height -44  ) isNeedUpdate:YES];
         [tbDataBank11 setBackgroundColor:[UIColor blackColor]];
         [self.view addSubview:tbDataBank11];
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
         RELEASE(tbDataBank11);
         
         
-        
+    
     }else if ([signal is:[MagicViewController DID_APPEAR]]) {
         
         DLogInfo(@"rrr");

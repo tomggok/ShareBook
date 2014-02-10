@@ -38,6 +38,12 @@
 #import "WOSHomeViewController.h"
 
 #import "WOSPersonInfoViewController.h"
+
+#import "ShareBookBankViewController.h"
+#import "ShareSettingViewController.h"
+#import "ShareMYHomeViewController.h"
+#import "ShareMapViewController.h"
+
 @interface DYBUITabbarViewController ()
 {
     MagicUIThirdView *threeview;//三屏的view
@@ -238,8 +244,21 @@ MagicUIButton *hiddenView;
 //动态页的bar的参数
 - (NSArray *)initDynBarParams
 {
-    WOSHomeViewController *homeVC = [[[WOSHomeViewController alloc]init] autorelease];
-    [homeVC setVc:_vc];
+//    WOSHomeViewController *homeVC = [[[WOSHomeViewController alloc]init] autorelease];
+//    [homeVC setVc:_vc];
+    
+    ShareMapViewController *map = [[[ShareMapViewController alloc]init] autorelease];
+    [map setVc:_vc];
+    
+    ShareMYHomeViewController *home  = [[[ShareMYHomeViewController alloc]init] autorelease];
+    [home setVc:_vc];
+    
+    ShareSettingViewController *setting = [[[ShareSettingViewController alloc]init] autorelease];
+    [setting setVc:_vc];
+    
+    ShareBookBankViewController *book = [[[ShareBookBankViewController alloc]init] autorelease];
+    [book setVc:_vc];
+    
 //    DYBDynamicViewController *dynVc = [[[DYBDynamicViewController alloc] init] autorelease];
 //    [dynVc setVc:_vc];
     
@@ -260,7 +279,7 @@ MagicUIButton *hiddenView;
 //    peopleVC.b_isInMainPage=YES;
 //    [peopleVC setVc:_vc];
     
-    NSArray *arrayVC = [NSArray arrayWithObjects:homeVC, nil];
+    NSArray *arrayVC = [NSArray arrayWithObjects:home,setting,book,map, nil];
     
     
     NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
@@ -279,11 +298,11 @@ MagicUIButton *hiddenView;
     [imgDic4 setObject:[UIImage imageNamed:@"tab4_def"] forKey:TABBARBUTDEFAULT];
     [imgDic4 setObject:[UIImage imageNamed:@"tab4_high"] forKey:TABBARBUTHIGHLIGHT];
     [imgDic4 setObject:[UIImage imageNamed:@"tab4_sel"] forKey:TABBARBUTSELETED];
-    NSMutableDictionary *imgDic5 = [NSMutableDictionary dictionaryWithCapacity:3];
-    [imgDic5 setObject:[UIImage imageNamed:@"tab5_def"] forKey:TABBARBUTDEFAULT];
-    [imgDic5 setObject:[UIImage imageNamed:@"tab5_high"] forKey:TABBARBUTHIGHLIGHT];
-    [imgDic5 setObject:[UIImage imageNamed:@"tab5_sel"] forKey:TABBARBUTSELETED];
-    NSArray *imgArr = [NSArray arrayWithObjects:imgDic, imgDic2, imgDic3, imgDic4, imgDic5,nil];
+//    NSMutableDictionary *imgDic5 = [NSMutableDictionary dictionaryWithCapacity:3];
+//    [imgDic5 setObject:[UIImage imageNamed:@"tab5_def"] forKey:TABBARBUTDEFAULT];
+//    [imgDic5 setObject:[UIImage imageNamed:@"tab5_high"] forKey:TABBARBUTHIGHLIGHT];
+//    [imgDic5 setObject:[UIImage imageNamed:@"tab5_sel"] forKey:TABBARBUTSELETED];
+    NSArray *imgArr = [NSArray arrayWithObjects:imgDic, imgDic2, imgDic3, imgDic4,nil];
     
     
     NSArray *VCIMGArr = [NSArray arrayWithObjects:arrayVC, imgArr, nil];

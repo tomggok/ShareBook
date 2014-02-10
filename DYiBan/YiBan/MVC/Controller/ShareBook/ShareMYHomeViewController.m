@@ -1,18 +1,20 @@
 //
-//  ShareSettingViewController.m
+//  ShareMYHomeViewController.m
 //  ShareBook
 //
 //  Created by tom zeng on 14-2-10.
 //  Copyright (c) 2014年 Tomgg. All rights reserved.
 //
 
-#import "ShareSettingViewController.h"
+#import "ShareMYHomeViewController.h"
 #import "WOSOrderCell.h"
-@interface ShareSettingViewController ()
+#import "DYBDataBankTopRightCornerView.h"
+
+@interface ShareMYHomeViewController ()
 
 @end
 
-@implementation ShareSettingViewController
+@implementation ShareMYHomeViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,6 +37,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 -(void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal{
     
     DLogInfo(@"name -- %@",signal.name);
@@ -53,10 +56,12 @@
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
         [self.rightButton setHidden:YES];
-        
+//        arrayFoodList = [[NSArray alloc]init];
+//        arrayAddorder = [[NSMutableArray alloc]init];
         [self.view setBackgroundColor:[UIColor blackColor]];
         
-        
+//        MagicRequest *request = [DYBHttpMethod wosKitchenInfo_foodlist:[_dictInfo objectForKey:@"kitchenIndex"]sAlert:YES receive:self];
+//        [request setTag:3];
         
         UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44)];
         [viewBG setBackgroundColor:[UIColor blackColor]];
@@ -67,15 +72,19 @@
         UIImage *image = [UIImage imageNamed:@"menu_inactive"];
         
         
-        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(image.size.width/2, 44, 320.0f - 50, self.view.frame.size.height -44  ) isNeedUpdate:YES];
-        [tbDataBank11 setBackgroundColor:[UIColor blackColor]];
-        [self.view addSubview:tbDataBank11];
-        [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
-        RELEASE(tbDataBank11);
+       DYBUITableView  *tbDataBank1 = [[DYBUITableView alloc]initWithFrame:CGRectMake(image.size.width/2, 44, 320.0f - 50, self.view.frame.size.height -44  ) isNeedUpdate:YES];
+        [tbDataBank1 setBackgroundColor:[UIColor blackColor]];
+        [self.view addSubview:tbDataBank1];
+        [tbDataBank1 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
+        RELEASE(tbDataBank1);
         
         
         
-    }else if ([signal is:[MagicViewController DID_APPEAR]]) {
+        
+    }
+    
+    
+    else if ([signal is:[MagicViewController DID_APPEAR]]) {
         
         DLogInfo(@"rrr");
     } else if ([signal is:[MagicViewController DID_DISAPPEAR]]){
@@ -126,7 +135,7 @@ static NSString *cellName = @"cellName";
         
         WOSOrderCell *cell = [[WOSOrderCell alloc]init];
         
-        NSDictionary *dictInfoFood = nil;
+        NSDictionary *dictInfoFood = Nil;
         [cell creatCell:dictInfoFood];
         DLogInfo(@"%d", indexPath.section);
         
@@ -156,7 +165,6 @@ static NSString *cellName = @"cellName";
 }
 
 
-
 - (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
@@ -165,16 +173,24 @@ static NSString *cellName = @"cellName";
         
     }else if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
         
-        [self goShowOrderListAction];
+        NSArray *arrayType = [[NSArray alloc]initWithObjects:@"按时间",@"按类型", nil];
+        DYBDataBankTopRightCornerView *rightV = [[DYBDataBankTopRightCornerView alloc]initWithFrame:CGRectMake(320.0f - 95, 40, 90, 99) arrayResult:arrayType target:self];
+        [rightV setBackgroundColor:[UIColor clearColor]];
+        
+//        [rightV setTag:RIGHTVIEWTAG];
+        [self.view addSubview:rightV];
+        RELEASE(rightV);
+        RELEASE(arrayType);
+
+        
     }
 }
 #pragma mark- 只接受HTTP信号
-- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
-{
-    if ([request succeed])
-    {
-        
-        
-    }
-}
+//- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
+//{
+//    if ([request succeed])
+//    {
+//       
+//    }
+//}
 @end

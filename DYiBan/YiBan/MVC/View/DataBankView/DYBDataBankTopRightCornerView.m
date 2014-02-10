@@ -14,6 +14,7 @@
 
 @implementation DYBDataBankTopRightCornerView
 @synthesize arrayResult = _arrayResult,targetObj = _targetObj;
+
 DEF_SIGNAL(TOUCHBTN)
 DEF_SIGNAL(TOUCHSINGLEBTN)
 
@@ -73,6 +74,29 @@ DEF_SIGNAL(TOUCHSINGLEBTN)
             [btn setSelected:NO];
             [label setTextColor:[UIColor whiteColor]];
         
+        }
+//        UIImage *image = [UIImage image];
+        UIImageView *icon = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, btn.frame.size.width,btn.frame.size.height)];
+
+        switch (i) {
+            case 1:
+//                [ic];
+                break;
+            case 2:
+                
+                break;
+
+            case 3:
+                
+                break;
+
+            case 4:
+                
+                break;
+
+                
+            default:
+                break;
         }
     }
 
@@ -137,3 +161,4 @@ DEF_SIGNAL(TOUCHSINGLEBTN)
     }
 }
 @end
+

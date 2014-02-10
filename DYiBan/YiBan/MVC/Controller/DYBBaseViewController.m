@@ -42,12 +42,12 @@ DEF_SIGNAL(NoInternetConnection)//无网
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-//    CGSize mainSize = MAINSIZE;
-//    UIView *barColorView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, mainSize.width, 20)];
-////    [barColorView setBackgroundColor:[MagicCommentMethod colorWithHex:@"f8f8f8"]];
-//    [barColorView setBackgroundColor:[UIColor yellowColor]];
-//    [self.view addSubview:barColorView];
-//    RELEASE(barColorView);
+    //    CGSize mainSize = MAINSIZE;
+    //    UIView *barColorView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, mainSize.width, 20)];
+    ////    [barColorView setBackgroundColor:[MagicCommentMethod colorWithHex:@"f8f8f8"]];
+    //    [barColorView setBackgroundColor:[UIColor yellowColor]];
+    //    [self.view addSubview:barColorView];
+    //    RELEASE(barColorView);
     
     _headview = [[DYBNaviView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     
@@ -55,8 +55,8 @@ DEF_SIGNAL(NoInternetConnection)//无网
     if ([MagicDevice sysVersion] >= 7)
     {
         y = 20;
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= IOS_7        
-//        self.automaticallyAdjustsScrollViewInsets = NO;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= IOS_7
+        //        self.automaticallyAdjustsScrollViewInsets = NO;
 #endif
     }
     
@@ -66,7 +66,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
     _rightButton = [[MagicUIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-60, y, 60,  self.headViewHeight)];
     [_rightButton addSignal:[DYBBaseViewController NEXTSTEPBUTTON] forControlEvents:UIControlEventTouchUpInside];
     
-//    [_headview setTitle:@"登陆"];
+    //    [_headview setTitle:@"登陆"];
     [_leftButton setImage:[UIImage imageNamed:@"btn_mainmenu_default.png"] forState:UIControlStateNormal];
     [_leftButton setImage:[UIImage imageNamed:@"btn_mainmenu_hilight.png"] forState:UIControlStateHighlighted];
     [_leftButton addSignal:[DYBBaseViewController BACKBUTTON] forControlEvents:UIControlEventTouchUpInside];
@@ -78,11 +78,11 @@ DEF_SIGNAL(NoInternetConnection)//无网
     RELEASE(_rightButton);
     
     [self.view addSubview:_headview];
-
+    
     RELEASE(_headview);
     
     [self setVCBackAnimation:SWIPELASTIMAGEBACKTYPE canBackPageNumber:2];
-
+    
     [self observeNotification:[DYBBaseViewController NoInternetConnection]];
 }
 
@@ -118,7 +118,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
         {
             [_leftButton setImage:[UIImage imageNamed:@"btn_back_def.png"] forState:UIControlStateNormal];
             [_leftButton setImage:[UIImage imageNamed:@"btn_back_hlt.png"] forState:UIControlStateHighlighted];
-//            [_leftButton setImageEdgeInsets:UIEdgeInsetsMake(10,15,10,15)];//BT上的图片相对于frame的位置
+            //            [_leftButton setImageEdgeInsets:UIEdgeInsetsMake(10,15,10,15)];//BT上的图片相对于frame的位置
         }
             break;
         case 1://返回按钮
@@ -145,7 +145,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
             [_leftButton setImage:[UIImage imageNamed:@"grzy_1.png"] forState:UIControlStateNormal];
             [_leftButton setImage:[UIImage imageNamed:@"grzy_1.png"] forState:UIControlStateHighlighted];
             _leftButton.showsTouchWhenHighlighted=YES;
-
+            
         }
             break;
         case 5://发动态页面跳转按钮
@@ -194,7 +194,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
             break;
         case 12:{//加号
             [_rightButton setImage:[UIImage imageNamed:@"btn_addtag_def.png"] forState:UIControlStateNormal];
-            [_rightButton setImage:[UIImage imageNamed:@"btn_addtag_press.png"] forState:UIControlStateHighlighted];         
+            [_rightButton setImage:[UIImage imageNamed:@"btn_addtag_press.png"] forState:UIControlStateHighlighted];
             [_rightButton setFrame:CGRectMake(275, CGRectGetMinY(_rightButton.frame), 45, CGRectGetHeight(_rightButton.frame))];
         }
             break;
@@ -233,7 +233,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
     {
         
     }
-
+    
 }
 
 //textFeild 属性 输入框 默认字符 颜色 所属类
@@ -253,7 +253,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
     
     [btn setBackgroundImage:ImageNorm forState:UIControlStateNormal];
     [btn setBackgroundImage:ImageHigh forState:UIControlStateHighlighted];
-//    [btn addSignal:signal forControlEvents:UIControlEventTouchUpInside];
+    //    [btn addSignal:signal forControlEvents:UIControlEventTouchUpInside];
     [btn addSignal:signal forControlEvents:UIControlEventTouchUpInside object:btn];
     [control.view addSubview:btn];
     RELEASE(btn);
@@ -303,9 +303,9 @@ DEF_SIGNAL(NoInternetConnection)//无网
     CGSize mainSize = MAINSIZE;
     float height = mainSize.height;
     /*if ([MagicDevice sysVersion] >= 7)
-    {
-        height += 20;
-    }*/
+     {
+     height += 20;
+     }*/
     return height;
 }
 
@@ -339,7 +339,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
         [self.view setUserInteractionEnabled:YES];
         
     }
-
+    
 }
 
 #pragma mark- 图片压缩＝＝＝＝＝＝＝＝＝＝＝＝＝＝
@@ -382,18 +382,18 @@ DEF_SIGNAL(NoInternetConnection)//无网
     }
     if (qu == 3 && image.size.width*image.size.height >= 320*480) {//高
         
-         data = UIImageJPEGRepresentation(image, 0.9);
-//        data= [self CompressPicturesMoreThanKB:1000 Img:image imgData:[self UIImageToNSData:image compressionQuality:1]];
+        data = UIImageJPEGRepresentation(image, 0.9);
+        //        data= [self CompressPicturesMoreThanKB:1000 Img:image imgData:[self UIImageToNSData:image compressionQuality:1]];
         
     } else if(qu == 2 && (image.size.width*image.size.height)/0.49 >= 320*480)//中
     {
         data = UIImageJPEGRepresentation(image, 0.8);
-//        data= [self CompressPicturesMoreThanKB:400 Img:image imgData:[self UIImageToNSData:image compressionQuality:1]];
+        //        data= [self CompressPicturesMoreThanKB:400 Img:image imgData:[self UIImageToNSData:image compressionQuality:1]];
         
     } else if(qu == 1 && (image.size.width*image.size.height)/0.25 >= 320*480)//图片质量低
     {
         data = UIImageJPEGRepresentation(image, 0.7);
-//        data= [self CompressPicturesMoreThanKB:100 Img:image imgData:[self UIImageToNSData:image compressionQuality:1]];
+        //        data= [self CompressPicturesMoreThanKB:100 Img:image imgData:[self UIImageToNSData:image compressionQuality:1]];
         
     }
     else {//自动

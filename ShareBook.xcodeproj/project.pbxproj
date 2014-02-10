@@ -1216,7 +1216,6 @@
 		B598F459184ECCD7009F283D /* recommend.png in Resources */ = {isa = PBXBuildFile; fileRef = B598F44D184ECCD7009F283D /* recommend.png */; };
 		B598F45A184ECCD7009F283D /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = B598F44E184ECCD7009F283D /* search.png */; };
 		B598F45B184ECCD7009F283D /* status.png in Resources */ = {isa = PBXBuildFile; fileRef = B598F44F184ECCD7009F283D /* status.png */; };
-		B598F45C184ECCD7009F283D /* top.png in Resources */ = {isa = PBXBuildFile; fileRef = B598F450184ECCD7009F283D /* top.png */; };
 		B598F47A184ECCF7009F283D /* arrow_down.png in Resources */ = {isa = PBXBuildFile; fileRef = B598F45D184ECCF7009F283D /* arrow_down.png */; };
 		B598F47B184ECCF7009F283D /* arrowup.png in Resources */ = {isa = PBXBuildFile; fileRef = B598F45E184ECCF7009F283D /* arrowup.png */; };
 		B598F47C184ECCF7009F283D /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = B598F45F184ECCF7009F283D /* back.png */; };
@@ -1293,10 +1292,10 @@
 		B5AD9BC51856FE93005ACB14 /* star_no.png in Resources */ = {isa = PBXBuildFile; fileRef = B5AD9BC21856FE93005ACB14 /* star_no.png */; };
 		B5AD9BC61856FE93005ACB14 /* star_yes.png in Resources */ = {isa = PBXBuildFile; fileRef = B5AD9BC31856FE93005ACB14 /* star_yes.png */; };
 		B5BC747E1869915300F57440 /* WOSAddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BC747D1869915300F57440 /* WOSAddCommentViewController.m */; };
-		B5C6632918A8AE0D00C5A26C /* ShareMYHome.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C6632818A8AE0D00C5A26C /* ShareMYHome.m */; };
-		B5C6632C18A8AE2600C5A26C /* ShareBookBank.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C6632B18A8AE2600C5A26C /* ShareBookBank.m */; };
 		B5C6632F18A8AE4800C5A26C /* ShareSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C6632E18A8AE4800C5A26C /* ShareSettingViewController.m */; };
 		B5C6633218A8AEA400C5A26C /* ShareMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C6633118A8AEA400C5A26C /* ShareMapViewController.m */; };
+		B5C6633518A8C7A800C5A26C /* ShareMYHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C6633418A8C7A800C5A26C /* ShareMYHomeViewController.m */; };
+		B5C6633818A8C7BE00C5A26C /* ShareBookBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C6633718A8C7BE00C5A26C /* ShareBookBankViewController.m */; };
 		B5D94F1718695EB50014B0E1 /* WOSOrderLostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D94F1618695EB50014B0E1 /* WOSOrderLostViewController.m */; };
 		B5D94F1B186966D00014B0E1 /* WOSOrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D94F1A186966D00014B0E1 /* WOSOrderListCell.m */; };
 		B5D94F1E186969A50014B0E1 /* WOSOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D94F1D186969A40014B0E1 /* WOSOrderDetailViewController.m */; };
@@ -3045,7 +3044,6 @@
 		B598F44D184ECCD7009F283D /* recommend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recommend.png; sourceTree = "<group>"; };
 		B598F44E184ECCD7009F283D /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		B598F44F184ECCD7009F283D /* status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status.png; sourceTree = "<group>"; };
-		B598F450184ECCD7009F283D /* top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top.png; sourceTree = "<group>"; };
 		B598F45D184ECCF7009F283D /* arrow_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_down.png; sourceTree = "<group>"; };
 		B598F45E184ECCF7009F283D /* arrowup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowup.png; sourceTree = "<group>"; };
 		B598F45F184ECCF7009F283D /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
@@ -3169,14 +3167,14 @@
 		B5AD9BC31856FE93005ACB14 /* star_yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_yes.png; sourceTree = "<group>"; };
 		B5BC747C1869915300F57440 /* WOSAddCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOSAddCommentViewController.h; sourceTree = "<group>"; };
 		B5BC747D1869915300F57440 /* WOSAddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOSAddCommentViewController.m; sourceTree = "<group>"; };
-		B5C6632718A8AE0D00C5A26C /* ShareMYHome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareMYHome.h; sourceTree = "<group>"; };
-		B5C6632818A8AE0D00C5A26C /* ShareMYHome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareMYHome.m; sourceTree = "<group>"; };
-		B5C6632A18A8AE2600C5A26C /* ShareBookBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBookBank.h; sourceTree = "<group>"; };
-		B5C6632B18A8AE2600C5A26C /* ShareBookBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBookBank.m; sourceTree = "<group>"; };
 		B5C6632D18A8AE4800C5A26C /* ShareSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareSettingViewController.h; sourceTree = "<group>"; };
 		B5C6632E18A8AE4800C5A26C /* ShareSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareSettingViewController.m; sourceTree = "<group>"; };
 		B5C6633018A8AEA400C5A26C /* ShareMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareMapViewController.h; sourceTree = "<group>"; };
 		B5C6633118A8AEA400C5A26C /* ShareMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareMapViewController.m; sourceTree = "<group>"; };
+		B5C6633318A8C7A800C5A26C /* ShareMYHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareMYHomeViewController.h; sourceTree = "<group>"; };
+		B5C6633418A8C7A800C5A26C /* ShareMYHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareMYHomeViewController.m; sourceTree = "<group>"; };
+		B5C6633618A8C7BE00C5A26C /* ShareBookBankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBookBankViewController.h; sourceTree = "<group>"; };
+		B5C6633718A8C7BE00C5A26C /* ShareBookBankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBookBankViewController.m; sourceTree = "<group>"; };
 		B5D94F1518695EB50014B0E1 /* WOSOrderLostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOSOrderLostViewController.h; sourceTree = "<group>"; };
 		B5D94F1618695EB50014B0E1 /* WOSOrderLostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOSOrderLostViewController.m; sourceTree = "<group>"; };
 		B5D94F19186966D00014B0E1 /* WOSOrderListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOSOrderListCell.h; sourceTree = "<group>"; };
@@ -4228,7 +4226,7 @@
 			path = gifimg;
 			sourceTree = "<group>";
 		};
-		B58CAB7F1829CF6700F73D66 /* YiBan */ = {
+		B58CAB7F1829CF6700F73D66 /* ShareBook */ = {
 			isa = PBXGroup;
 			children = (
 				B5949D33183E0570007904F6 /* Source */,
@@ -4237,6 +4235,7 @@
 				B58CB0561829CF6A00F73D66 /* Storage */,
 				B58CB0591829CF6A00F73D66 /* Utils */,
 			);
+			name = ShareBook;
 			path = YiBan;
 			sourceTree = "<group>";
 		};
@@ -5944,7 +5943,6 @@
 				B598F44D184ECCD7009F283D /* recommend.png */,
 				B598F44E184ECCD7009F283D /* search.png */,
 				B598F44F184ECCD7009F283D /* status.png */,
-				B598F450184ECCD7009F283D /* top.png */,
 			);
 			path = "images (1)";
 			sourceTree = "<group>";
@@ -6012,14 +6010,14 @@
 		B5C6632618A8AD9300C5A26C /* ShareBook */ = {
 			isa = PBXGroup;
 			children = (
-				B5C6632718A8AE0D00C5A26C /* ShareMYHome.h */,
-				B5C6632818A8AE0D00C5A26C /* ShareMYHome.m */,
-				B5C6632A18A8AE2600C5A26C /* ShareBookBank.h */,
-				B5C6632B18A8AE2600C5A26C /* ShareBookBank.m */,
 				B5C6632D18A8AE4800C5A26C /* ShareSettingViewController.h */,
 				B5C6632E18A8AE4800C5A26C /* ShareSettingViewController.m */,
 				B5C6633018A8AEA400C5A26C /* ShareMapViewController.h */,
 				B5C6633118A8AEA400C5A26C /* ShareMapViewController.m */,
+				B5C6633318A8C7A800C5A26C /* ShareMYHomeViewController.h */,
+				B5C6633418A8C7A800C5A26C /* ShareMYHomeViewController.m */,
+				B5C6633618A8C7BE00C5A26C /* ShareBookBankViewController.h */,
+				B5C6633718A8C7BE00C5A26C /* ShareBookBankViewController.m */,
 			);
 			path = ShareBook;
 			sourceTree = "<group>";
@@ -6077,7 +6075,7 @@
 				B5D9DC931834AFB0002B1C74 /* AudioToolbox.framework */,
 				B5D9DC911834AFA4002B1C74 /* CoreAudio.framework */,
 				B58FAFB3182762AC00B01560 /* AssetsLibrary.framework */,
-				C942205E17A89E430054E5BC /* DYiBan */,
+				C942205E17A89E430054E5BC /* ShareBook */,
 				C942205717A89E430054E5BC /* Frameworks */,
 				C942205617A89E430054E5BC /* Products */,
 			);
@@ -6117,7 +6115,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C942205E17A89E430054E5BC /* DYiBan */ = {
+		C942205E17A89E430054E5BC /* ShareBook */ = {
 			isa = PBXGroup;
 			children = (
 				B58CB4601829CF7F00F73D66 /* Default-568h */,
@@ -6126,11 +6124,12 @@
 				B58CAA481829CF6700F73D66 /* area.plist */,
 				B58CAA491829CF6700F73D66 /* DYBConfigDef.h */,
 				B58CAA4A1829CF6700F73D66 /* Framework */,
-				B58CAB7F1829CF6700F73D66 /* YiBan */,
+				B58CAB7F1829CF6700F73D66 /* ShareBook */,
 				C942206717A89E430054E5BC /* AppDelegate.h */,
 				C942206817A89E430054E5BC /* AppDelegate.mm */,
 				C942205F17A89E430054E5BC /* Supporting Files */,
 			);
+			name = ShareBook;
 			path = DYiBan;
 			sourceTree = "<group>";
 		};
@@ -6930,7 +6929,6 @@
 				B598F459184ECCD7009F283D /* recommend.png in Resources */,
 				B598F45A184ECCD7009F283D /* search.png in Resources */,
 				B598F45B184ECCD7009F283D /* status.png in Resources */,
-				B598F45C184ECCD7009F283D /* top.png in Resources */,
 				B598F47A184ECCF7009F283D /* arrow_down.png in Resources */,
 				1893FA1918A87EC400DF758C /* gps_default.png in Resources */,
 				B598F47B184ECCF7009F283D /* arrowup.png in Resources */,
@@ -7128,6 +7126,7 @@
 				B58CB0AC1829CF6A00F73D66 /* Magic_Runtime.m in Sources */,
 				B58CB0AD1829CF6A00F73D66 /* Magic_Sandbox.m in Sources */,
 				B58CB0AE1829CF6A00F73D66 /* NSObject+MagicRequestResponder.m in Sources */,
+				B5C6633518A8C7A800C5A26C /* ShareMYHomeViewController.m in Sources */,
 				B58CB0AF1829CF6A00F73D66 /* Magic_Request.m in Sources */,
 				B58CB0B01829CF6A00F73D66 /* Magic_RequestQueue.m in Sources */,
 				B58CB0B11829CF6A00F73D66 /* NSObject+MagicDatabase.m in Sources */,
@@ -7179,7 +7178,6 @@
 				B58CB1061829CF6A00F73D66 /* DYBRegisterStep2ViewController.m in Sources */,
 				B58CB1071829CF6A00F73D66 /* DYBRegisterStep3ViewController.m in Sources */,
 				B58CB1081829CF6A00F73D66 /* DYBResetPassWordViewController.m in Sources */,
-				B5C6632918A8AE0D00C5A26C /* ShareMYHome.m in Sources */,
 				B58CB1091829CF6A00F73D66 /* DYBSelectSchoolController.m in Sources */,
 				B58CB10A1829CF6A00F73D66 /* DYBActivityViewController.m in Sources */,
 				B58CB10B1829CF6A00F73D66 /* DYBApplicationViewController.m in Sources */,
@@ -7235,7 +7233,6 @@
 				B5C6633218A8AEA400C5A26C /* ShareMapViewController.m in Sources */,
 				B58CB13D1829CF6A00F73D66 /* DYBUse_mutualfriendViewController.m in Sources */,
 				B58CB13E1829CF6A00F73D66 /* DYBVisitorViewController.m in Sources */,
-				B5C6632C18A8AE2600C5A26C /* ShareBookBank.m in Sources */,
 				B58CB13F1829CF6A00F73D66 /* DYBWritePrivateLetterViewController.m in Sources */,
 				B58CB1401829CF6A00F73D66 /* DYYBClassHomePageViewController.m in Sources */,
 				B58CB1411829CF6A00F73D66 /* DYBPublishViewController.m in Sources */,
@@ -7286,6 +7283,7 @@
 				B58CB16E1829CF6A00F73D66 /* eclass_detail_list.m in Sources */,
 				B58CB16F1829CF6A00F73D66 /* eclass_list.m in Sources */,
 				B58CB1701829CF6A00F73D66 /* eclass_managelist.m in Sources */,
+				B5C6633818A8C7BE00C5A26C /* ShareBookBankViewController.m in Sources */,
 				B58CB1711829CF6A00F73D66 /* eclass_notice.m in Sources */,
 				B58CB1721829CF6A00F73D66 /* eclass_topiclist.m in Sources */,
 				B58CB1731829CF6A00F73D66 /* eclasses.m in Sources */,

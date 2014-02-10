@@ -20,6 +20,7 @@
 #include <arpa/inet.h>
 #include <ifaddrs.h>
 #include <netdb.h>
+#import "Magic_Device.h"
 
 enum {
     NetNone = 0,
@@ -475,7 +476,10 @@ void reachabilityCallBack(SCNetworkReachabilityRef target, SCNetworkReachability
 + (CGRect)mainFrame
 {
     CGRect mainFrame = [UIScreen mainScreen].bounds;
-    mainFrame.size.height -= 20;
+    if ([MagicDevice sysVersion] < 7)
+    {
+        mainFrame.size.height -= 20;
+    }
     
     return mainFrame;
 }

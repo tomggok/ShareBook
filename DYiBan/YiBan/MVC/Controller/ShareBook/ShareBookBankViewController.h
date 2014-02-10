@@ -1,5 +1,5 @@
 //
-//  ShareBookBank.h
+//  ShareBookBankViewController.h
 //  ShareBook
 //
 //  Created by tom zeng on 14-2-10.
@@ -8,6 +8,6 @@
 
 #import "DYBBaseViewController.h"
 
-@interface ShareBookBank : DYBBaseViewController
+@interface ShareBookBankViewController : DYBBaseViewController
 
 @end

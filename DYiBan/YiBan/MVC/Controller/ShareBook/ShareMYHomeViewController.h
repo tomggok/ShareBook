@@ -1,5 +1,5 @@
 //
-//  ShareMYHome.h
+//  ShareMYHomeViewController.h
 //  ShareBook
 //
 //  Created by tom zeng on 14-2-10.
@@ -8,6 +8,6 @@
 
 #import "DYBBaseViewController.h"
 
-@interface ShareMYHome : DYBBaseViewController
+@interface ShareMYHomeViewController : DYBBaseViewController
 
 @end
