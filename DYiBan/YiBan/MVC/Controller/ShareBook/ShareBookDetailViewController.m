@@ -1,24 +1,20 @@
 //
-//  ShareBookBankViewController.m
+//  ShareBookDetailViewController.m
 //  ShareBook
 //
-//  Created by tom zeng on 14-2-10.
+//  Created by tom zeng on 14-2-11.
 //  Copyright (c) 2014年 Tomgg. All rights reserved.
 //
 
-#import "ShareBookBankViewController.h"
-#import "WOSOrderCell.h"
-#import "ShareBookCell.h"
 #import "ShareBookDetailViewController.h"
-@interface ShareBookBankViewController (){
-    
-    UIScrollView *scrollView;
+#import "Magic_UITableView.h"
+#import "WOSOrderCell.h"
 
-}
+@interface ShareBookDetailViewController ()
 
 @end
 
-@implementation ShareBookBankViewController
+@implementation ShareBookDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,7 +45,7 @@
     if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         //        [self.rightButton setHidden:YES];
-        [self.headview setTitle:@"图书"];
+        [self.headview setTitle:@"图书详情"];
         
         [self setButtonImage:self.leftButton setImage:@"back"];
         [self setButtonImage:self.rightButton setImage:@"home"];
@@ -60,31 +56,30 @@
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
         [self.rightButton setHidden:YES];
-      
-        [self.view setBackgroundColor:[UIColor blackColor]];
         
- 
+        [self.view setBackgroundColor:[UIColor whiteColor]];
         
-        UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0f, self.headHeight , 320.0f, self.view.frame.size.height - self.headHeight)];
-        [viewBG setBackgroundColor:[UIColor blackColor]];
+        
+        
+        UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44)];
+        [viewBG setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:viewBG];
         RELEASE(viewBG);
         
-        NSArray *arraySouce  = [NSArray arrayWithObjects:@"全部",@"少儿",@"科技",@"其他",@"全部",@"少儿",@"科技",@"其他", nil];
         
-        [self creatSelectType:arraySouce];
+        [self creatDetailView];
         
         UIImage *image = [UIImage imageNamed:@"menu_inactive"];
         
         
-       DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, self.headHeight + 44, 320.0f, self.view.frame.size.height - self.headHeight  ) isNeedUpdate:YES];
+        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, 44 + 100 + 120, 320.0f, self.view.frame.size.height -44-100  ) isNeedUpdate:YES];
         [tbDataBank11 setBackgroundColor:[UIColor blackColor]];
         [self.view addSubview:tbDataBank11];
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
         RELEASE(tbDataBank11);
         
         
-    
+        
     }else if ([signal is:[MagicViewController DID_APPEAR]]) {
         
         DLogInfo(@"rrr");
@@ -94,46 +89,61 @@
     }
 }
 
--(void)creatSelectType:(NSArray *)arraySource{
+-(void)creatDetailView{
 
-    scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, self.headHeight, 320/5 * 4, 44)];
-    [self.view addSubview:scrollView];
-    [scrollView release];
+    UIImageView *imageIcon = [[UIImageView alloc]initWithFrame:CGRectMake(5.0f, 5.0f + self.headHeight, 100, 160.0f)];
+    [imageIcon setBackgroundColor:[UIColor redColor]];
+    [self.view addSubview:imageIcon];
+    [imageIcon release];
     
-    UIButton *btnMore = [[UIButton alloc]initWithFrame:CGRectMake(320/5 * 4, self.headHeight, 320/5, 44)];
-    [btnMore setBackgroundColor:[UIColor blueColor]];
-    [btnMore addTarget:self action:@selector(doMore) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btnMore];
-    [btnMore release];
+    UILabel *labelName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame), 5.0f + self.headHeight, 100, 20)];
+    [labelName setText:@"太空旅行"];
+    [self.view addSubview:labelName];
+    [labelName release];
     
-    int offset = 320/5;
-    for (int i = 0; i < arraySource.count; i++) {
-        
-        UIButton *btnTouchType = [[UIButton alloc]initWithFrame:CGRectMake(i * offset, 0, offset, 44)];
-       
-        i%2 == 0 ? [btnTouchType setBackgroundColor:[UIColor redColor]]:[btnTouchType setBackgroundColor:[UIColor yellowColor]];
-        [btnTouchType setTag:10 + i];
-        [btnTouchType addTarget:self action:@selector(doChoose:) forControlEvents:UIControlEventTouchUpInside];
-        [btnTouchType setTitle:[arraySource objectAtIndex:i] forState:UIControlStateNormal];
-        [scrollView addSubview:btnTouchType];
-        [btnTouchType release];
-        
-    }
-    [scrollView setContentSize:CGSizeMake(offset * arraySource.count, 44)];
-}
-
--(void)doChoose:(id)sender{
-
-
-
-}
-
--(void)doMore{
+    UILabel *labelAuther = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame), CGRectGetHeight(labelName.frame) + CGRectGetMinY(labelName.frame), 100, 20)];
+    [labelAuther setFont:[UIFont systemFontOfSize:13]];
+    [labelAuther setText:[NSString stringWithFormat:@"作者：空俊"]];
+    [self.view addSubview:labelAuther];
+    [labelAuther release];
     
-    [UIView animateWithDuration:0.4 animations:^{
-      [scrollView setContentOffset:CGPointMake(320/5 * 2, 0)];
-    }];
-  
+    
+    UILabel *labelPublic = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame), CGRectGetHeight(labelAuther.frame) + CGRectGetMinY(labelAuther.frame), 100, 20)];
+    [labelPublic setText:[NSString stringWithFormat:@"出版社：科学发展出版社"]];
+    [labelPublic setFont:[UIFont systemFontOfSize:13]];
+    [self.view addSubview:labelPublic];
+    [labelPublic release];
+    
+    
+    UILabel *labelTime = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame), CGRectGetHeight(labelPublic.frame) + CGRectGetMinY(labelPublic.frame), 100, 20)];
+    [labelTime setText:@"借书时间：2014 -01 -03"];
+    [labelTime setFont:[UIFont systemFontOfSize:13]];
+    [self.view addSubview:labelTime];
+    [labelTime release];
+    
+    
+    UILabel *labelMon = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame), CGRectGetHeight(labelTime.frame) + CGRectGetMinY(labelTime.frame), 100, 20)];
+    [labelMon setText:@"押金：20乐享豆"];
+    [labelMon setFont:[UIFont systemFontOfSize:13]];
+    [self.view addSubview:labelMon];
+    [labelMon release];
+    
+    
+    UILabel *labelType = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame), CGRectGetHeight(labelMon.frame) + CGRectGetMinY(labelMon.frame), 100, 20)];
+    [labelType setText:@"做客"];
+    [labelType setFont:[UIFont systemFontOfSize:13]];
+    [self.view addSubview:labelType];
+    [labelType release];
+    
+    UILabel *labelModle = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame), CGRectGetHeight(labelType.frame) + CGRectGetMinY(labelType.frame), 100, 20)];
+    [labelModle setText:@"可以借阅"];
+    [labelModle setFont:[UIFont systemFontOfSize:13]];
+    
+    [self.view addSubview:labelModle];
+    [labelModle release];
+    
+    
+    
 
 }
 
@@ -163,7 +173,7 @@ static NSString *cellName = @"cellName";
         
     }else if([signal is:[MagicUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
         
-        NSNumber *s = [NSNumber numberWithInteger:90];
+        NSNumber *s = [NSNumber numberWithInteger:50];
         [signal setReturnValue:s];
         
         
@@ -177,10 +187,10 @@ static NSString *cellName = @"cellName";
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
-        ShareBookCell *cell = [[ShareBookCell alloc]init];
+        WOSOrderCell *cell = [[WOSOrderCell alloc]init];
         
-//        NSDictionary *dictInfoFood = nil;
-//        [cell creatCell:dictInfoFood];
+        NSDictionary *dictInfoFood = nil;
+        [cell creatCell:dictInfoFood];
         DLogInfo(@"%d", indexPath.section);
         
         
@@ -191,9 +201,7 @@ static NSString *cellName = @"cellName";
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
-        ShareBookDetailViewController *bookDetail = [[ShareBookDetailViewController alloc]init];
-        [self.drNavigationController pushViewController:bookDetail animated:YES];
-        RELEASE(bookDetail);
+        
         
         
     }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
@@ -212,23 +220,4 @@ static NSString *cellName = @"cellName";
 
 
 
-- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
-{
-    if ([signal is:[DYBBaseViewController BACKBUTTON]])
-    {
-        [self.drNavigationController popViewControllerAnimated:YES];
-        
-    }else if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
-        
-    }
-}
-#pragma mark- 只接受HTTP信号
-- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
-{
-    if ([request succeed])
-    {
-        
-        
-    }
-}
 @end

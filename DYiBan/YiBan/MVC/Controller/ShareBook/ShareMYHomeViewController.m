@@ -45,7 +45,7 @@
     if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         //        [self.rightButton setHidden:YES];
-        [self.headview setTitle:@"海底捞牡丹江店"];
+        [self.headview setTitle:@"消息"];
         
         [self setButtonImage:self.leftButton setImage:@"back"];
         [self setButtonImage:self.rightButton setImage:@"home"];
@@ -181,8 +181,7 @@ static NSString *cellName = @"cellName";
         [self.view addSubview:rightV];
         RELEASE(rightV);
         RELEASE(arrayType);
-        UIImageView *tt = Nil;
-//        [tt setImage:[UIImage imageNamed:<#(NSString *)#>]];
+
         
     }
 }

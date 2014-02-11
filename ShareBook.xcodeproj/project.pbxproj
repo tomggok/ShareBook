@@ -81,6 +81,8 @@
 		1893FA5618A87EC400DF758C /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 1893FA0D18A87EC400DF758C /* line.png */; };
 		1893FA5718A87EC400DF758C /* 登录.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1893FA0E18A87EC400DF758C /* 登录.jpg */; };
 		1893FA5B18A90C0200DF758C /* ShareMessagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1893FA5A18A90C0200DF758C /* ShareMessagerCell.m */; };
+		B513F13F18A9B44C00EDF09C /* ShareBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B513F13E18A9B44C00EDF09C /* ShareBookCell.m */; };
+		B513F14218AA05BC00EDF09C /* ShareBookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B513F14118AA05BC00EDF09C /* ShareBookDetailViewController.m */; };
 		B5143ED9186BC552007677E3 /* WOSGoodPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5143ED8186BC552007677E3 /* WOSGoodPriceCell.m */; };
 		B51A12241855BC85006D8F71 /* WOSGoodFoodListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B51A12231855BC85006D8F71 /* WOSGoodFoodListCell.m */; };
 		B51A12271855C5EB006D8F71 /* WOShopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51A12261855C5EB006D8F71 /* WOShopDetailViewController.m */; };
@@ -1415,6 +1417,10 @@
 		1893FA0E18A87EC400DF758C /* 登录.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "登录.jpg"; sourceTree = "<group>"; };
 		1893FA5918A90C0200DF758C /* ShareMessagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareMessagerCell.h; sourceTree = "<group>"; };
 		1893FA5A18A90C0200DF758C /* ShareMessagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareMessagerCell.m; sourceTree = "<group>"; };
+		B513F13D18A9B44C00EDF09C /* ShareBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBookCell.h; sourceTree = "<group>"; };
+		B513F13E18A9B44C00EDF09C /* ShareBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBookCell.m; sourceTree = "<group>"; };
+		B513F14018AA05BB00EDF09C /* ShareBookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBookDetailViewController.h; sourceTree = "<group>"; };
+		B513F14118AA05BC00EDF09C /* ShareBookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBookDetailViewController.m; sourceTree = "<group>"; };
 		B5143ED7186BC552007677E3 /* WOSGoodPriceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOSGoodPriceCell.h; sourceTree = "<group>"; };
 		B5143ED8186BC552007677E3 /* WOSGoodPriceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOSGoodPriceCell.m; sourceTree = "<group>"; };
 		B51A12221855BC84006D8F71 /* WOSGoodFoodListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOSGoodFoodListCell.h; sourceTree = "<group>"; };
@@ -3415,6 +3421,8 @@
 			children = (
 				1893FA5918A90C0200DF758C /* ShareMessagerCell.h */,
 				1893FA5A18A90C0200DF758C /* ShareMessagerCell.m */,
+				B513F13D18A9B44C00EDF09C /* ShareBookCell.h */,
+				B513F13E18A9B44C00EDF09C /* ShareBookCell.m */,
 			);
 			path = ShareBook;
 			sourceTree = "<group>";
@@ -6031,6 +6039,8 @@
 				B5C6633418A8C7A800C5A26C /* ShareMYHomeViewController.m */,
 				B5C6633618A8C7BE00C5A26C /* ShareBookBankViewController.h */,
 				B5C6633718A8C7BE00C5A26C /* ShareBookBankViewController.m */,
+				B513F14018AA05BB00EDF09C /* ShareBookDetailViewController.h */,
+				B513F14118AA05BC00EDF09C /* ShareBookDetailViewController.m */,
 			);
 			path = ShareBook;
 			sourceTree = "<group>";
@@ -7264,6 +7274,7 @@
 				B58CB14D1829CF6A00F73D66 /* DYBUITabbarViewController.m in Sources */,
 				B58CB14E1829CF6A00F73D66 /* DYBWebViewController.m in Sources */,
 				B58CB14F1829CF6A00F73D66 /* DYBMyNotesViewController.m in Sources */,
+				B513F14218AA05BC00EDF09C /* ShareBookDetailViewController.m in Sources */,
 				B58CB1501829CF6A00F73D66 /* DYBNoteDetailViewController.m in Sources */,
 				B58CB1511829CF6A00F73D66 /* DYBShareInNotesViewController.m in Sources */,
 				B58CB1521829CF6A00F73D66 /* DYBTabViewController.m in Sources */,
@@ -7305,6 +7316,7 @@
 				B58CB1751829CF6A00F73D66 /* ext.m in Sources */,
 				B58CB1761829CF6A00F73D66 /* follow_list.m in Sources */,
 				B58CB1771829CF6A00F73D66 /* friend_data.m in Sources */,
+				B513F13F18A9B44C00EDF09C /* ShareBookCell.m in Sources */,
 				B58CB1781829CF6A00F73D66 /* friend_request_list.m in Sources */,
 				B58CB1791829CF6A00F73D66 /* friends.m in Sources */,
 				B58CB17A1829CF6A00F73D66 /* friends_list.m in Sources */,

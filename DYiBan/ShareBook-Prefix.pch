@@ -18,6 +18,7 @@
 #import "Magic_CommentMethod.h"
 #import "Magic_Sandbox.h"
 #import "Magic_UITableView.h"
+#import "Magic_UITableView.h"
 #import "Magic_UIButton.h"
 #import "DYBParameter.h"    
 #import "DYBShareinstaceDelegate.h"
