@@ -12,6 +12,7 @@
 
 @interface DYBBaseViewController ()
 {
+    float y ;
 }
 @end
 
@@ -51,7 +52,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
     
     _headview = [[DYBNaviView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     
-    float y = 0;
+  y = 0;
     if ([MagicDevice sysVersion] >= 7)
     {
         y = 20;
@@ -101,12 +102,12 @@ DEF_SIGNAL(NoInternetConnection)//无网
 //适配ios7 偏移
 - (float)getOffset {
     
-    float y = 0;
+    float yy = 0;
     if ([MagicDevice sysVersion] >= 7)
     {
-        y = 20;
+        yy = 20;
     }
-    return y;
+    return yy;
 }
 
 //根据不同页面自动变换BT的样式
@@ -213,6 +214,18 @@ DEF_SIGNAL(NoInternetConnection)//无网
     
     [button setImage:[UIImage imageNamed:string] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:string] forState:UIControlStateHighlighted];
+    
+    UIImage *image = [UIImage imageNamed:string];
+    
+    if ([button isEqual:_rightButton]) {
+        
+        [button setFrame: CGRectMake(SCREEN_WIDTH-60, y + (44 - image.size.height/2)/2, image.size.width/2, image.size.height/2)];
+    }else{
+    
+        [button setFrame: CGRectMake(0, y + (44 - image.size.height/2)/2, image.size.width/2, image.size.height/2) ];
+    }
+   
+    
 }
 
 - (void)setButtonImage:(MagicUIButton *)button setImage:(NSString *)string  setHighString:(NSString *)hight{

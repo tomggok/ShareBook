@@ -279,25 +279,25 @@ MagicUIButton *hiddenView;
 //    peopleVC.b_isInMainPage=YES;
 //    [peopleVC setVc:_vc];
     
-    NSArray *arrayVC = [NSArray arrayWithObjects:home,setting,book,map, nil];
+    NSArray *arrayVC = [NSArray arrayWithObjects:book,map,home,setting, nil];
     
     
     NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
-    [imgDic setObject:[UIImage imageNamed:@"tab1_def"] forKey:TABBARBUTDEFAULT];
-    [imgDic setObject:[UIImage imageNamed:@"tab1_high"] forKey:TABBARBUTHIGHLIGHT];
-    [imgDic setObject:[UIImage imageNamed:@"tab1_sel"] forKey:TABBARBUTSELETED];
+    [imgDic setObject:[UIImage imageNamed:@"book_default"] forKey:TABBARBUTDEFAULT];
+    [imgDic setObject:[UIImage imageNamed:@"book_select"] forKey:TABBARBUTHIGHLIGHT];
+    [imgDic setObject:[UIImage imageNamed:@"book_select"] forKey:TABBARBUTSELETED];
     NSMutableDictionary *imgDic2 = [NSMutableDictionary dictionaryWithCapacity:3];
-    [imgDic2 setObject:[UIImage imageNamed:@"tab2_def"] forKey:TABBARBUTDEFAULT];
-    [imgDic2 setObject:[UIImage imageNamed:@"tab2_high"] forKey:TABBARBUTHIGHLIGHT];
-    [imgDic2 setObject:[UIImage imageNamed:@"tab2_sel"] forKey:TABBARBUTSELETED];
+    [imgDic2 setObject:[UIImage imageNamed:@"gps_default"] forKey:TABBARBUTDEFAULT];
+    [imgDic2 setObject:[UIImage imageNamed:@"gps_select"] forKey:TABBARBUTHIGHLIGHT];
+    [imgDic2 setObject:[UIImage imageNamed:@"gps_select"] forKey:TABBARBUTSELETED];
     NSMutableDictionary *imgDic3 = [NSMutableDictionary dictionaryWithCapacity:3];
-    [imgDic3 setObject:[UIImage imageNamed:@"tab3_def"] forKey:TABBARBUTDEFAULT];
-    [imgDic3 setObject:[UIImage imageNamed:@"tab3_high"] forKey:TABBARBUTHIGHLIGHT];
-    [imgDic3 setObject:[UIImage imageNamed:@"tab3_sel"] forKey:TABBARBUTSELETED];
+    [imgDic3 setObject:[UIImage imageNamed:@"mine_default"] forKey:TABBARBUTDEFAULT];
+    [imgDic3 setObject:[UIImage imageNamed:@"mine_select"] forKey:TABBARBUTHIGHLIGHT];
+    [imgDic3 setObject:[UIImage imageNamed:@"mine_select"] forKey:TABBARBUTSELETED];
     NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
-    [imgDic4 setObject:[UIImage imageNamed:@"tab4_def"] forKey:TABBARBUTDEFAULT];
-    [imgDic4 setObject:[UIImage imageNamed:@"tab4_high"] forKey:TABBARBUTHIGHLIGHT];
-    [imgDic4 setObject:[UIImage imageNamed:@"tab4_sel"] forKey:TABBARBUTSELETED];
+    [imgDic4 setObject:[UIImage imageNamed:@"setting_default"] forKey:TABBARBUTDEFAULT];
+    [imgDic4 setObject:[UIImage imageNamed:@"setting_select"] forKey:TABBARBUTHIGHLIGHT];
+    [imgDic4 setObject:[UIImage imageNamed:@"setting_select"] forKey:TABBARBUTSELETED];
 //    NSMutableDictionary *imgDic5 = [NSMutableDictionary dictionaryWithCapacity:3];
 //    [imgDic5 setObject:[UIImage imageNamed:@"tab5_def"] forKey:TABBARBUTDEFAULT];
 //    [imgDic5 setObject:[UIImage imageNamed:@"tab5_high"] forKey:TABBARBUTHIGHLIGHT];
@@ -399,9 +399,9 @@ MagicUIButton *hiddenView;
     
     _containerView = [[MagicUITabBarView alloc] initWithViewControllers:vcs imageArray:arr reduceHeight:reduceHeight barHeight:barHeight withClass:clazz];
     
-    [_containerView.tabBar setBackgroundColor:[UIColor clearColor]];
+    [_containerView.tabBar setBackgroundColor:[UIColor colorWithRed:19.0f/255 green:22.0f/255 blue:23.0f/255 alpha:1.0f]];
     [_containerView setTabBarTransparent:YES];
-    [_containerView.tabBar.backgroundView setImage:[UIImage imageNamed:@"bg_file_bottom"]];
+//    [_containerView.tabBar.backgroundView setImage:[UIImage imageNamed:@"bg_file_bottom"]];
     
     return _containerView;
 }

@@ -47,10 +47,11 @@
         //        [self.rightButton setHidden:YES];
         [self.headview setTitle:@"消息"];
         
-        [self setButtonImage:self.leftButton setImage:@"back"];
-        [self setButtonImage:self.rightButton setImage:@"home"];
+//        [self setButtonImage:self.leftButton setImage:@"back"];
+        [self.leftButton setHidden:YES];
+        [self setButtonImage:self.rightButton setImage:@"menu"];
         [self.headview setTitleColor:[UIColor colorWithRed:193.0f/255 green:193.0f/255 blue:193.0f/255 alpha:1.0f]];
-        [self.headview setBackgroundColor:[UIColor colorWithRed:97.0f/255 green:97.0f/255 blue:97.0f/255 alpha:1.0]];
+       [self.headview setBackgroundColor:[UIColor colorWithRed:17.0f/255 green:22.0f/255 blue:27.0f/255 alpha:1.0f]];
         
     }
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
@@ -58,13 +59,13 @@
         [self.rightButton setHidden:YES];
 //        arrayFoodList = [[NSArray alloc]init];
 //        arrayAddorder = [[NSMutableArray alloc]init];
-        [self.view setBackgroundColor:[UIColor blackColor]];
+        [self.view setBackgroundColor:[UIColor whiteColor]];
         
 //        MagicRequest *request = [DYBHttpMethod wosKitchenInfo_foodlist:[_dictInfo objectForKey:@"kitchenIndex"]sAlert:YES receive:self];
 //        [request setTag:3];
         
         UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44)];
-        [viewBG setBackgroundColor:[UIColor blackColor]];
+        [viewBG setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:viewBG];
         RELEASE(viewBG);
         
@@ -73,7 +74,7 @@
         
         
        DYBUITableView  *tbDataBank1 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, self.headHeight, 320.0f , self.view.frame.size.height - self.headHeight  ) isNeedUpdate:YES];
-        [tbDataBank1 setBackgroundColor:[UIColor blackColor]];
+        [tbDataBank1 setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:tbDataBank1];
         [tbDataBank1 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
         RELEASE(tbDataBank1);
@@ -174,7 +175,7 @@ static NSString *cellName = @"cellName";
     }else if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
         
         NSArray *arrayType = [[NSArray alloc]initWithObjects:@"消息",@"图书",@"豆",@"圈", nil];
-        DYBDataBankTopRightCornerView *rightV = [[DYBDataBankTopRightCornerView alloc]initWithFrame:CGRectMake(320.0f - 95, 40, 90, 99) arrayResult:arrayType target:self];
+        DYBDataBankTopRightCornerView *rightV = [[DYBDataBankTopRightCornerView alloc]initWithFrame:CGRectMake(320.0f - 95, self.headHeight, 90, 99) arrayResult:arrayType target:self];
         [rightV setBackgroundColor:[UIColor clearColor]];
         
 //        [rightV setTag:RIGHTVIEWTAG];

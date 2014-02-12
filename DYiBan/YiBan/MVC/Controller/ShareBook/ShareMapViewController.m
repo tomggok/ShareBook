@@ -43,10 +43,11 @@
     if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         //        [self.rightButton setHidden:YES];
-        [self.headview setTitle:@"海底捞牡丹江店"];
+        [self.headview setTitle:@"周边"];
         
-        [self setButtonImage:self.leftButton setImage:@"back"];
-        [self setButtonImage:self.rightButton setImage:@"home"];
+//        [self setButtonImage:self.leftButton setImage:@"back"];
+//        [self setButtonImage:self.rightButton setImage:@"home"];
+        [self.leftButton setHidden:YES];
         [self.headview setTitleColor:[UIColor colorWithRed:193.0f/255 green:193.0f/255 blue:193.0f/255 alpha:1.0f]];
         [self.headview setBackgroundColor:[UIColor colorWithRed:97.0f/255 green:97.0f/255 blue:97.0f/255 alpha:1.0]];
         
@@ -60,7 +61,7 @@
         
         
         UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44)];
-        [viewBG setBackgroundColor:[UIColor blackColor]];
+        [viewBG setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:viewBG];
         RELEASE(viewBG);
         
@@ -70,9 +71,9 @@
         
         DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(image.size.width/2, 44, 320.0f - 50, self.view.frame.size.height -44  ) isNeedUpdate:YES];
         [tbDataBank11 setBackgroundColor:[UIColor blackColor]];
-        [self.view addSubview:tbDataBank11];
+//        [self.view addSubview:tbDataBank11];
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
-        RELEASE(tbDataBank11);
+//        RELEASE(tbDataBank11);
         
         
         

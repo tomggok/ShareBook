@@ -29,18 +29,22 @@
 
 -(void)creatCell{
 
-    UIImageView *imageIcon = [[UIImageView alloc]initWithFrame:CGRectMake(5.0f, 5.0f, 40.0f, 40.0f)];
-    [imageIcon setBackgroundColor:[UIColor redColor]];
+    UIImage *imageIcon0 = [UIImage imageNamed:@"system-avatar"];
+    UIImageView *imageIcon = [[UIImageView alloc]initWithFrame:CGRectMake(5.0f, 5.0f, imageIcon0.size.width/2, imageIcon0.size.height/2)];
+    [imageIcon setBackgroundColor:[UIColor clearColor]];
+    [imageIcon setImage:[UIImage imageNamed:@"system-avatar"]];
     [self addSubview:imageIcon];
     [imageIcon release];
     
     UILabel *labelName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 10, 5, 100.0f, 20.0f)];
-    [labelName setText:@"tomgg"];
+    [labelName setText:@"齐天大圣"];
     [self addSubview:labelName];
     [labelName release];
     
     UILabel *labelMSG = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 10, 25, 200, 20)];
-    [labelMSG setText:@"ddfgsfgsddfg"];
+    [labelMSG setText:@"曾新想您借《大闹天空》"];
+    [labelMSG setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
+    [labelMSG setFont:[UIFont systemFontOfSize:12]];
     [self addSubview:labelMSG];
     [labelMSG release];
     
@@ -50,6 +54,13 @@
     [self addSubview:labelTime];
     [labelTime release];
 
+    
+    [self setBackgroundColor:[UIColor colorWithRed:246.0f/255 green:246.0f/255 blue:246.0f/255 alpha:1.0f]];
+    
+    UIImageView *imageLine = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 50-1, 320.0f, 1)];
+    [imageLine setImage:[UIImage imageNamed:@"line3"]];
+    [self addSubview:imageLine];
+    [imageLine release];
 }
 
 @end

@@ -51,6 +51,7 @@ DEF_SIGNAL(TOUCHSINGLEBTN)
         MagicUIButton *btn = [[MagicUIButton alloc]initWithFrame:CGRectMake( 0, offset * (i - 1) + HIGHIMG, BTNWIDTH, 44)];
         
         [btn addSignal:[DYBDataBankTopRightCornerView TOUCHBTN] forControlEvents:UIControlEventTouchUpInside object:btn];
+        [btn setTag:102];
         [btn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
         [btn setImage:[UIImage imageNamed:@"rightslide_sel"] forState:UIControlStateSelected];
         [btn setTag:i];
@@ -78,24 +79,29 @@ DEF_SIGNAL(TOUCHSINGLEBTN)
         
         UIImage *image=[UIImage imageNamed:@"icon_book2"];
 //        UIImage *image = [UIImage image];
-        UIImageView *imageIcon = [[UIImageView alloc]initWithFrame:CGRectMake(5.0f, 5.0f, image.size.width/2,image.size.height/2)];
+        UIButton *imageIcon = [[UIButton alloc]initWithFrame:CGRectMake(5.0f, 5.0f, image.size.width/2,image.size.height/2)];
+        [imageIcon setTag:101];
         [btn addSubview:imageIcon];
         [imageIcon release];
         
         switch (i) {
             case 1:
-                [imageIcon setImage:[UIImage imageNamed:@"icon_message2"]];
+                [imageIcon setImage:[UIImage imageNamed:@"icon_message"] forState:UIControlStateSelected];
+                 [imageIcon setImage:[UIImage imageNamed:@"icon_message2"] forState:UIControlStateNormal];
                 break;
             case 2:
-                [imageIcon setImage:[UIImage imageNamed:@"icon_book2"]];
+                [imageIcon setImage:[UIImage imageNamed:@"icon_book"]forState:UIControlStateSelected];
+                 [imageIcon setImage:[UIImage imageNamed:@"icon_book2"] forState:UIControlStateNormal];
                 break;
 
             case 3:
-                [imageIcon setImage:[UIImage imageNamed:@"icon_beans_2"]];
+                [imageIcon setImage:[UIImage imageNamed:@"icon_beans_2"]forState:UIControlStateNormal];
+                 [imageIcon setImage:[UIImage imageNamed:@"icon_beans"] forState:UIControlStateSelected];
                 break;
 
             case 4:
-                [imageIcon setImage:[UIImage imageNamed:@"icon_circle_2"]];
+                [imageIcon setImage:[UIImage imageNamed:@"icon_circle_2"]forState:UIControlStateNormal];
+                 [imageIcon setImage:[UIImage imageNamed:@"icon_circle"] forState:UIControlStateSelected];
                 break;
 
                 
@@ -138,11 +144,11 @@ DEF_SIGNAL(TOUCHSINGLEBTN)
 
 
     UIImageView *minView = (UIImageView *)[self viewWithTag:MINIMAGEVIEWTAG];
-    
+    UIButton *selBtn = (UIButton *)[minView viewWithTag:102];
     for (UIView *view in [minView subviews]) {
-        
+    
         if ([view isKindOfClass:[UIButton class]]) {
-            
+    
             UIButton *selBtn = (UIButton *)view;
             
             UILabel *label = (UILabel *)[selBtn viewWithTag:BTNTAG];

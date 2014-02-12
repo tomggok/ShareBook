@@ -13,7 +13,7 @@
 @interface ShareBookBankViewController (){
     
     UIScrollView *scrollView;
-
+    NSArray *arraySouce;
 }
 
 @end
@@ -51,39 +51,39 @@
         //        [self.rightButton setHidden:YES];
         [self.headview setTitle:@"图书"];
         
-        [self setButtonImage:self.leftButton setImage:@"back"];
-        [self setButtonImage:self.rightButton setImage:@"home"];
+//        [self setButtonImage:self.leftButton setImage:@"back"];
+        [self.leftButton setHidden:YES];
+        [self setButtonImage:self.rightButton setImage:@"icon_search"];
         [self.headview setTitleColor:[UIColor colorWithRed:193.0f/255 green:193.0f/255 blue:193.0f/255 alpha:1.0f]];
-        [self.headview setBackgroundColor:[UIColor colorWithRed:97.0f/255 green:97.0f/255 blue:97.0f/255 alpha:1.0]];
+        [self.headview setBackgroundColor:[UIColor colorWithRed:17.0f/255 green:22.0f/255 blue:27.0f/255 alpha:1.0f]];
         
     }
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
         [self.rightButton setHidden:YES];
       
-        [self.view setBackgroundColor:[UIColor blackColor]];
+        [self.view setBackgroundColor:[UIColor whiteColor]];
         
- 
+   [self.leftButton setHidden:YES];
         
         UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0f, self.headHeight , 320.0f, self.view.frame.size.height - self.headHeight)];
-        [viewBG setBackgroundColor:[UIColor blackColor]];
+        [viewBG setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:viewBG];
         RELEASE(viewBG);
-        
-        NSArray *arraySouce  = [NSArray arrayWithObjects:@"全部",@"少儿",@"科技",@"其他",@"全部",@"少儿",@"科技",@"其他", nil];
+        arraySouce = [[NSArray alloc]initWithObjects:@"全部",@"少儿",@"科技",@"其他",@"全部",@"少儿",@"科技",@"其他", nil];
         
         [self creatSelectType:arraySouce];
         
-        UIImage *image = [UIImage imageNamed:@"menu_inactive"];
+        UIImage *image = [UIImage imageNamed:@"options_bg"];
         
         
-       DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, self.headHeight + 44, 320.0f, self.view.frame.size.height - self.headHeight  ) isNeedUpdate:YES];
-        [tbDataBank11 setBackgroundColor:[UIColor blackColor]];
+       DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, self.headHeight + image.size.height/2, 320.0f, self.view.frame.size.height - self.headHeight -image.size.height/2 ) isNeedUpdate:YES];
+        [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:tbDataBank11];
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
         RELEASE(tbDataBank11);
         
-        
+        [tbDataBank11 setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     }else if ([signal is:[MagicViewController DID_APPEAR]]) {
         
@@ -96,37 +96,75 @@
 
 -(void)creatSelectType:(NSArray *)arraySource{
 
-    scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, self.headHeight, 320/5 * 4, 44)];
+    UIImage *imageSouce = [UIImage imageNamed:@"options_bg"];
+    
+    scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, self.headHeight, imageSouce.size.width/2 * 4, imageSouce.size.height/2)];
     [self.view addSubview:scrollView];
     [scrollView release];
     
-    UIButton *btnMore = [[UIButton alloc]initWithFrame:CGRectMake(320/5 * 4, self.headHeight, 320/5, 44)];
-    [btnMore setBackgroundColor:[UIColor blueColor]];
+    UIImage *imageMoer = [UIImage imageNamed:@"add_bt"];
+    
+    UIButton *btnMore = [[UIButton alloc]initWithFrame:CGRectMake(imageSouce.size.width/2 * 4, self.headHeight, imageMoer.size.width/2 , imageMoer.size.height/2)];
+    [btnMore setImage:imageMoer forState:UIControlStateNormal];
+    [btnMore setBackgroundColor:[UIColor clearColor
+                                 ]];
     [btnMore addTarget:self action:@selector(doMore) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnMore];
     [btnMore release];
     
-    int offset = 320/5;
+    int offset = imageSouce.size.width/2;
     for (int i = 0; i < arraySource.count; i++) {
         
-        UIButton *btnTouchType = [[UIButton alloc]initWithFrame:CGRectMake(i * offset, 0, offset, 44)];
+        UIButton *btnTouchType = [[UIButton alloc]initWithFrame:CGRectMake(i * offset, 0, offset, imageSouce.size.height/2)];
        
-        i%2 == 0 ? [btnTouchType setBackgroundColor:[UIColor redColor]]:[btnTouchType setBackgroundColor:[UIColor yellowColor]];
+//        i%2 == 0 ? [btnTouchType setBackgroundColor:[UIColor redColor]]:[btnTouchType setBackgroundColor:[UIColor yellowColor]];
+        [btnTouchType setImage:[UIImage imageNamed:@"options_bg"] forState:UIControlStateNormal];
+        [btnTouchType setImage:[UIImage imageNamed:@"click_bg"] forState:UIControlStateSelected];
         [btnTouchType setTag:10 + i];
         [btnTouchType addTarget:self action:@selector(doChoose:) forControlEvents:UIControlEventTouchUpInside];
         [btnTouchType setTitle:[arraySource objectAtIndex:i] forState:UIControlStateNormal];
+        [self addlabel_title:[arraySouce objectAtIndex:i] frame:btnTouchType.frame view:btnTouchType];
         [scrollView addSubview:btnTouchType];
         [btnTouchType release];
         
+        if (i == 0) {
+            [btnTouchType setSelected:YES];
+        }
     }
     [scrollView setContentSize:CGSizeMake(offset * arraySource.count, 44)];
 }
 
 -(void)doChoose:(id)sender{
 
-
+    UIButton *btn = (UIButton *)sender;
+    for (int i = 0; i <arraySouce.count; i++) {
+        
+        UIButton *btnT = (UIButton *)[scrollView viewWithTag:10+i];
+        if (btn.tag ==  btnT.tag) {
+            
+            [btnT setSelected:YES];
+        }else{
+            
+            [btnT setSelected:NO];
+        }
+    }
 
 }
+
+-(void)addlabel_title:(NSString *)title frame:(CGRect)frame view:(UIView *)view{
+    
+    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))];
+    [label1 setText:title];
+    [label1 setTag:100];
+    [label1 setTextAlignment:NSTextAlignmentCenter];
+    [view bringSubviewToFront:label1];
+    [label1 setTextColor:[UIColor blackColor]];
+    [label1 setBackgroundColor:[UIColor clearColor]];
+    [view addSubview:label1];
+    RELEASE(label1);
+    
+}
+
 
 -(void)doMore{
     
