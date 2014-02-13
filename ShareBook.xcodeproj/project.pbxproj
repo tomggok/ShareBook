@@ -91,6 +91,9 @@
 		B513F13F18A9B44C00EDF09C /* ShareBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B513F13E18A9B44C00EDF09C /* ShareBookCell.m */; };
 		B513F14218AA05BC00EDF09C /* ShareBookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B513F14118AA05BC00EDF09C /* ShareBookDetailViewController.m */; };
 		B5143ED9186BC552007677E3 /* WOSGoodPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5143ED8186BC552007677E3 /* WOSGoodPriceCell.m */; };
+		B5186D1A18ACA69300CC2E36 /* ShareBookDouCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5186D1918ACA69200CC2E36 /* ShareBookDouCell.m */; };
+		B5186D1D18ACA6CC00CC2E36 /* ShareDouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5186D1C18ACA6CC00CC2E36 /* ShareDouViewController.m */; };
+		B5186D2018ACA6EC00CC2E36 /* ShareSearchBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5186D1F18ACA6EC00CC2E36 /* ShareSearchBookViewController.m */; };
 		B51A12241855BC85006D8F71 /* WOSGoodFoodListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B51A12231855BC85006D8F71 /* WOSGoodFoodListCell.m */; };
 		B51A12271855C5EB006D8F71 /* WOShopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51A12261855C5EB006D8F71 /* WOShopDetailViewController.m */; };
 		B52549EF184724CA00F5B645 /* WOSPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52549EE184724CA00F5B645 /* WOSPersonInfoViewController.m */; };
@@ -1438,6 +1441,12 @@
 		B513F14118AA05BC00EDF09C /* ShareBookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBookDetailViewController.m; sourceTree = "<group>"; };
 		B5143ED7186BC552007677E3 /* WOSGoodPriceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOSGoodPriceCell.h; sourceTree = "<group>"; };
 		B5143ED8186BC552007677E3 /* WOSGoodPriceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOSGoodPriceCell.m; sourceTree = "<group>"; };
+		B5186D1818ACA69200CC2E36 /* ShareBookDouCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShareBookDouCell.h; path = DYiBan/YiBan/MVC/View/ShareBook/ShareBookDouCell.h; sourceTree = SOURCE_ROOT; };
+		B5186D1918ACA69200CC2E36 /* ShareBookDouCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShareBookDouCell.m; path = DYiBan/YiBan/MVC/View/ShareBook/ShareBookDouCell.m; sourceTree = SOURCE_ROOT; };
+		B5186D1B18ACA6CC00CC2E36 /* ShareDouViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareDouViewController.h; sourceTree = "<group>"; };
+		B5186D1C18ACA6CC00CC2E36 /* ShareDouViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareDouViewController.m; sourceTree = "<group>"; };
+		B5186D1E18ACA6EC00CC2E36 /* ShareSearchBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareSearchBookViewController.h; sourceTree = "<group>"; };
+		B5186D1F18ACA6EC00CC2E36 /* ShareSearchBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareSearchBookViewController.m; sourceTree = "<group>"; };
 		B51A12221855BC84006D8F71 /* WOSGoodFoodListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOSGoodFoodListCell.h; sourceTree = "<group>"; };
 		B51A12231855BC85006D8F71 /* WOSGoodFoodListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOSGoodFoodListCell.m; sourceTree = "<group>"; };
 		B51A12251855C5EA006D8F71 /* WOShopDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOShopDetailViewController.h; sourceTree = "<group>"; };
@@ -3446,6 +3455,8 @@
 				B513F13E18A9B44C00EDF09C /* ShareBookCell.m */,
 				B5122BC018AB20E1006ECE62 /* ShareBookDetailCell.h */,
 				B5122BC118AB20E2006ECE62 /* ShareBookDetailCell.m */,
+				B5186D1818ACA69200CC2E36 /* ShareBookDouCell.h */,
+				B5186D1918ACA69200CC2E36 /* ShareBookDouCell.m */,
 			);
 			path = ShareBook;
 			sourceTree = "<group>";
@@ -6064,6 +6075,10 @@
 				B513F14118AA05BC00EDF09C /* ShareBookDetailViewController.m */,
 				B5A42B1C186939530086AC34 /* WOSLogInViewController.h */,
 				B5A42B1D186939530086AC34 /* WOSLogInViewController.m */,
+				B5186D1B18ACA6CC00CC2E36 /* ShareDouViewController.h */,
+				B5186D1C18ACA6CC00CC2E36 /* ShareDouViewController.m */,
+				B5186D1E18ACA6EC00CC2E36 /* ShareSearchBookViewController.h */,
+				B5186D1F18ACA6EC00CC2E36 /* ShareSearchBookViewController.m */,
 			);
 			path = ShareBook;
 			sourceTree = "<group>";
@@ -7128,6 +7143,7 @@
 				B58CB0771829CF6A00F73D66 /* NSObject+JSON.m in Sources */,
 				B58CB0781829CF6A00F73D66 /* MBProgressHUD.m in Sources */,
 				B58CB0791829CF6A00F73D66 /* Reachability.m in Sources */,
+				B5186D1A18ACA69300CC2E36 /* ShareBookDouCell.m in Sources */,
 				B58CB07A1829CF6A00F73D66 /* JSONKit.m in Sources */,
 				B58CB07B1829CF6A00F73D66 /* NSObject+SBJSON.m in Sources */,
 				B58CB07C1829CF6A00F73D66 /* NSString+SBJSON.m in Sources */,
@@ -7229,6 +7245,7 @@
 				B58CB1011829CF6A00F73D66 /* DYBLoginViewController.m in Sources */,
 				B58CB1051829CF6A00F73D66 /* DYBRegisterStep1ViewController.m in Sources */,
 				B58CB1061829CF6A00F73D66 /* DYBRegisterStep2ViewController.m in Sources */,
+				B5186D2018ACA6EC00CC2E36 /* ShareSearchBookViewController.m in Sources */,
 				B58CB1071829CF6A00F73D66 /* DYBRegisterStep3ViewController.m in Sources */,
 				B58CB1081829CF6A00F73D66 /* DYBResetPassWordViewController.m in Sources */,
 				B58CB1091829CF6A00F73D66 /* DYBSelectSchoolController.m in Sources */,
@@ -7443,6 +7460,7 @@
 				B58CB1D51829CF6B00F73D66 /* DYBCellForFriendList.m in Sources */,
 				B58CB1D61829CF6B00F73D66 /* DYBCellForMayKnowFriends.m in Sources */,
 				B58CB1D71829CF6B00F73D66 /* DYBCellForMentionedMe.m in Sources */,
+				B5186D1D18ACA6CC00CC2E36 /* ShareDouViewController.m in Sources */,
 				B58CB1D81829CF6B00F73D66 /* DYBCellForNearBy.m in Sources */,
 				B58CB1D91829CF6B00F73D66 /* DYBCellForNotes.m in Sources */,
 				B58CB1DA1829CF6B00F73D66 /* DYBCellForNotesDetail.m in Sources */,

@@ -124,7 +124,7 @@
         
         _phoneInputNameR = [[DYBInputView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 0 + 20, INPUTWIDTH, INPUTHEIGHT) placeText:@"用户名" textType:0];
         [_phoneInputNameR.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[UIColor blackColor] CGColor]];
-        [_phoneInputNameR.nameField setText:@"1"];
+//        [_phoneInputNameR.nameField setText:@"1"];
         [_phoneInputNameR.nameField setTextColor:[UIColor yellowColor]];
         [_phoneInputNameR setBackgroundColor:[UIColor redColor]];
         [viewResgin addSubview:_phoneInputNameR];
@@ -138,7 +138,7 @@
         
         _phoneInputAddrR = [[DYBInputView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 0 +INPUTHEIGHT  + 40, INPUTWIDTH, INPUTHEIGHT) placeText:@"密码" textType:0];
         [_phoneInputAddrR.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[UIColor clearColor] CGColor]];
-        [_phoneInputAddrR.nameField setText:@"1"];
+//        [_phoneInputAddrR.nameField setText:@"1"];
         [_phoneInputAddrR.nameField setTextColor:[UIColor whiteColor]];
         [_phoneInputAddrR setBackgroundColor:[UIColor clearColor]];
         [viewResgin addSubview:_phoneInputAddrR];
@@ -186,7 +186,7 @@
         
         _phoneInputName = [[DYBInputView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 0 + 20, INPUTWIDTH, INPUTHEIGHT) placeText:@"用户名" textType:0];
         [_phoneInputName.layer AddborderByIsMasksToBounds:YES cornerRadius:3 borderWidth:1 borderColor:[[UIColor colorWithRed:188.0f/255 green:188.0f/255 blue:188.0f/255 alpha:1.0f] CGColor]];
-        [_phoneInputName.nameField setText:@"1"];
+//        [_phoneInputName.nameField setText:@"1"];
         [_phoneInputName.nameField setTextColor:[UIColor blackColor]];
         [_phoneInputName setBackgroundColor:[UIColor whiteColor]];
         [viewLogin addSubview:_phoneInputName];
@@ -200,7 +200,7 @@
         
         _phoneInputAddr = [[DYBInputView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 0 +INPUTHEIGHT  + 40, INPUTWIDTH, INPUTHEIGHT) placeText:@"密码" textType:0];
         [_phoneInputAddr.layer AddborderByIsMasksToBounds:YES cornerRadius:3 borderWidth:1 borderColor:[[UIColor colorWithRed:188.0f/255 green:188.0f/255 blue:188.0f/255 alpha:1.0f]  CGColor]];
-        [_phoneInputAddr.nameField setText:@"1"];
+//        [_phoneInputAddr.nameField setText:@"1"];
         [_phoneInputAddr.nameField setTextColor:[UIColor blackColor]];
         [_phoneInputAddr setBackgroundColor:[UIColor whiteColor]];
         [viewLogin addSubview:_phoneInputAddr];
@@ -215,7 +215,7 @@
         [btnBack setBackgroundColor:[UIColor clearColor]];
         [btnBack setImage:[UIImage imageNamed:@"bt1_click"] forState:UIControlStateNormal];
         [btnBack setImage:[UIImage imageNamed:@"bt1_click"] forState:UIControlStateSelected];
-        [btnBack addTarget:self action:@selector(addOK) forControlEvents:UIControlEventTouchUpInside];
+        [btnBack addTarget:self action:@selector(addOKLogin) forControlEvents:UIControlEventTouchUpInside];
 //        [self addlabel_title:@"登陆" frame:btnBack.frame view:btnBack];
         [viewLogin addSubview:btnBack];
         [btnBack release];
@@ -290,6 +290,11 @@
     [labelMissPW setText:@"忘记密码"];
     [viewLogin addSubview:labelMissPW];
     RELEASE(labelMissPW);
+
+}
+
+-(void)addOKLogin{
+
 
 }
 

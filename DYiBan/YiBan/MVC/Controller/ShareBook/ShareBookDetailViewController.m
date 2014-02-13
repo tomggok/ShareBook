@@ -50,8 +50,8 @@
         [self.headview setTitle:@"图书详情"];
         
         
-        [self.leftButton setHidden:YES];
-//        [self setButtonImage:self.leftButton setImage:@"back"];
+//        [self.leftButton setHidden:YES];
+        [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
 //        [self setButtonImage:self.rightButton setImage:@"home"];
         [self.headview setTitleColor:[UIColor colorWithRed:193.0f/255 green:193.0f/255 blue:193.0f/255 alpha:1.0f]];
         [self.headview setBackgroundColor:[UIColor colorWithRed:22.0f/255 green:29.0f/255 blue:36.0f/255 alpha:1.0f]];
@@ -118,7 +118,7 @@
     
     
     UIImage *btnImage = [UIImage imageNamed:@"bt01_click"];
-    UIButton *btnYU = [[UIButton alloc]initWithFrame:CGRectMake(2.0f, (image.size.height/2 -btnImage.size.height/2)/2 , btnImage.size.width/2, btnImage.size.height/2)];
+    UIButton *btnYU = [[UIButton alloc]initWithFrame:CGRectMake(7.0f, (image.size.height/2 -btnImage.size.height/2)/2 , btnImage.size.width/2, btnImage.size.height/2)];
     [btnYU setTag:101];
     [btnYU setBackgroundColor:[UIColor clearColor]];
     [btnYU setImage:[UIImage imageNamed:@"bt01_click"] forState:UIControlStateHighlighted];
@@ -129,7 +129,7 @@
     [btnYU release];
     
 //    [UIColor whiteColor];
-    UIButton *btnBorrow = [[UIButton alloc]initWithFrame:CGRectMake(165, (image.size.height/2 -btnImage.size.height/2)/2 , btnImage.size.width/2, btnImage.size.height/2)];
+    UIButton *btnBorrow = [[UIButton alloc]initWithFrame:CGRectMake(167, (image.size.height/2 -btnImage.size.height/2)/2 , btnImage.size.width/2, btnImage.size.height/2)];
     [btnBorrow setTag:102];
     [btnBorrow setImage:[UIImage imageNamed:@"bt02_click"] forState:UIControlStateHighlighted];
     [btnBorrow setImage:[UIImage imageNamed:@"bt02"] forState:UIControlStateNormal];

@@ -10,6 +10,9 @@
 #import "WOSOrderCell.h"
 #import "DYBDataBankTopRightCornerView.h"
 #import "ShareMessagerCell.h"
+#import "ShareDouViewController.h"
+#define  RIGHTVIEWTAG 111
+
 @interface ShareMYHomeViewController ()
 
 @end
@@ -174,17 +177,69 @@ static NSString *cellName = @"cellName";
         
     }else if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
         
-        NSArray *arrayType = [[NSArray alloc]initWithObjects:@"消息",@"图书",@"豆",@"圈", nil];
-        DYBDataBankTopRightCornerView *rightV = [[DYBDataBankTopRightCornerView alloc]initWithFrame:CGRectMake(320.0f - 95, self.headHeight, 90, 99) arrayResult:arrayType target:self];
-        [rightV setBackgroundColor:[UIColor clearColor]];
         
-//        [rightV setTag:RIGHTVIEWTAG];
-        [self.view addSubview:rightV];
-        RELEASE(rightV);
-        RELEASE(arrayType);
-
+        UIView *viewR = [self.view viewWithTag:RIGHTVIEWTAG];
+        if (!viewR) {
+            
+            NSArray *arrayType = [[NSArray alloc]initWithObjects:@"消息",@"图书",@"豆",@"圈", nil];
+            DYBDataBankTopRightCornerView *rightV = [[DYBDataBankTopRightCornerView alloc]initWithFrame:CGRectMake(320.0f - 95, self.headHeight, 90, 99) arrayResult:arrayType target:self];
+            [rightV setBackgroundColor:[UIColor clearColor]];
+            [rightV setTag:RIGHTVIEWTAG];
+            [self.view addSubview:rightV];
+            RELEASE(rightV);
+            RELEASE(arrayType);
+            
+        }else{
+        
+            viewR.hidden == YES ? [viewR setHidden:NO] : [viewR setHidden:YES];
+        
+        }
         
     }
+}
+
+
+- (void)handleViewSignal_DYBDataBankTopRightCornerView:(MagicViewSignal *)signal
+{
+
+    if ([signal is:[DYBDataBankTopRightCornerView TOUCHSINGLEBTN]]) {
+        
+        UIView *viewR = [self.view viewWithTag:RIGHTVIEWTAG];
+        if (viewR) {
+            [viewR setHidden:YES];
+        }
+        NSNumber *num = (NSNumber *)[signal object];
+        
+        switch ([num integerValue]) {
+            case 1:
+                
+                break;
+            case 2:
+                
+                break;
+            case 3:
+            {
+                
+                ShareDouViewController *dou = [[ShareDouViewController alloc]init];
+//                [self.drNavigationController pushViewController:dou animated:YES];
+//                RELEASE(dou);
+            
+                [self presentModalViewController:dou animated:NO];
+                
+            }
+                break;
+            case 4:
+                
+                break;
+            default:
+                break;
+        }
+        
+//        ShareDouViewController
+        
+    }
+
+
 }
 #pragma mark- 只接受HTTP信号
 //- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj

@@ -1749,7 +1749,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "243"
             endingLineNumber = "243"
-            landmarkName = "-handleViewSignal_DragonUISearchBar:"
+            landmarkName = "-handleViewSignal_MagicUISearchBar:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2501,7 +2501,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "245"
             endingLineNumber = "245"
-            landmarkName = "-handleViewSignal_DragonUISearchBar:"
+            landmarkName = "-handleViewSignal_MagicUISearchBar:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2703,12 +2703,12 @@
                   symbolName = "-[SDWebImageManager imageDownloader:didUpdatePartialImage:]"
                   moduleName = "ShareBook"
                   urlString = "file://localhost/Users/tomzeng/Pictures/ShareBook/DYiBan/Framework/AppUtils/SDWebImage/SDWebImageManager.m"
-                  timestampString = "413954793.549303"
+                  timestampString = "413978370.12473"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "330"
                   endingLineNumber = "330"
-                  offsetFromSymbolStart = "52">
+                  offsetFromSymbolStart = "39">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -2717,12 +2717,12 @@
                   symbolName = "-[SDWebImageManager imageDownloader:didUpdatePartialImage:]"
                   moduleName = "ShareBook"
                   urlString = "file://localhost/Users/tomzeng/Pictures/ShareBook/DYiBan/Framework/AppUtils/SDWebImage/SDWebImageManager.m"
-                  timestampString = "413954793.549583"
+                  timestampString = "413978370.124995"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "330"
                   endingLineNumber = "330"
-                  offsetFromSymbolStart = "796">
+                  offsetFromSymbolStart = "688">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -3523,7 +3523,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "415"
             endingLineNumber = "415"
-            landmarkName = "-handleViewSignal_DragonUITableView:"
+            landmarkName = "-handleViewSignal_MagicUITableView:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -6129,7 +6129,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "445"
             endingLineNumber = "445"
-            landmarkName = "-handleViewSignal_DragonUITableView:"
+            landmarkName = "-handleViewSignal_MagicUITableView:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -6545,7 +6545,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "474"
             endingLineNumber = "474"
-            landmarkName = "-handleViewSignal_DragonUITableView:"
+            landmarkName = "-handleViewSignal_MagicUITableView:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -6779,12 +6779,12 @@
                   symbolName = "-[DYBDataBankShareViewController handleViewSignal_DYBDtaBankSearchView:]"
                   moduleName = "ShareBook"
                   urlString = "file://localhost/Users/tomzeng/Pictures/ShareBook/DYiBan/YiBan/MVC/Controller/DATA-BANK/DYBDataBankShareViewController.m"
-                  timestampString = "413954793.561802"
+                  timestampString = "413978370.182208"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "391"
                   endingLineNumber = "391"
-                  offsetFromSymbolStart = "1896">
+                  offsetFromSymbolStart = "1657">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -6793,12 +6793,12 @@
                   symbolName = "-[DYBDataBankShareViewController handleViewSignal_DYBDtaBankSearchView:]"
                   moduleName = "ShareBook"
                   urlString = "file://localhost/Users/tomzeng/Pictures/ShareBook/DYiBan/YiBan/MVC/Controller/DATA-BANK/DYBDataBankShareViewController.m"
-                  timestampString = "413954793.562013"
+                  timestampString = "413978370.182422"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "391"
                   endingLineNumber = "391"
-                  offsetFromSymbolStart = "2162">
+                  offsetFromSymbolStart = "1901">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -6911,7 +6911,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "488"
             endingLineNumber = "488"
-            landmarkName = "-handleViewSignal_DragonUITableView:"
+            landmarkName = "-handleViewSignal_MagicUITableView:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -8703,7 +8703,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "507"
             endingLineNumber = "507"
-            landmarkName = "-handleViewSignal_DragonUITableView:"
+            landmarkName = "-handleViewSignal_MagicUITableView:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -9007,7 +9007,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "263"
             endingLineNumber = "263"
-            landmarkName = "-handleViewSignal_DragonUISearchBar:"
+            landmarkName = "-handleViewSignal_MagicUISearchBar:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -9039,7 +9039,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "217"
             endingLineNumber = "217"
-            landmarkName = "-handleViewSignal_DragonUISearchBar:"
+            landmarkName = "-handleViewSignal_MagicUISearchBar:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -10250,11 +10250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DYiBan/YiBan/MVC/Controller/ShareBook/ShareMYHomeViewController.m"
-            timestampString = "413886065.90558"
+            timestampString = "413957149.890851"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "-handleViewSignal_DYBBaseViewController:"
             landmarkType = "5">
          </BreakpointContent>
@@ -10314,11 +10314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DYiBan/YiBan/MVC/Controller/ShareBook/ShareBookBankViewController.m"
-            timestampString = "413882780.514977"
+            timestampString = "413970487.556798"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "-doChoose:"
             landmarkType = "5">
             <Locations>

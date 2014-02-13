@@ -10,6 +10,9 @@
 #import "WOSOrderCell.h"
 #import "ShareBookCell.h"
 #import "ShareBookDetailViewController.h"
+#import "ShareSearchBookViewController.h"
+
+
 @interface ShareBookBankViewController (){
     
     UIScrollView *scrollView;
@@ -258,6 +261,9 @@ static NSString *cellName = @"cellName";
         
     }else if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
         
+        ShareSearchBookViewController *searchBook = [[ShareSearchBookViewController alloc]init];
+        [self.drNavigationController pushViewController:searchBook animated:YES];
+        [searchBook release];
     }
 }
 #pragma mark- 只接受HTTP信号
