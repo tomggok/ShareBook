@@ -21,7 +21,7 @@
 #import "DYBMentionedMeViewController.h"
 #import "DYBCommentMeViewController.h"
 #import "DYBEmployInfoViewController.h"
-
+#define IOS7_OR_LATER    ( [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending )
 @implementation AppDelegate
 {
 //    MagicNavigationController *navi;
@@ -49,6 +49,19 @@
     self.window.bounds = CGRectMake(0,0, self.window.frame.size.width, self.window.frame.size.height);
     [[NSUserDefaults standardUserDefaults] setFloat:self.window.frame.size.height forKey:@"windowHeight"];
     */
+    
+    
+      
+//    
+//#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+//    if ( IOS7_OR_LATER )
+//    {
+//        self.edgesForExtendedLayout = UIRectEdgeNone;
+//        self.extendedLayoutIncludesOpaqueBars = NO;
+//        self.modalPresentationCapturesStatusBarAppearance = NO;
+//    }
+//#endif    // #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+//    
     
     //创建数据库
     [DYBShareinstaceDelegate creatTable];
@@ -87,8 +100,22 @@
 
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+//    [self setNeedsStatusBarAppearanceUpdate];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
     return YES;
 }
+
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+- (BOOL)prefersStatusBarHidden
+{
+    return NO;
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

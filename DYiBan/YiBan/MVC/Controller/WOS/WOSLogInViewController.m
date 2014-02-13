@@ -66,6 +66,7 @@
         [self setButtonImage:self.rightButton setImage:@"bt"];
         [self.leftButton setHidden:YES];
         //        [self.view setBackgroundColor:[UIColor colorWithRed:97.0f/255 green:97.0f/255 blue:97.0f/255 alpha:1.0f]];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     }
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
