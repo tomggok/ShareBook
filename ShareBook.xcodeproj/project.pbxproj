@@ -107,6 +107,7 @@
 		B521EAFC18ADF71800C8599A /* ShareFriendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B521EAFB18ADF71800C8599A /* ShareFriendListViewController.m */; };
 		B521EAFF18ADFBA200C8599A /* ShareGiveDouCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B521EAFE18ADFBA200C8599A /* ShareGiveDouCell.m */; };
 		B521EB0218AE17EB00C8599A /* ShareDouSendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B521EB0118AE17EB00C8599A /* ShareDouSendViewController.m */; };
+		B521EB0518AE1D7500C8599A /* ShareSendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B521EB0418AE1D7500C8599A /* ShareSendCell.m */; };
 		B52549EF184724CA00F5B645 /* WOSPersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52549EE184724CA00F5B645 /* WOSPersonInfoViewController.m */; };
 		B52549F21847276D00F5B645 /* WOSALLOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52549F11847276D00F5B645 /* WOSALLOrderViewController.m */; };
 		B52549F51847277F00F5B645 /* WOSAddrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52549F41847277F00F5B645 /* WOSAddrViewController.m */; };
@@ -1480,6 +1481,8 @@
 		B521EAFE18ADFBA200C8599A /* ShareGiveDouCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareGiveDouCell.m; sourceTree = "<group>"; };
 		B521EB0018AE17EB00C8599A /* ShareDouSendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareDouSendViewController.h; sourceTree = "<group>"; };
 		B521EB0118AE17EB00C8599A /* ShareDouSendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareDouSendViewController.m; sourceTree = "<group>"; };
+		B521EB0318AE1D7400C8599A /* ShareSendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareSendCell.h; sourceTree = "<group>"; };
+		B521EB0418AE1D7500C8599A /* ShareSendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareSendCell.m; sourceTree = "<group>"; };
 		B52549ED184724CA00F5B645 /* WOSPersonInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOSPersonInfoViewController.h; sourceTree = "<group>"; };
 		B52549EE184724CA00F5B645 /* WOSPersonInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOSPersonInfoViewController.m; sourceTree = "<group>"; };
 		B52549F01847276D00F5B645 /* WOSALLOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOSALLOrderViewController.h; sourceTree = "<group>"; };
@@ -3487,6 +3490,8 @@
 				B5186D1918ACA69200CC2E36 /* ShareBookDouCell.m */,
 				B521EAFD18ADFBA200C8599A /* ShareGiveDouCell.h */,
 				B521EAFE18ADFBA200C8599A /* ShareGiveDouCell.m */,
+				B521EB0318AE1D7400C8599A /* ShareSendCell.h */,
+				B521EB0418AE1D7500C8599A /* ShareSendCell.m */,
 			);
 			path = ShareBook;
 			sourceTree = "<group>";
@@ -7415,6 +7420,7 @@
 				B5C6633818A8C7BE00C5A26C /* ShareBookBankViewController.m in Sources */,
 				B58CB1711829CF6A00F73D66 /* eclass_notice.m in Sources */,
 				B58CB1721829CF6A00F73D66 /* eclass_topiclist.m in Sources */,
+				B521EB0518AE1D7500C8599A /* ShareSendCell.m in Sources */,
 				B58CB1731829CF6A00F73D66 /* eclasses.m in Sources */,
 				B58CB1741829CF6A00F73D66 /* EmployInfo.m in Sources */,
 				B58CB1751829CF6A00F73D66 /* ext.m in Sources */,

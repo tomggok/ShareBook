@@ -8,7 +8,7 @@
 
 #import "ShareFriendListViewController.h"
 #import "ShareGiveDouCell.h"
-
+#import "ShareDouSendViewController.h"
 
 @interface ShareFriendListViewController ()
 
@@ -142,7 +142,9 @@ static NSString *cellName = @"cellName";
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
-        
+        ShareDouSendViewController *sendDou = [[ShareDouSendViewController alloc]init];
+        [self.drNavigationController pushViewController:sendDou animated:YES];
+        [sendDou release];
         
         
     }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
