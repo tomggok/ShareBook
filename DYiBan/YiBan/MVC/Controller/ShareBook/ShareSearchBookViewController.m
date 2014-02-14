@@ -7,6 +7,10 @@
 //
 
 #import "ShareSearchBookViewController.h"
+#import "ShareBookDownViewController.h"
+
+
+
 
 @interface ShareSearchBookViewController ()
 
@@ -88,20 +92,42 @@
         [self.view addSubview:labelRange];
         RELEASE(labelRange);
         
+        ShareBookDownViewController *downView1 = [[ShareBookDownViewController alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelRange.frame) + CGRectGetMinX(labelRange.frame), CGRectGetHeight(searchView.frame) + CGRectGetMinY(searchView.frame)+ 20, 160, 30)];
+        [self.view addSubview:downView1];
+        downView1.superView = self.view;
+        [downView1 release];
+        
         UILabel *labelType = [[UILabel alloc]initWithFrame:CGRectMake(5.0f, CGRectGetHeight(labelRange.frame) + CGRectGetMinY(labelRange.frame)+ 20, 150.0f, 20.0)];
         [labelType setText:@"图书类别"];
         [self.view addSubview:labelType];
         RELEASE(labelType);
         
+        ShareBookDownViewController *downView2 = [[ShareBookDownViewController alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelRange.frame) + CGRectGetMinX(labelRange.frame), CGRectGetHeight(labelRange.frame) + CGRectGetMinY(labelRange.frame)+ 20, 160, 30)];
+        [self.view addSubview:downView2];
+        downView2.superView = self.view;
+        [downView2 release];
+        
         UILabel *labelModel = [[UILabel alloc]initWithFrame:CGRectMake(5.0f, CGRectGetHeight(labelType.frame) + CGRectGetMinY(labelType.frame)+ 20, 150.0f, 20.0)];
         [labelModel setText:@"状  态"];
+    
         [self.view addSubview:labelModel];
         RELEASE(labelModel);
         
-        UILabel *labelBorrowType = [[UILabel alloc]initWithFrame:CGRectMake(5.0f, CGRectGetHeight(labelModel.frame) + CGRectGetMinY(labelModel.frame)+ 20, 150.0f, 20.0)];
+        
+        ShareBookDownViewController *downView3 = [[ShareBookDownViewController alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelRange.frame) + CGRectGetMinX(labelRange.frame), CGRectGetHeight(labelType.frame) + CGRectGetMinY(labelType.frame)+ 20, 160, 30)];
+        [self.view addSubview:downView3];
+        downView3.superView = self.view;
+        [downView3 release];
+        
+        UILabel *labelBorrowType = [[UILabel alloc]initWithFrame:CGRectMake(5.0f, CGRectGetHeight(labelModel.frame) + CGRectGetMinY(labelModel.frame)+ 20, 150.0f, 30.0)];
         [labelBorrowType setText:@"借出方式"];
         [self.view addSubview:labelBorrowType];
         RELEASE(labelBorrowType);
+        
+        ShareBookDownViewController *downView4 = [[ShareBookDownViewController alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelRange.frame) + CGRectGetMinX(labelRange.frame), CGRectGetHeight(labelModel.frame) + CGRectGetMinY(labelModel.frame)+ 20, 160, 40)];
+        downView4.superView = self.view;
+        [self.view addSubview:downView4];
+        [downView4 release];
         
         UIButton *btnDefialModel = [[UIButton alloc]initWithFrame:CGRectMake(10.0f, CGRectGetHeight(labelBorrowType.frame) + CGRectGetMinY(labelBorrowType.frame)+ 20, 20.0f, 20.0f)];
         [btnDefialModel setBackgroundColor:[UIColor clearColor]];

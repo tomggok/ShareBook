@@ -9,7 +9,7 @@
 #import "ShareDouViewController.h"
 #import "ShareBookDouCell.h"
 
-
+#import "ShareFriendListViewController.h"
 
 @interface ShareDouViewController ()
 
@@ -46,13 +46,14 @@
     if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         //        [self.rightButton setHidden:YES];
-        [self.headview setTitle:@"设置"];
+        [self.headview setTitle:@"乐享豆"];
         
         //        [self setButtonImage:self.leftButton setImage:@"back"];
         //        [self setButtonImage:self.rightButton setImage:@"home"];
         [self.headview setTitleColor:[UIColor colorWithRed:193.0f/255 green:193.0f/255 blue:193.0f/255 alpha:1.0f]];
         [self.headview setBackgroundColor:[UIColor colorWithRed:97.0f/255 green:97.0f/255 blue:97.0f/255 alpha:1.0]];
-        [self.leftButton setHidden:YES];
+//        [self.leftButton setHidden:YES];
+        [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
     }
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
@@ -70,27 +71,31 @@
         
         UILabel *labelDou = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.headHeight + 10, 100.0f, 20.0f)];
         [labelDou setText:@"我的享乐豆"];
+        [labelDou sizeToFit];
         [self.view addSubview:labelDou];
         [labelDou release];
         
         
-        UILabel *labelNum  = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.headHeight + 10 + 40, 100.0f, 20.0f)];
+        UILabel *labelNum  = [[UILabel alloc]initWithFrame:CGRectMake(10.0f + CGRectGetMinX(labelDou.frame) + CGRectGetWidth(labelDou.frame), self.headHeight + 10 , 100.0f, 20.0f)];
         [labelNum setText:@"100"];
         [self.view addSubview:labelNum];
         [labelNum release];
 
         UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.headHeight + 10 + 40, 100.0f, 20.0f)];
         [label1 setText:@"享乐豆充值可以在官网："];
+        [label1 sizeToFit];
         [self.view addSubview:label1];
         [label1 release];
         
-        UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.headHeight + 10 + 40, 100.0f, 20.0f)];
+        UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake( CGRectGetMinX(label1.frame) + CGRectGetWidth(label1.frame), self.headHeight + 10 + 40, 100.0f, 20.0f)];
         [label2 setText:@"www.baidu.com"];
+        [label2 sizeToFit];
         [self.view addSubview:label2];
         [label2 release];
         
         UILabel *label3 = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.headHeight + 10 + 40, 100.0f, 20.0f)];
-        [label3 setText:@"购买"];
+//        [label3 setText:@"购买"];
+        [label3 sizeToFit];
         [self.view addSubview:label3];
         [label3 release];
         
@@ -99,15 +104,16 @@
         [self.view addSubview:imageViewIcon];
         [imageViewIcon release];
         
-        UILabel *labelHistoryList = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, 100.0f, 320.0f, 40.0f)];
+        UILabel *labelHistoryList = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, CGRectGetMinY(label2.frame) + CGRectGetHeight(label2.frame) + 20, 320.0f, 40.0f)];
         [labelHistoryList setText:@"乐豆交易记录"];
-        
+        [self.view addSubview:labelHistoryList];
+        [labelHistoryList release];
         
         UIImage *image = [UIImage imageNamed:@"menu_inactive"];
         
         
-        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(image.size.width/2, 44, 320.0f - 50, self.view.frame.size.height -10  ) isNeedUpdate:YES];
-        [tbDataBank11 setBackgroundColor:[UIColor blackColor]];
+        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0,200 , 320.0f , self.view.frame.size.height -100 - 60 - 100  ) isNeedUpdate:YES];
+        [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:tbDataBank11];
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
         RELEASE(tbDataBank11);
@@ -205,29 +211,30 @@ static NSString *cellName = @"cellName";
     
     UIImageView *viewBar = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, self.view.frame.size.height -  image.size.height/2, 320.0f, image.size.height/2)];
     [viewBar setImage:[UIImage imageNamed:@"down_options_bg"]];
-    [viewBar setBackgroundColor:[UIColor clearColor]];
+    [viewBar setBackgroundColor:[UIColor redColor]];
+    [viewBar setUserInteractionEnabled:YES];
     [self.view addSubview:viewBar];
     RELEASE(viewBar);
     
     
-    UIImage *btnImage = [UIImage imageNamed:@"bt01_click"];
+    UIImage *btnImage = [UIImage imageNamed:@"bt02_click"];
     UIButton *btnYU = [[UIButton alloc]initWithFrame:CGRectMake(7.0f, (image.size.height/2 -btnImage.size.height/2)/2 , btnImage.size.width/2, btnImage.size.height/2)];
     [btnYU setTag:101];
     [btnYU setBackgroundColor:[UIColor clearColor]];
-    [btnYU setImage:[UIImage imageNamed:@"bt01_click"] forState:UIControlStateHighlighted];
-    [btnYU setImage:[UIImage imageNamed:@"bt01"] forState:UIControlStateNormal];
+    [btnYU setImage:[UIImage imageNamed:@"bt02_click"] forState:UIControlStateHighlighted];
+    [btnYU setImage:[UIImage imageNamed:@"bt02"] forState:UIControlStateNormal];
     [btnYU addTarget:self action:@selector(doBorrow:) forControlEvents:UIControlEventTouchUpInside];
-    [self addlabel_title:@"预借" frame:btnYU.frame view:btnYU textColor:[UIColor blackColor]];
+    [self addlabel_title:@"向好友赠送享乐豆" frame:btnYU.frame view:btnYU textColor:[UIColor whiteColor]];
     [viewBar addSubview:btnYU];
     [btnYU release];
     
     //    [UIColor whiteColor];
     UIButton *btnBorrow = [[UIButton alloc]initWithFrame:CGRectMake(167, (image.size.height/2 -btnImage.size.height/2)/2 , btnImage.size.width/2, btnImage.size.height/2)];
     [btnBorrow setTag:102];
-    [btnBorrow setImage:[UIImage imageNamed:@"bt02_click"] forState:UIControlStateHighlighted];
-    [btnBorrow setImage:[UIImage imageNamed:@"bt02"] forState:UIControlStateNormal];
+    [btnBorrow setImage:[UIImage imageNamed:@"bt01_click"] forState:UIControlStateHighlighted];
+    [btnBorrow setImage:[UIImage imageNamed:@"bt01"] forState:UIControlStateNormal];
     [btnBorrow setBackgroundColor:[UIColor clearColor]];
-    [self addlabel_title:@"申请借阅" frame:btnBorrow.frame view:btnBorrow textColor:[UIColor whiteColor]];
+    [self addlabel_title:@"享乐豆帮助" frame:btnBorrow.frame view:btnBorrow textColor:[UIColor blackColor]];
     [btnBorrow addTarget:self action:@selector(doBorrow:) forControlEvents:UIControlEventTouchUpInside];
     [viewBar addSubview:btnBorrow];
     [btnBorrow release];
@@ -249,13 +256,19 @@ static NSString *cellName = @"cellName";
 
 
 
--(void)btnBorrow:(id)sender{
+-(void)doBorrow:(id)sender{
     
     UIButton *btn = (UIButton *)sender;
     if (btn.tag == 101) {
         
+        ShareFriendListViewController *friend = [[ShareFriendListViewController alloc]init];
+        [self.drNavigationController pushViewController:friend animated:YES];
+        RELEASE(friend);
+        
         
     }else{
+        
+        
         
         
         
