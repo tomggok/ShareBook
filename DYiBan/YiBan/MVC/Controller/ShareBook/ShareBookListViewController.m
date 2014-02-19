@@ -1,20 +1,22 @@
 //
-//  ShareDouSendViewController.m
+//  ShareBookListViewController.m
 //  ShareBook
 //
-//  Created by tom zeng on 14-2-14.
+//  Created by tom zeng on 14-2-19.
 //  Copyright (c) 2014年 Tomgg. All rights reserved.
 //
 
-#import "ShareDouSendViewController.h"
-#import "ShareBookDetailCell.h"
-#import "ShareBookApplyCell.h"
+#import "ShareBookListViewController.h"
+#import "ShareBookCell.h"
+#import "ShareBookDetailViewController.h"
 
-@interface ShareDouSendViewController ()
+
+
+@interface ShareBookListViewController ()
 
 @end
 
-@implementation ShareDouSendViewController
+@implementation ShareBookListViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,6 +40,7 @@
 }
 
 
+
 -(void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal{
     
     DLogInfo(@"name -- %@",signal.name);
@@ -45,7 +48,7 @@
     if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         //        [self.rightButton setHidden:YES];
-        [self.headview setTitle:@"转赠享乐豆"];
+        [self.headview setTitle:@"图书"];
         
         
         //        [self.leftButton setHidden:YES];
@@ -61,54 +64,22 @@
         
         [self.view setBackgroundColor:[UIColor whiteColor]];
         
+//        arraySouce = [[NSMutableArray alloc]initWithObjects:@"上架图书",@"借入图书",@"借出图书",@"旅行中的图书",@"预借中的图书", nil];
         
-        
-        UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44)];
+        UIImageView *viewBG = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0, 320.0f, self.view.frame.size.height)];
+        [viewBG setImage:[UIImage imageNamed:@"bg"]];
         [viewBG setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:viewBG];
         RELEASE(viewBG);
         
         
-        UIImageView *imageViewBG = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, self.headHeight, 320.f, 70.0f)];
-        [imageViewBG setBackgroundColor:[UIColor yellowColor] ];
-        [self.view addSubview:imageViewBG];
-        [imageViewBG release];
         
-        UIImageView *imageViewTou = [[UIImageView alloc]initWithFrame:CGRectMake(5.0f, 5.0f, 30.0f, 30.0f)];
-        [imageViewTou setBackgroundColor:[UIColor clearColor]];
-        [imageViewTou setImage:[UIImage imageNamed:@"system-avatar"]];
-        [imageViewBG addSubview:imageViewTou];
-        [imageViewTou release];
-        
-        UILabel *labelName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageViewTou.frame) + CGRectGetMinX(imageViewTou.frame)+ 5, 5, 100.0f, 20.0f)];
-        [labelName setText:@"曾新"];
-        [imageViewBG addSubview:labelName];
-        [labelName release];
-        
-        
-        
-        
-        UIImage *image = [UIImage imageNamed:@"down_options_bg"];
-        
-        UIImageView *imageNum = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 5.0f + self.headHeight + 160, 320.0f, 40)];
-        [imageNum setImage:image];
-        [self.view addSubview:imageNum];
-        [imageNum release];
-        
-        
-//        UILabel *labelNum  = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, 0, 320.0f, 40)];
-//        [labelNum setText:@"本书评论（101）"];
-//        [imageNum addSubview:labelNum];
-//        RELEASE(labelNum);
-        
-        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, 44 + 120, 320.0f, self.view.frame.size.height -44-100  ) isNeedUpdate:YES];
+        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, self.headHeight , 320.0f, self.view.frame.size.height - self.headHeight  ) ];
         [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:tbDataBank11];
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
         RELEASE(tbDataBank11);
         [tbDataBank11 setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        
-//        [self creatDownBar];
         
         
     }else if ([signal is:[MagicViewController DID_APPEAR]]) {
@@ -147,7 +118,7 @@ static NSString *cellName = @"cellName";
         
     }else if([signal is:[MagicUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
         
-        NSNumber *s = [NSNumber numberWithInteger:60];
+        NSNumber *s = [NSNumber numberWithInteger:90];
         [signal setReturnValue:s];
         
         
@@ -161,28 +132,23 @@ static NSString *cellName = @"cellName";
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
-        ShareBookApplyCell *cell = [[ShareBookApplyCell alloc]init];
+        ShareBookCell *cell = [[ShareBookCell alloc]init];
         
         //        NSDictionary *dictInfoFood = nil;
         //        [cell creatCell:dictInfoFood];
         DLogInfo(@"%d", indexPath.section);
-        [cell creatCell:indexPath.row];
+        
         
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        
-        
-        UIImageView *imageLine = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 60-1, 320.0f, 1)];
-        [imageLine setImage:[UIImage imageNamed:@"line3"]];
-        [cell addSubview:imageLine];
-        [imageLine release];
-        
         [signal setReturnValue:cell];
         
     }else if([signal is:[MagicUITableView TABLEDIDSELECT]])/*选中cell*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
-        
+        ShareBookDetailViewController *bookDetail = [[ShareBookDetailViewController alloc]init];
+        [self.drNavigationController pushViewController:bookDetail animated:YES];
+        RELEASE(bookDetail);
         
         
     }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{

@@ -8,7 +8,7 @@
 
 #import "ShareDouViewController.h"
 #import "ShareBookDouCell.h"
-
+#import "ShareBookApplyViewController.h"
 #import "ShareFriendListViewController.h"
 
 @interface ShareDouViewController ()
@@ -268,7 +268,9 @@ static NSString *cellName = @"cellName";
         
     }else{
         
-        
+//        ShareBookApplyViewController *apply = [[ShareBookApplyViewController alloc]init];
+//        [self.drNavigationController pushViewController:apply animated:YES];
+//        RELEASE(apply);
         
         
         

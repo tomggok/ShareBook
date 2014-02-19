@@ -11,6 +11,11 @@
 #import "DYBDataBankTopRightCornerView.h"
 #import "ShareMessagerCell.h"
 #import "ShareDouViewController.h"
+#import "ShareBookCenterViewController.h"
+
+
+
+
 #define  RIGHTVIEWTAG 111
 
 @interface ShareMYHomeViewController ()
@@ -214,7 +219,12 @@ static NSString *cellName = @"cellName";
             case 1:
                 
                 break;
-            case 2:
+            case 2:{
+                ShareBookCenterViewController *center = [[ShareBookCenterViewController alloc]init];
+                [self.drNavigationController pushViewController:center animated:YES];
+                [center release];
+            
+            }
                 
                 break;
             case 3:

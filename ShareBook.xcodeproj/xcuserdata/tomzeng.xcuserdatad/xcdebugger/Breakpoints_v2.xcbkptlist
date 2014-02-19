@@ -2703,7 +2703,7 @@
                   symbolName = "-[SDWebImageManager imageDownloader:didUpdatePartialImage:]"
                   moduleName = "ShareBook"
                   urlString = "file://localhost/Users/tomzeng/Pictures/ShareBook/DYiBan/Framework/AppUtils/SDWebImage/SDWebImageManager.m"
-                  timestampString = "414063512.059722"
+                  timestampString = "414496928.786282"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "330"
@@ -2717,7 +2717,7 @@
                   symbolName = "-[SDWebImageManager imageDownloader:didUpdatePartialImage:]"
                   moduleName = "ShareBook"
                   urlString = "file://localhost/Users/tomzeng/Pictures/ShareBook/DYiBan/Framework/AppUtils/SDWebImage/SDWebImageManager.m"
-                  timestampString = "414063512.059912"
+                  timestampString = "414496928.78653"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "330"
@@ -6779,7 +6779,7 @@
                   symbolName = "-[DYBDataBankShareViewController handleViewSignal_DYBDtaBankSearchView:]"
                   moduleName = "ShareBook"
                   urlString = "file://localhost/Users/tomzeng/Pictures/ShareBook/DYiBan/YiBan/MVC/Controller/DATA-BANK/DYBDataBankShareViewController.m"
-                  timestampString = "414063512.071091"
+                  timestampString = "414496928.838689"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "391"
@@ -6793,7 +6793,7 @@
                   symbolName = "-[DYBDataBankShareViewController handleViewSignal_DYBDtaBankSearchView:]"
                   moduleName = "ShareBook"
                   urlString = "file://localhost/Users/tomzeng/Pictures/ShareBook/DYiBan/YiBan/MVC/Controller/DATA-BANK/DYBDataBankShareViewController.m"
-                  timestampString = "414063512.07131"
+                  timestampString = "414496928.838946"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "391"
@@ -10250,11 +10250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DYiBan/YiBan/MVC/Controller/ShareBook/ShareMYHomeViewController.m"
-            timestampString = "413957149.890851"
+            timestampString = "414483342.969624"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "-handleViewSignal_DYBBaseViewController:"
             landmarkType = "5">
          </BreakpointContent>
@@ -10366,6 +10366,102 @@
             startingLineNumber = "168"
             endingLineNumber = "168"
             landmarkName = "-changeOpenStatus:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DYiBan/YiBan/MVC/Controller/ShareBook/ShareBookApplyViewController.m"
+            timestampString = "414493356.530328"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "-handleViewSignal_MagicViewController:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DYiBan/YiBan/MVC/Controller/ShareBook/ShareBookApplyViewController.m"
+            timestampString = "414493356.530328"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "-doChooseTime"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DYiBan/YiBan/MVC/View/ShareBook/ShareBookApplyCell.m"
+            timestampString = "414490622.042107"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "-creatCell:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DYiBan/YiBan/MVC/Controller/ShareBook/ShareBookApplyViewController.m"
+            timestampString = "414493356.530328"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
+            landmarkName = "-keyboardWillChangeFrame:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DYiBan/YiBan/MVC/Controller/ShareBook/ShareBookCenterViewController.m"
+            timestampString = "414494405.7175"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "-handleViewSignal_MagicViewController:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DYiBan/YiBan/MVC/Controller/ShareBook/ShareDouSendViewController.m"
+            timestampString = "414496043.778817"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "-handleViewSignal_MagicUITableView:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
