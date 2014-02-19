@@ -222,7 +222,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
         [button setFrame: CGRectMake(SCREEN_WIDTH-60, y + (44 - image.size.height/2)/2, image.size.width/2, image.size.height/2)];
     }else{
     
-        [button setFrame: CGRectMake(0, y + (44 - image.size.height/2)/2, image.size.width/2, image.size.height/2) ];
+        [button setFrame: CGRectMake(10, y + (44 - image.size.height/2)/2, image.size.width/2, image.size.height/2) ];
     }
    
     

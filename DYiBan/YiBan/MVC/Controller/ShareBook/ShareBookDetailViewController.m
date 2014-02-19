@@ -50,8 +50,8 @@
         [self.headview setTitle:@"图书详情"];
         
         
-        [self.leftButton setHidden:YES];
-//        [self setButtonImage:self.leftButton setImage:@"back"];
+//        [self.leftButton setHidden:YES];
+        [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
 //        [self setButtonImage:self.rightButton setImage:@"home"];
         [self.headview setTitleColor:[UIColor colorWithRed:193.0f/255 green:193.0f/255 blue:193.0f/255 alpha:1.0f]];
         [self.headview setBackgroundColor:[UIColor colorWithRed:22.0f/255 green:29.0f/255 blue:36.0f/255 alpha:1.0f]];
