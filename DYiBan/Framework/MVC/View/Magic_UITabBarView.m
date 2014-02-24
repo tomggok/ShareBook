@@ -79,7 +79,7 @@ DEF_SIGNAL(TABBARDIDSELCT)//选中
         
         [self addSubview:_transitionView];
         [self addSubview:_tabBar];
-        
+
         
         isFirst = YES;
         

@@ -1,21 +1,22 @@
 //
-//  ShareSettingViewController.m
+//  ShareBookListViewController.m
 //  ShareBook
 //
-//  Created by tom zeng on 14-2-10.
+//  Created by tom zeng on 14-2-19.
 //  Copyright (c) 2014年 Tomgg. All rights reserved.
 //
 
-#import "ShareSettingViewController.h"
-#import "WOSOrderCell.h"
-@interface ShareSettingViewController (){
+#import "ShareBookListViewController.h"
+#import "ShareBookCell.h"
+#import "ShareBookDetailViewController.h"
 
-    NSMutableArray *arraySouce;
-}
+
+
+@interface ShareBookListViewController ()
 
 @end
 
-@implementation ShareSettingViewController
+@implementation ShareBookListViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,6 +39,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
 -(void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal{
     
     DLogInfo(@"name -- %@",signal.name);
@@ -45,13 +48,15 @@
     if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         //        [self.rightButton setHidden:YES];
-        [self.headview setTitle:@"设置"];
+        [self.headview setTitle:@"图书"];
         
-//        [self setButtonImage:self.leftButton setImage:@"back"];
-//        [self setButtonImage:self.rightButton setImage:@"home"];
+        
+        //        [self.leftButton setHidden:YES];
+        [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
+        //        [self setButtonImage:self.rightButton setImage:@"home"];
         [self.headview setTitleColor:[UIColor colorWithRed:193.0f/255 green:193.0f/255 blue:193.0f/255 alpha:1.0f]];
         [self.headview setBackgroundColor:[UIColor colorWithRed:22.0f/255 green:29.0f/255 blue:36.0f/255 alpha:1.0f]];
-        [self.leftButton setHidden:YES];
+        
     }
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
@@ -59,29 +64,22 @@
         
         [self.view setBackgroundColor:[UIColor whiteColor]];
         
+//        arraySouce = [[NSMutableArray alloc]initWithObjects:@"上架图书",@"借入图书",@"借出图书",@"旅行中的图书",@"预借中的图书", nil];
         
-        UIImageView  *viewBG = [[UIImageView alloc]initWithFrame:self.view.frame];
-        [viewBG setTag:100];
+        UIImageView *viewBG = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0, 320.0f, self.view.frame.size.height)];
         [viewBG setImage:[UIImage imageNamed:@"bg"]];
-        [self.view insertSubview:viewBG atIndex:0];
+        [viewBG setBackgroundColor:[UIColor whiteColor]];
+        [self.view addSubview:viewBG];
         RELEASE(viewBG);
         
-        arraySouce = [[NSMutableArray alloc]initWithObjects:@"设置访问权限",@"消息推送",@"设置默认地点",@"设置自己的图书LOGO",@"账号切换",@"意见反馈", nil];
         
         
-        UIImage *image = [UIImage imageNamed:@"menu_inactive"];
-        
-        
-        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, self.headHeight, 320.0f, self.view.frame.size.height -self.headHeight - 80  ) isNeedUpdate:YES];
-        [tbDataBank11 setBackgroundColor:[UIColor clearColor]];
+        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, self.headHeight , 320.0f, self.view.frame.size.height - self.headHeight  ) ];
+        [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:tbDataBank11];
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
         RELEASE(tbDataBank11);
-        
-        UIButton *btnSetP = [[UIButton alloc]initWithFrame:CGRectMake(10.0f, self.view.frame.size.height - 100, 300.0f, 40.0f)];
-        [btnSetP setBackgroundColor:[UIColor redColor]];
-        [self.view addSubview:btnSetP];
-        [btnSetP release];
+        [tbDataBank11 setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         
         
     }else if ([signal is:[MagicViewController DID_APPEAR]]) {
@@ -92,6 +90,7 @@
         
     }
 }
+
 
 #pragma mark- 只接受UITableView信号
 static NSString *cellName = @"cellName";
@@ -106,7 +105,7 @@ static NSString *cellName = @"cellName";
         NSNumber *s;
         
         //        if ([_section intValue] == 0) {
-        s = [NSNumber numberWithInteger:5];
+        s = [NSNumber numberWithInteger:10];
         //        }else{
         //            s = [NSNumber numberWithInteger:[_arrStatusData count]];
         //        }
@@ -119,7 +118,7 @@ static NSString *cellName = @"cellName";
         
     }else if([signal is:[MagicUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
         
-        NSNumber *s = [NSNumber numberWithInteger:60];
+        NSNumber *s = [NSNumber numberWithInteger:90];
         [signal setReturnValue:s];
         
         
@@ -133,13 +132,12 @@ static NSString *cellName = @"cellName";
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
-        UITableViewCell *cell = [[UITableViewCell alloc]init];
+        ShareBookCell *cell = [[ShareBookCell alloc]init];
         
-        NSDictionary *dictInfoFood = nil;
-//        [cell creatCell:dictInfoFood];
-//        DLogInfo(@"%d", indexPath.section);
-        NSString *strMsg = [arraySouce objectAtIndex:indexPath.row];
-        [cell.textLabel setText:strMsg];
+        //        NSDictionary *dictInfoFood = nil;
+        //        [cell creatCell:dictInfoFood];
+        DLogInfo(@"%d", indexPath.section);
+        
         
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [signal setReturnValue:cell];
@@ -148,7 +146,9 @@ static NSString *cellName = @"cellName";
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
-        
+        ShareBookDetailViewController *bookDetail = [[ShareBookDetailViewController alloc]init];
+        [self.drNavigationController pushViewController:bookDetail animated:YES];
+        RELEASE(bookDetail);
         
         
     }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
@@ -167,30 +167,4 @@ static NSString *cellName = @"cellName";
 
 
 
-- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
-{
-    if ([signal is:[DYBBaseViewController BACKBUTTON]])
-    {
-        [self.drNavigationController popViewControllerAnimated:YES];
-        
-    }else if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
-        
-//        [self goShowOrderListAction];
-    }
-}
-#pragma mark- 只接受HTTP信号
-- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
-{
-    if ([request succeed])
-    {
-        
-        
-    }
-}
-
-- (void)dealloc
-{
-    [arraySouce release];
-    [super dealloc];
-}
 @end

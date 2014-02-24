@@ -10,7 +10,8 @@
 #import "Magic_UITableView.h"
 #import "WOSOrderCell.h"
 #import "ShareBookDetailCell.h"
-
+#import "ShareFriendListViewController.h"
+#import "ShareBookApplyViewController.h"
 
 @interface ShareBookDetailViewController ()
 
@@ -65,7 +66,7 @@
         
         
         
-        UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44)];
+        UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0f, self.headHeight, 320.0f, self.view.frame.size.height - self.headHeight)];
         [viewBG setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:viewBG];
         RELEASE(viewBG);
@@ -112,15 +113,16 @@
 
     UIImageView *viewBar = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, self.view.frame.size.height -  image.size.height/2, 320.0f, image.size.height/2)];
     [viewBar setImage:[UIImage imageNamed:@"down_options_bg"]];
+    [viewBar setUserInteractionEnabled:YES];
     [viewBar setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:viewBar];
     RELEASE(viewBar);
     
     
     UIImage *btnImage = [UIImage imageNamed:@"bt01_click"];
-    UIButton *btnYU = [[UIButton alloc]initWithFrame:CGRectMake(2.0f, (image.size.height/2 -btnImage.size.height/2)/2 , btnImage.size.width/2, btnImage.size.height/2)];
+    UIButton *btnYU = [[UIButton alloc]initWithFrame:CGRectMake(7.0f, (image.size.height/2 -btnImage.size.height/2)/2 , btnImage.size.width/2, btnImage.size.height/2)];
     [btnYU setTag:101];
-    [btnYU setBackgroundColor:[UIColor clearColor]];
+    [btnYU setBackgroundColor:[UIColor redColor]];
     [btnYU setImage:[UIImage imageNamed:@"bt01_click"] forState:UIControlStateHighlighted];
     [btnYU setImage:[UIImage imageNamed:@"bt01"] forState:UIControlStateNormal];
     [btnYU addTarget:self action:@selector(doBorrow:) forControlEvents:UIControlEventTouchUpInside];
@@ -129,11 +131,11 @@
     [btnYU release];
     
 //    [UIColor whiteColor];
-    UIButton *btnBorrow = [[UIButton alloc]initWithFrame:CGRectMake(165, (image.size.height/2 -btnImage.size.height/2)/2 , btnImage.size.width/2, btnImage.size.height/2)];
+    UIButton *btnBorrow = [[UIButton alloc]initWithFrame:CGRectMake(167, (image.size.height/2 -btnImage.size.height/2)/2 , btnImage.size.width/2, btnImage.size.height/2)];
     [btnBorrow setTag:102];
     [btnBorrow setImage:[UIImage imageNamed:@"bt02_click"] forState:UIControlStateHighlighted];
     [btnBorrow setImage:[UIImage imageNamed:@"bt02"] forState:UIControlStateNormal];
-    [btnBorrow setBackgroundColor:[UIColor clearColor]];
+    [btnBorrow setBackgroundColor:[UIColor yellowColor]];
     [self addlabel_title:@"申请借阅" frame:btnBorrow.frame view:btnBorrow textColor:[UIColor whiteColor]];
     [btnBorrow addTarget:self action:@selector(doBorrow:) forControlEvents:UIControlEventTouchUpInside];
     [viewBar addSubview:btnBorrow];
@@ -156,18 +158,25 @@
 
 
 
--(void)btnBorrow:(id)sender{
-
+-(void)doBorrow:(id)sender{
     UIButton *btn = (UIButton *)sender;
     if (btn.tag == 101) {
         
+//        ShareFriendListViewController *friend = [[ShareFriendListViewController alloc]init];
+//        [self.drNavigationController pushViewController:friend animated:YES];
+//        RELEASE(friend);
+        
         
     }else{
-    
-    
-    
+        
+        ShareBookApplyViewController *apply = [[ShareBookApplyViewController alloc]init];
+        [self.drNavigationController pushViewController:apply animated:YES];
+        RELEASE(apply);
+        
+        
+        
     }
-
+    
 
 }
 

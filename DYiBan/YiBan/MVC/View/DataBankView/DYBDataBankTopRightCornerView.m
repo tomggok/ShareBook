@@ -59,10 +59,11 @@ DEF_SIGNAL(TOUCHSINGLEBTN)
         RELEASE(btn);
         
         
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(20.0f, 0.0f, btn.frame.size.width,btn.frame.size.height)];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(15, 0.0f, btn.frame.size.width,btn.frame.size.height)];
         [btn addSubview:label];
         [label setText:[result objectAtIndex:i - 1]];
         [label setTag:BTNTAG];
+        [label setTextAlignment:NSTextAlignmentLeft];
         [label setBackgroundColor:[UIColor clearColor]];
         [label setTextAlignment:NSTextAlignmentCenter];
 
@@ -79,29 +80,48 @@ DEF_SIGNAL(TOUCHSINGLEBTN)
         
         UIImage *image=[UIImage imageNamed:@"icon_book2"];
 //        UIImage *image = [UIImage image];
-        UIButton *imageIcon = [[UIButton alloc]initWithFrame:CGRectMake(5.0f, 5.0f, image.size.width/2,image.size.height/2)];
+        UIButton *imageIcon = [[UIButton alloc]initWithFrame:CGRectMake(8.0f, (44 - image.size.height/2 )/2, image.size.width/2,image.size.height/2)];
         [imageIcon setTag:101];
+        [imageIcon setBackgroundColor:[UIColor clearColor]];
         [btn addSubview:imageIcon];
         [imageIcon release];
         
+        
+        
+        if (i == 1) {
+            [btn setSelected:YES];
+            [imageIcon setSelected:NO];
+            [label setTextColor:ColorBlue];
+        }else{
+            [btn setSelected:NO];
+            [imageIcon setSelected:YES];
+            [label setTextColor:[UIColor whiteColor]];
+            
+        }
+
         switch (i) {
             case 1:
-                [imageIcon setImage:[UIImage imageNamed:@"icon_message"] forState:UIControlStateSelected];
-                 [imageIcon setImage:[UIImage imageNamed:@"icon_message2"] forState:UIControlStateNormal];
+                [imageIcon setImage:[UIImage imageNamed:@"icon_message_2"] forState:UIControlStateSelected];
+                [imageIcon setImage:[UIImage imageNamed:@"icon_message_2"] forState:UIControlStateHighlighted];
+                [imageIcon setImage:[UIImage imageNamed:@"icon_message"] forState:UIControlStateNormal];
                 break;
             case 2:
                 [imageIcon setImage:[UIImage imageNamed:@"icon_book"]forState:UIControlStateSelected];
-                 [imageIcon setImage:[UIImage imageNamed:@"icon_book2"] forState:UIControlStateNormal];
+                [imageIcon setImage:[UIImage imageNamed:@"icon_book2"] forState:UIControlStateNormal];
+                [imageIcon setImage:[UIImage imageNamed:@"icon_book"] forState:UIControlStateHighlighted];
                 break;
 
             case 3:
+                [imageIcon setImage:[UIImage imageNamed:@"icon_beans"] forState:UIControlStateSelected];
+                [imageIcon setImage:[UIImage imageNamed:@"icon_beans"] forState:UIControlStateHighlighted];
                 [imageIcon setImage:[UIImage imageNamed:@"icon_beans_2"]forState:UIControlStateNormal];
-                 [imageIcon setImage:[UIImage imageNamed:@"icon_beans"] forState:UIControlStateSelected];
-                break;
+                                break;
 
             case 4:
+                [imageIcon setImage:[UIImage imageNamed:@"icon_circle"] forState:UIControlStateHighlighted];
+                [imageIcon setImage:[UIImage imageNamed:@"icon_circle"] forState:UIControlStateSelected];
                 [imageIcon setImage:[UIImage imageNamed:@"icon_circle_2"]forState:UIControlStateNormal];
-                 [imageIcon setImage:[UIImage imageNamed:@"icon_circle"] forState:UIControlStateSelected];
+                
                 break;
 
                 
@@ -154,15 +174,16 @@ DEF_SIGNAL(TOUCHSINGLEBTN)
             UILabel *label = (UILabel *)[selBtn viewWithTag:BTNTAG];
             if (label) {
                 
+                UIButton *btnIcon = (UIButton *)[selBtn viewWithTag:101];
                 if (tag == selBtn.tag ) {
                     
                     [selBtn setSelected:YES];
-                    
+                    [btnIcon setSelected:NO];
                     [label setTextColor:ColorBlue];
                 }else{
                     
                     [selBtn setSelected:NO];
-                    
+                    [btnIcon setSelected:YES];
                     [label setTextColor:[UIColor whiteColor]];
                     
                 }

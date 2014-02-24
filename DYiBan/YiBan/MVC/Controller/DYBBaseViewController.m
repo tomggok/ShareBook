@@ -68,8 +68,8 @@ DEF_SIGNAL(NoInternetConnection)//无网
     [_rightButton addSignal:[DYBBaseViewController NEXTSTEPBUTTON] forControlEvents:UIControlEventTouchUpInside];
     
     //    [_headview setTitle:@"登陆"];
-    [_leftButton setImage:[UIImage imageNamed:@"btn_mainmenu_default.png"] forState:UIControlStateNormal];
-    [_leftButton setImage:[UIImage imageNamed:@"btn_mainmenu_hilight.png"] forState:UIControlStateHighlighted];
+//    [_leftButton setImage:[UIImage imageNamed:@"btn_mainmenu_default.png"] forState:UIControlStateNormal];
+//    [_leftButton setImage:[UIImage imageNamed:@"btn_mainmenu_hilight.png"] forState:UIControlStateHighlighted];
     [_leftButton addSignal:[DYBBaseViewController BACKBUTTON] forControlEvents:UIControlEventTouchUpInside];
     
     [_headview setLeftView:_leftButton];
@@ -212,17 +212,27 @@ DEF_SIGNAL(NoInternetConnection)//无网
 
 - (void)setButtonImage:(MagicUIButton *)button setImage:(NSString *)string {
     
-    [button setImage:[UIImage imageNamed:string] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:string] forState:UIControlStateHighlighted];
+   
     
     UIImage *image = [UIImage imageNamed:string];
     
     if ([button isEqual:_rightButton]) {
-        
+        [button setImage:[UIImage imageNamed:string] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:string] forState:UIControlStateHighlighted];
         [button setFrame: CGRectMake(SCREEN_WIDTH-60, y + (44 - image.size.height/2)/2, image.size.width/2, image.size.height/2)];
     }else{
     
-        [button setFrame: CGRectMake(10, y + (44 - image.size.height/2)/2, image.size.width/2, image.size.height/2) ];
+//<<<<<<< HEAD
+//        [button setFrame: CGRectMake(10, y + (44 - image.size.height/2)/2, image.size.width/2, image.size.height/2) ];
+//=======
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10.0f, (44 - image.size.height/2)/2 , image.size.width/2, image.size.height/2)];
+        [imageView setImage:image];
+        [imageView setBackgroundColor:[UIColor clearColor]];
+        [button addSubview:imageView];
+        [imageView release];
+        
+        [button setFrame: CGRectMake(0, y , 60, 44) ];
+//>>>>>>> a849d0b9609e94c8faf2761e768d5213feaa65c5
     }
    
     
