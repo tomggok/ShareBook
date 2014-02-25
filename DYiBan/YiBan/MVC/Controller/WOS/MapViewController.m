@@ -137,7 +137,7 @@ DEF_SIGNAL(TOUCHANNITION)
             annotationView = [[[CallOutAnnotationVifew alloc] initWithAnnotation:annotation reuseIdentifier:@"CalloutView"] autorelease];
 //            JingDianMapCell  *cell = [[[NSBundle mainBundle] loadNibNamed:@"JingDianMapCell" owner:self options:nil] objectAtIndex:0];
             JingDianMapCell *cell = [[JingDianMapCell alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 200.0f, 60)];
-            [cell setBackgroundColor:[UIColor yellowColor]];
+//            [cell setBackgroundColor:[UIColor yellowColor]];
             cell.targetObjc  = self;
             [annotationView.contentView addSubview:cell];
 //            [annotationView.contentView setBackgroundColor:[UIColor blueColor]];

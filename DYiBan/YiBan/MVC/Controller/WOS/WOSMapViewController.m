@@ -91,7 +91,7 @@
         
         
                
-           _mapViewController = [[MapViewController alloc] init];
+        _mapViewController = [[MapViewController alloc] init];
         _mapViewController.delegate = self;
         _mapViewController.target = self;
         [self.view addSubview:_mapViewController.view];
