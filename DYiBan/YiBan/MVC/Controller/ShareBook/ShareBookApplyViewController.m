@@ -137,7 +137,7 @@
         DYBInputView *_phoneInputNameR = [[DYBInputView alloc]initWithFrame:CGRectMake( 5, CGRectGetMinY(btnChooseTime.frame) + CGRectGetHeight(btnChooseTime.frame) + 10, 250, 40) placeText:@"长宁区天山路145号" textType:0];
         [_phoneInputNameR.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[UIColor blackColor] CGColor]];
         //        [_phoneInputNameR.nameField setText:@"1"];
-        [_phoneInputNameR.nameField setTextColor:[UIColor clearColor]];
+        [_phoneInputNameR.nameField setTextColor:[UIColor blackColor]];
         [_phoneInputNameR setBackgroundColor:[UIColor clearColor]];
         [self.view addSubview:_phoneInputNameR];
         RELEASE(_phoneInputNameR);

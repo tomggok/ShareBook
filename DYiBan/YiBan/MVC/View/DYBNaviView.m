@@ -42,6 +42,11 @@
     self = [super initWithFrame:frame];
     if (self)
     {
+        UIImageView *imageBack = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
+        [imageBack setImage:[UIImage imageNamed:@"top"]];
+        [self addSubview:imageBack];
+        RELEASE(imageBack);
+        
         _label = [[MagicUILabel alloc] initWithFrame:CGRectMake(0, y, 20, 43)];
         [_label setBackgroundColor:[UIColor clearColor]];
         [self setBackgroundColor:[MagicCommentMethod color:248 green:248 blue:248 alpha:1.f]];
@@ -59,6 +64,7 @@
         RELEASE(_lineView);
         
         [self setBackgroundColor:[UIColor colorWithRed:96/255.0f green:96/255.0f  blue:96/255.0f  alpha:1.0f]];
+        
     }
     return self;
 }

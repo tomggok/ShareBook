@@ -222,6 +222,9 @@ DEF_SIGNAL(NoInternetConnection)//无网
         [button setFrame: CGRectMake(SCREEN_WIDTH-60, y + (44 - image.size.height/2)/2, image.size.width/2, image.size.height/2)];
     }else{
     
+//<<<<<<< HEAD
+//        [button setFrame: CGRectMake(10, y + (44 - image.size.height/2)/2, image.size.width/2, image.size.height/2) ];
+//=======
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10.0f, (44 - image.size.height/2)/2 , image.size.width/2, image.size.height/2)];
         [imageView setImage:image];
         [imageView setBackgroundColor:[UIColor clearColor]];
@@ -229,6 +232,7 @@ DEF_SIGNAL(NoInternetConnection)//无网
         [imageView release];
         
         [button setFrame: CGRectMake(0, y , 60, 44) ];
+//>>>>>>> a849d0b9609e94c8faf2761e768d5213feaa65c5
     }
    
     
