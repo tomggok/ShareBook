@@ -12,6 +12,9 @@
 #import "ShareBookApplyCell.h"
 #import "ShareGiveDouCell.h"
 #import "ShareBookDetailViewController.h"
+#import "ShareBookOtherCenterViewController.h"
+
+
 
 @interface ShareBookQuanDetailViewController (){
 
@@ -221,7 +224,9 @@ static NSString *cellName = @"cellName";
             [self.drNavigationController pushViewController:bookDetail animated:YES];
             RELEASE(bookDetail);
         }else{
-        
+            ShareBookOtherCenterViewController *otherCenter = [[ShareBookOtherCenterViewController alloc]init];
+            [self.drNavigationController pushViewController:otherCenter animated:YES];
+            RELEASE(otherCenter);
         
         }
         

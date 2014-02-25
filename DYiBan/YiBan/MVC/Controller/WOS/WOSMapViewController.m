@@ -56,7 +56,7 @@
         [self.headview setTitleColor:[UIColor colorWithRed:203.0f/255 green:203.0f/255 blue:203.0f/255 alpha:1.0f]];
         
         [self.view setBackgroundColor:[UIColor redColor]];
-        [self setButtonImage:self.leftButton setImage:@"back"];
+        [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
     }
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
@@ -66,11 +66,11 @@
             
             NSArray *array = [NSArray arrayWithObjects:_dictMap, nil];
 
-            MapViewController*   _mapViewController = [[MapViewController alloc] init];
-            _mapViewController.delegate = self;
-            [self.view addSubview:_mapViewController.view];
-            [_mapViewController.view setFrame:CGRectMake(0.0f, 0.0f  , 320.0f, self.view.bounds.size.height - 44)];
-            [_mapViewController resetAnnitations:array];
+//            MapViewController*   _mapViewController = [[MapViewController alloc] init];
+//            _mapViewController.delegate = self;
+//            [self.view addSubview:_mapViewController.view];
+//            [_mapViewController.view setFrame:CGRectMake(0.0f, 0.0f  , 320.0f, self.view.bounds.size.height - 44)];
+//            [_mapViewController resetAnnitations:array];
             
             return;
             
@@ -95,7 +95,7 @@
         _mapViewController.delegate = self;
         _mapViewController.target = self;
         [self.view addSubview:_mapViewController.view];
-        [_mapViewController.view setFrame:CGRectMake(0.0f, -20 , 320.0f, self.view.bounds.size.height - 44)];
+        [_mapViewController.view setFrame:CGRectMake(0.0f, 0 , 320.0f, self.view.bounds.size.height )];
         [_mapViewController resetAnnitations:array];
         
         for (int i = 0; i< 3; i ++) {

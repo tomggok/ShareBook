@@ -8,6 +8,9 @@
 
 #import "ShareBookMyQuanCenterViewController.h"
 #import "ShareBookDouCell.h"
+#import "ShareAddQuanViewController.h"
+#import "ShareBookQuanDetailViewController.h"
+#import "WOSMapViewController.h"
 
 
 @interface ShareBookMyQuanCenterViewController ()
@@ -45,10 +48,10 @@
     if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         //        [self.rightButton setHidden:YES];
-        [self.headview setTitle:@"乐享豆"];
+        [self.headview setTitle:@"圈子"];
         
         //        [self setButtonImage:self.leftButton setImage:@"back"];
-        //        [self setButtonImage:self.rightButton setImage:@"home"];
+       [self setButtonImage:self.rightButton setImage:@"home"];
         [self.headview setTitleColor:[UIColor colorWithRed:193.0f/255 green:193.0f/255 blue:193.0f/255 alpha:1.0f]];
         [self.headview setBackgroundColor:[UIColor colorWithRed:97.0f/255 green:97.0f/255 blue:97.0f/255 alpha:1.0]];
         //        [self.leftButton setHidden:YES];
@@ -62,60 +65,61 @@
         
         
         
-        UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44)];
+        UIImageView *viewBG = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44)];
+        [viewBG setImage:[UIImage imageNamed:@"bg"]];
         [viewBG setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:viewBG];
         RELEASE(viewBG);
         
         
-        UILabel *labelDou = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.headHeight + 10, 100.0f, 20.0f)];
-        [labelDou setText:@"我的享乐豆"];
-        [labelDou sizeToFit];
-        [self.view addSubview:labelDou];
-        [labelDou release];
         
         
-        UILabel *labelNum  = [[UILabel alloc]initWithFrame:CGRectMake(10.0f + CGRectGetMinX(labelDou.frame) + CGRectGetWidth(labelDou.frame), self.headHeight + 10 , 100.0f, 20.0f)];
-        [labelNum setText:@"100"];
-        [self.view addSubview:labelNum];
-        [labelNum release];
+        UISearchBar *searchView = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0f,self.headHeight, 320, 44) ];
+        /*backgroundColor:[UIColor clearColor] placeholder:@"文件名" isHideOutBackImg:NO isHideLeftView:NO];*/
+        for (UIView *subview in [searchView subviews]) {
+            if ([subview isKindOfClass:NSClassFromString(@"UISearchBarBackground")])
+            {
+                [subview removeFromSuperview];
+            }else if ([subview isKindOfClass:NSClassFromString(@"UISearchBarTextField")]) {
+                [(UITextField *)subview setBackground:[UIImage imageNamed:@"bg_search"]];
+                
+            }else if ([subview isKindOfClass:[UIButton class]]){
+                
+                
+            }
+        }
         
-        UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.headHeight + 10 + 40, 100.0f, 20.0f)];
-        [label1 setText:@"享乐豆充值可以在官网："];
-        [label1 sizeToFit];
-        [self.view addSubview:label1];
-        [label1 release];
+        [searchView setPlaceholder:@"圈子的名称"];
+        [searchView setBackgroundColor:[UIColor colorWithRed:248/255.0f green:248/255.0f blue:248/255.0f alpha:1.0f]];
+        [searchView setUserInteractionEnabled:YES];
+        [self.view addSubview:searchView];
+        RELEASE(searchView)
         
-        UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake( CGRectGetMinX(label1.frame) + CGRectGetWidth(label1.frame), self.headHeight + 10 + 40, 100.0f, 20.0f)];
-        [label2 setText:@"www.baidu.com"];
-        [label2 sizeToFit];
-        [self.view addSubview:label2];
-        [label2 release];
         
-        UILabel *label3 = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.headHeight + 10 + 40, 100.0f, 20.0f)];
-        //        [label3 setText:@"购买"];
-        [label3 sizeToFit];
-        [self.view addSubview:label3];
-        [label3 release];
         
-        UIImageView *imageViewIcon = [[UIImageView alloc]initWithFrame:CGRectMake(260.0, 10.0f, 50.0,50.0)];
-        [imageViewIcon setBackgroundColor:[UIColor redColor]];
-        [self.view addSubview:imageViewIcon];
-        [imageViewIcon release];
         
-        UILabel *labelHistoryList = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, CGRectGetMinY(label2.frame) + CGRectGetHeight(label2.frame) + 20, 320.0f, 40.0f)];
-        [labelHistoryList setText:@"乐豆交易记录"];
-        [self.view addSubview:labelHistoryList];
-        [labelHistoryList release];
         
         UIImage *image = [UIImage imageNamed:@"menu_inactive"];
         
         
-        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0,200 , 320.0f , self.view.frame.size.height -100 - 60 - 100  ) isNeedUpdate:YES];
+        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0,self.headHeight + 44 , 320.0f , self.view.frame.size.height -self.headHeight - 44 - 50  ) isNeedUpdate:YES];
         [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:tbDataBank11];
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
         RELEASE(tbDataBank11);
+        
+        
+        UIImage *image1 = [UIImage imageNamed:@"bt_click1"];
+        UIButton *btnOK = [[UIButton alloc]initWithFrame:CGRectMake(20.0f, CGRectGetHeight(self.view.frame) - 50, 280.0f, 40.0f)];
+        [btnOK setTag:102];
+        [btnOK setImage:image1 forState:UIControlStateNormal];
+        //        [btnOK setBackgroundColor:[UIColor yellowColor]];
+        [btnOK addTarget:self action:@selector(doChoose) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btnOK];
+        RELEASE(btnOK);
+        
+        [self addlabel_title:@"创建圈子" frame:btnOK.frame view:btnOK];
+        
         
 //        [self creatDownBar];
         
@@ -130,6 +134,20 @@
 }
 
 
+
+-(void)addlabel_title:(NSString *)title frame:(CGRect)frame view:(UIView *)view{
+    
+    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))];
+    [label1 setText:title];
+    [label1 setTag:100];
+    [label1 setTextAlignment:NSTextAlignmentCenter];
+    [view bringSubviewToFront:label1];
+    [label1 setTextColor:[UIColor whiteColor]];
+    [label1 setBackgroundColor:[UIColor clearColor]];
+    [view addSubview:label1];
+    RELEASE(label1);
+    
+}
 
 #pragma mark- 只接受UITableView信号
 static NSString *cellName = @"cellName";
@@ -171,21 +189,29 @@ static NSString *cellName = @"cellName";
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
-        ShareBookDouCell *cell = [[ShareBookDouCell alloc]init];
+        UITableViewCell *cell = [[UITableViewCell alloc]init];
         
-        //        NSDictionary *dictInfoFood = Nil;
-        //        [cell creatCell:dictInfoFood];
+
         DLogInfo(@"%d", indexPath.section);
+        
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, 10.0f, 100.0f, 30.0f)];
+        [label setText:@"上海未来"];
+        
+        [cell addSubview:label];
+        RELEASE(label);
         
         
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [signal setReturnValue:cell];
         
     }else if([signal is:[MagicUITableView TABLEDIDSELECT]])/*选中cell*/{
+        
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
-        
+        ShareBookQuanDetailViewController *detail = [[ShareBookQuanDetailViewController alloc]init];
+        [self.drNavigationController pushViewController:detail animated:YES];
+        RELEASE(detail);
         
         
     }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
@@ -203,5 +229,24 @@ static NSString *cellName = @"cellName";
 }
 
 
+-(void)doChoose{
 
+    ShareAddQuanViewController *add = [[ShareAddQuanViewController alloc]init];
+    [self.drNavigationController pushViewController:add animated:YES];
+    RELEASE(add);
+}
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
+{
+    if ([signal is:[DYBBaseViewController BACKBUTTON]])
+    {
+
+    }
+    if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]])
+    {
+        WOSMapViewController *map = [[WOSMapViewController alloc]init];
+        [self.drNavigationController pushViewController:map animated:YES];
+        RELEASE(map);
+        
+    }
+}
 @end

@@ -2703,7 +2703,7 @@
                   symbolName = "-[SDWebImageManager imageDownloader:didUpdatePartialImage:]"
                   moduleName = "ShareBook"
                   urlString = "file://localhost/Users/tomzeng/Pictures/ShareBook/DYiBan/Framework/AppUtils/SDWebImage/SDWebImageManager.m"
-                  timestampString = "414987306.841995"
+                  timestampString = "415015327.225515"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "330"
@@ -2717,7 +2717,7 @@
                   symbolName = "-[SDWebImageManager imageDownloader:didUpdatePartialImage:]"
                   moduleName = "ShareBook"
                   urlString = "file://localhost/Users/tomzeng/Pictures/ShareBook/DYiBan/Framework/AppUtils/SDWebImage/SDWebImageManager.m"
-                  timestampString = "414987306.842227"
+                  timestampString = "415015327.225732"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "330"
@@ -6779,7 +6779,7 @@
                   symbolName = "-[DYBDataBankShareViewController handleViewSignal_DYBDtaBankSearchView:]"
                   moduleName = "ShareBook"
                   urlString = "file://localhost/Users/tomzeng/Pictures/ShareBook/DYiBan/YiBan/MVC/Controller/DATA-BANK/DYBDataBankShareViewController.m"
-                  timestampString = "414987306.854094"
+                  timestampString = "415015327.235307"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "391"
@@ -6793,7 +6793,7 @@
                   symbolName = "-[DYBDataBankShareViewController handleViewSignal_DYBDtaBankSearchView:]"
                   moduleName = "ShareBook"
                   urlString = "file://localhost/Users/tomzeng/Pictures/ShareBook/DYiBan/YiBan/MVC/Controller/DATA-BANK/DYBDataBankShareViewController.m"
-                  timestampString = "414987306.854325"
+                  timestampString = "415015327.235487"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "391"
@@ -10846,6 +10846,38 @@
             startingLineNumber = "146"
             endingLineNumber = "146"
             landmarkName = "-doChoose"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DYiBan/YiBan/MVC/Controller/ShareBook/ShareBookMyQuanCenterViewController.m"
+            timestampString = "415012182.037383"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
+            landmarkName = "-handleViewSignal_DYBBaseViewController:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DYiBan/YiBan/MVC/Controller/ShareBook/ShareBookQuanDetailViewController.m"
+            timestampString = "415013043.425484"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
+            landmarkName = "-handleViewSignal_MagicUITableView:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

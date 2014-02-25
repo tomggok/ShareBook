@@ -30,6 +30,7 @@
 -(void)creatCell{
 
     UIImageView *imageIcon = [[UIImageView alloc]initWithFrame:CGRectMake(5.0f, 5.0f, 40.0f, 40.0f)];
+    [imageIcon setImage:[UIImage imageNamed:@"system-avatar"]];
     [imageIcon setBackgroundColor:[UIColor redColor]];
     [self addSubview:imageIcon];
     [imageIcon release];

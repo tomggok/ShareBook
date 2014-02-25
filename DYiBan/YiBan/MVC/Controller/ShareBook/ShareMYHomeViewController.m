@@ -12,7 +12,7 @@
 #import "ShareMessagerCell.h"
 #import "ShareDouViewController.h"
 #import "ShareBookCenterViewController.h"
-
+#import "ShareBookMyQuanCenterViewController.h"
 
 
 
@@ -239,7 +239,12 @@ static NSString *cellName = @"cellName";
             }
                 break;
             case 4:
-                
+            {
+                ShareBookMyQuanCenterViewController *quan = [[ShareBookMyQuanCenterViewController alloc]init];
+                [self.drNavigationController pushViewController:quan animated:YES];
+                RELEASE(quan);
+            
+            }
                 break;
             default:
                 break;
