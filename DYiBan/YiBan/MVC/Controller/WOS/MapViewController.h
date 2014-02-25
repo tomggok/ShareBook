@@ -18,9 +18,9 @@
     id<MapViewControllerDidSelectDelegate> delegate;
 }
 @property(nonatomic,retain)IBOutlet MKMapView *mapView;
-
+@property (nonatomic,retain)id target;
 @property(nonatomic,assign)id<MapViewControllerDidSelectDelegate> delegate;
-
+AS_SIGNAL(TOUCHANNITION)
 - (void)resetAnnitations:(NSArray *)data;
 @end
 
@@ -28,5 +28,5 @@
 
 @optional
 - (void)customMKMapViewDidSelectedWithInfo:(id)info;
-
+- (void)customMKMapViewDidSelectedAnnitationWithInfo:(id)info;
 @end

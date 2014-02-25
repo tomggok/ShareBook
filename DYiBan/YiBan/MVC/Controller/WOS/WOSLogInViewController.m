@@ -433,7 +433,7 @@
     
     DYBUITabbarViewController *vc = [[DYBUITabbarViewController sharedInstace] init:self];
    [self.drNavigationController pushViewController:vc animated:YES];
-    
+//    [vc];
 //    MagicRequest *request = [DYBHttpMethod wosLongin_nickName:_phoneInputName.nameField.text passwd:_phoneInputAddr.nameField.text sAlert:YES receive:self];
 //    [request setTag:2];
     

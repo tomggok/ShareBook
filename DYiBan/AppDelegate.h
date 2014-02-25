@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-//#import "BMapKit.h" /*百度地图Marker*/
+#import "BMapKit.h" /*百度地图Marker*/
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate/*, BMKGeneralDelegate*/,UIScrollViewDelegate>{
-//    BMKMapManager* _mapManager;/*百度地图Marker*/
+@interface AppDelegate : UIResponder <UIApplicationDelegate, BMKGeneralDelegate,UIScrollViewDelegate>{
+    BMKMapManager* _mapManager;/*百度地图Marker*/
 }
 
 @property (strong, nonatomic) UIWindow *window;

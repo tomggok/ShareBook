@@ -14,7 +14,6 @@
 #import "UITableView+property.h"
 
 @implementation DYBCellForMayKnowFriends
-
 -(void)setContent:(id)data indexPath:(NSIndexPath *)indexPath tbv:(UITableView *)tbv
 {
     //    self.accessoryType=UITableViewCellAccessoryDetailDisclosureButton;

@@ -26,11 +26,12 @@
 @implementation MapViewController
 
 @synthesize mapView=_mapView;
-
+@synthesize target;
 @synthesize delegate;
-
+DEF_SIGNAL(TOUCHANNITION)
 - (void)dealloc
 {
+    [target release];
     [_mapView release];
     [_annotationList release];
     [super dealloc];
@@ -110,6 +111,20 @@
             _calloutAnnotation.coordinate.longitude == view.annotation.coordinate.longitude) {
             [mapView removeAnnotation:_calloutAnnotation];
             _calloutAnnotation = nil;
+            
+//            if([delegate respondsToSelector:@selector(customMKMapViewDidSelectedWithInfo:)]){
+//                [delegate customMKMapViewDidSelectedWithInfo:@"点击至之后你要在这干点啥"];
+//            }
+//            if ([delegate respondsToSelector:@selector(customMKMapViewDidSelectedAnnitationWithInfo:)]) {
+//                [delegate customMKMapViewDidSelectedAnnitationWithInfo:@"点击至之后你要在这干点啥"];
+//            }
+//            if (target) {
+//                
+//                NSLog(@"ffff");
+//                
+////                [self sendViewSignal:[MapViewController TOUCHANNITION] withObject:@"dd" from:self target:target];
+//            }
+            
         }
     }
 }
@@ -121,9 +136,11 @@
         if (!annotationView) {
             annotationView = [[[CallOutAnnotationVifew alloc] initWithAnnotation:annotation reuseIdentifier:@"CalloutView"] autorelease];
 //            JingDianMapCell  *cell = [[[NSBundle mainBundle] loadNibNamed:@"JingDianMapCell" owner:self options:nil] objectAtIndex:0];
-            JingDianMapCell *cell = [[JingDianMapCell alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 70.0f, 30)];
+            JingDianMapCell *cell = [[JingDianMapCell alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 200.0f, 60)];
+            [cell setBackgroundColor:[UIColor yellowColor]];
+            cell.targetObjc  = self;
             [annotationView.contentView addSubview:cell];
-            
+//            [annotationView.contentView setBackgroundColor:[UIColor blueColor]];
         }
         return annotationView;
 	} else if ([annotation isKindOfClass:[BasicMapAnnotation class]]) {
@@ -146,7 +163,44 @@
     [_annotationList addObjectsFromArray:data];
     [self setAnnotionsWithList:_annotationList];
 }
+- (void)handleViewSignal_JingDianMapCell:(MagicViewSignal *)signal
+{
+    if ([signal is:[JingDianMapCell TOUCHCELL]])
+    {
 
+        UIView *view = (UIView *)[signal object];
+        
+        
+        NSLog(@"dddd");
+        
+        UIView *viewww = [[view superview] superview];
+        if (_calloutAnnotation&& [viewww isKindOfClass:[CallOutAnnotationVifew class]]) {
+            CallOutAnnotationVifew *tt = (CallOutAnnotationVifew *)viewww;
+            if (_calloutAnnotation.coordinate.latitude == tt.annotation.coordinate.latitude&&
+                _calloutAnnotation.coordinate.longitude == tt.annotation.coordinate.longitude) {
+                [_mapView removeAnnotation:_calloutAnnotation];
+                _calloutAnnotation = nil;
+                
+                [self mapView:nil didDeselectAnnotationView:nil];
+                
+                
+                NSDictionary *dic1=[NSDictionary dictionaryWithObjectsAndKeys:@"30.281843",@"latitude",@"120.102193",@"longitude",nil];
+                
+                NSDictionary *dic2=[NSDictionary dictionaryWithObjectsAndKeys:@"30.290144",@"latitude",@"120.146696‎",@"longitude",nil];
+                
+                NSDictionary *dic3=[NSDictionary dictionaryWithObjectsAndKeys:@"30.248076",@"latitude",@"120.164162‎",@"longitude",nil];
+                
+                NSDictionary *dic4=[NSDictionary dictionaryWithObjectsAndKeys:@"30.425622",@"latitude",@"120.299605",@"longitude",nil];
+                
+                NSArray *array = [NSArray arrayWithObjects:dic1,dic2,dic3,dic4, nil];
+                
+                [self resetAnnitations:array];
+                
+                 [self sendViewSignal:[MapViewController TOUCHANNITION] withObject:@"dd" from:self target:target];
+            }
+        }
+    }
+}
 
 #pragma mark - back button signal
 - (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal

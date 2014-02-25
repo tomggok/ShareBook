@@ -8,7 +8,14 @@
 
 #import "WOSMapViewController.h"
 #import "MapViewController.h"
-@interface WOSMapViewController ()
+
+#import "ShareBookQuanDetailViewController.h"
+#import "ShareAddQuanViewController.h"
+
+@interface WOSMapViewController (){
+    MapViewController*   _mapViewController;
+
+}
 
 @end
 
@@ -43,7 +50,7 @@
     
     if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
-        [self.headview setTitle:@"地图"];
+        [self.headview setTitle:@"附近的圈子"];
         
     
         [self.headview setTitleColor:[UIColor colorWithRed:203.0f/255 green:203.0f/255 blue:203.0f/255 alpha:1.0f]];
@@ -84,10 +91,11 @@
         
         
                
-        MapViewController*   _mapViewController = [[MapViewController alloc] init];
+           _mapViewController = [[MapViewController alloc] init];
         _mapViewController.delegate = self;
+        _mapViewController.target = self;
         [self.view addSubview:_mapViewController.view];
-        [_mapViewController.view setFrame:CGRectMake(0.0f, 44.0f - 15 , 320.0f, self.view.bounds.size.height - 44)];
+        [_mapViewController.view setFrame:CGRectMake(0.0f, -20 , 320.0f, self.view.bounds.size.height - 44)];
         [_mapViewController resetAnnitations:array];
         
         for (int i = 0; i< 3; i ++) {
@@ -126,21 +134,66 @@
             [btn1 setBackgroundColor:[UIColor blackColor]];
             [btn1 addTarget:self action:@selector(doSelect:) forControlEvents:UIControlEventTouchUpInside];
             [btn1 setTag:10 + i];
-            [self.view addSubview:btn1];
-            RELEASE(btn1);
+//            [self.view addSubview:btn1];
+//            RELEASE(btn1);
         }
         
-
+        
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(20.0f, CGRectGetHeight(self.view.frame) - 100, 280.0f, 44)];
+        [btn setBackgroundColor:[UIColor clearColor]];
+        [btn setImage:[UIImage imageNamed:@"bt_click1"] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(addQuan) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview: btn];
+        RELEASE(btn);
+        [self addlabel_title:@"创建圈子" frame:btn.frame view:btn];
     }
     
     
     else if ([signal is:[MagicViewController DID_APPEAR]]) {
+        
+        NSDictionary *dic1=[NSDictionary dictionaryWithObjectsAndKeys:@"30.281843",@"latitude",@"120.102193",@"longitude",nil];
+        
+        NSDictionary *dic2=[NSDictionary dictionaryWithObjectsAndKeys:@"30.290144",@"latitude",@"120.146696‎",@"longitude",nil];
+        
+        NSDictionary *dic3=[NSDictionary dictionaryWithObjectsAndKeys:@"30.248076",@"latitude",@"120.164162‎",@"longitude",nil];
+        
+        NSDictionary *dic4=[NSDictionary dictionaryWithObjectsAndKeys:@"30.425622",@"latitude",@"120.299605",@"longitude",nil];
+        
+        NSArray *array = [NSArray arrayWithObjects:dic1,dic2,dic3,dic4, nil];
+        
+        if (_mapViewController) {
+            [_mapViewController resetAnnitations:array];
+
+        }
+        
         
         DLogInfo(@"rrr");
     } else if ([signal is:[MagicViewController DID_DISAPPEAR]]){
         
         
     }
+}
+
+-(void)addlabel_title:(NSString *)title frame:(CGRect)frame view:(UIView *)view{
+    
+    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))];
+    [label1 setText:title];
+    [label1 setTag:100];
+    [label1 setTextAlignment:NSTextAlignmentCenter];
+    [view bringSubviewToFront:label1];
+    [label1 setTextColor:[UIColor whiteColor]];
+    [label1 setBackgroundColor:[UIColor clearColor]];
+    [view addSubview:label1];
+    RELEASE(label1);
+    
+}
+
+-(void)addQuan{
+
+    ShareAddQuanViewController *add = [[ShareAddQuanViewController alloc]init];
+    [self.drNavigationController pushViewController:add animated:YES];
+
+    RELEASE(add);
 }
 
 -(void)doSelect:(id)sender{
@@ -167,8 +220,27 @@
     NSLog(@"%@",info);
 }
 
+//MapViewController TOUCHANNITION
 
 
+- (void)handleViewSignal_MapViewController:(MagicViewSignal *)signal
+{
+    if ([signal is:[MapViewController TOUCHANNITION]]) {
+        
+        UIView *bb = (UIView *)[signal object];
+        
+        ShareBookQuanDetailViewController *detail = [[ShareBookQuanDetailViewController alloc]init];
+        [self.drNavigationController pushViewController:detail animated:YES];
+        RELEASE(detail);
+    }
+
+}
+
+//- (void)customMKMapViewDidSelectedAnnitationWithInfo:(id)info{
+//
+// NSLog(@"%@",info);
+//
+//}
 - (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])

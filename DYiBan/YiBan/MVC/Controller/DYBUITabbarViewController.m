@@ -43,6 +43,9 @@
 #import "ShareSettingViewController.h"
 #import "ShareMYHomeViewController.h"
 #import "ShareMapViewController.h"
+#import "WOSMapViewController.h"
+
+
 
 @interface DYBUITabbarViewController ()
 {
@@ -247,7 +250,7 @@ MagicUIButton *hiddenView;
 //    WOSHomeViewController *homeVC = [[[WOSHomeViewController alloc]init] autorelease];
 //    [homeVC setVc:_vc];
     
-    ShareMapViewController *map = [[[ShareMapViewController alloc]init] autorelease];
+    WOSMapViewController *map = [[[WOSMapViewController alloc]init] autorelease];
     [map setVc:_vc];
     
     ShareMYHomeViewController *home  = [[[ShareMYHomeViewController alloc]init] autorelease];

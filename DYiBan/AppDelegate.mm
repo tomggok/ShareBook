@@ -92,11 +92,11 @@
     //*****************百度地图Marker******************
     //*******以下5行代码不要删，是百度地图注册！！！********
     //************************************************
-//    _mapManager = [[BMKMapManager alloc]init];
-//    BOOL ret = [_mapManager start:@"617FCCA9F13CB57FCCFB3AF4F4356367248A9BBA" generalDelegate:self];
-//    if (!ret) {
-//    	NSLog(@"manager start failed!");
-//    }
+    _mapManager = [[BMKMapManager alloc]init];
+    BOOL ret = [_mapManager start:@"617FCCA9F13CB57FCCFB3AF4F4356367248A9BBA" generalDelegate:self];
+    if (!ret) {
+    	NSLog(@"manager start failed!");
+    }
 
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

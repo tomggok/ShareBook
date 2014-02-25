@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JingDianMapCell : UIView
-
+@interface JingDianMapCell : DYBBaseView
+@property(nonatomic,retain)id targetObjc;
+AS_SIGNAL(TOUCHCELL)
 @end

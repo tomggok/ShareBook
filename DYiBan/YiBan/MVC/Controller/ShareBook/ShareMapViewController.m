@@ -8,6 +8,8 @@
 
 #import "ShareMapViewController.h"
 #import "WOSOrderCell.h"
+#import "WOSMapViewController.h"
+
 @interface ShareMapViewController ()
 
 @end
@@ -65,6 +67,10 @@
         [self.view addSubview:viewBG];
         RELEASE(viewBG);
         
+        WOSMapViewController *map = [[WOSMapViewController alloc]init];
+        [self.view addSubview:map.view];
+
+        [map release];
         
         UIImage *image = [UIImage imageNamed:@"menu_inactive"];
         
@@ -167,7 +173,7 @@ static NSString *cellName = @"cellName";
         
     }else if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
         
-        [self goShowOrderListAction];
+//        [self goShowOrderListAction];
     }
 }
 #pragma mark- 只接受HTTP信号
