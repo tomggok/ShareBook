@@ -11,7 +11,7 @@
 #import "CALayer+Custom.h"
 //#import "MagicRequest.h"
 #import "NSObject+MagicDatabase.h"
-
+#import "ShareBookResignViewController.h"
 #import "DYBHttpMethod.h"
 #import "JSONKit.h"
 #import "JSON.h"
@@ -52,6 +52,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
+
 -(void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal{
     
     DLogInfo(@"name -- %@",signal.name);
@@ -505,6 +506,21 @@
             
             
         }
+    }
+}
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
+{
+    if ([signal is:[DYBBaseViewController BACKBUTTON]])
+    {
+//        [self.drNavigationController popViewControllerAnimated:YES];
+        
+    }else if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
+        
+        //        [self goShowOrderListAction];
+        
+        ShareBookResignViewController *resg = [[ShareBookResignViewController alloc]init];
+        [self.drNavigationController pushViewController:resg animated:YES];
+        RELEASE(resg);
     }
 }
 

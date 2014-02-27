@@ -1318,6 +1318,8 @@
 		B5AD9BC41856FE93005ACB14 /* sepLine620.png in Resources */ = {isa = PBXBuildFile; fileRef = B5AD9BC11856FE93005ACB14 /* sepLine620.png */; };
 		B5AD9BC51856FE93005ACB14 /* star_no.png in Resources */ = {isa = PBXBuildFile; fileRef = B5AD9BC21856FE93005ACB14 /* star_no.png */; };
 		B5AD9BC61856FE93005ACB14 /* star_yes.png in Resources */ = {isa = PBXBuildFile; fileRef = B5AD9BC31856FE93005ACB14 /* star_yes.png */; };
+		B5B7F3B118BF29A100E07580 /* ShareBookResignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B7F3B018BF29A100E07580 /* ShareBookResignViewController.m */; };
+		B5B7F3B418BF41EE00E07580 /* ShareBookMissPWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B7F3B318BF41EE00E07580 /* ShareBookMissPWViewController.m */; };
 		B5BC747E1869915300F57440 /* WOSAddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BC747D1869915300F57440 /* WOSAddCommentViewController.m */; };
 		B5C6632F18A8AE4800C5A26C /* ShareSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C6632E18A8AE4800C5A26C /* ShareSettingViewController.m */; };
 		B5C6633218A8AEA400C5A26C /* ShareMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C6633118A8AEA400C5A26C /* ShareMapViewController.m */; };
@@ -3262,6 +3264,10 @@
 		B5AD9BC11856FE93005ACB14 /* sepLine620.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sepLine620.png; sourceTree = "<group>"; };
 		B5AD9BC21856FE93005ACB14 /* star_no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_no.png; sourceTree = "<group>"; };
 		B5AD9BC31856FE93005ACB14 /* star_yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_yes.png; sourceTree = "<group>"; };
+		B5B7F3AF18BF29A100E07580 /* ShareBookResignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBookResignViewController.h; sourceTree = "<group>"; };
+		B5B7F3B018BF29A100E07580 /* ShareBookResignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBookResignViewController.m; sourceTree = "<group>"; };
+		B5B7F3B218BF41EE00E07580 /* ShareBookMissPWViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBookMissPWViewController.h; sourceTree = "<group>"; };
+		B5B7F3B318BF41EE00E07580 /* ShareBookMissPWViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBookMissPWViewController.m; sourceTree = "<group>"; };
 		B5BC747C1869915300F57440 /* WOSAddCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOSAddCommentViewController.h; sourceTree = "<group>"; };
 		B5BC747D1869915300F57440 /* WOSAddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOSAddCommentViewController.m; sourceTree = "<group>"; };
 		B5C6632D18A8AE4800C5A26C /* ShareSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareSettingViewController.h; sourceTree = "<group>"; };
@@ -6241,6 +6247,10 @@
 				B5D5AEBB18BC830B005E4732 /* ShareBookMyCenterViewController.m */,
 				B5D5AEBD18BC8383005E4732 /* ShareBookOtherCenterViewController.h */,
 				B5D5AEBE18BC8383005E4732 /* ShareBookOtherCenterViewController.m */,
+				B5B7F3AF18BF29A100E07580 /* ShareBookResignViewController.h */,
+				B5B7F3B018BF29A100E07580 /* ShareBookResignViewController.m */,
+				B5B7F3B218BF41EE00E07580 /* ShareBookMissPWViewController.h */,
+				B5B7F3B318BF41EE00E07580 /* ShareBookMissPWViewController.m */,
 			);
 			path = ShareBook;
 			sourceTree = "<group>";
@@ -7664,6 +7674,7 @@
 				B58CB1B61829CF6B00F73D66 /* user_recommendlist_data.m in Sources */,
 				B58CB1B71829CF6B00F73D66 /* user_searchreasult_list.m in Sources */,
 				B58CB1B81829CF6B00F73D66 /* UserLoginModel.m in Sources */,
+				B5B7F3B418BF41EE00E07580 /* ShareBookMissPWViewController.m in Sources */,
 				B58CB1B91829CF6B00F73D66 /* userRegistModel.m in Sources */,
 				B58CB1BA1829CF6B00F73D66 /* UserSettingMode.m in Sources */,
 				B58CB1BB1829CF6B00F73D66 /* version.m in Sources */,
@@ -7720,6 +7731,7 @@
 				B58CB1EA1829CF6B00F73D66 /* DYBCustomLabel.m in Sources */,
 				B58CB1EB1829CF6B00F73D66 /* DYBDataBankShareChooseView.m in Sources */,
 				B5CE2AC118B4845B008E4E44 /* ShareBookListViewController.m in Sources */,
+				B5B7F3B118BF29A100E07580 /* ShareBookResignViewController.m in Sources */,
 				B58CB1EC1829CF6B00F73D66 /* DYBFaceView.m in Sources */,
 				B58CB1ED1829CF6B00F73D66 /* DYBGifView.m in Sources */,
 				B58CB1EE1829CF6B00F73D66 /* DYBGuideView.m in Sources */,
