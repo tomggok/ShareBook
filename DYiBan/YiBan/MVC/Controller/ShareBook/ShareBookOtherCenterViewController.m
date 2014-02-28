@@ -8,6 +8,10 @@
 
 #import "ShareBookOtherCenterViewController.h"
 #import "ShareGiveDouCell.h"
+#import "ShareBookCell.h"
+#import "ShareBookDetailViewController.h"
+
+
 @interface ShareBookOtherCenterViewController (){
 
     DYBUITableView *tbDataBank11;
@@ -221,16 +225,16 @@ static NSString *cellName = @"cellName";
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
-//        if (bShowBook) {
-//            ShareBookCell *cell = [[ShareBookCell alloc]init];
-//            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-//            [signal setReturnValue:cell];
-//        }else{
-//            
+        if (bShowBook) {
+            ShareBookCell *cell = [[ShareBookCell alloc]init];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            [signal setReturnValue:cell];
+        }else{
+            
             ShareGiveDouCell *cell = [[ShareGiveDouCell alloc]init];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             [signal setReturnValue:cell];
-//        }
+        }
         
         
         
@@ -238,14 +242,14 @@ static NSString *cellName = @"cellName";
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
-//        if (bShowBook) {
-//            ShareBookDetailViewController *bookDetail = [[ShareBookDetailViewController alloc]init];
-//            [self.drNavigationController pushViewController:bookDetail animated:YES];
-//            RELEASE(bookDetail);
-//        }else{
-//            
-//            
-//        }
+        if (bShowBook) {
+            ShareBookDetailViewController *bookDetail = [[ShareBookDetailViewController alloc]init];
+            [self.drNavigationController pushViewController:bookDetail animated:YES];
+            RELEASE(bookDetail);
+        }else{
+            
+            
+        }
         
         
     }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{

@@ -16,6 +16,8 @@
 #import "JSONKit.h"
 #import "JSON.h"
 #import "Magic_Database.h"
+#import "ShareBookMissPWViewController.h"
+
 
 @interface WOSLogInViewController (){
 
@@ -289,8 +291,21 @@
     
     UILabel *labelMissPW = [[UILabel alloc]initWithFrame:CGRectMake(10.0f + 200, CGRectGetHeight(_phoneInputAddr.frame) + CGRectGetMinY(_phoneInputAddr.frame) + 20 , 100.0f, 20.0f)];
     [labelMissPW setText:@"忘记密码"];
+    [labelMissPW setUserInteractionEnabled:YES];
     [viewLogin addSubview:labelMissPW];
     RELEASE(labelMissPW);
+
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(forgetPW:)];
+    [tap setNumberOfTapsRequired:1];
+    [tap setNumberOfTouchesRequired:1];
+    [labelMissPW addGestureRecognizer:tap];
+    RELEASE(tap);
+    
+}
+
+
+-(void)doMess{
+
 
 }
 
@@ -349,6 +364,9 @@
 -(void)forgetPW:(id)sender{
 
 
+    ShareBookMissPWViewController *mess = [[ShareBookMissPWViewController alloc]init];
+    [self.drNavigationController pushViewController:mess animated:YES];
+    RELEASE(mess);
 
 }
 

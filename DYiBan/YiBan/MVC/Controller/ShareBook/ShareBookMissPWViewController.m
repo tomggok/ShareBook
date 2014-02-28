@@ -186,27 +186,42 @@
         RELEASE(_phoneInputName);
         
         
-        UIImageView *imageViewName2 = [[UIImageView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 0 +INPUTHEIGHT  + 40, INPUTWIDTH, INPUTHEIGHT)];
-        [imageViewName2 setImage:[UIImage imageNamed:@"input_bg"]];
-        [viewLogin addSubview:imageViewName2];
-        RELEASE(imageViewName2);
+//        UIImageView *imageViewName2 = [[UIImageView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 0 +INPUTHEIGHT  + 40, INPUTWIDTH, INPUTHEIGHT)];
+//        [imageViewName2 setImage:[UIImage imageNamed:@"input_bg"]];
+//        [viewLogin addSubview:imageViewName2];
+//        RELEASE(imageViewName2);
         
-        _phoneInputAddr = [[DYBInputView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 0 +INPUTHEIGHT  + 40, INPUTWIDTH, INPUTHEIGHT) placeText:@"密码" textType:0];
-        [_phoneInputAddr.layer AddborderByIsMasksToBounds:YES cornerRadius:3 borderWidth:1 borderColor:[[UIColor colorWithRed:188.0f/255 green:188.0f/255 blue:188.0f/255 alpha:1.0f]  CGColor]];
-        //        [_phoneInputAddr.nameField setText:@"1"];
-        [_phoneInputAddr.nameField setTextColor:[UIColor blackColor]];
-        [_phoneInputAddr setBackgroundColor:[UIColor whiteColor]];
-        [viewLogin addSubview:_phoneInputAddr];
-        RELEASE(_phoneInputAddr);
+        
+
+        
+        
+//        _phoneInputAddr = [[DYBInputView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 0 +INPUTHEIGHT  + 40, INPUTWIDTH, INPUTHEIGHT) placeText:@"密码" textType:0];
+//        [_phoneInputAddr.layer AddborderByIsMasksToBounds:YES cornerRadius:3 borderWidth:1 borderColor:[[UIColor colorWithRed:188.0f/255 green:188.0f/255 blue:188.0f/255 alpha:1.0f]  CGColor]];
+//        //        [_phoneInputAddr.nameField setText:@"1"];
+//        [_phoneInputAddr.nameField setTextColor:[UIColor blackColor]];
+//        [_phoneInputAddr setBackgroundColor:[UIColor whiteColor]];
+//        [viewLogin addSubview:_phoneInputAddr];
+//        RELEASE(_phoneInputAddr);
+        
+        
+        
         
         UIButton *btnGetCode = [[UIButton alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 0 +INPUTHEIGHT  + 50, 130.0f, 40.0f)];
-        [btnGetCode setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-        [btnGetCode setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+//        [btnGetCode setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+//        [btnGetCode setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+        [btnGetCode setBackgroundColor:[UIColor redColor]];
+        [btnGetCode addTarget:self action:@selector(doGetCode) forControlEvents:UIControlEventTouchUpInside];
+        [viewLogin addSubview:btnGetCode];
+        RELEASE(btnGetCode);
+        
+        UILabel *labelText = [[UILabel alloc]initWithFrame:CGRectMake(150.0f,  0 +INPUTHEIGHT  + 50, 200.0f, 40.0f)];
+        [labelText setText:@"通过手机获得验证码每天上线3次"];
+        [viewLogin addSubview:labelText];
+        RELEASE(labelText)
         
         
         
-        
-        DYBInputView * _phoneInputAddr1 = [[DYBInputView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 0 +INPUTHEIGHT  + 40*2 + 20, INPUTWIDTH, INPUTHEIGHT) placeText:@"确认密码" textType:0];
+        DYBInputView * _phoneInputAddr1 = [[DYBInputView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 0 +INPUTHEIGHT  + 40*2 + 20, INPUTWIDTH, INPUTHEIGHT) placeText:@"请输入验证码" textType:0];
         [_phoneInputAddr1.layer AddborderByIsMasksToBounds:YES cornerRadius:3 borderWidth:1 borderColor:[[UIColor colorWithRed:188.0f/255 green:188.0f/255 blue:188.0f/255 alpha:1.0f]  CGColor]];
         //        [_phoneInputAddr.nameField setText:@"1"];
         [_phoneInputAddr1.nameField setTextColor:[UIColor blackColor]];
@@ -217,14 +232,17 @@
         
         
         
-        UIButton *btnBack= [[UIButton alloc]initWithFrame:CGRectMake(10.0f, CGRectGetHeight(_phoneInputAddr.frame) + CGRectGetMinY(_phoneInputAddr.frame) + 40 + 10 + 30, 300, 44)];
-        [btnBack setBackgroundColor:[UIColor clearColor]];
-        [btnBack setImage:[UIImage imageNamed:@"bt_click 2"] forState:UIControlStateNormal];
-        [btnBack setImage:[UIImage imageNamed:@"bt_click 2"] forState:UIControlStateSelected];
-        [btnBack addTarget:self action:@selector(addOKLogin) forControlEvents:UIControlEventTouchUpInside];
-        [self addlabel_title:@"确认提交" frame:btnBack.frame view:btnBack];
-        [viewLogin addSubview:btnBack];
-        [btnBack release];
+//        UIButton *btnBack= [[UIButton alloc]initWithFrame:CGRectMake(10.0f, CGRectGetHeight(_phoneInputAddr.frame) + CGRectGetMinY(_phoneInputAddr.frame) + 40 + 10 + 30, 300, 44)];
+//        [btnBack setBackgroundColor:[UIColor clearColor]];
+//        [btnBack setImage:[UIImage imageNamed:@"bt_click 2"] forState:UIControlStateNormal];
+//        [btnBack setImage:[UIImage imageNamed:@"bt_click 2"] forState:UIControlStateSelected];
+//        [btnBack addTarget:self action:@selector(addOKLogin) forControlEvents:UIControlEventTouchUpInside];
+//        [self addlabel_title:@"确认提交" frame:btnBack.frame view:btnBack];
+//        [viewLogin addSubview:btnBack];
+//        [btnBack release];
+        
+        
+        
         
         
         //        UIButton *btnBackGO= [[UIButton alloc]initWithFrame:CGRectMake(10.0f, CGRectGetHeight(btnBack.frame) + CGRectGetMinY(btnBack.frame) + 20 , 300, 44)];
@@ -262,6 +280,12 @@
         
         
     }
+}
+
+-(void)doGetCode{
+
+
+
 }
 
 -(void)addViewforAutoLogin{

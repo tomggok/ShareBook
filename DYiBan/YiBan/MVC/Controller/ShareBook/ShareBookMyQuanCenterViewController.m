@@ -239,7 +239,7 @@ static NSString *cellName = @"cellName";
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
-
+        [self.drNavigationController popViewControllerAnimated:YES];
     }
     if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]])
     {
