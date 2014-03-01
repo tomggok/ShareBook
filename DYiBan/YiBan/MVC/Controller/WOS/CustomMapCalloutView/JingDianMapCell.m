@@ -44,8 +44,8 @@ DEF_SIGNAL(TOUCHCELL)
     UIButton *btn = [[UIButton alloc]initWithFrame:self.frame];
     [btn addTarget:self action:@selector(dodo) forControlEvents:UIControlEventTouchUpInside];
     [btn setBackgroundColor:[UIColor clearColor]];
-    [self addSubview:btn];
-    RELEASE(btn)
+//    [self addSubview:btn];
+//    RELEASE(btn)
     
 }
 

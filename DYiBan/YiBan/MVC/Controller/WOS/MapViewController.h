@@ -10,7 +10,7 @@
 #import "BasicMapAnnotation.h"
 #import "DYBBaseViewController.h"
 @protocol MapViewControllerDidSelectDelegate; 
-@interface MapViewController : DYBBaseViewController<MKMapViewDelegate>
+@interface MapViewController : UIView<MKMapViewDelegate>
 {
     MKMapView *_mapView;
     
