@@ -215,7 +215,7 @@ static NSString *cellName = @"cellName";
     [viewBar setUserInteractionEnabled:YES];
     [self.view addSubview:viewBar];
     RELEASE(viewBar);
-     
+    
     
     UIImage *btnImage = [UIImage imageNamed:@"bt02_click"];
     UIButton *btnYU = [[UIButton alloc]initWithFrame:CGRectMake(7.0f, (image.size.height/2 -btnImage.size.height/2)/2 , btnImage.size.width/2, btnImage.size.height/2)];
