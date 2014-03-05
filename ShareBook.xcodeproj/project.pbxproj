@@ -81,6 +81,8 @@
 		1893FA5618A87EC400DF758C /* line1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1893FA0D18A87EC400DF758C /* line1.png */; };
 		1893FA5718A87EC400DF758C /* 登录.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1893FA0E18A87EC400DF758C /* 登录.jpg */; };
 		1893FA5B18A90C0200DF758C /* ShareMessagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1893FA5A18A90C0200DF758C /* ShareMessagerCell.m */; };
+		B50E718F18C6CB4E00A68FB7 /* ShareBookMobileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B50E718E18C6CB4E00A68FB7 /* ShareBookMobileViewController.m */; };
+		B50E719118C6D3B500A68FB7 /* btMobile.png in Resources */ = {isa = PBXBuildFile; fileRef = B50E719018C6D3B500A68FB7 /* btMobile.png */; };
 		B5122BC218AB20E2006ECE62 /* ShareBookDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5122BC118AB20E2006ECE62 /* ShareBookDetailCell.m */; };
 		B5122BC918AB4AD6006ECE62 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = B5122BC318AB4AD6006ECE62 /* line.png */; };
 		B5122BD418AB610D006ECE62 /* bt2_click.png in Resources */ = {isa = PBXBuildFile; fileRef = B5122BCF18AB610D006ECE62 /* bt2_click.png */; };
@@ -1486,6 +1488,9 @@
 		1893FA0E18A87EC400DF758C /* 登录.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "登录.jpg"; sourceTree = "<group>"; };
 		1893FA5918A90C0200DF758C /* ShareMessagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareMessagerCell.h; sourceTree = "<group>"; };
 		1893FA5A18A90C0200DF758C /* ShareMessagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareMessagerCell.m; sourceTree = "<group>"; };
+		B50E718D18C6CB4E00A68FB7 /* ShareBookMobileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBookMobileViewController.h; sourceTree = "<group>"; };
+		B50E718E18C6CB4E00A68FB7 /* ShareBookMobileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBookMobileViewController.m; sourceTree = "<group>"; };
+		B50E719018C6D3B500A68FB7 /* btMobile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btMobile.png; sourceTree = "<group>"; };
 		B5122BC018AB20E1006ECE62 /* ShareBookDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBookDetailCell.h; sourceTree = "<group>"; };
 		B5122BC118AB20E2006ECE62 /* ShareBookDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBookDetailCell.m; sourceTree = "<group>"; };
 		B5122BC318AB4AD6006ECE62 /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
@@ -3457,6 +3462,7 @@
 		1893F9C118A87EC400DF758C /* 公用 */ = {
 			isa = PBXGroup;
 			children = (
+				B50E719018C6D3B500A68FB7 /* btMobile.png */,
 				B5CE2AE618B4B71F008E4E44 /* bt01_22.png */,
 				B5CE2AE718B4B71F008E4E44 /* bt012.png */,
 				B5CE2AE218B4B635008E4E44 /* bt_click 2.png */,
@@ -6251,6 +6257,8 @@
 				B5B7F3B018BF29A100E07580 /* ShareBookResignViewController.m */,
 				B5B7F3B218BF41EE00E07580 /* ShareBookMissPWViewController.h */,
 				B5B7F3B318BF41EE00E07580 /* ShareBookMissPWViewController.m */,
+				B50E718D18C6CB4E00A68FB7 /* ShareBookMobileViewController.h */,
+				B50E718E18C6CB4E00A68FB7 /* ShareBookMobileViewController.m */,
 			);
 			path = ShareBook;
 			sourceTree = "<group>";
@@ -7329,6 +7337,7 @@
 				B529F0A8187B8D6500F9060D /* 白色底边框.png in Resources */,
 				B529F0A9187B8D6500F9060D /* line_虚线.png in Resources */,
 				B529F0AA187B8D6500F9060D /* left_jian.png in Resources */,
+				B50E719118C6D3B500A68FB7 /* btMobile.png in Resources */,
 				B529F0AB187B8D6500F9060D /* more.png in Resources */,
 				1893FA3218A87EC400DF758C /* bt01_click.png in Resources */,
 				1893FA4818A87EC400DF758C /* 备注.txt in Resources */,
@@ -7711,6 +7720,7 @@
 				B58CB1D71829CF6B00F73D66 /* DYBCellForMentionedMe.m in Sources */,
 				B5186D1D18ACA6CC00CC2E36 /* ShareDouViewController.m in Sources */,
 				B58CB1D81829CF6B00F73D66 /* DYBCellForNearBy.m in Sources */,
+				B50E718F18C6CB4E00A68FB7 /* ShareBookMobileViewController.m in Sources */,
 				B58CB1D91829CF6B00F73D66 /* DYBCellForNotes.m in Sources */,
 				B58CB1DA1829CF6B00F73D66 /* DYBCellForNotesDetail.m in Sources */,
 				B58CB1DB1829CF6B00F73D66 /* DYBCellForNotice.m in Sources */,

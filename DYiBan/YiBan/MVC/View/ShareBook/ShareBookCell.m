@@ -90,6 +90,23 @@
     [labelMon setFont:[UIFont systemFontOfSize:12]];
     [labelMon sizeToFit];
     [labelMon release];
+    
+    
+    UIImage *imageTitle1 = [UIImage imageNamed:@"title_bg"];
+    UIImageView *imageViewLabel1 = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelModel.frame) + CGRectGetMinX(labelModel.frame) + 30, CGRectGetMinY(labelPublic.frame) + CGRectGetHeight(labelPublic.frame) + 3 - 40, imageTitle.size.width/2, imageTitle.size.height/2)];
+    [imageViewLabel1 setImage:[UIImage imageNamed:@"title_bg"]];
+    [self addSubview:imageViewLabel1];
+    RELEASE(imageViewLabel1);
+    
+    
+    UILabel *labelMon1 = [[UILabel alloc]initWithFrame:CGRectMake(2, 2, 200, 20)];
+    [labelMon1 setText:@"5元租金"];
+    [imageViewLabel1 addSubview:labelMon1];
+    [labelMon1 setTextColor:[UIColor whiteColor]];
+    [labelMon1 setBackgroundColor:[UIColor clearColor]];
+    [labelMon1 setFont:[UIFont systemFontOfSize:12]];
+    [labelMon1 sizeToFit];
+    [labelMon1 release];
 
     [self setBackgroundColor:[UIColor colorWithRed:246.0f/255 green:246.0f/255 blue:246.0f/255 alpha:1.0f]];
 

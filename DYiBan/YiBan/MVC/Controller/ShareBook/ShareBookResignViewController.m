@@ -9,7 +9,7 @@
 #import "ShareBookResignViewController.h"
 #import "DYBInputView.h"
 #import "CALayer+Custom.h"
-
+#import "ShareBookMobileViewController.h"
 
 @interface ShareBookResignViewController (){
 
@@ -68,7 +68,9 @@
         [self.headview setBackgroundColor:[UIColor colorWithRed:22.0f/255 green:29.0f/255 blue:36.0f/255 alpha:1.0f]];
         
         [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
-       [self.rightButton setHidden:YES];
+//       [self.rightButton setHidden:YES];
+        
+          [self setButtonImage:self.rightButton setImage:@"btMobile"];
         //        [self.view setBackgroundColor:[UIColor colorWithRed:97.0f/255 green:97.0f/255 blue:97.0f/255 alpha:1.0f]];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     }
@@ -366,6 +368,19 @@
     
 }
 
-
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
+{
+    if ([signal is:[DYBBaseViewController BACKBUTTON]])
+    {
+        [self.drNavigationController popViewControllerAnimated:YES];
+    }
+    if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]])
+    {
+        ShareBookMobileViewController *mobile = [[ShareBookMobileViewController alloc]init];
+        [self.drNavigationController pushViewController:mobile animated:YES];
+        RELEASE(mobile);
+        
+    }
+}
 
 @end
