@@ -83,6 +83,8 @@
 		1893FA5B18A90C0200DF758C /* ShareMessagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1893FA5A18A90C0200DF758C /* ShareMessagerCell.m */; };
 		B50E718F18C6CB4E00A68FB7 /* ShareBookMobileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B50E718E18C6CB4E00A68FB7 /* ShareBookMobileViewController.m */; };
 		B50E719118C6D3B500A68FB7 /* btMobile.png in Resources */ = {isa = PBXBuildFile; fileRef = B50E719018C6D3B500A68FB7 /* btMobile.png */; };
+		B50E719418C7055B00A68FB7 /* ShareBookMangeAddrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B50E719318C7055B00A68FB7 /* ShareBookMangeAddrViewController.m */; };
+		B50E719718C7110B00A68FB7 /* ShareBookAddAddrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B50E719618C7110B00A68FB7 /* ShareBookAddAddrViewController.m */; };
 		B5122BC218AB20E2006ECE62 /* ShareBookDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5122BC118AB20E2006ECE62 /* ShareBookDetailCell.m */; };
 		B5122BC918AB4AD6006ECE62 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = B5122BC318AB4AD6006ECE62 /* line.png */; };
 		B5122BD418AB610D006ECE62 /* bt2_click.png in Resources */ = {isa = PBXBuildFile; fileRef = B5122BCF18AB610D006ECE62 /* bt2_click.png */; };
@@ -1491,6 +1493,10 @@
 		B50E718D18C6CB4E00A68FB7 /* ShareBookMobileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBookMobileViewController.h; sourceTree = "<group>"; };
 		B50E718E18C6CB4E00A68FB7 /* ShareBookMobileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBookMobileViewController.m; sourceTree = "<group>"; };
 		B50E719018C6D3B500A68FB7 /* btMobile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btMobile.png; sourceTree = "<group>"; };
+		B50E719218C7055B00A68FB7 /* ShareBookMangeAddrViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBookMangeAddrViewController.h; sourceTree = "<group>"; };
+		B50E719318C7055B00A68FB7 /* ShareBookMangeAddrViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBookMangeAddrViewController.m; sourceTree = "<group>"; };
+		B50E719518C7110B00A68FB7 /* ShareBookAddAddrViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBookAddAddrViewController.h; sourceTree = "<group>"; };
+		B50E719618C7110B00A68FB7 /* ShareBookAddAddrViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBookAddAddrViewController.m; sourceTree = "<group>"; };
 		B5122BC018AB20E1006ECE62 /* ShareBookDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBookDetailCell.h; sourceTree = "<group>"; };
 		B5122BC118AB20E2006ECE62 /* ShareBookDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBookDetailCell.m; sourceTree = "<group>"; };
 		B5122BC318AB4AD6006ECE62 /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
@@ -6259,6 +6265,10 @@
 				B5B7F3B318BF41EE00E07580 /* ShareBookMissPWViewController.m */,
 				B50E718D18C6CB4E00A68FB7 /* ShareBookMobileViewController.h */,
 				B50E718E18C6CB4E00A68FB7 /* ShareBookMobileViewController.m */,
+				B50E719218C7055B00A68FB7 /* ShareBookMangeAddrViewController.h */,
+				B50E719318C7055B00A68FB7 /* ShareBookMangeAddrViewController.m */,
+				B50E719518C7110B00A68FB7 /* ShareBookAddAddrViewController.h */,
+				B50E719618C7110B00A68FB7 /* ShareBookAddAddrViewController.m */,
 			);
 			path = ShareBook;
 			sourceTree = "<group>";
@@ -7765,6 +7775,7 @@
 				B58CB1FE1829CF6B00F73D66 /* DYBPointAnnotation.m in Sources */,
 				B58CB1FF1829CF6B00F73D66 /* drawing.m in Sources */,
 				B58CB2001829CF6B00F73D66 /* PDColoredProgressView.m in Sources */,
+				B50E719718C7110B00A68FB7 /* ShareBookAddAddrViewController.m in Sources */,
 				B58CB2011829CF6B00F73D66 /* DYBScroller.m in Sources */,
 				B58CB2021829CF6B00F73D66 /* DYBScrollerView.m in Sources */,
 				B58CB2031829CF6B00F73D66 /* DYBSetButton.m in Sources */,
@@ -7784,6 +7795,7 @@
 				B58CB45D1829CF6B00F73D66 /* DYBShareinstaceDelegate.m in Sources */,
 				B58CB45E1829CF6B00F73D66 /* DYBCustomInputView.m in Sources */,
 				B58CB45F1829CF6B00F73D66 /* DYBImageUtil.m in Sources */,
+				B50E719418C7055B00A68FB7 /* ShareBookMangeAddrViewController.m in Sources */,
 				B5D9DC681834A71E002B1C74 /* DYBAudioProgressView.m in Sources */,
 				B5D9DC6D1834A764002B1C74 /* file_list.m in Sources */,
 				B5D9DC6E1834A764002B1C74 /* notes_list.m in Sources */,

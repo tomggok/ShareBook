@@ -8,6 +8,9 @@
 
 #import "ShareSettingViewController.h"
 #import "WOSOrderCell.h"
+#import "ShareBookMangeAddrViewController.h"
+
+
 @interface ShareSettingViewController (){
 
     NSMutableArray *arraySouce;
@@ -66,7 +69,7 @@
         [self.view insertSubview:viewBG atIndex:0];
         RELEASE(viewBG);
         
-        arraySouce = [[NSMutableArray alloc]initWithObjects:@"设置访问权限",@"消息推送",@"设置默认地点",@"设置自己的图书LOGO",@"账号切换",@"意见反馈", nil];
+        arraySouce = [[NSMutableArray alloc]initWithObjects:@"设置访问权限",@"消息推送",@"地址管理",@"设置自己的图书LOGO", nil];
         
         
         UIImage *image = [UIImage imageNamed:@"menu_inactive"];
@@ -78,10 +81,20 @@
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
         RELEASE(tbDataBank11);
         
-        UIButton *btnSetP = [[UIButton alloc]initWithFrame:CGRectMake(10.0f, self.view.frame.size.height - 100, 300.0f, 40.0f)];
-        [btnSetP setBackgroundColor:[UIColor redColor]];
-        [self.view addSubview:btnSetP];
-        [btnSetP release];
+//        UIButton *btnSetP = [[UIButton alloc]initWithFrame:CGRectMake(10.0f, self.view.frame.size.height - 100, 300.0f, 40.0f)];
+//        [btnSetP setBackgroundColor:[UIColor redColor]];
+//        [self.view addSubview:btnSetP];
+//        [btnSetP release];
+        
+        UIButton *btnBackGO= [[UIButton alloc]initWithFrame:CGRectMake(10.0f, self.view.frame.size.height - 200, 300.0f, 40.0f)];
+
+        [btnBackGO setBackgroundColor:[UIColor clearColor]];
+        [btnBackGO setImage:[UIImage imageNamed:@"bt_click1.png"] forState:UIControlStateNormal];
+        [btnBackGO setImage:[UIImage imageNamed:@"bt_click1"] forState:UIControlStateSelected];
+        [btnBackGO addTarget:self action:@selector(addOK) forControlEvents:UIControlEventTouchUpInside];
+        [self addlabel_title:@"退出" frame:btnBackGO.frame view:btnBackGO];
+        [self.view addSubview:btnBackGO];
+        [btnBackGO release];
         
         
     }else if ([signal is:[MagicViewController DID_APPEAR]]) {
@@ -91,6 +104,11 @@
         
         
     }
+}
+
+-(void)addOK{
+
+
 }
 
 #pragma mark- 只接受UITableView信号
@@ -106,7 +124,7 @@ static NSString *cellName = @"cellName";
         NSNumber *s;
         
         //        if ([_section intValue] == 0) {
-        s = [NSNumber numberWithInteger:5];
+        s = [NSNumber numberWithInteger:arraySouce.count];
         //        }else{
         //            s = [NSNumber numberWithInteger:[_arrStatusData count]];
         //        }
@@ -133,14 +151,14 @@ static NSString *cellName = @"cellName";
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
-        UITableViewCell *cell = [[UITableViewCell alloc]init];
+        UITableViewCell *cell = [[[UITableViewCell alloc]init] autorelease];
         
         NSDictionary *dictInfoFood = nil;
 //        [cell creatCell:dictInfoFood];
 //        DLogInfo(@"%d", indexPath.section);
         NSString *strMsg = [arraySouce objectAtIndex:indexPath.row];
         [cell.textLabel setText:strMsg];
-        
+        [cell setBackgroundColor:[UIColor clearColor]];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [signal setReturnValue:cell];
         
@@ -148,7 +166,24 @@ static NSString *cellName = @"cellName";
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
-        
+        switch (indexPath.row) {
+            case 2:
+            {
+                ShareBookMangeAddrViewController *aa = [[ShareBookMangeAddrViewController alloc]init];
+                [self.drNavigationController pushViewController:aa animated:YES];
+                RELEASE(aa);
+            
+            }
+                break;
+            case 3:
+            {
+                
+                
+            }
+                break;
+            default:
+                break;
+        }
         
         
     }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
@@ -165,6 +200,20 @@ static NSString *cellName = @"cellName";
     
 }
 
+
+-(void)addlabel_title:(NSString *)title frame:(CGRect)frame view:(UIView *)view{
+    
+    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))];
+    [label1 setText:title];
+    [label1 setTag:100];
+    [label1 setTextAlignment:NSTextAlignmentCenter];
+    [view bringSubviewToFront:label1];
+    [label1 setTextColor:[UIColor whiteColor]];
+    [label1 setBackgroundColor:[UIColor clearColor]];
+    [view addSubview:label1];
+    RELEASE(label1);
+    
+}
 
 
 - (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal

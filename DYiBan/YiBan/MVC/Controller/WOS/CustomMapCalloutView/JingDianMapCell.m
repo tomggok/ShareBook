@@ -32,9 +32,9 @@ DEF_SIGNAL(TOUCHCELL)
     
     UILabel *labelName = [[UILabel alloc]initWithFrame:CGRectMake(45, 5, 120, 20)];
     [self addSubview:labelName];
-    
-    RELEASE(labelName);
     [labelName setText:@"人民广场"];
+    RELEASE(labelName);
+    
     
     UILabel *labelPrice = [[UILabel alloc]initWithFrame:CGRectMake(45, 20 + 5, 100, 20)];
     [self addSubview:labelPrice];
