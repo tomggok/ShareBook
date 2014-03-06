@@ -61,9 +61,11 @@
         
         
         
-        UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44)];
-        [viewBG setBackgroundColor:[UIColor whiteColor]];
-        [self.view addSubview:viewBG];
+        UIImageView *viewBG = [[UIImageView alloc]initWithFrame:self.view.frame];
+        [viewBG setTag:100];
+        //        [viewBG setBackgroundColor:ColorBG];
+        [viewBG setImage:[UIImage imageNamed:@"bg"]];
+        [self.view insertSubview:viewBG atIndex:0];
         RELEASE(viewBG);
         
         UISearchBar *searchView = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0f,self.headHeight, 320, 44) ];
@@ -92,7 +94,10 @@
         [self.view addSubview:labelRange];
         RELEASE(labelRange);
         
-        ShareBookDownViewController *downView1 = [[ShareBookDownViewController alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelRange.frame) + CGRectGetMinX(labelRange.frame), CGRectGetHeight(searchView.frame) + CGRectGetMinY(searchView.frame)+ 20, 160, 30)];
+        ShareBookDownViewController *downView1 = [[ShareBookDownViewController alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelRange.frame) + CGRectGetMinX(labelRange.frame), CGRectGetHeight(searchView.frame) + CGRectGetMinY(searchView.frame)+ 20, 200, 30)];
+        NSArray *array1 = [NSArray arrayWithObjects:@"生活圈",@"好友",@"生活圈+好友", nil];
+        downView1.arrayResult = array1;
+        [downView1 viewDidLoad];
         [self.view addSubview:downView1];
         downView1.superView = self.view;
         [downView1 release];
@@ -102,8 +107,11 @@
         [self.view addSubview:labelType];
         RELEASE(labelType);
         
-        ShareBookDownViewController *downView2 = [[ShareBookDownViewController alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelRange.frame) + CGRectGetMinX(labelRange.frame), CGRectGetHeight(labelRange.frame) + CGRectGetMinY(labelRange.frame)+ 20, 160, 30)];
+        ShareBookDownViewController *downView2 = [[ShareBookDownViewController alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelRange.frame) + CGRectGetMinX(labelRange.frame), CGRectGetHeight(labelRange.frame) + CGRectGetMinY(labelRange.frame)+ 20, 200, 30)];
         [self.view addSubview:downView2];
+        NSArray *array2 = [NSArray arrayWithObjects:@"文学",@"科技",@"人文", nil];
+        downView2.arrayResult = array2;
+        [downView2 viewDidLoad];
         downView2.superView = self.view;
         [downView2 release];
         
@@ -114,8 +122,12 @@
         RELEASE(labelModel);
         
         
-        ShareBookDownViewController *downView3 = [[ShareBookDownViewController alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelRange.frame) + CGRectGetMinX(labelRange.frame), CGRectGetHeight(labelType.frame) + CGRectGetMinY(labelType.frame)+ 20, 160, 30)];
+        ShareBookDownViewController *downView3 = [[ShareBookDownViewController alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelRange.frame) + CGRectGetMinX(labelRange.frame), CGRectGetHeight(labelType.frame) + CGRectGetMinY(labelType.frame)+ 20, 200, 30)];
         [self.view addSubview:downView3];
+        
+        NSArray *array3 = [NSArray arrayWithObjects:@"可借阅",@"不可借阅", nil];
+        downView3.arrayResult = array3;
+        [downView3 viewDidLoad];
         downView3.superView = self.view;
         [downView3 release];
         
@@ -124,7 +136,12 @@
         [self.view addSubview:labelBorrowType];
         RELEASE(labelBorrowType);
         
-        ShareBookDownViewController *downView4 = [[ShareBookDownViewController alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelRange.frame) + CGRectGetMinX(labelRange.frame), CGRectGetHeight(labelModel.frame) + CGRectGetMinY(labelModel.frame)+ 20, 160, 40)];
+        ShareBookDownViewController *downView4 = [[ShareBookDownViewController alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelRange.frame) + CGRectGetMinX(labelRange.frame), CGRectGetHeight(labelModel.frame) + CGRectGetMinY(labelModel.frame)+ 20, 200, 40)];
+        
+        NSArray *array4 = [NSArray arrayWithObjects:@"做客",@"旅行",@"做客+旅行",nil];
+        downView4.arrayResult = array4;
+        [downView4 viewDidLoad];
+        
         downView4.superView = self.view;
         [self.view addSubview:downView4];
         [downView4 release];
@@ -145,12 +162,24 @@
         
         UIImage *image = [UIImage imageNamed:@"menu_inactive"];
         
+//        
+//        UIButton *btnSearch = [[UIButton alloc]initWithFrame:CGRectMake(10.0f, CGRectGetHeight(labelText.frame) + CGRectGetMinY(labelText.frame) +20, 300.0, 40.0)];
+//        [btnSearch addTarget:self action:@selector(doSearch) forControlEvents:UIControlEventTouchUpInside];
+//        [btnSearch setBackgroundColor:[UIColor redColor]];
+//        [self.view addSubview:btnSearch];
+//        [btnSearch release];
         
-        UIButton *btnSearch = [[UIButton alloc]initWithFrame:CGRectMake(10.0f, CGRectGetHeight(labelText.frame) + CGRectGetMinY(labelText.frame) +20, 300.0, 40.0)];
-        [btnSearch addTarget:self action:@selector(doSearch) forControlEvents:UIControlEventTouchUpInside];
-        [btnSearch setBackgroundColor:[UIColor redColor]];
-        [self.view addSubview:btnSearch];
-        [btnSearch release];
+        
+        UIImage *image1 = [UIImage imageNamed:@"bt_click1"];
+        UIButton *btnOK = [[UIButton alloc]initWithFrame:CGRectMake(10.0f, CGRectGetHeight(labelText.frame) + CGRectGetMinY(labelText.frame) +20, 300.0, 40.0)];
+        [btnOK setTag:102];
+        [btnOK setImage:image1 forState:UIControlStateNormal];
+        //        [btnOK setBackgroundColor:[UIColor yellowColor]];
+        [btnOK addTarget:self action:@selector(doChoose) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btnOK];
+        RELEASE(btnOK);
+        
+        [self addlabel_title:@"设置默认地址" frame:btnOK.frame view:btnOK];
         
         
         DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(image.size.width/2, 44, 320.0f - 50, self.view.frame.size.height -44  ) isNeedUpdate:YES];
@@ -170,9 +199,40 @@
     }
 }
 
+
+-(void)doChoose{
+
+
+
+}
+
+-(void)addlabel_title:(NSString *)title frame:(CGRect)frame view:(UIView *)view{
+    
+    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))];
+    [label1 setText:title];
+    [label1 setTag:100];
+    [label1 setTextAlignment:NSTextAlignmentCenter];
+    [view bringSubviewToFront:label1];
+    [label1 setTextColor:[UIColor whiteColor]];
+    [label1 setBackgroundColor:[UIColor clearColor]];
+    [view addSubview:label1];
+    RELEASE(label1);
+    
+}
+
+
 -(void)btnDefialModel:(id)seder{
 
-
+    UIButton *btn = (UIButton *)seder;
+    
+    if (btn.selected) {
+        
+        [btn setSelected:NO];
+    }else{
+        
+        [btn setSelected:YES];
+    
+    }
 
 
 }

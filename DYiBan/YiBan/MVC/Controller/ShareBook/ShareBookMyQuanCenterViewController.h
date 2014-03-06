@@ -9,5 +9,5 @@
 #import "DYBBaseViewController.h"
 
 @interface ShareBookMyQuanCenterViewController : DYBBaseViewController
-
+@property (nonatomic,assign)BOOL bEnter;
 @end

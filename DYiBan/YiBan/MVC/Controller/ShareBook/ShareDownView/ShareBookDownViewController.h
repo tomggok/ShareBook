@@ -10,4 +10,8 @@
 
 @interface ShareBookDownViewController : DYBBaseView<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,retain)UIView *superView;
+@property (nonatomic,retain)NSArray *arrayResult;
+
+- (void)viewDidLoad;
+
 @end

@@ -1,32 +1,22 @@
 //
-//  ShareBookMangeAddrViewController.m
+//  ShareBookMoreAddrViewController.m
 //  ShareBook
 //
-//  Created by tom zeng on 14-3-5.
+//  Created by tom zeng on 14-3-6.
 //  Copyright (c) 2014年 Tomgg. All rights reserved.
 //
 
-#import "ShareBookMangeAddrViewController.h"
-#import "ShareBookAddAddrViewController.h"
+#import "ShareBookMoreAddrViewController.h"
+
+@interface ShareBookMoreAddrViewController (){
 
 
-
-
-@interface ShareBookMangeAddrViewController (){
-
-    UIButton *btnTemp;
-    
-    int iSelectRow;
-    DYBUITableView * tbDataBank11;
-
+    DYBUITableView *tbDataBank11;
 }
-@property (nonatomic,retain)UIButton *btnTemp;
+
 @end
 
-
-@implementation ShareBookMangeAddrViewController
-@synthesize btnTemp;
-
+@implementation ShareBookMoreAddrViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,13 +47,13 @@
     
     if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
-        [self.headview setTitle:@"地址管理"];
+        [self.headview setTitle:@"选择地址"];
         
         [self.headview setTitleColor:[UIColor colorWithRed:193.0f/255 green:193.0f/255 blue:193.0f/255 alpha:1.0f]];
         [self.headview setBackgroundColor:[UIColor colorWithRed:97.0f/255 green:97.0f/255 blue:97.0f/255 alpha:1.0]];
         [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
         
-        [self setButtonImage:self.rightButton setImage:@"icon_retreat"];
+//        [self setButtonImage:self.rightButton setImage:@"icon_retreat"];
     }
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
@@ -98,10 +88,10 @@
         [btnOK setImage:image1 forState:UIControlStateNormal];
         //        [btnOK setBackgroundColor:[UIColor yellowColor]];
         [btnOK addTarget:self action:@selector(doChoose) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:btnOK];
-        RELEASE(btnOK);
+//        [self.view addSubview:btnOK];
+//        RELEASE(btnOK);
         
-        [self addlabel_title:@"设置默认地址" frame:btnOK.frame view:btnOK];
+//        [self addlabel_title:@"设置默认地址" frame:btnOK.frame view:btnOK];
         
     }else if ([signal is:[MagicViewController DID_APPEAR]]) {
         
@@ -122,11 +112,11 @@ static NSString *cellName = @"cellName";
     
     
     if ([signal is:[MagicUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
-
+        
         NSNumber *s;
         
         s = [NSNumber numberWithInteger:10];
-
+        
         [signal setReturnValue:s];
         
     }else if([signal is:[MagicUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
@@ -154,35 +144,35 @@ static NSString *cellName = @"cellName";
         
         static NSString *reuseIdetify = @"SvTableViewCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdetify];
-//        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdetify];
-//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            DLogInfo(@"%d", indexPath.section);
-            UILabel *labelText = [[UILabel alloc]initWithFrame:CGRectMake(10.09f, 10.0f, 300.0, 30.0f)];
-            [labelText setText:@"人民广场100号5楼404"];
-            [cell addSubview:labelText];
-            RELEASE(labelText);
+        //        if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdetify];
+        //            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        DLogInfo(@"%d", indexPath.section);
+        UILabel *labelText = [[UILabel alloc]initWithFrame:CGRectMake(10.09f, 10.0f, 300.0, 30.0f)];
+        [labelText setText:@"人民广场100号5楼404"];
+        [cell addSubview:labelText];
+        RELEASE(labelText);
         
-            btnCheck = [[UIButton alloc]initWithFrame:CGRectMake(230.0f, 10.0f, 30.0f, 30.0f)];
-            [btnCheck setImage:[UIImage imageNamed:@"check_01"] forState:UIControlStateNormal];
-            [btnCheck setImage:[UIImage imageNamed:@"check_02"] forState:UIControlStateSelected];
-            [btnCheck setTag:indexPath.row + 10];
-            [btnCheck addTarget:self action:@selector(doSelect:) forControlEvents:UIControlEventTouchUpInside];
-            [cell addSubview:btnCheck];
-            RELEASE(btnCheck);
-
-//        }
+//        btnCheck = [[UIButton alloc]initWithFrame:CGRectMake(230.0f, 10.0f, 30.0f, 30.0f)];
+//        [btnCheck setImage:[UIImage imageNamed:@"check_01"] forState:UIControlStateNormal];
+//        [btnCheck setImage:[UIImage imageNamed:@"check_02"] forState:UIControlStateSelected];
+//        [btnCheck setTag:indexPath.row + 10];
+//        [btnCheck addTarget:self action:@selector(doSelect:) forControlEvents:UIControlEventTouchUpInside];
+//        [cell addSubview:btnCheck];
+//        RELEASE(btnCheck);
+        
+        //        }
         //        NSDictionary *dictInfoFood = Nil;
         //        [cell creatCell:dictInfoFood];
-        UIButton *tt = (UIButton *)[cell viewWithTag:indexPath.row + 10];
-        
-        if (tt) {
-            
-            if (iSelectRow == indexPath.row + 10) {
-                
-                [tt setSelected:YES];
-            }
-        }
+//        UIButton *tt = (UIButton *)[cell viewWithTag:indexPath.row + 10];
+//        
+//        if (tt) {
+//            
+//            if (iSelectRow == indexPath.row + 10) {
+//                
+//                [tt setSelected:YES];
+//            }
+//        }
         
         
         
@@ -193,7 +183,7 @@ static NSString *cellName = @"cellName";
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
-        
+        [self.drNavigationController popViewControllerAnimated:YES];
         
         
     }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
@@ -212,36 +202,36 @@ static NSString *cellName = @"cellName";
 
 
 -(void)doSelect:(id)sender{
-
-    UIButton *btn =(UIButton *)sender;
+    
+//    UIButton *btn =(UIButton *)sender;
+//    //    [btn setSelected:YES];
+//    
+//    NSIndexPath *index = [NSIndexPath indexPathForRow:iSelectRow - 10 inSection:0];
+//    UITableViewCell *cell = [tbDataBank11 cellForRowAtIndexPath:index];
+//    
+//    if (cell) {
+//        UIButton *btnn = (UIButton *)[cell viewWithTag:iSelectRow];
+//        [btnn setSelected:NO];
+//    }
+//    
+//    
+//    iSelectRow = btn.tag;
 //    [btn setSelected:YES];
     
-    NSIndexPath *index = [NSIndexPath indexPathForRow:iSelectRow - 10 inSection:0];
-    UITableViewCell *cell = [tbDataBank11 cellForRowAtIndexPath:index];
-    
-    if (cell) {
-        UIButton *btnn = (UIButton *)[cell viewWithTag:iSelectRow];
-        [btnn setSelected:NO];
-    }
-    
-    
-    iSelectRow = btn.tag;
-    [btn setSelected:YES];
-   
 }
 
 - (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
     if ([signal is:[DYBBaseViewController BACKBUTTON]])
     {
-             [self.drNavigationController popViewControllerAnimated:YES];
+        [self.drNavigationController popViewControllerAnimated:YES];
         
     }else if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
         
-        ShareBookAddAddrViewController *add  = [[ShareBookAddAddrViewController alloc]init];
-        [self.drNavigationController pushViewController:add animated:YES];
-        RELEASE(add);
-
+//        ShareBookAddAddrViewController *add  = [[ShareBookAddAddrViewController alloc]init];
+//        [self.drNavigationController pushViewController:add animated:YES];
+//        RELEASE(add);
+        
     }
 }
 
@@ -260,16 +250,5 @@ static NSString *cellName = @"cellName";
     
 }
 
--(void)doChoose{
-
-
-
-}
-
-- (void)dealloc
-{
-    [btnTemp release];
-    [super dealloc];
-}
 
 @end

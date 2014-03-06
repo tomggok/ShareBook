@@ -85,6 +85,13 @@
 		B50E719118C6D3B500A68FB7 /* btMobile.png in Resources */ = {isa = PBXBuildFile; fileRef = B50E719018C6D3B500A68FB7 /* btMobile.png */; };
 		B50E719418C7055B00A68FB7 /* ShareBookMangeAddrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B50E719318C7055B00A68FB7 /* ShareBookMangeAddrViewController.m */; };
 		B50E719718C7110B00A68FB7 /* ShareBookAddAddrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B50E719618C7110B00A68FB7 /* ShareBookAddAddrViewController.m */; };
+		B50E71A118C8210200A68FB7 /* icon_down.png in Resources */ = {isa = PBXBuildFile; fileRef = B50E719C18C8210200A68FB7 /* icon_down.png */; };
+		B50E71A218C8210200A68FB7 /* icon_list.png in Resources */ = {isa = PBXBuildFile; fileRef = B50E719D18C8210200A68FB7 /* icon_list.png */; };
+		B50E71A318C8210200A68FB7 /* icon_map.png in Resources */ = {isa = PBXBuildFile; fileRef = B50E719E18C8210200A68FB7 /* icon_map.png */; };
+		B50E71A418C8210200A68FB7 /* icon_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = B50E719F18C8210200A68FB7 /* icon_pin.png */; };
+		B50E71A518C8210200A68FB7 /* icon_pin2.png in Resources */ = {isa = PBXBuildFile; fileRef = B50E71A018C8210200A68FB7 /* icon_pin2.png */; };
+		B50E71A718C827DD00A68FB7 /* icon_up.png in Resources */ = {isa = PBXBuildFile; fileRef = B50E71A618C827DD00A68FB7 /* icon_up.png */; };
+		B50E71AA18C8738E00A68FB7 /* ShareBookMoreAddrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B50E71A918C8738E00A68FB7 /* ShareBookMoreAddrViewController.m */; };
 		B5122BC218AB20E2006ECE62 /* ShareBookDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5122BC118AB20E2006ECE62 /* ShareBookDetailCell.m */; };
 		B5122BC918AB4AD6006ECE62 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = B5122BC318AB4AD6006ECE62 /* line.png */; };
 		B5122BD418AB610D006ECE62 /* bt2_click.png in Resources */ = {isa = PBXBuildFile; fileRef = B5122BCF18AB610D006ECE62 /* bt2_click.png */; };
@@ -1497,6 +1504,14 @@
 		B50E719318C7055B00A68FB7 /* ShareBookMangeAddrViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBookMangeAddrViewController.m; sourceTree = "<group>"; };
 		B50E719518C7110B00A68FB7 /* ShareBookAddAddrViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBookAddAddrViewController.h; sourceTree = "<group>"; };
 		B50E719618C7110B00A68FB7 /* ShareBookAddAddrViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBookAddAddrViewController.m; sourceTree = "<group>"; };
+		B50E719C18C8210200A68FB7 /* icon_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_down.png; sourceTree = "<group>"; };
+		B50E719D18C8210200A68FB7 /* icon_list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_list.png; sourceTree = "<group>"; };
+		B50E719E18C8210200A68FB7 /* icon_map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_map.png; sourceTree = "<group>"; };
+		B50E719F18C8210200A68FB7 /* icon_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_pin.png; sourceTree = "<group>"; };
+		B50E71A018C8210200A68FB7 /* icon_pin2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_pin2.png; sourceTree = "<group>"; };
+		B50E71A618C827DD00A68FB7 /* icon_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_up.png; sourceTree = "<group>"; };
+		B50E71A818C8738E00A68FB7 /* ShareBookMoreAddrViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBookMoreAddrViewController.h; sourceTree = "<group>"; };
+		B50E71A918C8738E00A68FB7 /* ShareBookMoreAddrViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBookMoreAddrViewController.m; sourceTree = "<group>"; };
 		B5122BC018AB20E1006ECE62 /* ShareBookDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBookDetailCell.h; sourceTree = "<group>"; };
 		B5122BC118AB20E2006ECE62 /* ShareBookDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBookDetailCell.m; sourceTree = "<group>"; };
 		B5122BC318AB4AD6006ECE62 /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
@@ -3468,6 +3483,12 @@
 		1893F9C118A87EC400DF758C /* 公用 */ = {
 			isa = PBXGroup;
 			children = (
+				B50E71A618C827DD00A68FB7 /* icon_up.png */,
+				B50E719C18C8210200A68FB7 /* icon_down.png */,
+				B50E719D18C8210200A68FB7 /* icon_list.png */,
+				B50E719E18C8210200A68FB7 /* icon_map.png */,
+				B50E719F18C8210200A68FB7 /* icon_pin.png */,
+				B50E71A018C8210200A68FB7 /* icon_pin2.png */,
 				B50E719018C6D3B500A68FB7 /* btMobile.png */,
 				B5CE2AE618B4B71F008E4E44 /* bt01_22.png */,
 				B5CE2AE718B4B71F008E4E44 /* bt012.png */,
@@ -6269,6 +6290,8 @@
 				B50E719318C7055B00A68FB7 /* ShareBookMangeAddrViewController.m */,
 				B50E719518C7110B00A68FB7 /* ShareBookAddAddrViewController.h */,
 				B50E719618C7110B00A68FB7 /* ShareBookAddAddrViewController.m */,
+				B50E71A818C8738E00A68FB7 /* ShareBookMoreAddrViewController.h */,
+				B50E71A918C8738E00A68FB7 /* ShareBookMoreAddrViewController.m */,
 			);
 			path = ShareBook;
 			sourceTree = "<group>";
@@ -6528,6 +6551,7 @@
 				B5949FB4183E0573007904F6 /* 2tabs_left_sel.png in Resources */,
 				B5D5AE9418BC365F005E4732 /* icon_good.png in Resources */,
 				B5949FB5183E0573007904F6 /* 2tabs_right_def.png in Resources */,
+				B50E71A418C8210200A68FB7 /* icon_pin.png in Resources */,
 				B5949FB6183E0573007904F6 /* 2tabs_right_sel.png in Resources */,
 				1893FA4F18A87EC400DF758C /* check_02.png in Resources */,
 				B5949FB7183E0573007904F6 /* a3_02.png in Resources */,
@@ -6633,6 +6657,7 @@
 				B594A012183E0573007904F6 /* 4tabs_3_def.png in Resources */,
 				1893FA3818A87EC400DF758C /* icon_search.png in Resources */,
 				B594A013183E0573007904F6 /* 4tabs_3_sel.png in Resources */,
+				B50E71A318C8210200A68FB7 /* icon_map.png in Resources */,
 				B594A014183E0573007904F6 /* 4tabs_4_def.png in Resources */,
 				B594A015183E0573007904F6 /* 4tabs_4_sel.png in Resources */,
 				B594A016183E0573007904F6 /* alert_no_def.png in Resources */,
@@ -6942,6 +6967,7 @@
 				B594A120183E0573007904F6 /* 22.png in Resources */,
 				B594A121183E0573007904F6 /* 23.png in Resources */,
 				B521EAE918ADB27B00C8599A /* SelectionCell.xib in Resources */,
+				B50E71A118C8210200A68FB7 /* icon_down.png in Resources */,
 				B594A122183E0573007904F6 /* 24.png in Resources */,
 				B594A123183E0573007904F6 /* 25.png in Resources */,
 				B594A124183E0573007904F6 /* 26.png in Resources */,
@@ -7150,13 +7176,16 @@
 				B594A1D9183E0573007904F6 /* tab_share_def_note.png in Resources */,
 				B594A1DA183E0573007904F6 /* tab_share_sel_note.png in Resources */,
 				B594A1DB183E0573007904F6 /* tab_tag_def.png in Resources */,
+				B50E71A218C8210200A68FB7 /* icon_list.png in Resources */,
 				B594A1DC183E0573007904F6 /* tab_tag_sel.png in Resources */,
 				B594A1DD183E0573007904F6 /* tag_close.png in Resources */,
 				B594A1DE183E0573007904F6 /* noteteaching01-568h@2x.png in Resources */,
 				B594A1DF183E0573007904F6 /* noteteaching01@2x.png in Resources */,
+				B50E71A718C827DD00A68FB7 /* icon_up.png in Resources */,
 				B594A1E0183E0573007904F6 /* noteteaching02-568h@2x.png in Resources */,
 				B594A1E1183E0573007904F6 /* noteteaching02@2x.png in Resources */,
 				B594A1E2183E0573007904F6 /* noteteaching03-568h@2x.png in Resources */,
+				B50E71A518C8210200A68FB7 /* icon_pin2.png in Resources */,
 				B594A1E3183E0573007904F6 /* noteteaching03@2x.png in Resources */,
 				B594A1E4183E0573007904F6 /* noteteaching04-568h@2x.png in Resources */,
 				B594A1E5183E0573007904F6 /* noteteaching04@2x.png in Resources */,
@@ -7372,6 +7401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C942206517A89E430054E5BC /* main.m in Sources */,
+				B50E71AA18C8738E00A68FB7 /* ShareBookMoreAddrViewController.m in Sources */,
 				C942206917A89E430054E5BC /* AppDelegate.mm in Sources */,
 				B58CB0611829CF6A00F73D66 /* ASIAuthenticationDialog.m in Sources */,
 				B58CB0621829CF6A00F73D66 /* ASIDataCompressor.m in Sources */,

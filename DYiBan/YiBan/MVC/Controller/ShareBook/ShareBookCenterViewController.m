@@ -85,7 +85,18 @@
         RELEASE(labelBook);
         
         
-       UITableView * tbDataBank11 = [[UITableView alloc]initWithFrame:CGRectMake(0, self.headHeight + 40, 320.0f, self.view.frame.size.height - self.headHeight  ) style:UITableViewStyleGrouped];
+        
+        
+        UIView *viewBGTableView = [[UIView alloc]initWithFrame:CGRectMake(10, self.headHeight + 60, 300.0f,  5* 50  )];
+        [viewBGTableView setBackgroundColor:[UIColor whiteColor]];
+        [viewBGTableView.layer setBorderWidth:1];
+        [viewBGTableView.layer setCornerRadius:10.0f];
+        [viewBGTableView.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [self.view addSubview:viewBGTableView];
+        RELEASE(viewBGTableView);
+        
+        
+       UITableView * tbDataBank11 = [[UITableView alloc]initWithFrame:CGRectMake(20, self.headHeight+ 60 , 280.0f,  6* 50  ) style:UITableViewStylePlain];
         [tbDataBank11 setBackgroundColor:[UIColor clearColor]];
         [self.view addSubview:tbDataBank11];
         [tbDataBank11 setDataSource:self];
@@ -93,9 +104,11 @@
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
         RELEASE(tbDataBank11);
         [tbDataBank11 setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        [tbDataBank11 setScrollEnabled:NO];
+        
         
         UIImage *iamgeBtn = [UIImage imageNamed:@"bt_click1.png"];
-        UIButton *btnSendBook = [[UIButton alloc]initWithFrame:CGRectMake(10.0f, 400.f, iamgeBtn.size.width/2, iamgeBtn.size.height/2)];
+        UIButton *btnSendBook = [[UIButton alloc]initWithFrame:CGRectMake(10.0f, 390.f, iamgeBtn.size.width/2, iamgeBtn.size.height/2)];
         [btnSendBook setImage:iamgeBtn forState:UIControlStateNormal];
         [self.view addSubview:btnSendBook];
         [btnSendBook setBackgroundColor:[UIColor clearColor]];
@@ -136,7 +149,6 @@
     UITableViewCell *cell = [[[UITableViewCell alloc]init] autorelease];
     
     [cell.textLabel setText:[arraySouce objectAtIndex:indexPath.row]];
-    
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     

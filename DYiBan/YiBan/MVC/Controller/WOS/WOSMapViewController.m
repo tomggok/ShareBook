@@ -8,7 +8,7 @@
 
 #import "WOSMapViewController.h"
 #import "MapViewController.h"
-
+#import "ShareBookMyQuanCenterViewController.h"
 #import "ShareBookQuanDetailViewController.h"
 #import "ShareAddQuanViewController.h"
 
@@ -20,7 +20,7 @@
 @end
 
 @implementation WOSMapViewController
-@synthesize iType,dictMap = _dictMap;
+@synthesize iType,dictMap = _dictMap ,bEnter = _bEnter;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -57,6 +57,17 @@
         
         [self.view setBackgroundColor:[UIColor redColor]];
         [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
+        
+        if (_bEnter) {
+            
+            [self.rightButton setHidden:YES];
+            [self.headview setTitle:@"圈子"];
+            
+        }else{
+        
+            [self setButtonImage:self.rightButton setImage:@"icon_list"];
+        }
+        
     }
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
@@ -250,6 +261,12 @@
     {
         [self.drNavigationController popViewControllerAnimated:YES];
     }else if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
+        
+        ShareBookMyQuanCenterViewController *mapList = [[ShareBookMyQuanCenterViewController alloc]init];
+        mapList.bEnter = YES;
+        [mapList setTitle:@"附近的圈子"];
+        [self.drNavigationController pushViewController:mapList animated:YES];
+        RELEASE(mapList);
     }
 }
 - (void)dealloc

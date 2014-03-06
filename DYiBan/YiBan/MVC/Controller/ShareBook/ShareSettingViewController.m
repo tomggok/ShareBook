@@ -75,18 +75,33 @@
         UIImage *image = [UIImage imageNamed:@"menu_inactive"];
         
         
-        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, self.headHeight, 320.0f, self.view.frame.size.height -self.headHeight - 80  ) isNeedUpdate:YES];
+        
+        
+        UIView *viewBGTableView = [[UIView alloc]initWithFrame:CGRectMake(10, self.headHeight + 20, 300.0f, 50 *4 )];
+                                   
+        [viewBGTableView setBackgroundColor:[UIColor whiteColor]];
+        [viewBGTableView.layer setBorderWidth:1];
+        [viewBGTableView.layer setCornerRadius:10.0f];
+        [viewBGTableView.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [self.view addSubview:viewBGTableView];
+        RELEASE(viewBGTableView);
+        
+        
+        
+        
+        
+        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(20, self.headHeight + 20, 280.0f, 50 * 4  ) isNeedUpdate:YES];
         [tbDataBank11 setBackgroundColor:[UIColor clearColor]];
         [self.view addSubview:tbDataBank11];
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
         RELEASE(tbDataBank11);
-        
+        [tbDataBank11 setScrollEnabled:NO];
 //        UIButton *btnSetP = [[UIButton alloc]initWithFrame:CGRectMake(10.0f, self.view.frame.size.height - 100, 300.0f, 40.0f)];
 //        [btnSetP setBackgroundColor:[UIColor redColor]];
 //        [self.view addSubview:btnSetP];
 //        [btnSetP release];
         
-        UIButton *btnBackGO= [[UIButton alloc]initWithFrame:CGRectMake(10.0f, self.view.frame.size.height - 200, 300.0f, 40.0f)];
+        UIButton *btnBackGO= [[UIButton alloc]initWithFrame:CGRectMake(10.0f, 50 * 4 + self.headHeight + 20 + 20, 300.0f, 40.0f)];
 
         [btnBackGO setBackgroundColor:[UIColor clearColor]];
         [btnBackGO setImage:[UIImage imageNamed:@"bt_click1.png"] forState:UIControlStateNormal];
@@ -137,7 +152,7 @@ static NSString *cellName = @"cellName";
         
     }else if([signal is:[MagicUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
         
-        NSNumber *s = [NSNumber numberWithInteger:60];
+        NSNumber *s = [NSNumber numberWithInteger:50];
         [signal setReturnValue:s];
         
         
@@ -153,13 +168,18 @@ static NSString *cellName = @"cellName";
         
         UITableViewCell *cell = [[[UITableViewCell alloc]init] autorelease];
         
-        NSDictionary *dictInfoFood = nil;
+//        NSDictionary *dictInfoFood = nil;
 //        [cell creatCell:dictInfoFood];
 //        DLogInfo(@"%d", indexPath.section);
         NSString *strMsg = [arraySouce objectAtIndex:indexPath.row];
         [cell.textLabel setText:strMsg];
         [cell setBackgroundColor:[UIColor clearColor]];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+        if (indexPath.row == 2) {
+            [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        }
+        
         [signal setReturnValue:cell];
         
     }else if([signal is:[MagicUITableView TABLEDIDSELECT]])/*选中cell*/{

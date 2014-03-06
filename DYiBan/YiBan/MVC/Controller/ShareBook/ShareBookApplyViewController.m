@@ -11,6 +11,8 @@
 #import "ShareBookApplyCell.h"
 #import "DYBInputView.h"
 #import "CALayer+Custom.h"
+#import "ShareBookMoreAddrViewController.h"
+
 
 @interface ShareBookApplyViewController (){
 
@@ -143,6 +145,14 @@
         RELEASE(_phoneInputNameR);
         
         
+        UIButton *btnMoreAddr = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(_phoneInputNameR.frame) + CGRectGetMinX(_phoneInputNameR.frame) + 20 , CGRectGetMinY(btnChooseTime.frame) + CGRectGetHeight(btnChooseTime.frame), 50, 40)];
+        [btnMoreAddr addTarget:self action:@selector(doMoreAddr) forControlEvents:UIControlEventTouchUpInside];
+        [btnMoreAddr setBackgroundColor:[UIColor redColor]];
+        [self.view addSubview:btnMoreAddr];
+        RELEASE(btnMoreAddr);
+        
+        
+        
         
         DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMinY(_phoneInputNameR.frame) + CGRectGetHeight(_phoneInputNameR.frame) + 10, 320.0f, self.view.frame.size.height -CGRectGetMinY(_phoneInputNameR.frame) + CGRectGetHeight(_phoneInputNameR.frame) + 10  ) isNeedUpdate:YES];
         [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];
@@ -167,6 +177,15 @@
 -(void)doChooseTime{
 
 
+
+
+}
+
+-(void)doMoreAddr{
+
+    ShareBookMoreAddrViewController *moreBook = [[ShareBookMoreAddrViewController alloc]init];
+    [self.drNavigationController pushViewController:moreBook animated:YES];
+    RELEASE(moreBook);
 
 
 }
