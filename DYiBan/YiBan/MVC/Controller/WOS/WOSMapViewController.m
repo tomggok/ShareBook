@@ -20,7 +20,7 @@
 @end
 
 @implementation WOSMapViewController
-@synthesize iType,dictMap = _dictMap;
+@synthesize iType,dictMap = _dictMap,bShowLeft = _bShowLeft;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -56,7 +56,14 @@
         [self.headview setTitleColor:[UIColor colorWithRed:203.0f/255 green:203.0f/255 blue:203.0f/255 alpha:1.0f]];
         
         [self.view setBackgroundColor:[UIColor redColor]];
-        [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
+        if (_bShowLeft) {
+            [self.leftButton setHidden:NO];
+            [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
+
+        }else{
+        
+        [self.leftButton setHidden:YES];
+        }
     }
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
@@ -138,8 +145,13 @@
 //            RELEASE(btn1);
         }
         
+        int offset = 0;
+        if (!IOS7_OR_LATER) {
+            
+            offset = 20;
+        }
         
-        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(20.0f, CGRectGetHeight(self.view.frame) - 100, 280.0f, 44)];
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(20.0f, CGRectGetHeight(self.view.frame) - 100 - offset, 280.0f, 44)];
         [btn setBackgroundColor:[UIColor clearColor]];
         [btn setImage:[UIImage imageNamed:@"bt_click1"] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(addQuan) forControlEvents:UIControlEventTouchUpInside];

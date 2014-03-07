@@ -102,7 +102,10 @@
     [self.window makeKeyAndVisible];
      [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
 //    [self setNeedsStatusBarAppearanceUpdate];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+    if (IOS7_OR_LATER) {
+        [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+
+    }
     return YES;
 }
 

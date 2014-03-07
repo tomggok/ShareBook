@@ -173,8 +173,15 @@
 
 -(void)creatDownBar{
 
+    
+    int offset = 0;
+    if (!IOS7_OR_LATER) {
+        
+        offset = 20;
+    }
+    
     UIImage *imageBG = [UIImage imageNamed:@"down_options_bg"];
-    UIImageView *viewBG = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, self.view.frame.size.height - imageBG.size.height/2, 320.0f, imageBG.size.height/2)];
+    UIImageView *viewBG = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, self.view.frame.size.height - imageBG.size.height/2 - offset, 320.0f, imageBG.size.height/2)];
     [viewBG setUserInteractionEnabled:YES];
 //    [viewBG setBackgroundColor:[UIColor redColor]];
     [viewBG setTag:201];

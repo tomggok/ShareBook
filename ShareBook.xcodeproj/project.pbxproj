@@ -6435,6 +6435,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Tomgg;
+				TargetAttributes = {
+					C942205417A89E430054E5BC = {
+						DevelopmentTeam = WRHL46JH92;
+					};
+				};
 			};
 			buildConfigurationList = C942205017A89E430054E5BC /* Build configuration list for PBXProject "ShareBook" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -7915,8 +7920,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer: zhou zhe (GNB5T4K9X8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zhou zhe (GNB5T4K9X8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Qingtao Ren (FS8C526MC5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qingtao Ren (FS8C526MC5)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DYiBan/ShareBook-Prefix.pch";
 				HEADER_SEARCH_PATHS = /System/Library/Frameworks/CoreTelephony.framework/Headers;
@@ -7930,8 +7935,8 @@
 				);
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = ShareBook;
-				PROVISIONING_PROFILE = "A575A1A9-CD18-4D1F-BFF4-262BF121292E";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A575A1A9-CD18-4D1F-BFF4-262BF121292E";
+				PROVISIONING_PROFILE = "AAB0ECDD-2153-4983-B63A-37420FA69C54";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AAB0ECDD-2153-4983-B63A-37420FA69C54";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -7941,8 +7946,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer: zhou zhe (GNB5T4K9X8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zhou zhe (GNB5T4K9X8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Qingtao Ren (FS8C526MC5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qingtao Ren (FS8C526MC5)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DYiBan/ShareBook-Prefix.pch";
 				HEADER_SEARCH_PATHS = /System/Library/Frameworks/CoreTelephony.framework/Headers;
@@ -7956,8 +7961,8 @@
 				);
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = ShareBook;
-				PROVISIONING_PROFILE = "A575A1A9-CD18-4D1F-BFF4-262BF121292E";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A575A1A9-CD18-4D1F-BFF4-262BF121292E";
+				PROVISIONING_PROFILE = "AAB0ECDD-2153-4983-B63A-37420FA69C54";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AAB0ECDD-2153-4983-B63A-37420FA69C54";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};

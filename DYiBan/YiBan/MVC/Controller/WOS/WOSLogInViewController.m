@@ -82,30 +82,30 @@
         [self.view insertSubview:viewBG atIndex:0];
         RELEASE(viewBG);
         
-        btnLogin = [[UIButton alloc]initWithFrame:CGRectMake(0.0f, 44.0f, 320/2,20)];
-        [btnLogin setBackgroundColor:[UIColor blackColor]];
-        [btnLogin setTitle:@"登陆" forState:UIControlStateNormal];
-        [btnLogin setTitleColor:ColorTextYellow forState:UIControlStateNormal];
-        [btnLogin addTarget:self action:@selector(doChange:) forControlEvents:UIControlEventTouchUpInside];
-        [btnLogin setTag:10];
-        [viewBG addSubview:btnLogin];
-        RELEASE(btnLogin);
+//        btnLogin = [[UIButton alloc]initWithFrame:CGRectMake(0.0f, 44.0f, 320/2,20)];
+//        [btnLogin setBackgroundColor:[UIColor blackColor]];
+//        [btnLogin setTitle:@"登陆" forState:UIControlStateNormal];
+//        [btnLogin setTitleColor:ColorTextYellow forState:UIControlStateNormal];
+//        [btnLogin addTarget:self action:@selector(doChange:) forControlEvents:UIControlEventTouchUpInside];
+//        [btnLogin setTag:10];
+//        [viewBG addSubview:btnLogin];
+//        RELEASE(btnLogin);
         
         UIImageView *imageViewMid = [[UIImageView alloc]initWithFrame:CGRectMake(320/2, 0, 1, 20)];
         [imageViewMid setImage:[UIImage imageNamed:@"line"]];
         [viewBG addSubview:imageViewMid];
         RELEASE(imageViewMid);
         
-        btnResgin = [[UIButton alloc]initWithFrame:CGRectMake(320/2+1 , 44.0f, 320/2,20)];
-        [btnResgin setBackgroundColor:[UIColor blackColor]];
-        [btnResgin setTitle:@"注册" forState:UIControlStateNormal];
-        [btnResgin setTag:11];
-        [btnResgin addTarget:self action:@selector(doChange:) forControlEvents:UIControlEventTouchUpInside];
-        [viewBG addSubview:btnResgin];
-        RELEASE(btnResgin);
+//        btnResgin = [[UIButton alloc]initWithFrame:CGRectMake(320/2+1 , 44.0f, 320/2,20)];
+//        [btnResgin setBackgroundColor:[UIColor blackColor]];
+//        [btnResgin setTitle:@"注册" forState:UIControlStateNormal];
+//        [btnResgin setTag:11];
+//        [btnResgin addTarget:self action:@selector(doChange:) forControlEvents:UIControlEventTouchUpInside];
+//        [viewBG addSubview:btnResgin];
+//        RELEASE(btnResgin);
         
         
-        scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, CGRectGetHeight(btnLogin.frame) + CGRectGetMinY(btnLogin.frame), 320.0f, 400)];
+        scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.0f, self.headHeight, 320.0f, CGRectGetHeight(self.view.frame))];
         
         [self.view addSubview:scrollView];
         RELEASE(scrollView);

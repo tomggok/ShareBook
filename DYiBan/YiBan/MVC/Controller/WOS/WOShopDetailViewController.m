@@ -278,7 +278,7 @@ DEF_SIGNAL(BTNTWO);
     [btnMore setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [viewBG addSubview:btnMore];
     RELEASE(btnMore);
-    
+
     [viewBG setFrame:CGRectMake(10.0f, viewBG.frame.origin.y, 300, CGRectGetMidY(textView.frame) + CGRectGetHeight(textView.frame) + 20)];
     
     UIImage *image2 = [UIImage imageNamed:@"031"];
@@ -392,6 +392,7 @@ DEF_SIGNAL(BTNTWO);
 
     WOSMapViewController *map = [[WOSMapViewController alloc]init];
     map.iType = 3;
+    map.bShowLeft = YES;
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"30.425622",@"latitude",@"120.299605",@"longitude",nil];
     map.dictMap = dict;
     [self.drNavigationController pushViewController:map animated:YES];

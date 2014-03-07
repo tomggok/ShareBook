@@ -68,6 +68,7 @@
         RELEASE(viewBG);
         
         WOSMapViewController *map = [[WOSMapViewController alloc]init];
+        map.bShowLeft = NO;
         [self.view addSubview:map.view];
 
         [map release];

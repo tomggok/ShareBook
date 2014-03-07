@@ -109,9 +109,15 @@
 -(void)creatDownBar{
 
     
+    int offset = 0;
+    if (!IOS7_OR_LATER) {
+        
+        offset = 20;
+    }
+    
     UIImage *image = [UIImage imageNamed:@"down_options_bg"];
 
-    UIImageView *viewBar = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, self.view.frame.size.height -  image.size.height/2, 320.0f, image.size.height/2)];
+    UIImageView *viewBar = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, self.view.frame.size.height -  image.size.height/2 - offset, 320.0f, image.size.height/2)];
     [viewBar setImage:[UIImage imageNamed:@"down_options_bg"]];
     [viewBar setUserInteractionEnabled:YES];
     [viewBar setBackgroundColor:[UIColor clearColor]];

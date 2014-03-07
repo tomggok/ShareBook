@@ -78,7 +78,13 @@
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
         RELEASE(tbDataBank11);
         
-        UIButton *btnSetP = [[UIButton alloc]initWithFrame:CGRectMake(10.0f, self.view.frame.size.height - 100, 300.0f, 40.0f)];
+        int offset = 0;
+        if (!IOS7_OR_LATER) {
+            
+            offset = 20;
+        }
+        
+        UIButton *btnSetP = [[UIButton alloc]initWithFrame:CGRectMake(10.0f, self.view.frame.size.height - 100 - offset, 300.0f, 40.0f)];
         [btnSetP setBackgroundColor:[UIColor redColor]];
         [self.view addSubview:btnSetP];
         [btnSetP release];
