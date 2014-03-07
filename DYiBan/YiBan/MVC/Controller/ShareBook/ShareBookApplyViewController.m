@@ -186,6 +186,12 @@
 -(void)doChooseTime{
     
     
+    
+    UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0F, 300.0f, 320.0f, 200.0f)];
+    [viewBG setBackgroundColor:[UIColor whiteColor]];
+    [self.view addSubview:viewBG];
+    RELEASE(viewBG);
+    
     UIDatePicker *datePicker = [[ UIDatePicker alloc] initWithFrame:CGRectMake(0.0,300,0.0,0.0)];
 
     datePicker.datePickerMode  = UIDatePickerModeDateAndTime;
@@ -198,8 +204,8 @@
     datePicker.minimumDate = minDate;
     datePicker.maximumDate = maxDate;
     
-//    datePicker.date = minDate;
-    [datePicker setDate:maxDate animated:YES];
+    datePicker.date = [NSDate date];
+//    [datePicker setDate:maxDate animated:YES];
     
     
     [self.view addSubview:datePicker];
