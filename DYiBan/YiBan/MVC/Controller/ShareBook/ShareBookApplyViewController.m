@@ -12,7 +12,7 @@
 #import "DYBInputView.h"
 #import "CALayer+Custom.h"
 #import "ShareBookMoreAddrViewController.h"
-
+#import "NSDate+Helpers.h"
 
 @interface ShareBookApplyViewController (){
 
@@ -173,11 +173,51 @@
     }
 }
 
++(NSDate*) convertDateFromString:(NSString*)uiDate
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date=[formatter dateFromString:uiDate];
+    return date;
+}
+
+
 
 -(void)doChooseTime{
+    
+    
+    UIDatePicker *datePicker = [[ UIDatePicker alloc] initWithFrame:CGRectMake(0.0,300,0.0,0.0)];
+
+    datePicker.datePickerMode  = UIDatePickerModeDateAndTime;
+    datePicker.minuteInterval = 5;
+
+    
+    NSDate* minDate = [NSDate convertDateFromString:@"1900-01-01 00:00:00 -0500"];
+    NSDate* maxDate = [NSDate convertDateFromString:@"2099-01-01 00:00:00 -0500"];
+    
+    datePicker.minimumDate = minDate;
+    datePicker.maximumDate = maxDate;
+    
+//    datePicker.date = minDate;
+    [datePicker setDate:maxDate animated:YES];
+    
+    
+    [self.view addSubview:datePicker];
+    RELEASE(datePicker);
+    
+    
+    [datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged ];
+    
+    
+    
+}
 
 
+-(void)dateChanged:(UIDatePicker *)sender{
 
+
+    UIDatePicker* control = (UIDatePicker*)sender;
+    NSDate* _date = control.date;
 
 }
 

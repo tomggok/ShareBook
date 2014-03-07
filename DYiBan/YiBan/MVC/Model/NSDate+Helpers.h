@@ -16,5 +16,6 @@
  */
 - (NSUInteger) numberOfDaysInMonth;
 
++(NSDate*) convertDateFromString:(NSString*)uiDate;
 
 @end
