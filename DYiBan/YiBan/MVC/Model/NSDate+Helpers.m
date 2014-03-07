@@ -16,4 +16,13 @@
                                               inUnit:NSMonthCalendarUnit
                                              forDate:self].length;
 }
+
++(NSDate*) convertDateFromString:(NSString*)uiDate
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date=[formatter dateFromString:uiDate];
+    return date;
+}
+
 @end

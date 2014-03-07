@@ -74,12 +74,42 @@
         
         [self creatDetailView];
         
+        
+        UIImage *image1 = [UIImage imageNamed:@"down_options_bg"];
+        
+        UIImageView *imageNum1 = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 5.0f + self.headHeight + 160, 320.0f, 60)];
+        [imageNum1 setImage:image1];
+        [self.view addSubview:imageNum1];
+        [imageNum1 release];
+        
+        UILabel *labelNum3  = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, 3, 100.0f, 40)];
+        [labelNum3 setText:@"书主评论："];
+        [labelNum3 sizeToFit];
+        [imageNum1 addSubview:labelNum3];
+        RELEASE(labelNum3);
+        
+        UILabel *labelText = [[UILabel alloc]initWithFrame:CGRectMake(110.0f, .0f , 210.0f, 40)];
+        [labelText setText:@"图书很好看，图书很好看图书很好看评主评论："];
+        [labelText setFont:[UIFont systemFontOfSize:14]];
+        
+        labelText.lineBreakMode = UILineBreakModeWordWrap;
+        labelText.numberOfLines = 0;
+        [imageNum1 addSubview:labelText];
+        RELEASE(labelText);
+        
+        
+        
         UIImage *image = [UIImage imageNamed:@"down_options_bg"];
         
-        UIImageView *imageNum = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 5.0f + self.headHeight + 160, 320.0f, 40)];
+        UIImageView *imageNum = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 5.0f + self.headHeight + 210, 320.0f, 40)];
         [imageNum setImage:image];
         [self.view addSubview:imageNum];
         [imageNum release];
+        
+        
+        
+        
+        
         
         
         UILabel *labelNum  = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, 0, 320.0f, 40)];
@@ -87,7 +117,10 @@
         [imageNum addSubview:labelNum];
         RELEASE(labelNum);
         
-        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, 44 + 100 + 120, 320.0f, self.view.frame.size.height -44-100  ) isNeedUpdate:YES];
+        
+        
+        
+        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, 5.0f + self.headHeight + 210 + 40, 320.0f, self.view.frame.size.height -44-100  ) isNeedUpdate:YES];
         [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:tbDataBank11];
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
@@ -217,17 +250,24 @@
     
     
     UILabel *labelTime = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 5, CGRectGetHeight(labelPublic.frame) + CGRectGetMinY(labelPublic.frame), 150, 20)];
-    [labelTime setText:@"借书时间：2014 -01 -03"];
+    [labelTime setText:@"借出次数：3次"];
     [labelTime setFont:[UIFont systemFontOfSize:13]];
     [self.view addSubview:labelTime];
     [labelTime release];
     
     
     UILabel *labelMon = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 5, CGRectGetHeight(labelTime.frame) + CGRectGetMinY(labelTime.frame), 200, 20)];
-    [labelMon setText:@"押  金：20乐享豆"];
+    [labelMon setText:@"押 金：20乐享豆"];
     [labelMon setFont:[UIFont systemFontOfSize:13]];
+    [labelMon sizeToFit];
     [self.view addSubview:labelMon];
     [labelMon release];
+    
+    UILabel *labelMon1 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(labelMon.frame) + CGRectGetWidth(labelMon.frame)+ 15, CGRectGetHeight(labelTime.frame) + CGRectGetMinY(labelTime.frame) - 1, 200, 20)];
+    [labelMon1 setText:@"租 金：20乐享豆"];
+    [labelMon1 setFont:[UIFont systemFontOfSize:13]];
+    [self.view addSubview:labelMon1];
+    [labelMon1 release];
     
     
     UILabel *labelType = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 5, CGRectGetHeight(labelMon.frame) + CGRectGetMinY(labelMon.frame), 100, 20)];

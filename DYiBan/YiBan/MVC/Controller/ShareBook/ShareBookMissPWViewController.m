@@ -204,18 +204,37 @@
 //        RELEASE(_phoneInputAddr);
         
         
+//        188
+        
+        UIView *viewBGbtn = [[UIView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 0 +INPUTHEIGHT  + 40, 130.0f, 40.0f)];
+        [viewBGbtn setBackgroundColor:[UIColor colorWithRed:188.0f/255 green:188.0f/255 blue:188.0f/255 alpha:1.0f]];
+        
+        viewBGbtn.layer.cornerRadius = 10;//设置那个圆角的有多圆
+        viewBGbtn.layer.borderWidth = 10;//设置边框的宽度，当然可以不要
+        viewBGbtn.layer.borderColor = [[UIColor colorWithRed:188.0f/255 green:188.0f/255 blue:188.0f/255 alpha:1.0f] CGColor];//设置边框的颜色
+        viewBGbtn.layer.masksToBounds = YES;//设为NO去试试
+
+        [viewLogin addSubview:viewBGbtn];
+        RELEASE(viewBGbtn);
         
         
-        UIButton *btnGetCode = [[UIButton alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 0 +INPUTHEIGHT  + 50, 130.0f, 40.0f)];
+        
+        UIButton *btnGetCode = [[UIButton alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 0 +INPUTHEIGHT  + 40, 130.0f, 40.0f)];
 //        [btnGetCode setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
 //        [btnGetCode setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
-        [btnGetCode setBackgroundColor:[UIColor redColor]];
+        [btnGetCode setBackgroundColor:[UIColor clearColor]];
+        [btnGetCode setTitle:@"获得验证码" forState:UIControlStateNormal];
         [btnGetCode addTarget:self action:@selector(doGetCode) forControlEvents:UIControlEventTouchUpInside];
         [viewLogin addSubview:btnGetCode];
         RELEASE(btnGetCode);
         
-        UILabel *labelText = [[UILabel alloc]initWithFrame:CGRectMake(150.0f,  0 +INPUTHEIGHT  + 50, 200.0f, 40.0f)];
+        UILabel *labelText = [[UILabel alloc]initWithFrame:CGRectMake(150.0f,  0 +INPUTHEIGHT  + 40, 160.0f, 40.0f)];
         [labelText setText:@"通过手机获得验证码每天上线3次"];
+        [labelText setFont:[UIFont systemFontOfSize:14]];
+        
+        labelText.lineBreakMode = UILineBreakModeWordWrap;
+        labelText.numberOfLines = 0;
+        [labelText setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
         [viewLogin addSubview:labelText];
         RELEASE(labelText)
         
@@ -232,14 +251,14 @@
         
         
         
-//        UIButton *btnBack= [[UIButton alloc]initWithFrame:CGRectMake(10.0f, CGRectGetHeight(_phoneInputAddr.frame) + CGRectGetMinY(_phoneInputAddr.frame) + 40 + 10 + 30, 300, 44)];
-//        [btnBack setBackgroundColor:[UIColor clearColor]];
-//        [btnBack setImage:[UIImage imageNamed:@"bt_click 2"] forState:UIControlStateNormal];
-//        [btnBack setImage:[UIImage imageNamed:@"bt_click 2"] forState:UIControlStateSelected];
-//        [btnBack addTarget:self action:@selector(addOKLogin) forControlEvents:UIControlEventTouchUpInside];
-//        [self addlabel_title:@"确认提交" frame:btnBack.frame view:btnBack];
-//        [viewLogin addSubview:btnBack];
-//        [btnBack release];
+        UIButton *btnBack= [[UIButton alloc]initWithFrame:CGRectMake(10.0f, CGRectGetHeight(_phoneInputAddr1.frame) + CGRectGetMinY(_phoneInputAddr1.frame) + 20 , 300, 44)];
+        [btnBack setBackgroundColor:[UIColor clearColor]];
+        [btnBack setImage:[UIImage imageNamed:@"bt_click 2"] forState:UIControlStateNormal];
+        [btnBack setImage:[UIImage imageNamed:@"bt_click 2"] forState:UIControlStateSelected];
+        [btnBack addTarget:self action:@selector(addOKLogin) forControlEvents:UIControlEventTouchUpInside];
+        [self addlabel_title:@"确认提交" frame:btnBack.frame view:btnBack];
+        [viewLogin addSubview:btnBack];
+        [btnBack release];
         
         
         
@@ -280,6 +299,14 @@
         
         
     }
+}
+
+
+-(void)addOKLogin{
+
+
+
+
 }
 
 -(void)doGetCode{

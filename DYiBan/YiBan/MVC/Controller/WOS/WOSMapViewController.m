@@ -8,7 +8,7 @@
 
 #import "WOSMapViewController.h"
 #import "MapViewController.h"
-
+#import "ShareBookMyQuanCenterViewController.h"
 #import "ShareBookQuanDetailViewController.h"
 #import "ShareAddQuanViewController.h"
 
@@ -20,7 +20,11 @@
 @end
 
 @implementation WOSMapViewController
+<<<<<<< HEAD
 @synthesize iType,dictMap = _dictMap,bShowLeft = _bShowLeft;
+=======
+@synthesize iType,dictMap = _dictMap ,bEnter = _bEnter;
+>>>>>>> FETCH_HEAD
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -56,6 +60,7 @@
         [self.headview setTitleColor:[UIColor colorWithRed:203.0f/255 green:203.0f/255 blue:203.0f/255 alpha:1.0f]];
         
         [self.view setBackgroundColor:[UIColor redColor]];
+<<<<<<< HEAD
         if (_bShowLeft) {
             [self.leftButton setHidden:NO];
             [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
@@ -64,6 +69,20 @@
         
         [self.leftButton setHidden:YES];
         }
+=======
+        [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
+        
+        if (_bEnter) {
+            
+            [self.rightButton setHidden:YES];
+            [self.headview setTitle:@"圈子"];
+            
+        }else{
+        
+            [self setButtonImage:self.rightButton setImage:@"icon_list"];
+        }
+        
+>>>>>>> FETCH_HEAD
     }
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
@@ -262,6 +281,12 @@
     {
         [self.drNavigationController popViewControllerAnimated:YES];
     }else if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
+        
+        ShareBookMyQuanCenterViewController *mapList = [[ShareBookMyQuanCenterViewController alloc]init];
+        mapList.bEnter = YES;
+        [mapList setTitle:@"附近的圈子"];
+        [self.drNavigationController pushViewController:mapList animated:YES];
+        RELEASE(mapList);
     }
 }
 - (void)dealloc

@@ -63,9 +63,10 @@
         
         
         
-        UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44)];
-        [viewBG setBackgroundColor:[UIColor whiteColor]];
-        [self.view addSubview:viewBG];
+        UIImageView  *viewBG = [[UIImageView alloc]initWithFrame:self.view.frame];
+        [viewBG setTag:100];
+        [viewBG setImage:[UIImage imageNamed:@"bg"]];
+        [self.view insertSubview:viewBG atIndex:0];
         RELEASE(viewBG);
         
         
@@ -81,13 +82,14 @@
         [self.view addSubview:labelNum];
         [labelNum release];
 
-        UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.headHeight + 10 + 40, 100.0f, 20.0f)];
+        UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.headHeight  + 40, 100.0f, 20.0f)];
         [label1 setText:@"享乐豆充值可以在官网："];
         [label1 sizeToFit];
         [self.view addSubview:label1];
         [label1 release];
-        
-        UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake( CGRectGetMinX(label1.frame) + CGRectGetWidth(label1.frame), self.headHeight + 10 + 40, 100.0f, 20.0f)];
+//        230 94 22
+        UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake( 10, self.headHeight  + 40 + 20, 100.0f, 20.0f)];
+        [label2 setTextColor:[UIColor colorWithRed:230.0f/255 green:94.0f/255 blue:22.0f/255 alpha:1.0f]];
         [label2 setText:@"www.baidu.com"];
         [label2 sizeToFit];
         [self.view addSubview:label2];
@@ -104,6 +106,14 @@
         [self.view addSubview:imageViewIcon];
         [imageViewIcon release];
         
+        
+        UIImage *image1 = [UIImage imageNamed:@"down_options_bg"];
+        
+        UIImageView *imageNum = [[UIImageView alloc]initWithFrame:CGRectMake(00.0f, CGRectGetMinY(label2.frame) + CGRectGetHeight(label2.frame) + 20 + 3 + 2, 320.0f, 40.0f)];
+        [imageNum setImage:image1];
+        [self.view addSubview:imageNum];
+        [imageNum release];
+        
         UILabel *labelHistoryList = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, CGRectGetMinY(label2.frame) + CGRectGetHeight(label2.frame) + 20, 320.0f, 40.0f)];
         [labelHistoryList setText:@"乐豆交易记录"];
         [self.view addSubview:labelHistoryList];
@@ -111,8 +121,19 @@
         
         UIImage *image = [UIImage imageNamed:@"menu_inactive"];
         
+        UIView *viewBGTableView = [[UIView alloc]initWithFrame:CGRectMake(10, 200 + 3, 300.0f, self.view.frame.size.height -100 - 60 - 100  )];
         
-        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0,200 , 320.0f , self.view.frame.size.height -100 - 60 - 100  ) isNeedUpdate:YES];
+        [viewBGTableView setBackgroundColor:[UIColor whiteColor]];
+        [viewBGTableView.layer setBorderWidth:1];
+        [viewBGTableView.layer setCornerRadius:10.0f];
+        [viewBGTableView.layer setBorderColor:[UIColor whiteColor].CGColor];
+//        [self.view addSubview:viewBGTableView];
+//        RELEASE(viewBGTableView);
+        
+
+        
+        
+        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0,200 , 320 , self.view.frame.size.height -100 - 60 - 100 + 5  + 3 + 2) isNeedUpdate:YES];
         [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:tbDataBank11];
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
@@ -216,7 +237,7 @@ static NSString *cellName = @"cellName";
     
     UIImageView *viewBar = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, self.view.frame.size.height -  image.size.height/2 - offset, 320.0f, image.size.height/2)];
     [viewBar setImage:[UIImage imageNamed:@"down_options_bg"]];
-    [viewBar setBackgroundColor:[UIColor redColor]];
+    [viewBar setBackgroundColor:[UIColor clearColor]];
     [viewBar setUserInteractionEnabled:YES];
     [self.view addSubview:viewBar];
     RELEASE(viewBar);

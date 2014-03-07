@@ -11,6 +11,8 @@
 #import "ShareBookApplyCell.h"
 #import "DYBInputView.h"
 #import "CALayer+Custom.h"
+#import "ShareBookMoreAddrViewController.h"
+#import "NSDate+Helpers.h"
 
 @interface ShareBookApplyViewController (){
 
@@ -143,6 +145,14 @@
         RELEASE(_phoneInputNameR);
         
         
+        UIButton *btnMoreAddr = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(_phoneInputNameR.frame) + CGRectGetMinX(_phoneInputNameR.frame) + 20 , CGRectGetMinY(btnChooseTime.frame) + CGRectGetHeight(btnChooseTime.frame), 50, 40)];
+        [btnMoreAddr addTarget:self action:@selector(doMoreAddr) forControlEvents:UIControlEventTouchUpInside];
+        [btnMoreAddr setBackgroundColor:[UIColor redColor]];
+        [self.view addSubview:btnMoreAddr];
+        RELEASE(btnMoreAddr);
+        
+        
+        
         
         DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMinY(_phoneInputNameR.frame) + CGRectGetHeight(_phoneInputNameR.frame) + 10, 320.0f, self.view.frame.size.height -CGRectGetMinY(_phoneInputNameR.frame) + CGRectGetHeight(_phoneInputNameR.frame) + 10  ) isNeedUpdate:YES];
         [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];
@@ -163,10 +173,65 @@
     }
 }
 
++(NSDate*) convertDateFromString:(NSString*)uiDate
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date=[formatter dateFromString:uiDate];
+    return date;
+}
+
+
 
 -(void)doChooseTime{
+    
+    
+    
+    UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0F, 300.0f, 320.0f, 200.0f)];
+    [viewBG setBackgroundColor:[UIColor whiteColor]];
+    [self.view addSubview:viewBG];
+    RELEASE(viewBG);
+    
+    UIDatePicker *datePicker = [[ UIDatePicker alloc] initWithFrame:CGRectMake(0.0,300,0.0,0.0)];
+
+    datePicker.datePickerMode  = UIDatePickerModeDateAndTime;
+    datePicker.minuteInterval = 5;
+
+    
+    NSDate* minDate = [NSDate convertDateFromString:@"1900-01-01 00:00:00 -0500"];
+    NSDate* maxDate = [NSDate convertDateFromString:@"2099-01-01 00:00:00 -0500"];
+    
+    datePicker.minimumDate = minDate;
+    datePicker.maximumDate = maxDate;
+    
+    datePicker.date = [NSDate date];
+//    [datePicker setDate:maxDate animated:YES];
+    
+    
+    [self.view addSubview:datePicker];
+    RELEASE(datePicker);
+    
+    
+    [datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged ];
+    
+    
+    
+}
 
 
+-(void)dateChanged:(UIDatePicker *)sender{
+
+
+    UIDatePicker* control = (UIDatePicker*)sender;
+    NSDate* _date = control.date;
+
+}
+
+-(void)doMoreAddr{
+
+    ShareBookMoreAddrViewController *moreBook = [[ShareBookMoreAddrViewController alloc]init];
+    [self.drNavigationController pushViewController:moreBook animated:YES];
+    RELEASE(moreBook);
 
 
 }

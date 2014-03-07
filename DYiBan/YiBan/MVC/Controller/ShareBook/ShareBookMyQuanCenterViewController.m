@@ -19,6 +19,8 @@
 
 @implementation ShareBookMyQuanCenterViewController
 
+@synthesize  bEnter = _bEnter;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -51,11 +53,22 @@
         [self.headview setTitle:@"圈子"];
         
         //        [self setButtonImage:self.leftButton setImage:@"back"];
-       [self setButtonImage:self.rightButton setImage:@"home"];
+       
+        [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
         [self.headview setTitleColor:[UIColor colorWithRed:193.0f/255 green:193.0f/255 blue:193.0f/255 alpha:1.0f]];
         [self.headview setBackgroundColor:[UIColor colorWithRed:97.0f/255 green:97.0f/255 blue:97.0f/255 alpha:1.0]];
         //        [self.leftButton setHidden:YES];
-        [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
+        
+        if (_bEnter) {
+            
+            [self.headview setTitle:@"附近的圈子"];
+            [self.rightButton setHidden:YES];
+            
+        }else{
+            
+            [self setButtonImage:self.rightButton setImage:@"icon_map"];
+        }
+       
     }
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
@@ -96,13 +109,22 @@
         RELEASE(searchView)
         
         
+        UIView *viewBGTableView = [[UIView alloc]initWithFrame:CGRectMake(10,self.headHeight + 44 + 20 , 300.0f , self.view.frame.size.height -self.headHeight - 44 - 50 - 20 - 30  )];
         
+        [viewBGTableView setBackgroundColor:[UIColor whiteColor]];
+        [viewBGTableView.layer setBorderWidth:1];
+        [viewBGTableView.layer setCornerRadius:10.0f];
+        [viewBGTableView.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [self.view addSubview:viewBGTableView];
+        RELEASE(viewBGTableView);
+        
+
         
         
         UIImage *image = [UIImage imageNamed:@"menu_inactive"];
         
         
-        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0,self.headHeight + 44 , 320.0f , self.view.frame.size.height -self.headHeight - 44 - 50  ) isNeedUpdate:YES];
+        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(20,self.headHeight + 44 + 20, 280.0f , self.view.frame.size.height -self.headHeight - 44 - 50 - 20 - 30 ) isNeedUpdate:YES];
         [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:tbDataBank11];
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
@@ -248,7 +270,11 @@ static NSString *cellName = @"cellName";
     if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]])
     {
         WOSMapViewController *map = [[WOSMapViewController alloc]init];
+<<<<<<< HEAD
         map.bShowLeft = YES;
+=======
+        map.bEnter = YES;
+>>>>>>> FETCH_HEAD
         [self.drNavigationController pushViewController:map animated:YES];
         RELEASE(map);
         

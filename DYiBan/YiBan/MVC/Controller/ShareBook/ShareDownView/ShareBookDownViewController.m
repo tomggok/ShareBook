@@ -26,12 +26,12 @@
 @end
 
 @implementation ShareBookDownViewController
-@synthesize superView;
+@synthesize superView,arrayResult = _arrayResult;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self viewDidLoad];
+//        [self viewDidLoad];
     }
     return self;
 }
@@ -45,15 +45,17 @@
    
     
     _inputTextField = [[UITextField alloc]initWithFrame:CGRectMake( 0.0f, 0.0f, 160, 30.0f)];
-    [_inputTextField setBackgroundColor:[UIColor yellowColor]];
+    [_inputTextField setTextAlignment:NSTextAlignmentCenter];
+    [_inputTextField setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
+    [_inputTextField setBackgroundColor:[UIColor whiteColor]];
     [self addSubview:_inputTextField];
     [_inputTextField release];
     
-    
-    _openButton  = [[UIButton alloc]initWithFrame:CGRectMake(120, 0.0f, 30.0f, 30.0f)];
-    UIImage *closeImage=[UIImage imageNamed:@"dropdown.png"];
-    [_openButton setImage:closeImage forState:UIControlStateNormal];
-    [_openButton setBackgroundColor:[ UIColor blackColor]];
+    UIImage *closeImage=[UIImage imageNamed:@"icon_down"];
+
+    _openButton  = [[UIButton alloc]initWithFrame:CGRectMake(130, 0.0f, closeImage.size.width/1.5, closeImage.size.height/1.5)];
+       [_openButton setImage:closeImage forState:UIControlStateNormal];
+    [_openButton setBackgroundColor:[ UIColor clearColor]];
     [_openButton addTarget:self action:@selector(changeOpenStatus:) forControlEvents:UIControlEventTouchUpInside];
     [_inputTextField addSubview:_openButton];
     [_openButton release];
@@ -61,7 +63,7 @@
     _tb = [[TableViewWithBlock alloc]initWithFrame:CGRectMake(0.0f, 30.0f, 160.0f, 1.0f)];
     [_tb setDelegate:self];
     [_tb setDataSource:self];
-    [_tb setBackgroundColor:[UIColor redColor]];
+    [_tb setBackgroundColor:[UIColor whiteColor]];
     [self addSubview:_tb];
     [_tb release];
     
@@ -95,7 +97,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return _arrayResult.count;
 
 }
 
@@ -105,7 +107,11 @@
         cell=[[[NSBundle mainBundle]loadNibNamed:@"SelectionCell" owner:self options:nil]objectAtIndex:0];
         [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
     }
-    [cell.lb setText:[NSString stringWithFormat:@"Select %d",indexPath.row]];
+    NSString *strContent = [_arrayResult objectAtIndex:indexPath.row];
+    
+    [cell.lb setText:strContent];
+    [cell.lb setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
+
     return cell;
 
 
@@ -130,7 +136,7 @@
         
         
         [UIView animateWithDuration:0.3 animations:^{
-            UIImage *closeImage=[UIImage imageNamed:@"dropdown.png"];
+            UIImage *closeImage=[UIImage imageNamed:@"icon_down"];
             [_openButton setImage:closeImage forState:UIControlStateNormal];
             
             CGRect frame=_tb.frame;
@@ -152,17 +158,17 @@
         
         
         [UIView animateWithDuration:0.3 animations:^{
-            UIImage *openImage=[UIImage imageNamed:@"dropup.png"];
+            UIImage *openImage=[UIImage imageNamed:@"icon_up"];
             [_openButton setImage:openImage forState:UIControlStateNormal];
             
             CGRect frame=_tb.frame;
             
-            frame.size.height=200;
+            frame.size.height=_arrayResult.count * 30;
             [_tb setFrame:frame];
             
             CGRect viewFrame = self.frame;
             
-            viewFrame.size.height = 200 + 30;
+            viewFrame.size.height = _arrayResult.count * 30 + 30;
             [self setFrame:viewFrame];
             
             [superView bringSubviewToFront:self];
