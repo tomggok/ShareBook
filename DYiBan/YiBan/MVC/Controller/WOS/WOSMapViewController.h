@@ -15,9 +15,9 @@
 @property (nonatomic,assign) int iType; //地图类型；
 @property (nonatomic,retain) NSDictionary *dictMap;
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 @property (nonatomic,assign)BOOL bShowLeft;
-=======
+//=======
 @property (nonatomic,assign) BOOL bEnter;
->>>>>>> FETCH_HEAD
+//>>>>>>> FETCH_HEAD
 @end

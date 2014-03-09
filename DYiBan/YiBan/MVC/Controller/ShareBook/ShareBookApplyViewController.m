@@ -19,6 +19,7 @@
     UILabel *labelTime1;
     DYBInputView *_phoneInputNameRSend;
     BOOL bKeyShow;
+    UIDatePicker *datePicker;
 }
 
 @end
@@ -120,7 +121,7 @@
         [labelTime setFont:[UIFont systemFontOfSize:14]];
         [labelTime release];
         
-        labelTime1 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelTime.frame) + CGRectGetMinX(labelTime.frame) + 5-130, CGRectGetMinY(labelPublic.frame) + CGRectGetHeight(labelPublic.frame) + 0, 200, 20)];
+        labelTime1 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelTime.frame) + CGRectGetMinX(labelTime.frame) -130, CGRectGetMinY(labelPublic.frame) + CGRectGetHeight(labelPublic.frame) + 0, 200, 20)];
         [labelTime1 setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
         [labelTime1 setText:[NSString stringWithFormat:@"2014-02-20 15：30"]];
         [viewBG addSubview:labelTime1];
@@ -187,16 +188,45 @@
     
     
     
-    UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0F, 300.0f, 320.0f, 200.0f)];
-    [viewBG setBackgroundColor:[UIColor whiteColor]];
+    UIView *viewBG2 = [[UIView alloc]initWithFrame:CGRectMake(0.0F, 0.0f, 320.0f, CGRectGetHeight(self.view.frame))];
+    [viewBG2 setBackgroundColor:[UIColor blackColor]];
+    [viewBG2 setAlpha:0.7];
+    [viewBG2 setTag:102];
+    [self.view addSubview:viewBG2];
+    RELEASE(viewBG2);
+    
+    
+    UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0F, 0.0f, 320.0f, CGRectGetHeight(self.view.frame))];
+    [viewBG setBackgroundColor:[UIColor clearColor]];
+    [viewBG setTag:101];
     [self.view addSubview:viewBG];
     RELEASE(viewBG);
     
-    UIDatePicker *datePicker = [[ UIDatePicker alloc] initWithFrame:CGRectMake(0.0,300,0.0,0.0)];
+    
+    UIButton *btnCancel = [[UIButton alloc]initWithFrame:CGRectMake( 20 , CGRectGetHeight(self.view.frame) - 216 - 60, 50, 40)];
+    
+    [btnCancel setTitle:@"取消" forState:UIControlStateNormal];
+    [btnCancel addTarget:self action:@selector(doCancel) forControlEvents:UIControlEventTouchUpInside];
+    [btnCancel setBackgroundColor:[UIColor redColor]];
+    [viewBG addSubview:btnCancel];
+    RELEASE(btnCancel);
+    
+    
+    UIButton *btnMakeSureTime = [[UIButton alloc]initWithFrame:CGRectMake( 240 , CGRectGetHeight(self.view.frame) - 216 - 60, 50, 40)];
+    [btnMakeSureTime setTitle:@"确定" forState:UIControlStateNormal];
+
+    [btnMakeSureTime addTarget:self action:@selector(doMakeSureTime) forControlEvents:UIControlEventTouchUpInside];
+    [btnMakeSureTime setBackgroundColor:[UIColor redColor]];
+    [viewBG addSubview:btnMakeSureTime];
+    RELEASE(btnMakeSureTime);
+    
+    
+    
+    datePicker = [[ UIDatePicker alloc] initWithFrame:CGRectMake(0.0,CGRectGetHeight(self.view.frame) - 216 ,0.0,0.0)];
 
     datePicker.datePickerMode  = UIDatePickerModeDateAndTime;
     datePicker.minuteInterval = 5;
-
+    [datePicker setBackgroundColor:[UIColor whiteColor]];
     
     NSDate* minDate = [NSDate convertDateFromString:@"1900-01-01 00:00:00 -0500"];
     NSDate* maxDate = [NSDate convertDateFromString:@"2099-01-01 00:00:00 -0500"];
@@ -205,19 +235,71 @@
     datePicker.maximumDate = maxDate;
     
     datePicker.date = [NSDate date];
-//    [datePicker setDate:maxDate animated:YES];
     
-    
-    [self.view addSubview:datePicker];
+    [viewBG addSubview:datePicker];
     RELEASE(datePicker);
     
     
     [datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged ];
     
     
+//     NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];//设置为英文显示
+     NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];//设置为中文显示
+     datePicker.locale = locale;
+     [locale release];
+
+}
+
+-(void)doCancel{
+
+    UIView *view = [self.view viewWithTag:101];
+    if ( view ) {
+        [view removeFromSuperview];
+    }
+    
+    UIView *view1 = [self.view viewWithTag:102];
+    if ( view1 ) {
+        [view1 removeFromSuperview];
+    }
+
+}
+
+
+-(void)doMakeSureTime{
+    
+    NSDate *date = [datePicker date];
+    NSString *strDate = [self stringFromDate:date];
+    
+    DLogInfo(@"date -- %@",strDate);
+    [labelTime1 setText:strDate];
+    UIView *view = [self.view viewWithTag:101];
+    if ( view ) {
+        [view removeFromSuperview];
+    }
+    
+    
+    UIView *view1 = [self.view viewWithTag:102];
+    if ( view1 ) {
+        [view1 removeFromSuperview];
+    }
+
     
 }
 
+
+- (NSString *)stringFromDate:(NSDate *)date{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        //zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
+    
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss "];
+    NSString *destDateString = [dateFormatter stringFromDate:date];
+
+    [dateFormatter release];
+    
+    return destDateString;
+    
+}
 
 -(void)dateChanged:(UIDatePicker *)sender{
 

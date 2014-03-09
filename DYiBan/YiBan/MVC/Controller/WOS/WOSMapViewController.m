@@ -20,11 +20,8 @@
 @end
 
 @implementation WOSMapViewController
-<<<<<<< HEAD
-@synthesize iType,dictMap = _dictMap,bShowLeft = _bShowLeft;
-=======
+
 @synthesize iType,dictMap = _dictMap ,bEnter = _bEnter;
->>>>>>> FETCH_HEAD
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -60,16 +57,7 @@
         [self.headview setTitleColor:[UIColor colorWithRed:203.0f/255 green:203.0f/255 blue:203.0f/255 alpha:1.0f]];
         
         [self.view setBackgroundColor:[UIColor redColor]];
-<<<<<<< HEAD
-        if (_bShowLeft) {
-            [self.leftButton setHidden:NO];
-            [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
 
-        }else{
-        
-        [self.leftButton setHidden:YES];
-        }
-=======
         [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
         
         if (_bEnter) {
@@ -82,7 +70,6 @@
             [self setButtonImage:self.rightButton setImage:@"icon_list"];
         }
         
->>>>>>> FETCH_HEAD
     }
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
@@ -176,7 +163,7 @@
         [btn addTarget:self action:@selector(addQuan) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview: btn];
         RELEASE(btn);
-        [self addlabel_title:@"创建圈子" frame:btn.frame view:btn];
+        [self addlabel_title:@"创建乐享圈" frame:btn.frame view:btn];
     }
     
     

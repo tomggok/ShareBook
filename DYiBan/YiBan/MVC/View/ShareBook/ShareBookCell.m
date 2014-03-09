@@ -5,10 +5,37 @@
 //  Created by tom zeng on 14-2-11.
 //  Copyright (c) 2014年 Tomgg. All rights reserved.
 //
+#import "UIView+Gesture.h"
+#import "UIView+MagicCategory.h"
 
 #import "ShareBookCell.h"
 
-@implementation ShareBookCell
+@implementation ShareBookCell{
+
+    UIView *swipView;
+    CGPoint ptBegin;
+    CGPoint currentCenter; //cell当前的中心
+    BOOL isOpen;
+    
+    MagicUILabel *labelFrom;
+    
+//    DYBDataBankSelectBtn* btnBottom;
+    MagicUIImageView *swipIcan;
+
+}
+
+@synthesize cellBackground = _cellBackground,tb = _tb,indexPath = _indexPath;
+@synthesize imageViewStats = _imageViewStats,labelProgress = _labelProgress;
+@synthesize  cellType = _cellType,bSwip = _bSwip,sendMegTarget = _sendMegTarget;
+@synthesize btnType = _btnType,labelGood = _labelGood;
+@synthesize labelName = _labelName,labelBad = _labelBad,strTag = _strTag;
+@synthesize  beginOrPause = _beginOrPause,imageViewDown = _imageViewDown;
+
+
+DEF_SIGNAL(CANCEL)
+DEF_SIGNAL(FINISHSWIP)
+
+
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -29,6 +56,9 @@
 
 -(void)creatCell{
 
+    [self addSignal:[UIView PAN] object:[NSDictionary dictionaryWithObjectsAndKeys:_tb,@"tbv",_indexPath,@"indexPath", nil]];
+    
+    
     UIImage *imageIcon = [UIImage imageNamed:@"defualt_book"];
     UIImageView *imageBook = [[UIImageView alloc]initWithFrame:CGRectMake(5.0f, 5.0f, imageIcon.size.width/2, imageIcon.size.height/2)];
     [imageBook setBackgroundColor:[UIColor clearColor]];

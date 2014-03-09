@@ -107,7 +107,7 @@
         [self.view addSubview:btnOK];
         RELEASE(btnOK);
         
-        [self addlabel_title:@"创建圈子" frame:btnOK.frame view:btnOK];
+        [self addlabel_title:@"创建乐享圈" frame:btnOK.frame view:btnOK];
         
                DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0,200 , 320.0f , self.view.frame.size.height -100 - 60 - 100  ) isNeedUpdate:YES];
         [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];

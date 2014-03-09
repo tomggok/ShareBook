@@ -165,6 +165,7 @@
     [btnYU setImage:[UIImage imageNamed:@"bt01_click"] forState:UIControlStateHighlighted];
     [btnYU setImage:[UIImage imageNamed:@"bt01"] forState:UIControlStateNormal];
     [btnYU addTarget:self action:@selector(doBorrow:) forControlEvents:UIControlEventTouchUpInside];
+    [btnYU setEnabled:NO];
     [self addlabel_title:@"预借" frame:btnYU.frame view:btnYU textColor:[UIColor blackColor]];
     [viewBar addSubview:btnYU];
     [btnYU release];

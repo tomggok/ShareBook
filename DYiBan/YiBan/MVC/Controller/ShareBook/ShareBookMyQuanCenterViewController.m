@@ -144,7 +144,7 @@
         [self.view addSubview:btnOK];
         RELEASE(btnOK);
         
-        [self addlabel_title:@"创建圈子" frame:btnOK.frame view:btnOK];
+        [self addlabel_title:@"创建乐享圈" frame:btnOK.frame view:btnOK];
         
         
 //        [self creatDownBar];
@@ -270,11 +270,11 @@ static NSString *cellName = @"cellName";
     if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]])
     {
         WOSMapViewController *map = [[WOSMapViewController alloc]init];
-<<<<<<< HEAD
+//<<<<<<< HEAD
         map.bShowLeft = YES;
-=======
+//=======
         map.bEnter = YES;
->>>>>>> FETCH_HEAD
+//>>>>>>> FETCH_HEAD
         [self.drNavigationController pushViewController:map animated:YES];
         RELEASE(map);
         
