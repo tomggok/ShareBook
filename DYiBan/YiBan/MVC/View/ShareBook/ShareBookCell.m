@@ -7,7 +7,9 @@
 //
 #import "UIView+Gesture.h"
 #import "UIView+MagicCategory.h"
-
+#import "UITableView+property.h"
+#import "UITableViewCell+MagicCategory.h"
+#import "ShareBookBankViewController.h"
 #import "ShareBookCell.h"
 
 @implementation ShareBookCell{
@@ -56,19 +58,33 @@ DEF_SIGNAL(FINISHSWIP)
 
 -(void)creatCell{
 
-    [self addSignal:[UIView PAN] object:[NSDictionary dictionaryWithObjectsAndKeys:_tb,@"tbv",_indexPath,@"indexPath", nil]];
     
+    swipView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 84.0f)];
+    swipView.tag = 100;
+    [swipView setBackgroundColor:[UIColor clearColor]];
+    [self addSubview:swipView];
+    RELEASE(swipView);
+    
+    if ([[self superCon] isKindOfClass:[ShareBookBankViewController class]]) {
+        [self addSignal:[UIView PAN] object:[NSDictionary dictionaryWithObjectsAndKeys:_tb,@"tbv",_indexPath,@"indexPath", nil]];
+    }
+    
+    
+    
+    
+    
+     [swipView addSignal:[UIView TAP] object:[NSDictionary dictionaryWithObjectsAndKeys:_tb,@"tbv",_indexPath,@"indexPath", nil] target:self];
     
     UIImage *imageIcon = [UIImage imageNamed:@"defualt_book"];
     UIImageView *imageBook = [[UIImageView alloc]initWithFrame:CGRectMake(5.0f, 5.0f, imageIcon.size.width/2, imageIcon.size.height/2)];
     [imageBook setBackgroundColor:[UIColor clearColor]];
     [imageBook setImage:[UIImage imageNamed:@"defualt_book"]];
-    [self addSubview:imageBook];
+    [swipView addSubview:imageBook];
     [imageBook release];
     
     UILabel *labelName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, 5, 200, 20)];
     [labelName setText:@"三生三室枕上书"];
-    [self addSubview:labelName];
+    [swipView addSubview:labelName];
     [labelName release];
     
     UILabel *labelAuther = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, CGRectGetMinY(labelName.frame) + CGRectGetHeight(labelName.frame) + 0, 200, 20)];
@@ -76,19 +92,19 @@ DEF_SIGNAL(FINISHSWIP)
     [labelAuther setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
 
     [labelAuther setFont:[UIFont systemFontOfSize:15]];
-    [self addSubview:labelAuther];
+    [swipView addSubview:labelAuther];
     [labelAuther release];
     
     UILabel *labelPublic = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, CGRectGetMinY(labelAuther.frame) + CGRectGetHeight(labelAuther.frame) + 0, 200, 20)];
     [labelPublic setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
     [labelPublic setText:[NSString stringWithFormat:@"出版社：中国民族艺术出版社"]];
-    [self addSubview:labelPublic];
+    [swipView addSubview:labelPublic];
     [labelPublic setFont:[UIFont systemFontOfSize:14]];
     [labelPublic release];
     
     UILabel *labelAddr = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, CGRectGetMinY(labelPublic.frame) + CGRectGetHeight(labelPublic.frame) + 3, 200, 20)];
     [labelAddr setText:@"长宁区娄山管路2董"];
-    [self addSubview:labelAddr];
+    [swipView addSubview:labelAddr];
     [labelAddr setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
 
     [labelAddr setFont:[UIFont systemFontOfSize:12]];
@@ -99,7 +115,7 @@ DEF_SIGNAL(FINISHSWIP)
     [labelModel setText:@"做客模式"];
     [labelModel setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
 
-    [self addSubview:labelModel];
+    [swipView addSubview:labelModel];
     [labelModel setFont:[UIFont systemFontOfSize:12]];
     [labelModel sizeToFit];
     [labelModel release];
@@ -108,7 +124,7 @@ DEF_SIGNAL(FINISHSWIP)
     UIImage *imageTitle = [UIImage imageNamed:@"title_bg"];
     UIImageView *imageViewLabel = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelModel.frame) + CGRectGetMinX(labelModel.frame) + 30, CGRectGetMinY(labelPublic.frame) + CGRectGetHeight(labelPublic.frame) + 3, imageTitle.size.width/2, imageTitle.size.height/2)];
     [imageViewLabel setImage:[UIImage imageNamed:@"title_bg"]];
-    [self addSubview:imageViewLabel];
+    [swipView addSubview:imageViewLabel];
     RELEASE(imageViewLabel);
     
     
@@ -125,7 +141,7 @@ DEF_SIGNAL(FINISHSWIP)
     UIImage *imageTitle1 = [UIImage imageNamed:@"title_bg"];
     UIImageView *imageViewLabel1 = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelModel.frame) + CGRectGetMinX(labelModel.frame) + 30, CGRectGetMinY(labelPublic.frame) + CGRectGetHeight(labelPublic.frame) + 3 - 40, imageTitle.size.width/2, imageTitle.size.height/2)];
     [imageViewLabel1 setImage:[UIImage imageNamed:@"title_bg"]];
-    [self addSubview:imageViewLabel1];
+    [swipView addSubview:imageViewLabel1];
     RELEASE(imageViewLabel1);
     
     
@@ -138,11 +154,251 @@ DEF_SIGNAL(FINISHSWIP)
     [labelMon1 sizeToFit];
     [labelMon1 release];
 
-    [self setBackgroundColor:[UIColor colorWithRed:246.0f/255 green:246.0f/255 blue:246.0f/255 alpha:1.0f]];
+    [swipView setBackgroundColor:[UIColor colorWithRed:246.0f/255 green:246.0f/255 blue:246.0f/255 alpha:1.0f]];
 
     UIImageView *imageLine = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 90-1, 320.0f, 1)];
     [imageLine setImage:[UIImage imageNamed:@"line3"]];
-    [self addSubview:imageLine];
+    [swipView addSubview:imageLine];
     [imageLine release];
 }
+
+
+
+#pragma mark- 接受UIView信号
+- (void)handleViewSignal_UIView:(MagicViewSignal *)signal{
+    //    DLogInfo(@"pan");
+    if ([signal is:[UIView PAN]]) {//拖动信号
+        NSDictionary *d=(NSDictionary *)signal.object;
+        UIPanGestureRecognizer *recognizer=[d objectForKey:@"sender"];
+        
+        {
+            
+            if ([recognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+                UIPanGestureRecognizer *panRecognizer = (UIPanGestureRecognizer *)recognizer;
+                
+                CGPoint translation = [(UIPanGestureRecognizer *)panRecognizer translationInView:self];//移动距离及方向 x>0:右移
+                
+                //                DLogInfo(@"currentTouchPositionX -- %f",self.initialTouchPositionX);
+                
+                if (translation.x > 0 &&   self.initialTouchPositionX!=0 && swipView.frame.origin.x >= 0) {
+                    {/*此cell是否是在未展开状态右划*/
+                        //                        NSLog(@"66666");
+                        
+                        //恢复swip view frame
+                        [swipView setFrame:CGRectMake(0.0f, 0, swipView.frame.size.width, swipView.frame.size.height)];
+                        
+//                        DragonViewController *con=(DragonViewController *)[self superCon];
+//                        if ([con isKindOfClass:[DYBDataBankChildrenListViewController class]])
+//                        {
+//                            [con.drNavigationController handleSwitchView:recognizer];
+//                        }else
+//                        {
+//                            DYBUITabbarViewController *tabbar=[DYBUITabbarViewController sharedInstace];
+//                            [[tabbar getThreeview] oneViewSwipe:panRecognizer];
+//                        }
+                        
+                        return;
+                    }
+                }
+                
+                
+                CGPoint currentTouchPoint = [panRecognizer locationInView:self.contentView];
+                CGFloat currentTouchPositionX = currentTouchPoint.x;
+                
+                
+                
+                if (recognizer.state == UIGestureRecognizerStateBegan) {
+                    
+                    
+                    //                    NSLog(@"UIGestureRecognizerStateBegan---");
+                    ptBegin = [recognizer translationInView:self];
+                    currentCenter = swipView.center;
+                    self.initialTouchPositionX = currentTouchPositionX;
+                    
+                } else if (recognizer.state == UIGestureRecognizerStateChanged) {
+                    
+                    CGPoint ptEnd = [recognizer translationInView:self];
+                    //                    NSLog(@"UIGestureRecognizerStateChanged --- %f",ptEnd.x);
+                    currentCenter.x = 160 + ptEnd.x - ptBegin.x;
+                    //                    NSLog(@"swipview --- %@",swipView);
+                    if (isOpen) {
+//                        UITableViewCell *cell = [_tb._muA_differHeightCellView objectAtIndex:_tb._selectIndex_now.row];
+//                        if (ptEnd.x < 0 && [cell isEqual:self]) { //打开的时候，不在左划
+//                            return;
+//                        }
+//                        
+//                        if (swipView.frame.origin.x + ptEnd.x - ptBegin.x <0 && [cell isEqual:self]) { //防止划过界
+//                            return;
+//                        }
+                        
+                        swipView.center = currentCenter;
+                        
+                        isOpen = NO;
+                        
+                    }else{
+                        swipView.center = currentCenter;
+                    }
+                } else if (recognizer.state == UIGestureRecognizerStateEnded || recognizer.state == UIGestureRecognizerStateCancelled) {
+                    
+                    CGPoint ptEnter = swipView.center;
+                    //                    NSLog(@"swipView.center --- %f",swipView.center.x);
+                    if (isOpen) {
+                        
+                        
+                        [self judgeSlideRange_Point:ptEnter parameter:-200];
+                        //                        [self removeGestureRecognizer:t];
+                        
+                    }else{
+                        
+                        [self judgeSlideRange_Point:ptEnter parameter:120];
+                        
+                    }
+                }
+            }
+        }
+    }
+    else if ([signal is:[UIView TAP]]) {
+        
+        isOpen = NO;
+        NSDictionary *object=(NSDictionary *)signal.object;
+        NSDictionary *d=[object objectForKey:@"object"];
+        UITableView *tbv=[d objectForKey:@"tbv"];
+        
+        //关闭上次展开的cell
+        if (tbv._selectIndex_now) {
+            UITableViewCell *cell=[tbv._muA_differHeightCellView objectAtIndex:tbv._selectIndex_now.row];
+            [cell resetContentView];
+            tbv._selectIndex_now=nil;
+        }else{//选中cell
+            NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:tbv, @"tableView", [d objectForKey:@"indexPath"], @"indexPath", nil];
+            [self sendViewSignal:[MagicUITableView TABLEDIDSELECT] withObject:dict];
+        }
+        
+        [self resetContentView];
+    }
+    
+}
+-(void)tomgg{
+    
+    
+}
+-(void)judgeSlideRange_Point:(CGPoint )point parameter:(float)param{
+    
+    
+    if (point.x > param) {
+        
+        [swipIcan setImage:[UIImage imageNamed:@"slide_more"]];
+        [swipIcan setFrame:CGRectMake(320 - SWIPICAN_WIDTH, (84 - SWIPICAN_HIGHT)/2, SWIPICAN_WIDTH,SWIPICAN_HIGHT)];
+        
+        isOpen = NO;
+        
+        [self cellRemoveTapView];
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            [swipView setFrame:CGRectMake(0.0f, 0, swipView.frame.size.width, swipView.frame.size.height)];
+        }];
+        
+    }else{
+        
+        [swipIcan setImage:[UIImage imageNamed:@"close_more.png"]];
+        
+        [swipIcan setFrame:CGRectMake(320  - SWIPICAN_WIDTH - (25 - SWIPICAN_WIDTH), (84 - SWIPICAN_HIGHT)/2, SWIPICAN_WIDTH,SWIPICAN_HIGHT)];
+        
+        //发送信号到上层页面
+//        [self sendViewSignal:[DYBDataBankListCell FINISHSWIP] withObject:nil from:self target:_sendMegTarget];
+        isOpen = YES;
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            [swipView setFrame:CGRectMake(- 295,0, swipView.frame.size.width, swipView.frame.size.height)];
+            
+            UITableView *tbv=((UITableView *)(self.superview));
+            
+            if (swipView.frame.origin.x<0) {//此cell已展开
+                
+                //关闭上次展开的cell
+//                if (tbv._selectIndex_now&&tbv._selectIndex_now!=self.index) {
+//                    UITableViewCell *cell=[tbv._muA_differHeightCellView objectAtIndex:tbv._selectIndex_now.row];
+//                    [cell resetContentView];
+//                }
+//                
+//                tbv._selectIndex_now=self.index;
+                
+            }else if(tbv._selectIndex_now==self.index){//关闭上次展开的cell
+                UITableView *tbv=((UITableView *)(self.superview));
+                [tbv set_selectIndex_now:nil];
+                
+            }
+            
+        }];
+    }
+}
+
+
+-(void)closeCell{
+    
+    if (isOpen) {
+        
+        [self resetContentView];
+        _tb._selectIndex_now = nil;
+        
+        isOpen = NO;
+    }
+    
+}
+-(void)cellRemoveTapView{
+    
+//    UIView * view = [swipView viewWithTag:TAPVIEWTAG];
+//    if (view) {
+//        [view removeFromSuperview];
+//        
+//    }
+    [swipIcan setImage:[UIImage imageNamed:@"slide_more"]];
+    [swipIcan setFrame:CGRectMake(320 - SWIPICAN_WIDTH, (84 - SWIPICAN_HIGHT)/2, SWIPICAN_WIDTH,SWIPICAN_HIGHT)];
+}
+
+-(void)doTap{
+    
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        [swipView setFrame:CGRectMake(0.0f, 0, swipView.frame.size.width, swipView.frame.size.height)];
+        
+    }];
+    
+    isOpen = NO;
+    [self cellRemoveTapView];
+    
+}
+#pragma mark - UIPanGestureRecognizer delegate
+
+//不重写这个,tbv的滚动手势就被UIPanGestureRecognizer的手势覆盖了
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+        CGPoint translation = [(UIPanGestureRecognizer *)gestureRecognizer translationInView:self];
+        return fabs(translation.x)/*浮点数的绝对值*/ > fabs(translation.y);
+    }
+    return YES;
+}
+
+//恢复正常视图布局
+-(void)resetContentView
+{
+    if (swipView.frame.origin.x<0) {
+        [UIView animateWithDuration:0.3
+                              delay:0.
+                            options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut
+                         animations:^
+         {
+             swipView.frame = CGRectMake(0.0f, 0.0f, 320.0f, 84.0f);
+         } completion:^(BOOL finished) {
+         }];
+    }
+    
+    [self cellRemoveTapView];
+    
+}
+
+
 @end

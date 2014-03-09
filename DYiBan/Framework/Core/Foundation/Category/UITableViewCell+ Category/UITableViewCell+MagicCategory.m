@@ -1,5 +1,5 @@
 //
-//  UITableViewCell+MagicCategory.m
+//  UITableViewCell+DragonCategory.m
 //  DYiBan
 //
 //  Created by zhangchao on 13-8-27.
