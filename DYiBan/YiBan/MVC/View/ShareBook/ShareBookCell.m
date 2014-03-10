@@ -76,6 +76,7 @@ DEF_SIGNAL(FINISHSWIP)
     
     
     
+    
      [swipView addSignal:[UIView TAP] object:[NSDictionary dictionaryWithObjectsAndKeys:_tb,@"tbv",_indexPath,@"indexPath", nil] target:self];
     
     UIImage *imageIcon = [UIImage imageNamed:@"defualt_book"];
