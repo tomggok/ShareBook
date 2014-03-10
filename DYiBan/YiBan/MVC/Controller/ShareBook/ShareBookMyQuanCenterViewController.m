@@ -201,7 +201,7 @@ static NSString *cellName = @"cellName";
         
     }else if([signal is:[MagicUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
         
-        NSNumber *s = [NSNumber numberWithInteger:50];
+        NSNumber *s = [NSNumber numberWithInteger:60];
         [signal setReturnValue:s];
         
         
@@ -227,7 +227,12 @@ static NSString *cellName = @"cellName";
         RELEASE(label);
         
         
-        
+        UILabel *labelB = [[UILabel alloc]initWithFrame:CGRectMake(15, 35, 220, 20)];
+        [labelB setText:@"热度：12人 | 19书 | 10交易"];
+        [labelB setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
+        [labelB setFont:[UIFont systemFontOfSize:14]];
+        [cell addSubview:labelB];
+        RELEASE(labelB);
         
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [signal setReturnValue:cell];

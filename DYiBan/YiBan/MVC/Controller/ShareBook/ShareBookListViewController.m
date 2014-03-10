@@ -23,6 +23,7 @@
 @end
 
 @implementation ShareBookListViewController
+@synthesize  type = _type;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -148,6 +149,7 @@ static NSString *cellName = @"cellName";
     
         ShareBookCell *cell = [[ShareBookCell alloc]init];
         cell.tb  = tbDataBank11;
+        cell.type = _type;
         [cell creatCell];
         //        NSDictionary *dictInfoFood = nil;
         //        [cell creatCell:dictInfoFood];

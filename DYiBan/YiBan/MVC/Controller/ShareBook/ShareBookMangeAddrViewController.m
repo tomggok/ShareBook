@@ -93,7 +93,7 @@
         
         
         UIImage *image1 = [UIImage imageNamed:@"bt_click1"];
-        UIButton *btnOK = [[UIButton alloc]initWithFrame:CGRectMake(20.0f, CGRectGetHeight(self.view.frame) - 50, 280.0f, 40.0f)];
+        UIButton *btnOK = [[UIButton alloc]initWithFrame:CGRectMake(20.0f, CGRectGetHeight(self.view.frame) - 50 - 10, 280.0f, 40.0f)];
         [btnOK setTag:102];
         [btnOK setImage:image1 forState:UIControlStateNormal];
         //        [btnOK setBackgroundColor:[UIColor yellowColor]];

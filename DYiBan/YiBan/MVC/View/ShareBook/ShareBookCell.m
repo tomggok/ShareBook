@@ -12,7 +12,7 @@
 #import "UITableView+property.h"
 #import "UITableViewCell+MagicCategory.h"
 #import "ShareBookBankViewController.h"
-
+#import "ShareBookCellBtnCenterView.h"
 #import "ShareBookListViewController.h"
 
 
@@ -32,7 +32,7 @@
 @synthesize cellBackground = _cellBackground,tb = _tb,indexPath = _indexPath;
 @synthesize imageViewStats = _imageViewStats,labelProgress = _labelProgress;
 @synthesize  cellType = _cellType,bSwip = _bSwip,sendMegTarget = _sendMegTarget;
-@synthesize btnType = _btnType,labelGood = _labelGood;
+@synthesize btnType = _btnType,labelGood = _labelGood,type = _type;
 @synthesize labelName = _labelName,labelBad = _labelBad,strTag = _strTag;
 @synthesize  beginOrPause = _beginOrPause,imageViewDown = _imageViewDown;
 
@@ -61,19 +61,34 @@ DEF_SIGNAL(FINISHSWIP)
 
 -(void)creatCell{
 
+    UIButton *bgBtn = [[UIButton alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 84.0f)];
+    [bgBtn setBackgroundColor:[UIColor clearColor]];
+    [bgBtn addTarget:self action:@selector(justPinB) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:bgBtn];
+    RELEASE(bgBtn);
+    
+   
+    
+    
+    
+    if ([[_tb superCon] isKindOfClass:[ShareBookListViewController class]]) {
+        [self addSignal:[UIView PAN] object:[NSDictionary dictionaryWithObjectsAndKeys:_tb,@"tbv",_indexPath,@"indexPath", nil]];
+        
+        
+        ShareBookCellBtnCenterView *btnView = [[ShareBookCellBtnCenterView alloc]init];
+        [btnView setViewBG:self];
+        [btnView addBtnView:_type];
+        
+        
+        
+    }
+    
     
     swipView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 84.0f)];
     swipView.tag = 100;
     [swipView setBackgroundColor:[UIColor clearColor]];
     [self addSubview:swipView];
     RELEASE(swipView);
-    
-    if ([[_tb superCon] isKindOfClass:[ShareBookListViewController class]]) {
-        [self addSignal:[UIView PAN] object:[NSDictionary dictionaryWithObjectsAndKeys:_tb,@"tbv",_indexPath,@"indexPath", nil]];
-    }
-    
-    
-    
     
     
     
@@ -286,6 +301,14 @@ DEF_SIGNAL(FINISHSWIP)
     }
     
 }
+
+-(void)justPinB{
+
+
+
+}
+
+
 -(void)tomgg{
     
     

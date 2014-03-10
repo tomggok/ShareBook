@@ -9,5 +9,5 @@
 #import "DYBBaseViewController.h"
 
 @interface ShareBookListViewController : DYBBaseViewController
-
+@property (nonatomic,assign)NSInteger type;
 @end

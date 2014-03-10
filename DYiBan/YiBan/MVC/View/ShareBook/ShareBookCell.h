@@ -29,6 +29,8 @@
 @property (nonatomic,retain) UIImageView *imageViewDown;
 @property (nonatomic,retain) NSString *strTag; //cell 设置Tag
 
+@property (nonatomic,assign) NSInteger type;
+
 AS_SIGNAL(FINISHSWIP)
 AS_SIGNAL(CANCEL)
 -(void)creatCell;
