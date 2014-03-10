@@ -1395,6 +1395,9 @@
 		B5D9DC921834AFA4002B1C74 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D9DC911834AFA4002B1C74 /* CoreAudio.framework */; };
 		B5D9DC941834AFB0002B1C74 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D9DC931834AFB0002B1C74 /* AudioToolbox.framework */; };
 		B5E1A022187BEDD6006AC130 /* WOSClassifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E1A021187BEDD6006AC130 /* WOSClassifyCell.m */; };
+		B5E4CC9B18CD547300565589 /* icon_book(1).png in Resources */ = {isa = PBXBuildFile; fileRef = B5E4CC9818CD547300565589 /* icon_book(1).png */; };
+		B5E4CC9C18CD547300565589 /* icon_share(1).png in Resources */ = {isa = PBXBuildFile; fileRef = B5E4CC9918CD547300565589 /* icon_share(1).png */; };
+		B5E4CC9D18CD547300565589 /* icon_pepole(1).png in Resources */ = {isa = PBXBuildFile; fileRef = B5E4CC9A18CD547300565589 /* icon_pepole(1).png */; };
 		C925F7E817BC646C00035D05 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C925F7E717BC646C00035D05 /* Accelerate.framework */; };
 		C9281FA217BE00B400D34868 /* emoji_num.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9281FA017BE00B400D34868 /* emoji_num.plist */; };
 		C9281FA317BE00B400D34868 /* emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9281FA117BE00B400D34868 /* emoji.plist */; };
@@ -3397,6 +3400,9 @@
 		B5D9DC931834AFB0002B1C74 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		B5E1A020187BEDD5006AC130 /* WOSClassifyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOSClassifyCell.h; sourceTree = "<group>"; };
 		B5E1A021187BEDD6006AC130 /* WOSClassifyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOSClassifyCell.m; sourceTree = "<group>"; };
+		B5E4CC9818CD547300565589 /* icon_book(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_book(1).png"; sourceTree = "<group>"; };
+		B5E4CC9918CD547300565589 /* icon_share(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_share(1).png"; sourceTree = "<group>"; };
+		B5E4CC9A18CD547300565589 /* icon_pepole(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pepole(1).png"; sourceTree = "<group>"; };
 		C925F7E717BC646C00035D05 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		C9281FA017BE00B400D34868 /* emoji_num.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = emoji_num.plist; sourceTree = "<group>"; };
 		C9281FA117BE00B400D34868 /* emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = emoji.plist; sourceTree = "<group>"; };
@@ -3483,6 +3489,9 @@
 		1893F9C118A87EC400DF758C /* 公用 */ = {
 			isa = PBXGroup;
 			children = (
+				B5E4CC9818CD547300565589 /* icon_book(1).png */,
+				B5E4CC9918CD547300565589 /* icon_share(1).png */,
+				B5E4CC9A18CD547300565589 /* icon_pepole(1).png */,
 				B50E71A618C827DD00A68FB7 /* icon_up.png */,
 				B50E719C18C8210200A68FB7 /* icon_down.png */,
 				B50E719D18C8210200A68FB7 /* icon_list.png */,
@@ -6716,6 +6725,7 @@
 				B594A042183E0573007904F6 /* file_offline_high.png in Resources */,
 				B594A043183E0573007904F6 /* file_pause_def.png in Resources */,
 				B594A044183E0573007904F6 /* file_rename_def.png in Resources */,
+				B5E4CC9B18CD547300565589 /* icon_book(1).png in Resources */,
 				B594A045183E0573007904F6 /* file_rename_dis.png in Resources */,
 				1893FA3C18A87EC400DF758C /* line3.png in Resources */,
 				B594A046183E0573007904F6 /* file_rename_high.png in Resources */,
@@ -6809,6 +6819,7 @@
 				B594A08D183E0573007904F6 /* 下载--3.png in Resources */,
 				B5122BD818AB610D006ECE62 /* line 2.png in Resources */,
 				B594A08E183E0573007904F6 /* 举报.png in Resources */,
+				B5E4CC9D18CD547300565589 /* icon_pepole(1).png in Resources */,
 				B5D5AE9318BC365F005E4732 /* icon_bad.png in Resources */,
 				B594A08F183E0573007904F6 /* 共享.png in Resources */,
 				B594A090183E0573007904F6 /* 共享白.png in Resources */,
@@ -7317,6 +7328,7 @@
 				B598F496184ECCF7009F283D /* rightArrow.png in Resources */,
 				1893FA3418A87EC400DF758C /* bt02_click.png in Resources */,
 				B5AD9BBB1856AD02005ACB14 /* 11.png in Resources */,
+				B5E4CC9C18CD547300565589 /* icon_share(1).png in Resources */,
 				B5CE2AD318B49780008E4E44 /* btn2.png in Resources */,
 				B5AD9BBC1856AD02005ACB14 /* 12.png in Resources */,
 				B5AD9BBD1856AD02005ACB14 /* 13.png in Resources */,

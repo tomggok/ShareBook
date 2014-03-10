@@ -5,12 +5,16 @@
 //  Created by tom zeng on 14-2-11.
 //  Copyright (c) 2014年 Tomgg. All rights reserved.
 //
+
 #import "UIView+Gesture.h"
+#import "ShareBookCell.h"
 #import "UIView+MagicCategory.h"
 #import "UITableView+property.h"
 #import "UITableViewCell+MagicCategory.h"
 #import "ShareBookBankViewController.h"
-#import "ShareBookCell.h"
+
+#import "ShareBookListViewController.h"
+
 
 @implementation ShareBookCell{
 
@@ -18,7 +22,6 @@
     CGPoint ptBegin;
     CGPoint currentCenter; //cell当前的中心
     BOOL isOpen;
-    
     MagicUILabel *labelFrom;
     
 //    DYBDataBankSelectBtn* btnBottom;
@@ -44,7 +47,7 @@ DEF_SIGNAL(FINISHSWIP)
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization codsee;
-        [self creatCell];
+//        [self creatCell];
     }
     return self;
 }
@@ -65,7 +68,7 @@ DEF_SIGNAL(FINISHSWIP)
     [self addSubview:swipView];
     RELEASE(swipView);
     
-    if ([[self superCon] isKindOfClass:[ShareBookBankViewController class]]) {
+    if ([[_tb superCon] isKindOfClass:[ShareBookListViewController class]]) {
         [self addSignal:[UIView PAN] object:[NSDictionary dictionaryWithObjectsAndKeys:_tb,@"tbv",_indexPath,@"indexPath", nil]];
     }
     
@@ -146,7 +149,7 @@ DEF_SIGNAL(FINISHSWIP)
     
     
     UILabel *labelMon1 = [[UILabel alloc]initWithFrame:CGRectMake(2, 2, 200, 20)];
-    [labelMon1 setText:@"5元租金"];
+    [labelMon1 setText:@"5豆租金"];
     [imageViewLabel1 addSubview:labelMon1];
     [labelMon1 setTextColor:[UIColor whiteColor]];
     [labelMon1 setBackgroundColor:[UIColor clearColor]];
@@ -161,7 +164,6 @@ DEF_SIGNAL(FINISHSWIP)
     [swipView addSubview:imageLine];
     [imageLine release];
 }
-
 
 
 #pragma mark- 接受UIView信号
@@ -221,15 +223,17 @@ DEF_SIGNAL(FINISHSWIP)
                     //                    NSLog(@"UIGestureRecognizerStateChanged --- %f",ptEnd.x);
                     currentCenter.x = 160 + ptEnd.x - ptBegin.x;
                     //                    NSLog(@"swipview --- %@",swipView);
+                    //                    NSArray *arrayCell = [_tb.muD_dicfferIndexForCellView allValues];
                     if (isOpen) {
-//                        UITableViewCell *cell = [_tb._muA_differHeightCellView objectAtIndex:_tb._selectIndex_now.row];
-//                        if (ptEnd.x < 0 && [cell isEqual:self]) { //打开的时候，不在左划
-//                            return;
-//                        }
-//                        
-//                        if (swipView.frame.origin.x + ptEnd.x - ptBegin.x <0 && [cell isEqual:self]) { //防止划过界
-//                            return;
-//                        }
+                        ShareBookCell *cell=[_tb.muD_dicfferIndexForCellView objectForKey:[NSString stringWithFormat:@"%d",_tb._selectIndex_now.row]];
+                        //                        UITableViewCell *cell = [arrayCell objectAtIndex:_tb._selectIndex_now.row];
+                        if (ptEnd.x < 0 && [cell isEqual:self]) { //打开的时候，不在左划
+                            return;
+                        }
+                        
+                        if (swipView.frame.origin.x + ptEnd.x - ptBegin.x <0 && [cell isEqual:self]) { //防止划过界
+                            return;
+                        }
                         
                         swipView.center = currentCenter;
                         
@@ -265,8 +269,11 @@ DEF_SIGNAL(FINISHSWIP)
         UITableView *tbv=[d objectForKey:@"tbv"];
         
         //关闭上次展开的cell
+        //        NSArray *arrayCell = [tbv.muD_dicfferIndexForCellView allValues];
         if (tbv._selectIndex_now) {
-            UITableViewCell *cell=[tbv._muA_differHeightCellView objectAtIndex:tbv._selectIndex_now.row];
+            
+            //            [tbv.muD_dicfferIndexForCellView objectForKey:[NSString stringWithFormat:@"%d",tbv._selectIndex_now.row]
+            UITableViewCell *cell= [tbv.muD_dicfferIndexForCellView objectForKey:[NSString stringWithFormat:@"%d",tbv._selectIndex_now.row]];
             [cell resetContentView];
             tbv._selectIndex_now=nil;
         }else{//选中cell
@@ -314,21 +321,39 @@ DEF_SIGNAL(FINISHSWIP)
             
             UITableView *tbv=((UITableView *)(self.superview));
             
+            if (![tbv isKindOfClass:[UITableView class]]){
+                tbv = (UITableView *)tbv.superview;
+            }
             if (swipView.frame.origin.x<0) {//此cell已展开
                 
-                //关闭上次展开的cell
-//                if (tbv._selectIndex_now&&tbv._selectIndex_now!=self.index) {
-//                    UITableViewCell *cell=[tbv._muA_differHeightCellView objectAtIndex:tbv._selectIndex_now.row];
-//                    [cell resetContentView];
-//                }
-//                
-//                tbv._selectIndex_now=self.index;
+                //                muD_dicfferIndexForCellView
                 
-            }else if(tbv._selectIndex_now==self.index){//关闭上次展开的cell
+                DLogInfo(@"index -- %d",self.index.row);
+                DLogInfo(@"tbv._selectIndex_now -- %d",tbv._selectIndex_now.row);
+                
+                DLogInfo(@"tbv._muA_differHeightCellView -- %@",tbv._muA_differHeightCellView);
+                
+                //关闭上次展开的cell
+                //                NSArray *arrayCell = [tbv.muD_dicfferIndexForCellView allValues];
+                
+                if (tbv._selectIndex_now&&tbv._selectIndex_now!=self.indexPath) {
+                    ShareBookCell *cell=[tbv.muD_dicfferIndexForCellView objectForKey:[NSString stringWithFormat:@"%d",tbv._selectIndex_now.row]];
+                    [cell resetContentView];
+                }
+                
+                tbv._selectIndex_now=self.indexPath;
+                
+            }else if(tbv._selectIndex_now==self.indexPath){//关闭上次展开的cell
+                
                 UITableView *tbv=((UITableView *)(self.superview));
+                
+                if (![tbv isKindOfClass:[UITableView class]]){
+                    tbv = (UITableView *)tbv.superview;
+                }
+                
                 [tbv set_selectIndex_now:nil];
                 
-            }
+            }        
             
         }];
     }

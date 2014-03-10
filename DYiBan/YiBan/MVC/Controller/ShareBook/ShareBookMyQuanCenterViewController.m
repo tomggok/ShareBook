@@ -227,6 +227,8 @@ static NSString *cellName = @"cellName";
         RELEASE(label);
         
         
+        
+        
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [signal setReturnValue:cell];
         

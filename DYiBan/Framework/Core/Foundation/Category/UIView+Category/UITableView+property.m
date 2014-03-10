@@ -242,6 +242,18 @@ static char c_indexAfterRequest;
     objc_setAssociatedObject(self, &c_indexAfterRequest, index, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+static char _c_muD_dicfferIndexForCellView;
+-(NSMutableDictionary *)muD_dicfferIndexForCellView{
+    
+    return objc_getAssociatedObject(self, &_c_muD_dicfferIndexForCellView);
+}
+
+-(void)setMuD_dicfferIndexForCellView:(NSMutableDictionary *)muD{
+    objc_setAssociatedObject(self, &_c_muD_dicfferIndexForCellView, muD, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+}
+
+
 #pragma mark- 选中section后展开或收缩cell
 - (void)didSelectCellRowFirstDo:(BOOL)firstDoInsert/*第一次是否插入或删除cell*/ nextDo:(BOOL)nextDoInsert/*下次是否插入或删除cell*/ dataSourceCount:(NSInteger)dataSourceCount/*总section数量*/ firstDoInsertCellNums:(NSInteger)firstDoInsertCellNums/*第一次要插入或删除的cell*/ nextDoInsertCellNums:(NSInteger)nextDoInsertCellNums/*第2次要插入或删除的cell*/{
     [self beginUpdates];

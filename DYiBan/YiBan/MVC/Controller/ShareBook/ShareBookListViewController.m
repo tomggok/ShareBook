@@ -9,10 +9,16 @@
 #import "ShareBookListViewController.h"
 #import "ShareBookCell.h"
 #import "ShareBookDetailViewController.h"
+#import "UITableView+property.h"
 
 
 
-@interface ShareBookListViewController ()
+@interface ShareBookListViewController (){
+
+
+    DYBUITableView * tbDataBank11 ;
+
+}
 
 @end
 
@@ -74,8 +80,14 @@
         
         
         
-        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, self.headHeight , 320.0f, self.view.frame.size.height - self.headHeight  ) ];
+         tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, self.headHeight , 320.0f, self.view.frame.size.height - self.headHeight  ) ];
         [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];
+        
+        RELEASEDICTARRAYOBJ(tbDataBank11._muA_differHeightCellView)
+        tbDataBank11._muA_differHeightCellView = [[NSMutableArray alloc]init];
+        
+        tbDataBank11.muD_dicfferIndexForCellView = [[NSMutableDictionary alloc]init];
+
         [self.view addSubview:tbDataBank11];
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
         RELEASE(tbDataBank11);
@@ -131,14 +143,18 @@ static NSString *cellName = @"cellName";
     }else if([signal is:[MagicUITableView TABLECELLFORROW]])/*cell*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
+//        UITableView *tableView = [dict objectForKey:@"tableView"];
         
+    
         ShareBookCell *cell = [[ShareBookCell alloc]init];
-        
+        cell.tb  = tbDataBank11;
+        [cell creatCell];
         //        NSDictionary *dictInfoFood = nil;
         //        [cell creatCell:dictInfoFood];
         DLogInfo(@"%d", indexPath.section);
-        
-        
+        [tbDataBank11.muD_dicfferIndexForCellView setValue:cell forKey:[NSString stringWithFormat:@"%d",indexPath.row]];
+//        [tbDataBank11._muA_differHeightCellView addObject:cell];
+        cell.indexPath = indexPath;
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [signal setReturnValue:cell];
         
