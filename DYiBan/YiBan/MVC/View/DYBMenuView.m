@@ -9,9 +9,9 @@
 #import "DYBMenuView.h"
 #import "DYBDynamicViewController.h"
 #import "UIView+MagicCategory.h"
-#import "DYBDataBankShareViewController.h"
-#import "DYBDataBankDownloadManageViewController.h"
-#import "DYBDataBankSearchViewController.h"
+//#import "DYBDataBankShareViewController.h"
+//#import "DYBDataBankDownloadManageViewController.h"
+//#import "DYBDataBankSearchViewController.h"
 
 @implementation DYBMenuView
 
@@ -237,15 +237,15 @@ DEF_SIGNAL(MENUSELECTCELL)
             
             DLogInfo(@"controller --- %@",[self superCon]);
             
-            if ([[self superCon] isKindOfClass:[DYBDataBankShareViewController class]]
-                ||[[self superCon] isKindOfClass:[DYBDataBankDownloadManageViewController class]]
-                ||[[self superCon] isKindOfClass:[DYBDataBankSearchViewController class]]) {
-                
-                [self sendViewSignal:[DYBMenuView MENUSELECTCELL] withObject:mutabledict from:self target:[self superCon]];
-            }else{
-                
+//            if ([[self superCon] isKindOfClass:[DYBDataBankShareViewController class]]
+//                ||[[self superCon] isKindOfClass:[DYBDataBankDownloadManageViewController class]]
+//                ||[[self superCon] isKindOfClass:[DYBDataBankSearchViewController class]]) {
+//                
+//                [self sendViewSignal:[DYBMenuView MENUSELECTCELL] withObject:mutabledict from:self target:[self superCon]];
+//            }else{
+            
                 [self sendViewSignal:[DYBDynamicViewController MENUSELECT] withObject:mutabledict];
-            }
+//            }
             
         }else{//避免重复点某个cell
 //            [self sendViewSignal:[DYBMenuView MENUSHRINK] withObject:nil from:self target:self];

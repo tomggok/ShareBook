@@ -8,7 +8,7 @@
 
 #import "DYBBaseViewController.h"
 #import "DYBMenuView.h"
-#import "DYBDataBankListCell.h"
+//#import "DYBDataBankListCell.h"
 //选择联系人页
 @interface DYBSelectContactViewController : DYBBaseViewController
 {
@@ -28,6 +28,6 @@
 
 @property (nonatomic,retain)NSString *docAddr;
 @property (nonatomic,retain)NSDictionary *dictInfo;
-@property (nonatomic,retain)DYBDataBankListCell *cellDetail;
-@property (nonatomic,retain)DYBDataBankListCell *cellDetailSearch;
+//@property (nonatomic,retain)DYBDataBankListCell *cellDetail;
+//@property (nonatomic,retain)DYBDataBankListCell *cellDetailSearch;
 @end

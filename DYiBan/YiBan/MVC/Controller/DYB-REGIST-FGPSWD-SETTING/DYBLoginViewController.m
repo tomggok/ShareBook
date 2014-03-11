@@ -12,7 +12,7 @@
 #import "DYBForgetPassWordViewController.h"
 #import "DYBSettingViewController.h"
 #import "user.h"
-#import "DYBDataBankListController.h"
+//#import "DYBDataBankListController.h"
 #import "Magic_Sandbox.h"
 #import "userRegistModel.h"
 

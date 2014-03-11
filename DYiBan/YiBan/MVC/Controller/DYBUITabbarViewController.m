@@ -9,7 +9,7 @@
 #import "DYBUITabbarViewController.h"
 #import "DYBBaseViewLeftView.h"
 
-#import "DYBDataBankDownloadManageViewController.h"
+//#import "DYBDataBankDownloadManageViewController.h"
 #import "DYBDynamicViewController.h"
 #import "DYBMsgViewController.h"
 #import "DYBFriendsViewController.h"
@@ -17,9 +17,9 @@
 #import "DYBUITabbarViewController.h"
 #import "DYBSettingViewController.h"
 
-#import "DYBDataBankListController.h"
-#import "DYBDataBankSearchViewController.h"
-#import "DYBDataBankShareViewController.h"
+//#import "DYBDataBankListController.h"
+//#import "DYBDataBankSearchViewController.h"
+//#import "DYBDataBankShareViewController.h"
 #import "NSObject+KVO.h"
 
 #import "DYYBClassHomePageViewController.h"
@@ -35,9 +35,9 @@
 #import "DYBNoteDetailViewController.h"
 
 
-#import "WOSHomeViewController.h"
+//#import "WOSHomeViewController.h"
 
-#import "WOSPersonInfoViewController.h"
+//#import "WOSPersonInfoViewController.h"
 
 #import "ShareBookBankViewController.h"
 #import "ShareSettingViewController.h"
@@ -192,54 +192,54 @@ MagicUIButton *hiddenView;
 //资料库
 - (NSArray *)initDataBankParams{
 
-    
-        DYBDataBankDownloadManageViewController *download = [[DYBDataBankDownloadManageViewController shareDownLoadInstance] autorelease];
-
-        [download setVc:_vc];
-
-        DYBDataBankListController *list = [[DYBDataBankListController creatShareInstance] autorelease];
-
-        [list setVc:_vc];
-
-
-        DYBDataBankSearchViewController *search = [[DYBDataBankSearchViewController creatShare] autorelease];
-        [search setVc:_vc];
-
-
-       DYBDataBankShareViewController *share = [[[DYBDataBankShareViewController alloc]init] autorelease];
-        [share setVc:_vc];
-
-
-        NSArray *arrayVC = [NSArray arrayWithObjects:list,search,share,download, nil];
-
-        CGFloat tabBarY = 0;
-        if (![self.drNavigationController isNavigationBarHidden])
-        {
-            tabBarY = [self.drNavigationController navigationbarHeight];
-        }
-
-
-        NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
-        [imgDic setObject:[UIImage imageNamed:@"tab_files_def"] forKey:TABBARBUTDEFAULT];
-        [imgDic setObject:[UIImage imageNamed:@"tab_files_high"] forKey:TABBARBUTHIGHLIGHT];
-        [imgDic setObject:[UIImage imageNamed:@"tab_files_sel"] forKey:TABBARBUTSELETED];
-        NSMutableDictionary *imgDic2 = [NSMutableDictionary dictionaryWithCapacity:3];
-        [imgDic2 setObject:[UIImage imageNamed:@"tab_search_def"] forKey:TABBARBUTDEFAULT];
-        [imgDic2 setObject:[UIImage imageNamed:@"tab_search_high.png"] forKey:TABBARBUTHIGHLIGHT];
-        [imgDic2 setObject:[UIImage imageNamed:@"tab_search_sel.png"] forKey:TABBARBUTSELETED];
-        NSMutableDictionary *imgDic3 = [NSMutableDictionary dictionaryWithCapacity:3];
-        [imgDic3 setObject:[UIImage imageNamed:@"tab_share_def"] forKey:TABBARBUTDEFAULT];
-        [imgDic3 setObject:[UIImage imageNamed:@"tab_share_high.png"] forKey:TABBARBUTHIGHLIGHT];
-        [imgDic3 setObject:[UIImage imageNamed:@"tab_share_sel.png"] forKey:TABBARBUTSELETED];
-        NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
-        [imgDic4 setObject:[UIImage imageNamed:@"tab_trans_def"] forKey:TABBARBUTDEFAULT];
-        [imgDic4 setObject:[UIImage imageNamed:@"tab_trans_high.png"] forKey:TABBARBUTHIGHLIGHT];
-        [imgDic4 setObject:[UIImage imageNamed:@"tab_trans_sel.png"] forKey:TABBARBUTSELETED];
-
-        NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4,nil];
-
-        NSArray *VCIMGArr = [NSArray arrayWithObjects:arrayVC, imgArr, nil];
-        return VCIMGArr;
+//    
+//        DYBDataBankDownloadManageViewController *download = [[DYBDataBankDownloadManageViewController shareDownLoadInstance] autorelease];
+//
+//        [download setVc:_vc];
+//
+//        DYBDataBankListController *list = [[DYBDataBankListController creatShareInstance] autorelease];
+//
+//        [list setVc:_vc];
+//
+//
+//        DYBDataBankSearchViewController *search = [[DYBDataBankSearchViewController creatShare] autorelease];
+//        [search setVc:_vc];
+//
+//
+//       DYBDataBankShareViewController *share = [[[DYBDataBankShareViewController alloc]init] autorelease];
+//        [share setVc:_vc];
+//
+//
+//        NSArray *arrayVC = [NSArray arrayWithObjects:list,search,share,download, nil];
+//
+//        CGFloat tabBarY = 0;
+//        if (![self.drNavigationController isNavigationBarHidden])
+//        {
+//            tabBarY = [self.drNavigationController navigationbarHeight];
+//        }
+//
+//
+//        NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
+//        [imgDic setObject:[UIImage imageNamed:@"tab_files_def"] forKey:TABBARBUTDEFAULT];
+//        [imgDic setObject:[UIImage imageNamed:@"tab_files_high"] forKey:TABBARBUTHIGHLIGHT];
+//        [imgDic setObject:[UIImage imageNamed:@"tab_files_sel"] forKey:TABBARBUTSELETED];
+//        NSMutableDictionary *imgDic2 = [NSMutableDictionary dictionaryWithCapacity:3];
+//        [imgDic2 setObject:[UIImage imageNamed:@"tab_search_def"] forKey:TABBARBUTDEFAULT];
+//        [imgDic2 setObject:[UIImage imageNamed:@"tab_search_high.png"] forKey:TABBARBUTHIGHLIGHT];
+//        [imgDic2 setObject:[UIImage imageNamed:@"tab_search_sel.png"] forKey:TABBARBUTSELETED];
+//        NSMutableDictionary *imgDic3 = [NSMutableDictionary dictionaryWithCapacity:3];
+//        [imgDic3 setObject:[UIImage imageNamed:@"tab_share_def"] forKey:TABBARBUTDEFAULT];
+//        [imgDic3 setObject:[UIImage imageNamed:@"tab_share_high.png"] forKey:TABBARBUTHIGHLIGHT];
+//        [imgDic3 setObject:[UIImage imageNamed:@"tab_share_sel.png"] forKey:TABBARBUTSELETED];
+//        NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
+//        [imgDic4 setObject:[UIImage imageNamed:@"tab_trans_def"] forKey:TABBARBUTDEFAULT];
+//        [imgDic4 setObject:[UIImage imageNamed:@"tab_trans_high.png"] forKey:TABBARBUTHIGHLIGHT];
+//        [imgDic4 setObject:[UIImage imageNamed:@"tab_trans_sel.png"] forKey:TABBARBUTSELETED];
+//
+//        NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4,nil];
+//
+//        NSArray *VCIMGArr = [NSArray arrayWithObjects:arrayVC, imgArr, nil];
+//        return VCIMGArr;
 
 
 }
@@ -616,10 +616,10 @@ MagicUIButton *hiddenView;
         
         NSIndexPath *indexPath = (NSIndexPath *)[signal object];
         
-        WOSPersonInfoViewController *person = [[WOSPersonInfoViewController alloc]init];
-        
-        [self.drNavigationController pushViewController:person animated:YES];
-        RELEASE(person);
+//        WOSPersonInfoViewController *person = [[WOSPersonInfoViewController alloc]init];
+//        
+//        [self.drNavigationController pushViewController:person animated:YES];
+//        RELEASE(person);
 
         return;
         

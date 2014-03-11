@@ -7,7 +7,7 @@
 //
 
 #import "WOSGoodPriceCell.h"
-#import "WOSMakeSureOrderListViewController.h"
+//#import "WOSMakeSureOrderListViewController.h"
 
 
 @implementation WOSGoodPriceCell
@@ -104,9 +104,9 @@
 -(void)doGoodPrice{
     
     
-    WOSMakeSureOrderListViewController *makeSure = [[WOSMakeSureOrderListViewController alloc]init];
-    [_targetObj.navigationController pushViewController:makeSure animated:YES];
-    [makeSure release];
+//    WOSMakeSureOrderListViewController *makeSure = [[WOSMakeSureOrderListViewController alloc]init];
+//    [_targetObj.navigationController pushViewController:makeSure animated:YES];
+//    [makeSure release];
 
 
 }

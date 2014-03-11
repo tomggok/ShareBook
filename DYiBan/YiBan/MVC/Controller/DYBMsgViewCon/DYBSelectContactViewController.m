@@ -29,7 +29,7 @@
 @end
 
 @implementation DYBSelectContactViewController
-@synthesize bEnterDataBank = _bEnterDataBank,docAddr = _docAddr,dictInfo = _dictInfo,cellDetail = _cellDetail,cellDetailSearch = _cellDetailSearch ,nid=_nid;
+@synthesize bEnterDataBank = _bEnterDataBank,docAddr = _docAddr,dictInfo = _dictInfo,nid=_nid;
 #pragma mark-
 -(void)creatTbv{
     if (!_tbv) {
@@ -1174,10 +1174,10 @@ static NSString *cellForFriends = @"cellForFriends";//好友cell
                 if ([response response] ==khttpsucceedCode)
                 {
                     [_dictInfo setValue:@"3" forKey:@"perm"];
-                    if (_cellDetail) {
-                        [_cellDetail setPublicString:@"3"];
-                        [_cellDetailSearch setPublicString:@"3"];
-                    }
+//                    if (_cellDetail) {
+//                        [_cellDetail setPublicString:@"3"];
+//                        [_cellDetailSearch setPublicString:@"3"];
+//                    }
                     [self.drNavigationController popVCAnimated:YES];
                 }
                 NSString *MSG = [response.data objectForKey:@"msg"];

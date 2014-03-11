@@ -35,8 +35,8 @@
 #import "NSObject+KVO.h"
 #import "DYBActivityViewController.h"
 #import "DYBGuideView.h"
-#import "WOSPersonInfoViewController.h"
-#import "WOSALLOrderViewController.h"
+//#import "WOSPersonInfoViewController.h"
+//#import "WOSALLOrderViewController.h"
 
 @interface DYBDynamicViewController ()
 {
@@ -252,9 +252,9 @@ static NSString *cellName = @"cellName";
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         UITableView *tableView = [dict objectForKey:@"tableView"];
         
-        WOSPersonInfoViewController *person = [[WOSPersonInfoViewController alloc]init];
-        [self.drNavigationController pushViewController:person animated:YES];
-        RELEASE(person);
+//        WOSPersonInfoViewController *person = [[WOSPersonInfoViewController alloc]init];
+//        [self.drNavigationController pushViewController:person animated:YES];
+//        RELEASE(person);
         
 //        
 //        status *s = [_arrayDynamic objectAtIndex:indexPath.row];
@@ -694,21 +694,21 @@ static NSString *cellName = @"cellName";
 
 -(void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal{
     
-    if ([signal is:[DYBDataBankShotView RIGHT]]) {
-        DLogInfo(@"DEL");
-        
-        NSDictionary *dicType = (NSDictionary *)[signal object];
-        NSString *strType = [dicType objectForKey:@"type"];
-        int row = [[dicType objectForKey:@"rowNum"] intValue];
-        
-        if ([strType intValue] == BTNTAG_SINGLE) {
-            if (row == 3) {
-                [self showInterface];
-            }
-        }
-        
-        
-    }
+//    if ([signal is:[DYBDataBankShotView RIGHT]]) {
+//        DLogInfo(@"DEL");
+//        
+//        NSDictionary *dicType = (NSDictionary *)[signal object];
+//        NSString *strType = [dicType objectForKey:@"type"];
+//        int row = [[dicType objectForKey:@"rowNum"] intValue];
+//        
+//        if ([strType intValue] == BTNTAG_SINGLE) {
+//            if (row == 3) {
+//                [self showInterface];
+//            }
+//        }
+//        
+//        
+//    }
 }
 
 #pragma makr -
@@ -729,9 +729,9 @@ static NSString *cellName = @"cellName";
 //        [self.drNavigationController pushViewController:person animated:YES];
 //        RELEASE(person);
         
-        WOSALLOrderViewController *allOrder = [[WOSALLOrderViewController alloc]init];
-        [self.drNavigationController pushViewController:allOrder animated:YES];
-        RELEASE(allOrder);
+//        WOSALLOrderViewController *allOrder = [[WOSALLOrderViewController alloc]init];
+//        [self.drNavigationController pushViewController:allOrder animated:YES];
+//        RELEASE(allOrder);
         
     }
     
