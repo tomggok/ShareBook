@@ -410,25 +410,25 @@
 #pragma mark - DYBDataBankShotView
 - (void)handleViewSignal_DYBDataBankShotView:(MagicViewSignal *)signal
 {
-    DYBDataBankShotView *showView = [signal source];
-    NSDictionary *dict = [showView userInfo];
-    NSDictionary *data = [[dict objectForKey:@"dict"] objectForKey:@"data"];
-
-    
-    NSString *url = [[data objectForKey:@"version"] objectForKey:@"url"];
-    if ([[showView type] isEqualToString:[NSString stringWithFormat:@"%d", BTNTAG_TEXTVIEW]])
-    {
-        if ([signal is:[DYBDataBankShotView RIGHT]])
-        {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-        }
-    }else if ([[showView type] isEqualToString:[NSString stringWithFormat:@"%d", BTNTAG_TEXTVIEWSINGLE]])
-    {
-        if ([signal is:[DYBDataBankShotView RIGHT]])
-        {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-        }
-    }
+//    DYBDataBankShotView *showView = [signal source];
+//    NSDictionary *dict = [showView userInfo];
+//    NSDictionary *data = [[dict objectForKey:@"dict"] objectForKey:@"data"];
+//
+//    
+//    NSString *url = [[data objectForKey:@"version"] objectForKey:@"url"];
+//    if ([[showView type] isEqualToString:[NSString stringWithFormat:@"%d", BTNTAG_TEXTVIEW]])
+//    {
+//        if ([signal is:[DYBDataBankShotView RIGHT]])
+//        {
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+//        }
+//    }else if ([[showView type] isEqualToString:[NSString stringWithFormat:@"%d", BTNTAG_TEXTVIEWSINGLE]])
+//    {
+//        if ([signal is:[DYBDataBankShotView RIGHT]])
+//        {
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+//        }
+//    }
     
 }
 @end

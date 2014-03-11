@@ -150,7 +150,7 @@ DEF_SIGNAL(TOUCHANNITION)
             annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation 
                                                            reuseIdentifier:@"CustomAnnotation"] autorelease];
             annotationView.canShowCallout = NO;
-            annotationView.image = [UIImage imageNamed:@"pin.png"];
+            annotationView.image = [UIImage imageNamed:@"icon_pin.png"];
         }
 		
 		return annotationView;

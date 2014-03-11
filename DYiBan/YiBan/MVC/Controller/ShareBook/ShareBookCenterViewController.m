@@ -8,6 +8,9 @@
 
 #import "ShareBookCenterViewController.h"
 #import "ShareBookListViewController.h"
+
+#import "DYBTwoDimensionCodeViewController.h"
+
 @interface ShareBookCenterViewController (){
 
     NSMutableArray *arraySouce;
@@ -110,6 +113,7 @@
         UIImage *iamgeBtn = [UIImage imageNamed:@"bt_click1.png"];
         UIButton *btnSendBook = [[UIButton alloc]initWithFrame:CGRectMake(10.0f, 390.f, iamgeBtn.size.width/2, iamgeBtn.size.height/2)];
         [btnSendBook setImage:iamgeBtn forState:UIControlStateNormal];
+        [btnSendBook addTarget:self action:@selector(doPushNewBook) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnSendBook];
         [btnSendBook setBackgroundColor:[UIColor clearColor]];
         RELEASE(btnSendBook);
@@ -126,6 +130,16 @@
         
     }
 }
+
+-(void)doPushNewBook{
+    
+    
+    DYBTwoDimensionCodeViewController *scan = [[DYBTwoDimensionCodeViewController alloc]init];
+    [self.drNavigationController pushViewController:scan animated:YES];
+    [scan release];
+    
+}
+
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
 

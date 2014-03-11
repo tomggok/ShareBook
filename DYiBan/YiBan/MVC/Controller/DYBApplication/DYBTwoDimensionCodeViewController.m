@@ -14,6 +14,7 @@
 #import "active.h"
 #import "DYBActivityViewController.h"
 #import "Magic_Device.h"
+#import "ShareBookMakeSureUpBookViewController.h"
 
 @interface DYBTwoDimensionCodeViewController (){
     
@@ -42,11 +43,16 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
     {
         
         
-        [self.rightButton setHidden:YES];
+//        [self.rightButton setHidden:YES];
         
-        [self.headview setTitle:@"易码通"];
-        [self backImgType:0];
+        [self.headview setTitle:@"上架图书"];
+//        [self backImgType:0];
         [self addWillAppear];
+        [self.headview setTitleColor:[UIColor colorWithRed:193.0f/255 green:193.0f/255 blue:193.0f/255 alpha:1.0f]];
+        [self.headview setBackgroundColor:[UIColor colorWithRed:22.0f/255 green:29.0f/255 blue:36.0f/255 alpha:1.0f]];
+
+        [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
+
         [self.view bringSubviewToFront:self.headview];
     }else if ([signal is:[MagicViewController CREATE_VIEWS]])
     {
@@ -72,7 +78,6 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
                 [device unlockForConfiguration];
             }
         }
-
     }
 }
 
@@ -132,7 +137,16 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
         [iamge setImage:[UIImage imageNamed:@"qrcode_bg.png"]];
     }
     iamge.contentMode = UIViewContentModeScaleAspectFit;
-    [iamge setFrame:CGRectMake(0.0f, 0, 320.0f, self.view.frame.size.height)];
+    
+    int offset = 0;
+    
+    if ([MagicDevice sysVersion] >= 7.0f) {
+        
+        offset = 20.0f;
+    }
+    
+    
+    [iamge setFrame:CGRectMake(0.0f, offset, 320.0f, self.view.frame.size.height)];
     [self.view addSubview:iamge];
     [iamge release];
     
@@ -142,9 +156,9 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
     
     laser = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"laser.png"]];
     if (self.view.frame.size.height == 480) {
-        [laser setFrame:CGRectMake(41.0f, 75.0f, 235.0f, 13.0f)];
+        [laser setFrame:CGRectMake(41.0f, 75.0f + offset, 235.0f, 13.0f)];
     }else{
-        [laser setFrame:CGRectMake(41.0f, 124.0f, 235.0f, 13.0f)];
+        [laser setFrame:CGRectMake(41.0f, 124.0f + offset, 235.0f, 13.0f)];
     }
     
     [self.view addSubview:laser];
@@ -160,8 +174,8 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
     labeText.numberOfLines = 2;
     labeText.font = [DYBShareinstaceDelegate DYBFoutStyle:15];
     labeText.textColor = [MagicCommentMethod colorWithHex:@"aaaaaa"];
-    [labeText setText:@"活动二维码"];
-    [self.view addSubview:labeText];
+//    [labeText setText:@"活动二维码"];
+//    [self.view addSubview:labeText];
     
     
     if (selectbtn[0]) {
@@ -182,8 +196,8 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
             [selectbtn[i] addSignal:[DYBTwoDimensionCodeViewController WEBBUTTON] forControlEvents:UIControlEventTouchUpInside];
         }
         [selectbtn[i] setBackgroundColor:[UIColor blackColor]];
-        [self.view addSubview:selectbtn[i]];
-        RELEASE(selectbtn[i]);
+//        [self.view addSubview:selectbtn[i]];
+//        RELEASE(selectbtn[i]);
     }
     
     
@@ -235,7 +249,7 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
     }
     [UIView beginAnimations:@"show" context:nil];
     [UIView setAnimationRepeatAutoreverses:YES];
-    [UIView setAnimationRepeatCount:100000.04];
+    [UIView setAnimationRepeatCount:100000.0];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDuration:2.5];
     if (self.view.frame.size.height == 460) {
@@ -307,17 +321,20 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
         
     }else if ([self isPureInt:self.strData]>0 &&selectIndex == 0) {
         
-        MagicRequest *request = [DYBHttpMethod active_detail:self.strData isAlert:NO receive:self];
-        [request setTag:1];
-        
-        if (!request) {//无网路
-            [DYBShareinstaceDelegate loadFinishAlertView:@"检查网络是否连接！" target:self];
-        }
-        
+//        MagicRequest *request = [DYBHttpMethod active_detail:self.strData isAlert:NO receive:self];
+//        [request setTag:1];
+//        
+//        if (!request) {//无网路
+//            [DYBShareinstaceDelegate loadFinishAlertView:@"检查网络是否连接！" target:self];
+//        }
+        UIAlertView *alerView = [[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"已扫描到条形码维码"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        alerView.tag = 103;
+        [alerView show];
+        [alerView release];
         
     }else {
         
-        UIAlertView *alerView = [[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"扫描到非链接二维码"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView *alerView = [[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"已扫描到条形码维码"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         alerView.tag = 103;
         [alerView show];
         [alerView release];
@@ -360,6 +377,20 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
 //            [self.drNavigationController pushViewController:web animated:YES];
 //            [web release];
         }
+    }else if (alertView.tag == 103){
+    
+        if (buttonIndex == 0) {
+            
+            ShareBookMakeSureUpBookViewController *up = [[ShareBookMakeSureUpBookViewController alloc]init];
+            [self.drNavigationController pushViewController:up animated:YES];
+            RELEASE(up);
+            
+        }else{
+            
+          
+        }
+    
+    
     }
 }
 
