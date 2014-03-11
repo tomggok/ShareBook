@@ -146,9 +146,10 @@
         RELEASE(_phoneInputNameR);
         
         
-        UIButton *btnMoreAddr = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(_phoneInputNameR.frame) + CGRectGetMinX(_phoneInputNameR.frame) + 20 , CGRectGetMinY(btnChooseTime.frame) + CGRectGetHeight(btnChooseTime.frame), 50, 40)];
+        UIButton *btnMoreAddr = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(_phoneInputNameR.frame) + CGRectGetMinX(_phoneInputNameR.frame) + 20 + 5, CGRectGetMinY(btnChooseTime.frame) + CGRectGetHeight(btnChooseTime.frame), 40, 40)];
         [btnMoreAddr addTarget:self action:@selector(doMoreAddr) forControlEvents:UIControlEventTouchUpInside];
-        [btnMoreAddr setBackgroundColor:[UIColor redColor]];
+        [btnMoreAddr setImage:[UIImage imageNamed:@"icon+(1)"] forState:UIControlStateNormal];
+        [btnMoreAddr setBackgroundColor:[UIColor clearColor]];
         [self.view addSubview:btnMoreAddr];
         RELEASE(btnMoreAddr);
         

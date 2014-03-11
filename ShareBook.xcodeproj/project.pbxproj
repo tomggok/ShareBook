@@ -111,6 +111,8 @@
 		B50D962A18CEDFEE00619B21 /* boby.png in Resources */ = {isa = PBXBuildFile; fileRef = B50D962518CEDFEE00619B21 /* boby.png */; };
 		B50D962B18CEDFEE00619B21 /* secelt.png in Resources */ = {isa = PBXBuildFile; fileRef = B50D962618CEDFEE00619B21 /* secelt.png */; };
 		B50D962D18CEE3B400619B21 /* 21X21.png in Resources */ = {isa = PBXBuildFile; fileRef = B50D962C18CEE3B400619B21 /* 21X21.png */; };
+		B50D962F18CF134000619B21 /* icon+.png in Resources */ = {isa = PBXBuildFile; fileRef = B50D962E18CF134000619B21 /* icon+.png */; };
+		B50D963118CF16AA00619B21 /* icon+(1).png in Resources */ = {isa = PBXBuildFile; fileRef = B50D963018CF16AA00619B21 /* icon+(1).png */; };
 		B50E718F18C6CB4E00A68FB7 /* ShareBookMobileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B50E718E18C6CB4E00A68FB7 /* ShareBookMobileViewController.m */; };
 		B50E719118C6D3B500A68FB7 /* btMobile.png in Resources */ = {isa = PBXBuildFile; fileRef = B50E719018C6D3B500A68FB7 /* btMobile.png */; };
 		B50E719418C7055B00A68FB7 /* ShareBookMangeAddrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B50E719318C7055B00A68FB7 /* ShareBookMangeAddrViewController.m */; };
@@ -815,6 +817,8 @@
 		B50D962518CEDFEE00619B21 /* boby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boby.png; sourceTree = "<group>"; };
 		B50D962618CEDFEE00619B21 /* secelt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = secelt.png; sourceTree = "<group>"; };
 		B50D962C18CEE3B400619B21 /* 21X21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 21X21.png; sourceTree = "<group>"; };
+		B50D962E18CF134000619B21 /* icon+.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon+.png"; sourceTree = "<group>"; };
+		B50D963018CF16AA00619B21 /* icon+(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon+(1).png"; sourceTree = "<group>"; };
 		B50E718D18C6CB4E00A68FB7 /* ShareBookMobileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBookMobileViewController.h; sourceTree = "<group>"; };
 		B50E718E18C6CB4E00A68FB7 /* ShareBookMobileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBookMobileViewController.m; sourceTree = "<group>"; };
 		B50E719018C6D3B500A68FB7 /* btMobile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btMobile.png; sourceTree = "<group>"; };
@@ -2003,6 +2007,8 @@
 		1893F9C118A87EC400DF758C /* 公用 */ = {
 			isa = PBXGroup;
 			children = (
+				B50D963018CF16AA00619B21 /* icon+(1).png */,
+				B50D962E18CF134000619B21 /* icon+.png */,
 				B50D962C18CEE3B400619B21 /* 21X21.png */,
 				B50D962218CEDFEE00619B21 /* not_secelt.png */,
 				B50D962318CEDFEE00619B21 /* boby2.png */,
@@ -4156,10 +4162,12 @@
 				1893FA5218A87EC400DF758C /* icon_qq.png in Resources */,
 				B5CE2AE918B4B71F008E4E44 /* bt012.png in Resources */,
 				1893FA2018A87EC400DF758C /* icon_circle_2.png in Resources */,
+				B50D962F18CF134000619B21 /* icon+.png in Resources */,
 				B5CE2AE418B4B635008E4E44 /* bt_click 2.png in Resources */,
 				B50D960F18CEB3CF00619B21 /* qrcode_bg.png in Resources */,
 				1893FA4D18A87EC400DF758C /* bt.png in Resources */,
 				B50E71A218C8210200A68FB7 /* icon_list.png in Resources */,
+				B50D963118CF16AA00619B21 /* icon+(1).png in Resources */,
 				B50E71A718C827DD00A68FB7 /* icon_up.png in Resources */,
 				B50E71A518C8210200A68FB7 /* icon_pin2.png in Resources */,
 				B5122BD718AB610D006ECE62 /* bt1.png in Resources */,
