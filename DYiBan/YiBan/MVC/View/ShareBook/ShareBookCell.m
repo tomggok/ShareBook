@@ -102,6 +102,7 @@ DEF_SIGNAL(FINISHSWIP)
     [imageBook release];
     
     UILabel *labelName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, 5, 200, 20)];
+    [labelName setBackgroundColor:[UIColor clearColor]];
     [labelName setText:@"三生三室枕上书"];
     [swipView addSubview:labelName];
     [labelName release];
@@ -109,6 +110,7 @@ DEF_SIGNAL(FINISHSWIP)
     UILabel *labelAuther = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, CGRectGetMinY(labelName.frame) + CGRectGetHeight(labelName.frame) + 0, 200, 20)];
     [labelAuther setText:[ NSString stringWithFormat:@"作者：曾新"]];
     [labelAuther setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
+    [labelAuther setBackgroundColor:[UIColor clearColor]];
 
     [labelAuther setFont:[UIFont systemFontOfSize:15]];
     [swipView addSubview:labelAuther];
@@ -117,6 +119,8 @@ DEF_SIGNAL(FINISHSWIP)
     UILabel *labelPublic = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, CGRectGetMinY(labelAuther.frame) + CGRectGetHeight(labelAuther.frame) + 0, 200, 20)];
     [labelPublic setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
     [labelPublic setText:[NSString stringWithFormat:@"出版社：中国民族艺术出版社"]];
+    [labelPublic setBackgroundColor:[UIColor clearColor]];
+
     [swipView addSubview:labelPublic];
     [labelPublic setFont:[UIFont systemFontOfSize:14]];
     [labelPublic release];
@@ -125,6 +129,7 @@ DEF_SIGNAL(FINISHSWIP)
     [labelAddr setText:@"长宁区娄山管路2董"];
     [swipView addSubview:labelAddr];
     [labelAddr setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
+    [labelAddr setBackgroundColor:[UIColor clearColor]];
 
     [labelAddr setFont:[UIFont systemFontOfSize:12]];
     [labelAddr sizeToFit];
@@ -133,6 +138,7 @@ DEF_SIGNAL(FINISHSWIP)
     UILabel *labelModel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelAddr.frame) + CGRectGetMinX(labelAddr.frame) + 5, CGRectGetMinY(labelPublic.frame) + CGRectGetHeight(labelPublic.frame) + 3, 200, 20)];
     [labelModel setText:@"做客模式"];
     [labelModel setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
+    [labelModel setBackgroundColor:[UIColor clearColor]];
 
     [swipView addSubview:labelModel];
     [labelModel setFont:[UIFont systemFontOfSize:12]];
@@ -155,7 +161,8 @@ DEF_SIGNAL(FINISHSWIP)
     [labelMon setFont:[UIFont systemFontOfSize:12]];
     [labelMon sizeToFit];
     [labelMon release];
-    
+    [labelMon setBackgroundColor:[UIColor clearColor]];
+
     
     UIImage *imageTitle1 = [UIImage imageNamed:@"title_bg"];
     UIImageView *imageViewLabel1 = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelModel.frame) + CGRectGetMinX(labelModel.frame) + 30, CGRectGetMinY(labelPublic.frame) + CGRectGetHeight(labelPublic.frame) + 3 - 40, imageTitle.size.width/2, imageTitle.size.height/2)];

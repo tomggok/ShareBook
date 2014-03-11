@@ -74,6 +74,7 @@
         
         
         UILabel *labelName = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.headHeight + 10, 100.0f, 40.0f)];
+        [labelName setBackgroundColor:[UIColor clearColor]];
         [labelName setText:@"手机号码："];
         [self.view addSubview:labelName];
         RELEASE(labelName);
@@ -106,7 +107,8 @@
         [labelJINWEI setText:@"验证码："];
         [self.view addSubview:labelJINWEI];
         RELEASE(labelJINWEI);
-        
+        [labelJINWEI setBackgroundColor:[UIColor clearColor]];
+
         
       
         DYBInputView  *_phoneInputName1 = [[DYBInputView alloc]initWithFrame:CGRectMake(100,CGRectGetHeight(btnOK.frame) + CGRectGetMinY(btnOK.frame) + 20, 200, 35) placeText:@"输入验证码" textType:0];

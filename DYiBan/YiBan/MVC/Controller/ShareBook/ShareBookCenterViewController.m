@@ -88,7 +88,7 @@
         RELEASE(labelBook);
         
         
-        
+        [labelBook setBackgroundColor:[UIColor clearColor]];
         
         UIView *viewBGTableView = [[UIView alloc]initWithFrame:CGRectMake(10, self.headHeight + 60, 300.0f,  5* 50  )];
         [viewBGTableView setBackgroundColor:[UIColor whiteColor]];

@@ -231,7 +231,7 @@
         UILabel *labelText = [[UILabel alloc]initWithFrame:CGRectMake(150.0f,  0 +INPUTHEIGHT  + 40, 160.0f, 40.0f)];
         [labelText setText:@"通过手机获得验证码每天上线3次"];
         [labelText setFont:[UIFont systemFontOfSize:14]];
-        
+        [labelText setBackgroundColor:[UIColor clearColor]];
         labelText.lineBreakMode = UILineBreakModeWordWrap;
         labelText.numberOfLines = 0;
         [labelText setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];

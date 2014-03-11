@@ -273,7 +273,7 @@
     
     
     UILabel *labelAutoLogin = [[UILabel alloc]initWithFrame:CGRectMake(20.0f + 30, CGRectGetHeight(_phoneInputAddr.frame) + CGRectGetMinY(_phoneInputAddr.frame) + 20 , 100.0f, 20.0f)];
-
+    [labelAutoLogin setBackgroundColor:[UIColor clearColor]];
     [labelAutoLogin setText:@"自动登陆"];
     [viewLogin addSubview:labelAutoLogin];
     RELEASE(labelAutoLogin);
@@ -290,6 +290,8 @@
     
     
     UILabel *labelMissPW = [[UILabel alloc]initWithFrame:CGRectMake(10.0f + 200, CGRectGetHeight(_phoneInputAddr.frame) + CGRectGetMinY(_phoneInputAddr.frame) + 20 , 100.0f, 20.0f)];
+    [labelMissPW setBackgroundColor:[UIColor clearColor]];
+
     [labelMissPW setText:@"忘记密码"];
     [labelMissPW setUserInteractionEnabled:YES];
     [viewLogin addSubview:labelMissPW];
