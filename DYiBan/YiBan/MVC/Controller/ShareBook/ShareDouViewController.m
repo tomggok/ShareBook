@@ -54,6 +54,8 @@
         [self.headview setBackgroundColor:[UIColor colorWithRed:97.0f/255 green:97.0f/255 blue:97.0f/255 alpha:1.0]];
 //        [self.leftButton setHidden:YES];
         [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
+        
+        [self setButtonImage:self.rightButton setImage:@"icon+(1)"];
     }
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         

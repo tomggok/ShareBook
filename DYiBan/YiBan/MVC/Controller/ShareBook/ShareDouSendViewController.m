@@ -9,8 +9,17 @@
 #import "ShareDouSendViewController.h"
 #import "ShareBookDetailCell.h"
 #import "ShareBookApplyCell.h"
+#import "DYBInputView.h"
+#import "CALayer+Custom.h"
 
-@interface ShareDouSendViewController ()
+
+
+
+@interface ShareDouSendViewController (){
+
+    DYBInputView *_phoneInputNameRSend;
+    ZenKeyboardView *_keyboardView;
+}
 
 @end
 
@@ -101,7 +110,7 @@
 //        [imageNum addSubview:labelNum];
 //        RELEASE(labelNum);
         
-        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, 44 + 120, 320.0f, self.view.frame.size.height -44-100  ) isNeedUpdate:YES];
+        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, 44 + 120, 320.0f, self.view.frame.size.height -44-100 - 50  ) isNeedUpdate:YES];
         [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:tbDataBank11];
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
@@ -111,6 +120,47 @@
 //        [self creatDownBar];
         
         
+        
+        UIImage *imageBG = [UIImage imageNamed:@"down_options_bg"];
+        UIImageView *viewBG1 = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, self.view.frame.size.height - imageBG.size.height/2 - 0, 320.0f, imageBG.size.height/2)];
+        [viewBG1 setUserInteractionEnabled:YES];
+        //    [viewBG setBackgroundColor:[UIColor redColor]];
+        [viewBG1 setTag:201];
+        [viewBG1 setImage:[UIImage imageNamed:@"down_options_bg"]];
+        [self.view addSubview:viewBG1];
+        RELEASE(viewBG1);
+        
+        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(5.0f, 5.0f, 200.0f, 30.0f)];
+        [viewBG1 addSubview:textField];
+        RELEASE(textField);
+        
+        
+        
+        _phoneInputNameRSend = [[DYBInputView alloc]initWithFrame:CGRectMake(10.0f, 10.0f, 250.0f, 30.0f) placeText:@"输入内容" textType:0];
+        [_phoneInputNameRSend.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[UIColor blackColor] CGColor]];
+        //        [_phoneInputNameR.nameField setText:@"1"];
+        [_phoneInputNameRSend.nameField setTextColor:[UIColor blackColor]];
+        [_phoneInputNameRSend setBackgroundColor:[UIColor clearColor]];
+        [viewBG1 addSubview:_phoneInputNameRSend];
+        RELEASE(_phoneInputNameRSend);
+        
+        _keyboardView = [[ZenKeyboardView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
+        _keyboardView.delegate = self;
+        
+        _phoneInputNameRSend.nameField.inputView =_keyboardView;
+        
+        
+        
+        UIImage *image1 = [UIImage imageNamed:@"send"];
+        
+        UIButton *btnSend = [[UIButton alloc]initWithFrame:CGRectMake(270, ( imageBG.size.height/2 - image1.size.height/2)/2, image1.size.width/2, image1.size.height/2)];
+        [btnSend setImage:[UIImage imageNamed:@"send"] forState:UIControlStateNormal];
+        [btnSend addTarget:self action:@selector(doSend) forControlEvents:UIControlEventTouchUpInside];
+        [btnSend setBackgroundColor:[UIColor redColor]];
+        [viewBG1 addSubview:btnSend];
+        RELEASE(btnSend);
+
+        
     }else if ([signal is:[MagicViewController DID_APPEAR]]) {
         
         DLogInfo(@"rrr");
@@ -119,6 +169,27 @@
         
     }
 }
+
+
+
+#pragma mark - ZenKeyboardViewDelegate
+
+- (void)didNumericKeyPressed:(UIButton *)button {
+     _phoneInputNameRSend.nameField.text = [NSString stringWithFormat:@"%@%@",  _phoneInputNameRSend.nameField.text, button.titleLabel.text];
+}
+
+- (void)didBackspaceKeyPressed {
+    NSInteger length =  _phoneInputNameRSend.nameField.text.length;
+    if (length == 0) {
+         _phoneInputNameRSend.nameField.text = @"";
+        
+        return;
+    }
+    
+    NSString *substring = [ _phoneInputNameRSend.nameField.text  :NSMakeRange(0, length - 1)];
+     _phoneInputNameRSend.nameField.text = substring;
+}
+
 
 
 #pragma mark- 只接受UITableView信号

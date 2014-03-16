@@ -1,30 +1,25 @@
 //
-//  ShareBookQuanDetailViewController.m
+//  ShareBookFriendListViewController.m
 //  ShareBook
 //
-//  Created by tom zeng on 14-2-24.
+//  Created by apple on 14-3-16.
 //  Copyright (c) 2014年 Tomgg. All rights reserved.
 //
 
-#import "ShareBookQuanDetailViewController.h"
-#import "ShareBookDouCell.h"
-#import "ShareBookCell.h"
-#import "ShareBookApplyCell.h"
+#import "ShareBookFriendListViewController.h"
 #import "ShareGiveDouCell.h"
-#import "ShareBookDetailViewController.h"
 #import "ShareBookOtherCenterViewController.h"
 
 
+@interface ShareBookFriendListViewController (){
 
-@interface ShareBookQuanDetailViewController (){
+    DYBUITableView *tbDataBank11;
 
-    BOOL bShowBook;
-    DYBUITableView * tbDataBank11;
 }
 
 @end
 
-@implementation ShareBookQuanDetailViewController
+@implementation ShareBookFriendListViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,7 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,7 +42,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+/*
+#pragma mark - Navigation
 
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 -(void)handleViewSignal_MagicViewController:(MagicViewSignal *)signal{
     
@@ -56,7 +60,7 @@
     if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         //        [self.rightButton setHidden:YES];
-        [self.headview setTitle:@"圈子详情"];
+        [self.headview setTitle:@"好友中心"];
         
         //        [self setButtonImage:self.leftButton setImage:@"back"];
         //        [self setButtonImage:self.rightButton setImage:@"home"];
@@ -73,7 +77,7 @@
         
         [self.view setBackgroundColor:[UIColor blackColor]];
         
-        bShowBook = NO;
+//        bShowBook = NO;
         
         UIImageView *viewBG = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44)];
         [viewBG setImage:[UIImage imageNamed:@"bg"]];
@@ -84,33 +88,33 @@
         
         UIButton *btnLeft = [[UIButton alloc]initWithFrame:CGRectMake(0.0f, self.headHeight, 160.0f, 40.0f)];
         [btnLeft setTag:101];
-//        [btnLeft setBackgroundColor:[UIColor redColor]];
+        //        [btnLeft setBackgroundColor:[UIColor redColor]];
         [btnLeft setImage:[UIImage imageNamed:@"bg02"] forState:UIControlStateNormal];
         [btnLeft setImage:[UIImage imageNamed:@"bg02_2"] forState:UIControlStateSelected];
         [btnLeft addTarget:self action:@selector(doChoose:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnLeft];
-        RELEASE(btnLeft);
-        [btnLeft setSelected:YES];
+//        RELEASE(btnLeft);
+//        [btnLeft setSelected:YES];
         [self addlabel_title:@"全部成员" frame:btnLeft.frame view:btnLeft];
         
         
         UIButton *btnRight = [[UIButton alloc]initWithFrame:CGRectMake(160.0f, self.headHeight, 160.0f, 40.0f)];
         [btnRight setTag:102];
-//        [btnRight setBackgroundColor:[UIColor yellowColor]];
+        //        [btnRight setBackgroundColor:[UIColor yellowColor]];
         [btnRight setImage:[UIImage imageNamed:@"bg02"] forState:UIControlStateNormal];
         [btnRight setImage:[UIImage imageNamed:@"bg02_2"] forState:UIControlStateSelected];
         [btnRight addTarget:self action:@selector(doChoose:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:btnRight];
-        RELEASE(btnRight);
+//        [self.view addSubview:btnRight];
+//        RELEASE(btnRight);
         [self addlabel_title:@"全部书籍" frame:btnRight.frame view:btnRight];
         
-        tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0,40 + self.headHeight ,320  , self.view.frame.size.height - 40 - self.headHeight  ) isNeedUpdate:YES];
+        tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, self.headHeight ,320  , self.view.frame.size.height - self.headHeight  ) isNeedUpdate:YES];
         [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:tbDataBank11];
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
         RELEASE(tbDataBank11);
         
-//        [self creatDownBar];
+        //        [self creatDownBar];
         
         
     }else if ([signal is:[MagicViewController DID_APPEAR]]) {
@@ -138,12 +142,12 @@
 
 
 -(void)doChoose:(id)sender{
-
-
+    
+    
     UIButton *btn = (UIButton *)sender;
     if (btn.tag == 101) {
         [btn setSelected:YES];
-        bShowBook = NO;
+//        bShowBook = NO;
         
         UIButton *btn2 = (UIButton *)[self.view viewWithTag:102];
         if (btn2) {
@@ -152,14 +156,14 @@
             
         }
     }else{
-        bShowBook = YES;
+//        bShowBook = YES;
         [btn setSelected:YES];
         UIButton *btn2 = (UIButton *)[self.view viewWithTag:101];
         if (btn2) {
             [btn2 setSelected:NO];
         }
-
-    
+        
+        
     }
     [tbDataBank11 reloadData];
 }
@@ -189,8 +193,8 @@ static NSString *cellName = @"cellName";
         [signal setReturnValue:s];
         
     }else if([signal is:[MagicUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
-        int high = bShowBook == YES ? 90 : 50;
-        NSNumber *s = [NSNumber numberWithInteger:high];
+//        int high = bShowBook == YES ? 90 : 50;
+        NSNumber *s = [NSNumber numberWithInteger:50];
         [signal setReturnValue:s];
         
         
@@ -204,34 +208,34 @@ static NSString *cellName = @"cellName";
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
-        if (bShowBook) {
-            ShareBookCell *cell = [[ShareBookCell alloc]init];
-            [cell creatCell];
-            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            [signal setReturnValue:cell];
-        }else{
-        
+////        if (bShowBook) {
+//            ShareBookCell *cell = [[ShareBookCell alloc]init];
+//            [cell creatCell];
+//            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+//            [signal setReturnValue:cell];
+////        }else{
+//
             ShareGiveDouCell *cell = [[ShareGiveDouCell alloc]init];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             [signal setReturnValue:cell];
-        }
-        
+//        }
+//        
         
         
     }else if([signal is:[MagicUITableView TABLEDIDSELECT]])/*选中cell*/{
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
-        if (bShowBook) {
-            ShareBookDetailViewController *bookDetail = [[ShareBookDetailViewController alloc]init];
-            [self.drNavigationController pushViewController:bookDetail animated:YES];
-            RELEASE(bookDetail);
-        }else{
+//        if (bShowBook) {
+//            ShareBookDetailViewController *bookDetail = [[ShareBookDetailViewController alloc]init];
+//            [self.drNavigationController pushViewController:bookDetail animated:YES];
+//            RELEASE(bookDetail);
+//        }else{
             ShareBookOtherCenterViewController *otherCenter = [[ShareBookOtherCenterViewController alloc]init];
             [self.drNavigationController pushViewController:otherCenter animated:YES];
             RELEASE(otherCenter);
-        
-        }
+            
+//        }
         
         
     }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
@@ -247,6 +251,7 @@ static NSString *cellName = @"cellName";
     
     
 }
+
 
 
 
