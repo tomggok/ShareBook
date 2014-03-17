@@ -35,7 +35,7 @@
 //#define    DenJun               @"http://221.130.201.102/mobile/index/index"
 #define    TESTDATABANK         @"http://221.130.201.102:89/api/YiBan/index_dev.php"
 
-#define    WOSLOCALHOST         @"http://10.21.138.30:8080/ios/"
+#define    WOSLOCALHOST         @"http://112.124.69.33/ApiTest/ApiTest/index_dev.php" //sharebook
 
 /////////////////////接口
 #undef INTERFACEDOACTION
