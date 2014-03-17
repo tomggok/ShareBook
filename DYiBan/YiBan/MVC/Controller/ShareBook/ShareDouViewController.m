@@ -54,6 +54,8 @@
         [self.headview setBackgroundColor:[UIColor colorWithRed:97.0f/255 green:97.0f/255 blue:97.0f/255 alpha:1.0]];
 //        [self.leftButton setHidden:YES];
         [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
+        
+        [self setButtonImage:self.rightButton setImage:@"icon+(1)"];
     }
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
@@ -75,12 +77,13 @@
         [labelDou sizeToFit];
         [self.view addSubview:labelDou];
         [labelDou release];
-        
+        [labelDou setBackgroundColor:[UIColor clearColor]];
         
         UILabel *labelNum  = [[UILabel alloc]initWithFrame:CGRectMake(10.0f + CGRectGetMinX(labelDou.frame) + CGRectGetWidth(labelDou.frame), self.headHeight + 10 , 100.0f, 20.0f)];
         [labelNum setText:@"100"];
         [self.view addSubview:labelNum];
         [labelNum release];
+        [labelDou setBackgroundColor:[UIColor clearColor]];
 
         UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.headHeight  + 40, 100.0f, 20.0f)];
         [label1 setText:@"享乐豆充值可以在官网："];
@@ -88,19 +91,24 @@
         [self.view addSubview:label1];
         [label1 release];
 //        230 94 22
+        [label1 setBackgroundColor:[UIColor clearColor]];
+
         UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake( 10, self.headHeight  + 40 + 20, 100.0f, 20.0f)];
         [label2 setTextColor:[UIColor colorWithRed:230.0f/255 green:94.0f/255 blue:22.0f/255 alpha:1.0f]];
         [label2 setText:@"www.baidu.com"];
         [label2 sizeToFit];
         [self.view addSubview:label2];
         [label2 release];
+        [label2 setBackgroundColor:[UIColor clearColor]];
+
         
         UILabel *label3 = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.headHeight + 10 + 40, 100.0f, 20.0f)];
 //        [label3 setText:@"购买"];
         [label3 sizeToFit];
         [self.view addSubview:label3];
         [label3 release];
-        
+        [label3 setBackgroundColor:[UIColor clearColor]];
+
         UIImageView *imageViewIcon = [[UIImageView alloc]initWithFrame:CGRectMake(260.0, 10.0f, 50.0,50.0)];
         [imageViewIcon setBackgroundColor:[UIColor redColor]];
         [self.view addSubview:imageViewIcon];
@@ -118,7 +126,8 @@
         [labelHistoryList setText:@"乐豆交易记录"];
         [self.view addSubview:labelHistoryList];
         [labelHistoryList release];
-        
+        [labelHistoryList setBackgroundColor:[UIColor clearColor]];
+
         UIImage *image = [UIImage imageNamed:@"menu_inactive"];
         
         UIView *viewBGTableView = [[UIView alloc]initWithFrame:CGRectMake(10, 200 + 3, 300.0f, self.view.frame.size.height -100 - 60 - 100  )];

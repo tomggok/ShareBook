@@ -13,7 +13,7 @@
 #import "ShareDouViewController.h"
 #import "ShareBookCenterViewController.h"
 #import "ShareBookMyQuanCenterViewController.h"
-
+#import "ShareBookFriendListViewController.h"
 
 
 #define  RIGHTVIEWTAG 111
@@ -186,7 +186,7 @@ static NSString *cellName = @"cellName";
         UIView *viewR = [self.view viewWithTag:RIGHTVIEWTAG];
         if (!viewR) {
             
-            NSArray *arrayType = [[NSArray alloc]initWithObjects:@"消息",@"图书",@"豆",@"圈", nil];
+            NSArray *arrayType = [[NSArray alloc]initWithObjects:@"消息",@"图书",@"豆",@"圈",@"好友", nil];
             DYBDataBankTopRightCornerView *rightV = [[DYBDataBankTopRightCornerView alloc]initWithFrame:CGRectMake(320.0f - 95, self.headHeight, 90, 99) arrayResult:arrayType target:self];
             [rightV setBackgroundColor:[UIColor clearColor]];
             [rightV setTag:RIGHTVIEWTAG];
@@ -244,6 +244,14 @@ static NSString *cellName = @"cellName";
                 [self.drNavigationController pushViewController:quan animated:YES];
                 RELEASE(quan);
             
+            }
+                break;
+            case 5:
+            {
+                ShareBookFriendListViewController *quan = [[ShareBookFriendListViewController alloc]init];
+                [self.drNavigationController pushViewController:quan animated:YES];
+                RELEASE(quan);
+                
             }
                 break;
             default:

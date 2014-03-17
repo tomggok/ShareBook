@@ -77,7 +77,8 @@
         [labelName setText:@"圈子名称："];
         [self.view addSubview:labelName];
         RELEASE(labelName);
-        
+        [labelName setBackgroundColor:[UIColor clearColor]];
+
         DYBInputView  *_phoneInputName = [[DYBInputView alloc]initWithFrame:CGRectMake(100,self.headHeight + 10, 200, 35) placeText:@"天山小区" textType:0];
         [_phoneInputName.layer AddborderByIsMasksToBounds:YES cornerRadius:3 borderWidth:1 borderColor:[[UIColor colorWithRed:188.0f/255 green:188.0f/255 blue:188.0f/255 alpha:1.0f] CGColor]];
         //        [_phoneInputName.nameField setText:@"1"];
@@ -91,12 +92,14 @@
         [self.view addSubview:labelJINWEI];
         RELEASE(labelJINWEI);
         
-        
+        [labelJINWEI setBackgroundColor:[UIColor clearColor]];
+
         UILabel *labelTime = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, CGRectGetHeight(labelJINWEI.frame) + CGRectGetMinY(labelJINWEI.frame), 250.0f, 40.0f)];
         [labelTime setText:@"创建时间： 2014-02-10"];
         [self.view addSubview:labelTime];
         RELEASE(labelTime);
-        
+        [labelTime setBackgroundColor:[UIColor clearColor]];
+
         
         UIImage *image = [UIImage imageNamed:@"bt_click1"];
         UIButton *btnOK = [[UIButton alloc]initWithFrame:CGRectMake(20.0f, CGRectGetHeight(labelTime.frame) + CGRectGetMinY(labelTime.frame) + 50, 280.0f, 40.0f)];

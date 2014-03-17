@@ -90,6 +90,8 @@
         [labelRange setText:@"查询范围"];
         [self.view addSubview:labelRange];
         RELEASE(labelRange);
+        [labelRange setBackgroundColor:[UIColor clearColor]];
+        
         
         ShareBookDownViewController *downView1 = [[ShareBookDownViewController alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelRange.frame) + CGRectGetMinX(labelRange.frame), CGRectGetHeight(searchView.frame) + CGRectGetMinY(searchView.frame)+ 20, 200, 30)];
         NSArray *array1 = [NSArray arrayWithObjects:@"生活圈",@"好友",@"生活圈+好友", nil];
@@ -103,7 +105,8 @@
         [labelType setText:@"图书类别"];
         [self.view addSubview:labelType];
         RELEASE(labelType);
-        
+        [labelType setBackgroundColor:[UIColor clearColor]];
+
         ShareBookDownViewController *downView2 = [[ShareBookDownViewController alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelRange.frame) + CGRectGetMinX(labelRange.frame), CGRectGetHeight(labelRange.frame) + CGRectGetMinY(labelRange.frame)+ 20, 200, 30)];
         [self.view addSubview:downView2];
         NSArray *array2 = [NSArray arrayWithObjects:@"文学",@"科技",@"人文", nil];
@@ -114,7 +117,8 @@
         
         UILabel *labelModel = [[UILabel alloc]initWithFrame:CGRectMake(5.0f, CGRectGetHeight(labelType.frame) + CGRectGetMinY(labelType.frame)+ 20, 150.0f, 20.0)];
         [labelModel setText:@"状  态"];
-    
+        [labelModel setBackgroundColor:[UIColor clearColor]];
+
         [self.view addSubview:labelModel];
         RELEASE(labelModel);
         
@@ -132,7 +136,8 @@
         [labelBorrowType setText:@"借出方式"];
         [self.view addSubview:labelBorrowType];
         RELEASE(labelBorrowType);
-        
+        [labelBorrowType setBackgroundColor:[UIColor clearColor]];
+
         ShareBookDownViewController *downView4 = [[ShareBookDownViewController alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelRange.frame) + CGRectGetMinX(labelRange.frame), CGRectGetHeight(labelModel.frame) + CGRectGetMinY(labelModel.frame)+ 20, 200, 40)];
         
         NSArray *array4 = [NSArray arrayWithObjects:@"做客",@"旅行",@"做客+旅行",nil];
@@ -155,7 +160,8 @@
         [self.view addSubview:labelText];
         RELEASE(labelText);
         [labelText setText:@"设置为默认的查询条件"];
-        
+        [labelText setBackgroundColor:[UIColor clearColor]];
+
         
         UIImage *image = [UIImage imageNamed:@"menu_inactive"];
         

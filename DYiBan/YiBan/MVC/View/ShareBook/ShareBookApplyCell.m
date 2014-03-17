@@ -40,10 +40,12 @@
         
     UILabel *labelMSG = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, 20.0f, 200.0f, 40.0f)];
     [labelMSG setText:@"今天老地方见？"];
+    [labelMSG setBackgroundColor:[UIColor clearColor]];
     [self addSubview:labelMSG];
     RELEASE(labelMSG);
     
     UILabel *labelTime = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelMSG.frame) + CGRectGetMinX(labelMSG.frame) - 30, 10.0f+ 5, 150.0f, 40.0f)];
+        [labelTime setBackgroundColor:[UIColor clearColor]];
     [labelTime setText:@"2014-02-10 16:30"];
         [labelTime setFont:[UIFont systemFontOfSize:13.0f]];
     [self addSubview:labelTime];
@@ -55,7 +57,7 @@
         UILabel *labelMSG = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, 20.0f - 5, 200.0f, 40.0f)];
         [labelMSG setText:@"2014-02-10 16:30"];
         [labelMSG setFont:[UIFont systemFontOfSize:13.0f]];
-
+        [labelMSG setBackgroundColor:[UIColor clearColor]];
         [self addSubview:labelMSG];
         RELEASE(labelMSG);
         
@@ -68,7 +70,7 @@
         [labelTime setText:@"不见不散。。"];
         [self addSubview:labelTime];
         [labelTime release];
-
+        [labelTime setBackgroundColor:[UIColor clearColor]];
     
     }
 

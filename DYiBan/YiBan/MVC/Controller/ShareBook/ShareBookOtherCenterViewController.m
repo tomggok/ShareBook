@@ -93,7 +93,7 @@
         [labelAuther setText:[NSString stringWithFormat:@"用户名：空俊"]];
         [self.view addSubview:labelAuther];
         [labelAuther release];
-        
+        [labelAuther setBackgroundColor:[UIColor clearColor]];
         
         UILabel *labelPublic = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 5, CGRectGetHeight(labelAuther.frame) + CGRectGetMinY(labelAuther.frame), 50, 20)];
         [labelPublic setText:[NSString stringWithFormat:@"信  用："]];
@@ -101,7 +101,8 @@
         [labelPublic sizeToFit];
         [self.view addSubview:labelPublic];
         [labelPublic release];
-        
+        [labelPublic setBackgroundColor:[UIColor clearColor]];
+
         UIImage *iamageG = [UIImage imageNamed:@"bg_good"];
         UIImageView *imageViewGood = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMinX(labelPublic.frame) + CGRectGetWidth(labelPublic.frame)+ 5, CGRectGetHeight(labelAuther.frame) + CGRectGetMinY(labelAuther.frame), iamageG.size.width/2, iamageG.size.height/2)];
         [imageViewGood setImage:[UIImage imageNamed:@"bg_good"]];
@@ -112,7 +113,7 @@
         [labelGood setText:@"10"];
         [imageViewGood addSubview:labelGood];
         RELEASE(labelGood);
-        
+        [labelGood setBackgroundColor:[UIColor clearColor]];
         
         UIImage *iamgeB = [UIImage imageNamed:@"bg_bad"];
         UIImageView *imageViewBad = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageViewGood.frame) + CGRectGetWidth(imageViewGood.frame)+ 5, CGRectGetHeight(labelAuther.frame) + CGRectGetMinY(labelAuther.frame), iamgeB.size.width/2, iamgeB.size.height/2)];
@@ -124,7 +125,8 @@
         [labelDad setText:@"2"];
         [imageViewBad addSubview:labelDad];
         RELEASE(labelDad);
-        
+        [labelDad setBackgroundColor:[UIColor clearColor]];
+
         
         
         

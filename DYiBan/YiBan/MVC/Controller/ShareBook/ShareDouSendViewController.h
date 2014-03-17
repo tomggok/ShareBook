@@ -7,7 +7,8 @@
 //
 
 #import "DYBBaseViewController.h"
+#import "ZenKeyboardView.h"
 
-@interface ShareDouSendViewController : DYBBaseViewController
+@interface ShareDouSendViewController : DYBBaseViewController<ZenKeyboardViewDelegate>
 
 @end
