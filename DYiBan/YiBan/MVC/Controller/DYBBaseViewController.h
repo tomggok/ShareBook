@@ -46,4 +46,6 @@ AS_SIGNAL(NoInternetConnection)//无网
 - (void)setButtonImage:(MagicUIButton *)button setImage:(NSString *)string;
 - (void)setButtonImage:(MagicUIButton *)button setImage:(NSString *)string  setHighString:(NSString *)hight;
 - (NSData *)zipImg:(UIImage *)image;
+
+- (void)setButtonImage:(MagicUIButton *)button setImage:(NSString *)string strTitle:(NSString *)title;
 @end

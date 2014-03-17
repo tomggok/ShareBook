@@ -15,7 +15,9 @@
 		<key>CFBundlePrimaryIcon</key>
 		<dict>
 			<key>CFBundleIconFiles</key>
-			<array/>
+			<array>
+				<string>icon</string>
+			</array>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>

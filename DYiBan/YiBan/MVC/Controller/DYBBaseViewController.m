@@ -220,6 +220,8 @@ DEF_SIGNAL(NoInternetConnection)//无网
         [button setImage:[UIImage imageNamed:string] forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:string] forState:UIControlStateHighlighted];
         [button setFrame: CGRectMake(SCREEN_WIDTH-60, y + (44 - image.size.height/2)/2, image.size.width/2, image.size.height/2)];
+        
+        
     }else{
     
 //<<<<<<< HEAD
@@ -235,6 +237,27 @@ DEF_SIGNAL(NoInternetConnection)//无网
 //>>>>>>> a849d0b9609e94c8faf2761e768d5213feaa65c5
     }
    
+    
+}
+
+- (void)setButtonImage:(MagicUIButton *)button setImage:(NSString *)string strTitle:(NSString *)title{
+
+    [self setButtonImage:button setImage:string ];
+    [self addlabel_title:title frame:button.frame view:button];
+}
+    
+
+-(void)addlabel_title:(NSString *)title frame:(CGRect)frame view:(UIView *)view{
+    
+    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))];
+    [label1 setText:title];
+    [label1 setTag:100];
+    [label1 setTextAlignment:NSTextAlignmentCenter];
+    [view bringSubviewToFront:label1];
+    [label1 setTextColor:[UIColor whiteColor]];
+    [label1 setBackgroundColor:[UIColor clearColor]];
+    [view addSubview:label1];
+    RELEASE(label1);
     
 }
 

@@ -34,9 +34,12 @@
         [self addSubview:[self addNumericKeyWithTitle:@"8" frame:CGRectMake(KeyboardNumericKeyWidth - 2, KeyboardNumericKeyHeight * 2 + 3, KeyboardNumericKeyWidth , KeyboardNumericKeyHeight)]];
         [self addSubview:[self addNumericKeyWithTitle:@"9" frame:CGRectMake(KeyboardNumericKeyWidth * 2 - 1, KeyboardNumericKeyHeight * 2 + 3, KeyboardNumericKeyWidth, KeyboardNumericKeyHeight)]];
 
-        [self addSubview:[self addNumericKeyWithTitle:@"." frame:CGRectMake(0, KeyboardNumericKeyHeight * 3 + 4, KeyboardNumericKeyWidth - 3, KeyboardNumericKeyHeight)]];
+        [self addSubview:[self addNumericKeyWithTitle:@"完成" frame:CGRectMake(KeyboardNumericKeyWidth * 2 - 1, KeyboardNumericKeyHeight * 3 + 4, KeyboardNumericKeyWidth - 3, KeyboardNumericKeyHeight)]];
         [self addSubview:[self addNumericKeyWithTitle:@"0" frame:CGRectMake(KeyboardNumericKeyWidth - 2, KeyboardNumericKeyHeight * 3 + 4, KeyboardNumericKeyWidth, KeyboardNumericKeyHeight)]];
-        [self addSubview:[self addBackspaceKeyWithFrame:CGRectMake(KeyboardNumericKeyWidth * 2 - 1, KeyboardNumericKeyHeight * 3 + 4, KeyboardNumericKeyWidth - 3, KeyboardNumericKeyHeight)]];
+        [self addSubview:[self addBackspaceKeyWithFrame:CGRectMake(0, KeyboardNumericKeyHeight * 3 + 4, KeyboardNumericKeyWidth - 3, KeyboardNumericKeyHeight)]];
+        
+        
+        
         
         [self addSubview:keyboardShadow];
     }

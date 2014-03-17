@@ -12,6 +12,8 @@
 #import "ShareBookDetailCell.h"
 #import "ShareFriendListViewController.h"
 #import "ShareBookApplyViewController.h"
+#import "ShareBookOtherCenterViewController.h"
+
 
 @interface ShareBookDetailViewController ()
 
@@ -53,14 +55,14 @@
         
 //        [self.leftButton setHidden:YES];
         [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
-//        [self setButtonImage:self.rightButton setImage:@"home"];
+        [self setButtonImage:self.rightButton setImage:@"top_bt_bg" strTitle:@"书主"];
         [self.headview setTitleColor:[UIColor colorWithRed:193.0f/255 green:193.0f/255 blue:193.0f/255 alpha:1.0f]];
         [self.headview setBackgroundColor:[UIColor colorWithRed:22.0f/255 green:29.0f/255 blue:36.0f/255 alpha:1.0f]];
         
     }
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
-        [self.rightButton setHidden:YES];
+//        [self.rightButton setHidden:YES];
         
         [self.view setBackgroundColor:[UIColor whiteColor]];
         
@@ -365,6 +367,21 @@ static NSString *cellName = @"cellName";
     
     
     
+}
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
+{
+    if ([signal is:[DYBBaseViewController BACKBUTTON]])
+    {
+           [self.drNavigationController popViewControllerAnimated:YES];
+        
+    }else if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
+        
+        //        [self goShowOrderListAction];
+        
+        ShareBookOtherCenterViewController *resg = [[ShareBookOtherCenterViewController alloc]init];
+        [self.drNavigationController pushViewController:resg animated:YES];
+        RELEASE(resg);
+    }
 }
 
 

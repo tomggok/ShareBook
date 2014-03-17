@@ -105,6 +105,9 @@
 		18DE075018D5F5CB00EEAEDF /* KeyboardTopShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18DE074218D5F5CB00EEAEDF /* KeyboardTopShadow@2x.png */; };
 		18DE075118D5F5CB00EEAEDF /* Snapshot.png in Resources */ = {isa = PBXBuildFile; fileRef = 18DE074318D5F5CB00EEAEDF /* Snapshot.png */; };
 		18DE075518D5F5F400EEAEDF /* ZenKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DE075418D5F5F400EEAEDF /* ZenKeyboardView.m */; };
+		18DE075818D71DD300EEAEDF /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18DE075618D71DD300EEAEDF /* icon@2x.png */; };
+		18DE075918D71DD300EEAEDF /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18DE075718D71DD300EEAEDF /* icon.png */; };
+		18DE075C18D7289600EEAEDF /* ShareBookZhuan.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DE075B18D7289600EEAEDF /* ShareBookZhuan.m */; };
 		B50D960118CEA45F00619B21 /* DYBDataBankShotView.m in Sources */ = {isa = PBXBuildFile; fileRef = B50D95FD18CEA45F00619B21 /* DYBDataBankShotView.m */; };
 		B50D960318CEA48C00619B21 /* DYBDataBankTopRightCornerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B50D960218CEA48C00619B21 /* DYBDataBankTopRightCornerView.m */; };
 		B50D960818CEAF8900619B21 /* rightslide_foot.png in Resources */ = {isa = PBXBuildFile; fileRef = B50D960418CEAF8900619B21 /* rightslide_foot.png */; };
@@ -825,6 +828,10 @@
 		18DE074318D5F5CB00EEAEDF /* Snapshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Snapshot.png; sourceTree = "<group>"; };
 		18DE075318D5F5F400EEAEDF /* ZenKeyboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZenKeyboardView.h; sourceTree = "<group>"; };
 		18DE075418D5F5F400EEAEDF /* ZenKeyboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZenKeyboardView.m; sourceTree = "<group>"; };
+		18DE075618D71DD300EEAEDF /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = SOURCE_ROOT; };
+		18DE075718D71DD300EEAEDF /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = SOURCE_ROOT; };
+		18DE075A18D7289600EEAEDF /* ShareBookZhuan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBookZhuan.h; sourceTree = "<group>"; };
+		18DE075B18D7289600EEAEDF /* ShareBookZhuan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBookZhuan.m; sourceTree = "<group>"; };
 		B50D95FD18CEA45F00619B21 /* DYBDataBankShotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYBDataBankShotView.m; sourceTree = "<group>"; };
 		B50D95FE18CEA45F00619B21 /* DYBDataBankShotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYBDataBankShotView.h; sourceTree = "<group>"; };
 		B50D95FF18CEA45F00619B21 /* DYBDataBankTopRightCornerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYBDataBankTopRightCornerView.h; sourceTree = "<group>"; };
@@ -2234,6 +2241,8 @@
 				B5CE2ABA18B4656E008E4E44 /* ShareBookApplyCell.m */,
 				1802955518CDEE2E008BFAF8 /* ShareBookCellBtnCenterView.h */,
 				1802955618CDEE2E008BFAF8 /* ShareBookCellBtnCenterView.m */,
+				18DE075A18D7289600EEAEDF /* ShareBookZhuan.h */,
+				18DE075B18D7289600EEAEDF /* ShareBookZhuan.m */,
 			);
 			path = ShareBook;
 			sourceTree = "<group>";
@@ -3984,6 +3993,8 @@
 		C942205E17A89E430054E5BC /* ShareBook */ = {
 			isa = PBXGroup;
 			children = (
+				18DE075618D71DD300EEAEDF /* icon@2x.png */,
+				18DE075718D71DD300EEAEDF /* icon.png */,
 				B58CB4601829CF7F00F73D66 /* Default-568h */,
 				B58CB4621829CF7F00F73D66 /* Default.png */,
 				B58CB4631829CF7F00F73D66 /* Default@2.png */,
@@ -4071,6 +4082,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18DE074D18D5F5CB00EEAEDF /* KeyboardNumericEntryViewGridLinesTextured.png in Resources */,
+				18DE075818D71DD300EEAEDF /* icon@2x.png in Resources */,
 				18DE074818D5F5CB00EEAEDF /* KeyboardNumericEntryKeyBackspaceGlyphTextured@2x.png in Resources */,
 				B5D5AE9718BC365F005E4732 /* 用户信息(上架图书）.jpg in Resources */,
 				C942206317A89E430054E5BC /* InfoPlist.strings in Resources */,
@@ -4237,6 +4249,7 @@
 				18DE074718D5F5CB00EEAEDF /* KeyboardNumericEntryKeyBackspaceGlyphTextured.png in Resources */,
 				B50E71A218C8210200A68FB7 /* icon_list.png in Resources */,
 				B50D963118CF16AA00619B21 /* icon+(1).png in Resources */,
+				18DE075918D71DD300EEAEDF /* icon.png in Resources */,
 				B50E71A718C827DD00A68FB7 /* icon_up.png in Resources */,
 				B50E71A518C8210200A68FB7 /* icon_pin2.png in Resources */,
 				B5122BD718AB610D006ECE62 /* bt1.png in Resources */,
@@ -4670,6 +4683,7 @@
 				B58CB1E01829CF6B00F73D66 /* DYBCellForPrivateMsgList.m in Sources */,
 				B58CB1E11829CF6B00F73D66 /* DYBCellForReadedUser.m in Sources */,
 				B58CB1E21829CF6B00F73D66 /* DYBCellForSchoolList.m in Sources */,
+				18DE075C18D7289600EEAEDF /* ShareBookZhuan.m in Sources */,
 				B58CB1E31829CF6B00F73D66 /* DYBCellForSendPrivateLetter.m in Sources */,
 				B58CB1E41829CF6B00F73D66 /* DYBCellForSystemMsg.m in Sources */,
 				B58CB1E51829CF6B00F73D66 /* DYBCellForTagList.m in Sources */,

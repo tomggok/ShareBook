@@ -11,7 +11,7 @@
 #import "ShareBookApplyCell.h"
 #import "DYBInputView.h"
 #import "CALayer+Custom.h"
-
+#import "ShareBookZhuan.h"
 
 
 
@@ -65,6 +65,14 @@
         
     }
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
+        
+        if([[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0) {
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+        }
+        else{
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillShowNotification object:nil];
+        };
+        
         
         [self.rightButton setHidden:YES];
         
@@ -170,11 +178,45 @@
     }
 }
 
-
+- (void)keyboardWillChangeFrame:(NSNotification *)notification
+{
+    static CGFloat normalKeyboardHeight = 216.0f;
+    
+    NSDictionary *info = [notification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    
+    CGFloat distanceToMove = kbSize.height - normalKeyboardHeight;
+    
+    
+    UIView *viewBg = [self.view viewWithTag:201];
+    CGRect rect = viewBg.frame;
+    
+    if (self.view.frame.size.height - rect.origin.y < 100) {
+        
+        rect.size.height = rect.size.height - kbSize.height  - 60 ;
+        [viewBg setFrame:rect];
+    }else{
+        
+        UIImage *imageBG = [UIImage imageNamed:@"down_options_bg"];
+        //        UIImageView *viewBG = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, self.view.frame.size.height - imageBG.size.height/2, 320.0f, imageBG.size.height/2)];
+        [viewBg setFrame:CGRectMake(0.0f, self.view.frame.size.height - imageBG.size.height/2, 320.0f, imageBG.size.height/2)];
+        
+    }
+    
+    
+    //自适应代码
+}
 
 #pragma mark - ZenKeyboardViewDelegate
 
 - (void)didNumericKeyPressed:(UIButton *)button {
+    
+    if ([button.titleLabel.text isEqualToString:@"完成"]) {
+        
+        [_phoneInputNameRSend.nameField resignFirstResponder];
+        return;
+    }
+    
      _phoneInputNameRSend.nameField.text = [NSString stringWithFormat:@"%@%@",  _phoneInputNameRSend.nameField.text, button.titleLabel.text];
 }
 
@@ -186,7 +228,7 @@
         return;
     }
     
-    NSString *substring = [ _phoneInputNameRSend.nameField.text  :NSMakeRange(0, length - 1)];
+    NSString *substring = [ _phoneInputNameRSend.nameField.text substringWithRange:NSMakeRange(0, length - 1)];
      _phoneInputNameRSend.nameField.text = substring;
 }
 
@@ -232,7 +274,7 @@ static NSString *cellName = @"cellName";
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
-        ShareBookApplyCell *cell = [[ShareBookApplyCell alloc]init];
+        ShareBookZhuan *cell = [[ShareBookZhuan alloc]init];
         
         //        NSDictionary *dictInfoFood = nil;
         //        [cell creatCell:dictInfoFood];
@@ -269,7 +311,15 @@ static NSString *cellName = @"cellName";
     
     
 }
+-(void)doSend{
+    
+    [_phoneInputNameRSend.nameField resignFirstResponder];
+}
 
-
+- (void)dealloc
+{
+    
+    [super dealloc];
+}
 
 @end

@@ -61,14 +61,14 @@
         
         //        [self.leftButton setHidden:YES];
         [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
-        //        [self setButtonImage:self.rightButton setImage:@"home"];
+             [self setButtonImage:self.rightButton setImage:@"top_bt_bg" strTitle:@"确认"];
         [self.headview setTitleColor:[UIColor colorWithRed:193.0f/255 green:193.0f/255 blue:193.0f/255 alpha:1.0f]];
         [self.headview setBackgroundColor:[UIColor colorWithRed:22.0f/255 green:29.0f/255 blue:36.0f/255 alpha:1.0f]];
         
     }
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
-        [self.rightButton setHidden:YES];
+//        [self.rightButton setHidden:YES];
         bKeyShow = NO;
         [self.view setBackgroundColor:[MagicCommentMethod colorWithHex:@"f0f0f0"]];
         
@@ -146,13 +146,15 @@
         RELEASE(_phoneInputNameR);
         
         
-        UIButton *btnMoreAddr = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(_phoneInputNameR.frame) + CGRectGetMinX(_phoneInputNameR.frame) + 20 + 5, CGRectGetMinY(btnChooseTime.frame) + CGRectGetHeight(btnChooseTime.frame), 40, 40)];
+        UIButton *btnMoreAddr = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(_phoneInputNameR.frame) + CGRectGetMinX(_phoneInputNameR.frame)+ 5 , CGRectGetMinY(btnChooseTime.frame) + CGRectGetHeight(btnChooseTime.frame)+ 10, 55, 30)];
         [btnMoreAddr addTarget:self action:@selector(doMoreAddr) forControlEvents:UIControlEventTouchUpInside];
-        [btnMoreAddr setImage:[UIImage imageNamed:@"icon+(1)"] forState:UIControlStateNormal];
+
+        [btnMoreAddr setImage:[UIImage imageNamed:@"top_bt_bg"] forState:UIControlStateNormal];
         [btnMoreAddr setBackgroundColor:[UIColor clearColor]];
         [self.view addSubview:btnMoreAddr];
         RELEASE(btnMoreAddr);
-        
+        [self addlabel_title:@"选地址" frame:btnMoreAddr.frame view:btnMoreAddr];
+
         
         
         
@@ -205,22 +207,25 @@
     
     
     UIButton *btnCancel = [[UIButton alloc]initWithFrame:CGRectMake( 20 , CGRectGetHeight(self.view.frame) - 216 - 60, 50, 40)];
-    
+    [btnCancel setImage:[UIImage imageNamed:@"top_bt_bg"] forState:UIControlStateNormal];
     [btnCancel setTitle:@"取消" forState:UIControlStateNormal];
     [btnCancel addTarget:self action:@selector(doCancel) forControlEvents:UIControlEventTouchUpInside];
-    [btnCancel setBackgroundColor:[UIColor redColor]];
+    [btnCancel setBackgroundColor:[UIColor clearColor]];
     [viewBG addSubview:btnCancel];
     RELEASE(btnCancel);
+    [self addlabel_title:@"取消" frame:btnCancel.frame view:btnCancel];
+    
     
     
     UIButton *btnMakeSureTime = [[UIButton alloc]initWithFrame:CGRectMake( 240 , CGRectGetHeight(self.view.frame) - 216 - 60, 50, 40)];
     [btnMakeSureTime setTitle:@"确定" forState:UIControlStateNormal];
-
+    [btnMakeSureTime setImage:[UIImage imageNamed:@"top_bt_bg"] forState:UIControlStateNormal];
     [btnMakeSureTime addTarget:self action:@selector(doMakeSureTime) forControlEvents:UIControlEventTouchUpInside];
-    [btnMakeSureTime setBackgroundColor:[UIColor redColor]];
+    [btnMakeSureTime setBackgroundColor:[UIColor clearColor]];
     [viewBG addSubview:btnMakeSureTime];
     RELEASE(btnMakeSureTime);
-    
+    [self addlabel_title:@"确定" frame:btnMakeSureTime.frame view:btnMakeSureTime];
+
     
     
     datePicker = [[ UIDatePicker alloc] initWithFrame:CGRectMake(0.0,CGRectGetHeight(self.view.frame) - 216 ,0.0,0.0)];
@@ -249,6 +254,20 @@
      datePicker.locale = locale;
      [locale release];
 
+}
+
+-(void)addlabel_title:(NSString *)title frame:(CGRect)frame view:(UIView *)view{
+    
+    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))];
+    [label1 setText:title];
+    [label1 setTag:100];
+    [label1 setTextAlignment:NSTextAlignmentCenter];
+    [view bringSubviewToFront:label1];
+    [label1 setTextColor:[UIColor whiteColor]];
+    [label1 setBackgroundColor:[UIColor clearColor]];
+    [view addSubview:label1];
+    RELEASE(label1);
+    
 }
 
 -(void)doCancel{
