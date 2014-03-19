@@ -271,26 +271,26 @@
     
     [params setValue:dict forKey:@"data"];
 //    
-//    [params setValue:SHARED.imei forKey:@"identify"];//等待有效的解决方案
-//    
-//    [params setValue:SHARED.token forKey:@"token"];
-//    [params setValue:SHARED.sessionID forKey:@"sessID"];
-//    DLogInfo(@"sessionID -- %@",SHARED.sessionID);
-//    [params setValue:@"1" forKey:@"ct"];
-//    [params setValue:SHARED.version forKey:@"v"];
-//    [params setValue:@"AppStore" forKey:@"rv"];
-//    [params setValue:apn forKey:@"apn"];
-//    [params setValue:platom forKey:@"device"];
+    [params setValue:@"222222" forKey:@"identify"];//等待有效的解决方案
+    
+    [params setValue:SHARED.token forKey:@"token"];
+    [params setValue:SHARED.sessionID forKey:@"sessID"];
+    DLogInfo(@"sessionID -- %@",SHARED.sessionID);
+    [params setValue:@"1" forKey:@"ct"];
+    [params setValue:SHARED.version forKey:@"v"];
+    [params setValue:@"AppStore" forKey:@"rv"];
+    [params setValue:apn forKey:@"apn"];
+    [params setValue:platom forKey:@"device"];
     
     
     DLogInfo(@"parms -- > %@",params);
     
     self.requestDict = params;
     
-    NSString *strParam = [self getUrlParams:[params objectForKey:@"data"]];
-    NSString *jsonStr = [MagicCommentMethod encodeURL:strParam];
+    NSString *jsonStr = [MagicCommentMethod encodeURL:[params JSONString]];
+    NSString *md5 = [MagicCommentMethod md5:[params JSONString]];
     
-    NSString *url = [NSString stringWithFormat:@"%@%@?%@",sendURL, [params objectForKey:@"do"], jsonStr];
+    NSString *url = [NSString stringWithFormat:@"%@?json=%@&sig=%@",sendURL, jsonStr, md5];
     DLogInfo(@"%@ 接口的 url === %@",[params objectForKey:@"do"],url);
     return url;
 }

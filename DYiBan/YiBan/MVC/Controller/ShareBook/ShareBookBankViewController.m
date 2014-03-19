@@ -12,11 +12,14 @@
 #import "ShareBookDetailViewController.h"
 #import "ShareSearchBookViewController.h"
 
-
+#import "JSONKit.h"
+#import "JSON.h"
 @interface ShareBookBankViewController (){
     
     UIScrollView *scrollView;
     NSArray *arraySouce;
+    DYBUITableView * tbDataBank11;
+    NSMutableArray *arrayReturnSouce;
 }
 
 @end
@@ -79,8 +82,12 @@
         
         UIImage *image = [UIImage imageNamed:@"options_bg"];
         
+        MagicRequest *request = [DYBHttpMethod shareBook_book_list_tag_id:@"1" sAlert:YES receive:self];
+        [request setTag:2];
         
-       DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, self.headHeight + image.size.height/2, 320.0f, self.view.frame.size.height - self.headHeight -image.size.height/2 ) isNeedUpdate:YES];
+        
+        
+       tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, self.headHeight + image.size.height/2, 320.0f, self.view.frame.size.height - self.headHeight -image.size.height/2 ) isNeedUpdate:YES];
         [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:tbDataBank11];
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
@@ -267,12 +274,73 @@ static NSString *cellName = @"cellName";
     }
 }
 #pragma mark- 只接受HTTP信号
+
+#pragma mark- 只接受HTTP信号
 - (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
+    
     if ([request succeed])
     {
-        
-        
+        //        JsonResponse *response = (JsonResponse *)receiveObj;
+        if (request.tag == 2) {
+            
+            
+            NSDictionary *dict = [request.responseString JSONValue];
+            
+            if (dict) {
+                
+                if ([[dict objectForKey:@"result"] isEqualToString:@"100"]) {
+                    
+//                    arrayReturnSouce = [NSMutableArray alloc]initWithObjects:, nil;
+//
+//                    self.DB.FROM(USERMODLE)
+//                    .SET(@"userInfo", request.responseString)
+//                    .SET(@"userIndex",[dict objectForKey:@"user_id"])
+//                    .INSERT();
+//                    
+//                    SHARED.userId = [dict objectForKey:@"user_id"]; //设置userid 全局变量
+//                    
+//                    DYBUITabbarViewController *vc = [[DYBUITabbarViewController sharedInstace] init:self];
+//                    
+//                    [self.drNavigationController pushViewController:vc animated:YES];
+                    
+                }else{
+                    NSString *strMSG = [dict objectForKey:@"message"];
+                    
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+                    
+                    
+                }
+            }
+        }else if(request.tag == 3){
+            
+            NSDictionary *dict = [request.responseString JSONValue];
+            
+            if (dict) {
+                BOOL result = [[dict objectForKey:@"result"] boolValue];
+                if (!result) {
+                    
+//                    UIButton *btn = (UIButton *)[UIButton buttonWithType:UIButtonTypeCustom];
+//                    [btn setTag:10];
+//                    [self doChange:btn];
+                }
+                else{
+                    NSString *strMSG = [dict objectForKey:@"message"];
+                    
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+                    
+                    
+                }
+            }
+            
+        } else{
+            NSDictionary *dict = [request.responseString JSONValue];
+            NSString *strMSG = [dict objectForKey:@"message"];
+            
+            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+            
+            
+        }
     }
 }
 @end

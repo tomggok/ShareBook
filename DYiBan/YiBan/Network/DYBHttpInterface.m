@@ -1989,4 +1989,34 @@
     return dict;
 }
 
+
++ (NSMutableDictionary *)shareBook_security_login_username:(NSString *)username password:(NSString *)password{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:username  forKey:@"username"];
+    [dict setValue:password  forKey:@"password"];
+    [dict setValue:@"security_login" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+
++ (NSMutableDictionary *)shareBook_book_list_tag_id:(NSString *)tag_id{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:tag_id  forKey:@"tag_id"];
+    [dict setValue:@"book_list" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
++ (NSMutableDictionary *)shareBook_security_reg_username:(NSString *)username password:(NSString *)password phone_num:(NSString *)phone_num{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:username  forKey:@"username"];
+    [dict setValue:password  forKey:@"password"];
+    [dict setValue:phone_num  forKey:@"phone_num"];
+    [dict setValue:@"security_reg" forKey:INTERFACEDOACTION];
+    return dict;
+
+
+}
 @end

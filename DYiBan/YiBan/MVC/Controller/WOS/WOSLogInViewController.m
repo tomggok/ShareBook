@@ -313,6 +313,9 @@
 
 -(void)addOKLogin{
 
+    MagicRequest *request = [DYBHttpMethod shareBook_security_login_username:_phoneInputName.nameField.text password:_phoneInputAddr.nameField.text sAlert:YES receive:self];
+    [request setTag:2];
+
 
 }
 
@@ -474,16 +477,19 @@
        NSDictionary *dict = [request.responseString JSONValue];
         
         if (dict) {
-            BOOL result = [[dict objectForKey:@"result"] boolValue];
-            if (!result) {
+
+            if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
                 
+                 JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
+                
+                SHARED.sessionID = response.sessID;
                 
                 self.DB.FROM(USERMODLE)
                 .SET(@"userInfo", request.responseString)
-                .SET(@"userIndex",[dict objectForKey:@"userIndex"])
+                .SET(@"userIndex",[dict objectForKey:@"user_id"])
                 .INSERT();
                
-                SHARED.userId = [dict objectForKey:@"userIndex"]; //设置userid 全局变量
+                SHARED.userId = [dict objectForKey:@"user_id"]; //设置userid 全局变量
                 
                 DYBUITabbarViewController *vc = [[DYBUITabbarViewController sharedInstace] init:self];
                 

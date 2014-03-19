@@ -8,7 +8,7 @@
 
 #import "Magic_Logger.h"
 
-#define NSLog(format,...)
+//#define NSLog(format,...)
 
 @interface MagicLogger ()
 

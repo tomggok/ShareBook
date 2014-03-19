@@ -458,4 +458,15 @@
 //me/deals.do
 + (NSMutableDictionary *)wosKitchenInfo_medeals_userIndex:(NSString *)userIndex kitchenIndex:(NSString *)kitchenIndex;
 
+
+//security_login
++ (NSMutableDictionary *)shareBook_security_login_username:(NSString *)username password:(NSString *)password;
+
+//book_list
++ (NSMutableDictionary *)shareBook_book_list_tag_id:(NSString *)tag_id;
+
+//security_reg
+
++ (NSMutableDictionary *)shareBook_security_reg_username:(NSString *)username password:(NSString *)password phone_num:(NSString *)phone_num;
+
 @end

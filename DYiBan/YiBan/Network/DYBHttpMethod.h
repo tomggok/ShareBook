@@ -446,5 +446,9 @@
 
 + (MagicRequest *)wosKitchenInfo_medeals_userIndex:(NSString *)userIndex kitchenIndex:(NSString *)kitchenIndex sAlert:(BOOL)isAlert receive:(id)receive;
 
++ (MagicRequest *)shareBook_security_login_username:(NSString *)username password:(NSString *)password sAlert:(BOOL)isAlert receive:(id)receive;
 
++ (MagicRequest *)shareBook_book_list_tag_id:(NSString *)tag_id sAlert:(BOOL)isAlert receive:(id)receive;
+
++ (MagicRequest *)shareBook_security_reg_username:(NSString *)username password:(NSString *)password phone_num:(NSString *)phone_num sAlert:(BOOL)isAlert receive:(id)receive;
 @end
