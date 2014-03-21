@@ -2019,4 +2019,33 @@
 
 
 }
+
++ (NSMutableDictionary *)shareBook_security_logout{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+   
+    [dict setValue:@"security_logout" forKey:INTERFACEDOACTION];
+    return dict;
+
+
+}
+
++ (NSMutableDictionary *)shareBook_book_detail_pub_id:(NSString *)pub_id{
+    
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:pub_id forKey:@"pub_id"];
+    [dict setValue:@"book_detail" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+
++ (NSMutableDictionary *)shareBook_book_info_isbn:(NSString *)isbn{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:isbn forKey:@"isbn"];
+    [dict setValue:@"book_info" forKey:INTERFACEDOACTION];
+    return dict;
+
+
+}
 @end

@@ -468,5 +468,15 @@
 //security_reg
 
 + (NSMutableDictionary *)shareBook_security_reg_username:(NSString *)username password:(NSString *)password phone_num:(NSString *)phone_num;
+//security_logout
++ (NSMutableDictionary *)shareBook_security_logout;
+//book_detail
+
++ (NSMutableDictionary *)shareBook_book_detail_pub_id:(NSString *)pub_id;
+
+
+//book_info
+
++ (NSMutableDictionary *)shareBook_book_info_isbn:(NSString *)isbn;
 
 @end

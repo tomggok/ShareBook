@@ -451,4 +451,11 @@
 + (MagicRequest *)shareBook_book_list_tag_id:(NSString *)tag_id sAlert:(BOOL)isAlert receive:(id)receive;
 
 + (MagicRequest *)shareBook_security_reg_username:(NSString *)username password:(NSString *)password phone_num:(NSString *)phone_num sAlert:(BOOL)isAlert receive:(id)receive;
+
++ (MagicRequest *)shareBook_security_logout_sAlert:(BOOL)isAlert receive:(id)receive;
+
++ (MagicRequest *)shareBook_book_detail_pub_id:(NSString *)pub_id sAlert:(BOOL)isAlert receive:(id)receive;
+
++ (MagicRequest *)shareBook_book_info_isbn:(NSString *)isbn sAlert:(BOOL)isAlert receive:(id)receive;
+
 @end
