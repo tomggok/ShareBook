@@ -27,7 +27,7 @@
 
 @synthesize mapView=_mapView;
 @synthesize target;
-@synthesize delegate;
+@synthesize delegate,arrayResuce = _arrayResuce;
 DEF_SIGNAL(TOUCHANNITION)
 - (void)dealloc
 {
@@ -78,12 +78,13 @@ DEF_SIGNAL(TOUCHANNITION)
         CLLocationDegrees latitude=[[dic objectForKey:@"latitude"] doubleValue];
         CLLocationDegrees longitude=[[dic objectForKey:@"longitude"] doubleValue];
         CLLocationCoordinate2D location=CLLocationCoordinate2DMake(latitude, longitude);
-        
+        NSString *annotationTag = [dic objectForKey:@"circle_id"];
         MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(location,span ,span );
         MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:region];
         [_mapView setRegion:adjustedRegion animated:YES];
         
         BasicMapAnnotation *  annotation=[[[BasicMapAnnotation alloc] initWithLatitude:latitude andLongitude:longitude]  autorelease];
+        [annotation setTag:[annotationTag intValue]];
         [_mapView   addAnnotation:annotation];
     }
     
@@ -104,13 +105,26 @@ DEF_SIGNAL(TOUCHANNITION)
         _calloutAnnotation = [[[CalloutMapAnnotation alloc] 
                                initWithLatitude:view.annotation.coordinate.latitude
                                andLongitude:view.annotation.coordinate.longitude] autorelease];
+        _calloutAnnotation.tag = ((BasicMapAnnotation *)view.annotation).tag;
         [mapView addAnnotation:_calloutAnnotation];
         
         [mapView setCenterCoordinate:_calloutAnnotation.coordinate animated:YES];
 	}
     else{
+        CalloutMapAnnotation *map = (CalloutMapAnnotation *)view.annotation;
+        
+        NSDictionary *dictInfo1 = nil;
+        
+        for (NSDictionary *dictInfo in _arrayResuce) {
+            NSString *tempTag = [dictInfo objectForKey:@"circle_id"];
+            
+            if (map.tag == [tempTag intValue]) {
+                dictInfo1 = dictInfo;
+            }
+        }
+
         if([delegate respondsToSelector:@selector(customMKMapViewDidSelectedWithInfo:)]){
-            [delegate customMKMapViewDidSelectedWithInfo:@"点击至之后你要在这干点啥"];
+            [delegate customMKMapViewDidSelectedWithInfo:dictInfo1];
         }
     }
 }
@@ -135,12 +149,22 @@ DEF_SIGNAL(TOUCHANNITION)
         CallOutAnnotationVifew *annotationView = (CallOutAnnotationVifew *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CalloutView"];
         if (!annotationView) {
             annotationView = [[[CallOutAnnotationVifew alloc] initWithAnnotation:annotation reuseIdentifier:@"CalloutView"] autorelease];
-//            JingDianMapCell  *cell = [[[NSBundle mainBundle] loadNibNamed:@"JingDianMapCell" owner:self options:nil] objectAtIndex:0];
-            JingDianMapCell *cell = [[JingDianMapCell alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 200.0f, 60)];
-//            [cell setBackgroundColor:[UIColor yellowColor]];
+            
+            int tag = ((CalloutMapAnnotation *)annotation).tag;
+            
+            NSDictionary *dictInfo1 = nil;
+            
+            for (NSDictionary *dictInfo in _arrayResuce) {
+                NSString *tempTag = [dictInfo objectForKey:@"circle_id"];
+            
+                if (tag == [tempTag intValue]) {
+                    dictInfo1 = dictInfo;
+                }
+            }
+            
+            JingDianMapCell *cell = [[JingDianMapCell alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 200.0f, 60) dictInfo:dictInfo1];
             cell.targetObjc  = self;
             [annotationView.contentView addSubview:cell];
-//            [annotationView.contentView setBackgroundColor:[UIColor blueColor]];
         }
         return annotationView;
 	} else if ([annotation isKindOfClass:[BasicMapAnnotation class]]) {

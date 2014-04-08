@@ -10,5 +10,7 @@
 
 @interface JingDianMapCell : DYBBaseView
 @property(nonatomic,retain)id targetObjc;
+@property(nonatomic,retain)NSDictionary *dictInfo;
+- (id)initWithFrame:(CGRect)frame dictInfo:(NSDictionary *)dict;
 AS_SIGNAL(TOUCHCELL)
 @end

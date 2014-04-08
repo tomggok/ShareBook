@@ -18,6 +18,8 @@
     id<MapViewControllerDidSelectDelegate> delegate;
 }
 @property(nonatomic,retain)IBOutlet MKMapView *mapView;
+@property(nonatomic,retain)NSMutableArray *arrayResuce;
+
 @property (nonatomic,retain)id target;
 @property(nonatomic,assign)id<MapViewControllerDidSelectDelegate> delegate;
 AS_SIGNAL(TOUCHANNITION)

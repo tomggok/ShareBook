@@ -11,7 +11,7 @@
 
 @synthesize latitude = _latitude;
 @synthesize longitude = _longitude;
-@synthesize title = _title;
+@synthesize title = _title,tag;
 
 - (id)initWithLatitude:(CLLocationDegrees)latitude
 		  andLongitude:(CLLocationDegrees)longitude {

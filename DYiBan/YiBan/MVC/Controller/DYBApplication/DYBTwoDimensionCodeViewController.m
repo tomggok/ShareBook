@@ -381,9 +381,11 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
     
         if (buttonIndex == 0) {
             
-            ShareBookMakeSureUpBookViewController *up = [[ShareBookMakeSureUpBookViewController alloc]init];
-            [self.drNavigationController pushViewController:up animated:YES];
-            RELEASE(up);
+            
+            MagicRequest *request = [DYBHttpMethod shareBook_book_info_isbn:self.strData sAlert:YES receive:self];
+            [request setTag:3];
+
+           
             
         }else{
             
@@ -463,12 +465,15 @@ DEF_SIGNAL(WEBBUTTON) //注册按钮
             
             
         }
-        if (request.tag == 2) {
+        if (request.tag == 3) {
             
             JsonResponse *response = (JsonResponse *)receiveObj;
             if ([response response] ==khttpsucceedCode)
             {
-                
+                ShareBookMakeSureUpBookViewController *up = [[ShareBookMakeSureUpBookViewController alloc]init];
+                up.dictInfo = [response data];
+                [self.drNavigationController pushViewController:up animated:YES];
+                RELEASE(up);
             }
             if ([response response] ==khttpfailCode)
             {

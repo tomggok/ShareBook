@@ -15,13 +15,14 @@
 #import "ShareBookOtherCenterViewController.h"
 #import "JSONKit.h"
 #import "JSON.h"
+#import "UIImageView+WebCache.h"
 
 @interface ShareBookDetailViewController ()
 
 @end
 
 @implementation ShareBookDetailViewController
-
+@synthesize dictInfo = _dictInfo;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -68,7 +69,7 @@
         [self.view setBackgroundColor:[UIColor whiteColor]];
         
         
-        MagicRequest *request = [DYBHttpMethod shareBook_book_detail_pub_id:@"1" sAlert:YES receive:self];
+        MagicRequest *request = [DYBHttpMethod shareBook_book_detail_pub_id:[_dictInfo objectForKey:@"pub_id"] sAlert:YES receive:self];
         [request setTag:2];
         
         
@@ -79,7 +80,7 @@
         RELEASE(viewBG);
         
         
-        [self creatDetailView];
+//        [self creatDetailView];
         
         
         UIImage *image1 = [UIImage imageNamed:@"down_options_bg"];
@@ -172,7 +173,7 @@
     [btnYU setImage:[UIImage imageNamed:@"bt01_click"] forState:UIControlStateHighlighted];
     [btnYU setImage:[UIImage imageNamed:@"bt01"] forState:UIControlStateNormal];
     [btnYU addTarget:self action:@selector(doBorrow:) forControlEvents:UIControlEventTouchUpInside];
-    [btnYU setEnabled:NO];
+//    [btnYU setEnabled:NO];
     [self addlabel_title:@"预借" frame:btnYU.frame view:btnYU textColor:[UIColor blackColor]];
     [viewBar addSubview:btnYU];
     [btnYU release];
@@ -209,6 +210,10 @@
     UIButton *btn = (UIButton *)sender;
     if (btn.tag == 101) {
         
+        
+        MagicRequest *request = [DYBHttpMethod shareBook_book_reserve_pub_id:[_dictInfo objectForKey:@"pub_id"] content:@"dd" sAlert:YES receive:self];
+        [request setTag:3];
+        
 //        ShareFriendListViewController *friend = [[ShareFriendListViewController alloc]init];
 //        [self.drNavigationController pushViewController:friend animated:YES];
 //        RELEASE(friend);
@@ -229,29 +234,29 @@
 
 
 
--(void)creatDetailView{
+-(void)creatDetailView :(NSDictionary *)dict{
 
     UIImage *image = [UIImage imageNamed:@"defualt_book"];
     UIImageView *imageIcon = [[UIImageView alloc]initWithFrame:CGRectMake(5.0f, 5.0f + self.headHeight, 100, 160.0f)];
-    [imageIcon setImage:image];
+    [imageIcon setImageWithURL:[DYBShareinstaceDelegate getImageString:[dict objectForKey:@"image"]] placeholderImage:image];
     [imageIcon setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:imageIcon];
     [imageIcon release];
     
     UILabel *labelName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 5, 15.0f + self.headHeight, 100, 20)];
-    [labelName setText:@"太空旅行"];
+    [labelName setText:[dict objectForKey:@"title"]];
     [self.view addSubview:labelName];
     [labelName release];
     
-    UILabel *labelAuther = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 5, CGRectGetHeight(labelName.frame) + CGRectGetMinY(labelName.frame), 100, 20)];
+    UILabel *labelAuther = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 5, CGRectGetHeight(labelName.frame) + CGRectGetMinY(labelName.frame), 200, 20)];
     [labelAuther setFont:[UIFont systemFontOfSize:13]];
-    [labelAuther setText:[NSString stringWithFormat:@"作  者：空俊"]];
+    [labelAuther setText:[NSString stringWithFormat:@"作  者：%@",[dict objectForKey:@"author"]]];
     [self.view addSubview:labelAuther];
     [labelAuther release];
     
     
     UILabel *labelPublic = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 5, CGRectGetHeight(labelAuther.frame) + CGRectGetMinY(labelAuther.frame), 150, 20)];
-    [labelPublic setText:[NSString stringWithFormat:@"出版社：科学发展出版社"]];
+    [labelPublic setText:[NSString stringWithFormat:@"出版社：%@",[dict objectForKey:@"publisher"]]];
     [labelPublic setFont:[UIFont systemFontOfSize:13]];
     [self.view addSubview:labelPublic];
     [labelPublic release];
@@ -265,27 +270,27 @@
     
     
     UILabel *labelMon = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 5, CGRectGetHeight(labelTime.frame) + CGRectGetMinY(labelTime.frame), 200, 20)];
-    [labelMon setText:@"押 金：20乐享豆"];
+    [labelMon setText:[NSString stringWithFormat:@"押 金：%@",[dict objectForKey:@"deposit"]]];
     [labelMon setFont:[UIFont systemFontOfSize:13]];
     [labelMon sizeToFit];
     [self.view addSubview:labelMon];
     [labelMon release];
     
     UILabel *labelMon1 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(labelMon.frame) + CGRectGetWidth(labelMon.frame)+ 15, CGRectGetHeight(labelTime.frame) + CGRectGetMinY(labelTime.frame) - 1, 200, 20)];
-    [labelMon1 setText:@"租 金：20乐享豆"];
+    [labelMon1 setText:[NSString stringWithFormat:@"租 金：20乐享豆"]];
     [labelMon1 setFont:[UIFont systemFontOfSize:13]];
     [self.view addSubview:labelMon1];
     [labelMon1 release];
     
     
-    UILabel *labelType = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 5, CGRectGetHeight(labelMon.frame) + CGRectGetMinY(labelMon.frame), 100, 20)];
-    [labelType setText:@"借出方式：做客"];
+    UILabel *labelType = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 5, CGRectGetHeight(labelMon.frame) + CGRectGetMinY(labelMon.frame), 200, 20)];
+    [labelType setText:[NSString stringWithFormat:@"借出方式：%@",[dict objectForKey:@"lent_way"]]];
     [labelType setFont:[UIFont systemFontOfSize:13]];
     [self.view addSubview:labelType];
     [labelType release];
     
     UILabel *labelModle = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 5, CGRectGetHeight(labelType.frame) + CGRectGetMinY(labelType.frame), 100, 20)];
-    [labelModle setText:@"状  态：可以借阅"];
+    [labelModle setText:[NSString stringWithFormat:@"状  态：%@",[dict objectForKey:@"loan_status"]]];
     [labelModle setFont:[UIFont systemFontOfSize:13]];
     
     [self.view addSubview:labelModle];
@@ -384,6 +389,7 @@ static NSString *cellName = @"cellName";
         //        [self goShowOrderListAction];
         
         ShareBookOtherCenterViewController *resg = [[ShareBookOtherCenterViewController alloc]init];
+        resg.dictInfo = _dictInfo;
         [self.drNavigationController pushViewController:resg animated:YES];
         RELEASE(resg);
     }
@@ -408,7 +414,7 @@ static NSString *cellName = @"cellName";
                 if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
                     
                     JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
-                    
+                    [self creatDetailView:[[dict objectForKey:@"data"] objectForKey:@"book_detail"]];
                     //                    SHARED.sessionID = response.sessID;
                     //
                     //                    self.DB.FROM(USERMODLE)
@@ -430,14 +436,15 @@ static NSString *cellName = @"cellName";
                     
                 }
             }
-        }else if(request.tag == 3){
+        }else if(request.tag == 3){ //预约
             
             NSDictionary *dict = [request.responseString JSONValue];
             
             if (dict) {
                 BOOL result = [[dict objectForKey:@"result"] boolValue];
                 if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
-                    
+                     NSString *strMSG = [dict objectForKey:@"message"];
+                     [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
                     //                    UIButton *btn = (UIButton *)[UIButton buttonWithType:UIButtonTypeCustom];
                     //                    [btn setTag:10];
                     //                    [self doChange:btn];

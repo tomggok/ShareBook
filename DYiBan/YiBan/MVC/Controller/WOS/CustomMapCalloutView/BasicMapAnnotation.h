@@ -8,7 +8,7 @@
 }
 
 @property (nonatomic, retain) NSString *title;
-
+@property (nonatomic, assign) int tag;
 - (id)initWithLatitude:(CLLocationDegrees)latitude
 		  andLongitude:(CLLocationDegrees)longitude;
 - (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate;

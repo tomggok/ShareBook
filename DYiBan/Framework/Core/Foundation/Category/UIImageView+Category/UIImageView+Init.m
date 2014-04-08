@@ -207,7 +207,7 @@ static char _c_Alignment;
 - (void)handleViewSignal_UIImageView:(MagicViewSignal *)signal
 {
     if ([signal is:[UIImageView SDWEBIMGDOWNSUCCESS]]) {
-        [self changePosInSuperViewWithAlignment:self._Alignment];
+//        [self changePosInSuperViewWithAlignment:self._Alignment];
     }
 }
 

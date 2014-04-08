@@ -10,4 +10,5 @@
 
 @interface ShareBookMyQuanCenterViewController : DYBBaseViewController
 @property (nonatomic,assign)BOOL bEnter;
+@property (nonatomic,retain)NSArray *arrayResult;
 @end

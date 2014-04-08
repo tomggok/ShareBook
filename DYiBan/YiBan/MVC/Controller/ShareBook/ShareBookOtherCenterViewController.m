@@ -10,6 +10,10 @@
 #import "ShareGiveDouCell.h"
 #import "ShareBookCell.h"
 #import "ShareBookDetailViewController.h"
+#import "JSONKit.h"
+#import "JSON.h"
+#import "UIImageView+WebCache.h"
+
 
 
 @interface ShareBookOtherCenterViewController (){
@@ -21,7 +25,7 @@
 @end
 
 @implementation ShareBookOtherCenterViewController
-
+@synthesize dictInfo = _dictInfo;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -69,64 +73,15 @@
         
         bShowBook = NO;
         
+        MagicRequest *request = [DYBHttpMethod shareBook_user_detail_user_id:[_dictInfo objectForKey:@"user_id"] sAlert:YES receive:self];
+        [request setTag:3];
+        
         UIImageView *viewBG = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44)];
         [viewBG setImage:[UIImage imageNamed:@"bg"]];
         [viewBG setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:viewBG];
         RELEASE(viewBG);
         
-        
-        UIImage *image = [UIImage imageNamed:@"system-avatar"];
-        UIImageView *imageIcon = [[UIImageView alloc]initWithFrame:CGRectMake(5.0f, 5.0f + self.headHeight, image.size.width/2, image.size.height/2)];
-        [imageIcon setImage:image];
-        [imageIcon setBackgroundColor:[UIColor clearColor]];
-        [self.view addSubview:imageIcon];
-        [imageIcon release];
-        
-//        UILabel *labelName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 5, 15.0f + self.headHeight, 100, 20)];
-//        [labelName setText:@"太空旅行"];
-//        [self.view addSubview:labelName];
-//        [labelName release];
-//        
-        UILabel *labelAuther = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 5, 10.0f + self.headHeight, 100, 20)];
-        [labelAuther setFont:[UIFont systemFontOfSize:15]];
-        [labelAuther setText:[NSString stringWithFormat:@"用户名：空俊"]];
-        [self.view addSubview:labelAuther];
-        [labelAuther release];
-        [labelAuther setBackgroundColor:[UIColor clearColor]];
-        
-        UILabel *labelPublic = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 5, CGRectGetHeight(labelAuther.frame) + CGRectGetMinY(labelAuther.frame), 50, 20)];
-        [labelPublic setText:[NSString stringWithFormat:@"信  用："]];
-        [labelPublic setFont:[UIFont systemFontOfSize:15]];
-        [labelPublic sizeToFit];
-        [self.view addSubview:labelPublic];
-        [labelPublic release];
-        [labelPublic setBackgroundColor:[UIColor clearColor]];
-
-        UIImage *iamageG = [UIImage imageNamed:@"bg_good"];
-        UIImageView *imageViewGood = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMinX(labelPublic.frame) + CGRectGetWidth(labelPublic.frame)+ 5, CGRectGetHeight(labelAuther.frame) + CGRectGetMinY(labelAuther.frame), iamageG.size.width/2, iamageG.size.height/2)];
-        [imageViewGood setImage:[UIImage imageNamed:@"bg_good"]];
-        [self.view addSubview:imageViewGood];
-        RELEASE(imageViewGood);
-        
-        UILabel *labelGood = [[UILabel alloc]initWithFrame:CGRectMake(30.0f, 5.0f, 20.0f, 20.0f)];
-        [labelGood setText:@"10"];
-        [imageViewGood addSubview:labelGood];
-        RELEASE(labelGood);
-        [labelGood setBackgroundColor:[UIColor clearColor]];
-        
-        UIImage *iamgeB = [UIImage imageNamed:@"bg_bad"];
-        UIImageView *imageViewBad = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageViewGood.frame) + CGRectGetWidth(imageViewGood.frame)+ 5, CGRectGetHeight(labelAuther.frame) + CGRectGetMinY(labelAuther.frame), iamgeB.size.width/2, iamgeB.size.height/2)];
-        [imageViewBad setImage:[UIImage imageNamed:@"bg_bad"]];
-        [self.view addSubview:imageViewBad];
-        RELEASE(imageViewBad);
-        
-        UILabel *labelDad = [[UILabel alloc]initWithFrame:CGRectMake(30.0f, 5.0f, 20.0f, 20.0f)];
-        [labelDad setText:@"2"];
-        [imageViewBad addSubview:labelDad];
-        RELEASE(labelDad);
-        [labelDad setBackgroundColor:[UIColor clearColor]];
-
         
         
         
@@ -170,6 +125,69 @@
         
     }
 }
+
+-(void)creatView:(NSDictionary *)dict{
+
+    UIImage *image = [UIImage imageNamed:@"system-avatar"];
+    UIImageView *imageIcon = [[UIImageView alloc]initWithFrame:CGRectMake(5.0f, 5.0f + self.headHeight, image.size.width/2, image.size.height/2)];
+//    [imageIcon setImage:image];
+//    pic_s
+    [imageIcon setImageWithURL:[DYBShareinstaceDelegate getImageString:[dict objectForKey:@"pic_s"] ]placeholderImage:image];
+    [imageIcon setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:imageIcon];
+    [imageIcon release];
+    
+    //        UILabel *labelName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 5, 15.0f + self.headHeight, 100, 20)];
+    //        [labelName setText:@"太空旅行"];
+    //        [self.view addSubview:labelName];
+    //        [labelName release];
+    //
+    UILabel *labelAuther = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 5, 10.0f + self.headHeight, 100, 20)];
+    [labelAuther setFont:[UIFont systemFontOfSize:15]];
+    [labelAuther setText:[NSString stringWithFormat:@"用户名：%@",[dict objectForKey:@"username"]]];
+    [self.view addSubview:labelAuther];
+    [labelAuther release];
+    [labelAuther setBackgroundColor:[UIColor clearColor]];
+    
+    UILabel *labelPublic = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 5, CGRectGetHeight(labelAuther.frame) + CGRectGetMinY(labelAuther.frame), 50, 20)];
+    [labelPublic setText:[NSString stringWithFormat:@"信  用："]];
+    [labelPublic setFont:[UIFont systemFontOfSize:15]];
+    [labelPublic sizeToFit];
+    [self.view addSubview:labelPublic];
+    [labelPublic release];
+    [labelPublic setBackgroundColor:[UIColor clearColor]];
+    
+    UIImage *iamageG = [UIImage imageNamed:@"bg_good"];
+    UIImageView *imageViewGood = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMinX(labelPublic.frame) + CGRectGetWidth(labelPublic.frame)+ 5, CGRectGetHeight(labelAuther.frame) + CGRectGetMinY(labelAuther.frame), iamageG.size.width/2, iamageG.size.height/2)];
+    [imageViewGood setImage:[UIImage imageNamed:@"bg_good"]];
+    [self.view addSubview:imageViewGood];
+    RELEASE(imageViewGood);
+    
+    UILabel *labelGood = [[UILabel alloc]initWithFrame:CGRectMake(30.0f, 5.0f, 20.0f, 20.0f)];
+    [labelGood setText:[dict objectForKey:@"good_credit"]];
+    [imageViewGood addSubview:labelGood];
+    RELEASE(labelGood);
+    [labelGood setBackgroundColor:[UIColor clearColor]];
+    
+    UIImage *iamgeB = [UIImage imageNamed:@"bg_bad"];
+    UIImageView *imageViewBad = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageViewGood.frame) + CGRectGetWidth(imageViewGood.frame)+ 5, CGRectGetHeight(labelAuther.frame) + CGRectGetMinY(labelAuther.frame), iamgeB.size.width/2, iamgeB.size.height/2)];
+    [imageViewBad setImage:[UIImage imageNamed:@"bg_bad"]];
+    [self.view addSubview:imageViewBad];
+    RELEASE(imageViewBad);
+    
+    UILabel *labelDad = [[UILabel alloc]initWithFrame:CGRectMake(30.0f, 5.0f, 20.0f, 20.0f)];
+    [labelDad setText:[dict objectForKey:@"bad_credit"]];
+    [imageViewBad addSubview:labelDad];
+    RELEASE(labelDad);
+    [labelDad setBackgroundColor:[UIColor clearColor]];
+    
+    
+
+
+
+
+}
+
 
 -(void)addlabel_title:(NSString *)title frame:(CGRect)frame view:(UIView *)view{
     
@@ -230,7 +248,7 @@ static NSString *cellName = @"cellName";
         if (bShowBook) {
             ShareBookCell *cell = [[ShareBookCell alloc]init];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            [cell creatCell];
+            [cell creatCell:nil];
             [signal setReturnValue:cell];
         }else{
             
@@ -295,6 +313,79 @@ static NSString *cellName = @"cellName";
         
     }
     [tbDataBank11 reloadData];
+}
+
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
+{
+    
+    if ([request succeed])
+    {
+        //        JsonResponse *response = (JsonResponse *)receiveObj;
+        if (request.tag == 2) {
+            
+            
+            NSDictionary *dict = [request.responseString JSONValue];
+            
+            if (dict) {
+                
+                if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
+                    
+                    JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
+//                    [self creatDetailView:[[dict objectForKey:@"data"] objectForKey:@"book_detail"]];
+                    //                    SHARED.sessionID = response.sessID;
+                    //
+                    //                    self.DB.FROM(USERMODLE)
+                    //                    .SET(@"userInfo", request.responseString)
+                    //                    .SET(@"userIndex",[dict objectForKey:@"user_id"])
+                    //                    .INSERT();
+                    
+                    //                    SHARED.userId = [dict objectForKey:@"user_id"]; //设置userid 全局变量
+                    
+                    //                    DYBUITabbarViewController *vc = [[DYBUITabbarViewController sharedInstace] init:self];
+                    //
+                    //                    [self.drNavigationController pushViewController:vc animated:YES];
+                    
+                }else{
+                    NSString *strMSG = [dict objectForKey:@"message"];
+                    
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+                    
+                    
+                }
+            }
+        }else if(request.tag == 3){ //
+            
+            NSDictionary *dict = [request.responseString JSONValue];
+            
+            if (dict) {
+                BOOL result = [[dict objectForKey:@"result"] boolValue];
+                if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
+                    
+                    [self creatView:[[dict objectForKey:@"data"] objectForKey:@"user"]];
+//                    NSString *strMSG = [dict objectForKey:@"message"];
+//                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+                    //                    UIButton *btn = (UIButton *)[UIButton buttonWithType:UIButtonTypeCustom];
+                    //                    [btn setTag:10];
+                    //                    [self doChange:btn];
+                }
+                else{
+                    NSString *strMSG = [dict objectForKey:@"message"];
+                    
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+                    
+                    
+                }
+            }
+            
+        } else{
+            NSDictionary *dict = [request.responseString JSONValue];
+            NSString *strMSG = [dict objectForKey:@"message"];
+            
+            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+            
+            
+        }
+    }
 }
 
 

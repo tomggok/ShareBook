@@ -9,7 +9,8 @@
 #import "ShareAddQuanViewController.h"
 #import "DYBInputView.h"
 #import "CALayer+Custom.h"
-
+#import "JSONKit.h"
+#import "JSON.h"
 
 
 @interface ShareAddQuanViewController ()
@@ -146,8 +147,69 @@
 
 -(void)doChoose{
  
+//    sAlert:(BOOL)isAlert receive:(id)receive;
+    MagicRequest *request = [DYBHttpMethod shareBook_circle_add_circle_name:@"天山小区1" address:@"d1d" lat:@"30.290144" lng:@"120.146696" kind:@"1" sAlert:YES receive:self];
+    [request setTag:2];
 
 }
 
 
+#pragma mark- 只接受HTTP信号
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
+{
+    
+    if ([request succeed])
+    {
+        //        JsonResponse *response = (JsonResponse *)receiveObj;
+        if (request.tag == 2) {
+            
+            
+            NSDictionary *dict = [request.responseString JSONValue];
+            
+            if (dict) {
+                
+                if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
+                    
+                    JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
+                    
+                    
+                }else{
+                    NSString *strMSG = [dict objectForKey:@"message"];
+                    
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+                    
+                    
+                }
+            }
+        }else if(request.tag == 3){
+            
+            NSDictionary *dict = [request.responseString JSONValue];
+            
+            if (dict) {
+                BOOL result = [[dict objectForKey:@"result"] boolValue];
+                if (!result) {
+                    
+//                    UIButton *btn = (UIButton *)[UIButton buttonWithType:UIButtonTypeCustom];
+//                    [btn setTag:10];
+//                    [self doChange:btn];
+                }
+                else{
+                    NSString *strMSG = [dict objectForKey:@"message"];
+                    
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+                    
+                    
+                }
+            }
+            
+        } else{
+            NSDictionary *dict = [request.responseString JSONValue];
+            NSString *strMSG = [dict objectForKey:@"message"];
+            
+            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+            
+            
+        }
+    }
+}
 @end

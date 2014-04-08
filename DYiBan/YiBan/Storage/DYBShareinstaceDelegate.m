@@ -516,4 +516,19 @@ static DYBShareinstaceDelegate *sharedInstace = nil;
     return @"无";
 }
 
++(NSURL *)getImageString:(NSString *)stringImage{
+
+    if (stringImage.length >0) {
+        
+        NSURL *url = [NSURL URLWithString:stringImage];
+        return url;
+        
+    }else{
+    
+        return nil;
+    }
+    
+
+}
+
 @end

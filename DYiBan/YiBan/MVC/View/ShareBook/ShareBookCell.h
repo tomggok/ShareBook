@@ -33,5 +33,5 @@
 
 AS_SIGNAL(FINISHSWIP)
 AS_SIGNAL(CANCEL)
--(void)creatCell;
+-(void)creatCell:(NSDictionary *)dict;
 @end

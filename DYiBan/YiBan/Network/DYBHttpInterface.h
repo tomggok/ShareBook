@@ -467,7 +467,7 @@
 
 //security_reg
 
-+ (NSMutableDictionary *)shareBook_security_reg_username:(NSString *)username password:(NSString *)password phone_num:(NSString *)phone_num;
++ (NSMutableDictionary *)shareBook_security_reg_username:(NSString *)username password:(NSString *)password phone_num:(NSString *)phone_num nickName:(NSString *)nick;
 //security_logout
 + (NSMutableDictionary *)shareBook_security_logout;
 //book_detail
@@ -478,5 +478,33 @@
 //book_info
 
 + (NSMutableDictionary *)shareBook_book_info_isbn:(NSString *)isbn;
+
+//book_upload
++ (NSMutableDictionary *)shareBook_book_upload_book_id:(NSString *)book_id lent_way:(NSString *)lent_way deposit_type:(NSString *)deposit_type deposit:(NSString *)deposit loan_period:(NSString *)loan_period public:(NSString *)_public remark:(NSString *)remark lat:(NSString *)lat lng:(NSString *)lng sskey:(NSString *)sskey address:(NSString *)address ;
+
+//book_reserve
++ (NSMutableDictionary *)shareBook_book_reserve_pub_id:(NSString *)pub_id content:(NSString *)content;
+
+//book_commentlist
+
++ (NSMutableDictionary *)shareBook_book_commentlist_pub_id:(NSString *)pub_id page:(NSString *)page num:(NSString *)num;
+
+//user_detail
+
++ (NSMutableDictionary *)shareBook_user_detail_user_id:(NSString *)user_id;
+
+
+//circle_list
+
++ (NSMutableDictionary *)shareBook_circle_list;
+
+//circle_add
++ (NSMutableDictionary *)shareBook_circle_add_circle_name:(NSString *)circle_name address:(NSString *)address lat:(NSString *)lat lng:(NSString *)lng kind:(NSString *)kind;
+//user_friendlist
+
++ (NSMutableDictionary *)shareBook_user_friendlist_user_id:(NSString *)user_id;
+
+//address_list
++ (NSMutableDictionary *)shareBook_address_list_user_id:(NSString *)user_id;
 
 @end

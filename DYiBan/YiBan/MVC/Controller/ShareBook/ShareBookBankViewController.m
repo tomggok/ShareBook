@@ -81,8 +81,8 @@
         [self creatSelectType:arraySouce];
         
         UIImage *image = [UIImage imageNamed:@"options_bg"];
-        
-        MagicRequest *request = [DYBHttpMethod shareBook_book_list_tag_id:@"1" sAlert:YES receive:self];
+        DLogInfo(@"dddd %@",SHARED.userId);
+        MagicRequest *request = [DYBHttpMethod shareBook_book_list_tag_id:SHARED.userId sAlert:YES receive:self];
         [request setTag:2];
         
         
@@ -198,7 +198,7 @@ static NSString *cellName = @"cellName";
         NSNumber *s;
         
         //        if ([_section intValue] == 0) {
-        s = [NSNumber numberWithInteger:10];
+        s = [NSNumber numberWithInteger:arrayReturnSouce.count];
         //        }else{
         //            s = [NSNumber numberWithInteger:[_arrStatusData count]];
         //        }
@@ -226,7 +226,7 @@ static NSString *cellName = @"cellName";
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
         ShareBookCell *cell = [[ShareBookCell alloc]init];
-        [cell creatCell];
+        [cell creatCell:[arrayReturnSouce objectAtIndex:indexPath.row]];
 //        NSDictionary *dictInfoFood = nil;
 //        [cell creatCell:dictInfoFood];
         DLogInfo(@"%d", indexPath.section);
@@ -240,6 +240,7 @@ static NSString *cellName = @"cellName";
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
         ShareBookDetailViewController *bookDetail = [[ShareBookDetailViewController alloc]init];
+        [bookDetail setDictInfo:[arrayReturnSouce objectAtIndex:indexPath.row]];
         [self.drNavigationController pushViewController:bookDetail animated:YES];
         RELEASE(bookDetail);
         
@@ -269,6 +270,7 @@ static NSString *cellName = @"cellName";
     }else if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
         
         ShareSearchBookViewController *searchBook = [[ShareSearchBookViewController alloc]init];
+        
         [self.drNavigationController pushViewController:searchBook animated:YES];
         [searchBook release];
     }
@@ -289,9 +291,11 @@ static NSString *cellName = @"cellName";
             
             if (dict) {
                 
-                if ([[dict objectForKey:@"result"] isEqualToString:@"100"]) {
+                if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
                     
-//                    arrayReturnSouce = [NSMutableArray alloc]initWithObjects:, nil;
+                    arrayReturnSouce = [[NSMutableArray alloc]initWithArray:[[dict objectForKey:@"data"] objectForKey:@"book_list"]];
+                    
+                    [tbDataBank11 reloadData];
 //
 //                    self.DB.FROM(USERMODLE)
 //                    .SET(@"userInfo", request.responseString)

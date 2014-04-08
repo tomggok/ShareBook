@@ -166,7 +166,7 @@ static char _c_b_isShade;
     }else
     {
         DLogInfo(@"456");
-        [self sendViewSignal:[UIImageView SDWEBIMGDOWNFAILURE]];
+//        [self sendViewSignal:[UIImageView SDWEBIMGDOWNFAILURE]];
     }
     
 }

@@ -14,7 +14,7 @@
 #import "ShareBookBankViewController.h"
 #import "ShareBookCellBtnCenterView.h"
 #import "ShareBookListViewController.h"
-
+#import "UIImageView+WebCache.h"
 
 @implementation ShareBookCell{
 
@@ -59,7 +59,7 @@ DEF_SIGNAL(FINISHSWIP)
     // Configure the view for the selected state
 }
 
--(void)creatCell{
+-(void)creatCell:(NSDictionary *)dict{
 
     UIButton *bgBtn = [[UIButton alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 84.0f)];
     [bgBtn setBackgroundColor:[UIColor clearColor]];
@@ -96,19 +96,20 @@ DEF_SIGNAL(FINISHSWIP)
     
     UIImage *imageIcon = [UIImage imageNamed:@"defualt_book"];
     UIImageView *imageBook = [[UIImageView alloc]initWithFrame:CGRectMake(5.0f, 5.0f, imageIcon.size.width/2, imageIcon.size.height/2)];
-    [imageBook setBackgroundColor:[UIColor clearColor]];
-    [imageBook setImage:[UIImage imageNamed:@"defualt_book"]];
+    [imageBook setBackgroundColor:[UIColor redColor]];
+//    [imageBook setImage:[UIImage imageNamed:@"defualt_book"]];
+    [imageBook setImageWithURL:[DYBShareinstaceDelegate getImageString:[dict objectForKey:@"image"]] placeholderImage:imageIcon];
     [swipView addSubview:imageBook];
     [imageBook release];
     
-    UILabel *labelName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, 5, 200, 20)];
+    UILabel *labelName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, 5, 250, 20)];
     [labelName setBackgroundColor:[UIColor clearColor]];
-    [labelName setText:@"三生三室枕上书"];
+    [labelName setText:[dict objectForKey:@"title"]];
     [swipView addSubview:labelName];
     [labelName release];
     
     UILabel *labelAuther = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, CGRectGetMinY(labelName.frame) + CGRectGetHeight(labelName.frame) + 0, 200, 20)];
-    [labelAuther setText:[ NSString stringWithFormat:@"作者：曾新"]];
+    [labelAuther setText:[ NSString stringWithFormat:@"作者：%@",[dict objectForKey:@"author"]]];
     [labelAuther setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
     [labelAuther setBackgroundColor:[UIColor clearColor]];
 
@@ -118,7 +119,7 @@ DEF_SIGNAL(FINISHSWIP)
     
     UILabel *labelPublic = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, CGRectGetMinY(labelAuther.frame) + CGRectGetHeight(labelAuther.frame) + 0, 200, 20)];
     [labelPublic setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
-    [labelPublic setText:[NSString stringWithFormat:@"出版社：中国民族艺术出版社"]];
+    [labelPublic setText:[NSString stringWithFormat:@"出版社：%@",[dict objectForKey:@"publisher"]]];
     [labelPublic setBackgroundColor:[UIColor clearColor]];
 
     [swipView addSubview:labelPublic];
@@ -136,7 +137,7 @@ DEF_SIGNAL(FINISHSWIP)
     [labelAddr release];
     
     UILabel *labelModel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelAddr.frame) + CGRectGetMinX(labelAddr.frame) + 5, CGRectGetMinY(labelPublic.frame) + CGRectGetHeight(labelPublic.frame) + 3, 200, 20)];
-    [labelModel setText:@"做客模式"];
+    [labelModel setText:[dict objectForKey:@"lent_way"]];
     [labelModel setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
     [labelModel setBackgroundColor:[UIColor clearColor]];
 
@@ -154,7 +155,8 @@ DEF_SIGNAL(FINISHSWIP)
     
     
     UILabel *labelMon = [[UILabel alloc]initWithFrame:CGRectMake(2, 2, 200, 20)];
-    [labelMon setText:@"50豆押金"];
+   ;
+    [labelMon setText: [NSString stringWithFormat:@"%@d豆押金",[dict objectForKey:@"deposit"]]];
     [imageViewLabel addSubview:labelMon];
     [labelMon setTextColor:[UIColor whiteColor]];
     [labelMon setBackgroundColor:[UIColor clearColor]];

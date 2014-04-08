@@ -19,7 +19,7 @@
 @end
 
 @implementation CallOutAnnotationVifew
-@synthesize contentView;
+@synthesize contentView,dictInfo;
 
 - (void)dealloc
 {

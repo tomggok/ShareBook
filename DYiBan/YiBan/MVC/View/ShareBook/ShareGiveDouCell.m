@@ -15,7 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        [self creatCell];
+//        [self creatCell];
     }
     return self;
 }
@@ -27,7 +27,7 @@
     // Configure the view for the selected state
 }
 
--(void)creatCell{
+-(void)creatCell:(NSDictionary *)dict{
 
     UIImageView *imageIcon = [[UIImageView alloc]initWithFrame:CGRectMake(5.0f, 5.0f, 40.0f, 40.0f)];
     [imageIcon setImage:[UIImage imageNamed:@"system-avatar"]];

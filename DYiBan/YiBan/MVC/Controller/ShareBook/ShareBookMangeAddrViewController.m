@@ -9,7 +9,8 @@
 #import "ShareBookMangeAddrViewController.h"
 #import "ShareBookAddAddrViewController.h"
 
-
+#import "JSONKit.h"
+#import "JSON.h"
 
 
 @interface ShareBookMangeAddrViewController (){
@@ -76,6 +77,9 @@
         RELEASE(viewBG);
         
         
+//        shareBook_address_list_user_id
+         MagicRequest *request =   [DYBHttpMethod shareBook_address_list_user_id:@"1" sAlert:YES receive:self];
+        [request setTag:2];
         UIView *viewBGTableView = [[UIView alloc]initWithFrame:CGRectMake(10,self.headHeight + 20 , 300.0f , self.view.frame.size.height -self.headHeight - 100  )];
         [viewBGTableView setBackgroundColor:[UIColor whiteColor]];
         [viewBGTableView.layer setBorderWidth:1];
@@ -272,4 +276,63 @@ static NSString *cellName = @"cellName";
     [super dealloc];
 }
 
+#pragma mark- 只接受HTTP信号
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
+{
+    
+    if ([request succeed])
+    {
+        //        JsonResponse *response = (JsonResponse *)receiveObj;
+        if (request.tag == 2) {
+            
+            
+            NSDictionary *dict = [request.responseString JSONValue];
+            
+            if (dict) {
+                
+                if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
+                    
+                    JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
+                    
+                    
+                }else{
+                    NSString *strMSG = [dict objectForKey:@"message"];
+                    
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+                    
+                    
+                }
+            }
+        }else if(request.tag == 3){
+            
+            NSDictionary *dict = [request.responseString JSONValue];
+            
+            if (dict) {
+                if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
+                    
+                    //                    UIButton *btn = (UIButton *)[UIButton buttonWithType:UIButtonTypeCustom];
+                    //                    [btn setTag:10];
+                    ////                    [self doChange:btn];
+                    
+                    [self.drNavigationController popViewControllerAnimated:YES];
+                }
+                //                else{
+                NSString *strMSG = [dict objectForKey:@"message"];
+                
+                [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+                
+                
+                //                }
+            }
+            
+        } else{
+            NSDictionary *dict = [request.responseString JSONValue];
+            NSString *strMSG = [dict objectForKey:@"message"];
+            
+            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+            
+            
+        }
+    }
+}
 @end

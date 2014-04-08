@@ -19,7 +19,7 @@
 
 @implementation ShareBookMyQuanCenterViewController
 
-@synthesize  bEnter = _bEnter;
+@synthesize  bEnter = _bEnter,arrayResult = _arrayResult;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -188,7 +188,7 @@ static NSString *cellName = @"cellName";
         NSNumber *s;
         
         //        if ([_section intValue] == 0) {
-        s = [NSNumber numberWithInteger:10];
+        s = [NSNumber numberWithInteger:_arrayResult.count];
         //        }else{
         //            s = [NSNumber numberWithInteger:[_arrStatusData count]];
         //        }
@@ -220,15 +220,18 @@ static NSString *cellName = @"cellName";
 
         DLogInfo(@"%d", indexPath.section);
         
+        NSDictionary *dictt = [_arrayResult objectAtIndex:indexPath.row];
+        
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, 10.0f, 100.0f, 30.0f)];
-        [label setText:@"上海未来"];
+        [label setText:[dictt objectForKey:@"circle_name"]];
         
         [cell addSubview:label];
         RELEASE(label);
         
         
         UILabel *labelB = [[UILabel alloc]initWithFrame:CGRectMake(15, 35, 220, 20)];
-        [labelB setText:@"热度：12人 | 19书 | 10交易"];
+        NSString *temp = [NSString stringWithFormat:@"热度：%@人 | %@书 | %@交易",[dictt objectForKey:@"hots"],[dictt objectForKey:@"book_num"],[dictt objectForKey:@"loan_num"]];
+        [labelB setText:temp];
         [labelB setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
         [labelB setFont:[UIFont systemFontOfSize:14]];
         [cell addSubview:labelB];

@@ -25,7 +25,7 @@
 @end
 
 @implementation ShareBookMakeSureUpBookViewController
-
+@synthesize dictInfo = _dictInfo;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -87,7 +87,7 @@
         
         UILabel *labelBookName1 = [[UILabel alloc]initWithFrame:CGRectMake(20.0f + 60, self.headHeight + 20 , 100.0f, 20.0f)];
         
-        [labelBookName1 setText:@"喜洋洋"];
+        [labelBookName1 setText:[[_dictInfo objectForKey:@"book"] objectForKey:@"title"]];
         [labelBookName1 setBackgroundColor:[UIColor clearColor]];
         [viewBG addSubview:labelBookName1];
         RELEASE(labelBookName1);
@@ -330,8 +330,8 @@
 
 -(void)doChoose{
 
-    
-    MagicRequest *request = [DYBHttpMethod shareBook_book_info_isbn:@"" sAlert:<#(BOOL)#> receive:<#(id)#>:YES receive:self];
+    NSDictionary *dict = [_dictInfo objectForKey:@"book"];
+    MagicRequest *request = [DYBHttpMethod shareBook_book_upload_book_id:[dict objectForKey:@"id"] lent_way:@"1" deposit_type:@"1" deposit:@"20" loan_period:@"20" public:@"1" remark:@"eeeee" lat:@"dd" lng:@"ddd" sskey:@"11" address:@"ddd" sAlert:YES receive:self];
     [request setTag:2];
 
 

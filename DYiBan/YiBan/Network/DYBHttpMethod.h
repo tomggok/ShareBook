@@ -450,12 +450,34 @@
 
 + (MagicRequest *)shareBook_book_list_tag_id:(NSString *)tag_id sAlert:(BOOL)isAlert receive:(id)receive;
 
-+ (MagicRequest *)shareBook_security_reg_username:(NSString *)username password:(NSString *)password phone_num:(NSString *)phone_num sAlert:(BOOL)isAlert receive:(id)receive;
++ (MagicRequest *)shareBook_security_reg_username:(NSString *)username password:(NSString *)password phone_num:(NSString *)phone_num nickName:(NSString *)nick sAlert:(BOOL)isAlert receive:(id)receive;
 
 + (MagicRequest *)shareBook_security_logout_sAlert:(BOOL)isAlert receive:(id)receive;
 
 + (MagicRequest *)shareBook_book_detail_pub_id:(NSString *)pub_id sAlert:(BOOL)isAlert receive:(id)receive;
 
 + (MagicRequest *)shareBook_book_info_isbn:(NSString *)isbn sAlert:(BOOL)isAlert receive:(id)receive;
+
++ (MagicRequest *)shareBook_book_upload_book_id:(NSString *)book_id lent_way:(NSString *)lent_way deposit_type:(NSString *)deposit_type deposit:(NSString *)deposit loan_period:(NSString *)loan_period public:(NSString *)_public remark:(NSString *)remark lat:(NSString *)lat lng:(NSString *)lng sskey:(NSString *)sskey address:(NSString *)address sAlert:(BOOL)isAlert receive:(id)receive;
++ (MagicRequest *)shareBook_book_reserve_pub_id:(NSString *)pub_id content:(NSString *)content sAlert:(BOOL)isAlert receive:(id)receive;
+
++ (MagicRequest *)shareBook_book_commentlist_pub_id:(NSString *)pub_id page:(NSString *)page num:(NSString *)num sAlert:(BOOL)isAlert receive:(id)receive;
+
+
++ (MagicRequest *)shareBook_user_detail_user_id:(NSString *)user_id sAlert:(BOOL)isAlert receive:(id)receive;
+
++ (MagicRequest *)shareBook_circle_list_sAlert:(BOOL)isAlert receive:(id)receive;
+
++ (MagicRequest *)shareBook_circle_add_circle_name:(NSString *)circle_name address:(NSString *)address
+                                               lat:(NSString *)lat
+                                               lng:(NSString *)lng
+                                              kind:(NSString *)kind sAlert:(BOOL)isAlert receive:(id)receive;
+
+
++ (MagicRequest *)shareBook_user_friendlist_user_id:(NSString *)user_id sAlert:(BOOL)isAlert receive:(id)receive;
+
+
++ (MagicRequest *)shareBook_address_list_user_id:(NSString *)user_id
+sAlert:(BOOL)isAlert receive:(id)receive;
 
 @end

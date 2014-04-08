@@ -206,7 +206,7 @@ static NSString *cellName = @"cellName";
         
         if (bShowBook) {
             ShareBookCell *cell = [[ShareBookCell alloc]init];
-            [cell creatCell];
+            [cell creatCell:nil];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             [signal setReturnValue:cell];
         }else{

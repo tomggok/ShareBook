@@ -9,5 +9,5 @@
 #import "DYBBaseViewController.h"
 
 @interface ShareBookOtherCenterViewController : DYBBaseViewController
-
+@property (nonatomic,retain)NSDictionary *dictInfo;
 @end

@@ -8,7 +8,7 @@
 @implementation CalloutMapAnnotation
 
 @synthesize latitude = _latitude;
-@synthesize longitude = _longitude;
+@synthesize longitude = _longitude,tag;
 
 - (id)initWithLatitude:(CLLocationDegrees)latitude
 		  andLongitude:(CLLocationDegrees)longitude {

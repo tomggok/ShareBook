@@ -189,7 +189,7 @@
         
         _phoneInputName = [[DYBInputView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 0 + 20, INPUTWIDTH, INPUTHEIGHT) placeText:@"用户名" textType:0];
         [_phoneInputName.layer AddborderByIsMasksToBounds:YES cornerRadius:3 borderWidth:1 borderColor:[[UIColor colorWithRed:188.0f/255 green:188.0f/255 blue:188.0f/255 alpha:1.0f] CGColor]];
-//        [_phoneInputName.nameField setText:@"1"];
+        [_phoneInputName.nameField setText:@"11"];
         [_phoneInputName.nameField setTextColor:[UIColor blackColor]];
         [_phoneInputName setBackgroundColor:[UIColor whiteColor]];
         [viewLogin addSubview:_phoneInputName];
@@ -203,7 +203,7 @@
         
         _phoneInputAddr = [[DYBInputView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 0 +INPUTHEIGHT  + 40, INPUTWIDTH, INPUTHEIGHT) placeText:@"密码" textType:0];
         [_phoneInputAddr.layer AddborderByIsMasksToBounds:YES cornerRadius:3 borderWidth:1 borderColor:[[UIColor colorWithRed:188.0f/255 green:188.0f/255 blue:188.0f/255 alpha:1.0f]  CGColor]];
-//        [_phoneInputAddr.nameField setText:@"1"];
+        [_phoneInputAddr.nameField setText:@"11111"];
         [_phoneInputAddr.nameField setTextColor:[UIColor blackColor]];
         [_phoneInputAddr setBackgroundColor:[UIColor whiteColor]];
         [viewLogin addSubview:_phoneInputAddr];
@@ -489,8 +489,9 @@
                 .SET(@"userIndex",[dict objectForKey:@"user_id"])
                 .INSERT();
                
-                SHARED.userId = [dict objectForKey:@"user_id"]; //设置userid 全局变量
-                
+                SHARED.userId = [[dict objectForKey:@"data"] objectForKey:@"user_id"]; //设置userid 全局变量
+                DLogInfo(@"SHARED.userId -- >%@",SHARED.userId);
+
                 DYBUITabbarViewController *vc = [[DYBUITabbarViewController sharedInstace] init:self];
                 
                 [self.drNavigationController pushViewController:vc animated:YES];

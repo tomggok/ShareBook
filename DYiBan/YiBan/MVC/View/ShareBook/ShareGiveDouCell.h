@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ShareGiveDouCell : UITableViewCell
-
+-(void)creatCell:(NSDictionary *)dict;
 @end

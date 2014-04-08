@@ -2008,11 +2008,12 @@
     return dict;
 
 }
-+ (NSMutableDictionary *)shareBook_security_reg_username:(NSString *)username password:(NSString *)password phone_num:(NSString *)phone_num{
++ (NSMutableDictionary *)shareBook_security_reg_username:(NSString *)username password:(NSString *)password phone_num:(NSString *)phone_num nickName:(NSString *)nick{
 
     NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
     [dict setValue:username  forKey:@"username"];
     [dict setValue:password  forKey:@"password"];
+    [dict setValue:nick forKeyPath:@"nick"];
     [dict setValue:phone_num  forKey:@"phone_num"];
     [dict setValue:@"security_reg" forKey:INTERFACEDOACTION];
     return dict;
@@ -2047,5 +2048,101 @@
     return dict;
 
 
+}
+
++ (NSMutableDictionary *)shareBook_book_upload_book_id:(NSString *)book_id lent_way:(NSString *)lent_way deposit_type:(NSString *)deposit_type deposit:(NSString *)deposit loan_period:(NSString *)loan_period public:(NSString *)_public remark:(NSString *)remark lat:(NSString *)lat lng:(NSString *)lng sskey:(NSString *)sskey address:(NSString *)address {
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:book_id forKey:@"book_id"];
+    [dict setValue:lent_way forKey:@"lent_way"];
+    [dict setValue:deposit_type forKey:@"deposit_type"];
+    [dict setValue:loan_period forKey:@"loan_period"];
+    [dict setValue:_public forKey:@"public"];
+    [dict setValue:remark forKey:@"remark"];
+//    [dict setValue:isbn forKey:@"isbn"];
+    [dict setValue:lat forKey:@"lat"];
+    [dict setValue:lng forKey:@"lng"];
+    [dict setValue:sskey forKey:@"sskey"];
+    [dict setValue:address forKey:@"address"];
+//    [dict setValue:isbn forKey:@"isbn"];
+    [dict setValue:@"book_upload" forKey:INTERFACEDOACTION];
+    return dict;
+
+
+}
+
++ (NSMutableDictionary *)shareBook_book_reserve_pub_id:(NSString *)pub_id content:(NSString *)content{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:pub_id forKey:@"pub_id"];
+    [dict setValue:content forKey:@"content"];
+    [dict setValue:@"book_reserve" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+
+
++ (NSMutableDictionary *)shareBook_book_commentlist_pub_id:(NSString *)pub_id page:(NSString *)page num:(NSString *)num{
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:pub_id forKey:@"pub_id"];
+    [dict setValue:page forKey:@"page"];
+    [dict setValue:num forKey:@"num"];
+
+    [dict setValue:@"book_commentlist" forKey:INTERFACEDOACTION];
+    return dict;
+
+
+}
+
++ (NSMutableDictionary *)shareBook_user_detail_user_id:(NSString *)user_id{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:user_id forKey:@"user_id"];
+    [dict setValue:@"user_detail" forKey:INTERFACEDOACTION];
+    return dict;
+}
+
++ (NSMutableDictionary *)shareBook_circle_list{
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:@"circle_list" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+
++ (NSMutableDictionary *)shareBook_circle_add_circle_name:(NSString *)circle_name
+address:(NSString *)address lat:(NSString *)lat lng:(NSString *)lng kind:(NSString *)kind{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:circle_name forKey:@"circle_name"];
+    [dict setValue:address forKey:@"address"];
+
+    [dict setValue:lat forKey:@"lat"];
+
+    [dict setValue:kind forKey:@"kind"];
+    [dict setValue:lng forKey:@"lng"];
+
+    [dict setValue:@"circle_add" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+
++ (NSMutableDictionary *)shareBook_user_friendlist_user_id:(NSString *)user_id{
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:user_id forKey:@"user_id"];
+
+    
+    [dict setValue:@"user_friendlist" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+
++ (NSMutableDictionary *)shareBook_address_list_user_id:(NSString *)user_id{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:user_id forKey:@"userid"];
+   
+
+    [dict setValue:@"address_list" forKey:INTERFACEDOACTION];
+    return dict;
 }
 @end

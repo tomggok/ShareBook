@@ -78,5 +78,6 @@
 
 //设置共享类型
 +(NSString *)getPermType:(int)type;
++(NSURL *)getImageString:(NSString *)stringImage;
 
 @end
