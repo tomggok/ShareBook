@@ -34,6 +34,10 @@
     DYBInputView *_phoneInputNameR;
     DYBInputView *_phoneInputAddrR;
     DYBInputView *_phoneInputMORF;
+
+
+	TencentOAuth* _tencentOAuth;
+    NSMutableArray *_permissions;
 }
 
 @end
@@ -250,6 +254,38 @@
         
         
         
+        _permissions = [[NSMutableArray arrayWithObjects:
+                         kOPEN_PERMISSION_GET_USER_INFO,
+                         kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,
+                         kOPEN_PERMISSION_ADD_ALBUM,
+                         kOPEN_PERMISSION_ADD_IDOL,
+                         kOPEN_PERMISSION_ADD_ONE_BLOG,
+                         kOPEN_PERMISSION_ADD_PIC_T,
+                         kOPEN_PERMISSION_ADD_SHARE,
+                         kOPEN_PERMISSION_ADD_TOPIC,
+                         kOPEN_PERMISSION_CHECK_PAGE_FANS,
+                         kOPEN_PERMISSION_DEL_IDOL,
+                         kOPEN_PERMISSION_DEL_T,
+                         kOPEN_PERMISSION_GET_FANSLIST,
+                         kOPEN_PERMISSION_GET_IDOLLIST,
+                         kOPEN_PERMISSION_GET_INFO,
+                         kOPEN_PERMISSION_GET_OTHER_INFO,
+                         kOPEN_PERMISSION_GET_REPOST_LIST,
+                         kOPEN_PERMISSION_LIST_ALBUM,
+                         kOPEN_PERMISSION_UPLOAD_PIC,
+                         kOPEN_PERMISSION_GET_VIP_INFO,
+                         kOPEN_PERMISSION_GET_VIP_RICH_INFO,
+                         kOPEN_PERMISSION_GET_INTIMATE_FRIENDS_WEIBO,
+                         kOPEN_PERMISSION_MATCH_NICK_TIPS_WEIBO,
+                         nil] retain];
+        
+        NSString *appid = @"101046123";
+//        titleLabel.text = [NSString stringWithFormat:@"Demo 1 with appid:%@",appid];
+        
+        _tencentOAuth = [[TencentOAuth alloc] initWithAppId:appid
+                                                andDelegate:self];
+        
+        
     }
     
     else if ([signal is:[MagicViewController DID_APPEAR]]) {
@@ -327,6 +363,7 @@
         
         UIButton *btnLoginOther = [[UIButton alloc]initWithFrame:CGRectMake(20.0f + (imageIcon.size.width/2 + 20)* i  + 40, CGRectGetHeight(_phoneInputAddr.frame) + CGRectGetMinY(_phoneInputAddr.frame) + 0 + 20 + 200, imageIcon.size.width/2, imageIcon.size.height/2)];
         [btnLoginOther setTag:10 + i];
+        [btnLoginOther addTarget:self action:@selector(onClickTencentOAuth:) forControlEvents:UIControlEventTouchUpInside];
         [btnLoginOther setBackgroundColor:[UIColor clearColor]];
         [viewLogin addSubview:btnLoginOther];
         RELEASE(btnLoginOther);
@@ -551,6 +588,15 @@
     }
 }
 
+- (void)onClickTencentOAuth:(id)sender {
+//	_labelTitle.text = @"开始获取token";
+	[_tencentOAuth authorize:_permissions inSafari:NO];
+}
+- (void)tencentDidLogin {
+
+    NSLog(@"qq 登陆成功");
+
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

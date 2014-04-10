@@ -7,7 +7,8 @@
 //
 
 #import "DYBBaseViewController.h"
+#import <TencentOpenAPI/TencentOAuth.h>
 
-@interface WOSLogInViewController : DYBBaseViewController
+@interface WOSLogInViewController : DYBBaseViewController<TencentSessionDelegate>
 
 @end
