@@ -78,7 +78,7 @@
         
         
 //        shareBook_address_list_user_id
-         MagicRequest *request =   [DYBHttpMethod shareBook_address_list_user_id:@"1" sAlert:YES receive:self];
+         MagicRequest *request =   [DYBHttpMethod shareBook_address_list_user_id:SHARED.userId sAlert:YES receive:self];
         [request setTag:2];
         UIView *viewBGTableView = [[UIView alloc]initWithFrame:CGRectMake(10,self.headHeight + 20 , 300.0f , self.view.frame.size.height -self.headHeight - 100  )];
         [viewBGTableView setBackgroundColor:[UIColor whiteColor]];

@@ -85,7 +85,7 @@
         
         
         
-        UILabel *labelBookName1 = [[UILabel alloc]initWithFrame:CGRectMake(20.0f + 60, self.headHeight + 20 , 100.0f, 20.0f)];
+        UILabel *labelBookName1 = [[UILabel alloc]initWithFrame:CGRectMake(20.0f + 60, self.headHeight + 20 , 200.0f, 20.0f)];
         
         [labelBookName1 setText:[[_dictInfo objectForKey:@"book"] objectForKey:@"title"]];
         [labelBookName1 setBackgroundColor:[UIColor clearColor]];
@@ -210,10 +210,25 @@
         RELEASE(labelNumTime);
         
         
-       
+        UILabel *labelAutoQuan = [[UILabel alloc]initWithFrame:CGRectMake(20.0f, CGRectGetHeight(labelNumTime.frame) + CGRectGetMinY(labelNumTime.frame) + 20 , 180.0f, 20.0f)];
+        [labelAutoQuan setBackgroundColor:[UIColor clearColor]];
+        [labelAutoQuan setText:@"上传圈子："];
+        [labelAutoQuan setBackgroundColor:[UIColor clearColor]];
+        [viewBG addSubview:labelAutoQuan];
+        RELEASE(labelAutoQuan);
+        
+        UILabel *labelAutoQuan1 = [[UILabel alloc]initWithFrame:CGRectMake(20.0f + 100, CGRectGetHeight(labelNumTime.frame) + CGRectGetMinY(labelNumTime.frame) + 20 , 180.0f, 20.0f)];
+        [labelAutoQuan1 setBackgroundColor:[UIColor clearColor]];
+        [labelAutoQuan1 setText:@"天山一村"];
+        [labelAutoQuan1 setBackgroundColor:[UIColor clearColor]];
+        [viewBG addSubview:labelAutoQuan1];
+        RELEASE(labelAutoQuan1);
         
         
-        UILabel *labelAutoLogin = [[UILabel alloc]initWithFrame:CGRectMake(20.0f, CGRectGetHeight(labelNumTime.frame) + CGRectGetMinY(labelNumTime.frame) + 20 , 180.0f, 20.0f)];
+
+        
+        
+        UILabel *labelAutoLogin = [[UILabel alloc]initWithFrame:CGRectMake(20.0f, CGRectGetHeight(labelNumTime.frame) + CGRectGetMinY(labelNumTime.frame) + 20 + 50 , 180.0f, 20.0f)];
         [labelAutoLogin setBackgroundColor:[UIColor clearColor]];
         [labelAutoLogin setText:@"是否以秘钥方式上传："];
         [labelAutoLogin setBackgroundColor:[UIColor clearColor]];

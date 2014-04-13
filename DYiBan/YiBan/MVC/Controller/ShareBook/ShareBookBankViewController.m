@@ -226,6 +226,9 @@ static NSString *cellName = @"cellName";
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
         ShareBookCell *cell = [[ShareBookCell alloc]init];
+        cell.tb  = tbDataBank11;
+        //        cell.type = _type;
+        cell.indexPath = indexPath;
         [cell creatCell:[arrayReturnSouce objectAtIndex:indexPath.row]];
 //        NSDictionary *dictInfoFood = nil;
 //        [cell creatCell:dictInfoFood];

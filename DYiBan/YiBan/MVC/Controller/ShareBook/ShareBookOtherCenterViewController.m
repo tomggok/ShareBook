@@ -20,6 +20,8 @@
 
     DYBUITableView *tbDataBank11;
     BOOL bShowBook;
+    
+    NSMutableArray *arrayListBook;
 }
 
 @end
@@ -75,6 +77,10 @@
         
         MagicRequest *request = [DYBHttpMethod shareBook_user_detail_user_id:[_dictInfo objectForKey:@"user_id"] sAlert:YES receive:self];
         [request setTag:3];
+        
+        MagicRequest *req = [DYBHttpMethod shareBook_user_booklist_user_id:[_dictInfo objectForKey:@"user_id"] page:@"1" num:@"100" sAlert:YES receive:self];
+        [req setTag:2];
+
         
         UIImageView *viewBG = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44)];
         [viewBG setImage:[UIImage imageNamed:@"bg"]];
@@ -218,7 +224,7 @@ static NSString *cellName = @"cellName";
         NSNumber *s;
         
         //        if ([_section intValue] == 0) {
-        s = [NSNumber numberWithInteger:10];
+        s = [NSNumber numberWithInteger:arrayListBook.count];
         //        }else{
         //            s = [NSNumber numberWithInteger:[_arrStatusData count]];
         //        }
@@ -248,7 +254,10 @@ static NSString *cellName = @"cellName";
         if (bShowBook) {
             ShareBookCell *cell = [[ShareBookCell alloc]init];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            [cell creatCell:nil];
+            cell.tb = tbDataBank11;
+            cell.indexPath = indexPath;
+            
+            [cell creatCell:[arrayListBook objectAtIndex:indexPath.row]];
             [signal setReturnValue:cell];
         }else{
             
@@ -265,6 +274,7 @@ static NSString *cellName = @"cellName";
         
         if (bShowBook) {
             ShareBookDetailViewController *bookDetail = [[ShareBookDetailViewController alloc]init];
+            bookDetail.dictInfo = [arrayListBook objectAtIndex:indexPath.row];
             [self.drNavigationController pushViewController:bookDetail animated:YES];
             RELEASE(bookDetail);
         }else{
@@ -331,20 +341,9 @@ static NSString *cellName = @"cellName";
                 if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
                     
                     JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
-//                    [self creatDetailView:[[dict objectForKey:@"data"] objectForKey:@"book_detail"]];
-                    //                    SHARED.sessionID = response.sessID;
-                    //
-                    //                    self.DB.FROM(USERMODLE)
-                    //                    .SET(@"userInfo", request.responseString)
-                    //                    .SET(@"userIndex",[dict objectForKey:@"user_id"])
-                    //                    .INSERT();
+                    arrayListBook = [[NSMutableArray alloc]initWithArray:[[dict objectForKey:@"data"] objectForKey:@"book_list"]];
                     
-                    //                    SHARED.userId = [dict objectForKey:@"user_id"]; //设置userid 全局变量
-                    
-                    //                    DYBUITabbarViewController *vc = [[DYBUITabbarViewController sharedInstace] init:self];
-                    //
-                    //                    [self.drNavigationController pushViewController:vc animated:YES];
-                    
+                    [tbDataBank11 reloadData];
                 }else{
                     NSString *strMSG = [dict objectForKey:@"message"];
                     

@@ -2003,7 +2003,7 @@
 + (NSMutableDictionary *)shareBook_book_list_tag_id:(NSString *)tag_id{
 
     NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
-    [dict setValue:tag_id  forKey:@"tag_id"];
+//    [dict setValue:tag_id  forKey:@"tag_id"];
     [dict setValue:@"book_list" forKey:INTERFACEDOACTION];
     return dict;
 
@@ -2144,5 +2144,40 @@ address:(NSString *)address lat:(NSString *)lat lng:(NSString *)lng kind:(NSStri
 
     [dict setValue:@"address_list" forKey:INTERFACEDOACTION];
     return dict;
+}
+
++ (NSMutableDictionary *)shareBook_circle_detail_circle_id:(NSString *)circle_id{
+
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:circle_id forKey:@"circle_id"];
+    
+    
+    [dict setValue:@"circle_detail" forKey:INTERFACEDOACTION];
+    return dict;
+
+
+}
++ (NSMutableDictionary *)shareBook_user_booklist_user_id:(NSString *)user_id page:(NSString *)page num:(NSString *)num{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:user_id forKey:@"user_id"];
+     [dict setValue:page forKey:@"page"];
+     [dict setValue:num forKey:@"num"];
+    [dict setValue:@"user_booklist" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+
+
++ (NSMutableDictionary *)shareBook_circle_booklist_user_id:(NSString *)user_id page:(NSString *)page num:(NSString *)num{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:user_id forKey:@"circle_id"];
+    [dict setValue:page forKey:@"page"];
+    [dict setValue:num forKey:@"num"];
+    [dict setValue:@"circle_booklist" forKey:INTERFACEDOACTION];
+    return dict;
+
 }
 @end

@@ -11,9 +11,15 @@
 #import "ShareAddQuanViewController.h"
 #import "ShareBookQuanDetailViewController.h"
 #import "WOSMapViewController.h"
+#import "JSONKit.h"
+#import "JSON.h"
 
+@interface ShareBookMyQuanCenterViewController (){
 
-@interface ShareBookMyQuanCenterViewController ()
+    NSMutableArray *arrayResult;
+    DYBUITableView * tbDataBank11;
+
+}
 
 @end
 
@@ -75,6 +81,12 @@
         [self.rightButton setHidden:YES];
         
         [self.view setBackgroundColor:[UIColor blackColor]];
+      
+        if (!_bEnter) {
+            
+            MagicRequest *request = [DYBHttpMethod shareBook_circle_list_sAlert:YES receive:self];
+            [request setTag:3];
+        }
         
         
         
@@ -124,7 +136,7 @@
         UIImage *image = [UIImage imageNamed:@"menu_inactive"];
         
         
-        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(20,self.headHeight + 44 + 20, 280.0f , self.view.frame.size.height -self.headHeight - 44 - 50 - 20 - 30 ) isNeedUpdate:YES];
+        tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(20,self.headHeight + 44 + 20, 280.0f , self.view.frame.size.height -self.headHeight - 44 - 50 - 20 - 30 ) isNeedUpdate:YES];
         [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:tbDataBank11];
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
@@ -161,6 +173,67 @@
 
 
 
+#pragma mark- 只接受HTTP信号
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
+{
+    
+    if ([request succeed])
+    {
+        //        JsonResponse *response = (JsonResponse *)receiveObj;
+        if (request.tag == 2) {
+            
+            
+            NSDictionary *dict = [request.responseString JSONValue];
+            
+            if (dict) {
+                
+                if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
+                    
+                    JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
+                    
+                    
+                    
+                }else{
+                    NSString *strMSG = [dict objectForKey:@"message"];
+                    
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+                    
+                    
+                }
+            }
+        }else if(request.tag == 3){
+            
+            NSDictionary *dict = [request.responseString JSONValue];
+            
+            if (dict) {
+                BOOL result = [[dict objectForKey:@"result"] boolValue];
+                if (!result) {
+                
+                    _arrayResult  = [[NSArray alloc]initWithArray:[[dict objectForKey:@"data"]objectForKey:@"list"]];;
+
+                    
+                    
+                    [tbDataBank11 reloadData];
+                }
+                else{
+                    NSString *strMSG = [dict objectForKey:@"message"];
+                    
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+                    
+                    
+                }
+            }
+            
+        } else{
+            NSDictionary *dict = [request.responseString JSONValue];
+            NSString *strMSG = [dict objectForKey:@"message"];
+            
+            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+            
+            
+        }
+    }
+}
 -(void)addlabel_title:(NSString *)title frame:(CGRect)frame view:(UIView *)view{
     
     UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))];
@@ -246,6 +319,7 @@ static NSString *cellName = @"cellName";
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
         ShareBookQuanDetailViewController *detail = [[ShareBookQuanDetailViewController alloc]init];
+        detail.dictInfo = [_arrayResult objectAtIndex:indexPath.row];
         [self.drNavigationController pushViewController:detail animated:YES];
         RELEASE(detail);
         

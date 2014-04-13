@@ -14,18 +14,21 @@
 #import "ShareBookDetailViewController.h"
 #import "ShareBookOtherCenterViewController.h"
 
-
+#import "JSONKit.h"
+#import "JSON.h"
 
 @interface ShareBookQuanDetailViewController (){
 
     BOOL bShowBook;
     DYBUITableView * tbDataBank11;
+    NSMutableArray *arrayResult;
+    NSMutableArray *arrayResultBook;
 }
 
 @end
 
 @implementation ShareBookQuanDetailViewController
-
+@synthesize  dictInfo = _dictInfo;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -74,6 +77,14 @@
         [self.view setBackgroundColor:[UIColor blackColor]];
         
         bShowBook = NO;
+        
+        
+        
+        
+        MagicRequest *request = [DYBHttpMethod shareBook_circle_detail_circle_id:[_dictInfo objectForKey:@"circle_id"]  sAlert:YES receive:self];
+        [request setTag:3];
+        
+        
         
         UIImageView *viewBG = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44)];
         [viewBG setImage:[UIImage imageNamed:@"bg"]];
@@ -148,9 +159,9 @@
         UIButton *btn2 = (UIButton *)[self.view viewWithTag:102];
         if (btn2) {
             [btn2 setSelected:NO];
-            
-            
         }
+        [tbDataBank11 reloadData];
+   
     }else{
         bShowBook = YES;
         [btn setSelected:YES];
@@ -158,10 +169,16 @@
         if (btn2) {
             [btn2 setSelected:NO];
         }
-
-    
+        if (arrayResultBook.count == 0) {
+            
+            MagicRequest *request = [DYBHttpMethod shareBook_circle_booklist_user_id:[_dictInfo objectForKey:@"circle_id"]  page:@"1" num:@"100" sAlert:YES receive:self ];
+            [request setTag:2];
+        }else {
+        
+           [tbDataBank11 reloadData];
+        }
+        
     }
-    [tbDataBank11 reloadData];
 }
 
 #pragma mark- 只接受UITableView信号
@@ -177,11 +194,16 @@ static NSString *cellName = @"cellName";
         NSNumber *s;
         
         //        if ([_section intValue] == 0) {
-        s = [NSNumber numberWithInteger:10];
-        //        }else{
-        //            s = [NSNumber numberWithInteger:[_arrStatusData count]];
-        //        }
         
+        
+        if (bShowBook) {
+        
+            s = [NSNumber numberWithInteger:arrayResultBook.count];
+        }else{
+       
+            s = [NSNumber numberWithInteger:arrayResult.count];
+        }
+       
         [signal setReturnValue:s];
         
     }else if([signal is:[MagicUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
@@ -206,12 +228,17 @@ static NSString *cellName = @"cellName";
         
         if (bShowBook) {
             ShareBookCell *cell = [[ShareBookCell alloc]init];
-            [cell creatCell:nil];
+            
+            cell.tb  = tbDataBank11;
+            //        cell.type = _type;
+            cell.indexPath = indexPath;
+            [cell creatCell:[arrayResultBook objectAtIndex:indexPath.row]];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             [signal setReturnValue:cell];
         }else{
         
             ShareGiveDouCell *cell = [[ShareGiveDouCell alloc]init];
+            [cell creatCell: [arrayResult objectAtIndex:indexPath.row]];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             [signal setReturnValue:cell];
         }
@@ -224,10 +251,12 @@ static NSString *cellName = @"cellName";
         
         if (bShowBook) {
             ShareBookDetailViewController *bookDetail = [[ShareBookDetailViewController alloc]init];
+             bookDetail.dictInfo = [arrayResultBook objectAtIndex:indexPath.row];
             [self.drNavigationController pushViewController:bookDetail animated:YES];
             RELEASE(bookDetail);
         }else{
             ShareBookOtherCenterViewController *otherCenter = [[ShareBookOtherCenterViewController alloc]init];
+            otherCenter.dictInfo = [arrayResult objectAtIndex:indexPath.row];
             [self.drNavigationController pushViewController:otherCenter animated:YES];
             RELEASE(otherCenter);
         
@@ -248,6 +277,67 @@ static NSString *cellName = @"cellName";
     
 }
 
+
+#pragma mark- 只接受HTTP信号
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
+{
+    
+    if ([request succeed])
+    {
+        //        JsonResponse *response = (JsonResponse *)receiveObj;
+        if (request.tag == 2) {
+            
+            
+            NSDictionary *dict = [request.responseString JSONValue];
+            
+            if (dict) {
+                
+                if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
+                    
+                    
+//                    NSDictionary *dict1 = [[dict objectForKey:@"data"]objectForKey:@"book_list"];
+                    arrayResultBook = [[NSMutableArray alloc]initWithArray:[[dict objectForKey:@"data"]objectForKey:@"book_list"]];
+                    [tbDataBank11 reloadData];
+                    
+                }else{
+                    NSString *strMSG = [dict objectForKey:@"message"];
+                    
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+                    
+                    
+                }
+            }
+        }else if(request.tag == 3){
+            
+            NSDictionary *dict = [request.responseString JSONValue];
+            
+            if (dict) {
+                BOOL result = [[dict objectForKey:@"result"] boolValue];
+                if (!result) {
+                 
+                    NSDictionary *dict1 = [[dict objectForKey:@"data"]objectForKey:@"members"];
+                    arrayResult = [[NSMutableArray alloc]initWithArray:[dict1 allValues]];
+                    [tbDataBank11 reloadData];
+                }
+                else{
+                    NSString *strMSG = [dict objectForKey:@"message"];
+                    
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+                    
+                    
+                }
+            }
+            
+        } else{
+            NSDictionary *dict = [request.responseString JSONValue];
+            NSString *strMSG = [dict objectForKey:@"message"];
+            
+            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+            
+            
+        }
+    }
+}
 
 
 @end

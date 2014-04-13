@@ -507,4 +507,16 @@
 //address_list
 + (NSMutableDictionary *)shareBook_address_list_user_id:(NSString *)user_id;
 
+
+//circle_detail
++ (NSMutableDictionary *)shareBook_circle_detail_circle_id:(NSString *)circle_id;
+//
+//user_booklist
+
++ (NSMutableDictionary *)shareBook_user_booklist_user_id:(NSString *)user_id page:(NSString *)page num:(NSString *)num;
+
+//circle_booklist
++ (NSMutableDictionary *)shareBook_circle_booklist_user_id:(NSString *)user_id page:(NSString *)page num:(NSString *)num;
+
+
 @end

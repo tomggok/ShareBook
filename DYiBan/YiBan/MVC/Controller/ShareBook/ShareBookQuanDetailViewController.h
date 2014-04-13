@@ -8,6 +8,6 @@
 
 #import "DYBBaseViewController.h"
 
-@interface ShareBookQuanDetailViewController : DYBBaseViewController
-
+@interface ShareBookQuanDetailViewController : DYBBaseViewController<UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic,retain)NSDictionary *dictInfo;
 @end

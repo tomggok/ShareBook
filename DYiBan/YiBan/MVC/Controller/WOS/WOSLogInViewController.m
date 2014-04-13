@@ -193,7 +193,7 @@
         
         _phoneInputName = [[DYBInputView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, 0 + 20, INPUTWIDTH, INPUTHEIGHT) placeText:@"用户名" textType:0];
         [_phoneInputName.layer AddborderByIsMasksToBounds:YES cornerRadius:3 borderWidth:1 borderColor:[[UIColor colorWithRed:188.0f/255 green:188.0f/255 blue:188.0f/255 alpha:1.0f] CGColor]];
-        [_phoneInputName.nameField setText:@"11"];
+        [_phoneInputName.nameField setText:@"test2"];
         [_phoneInputName.nameField setTextColor:[UIColor blackColor]];
         [_phoneInputName setBackgroundColor:[UIColor whiteColor]];
         [viewLogin addSubview:_phoneInputName];

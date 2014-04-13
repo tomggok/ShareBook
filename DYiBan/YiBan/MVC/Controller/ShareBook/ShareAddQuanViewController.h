@@ -8,6 +8,6 @@
 
 #import "DYBBaseViewController.h"
 
-@interface ShareAddQuanViewController : DYBBaseViewController
+@interface ShareAddQuanViewController : DYBBaseViewController<CLLocationManagerDelegate,BMKSearchDelegate>
 
 @end

@@ -13,7 +13,16 @@
 #import "JSON.h"
 
 
-@interface ShareAddQuanViewController ()
+@interface ShareAddQuanViewController (){
+
+    BMKMapView * _mapView ;
+    CLLocationManager *locManager;
+
+    DYBInputView  *_phoneInputName;
+    UILabel *labelJINWEI;
+    CLLocationCoordinate2D coordinate2D;
+
+}
 
 @end
 
@@ -64,7 +73,7 @@
         
         [self.view setBackgroundColor:[UIColor blackColor]];
         
-        
+        [self doSure_getSource];
         
         UIImageView *viewBG = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44)];
         [viewBG setImage:[UIImage imageNamed:@"bg"]];
@@ -80,7 +89,7 @@
         RELEASE(labelName);
         [labelName setBackgroundColor:[UIColor clearColor]];
 
-        DYBInputView  *_phoneInputName = [[DYBInputView alloc]initWithFrame:CGRectMake(100,self.headHeight + 10, 200, 35) placeText:@"天山小区" textType:0];
+        _phoneInputName = [[DYBInputView alloc]initWithFrame:CGRectMake(100,self.headHeight + 10, 200, 35) placeText:@"天山小区" textType:0];
         [_phoneInputName.layer AddborderByIsMasksToBounds:YES cornerRadius:3 borderWidth:1 borderColor:[[UIColor colorWithRed:188.0f/255 green:188.0f/255 blue:188.0f/255 alpha:1.0f] CGColor]];
         //        [_phoneInputName.nameField setText:@"1"];
         [_phoneInputName.nameField setTextColor:[UIColor blackColor]];
@@ -88,16 +97,27 @@
         [self.view addSubview:_phoneInputName];
         RELEASE(_phoneInputName);
         
-        UILabel *labelJINWEI = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, CGRectGetHeight(_phoneInputName.frame) + CGRectGetMinY(_phoneInputName.frame), 250.0f, 40.0f)];
+        labelJINWEI = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, CGRectGetHeight(_phoneInputName.frame) + CGRectGetMinY(_phoneInputName.frame), 300.0f, 40.0f)];
         [labelJINWEI setText:@"经纬度   ： -20.03，-113.75"];
         [self.view addSubview:labelJINWEI];
         RELEASE(labelJINWEI);
         
         [labelJINWEI setBackgroundColor:[UIColor clearColor]];
+     
+        
 
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        //设定时间格式,这里可以设置成自己需要的格式
+        [dateFormatter setDateFormat:@"yyyy-MM-dd "];
+        //用[NSDate date]可以获取系统当前时间
+        NSString *currentDateStr = [dateFormatter stringFromDate:[NSDate date]];
+        //输出格式为：2010-10-27 10:22:13
+        NSLog(@"%@",currentDateStr);
+        
+        
         UILabel *labelTime = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, CGRectGetHeight(labelJINWEI.frame) + CGRectGetMinY(labelJINWEI.frame), 250.0f, 40.0f)];
-        [labelTime setText:@"创建时间： 2014-02-10"];
-        [self.view addSubview:labelTime];
+        [labelTime setText:[ NSString stringWithFormat:@"创建时间：%@",currentDateStr]];
+       [self.view addSubview:labelTime];
         RELEASE(labelTime);
         [labelTime setBackgroundColor:[UIColor clearColor]];
 
@@ -148,7 +168,12 @@
 -(void)doChoose{
  
 //    sAlert:(BOOL)isAlert receive:(id)receive;
-    MagicRequest *request = [DYBHttpMethod shareBook_circle_add_circle_name:@"天山小区1" address:@"d1d" lat:@"30.290144" lng:@"120.146696" kind:@"1" sAlert:YES receive:self];
+    MagicRequest *request = [DYBHttpMethod shareBook_circle_add_circle_name:_phoneInputName.nameField.text
+                                address:@"d1d"
+                                    lat:[NSString stringWithFormat:@"%f",coordinate2D.latitude ]
+                                         
+                                    lng:[NSString stringWithFormat:@"%f",coordinate2D.longitude ]
+                                    kind:@"1" sAlert:YES receive:self];
     [request setTag:2];
 
 }
@@ -171,7 +196,7 @@
                 if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
                     
                     JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
-                    
+                    [DYBShareinstaceDelegate popViewText:@"创建成功" target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
                     
                 }else{
                     NSString *strMSG = [dict objectForKey:@"message"];
@@ -189,9 +214,6 @@
                 BOOL result = [[dict objectForKey:@"result"] boolValue];
                 if (!result) {
                     
-//                    UIButton *btn = (UIButton *)[UIButton buttonWithType:UIButtonTypeCustom];
-//                    [btn setTag:10];
-//                    [self doChange:btn];
                 }
                 else{
                     NSString *strMSG = [dict objectForKey:@"message"];
@@ -212,4 +234,101 @@
         }
     }
 }
+
+
+
+-(void)doSure_getSource{
+
+    locManager = [[CLLocationManager alloc] init];
+    locManager.delegate = self;
+    locManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locManager.distanceFilter = 5.0;
+    [locManager startUpdatingLocation];
+
+    
+}
+//
+///**
+// *用户位置更新后，会调用此函数
+// *@param mapView 地图View
+// *@param userLocation 新的用户位置
+// */
+//
+- (void)mapView:(BMKMapView *)mapView didUpdateUserLocation:(BMKUserLocation *)userLocation
+{
+	if (userLocation != nil) {
+		NSLog(@"%f %f", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
+        
+        //        CLLocationDistance radiusMeters = 500; //设置搜索范围
+        //        [_search poiMultiSearchNearBy:@[@"学校", @"美食", @"小区", @"交通"] center:_mapView.centerCoordinate radius:radiusMeters pageIndex:0];
+        
+        //        [_searchTest reverseGeocode:mapView.userLocation.location.coordinate];
+	}
+    
+}
+///**
+// *在地图View停止定位后，会调用此函数
+// *@param mapView 地图View
+// */
+- (void)mapViewDidStopLocatingUser:(BMKMapView *)mapView
+{
+    NSLog(@"stop locate");
+}
+//
+///**
+// *定位失败后，会调用此函数
+// *@param mapView 地图View
+// *@param error 错误号，参考CLError.h中定义的错误号
+// */
+- (void)mapView:(BMKMapView *)mapView didFailToLocateUserWithError:(NSError *)error
+{
+    NSLog(@"location error");
+}
+//
+//
+- (void)onGetAddrResult:(BMKAddrInfo*)result errorCode:(int)error{
+    NSLog(@"%@", result.strAddr);
+    
+  }
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+    NSLog(@"%f,%f",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
+    
+    coordinate2D.latitude = newLocation.coordinate.latitude;
+    coordinate2D.longitude = newLocation.coordinate.longitude;
+    
+    
+    CLGeocoder* geocoder = [[CLGeocoder alloc] init];
+    
+    [geocoder reverseGeocodeLocation:newLocation completionHandler:
+     ^(NSArray* placemarks, NSError* error){
+         NSLog(@"%@",placemarks);
+         
+         CLPlacemark *placemark = [placemarks objectAtIndex:0];
+         NSArray *names = [placemark.addressDictionary objectForKey:@"FormattedAddressLines"];
+         
+         if (_phoneInputName.nameField.text.length == 0) {
+             
+         
+             if (names.count>0) {
+                  [_phoneInputName.nameField setText:[names objectAtIndex:0 ]];
+             }else{
+             
+              [_phoneInputName.nameField setText:[placemark.addressDictionary objectForKey:@"Name"]];
+             }
+             
+             NSString *newLocation1 = [NSString stringWithFormat:@"经纬度   ：%f,%f",newLocation.coordinate.latitude,newLocation.coordinate.longitude];
+             
+             [labelJINWEI setText:newLocation1];
+
+         }
+         
+         
+         
+     }];
+}
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    NSLog(@"%@",error);
+}
+
+
 @end

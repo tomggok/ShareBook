@@ -239,6 +239,7 @@ static NSString *cellName = @"cellName";
 //            RELEASE(bookDetail);
 //        }else{
             ShareBookOtherCenterViewController *otherCenter = [[ShareBookOtherCenterViewController alloc]init];
+        otherCenter.dictInfo = [arrayResult objectAtIndex:indexPath.row];
             [self.drNavigationController pushViewController:otherCenter animated:YES];
             RELEASE(otherCenter);
             
@@ -275,7 +276,7 @@ static NSString *cellName = @"cellName";
                     
                     JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
                     
-                    arrayResult = [[NSMutableArray alloc]initWithArray:[[dict objectForKey:@"data"] objectForKey:@"user"]];
+                    arrayResult = [[NSMutableArray alloc]initWithArray:[[dict objectForKey:@"data"] objectForKey:@"user_list"]];
                     [tbDataBank11 reloadData];
                     
                 }else{

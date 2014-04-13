@@ -17,8 +17,7 @@
 @interface WOSMapViewController (){
     MapViewController*   _mapViewController;
     NSMutableArray *arrayResult;
-
-}
+    }
 
 @end
 
@@ -59,7 +58,7 @@
     
         [self.headview setTitleColor:[UIColor colorWithRed:203.0f/255 green:203.0f/255 blue:203.0f/255 alpha:1.0f]];
         
-        [self.view setBackgroundColor:[UIColor redColor]];
+        [self.view setBackgroundColor:[UIColor whiteColor]];
 
         [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
         
@@ -75,53 +74,15 @@
         
     }
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
+       
+        
         
         MagicRequest *request = [DYBHttpMethod shareBook_circle_list_sAlert:YES receive:self];
         [request setTag:3];
         
         
         
-        
-        for (int i = 0; i< 3; i ++) {
-            
-            UIButton *btn1 = [[UIButton alloc]initWithFrame:CGRectMake(0.0f + i*320/3 + i*1, 44.0f, 320/3, 30)];
-            //            [btn1 setTitle:@"处理中" forState:UIControlStateNormal];
-            [btn1.titleLabel setFont:[UIFont systemFontOfSize:14]];
-            [btn1 setTitleColor:ColorGryWhite forState:UIControlStateNormal];
-            switch (i) {
-                case 0:
-                    [btn1 setTitle:@"我已吃过" forState:UIControlStateNormal];
-                    if (iType == 0) {
-                         [btn1 setTitleColor:ColorTextYellow forState:UIControlStateNormal];
-                    }
-                   
-                    break;
-                case 1:
-                    [btn1 setTitle:@"附近美食" forState:UIControlStateNormal];
-                    if (iType == 1) {
-                        [btn1 setTitleColor:ColorTextYellow forState:UIControlStateNormal];
-                    }
-                    break;
-                case 2:
-                    [btn1 setFrame:CGRectMake(0.0f + i*320/3 + i *0.5 , 44.0f, 320/3, 30)];
-                    [btn1 setTitle:@"附近的人在吃" forState:UIControlStateNormal];
-                    if (iType == 2) {
-                        [btn1 setTitleColor:ColorTextYellow forState:UIControlStateNormal];
-                    }
-                    break;
-                    
-                default:
-                    break;
-            }
-            
-            
-            [btn1 setBackgroundColor:[UIColor blackColor]];
-            [btn1 addTarget:self action:@selector(doSelect:) forControlEvents:UIControlEventTouchUpInside];
-            [btn1 setTag:10 + i];
-//            [self.view addSubview:btn1];
-//            RELEASE(btn1);
-        }
-        
+     
         int offset = 0;
         if (!IOS7_OR_LATER) {
             
@@ -193,6 +154,7 @@
 {
     NSLog(@"%@",info);
     ShareBookQuanDetailViewController *detail = [[ShareBookQuanDetailViewController alloc]init];
+    detail.dictInfo = info;
     [self.drNavigationController pushViewController:detail animated:YES];
     RELEASE(detail);
 }
@@ -303,6 +265,81 @@
         }
     }
 }
+
+
+#pragma mark- 只接受UITableView信号
+static NSString *cellName = @"cellName";
+
+- (void)handleViewSignal_MagicUITableView:(MagicViewSignal *)signal
+{
+    
+    
+    if ([signal is:[MagicUITableView TABLENUMROWINSEC]])/*numberOfRowsInSection*/{
+        //        NSDictionary *dict = (NSDictionary *)[signal object];
+        //        NSNumber *_section = [dict objectForKey:@"section"];
+        NSNumber *s;
+        
+        //        if ([_section intValue] == 0) {
+        s = [NSNumber numberWithInteger:10];
+        //        }else{
+        //            s = [NSNumber numberWithInteger:[_arrStatusData count]];
+        //        }
+        
+        [signal setReturnValue:s];
+        
+    }else if([signal is:[MagicUITableView TABLENUMOFSEC]])/*numberOfSectionsInTableView*/{
+        NSNumber *s = [NSNumber numberWithInteger:1];
+        [signal setReturnValue:s];
+        
+    }else if([signal is:[MagicUITableView TABLEHEIGHTFORROW]])/*heightForRowAtIndexPath*/{
+        
+        NSNumber *s = [NSNumber numberWithInteger:50];
+        [signal setReturnValue:s];
+        
+        
+    }else if([signal is:[MagicUITableView TABLETITLEFORHEADERINSECTION]])/*titleForHeaderInSection*/{
+        
+    }else if([signal is:[MagicUITableView TABLEVIEWFORHEADERINSECTION]])/*viewForHeaderInSection*/{
+        
+    }else if([signal is:[MagicUITableView TABLETHEIGHTFORHEADERINSECTION]])/*heightForHeaderInSection*/{
+        
+    }else if([signal is:[MagicUITableView TABLECELLFORROW]])/*cell*/{
+        NSDictionary *dict = (NSDictionary *)[signal object];
+        NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
+        
+//        ShareMessagerCell *cell = [[ShareMessagerCell alloc]init];
+//        
+//        //        NSDictionary *dictInfoFood = Nil;
+//        //        [cell creatCell:dictInfoFood];
+//        DLogInfo(@"%d", indexPath.section);
+//        
+//        
+//        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+//        [signal setReturnValue:cell];
+        
+    }else if([signal is:[MagicUITableView TABLEDIDSELECT]])/*选中cell*/{
+        NSDictionary *dict = (NSDictionary *)[signal object];
+        NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
+        
+        
+        
+        
+    }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
+        
+    }else if ([signal is:[MagicUITableView TABLEVIEWUPDATA]]){
+        
+        
+    }else if ([signal is:[MagicUITableView TAbLEVIEWLODATA]]){
+    }else if ([signal is:[MagicUITableView TAbLEVIERETOUCH]]){
+        
+    }
+    
+    
+    
+}
+
+
+
 
 
 - (void)dealloc

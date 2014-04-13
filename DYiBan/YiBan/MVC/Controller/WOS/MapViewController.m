@@ -37,14 +37,6 @@ DEF_SIGNAL(TOUCHANNITION)
     [super dealloc];
 }
 
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
 
 -(id)initWithFrame:(CGRect)frame{
 
@@ -110,7 +102,7 @@ DEF_SIGNAL(TOUCHANNITION)
         
         [mapView setCenterCoordinate:_calloutAnnotation.coordinate animated:YES];
 	}
-    else{
+    else if([view.annotation isKindOfClass:[CalloutMapAnnotation class]]) {
         CalloutMapAnnotation *map = (CalloutMapAnnotation *)view.annotation;
         
         NSDictionary *dictInfo1 = nil;

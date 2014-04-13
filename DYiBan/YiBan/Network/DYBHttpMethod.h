@@ -480,4 +480,15 @@
 + (MagicRequest *)shareBook_address_list_user_id:(NSString *)user_id
 sAlert:(BOOL)isAlert receive:(id)receive;
 
+
++ (MagicRequest *)shareBook_circle_detail_circle_id:(NSString *)circle_id sAlert:(BOOL)isAlert receive:(id)receive;
+
++ (MagicRequest *)shareBook_user_booklist_user_id:(NSString *)user_id page:(NSString *)page num:(NSString *)num sAlert:(BOOL)isAlert receive:(id)receive;
+
+
++ (MagicRequest *)shareBook_circle_booklist_user_id:(NSString *)user_id page:(NSString *)page num:(NSString *)num sAlert:(BOOL)isAlert receive:(id)receive;
+
+
+
+
 @end

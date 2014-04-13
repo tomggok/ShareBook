@@ -37,7 +37,7 @@
 
     UILabel *labelName = [[UILabel alloc]initWithFrame:CGRectMake(50.0f, 10.0f, 100.0, 30.0f)];
     [self addSubview:labelName];
-    [labelName setText:@"奥特曼"];
+    [labelName setText:[dict objectForKey:@"username"]];
     [labelName release];
 
 }

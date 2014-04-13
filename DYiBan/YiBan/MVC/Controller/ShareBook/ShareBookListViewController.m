@@ -150,6 +150,7 @@ static NSString *cellName = @"cellName";
         ShareBookCell *cell = [[ShareBookCell alloc]init];
         cell.tb  = tbDataBank11;
         cell.type = _type;
+        cell.indexPath = indexPath;
         [cell creatCell:nil];
         //        NSDictionary *dictInfoFood = nil;
         //        [cell creatCell:dictInfoFood];

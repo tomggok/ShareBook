@@ -21,6 +21,9 @@
 #import "DYBMentionedMeViewController.h"
 #import "DYBCommentMeViewController.h"
 #import "DYBEmployInfoViewController.h"
+#import <TencentOpenAPI/TencentOAuth.h>
+
+
 #define IOS7_OR_LATER    ( [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending )
 @implementation AppDelegate
 {
@@ -431,4 +434,15 @@
 //    }
     
 }
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    
+    
+    return [TencentOAuth HandleOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    return [TencentOAuth HandleOpenURL:url];
+}
+
 @end
