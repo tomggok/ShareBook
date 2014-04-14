@@ -15,7 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        [self creatCell];
+        
     }
     return self;
 }
@@ -27,20 +27,20 @@
     // Configure the view for the selected state
 }
 
--(void)creatCell{
+-(void)creatCell:(NSDictionary *)dict{
 
     UILabel *labeTime = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, 5.0f, 100.0f, 30.0f)];
-    [labeTime setText:@"2014-01-28"];
+    [labeTime setText:[NSString transFormTimeStampToDateFormatter:[[dict objectForKey:@"time"] intValue]]];
     [self addSubview:labeTime];
     RELEASE(labeTime);
     
     UILabel *labeType = [[UILabel alloc]initWithFrame:CGRectMake(140.0f, 5.0f, 100.0f, 30.0f)];
-    [labeType setText:@"系统赠送"];
+    [labeType setText:[dict objectForKey:@"content"]];
     [self addSubview:labeType];
     RELEASE(labeType);
     
     UILabel *labeNum= [[UILabel alloc]initWithFrame:CGRectMake(260.0f, 5.0f, 150.0f, 30.0f)];
-    [labeNum setText:@"+10"];
+    [labeNum setText:[dict objectForKey:@"coin"]];
     [self addSubview:labeNum];
     RELEASE(labeNum);
 

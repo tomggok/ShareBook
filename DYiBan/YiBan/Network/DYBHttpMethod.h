@@ -488,7 +488,9 @@ sAlert:(BOOL)isAlert receive:(id)receive;
 
 + (MagicRequest *)shareBook_circle_booklist_user_id:(NSString *)user_id page:(NSString *)page num:(NSString *)num sAlert:(BOOL)isAlert receive:(id)receive;
 
++ (MagicRequest *)shareBook_pay_logs_user_id:(NSString *)user_id sAlert:(BOOL)isAlert receive:(id)receive;
 
++ (MagicRequest *)shareBook_address_add_address:(NSString *)address sAlert:(BOOL)isAlert receive:(id)receive;
 
 
 @end

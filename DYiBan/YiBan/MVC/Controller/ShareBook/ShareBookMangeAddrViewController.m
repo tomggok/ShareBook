@@ -19,6 +19,8 @@
     
     int iSelectRow;
     DYBUITableView * tbDataBank11;
+    NSMutableArray *arrayResult;
+    ShareBookAddAddrViewController *add;
 
 }
 @property (nonatomic,retain)UIButton *btnTemp;
@@ -129,7 +131,7 @@ static NSString *cellName = @"cellName";
 
         NSNumber *s;
         
-        s = [NSNumber numberWithInteger:10];
+        s = [NSNumber numberWithInteger:arrayResult.count];
 
         [signal setReturnValue:s];
         
@@ -158,12 +160,12 @@ static NSString *cellName = @"cellName";
         
         static NSString *reuseIdetify = @"SvTableViewCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdetify];
-//        if (!cell) {
+
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdetify];
-//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
             DLogInfo(@"%d", indexPath.section);
             UILabel *labelText = [[UILabel alloc]initWithFrame:CGRectMake(10.09f, 10.0f, 300.0, 30.0f)];
-            [labelText setText:@"人民广场100号5楼404"];
+            [labelText setText:[[arrayResult objectAtIndex:indexPath.row] objectForKey:@"address"]];
             [cell addSubview:labelText];
             RELEASE(labelText);
         
@@ -175,9 +177,7 @@ static NSString *cellName = @"cellName";
             [cell addSubview:btnCheck];
             RELEASE(btnCheck);
 
-//        }
-        //        NSDictionary *dictInfoFood = Nil;
-        //        [cell creatCell:dictInfoFood];
+
         UIButton *tt = (UIButton *)[cell viewWithTag:indexPath.row + 10];
         
         if (tt) {
@@ -228,7 +228,6 @@ static NSString *cellName = @"cellName";
         [btnn setSelected:NO];
     }
     
-    
     iSelectRow = btn.tag;
     [btn setSelected:YES];
    
@@ -242,7 +241,7 @@ static NSString *cellName = @"cellName";
         
     }else if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
         
-        ShareBookAddAddrViewController *add  = [[ShareBookAddAddrViewController alloc]init];
+        add  = [[ShareBookAddAddrViewController alloc]init];
         [self.drNavigationController pushViewController:add animated:YES];
         RELEASE(add);
 
@@ -270,6 +269,23 @@ static NSString *cellName = @"cellName";
 
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+
+    if (add) {
+        
+        if (add._phoneInputName.nameField.text.length != 0) {
+            
+            NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:add._phoneInputName.nameField.text,@"address", nil];
+//            [arrayResult addObject:dict];
+            [arrayResult insertObject:dict atIndex:0];
+            [dict release];
+            [tbDataBank11 reloadData];
+        }
+    }
+}
+
 - (void)dealloc
 {
     [btnTemp release];
@@ -293,7 +309,8 @@ static NSString *cellName = @"cellName";
                 if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
                     
                     JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
-                    
+                    arrayResult = [[NSMutableArray alloc]initWithArray:[[dict objectForKey:@"data"]objectForKey:@"address" ]];
+                    [tbDataBank11 reloadData];
                     
                 }else{
                     NSString *strMSG = [dict objectForKey:@"message"];

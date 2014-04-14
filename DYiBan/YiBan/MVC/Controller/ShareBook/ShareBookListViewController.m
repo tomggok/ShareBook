@@ -71,6 +71,44 @@
         
         [self.view setBackgroundColor:[UIColor whiteColor]];
         
+        
+        if (_type == 0) {
+            
+           
+            
+        }
+        
+        
+        
+        switch (_type) {
+            case 0:
+            {
+                MagicRequest *request = [DYBHttpMethod shareBook_book_list_tag_id:SHARED.userId sAlert:YES receive:self];
+                [request setTag:2];
+            
+            }
+                break;
+            case 1:
+            {
+                 break;
+            }
+            case 2:
+            {
+                
+                break;
+              
+            }
+                
+            case 3:
+            {
+                
+                break;
+               
+            }
+                
+            default:
+                break;
+        }
 //        arraySouce = [[NSMutableArray alloc]initWithObjects:@"上架图书",@"借入图书",@"借出图书",@"旅行中的图书",@"预借中的图书", nil];
         
         UIImageView *viewBG = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0, 320.0f, self.view.frame.size.height)];

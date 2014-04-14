@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NSString+Count.h"
 
 @interface ShareBookDouCell : UITableViewCell
 
+-(void)creatCell:(NSDictionary *)dict;
 @end

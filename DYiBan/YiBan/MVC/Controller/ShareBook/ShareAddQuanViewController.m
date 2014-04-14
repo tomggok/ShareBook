@@ -21,6 +21,7 @@
     DYBInputView  *_phoneInputName;
     UILabel *labelJINWEI;
     CLLocationCoordinate2D coordinate2D;
+    BOOL bUpdate;
 
 }
 
@@ -81,7 +82,7 @@
         [self.view addSubview:viewBG];
         RELEASE(viewBG);
         
-        
+        bUpdate = NO;
         
         UILabel *labelName = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.headHeight + 10, 100.0f, 40.0f)];
         [labelName setText:@"圈子名称："];
@@ -306,9 +307,9 @@
          CLPlacemark *placemark = [placemarks objectAtIndex:0];
          NSArray *names = [placemark.addressDictionary objectForKey:@"FormattedAddressLines"];
          
-         if (_phoneInputName.nameField.text.length == 0) {
+         if (!bUpdate) {
              
-         
+             bUpdate = YES;
              if (names.count>0) {
                   [_phoneInputName.nameField setText:[names objectAtIndex:0 ]];
              }else{
