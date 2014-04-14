@@ -20,7 +20,7 @@
 
     DYBInputView  *_phoneInputName;
     UILabel *labelJINWEI;
-    CLLocationCoordinate2D coordinate2D;
+//    CLLocationCoordinate2D coordinate2D;
     BOOL bUpdate;
 
 }
@@ -28,6 +28,9 @@
 @end
 
 @implementation ShareAddQuanViewController
+@synthesize coordinate2D,_phoneInputName,vc;
+
+DEF_SIGNAL(SUCCUS)
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -199,6 +202,8 @@
                     JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
                     [DYBShareinstaceDelegate popViewText:@"创建成功" target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
                     
+                    [self.navigationController popViewControllerAnimated:YES];
+                    [self sendViewSignal:[ShareAddQuanViewController SUCCUS] withObject:nil from:self target:vc];
                 }else{
                     NSString *strMSG = [dict objectForKey:@"message"];
                     
@@ -330,6 +335,7 @@
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
     NSLog(@"%@",error);
 }
+
 
 
 @end

@@ -17,7 +17,9 @@
 @interface WOSMapViewController (){
     MapViewController*   _mapViewController;
     NSMutableArray *arrayResult;
-    }
+    ShareAddQuanViewController *add;
+   
+}
 
 @end
 
@@ -99,10 +101,23 @@
     }
     
     
-    else if ([signal is:[MagicViewController DID_APPEAR]]) {
+    else if ([signal is:[MagicViewController WILL_APPEAR]]) {
         
         
-        DLogInfo(@"rrr");
+        if (add) {
+            
+//            if (add._phoneInputName.nameField.text.length > 0) {
+//                NSDictionary *dict = [NSDictionary alloc]initWithObjectsAndKeys:<#(id), ...#>, nil;
+                
+                MagicRequest *request = [DYBHttpMethod shareBook_circle_list_sAlert:YES receive:self];
+                [request setTag:3];
+
+                
+//            }
+        }
+        
+        
+        
     } else if ([signal is:[MagicViewController DID_DISAPPEAR]]){
         
         
@@ -125,11 +140,14 @@
 
 -(void)addQuan{
 
-    ShareAddQuanViewController *add = [[ShareAddQuanViewController alloc]init];
+    add = [[ShareAddQuanViewController alloc]init];
     [self.drNavigationController pushViewController:add animated:YES];
 
     RELEASE(add);
 }
+
+
+
 
 -(void)doSelect:(id)sender{
     
@@ -337,7 +355,6 @@ static NSString *cellName = @"cellName";
     
     
 }
-
 
 
 

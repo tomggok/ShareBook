@@ -56,11 +56,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DYiBan/YiBan/MVC/Controller/WOS/WOSMapViewController.m"
-            timestampString = "419068507.738051"
+            timestampString = "419184419.40493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "-doSelect:"
             landmarkType = "5">
          </BreakpointContent>
@@ -72,11 +72,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DYiBan/YiBan/MVC/Controller/WOS/WOSMapViewController.m"
-            timestampString = "419094177.767678"
+            timestampString = "419184419.40493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "-handleViewSignal_MapViewController:"
             landmarkType = "5">
          </BreakpointContent>
@@ -519,22 +519,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DYiBan/YiBan/MVC/Controller/ShareBook/ShareAddQuanViewController.m"
-            timestampString = "419097885.895036"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
-            landmarkName = "-doChoose"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "DYiBan/YiBan/MVC/Controller/WOS/CustomMapCalloutView/JingDianMapCell.m"
             timestampString = "417872808.32536"
             startingColumnNumber = "9223372036854775807"
@@ -680,11 +664,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DYiBan/YiBan/MVC/Controller/WOS/WOSMapViewController.m"
-            timestampString = "419068507.738051"
+            timestampString = "419184352.812018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "-handleViewSignal_MagicViewController:"
             landmarkType = "5">
          </BreakpointContent>
@@ -696,11 +680,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DYiBan/YiBan/MVC/Controller/WOS/WOSMapViewController.m"
-            timestampString = "419094177.767678"
+            timestampString = "419184419.40493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "277"
-            endingLineNumber = "277"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "-handleViewSignal_MagicUITableView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -728,11 +712,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DYiBan/YiBan/MVC/Controller/WOS/WOSMapViewController.m"
-            timestampString = "419094177.767678"
+            timestampString = "419184419.40493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
             landmarkName = "-handleViewSignal_MapViewController:"
             landmarkType = "5">
          </BreakpointContent>
@@ -808,11 +792,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DYiBan/YiBan/MVC/Controller/ShareBook/ShareAddQuanViewController.m"
-            timestampString = "419097885.895036"
+            timestampString = "419185536.517189"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
             landmarkName = "-mapView:didUpdateUserLocation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -824,11 +808,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DYiBan/YiBan/MVC/Controller/ShareBook/ShareAddQuanViewController.m"
-            timestampString = "419097885.895036"
+            timestampString = "419185536.517189"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
             landmarkName = "-mapViewDidStopLocatingUser:"
             landmarkType = "5">
          </BreakpointContent>
@@ -840,11 +824,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DYiBan/YiBan/MVC/Controller/ShareBook/ShareAddQuanViewController.m"
-            timestampString = "419097885.895036"
+            timestampString = "419185536.517189"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
             landmarkName = "-mapView:didFailToLocateUserWithError:"
             landmarkType = "5">
          </BreakpointContent>
@@ -856,11 +840,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DYiBan/YiBan/MVC/Controller/ShareBook/ShareAddQuanViewController.m"
-            timestampString = "419097885.895036"
+            timestampString = "419185536.517189"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
+            startingLineNumber = "296"
+            endingLineNumber = "296"
             landmarkName = "-onGetAddrResult:errorCode:"
             landmarkType = "5">
          </BreakpointContent>
@@ -872,11 +856,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DYiBan/YiBan/MVC/Controller/ShareBook/ShareAddQuanViewController.m"
-            timestampString = "419097885.895036"
+            timestampString = "419185536.517189"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
             landmarkName = "@implementation ShareAddQuanViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -1080,11 +1064,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DYiBan/YiBan/MVC/Controller/WOS/WOSMapViewController.m"
-            timestampString = "419094177.767678"
+            timestampString = "419184419.40493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "-customMKMapViewDidSelectedWithInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1294,6 +1278,118 @@
             startingLineNumber = "188"
             endingLineNumber = "188"
             landmarkName = "-handleRequest:receiveObj:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DYiBan/YiBan/MVC/Controller/WOS/WOSMapViewController.m"
+            timestampString = "419184419.40493"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "-handleViewSignal_DYBBaseViewController:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DYiBan/YiBan/MVC/Controller/WOS/WOSMapViewController.m"
+            timestampString = "419184419.40493"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "-addQuan"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DYiBan/YiBan/MVC/Controller/WOS/WOSMapViewController.m"
+            timestampString = "419184419.40493"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
+            landmarkName = "-handleRequest:receiveObj:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DYiBan/YiBan/MVC/Controller/WOS/WOSMapViewController.m"
+            timestampString = "419184871.3546"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "-addQuan"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DYiBan/YiBan/MVC/Controller/ShareBook/ShareBookMyQuanCenterViewController.m"
+            timestampString = "419185536.517189"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "365"
+            endingLineNumber = "365"
+            landmarkName = "-doChoose"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DYiBan/YiBan/MVC/Controller/ShareBook/ShareBookMyQuanCenterViewController.m"
+            timestampString = "419184897.426502"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
+            landmarkName = "-handleViewSignal_MagicViewController:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DYiBan/YiBan/MVC/Controller/ShareBook/ShareBookMyQuanCenterViewController.m"
+            timestampString = "419184906.006279"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "-handleViewSignal_MagicViewController:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
