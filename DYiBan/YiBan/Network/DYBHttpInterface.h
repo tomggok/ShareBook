@@ -525,5 +525,6 @@
 //address_add
 + (NSMutableDictionary *)shareBook_address_add_address:(NSString *)address;
 
-
+//order_list
++ (NSMutableDictionary *)shareBook_order_list_tag:(NSString *)kind;
 @end

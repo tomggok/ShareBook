@@ -1782,6 +1782,16 @@
 
 
 }
+
+
++ (MagicRequest *)shareBook_order_list_tag:(NSString *)kind sAlert:(BOOL)isAlert receive:(id)receive{
+
+    NSMutableDictionary *dict = [DYBHttpInterface shareBook_order_list_tag:kind];
+    DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
+    MagicRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
+    return dre;
+
+}
 @end
 
 

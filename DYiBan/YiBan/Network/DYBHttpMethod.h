@@ -491,6 +491,6 @@ sAlert:(BOOL)isAlert receive:(id)receive;
 + (MagicRequest *)shareBook_pay_logs_user_id:(NSString *)user_id sAlert:(BOOL)isAlert receive:(id)receive;
 
 + (MagicRequest *)shareBook_address_add_address:(NSString *)address sAlert:(BOOL)isAlert receive:(id)receive;
-
++ (MagicRequest *)shareBook_order_list_tag:(NSString *)kind sAlert:(BOOL)isAlert receive:(id)receive;
 
 @end

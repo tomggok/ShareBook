@@ -2200,4 +2200,16 @@ address:(NSString *)address lat:(NSString *)lat lng:(NSString *)lng kind:(NSStri
     return dict;
 
 }
++ (NSMutableDictionary *)shareBook_order_list_tag:(NSString *)kind{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:kind forKey:@"kind"];
+    [dict setValue:@"1" forKey:@"page"];
+    [dict setValue:@"100" forKey:@"num"];
+
+    [dict setValue:@"order_list" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+
 @end
