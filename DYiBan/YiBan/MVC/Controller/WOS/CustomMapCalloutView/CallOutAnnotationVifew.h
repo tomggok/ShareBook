@@ -7,7 +7,7 @@
 //
 #import <MapKit/MapKit.h>
 
-@interface CallOutAnnotationVifew : MKAnnotationView 
+@interface CallOutAnnotationVifew : MKAnnotationView
 
 @property (nonatomic,retain)UIView *contentView;
 @property (nonatomic,retain)NSDictionary *dictInfo;

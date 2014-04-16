@@ -2180,4 +2180,36 @@ address:(NSString *)address lat:(NSString *)lat lng:(NSString *)lng kind:(NSStri
     return dict;
 
 }
+
++ (NSMutableDictionary *)shareBook_pay_logs_user_id:(NSString *)user_id{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+//    [dict setValue:user_id forKey:@"user_id"];
+    [dict setValue:@"pay_logs" forKey:INTERFACEDOACTION];
+    return dict;
+
+
+}
+
+
++ (NSMutableDictionary *)shareBook_address_add_address:(NSString *)address{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:address forKey:@"address"];
+    [dict setValue:@"address_add" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
++ (NSMutableDictionary *)shareBook_order_list_tag:(NSString *)kind{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:kind forKey:@"kind"];
+    [dict setValue:@"1" forKey:@"page"];
+    [dict setValue:@"100" forKey:@"num"];
+
+    [dict setValue:@"order_list" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+
 @end

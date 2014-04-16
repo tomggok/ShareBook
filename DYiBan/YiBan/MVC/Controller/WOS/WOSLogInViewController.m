@@ -590,7 +590,7 @@
 
 - (void)onClickTencentOAuth:(id)sender {
 //	_labelTitle.text = @"开始获取token";
-	[_tencentOAuth authorize:_permissions inSafari:NO];
+//	[_tencentOAuth authorize:_permissions inSafari:NO];
 }
 - (void)tencentDidLogin {
 

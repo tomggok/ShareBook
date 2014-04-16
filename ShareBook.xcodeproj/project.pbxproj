@@ -4869,8 +4869,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Qingtao Ren (FS8C526MC5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qingtao Ren (FS8C526MC5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tianci Huang (YF4UL6SHQK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tianci Huang (YF4UL6SHQK)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -4888,8 +4888,18 @@
 				);
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = ShareBook;
-				PROVISIONING_PROFILE = "F5F6AFE2-792A-49CB-BE58-9FAFDDBDCCB1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F5F6AFE2-792A-49CB-BE58-9FAFDDBDCCB1";
+<<<<<<< HEAD
+<<<<<<< HEAD
+				PROVISIONING_PROFILE = "6C8693D3-CD79-42BA-BD7F-3FE4CDCA7C90";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6C8693D3-CD79-42BA-BD7F-3FE4CDCA7C90";
+=======
+				PROVISIONING_PROFILE = "1CDBF85E-E34D-4BF9-9C94-A159072EBF73";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1CDBF85E-E34D-4BF9-9C94-A159072EBF73";
+>>>>>>> FETCH_HEAD
+=======
+				PROVISIONING_PROFILE = "1CDBF85E-E34D-4BF9-9C94-A159072EBF73";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1CDBF85E-E34D-4BF9-9C94-A159072EBF73";
+>>>>>>> FETCH_HEAD
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4899,8 +4909,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = armv7;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Qingtao Ren (FS8C526MC5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qingtao Ren (FS8C526MC5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tianci Huang (YF4UL6SHQK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tianci Huang (YF4UL6SHQK)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -4918,8 +4928,18 @@
 				);
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = ShareBook;
-				PROVISIONING_PROFILE = "F5F6AFE2-792A-49CB-BE58-9FAFDDBDCCB1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F5F6AFE2-792A-49CB-BE58-9FAFDDBDCCB1";
+<<<<<<< HEAD
+<<<<<<< HEAD
+				PROVISIONING_PROFILE = "6C8693D3-CD79-42BA-BD7F-3FE4CDCA7C90";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6C8693D3-CD79-42BA-BD7F-3FE4CDCA7C90";
+=======
+				PROVISIONING_PROFILE = "1CDBF85E-E34D-4BF9-9C94-A159072EBF73";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1CDBF85E-E34D-4BF9-9C94-A159072EBF73";
+>>>>>>> FETCH_HEAD
+=======
+				PROVISIONING_PROFILE = "1CDBF85E-E34D-4BF9-9C94-A159072EBF73";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1CDBF85E-E34D-4BF9-9C94-A159072EBF73";
+>>>>>>> FETCH_HEAD
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};

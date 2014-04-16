@@ -196,12 +196,38 @@
     
     
     ShareBookListViewController *list = [[ShareBookListViewController alloc]init];
+    
     list.type = indexPath.row;
+    NSString *strTitle = [self getTitle:indexPath.row];
+    [list setVCTitle:strTitle];
     [self.drNavigationController pushViewController:list animated:YES];
     RELEASE(list);
 
 
 }
+
+-(NSString *)getTitle:(int)row{
+
+    switch (row) {
+        case 0:
+            return @"架上图书";
+            break;
+        case 1:
+            return @"借入图书";
+            break;
+        case 2:
+            return @"借出图书";
+            break;
+        case 3:
+            return @"漂流中图书";
+            break;
+            
+        default:
+            break;
+    }
+    return nil;
+}
+
 - (void)dealloc
 {
     [arraySouce release];

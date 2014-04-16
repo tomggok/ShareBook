@@ -9,8 +9,16 @@
 #import "ShareFriendListViewController.h"
 #import "ShareGiveDouCell.h"
 #import "ShareDouSendViewController.h"
+#import "JSONKit.h"
+#import "JSON.h"
 
-@interface ShareFriendListViewController ()
+
+@interface ShareFriendListViewController (){
+
+    NSMutableArray *arrayResult;
+    DYBUITableView * tbDataBank11;
+
+}
 
 @end
 
@@ -61,7 +69,8 @@
         
         [self.view setBackgroundColor:[UIColor blackColor]];
         
-        
+        MagicRequest *request = [DYBHttpMethod shareBook_user_friendlist_user_id:SHARED.userId sAlert:YES receive:self];
+        [request setTag:2];
         
         UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44)];
         [viewBG setBackgroundColor:[UIColor whiteColor]];
@@ -69,7 +78,7 @@
         RELEASE(viewBG);
         
         
-        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0,self.headHeight , 320.0f , self.view.frame.size.height  ) isNeedUpdate:YES];
+        tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0,self.headHeight , 320.0f , self.view.frame.size.height  ) isNeedUpdate:YES];
         [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:tbDataBank11];
         [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
@@ -101,7 +110,7 @@ static NSString *cellName = @"cellName";
         NSNumber *s;
         
         //        if ([_section intValue] == 0) {
-        s = [NSNumber numberWithInteger:10];
+        s = [NSNumber numberWithInteger:arrayResult.count];
         //        }else{
         //            s = [NSNumber numberWithInteger:[_arrStatusData count]];
         //        }
@@ -129,12 +138,8 @@ static NSString *cellName = @"cellName";
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
         ShareGiveDouCell *cell = [[ShareGiveDouCell alloc]init];
-        
-        //        NSDictionary *dictInfoFood = Nil;
-        //        [cell creatCell:dictInfoFood];
-        DLogInfo(@"%d", indexPath.section);
-        
-        
+
+        [cell creatCell:[arrayResult objectAtIndex:indexPath.row]];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [signal setReturnValue:cell];
         
@@ -161,6 +166,66 @@ static NSString *cellName = @"cellName";
     
 }
 
+
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
+{
+    
+    if ([request succeed])
+    {
+        //        JsonResponse *response = (JsonResponse *)receiveObj;
+        if (request.tag == 2) {
+            
+            
+            NSDictionary *dict = [request.responseString JSONValue];
+            
+            if (dict) {
+                
+                if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
+                    
+                    JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
+                    
+                    arrayResult = [[NSMutableArray alloc]initWithArray:[[dict objectForKey:@"data"] objectForKey:@"user_list"]];
+                    [tbDataBank11 reloadData];
+                    
+                }else{
+                    NSString *strMSG = [dict objectForKey:@"message"];
+                    
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+                    
+                    
+                }
+            }
+        }else if(request.tag == 3){
+            
+            NSDictionary *dict = [request.responseString JSONValue];
+            
+            if (dict) {
+                BOOL result = [[dict objectForKey:@"result"] boolValue];
+                if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
+                    
+                    //                    UIButton *btn = (UIButton *)[UIButton buttonWithType:UIButtonTypeCustom];
+                    //                    [btn setTag:10];
+                    //                    [self doChange:btn];
+                }
+                else{
+                    NSString *strMSG = [dict objectForKey:@"message"];
+                    
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+                    
+                    
+                }
+            }
+            
+        } else{
+            NSDictionary *dict = [request.responseString JSONValue];
+            NSString *strMSG = [dict objectForKey:@"message"];
+            
+            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+            
+            
+        }
+    }
+}
 
 
 @end
