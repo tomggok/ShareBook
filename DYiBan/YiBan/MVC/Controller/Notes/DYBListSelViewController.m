@@ -367,6 +367,7 @@ static NSString *cellName = @"cellName";
     [_lbTagName addSubview:_btnDel];
     RELEASE(_btnDel);
     
+    
     [_lbTagName setText:[NSString stringWithFormat:@"  %@", addTag.tag]]; //文本显示往左偏移点
     
     
