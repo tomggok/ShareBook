@@ -208,9 +208,6 @@ DEF_SIGNAL(SUCCUS)
                     [self.navigationController popViewControllerAnimated:YES];
                     [self sendViewSignal:[ShareAddQuanViewController SUCCUS] withObject:nil from:self target:vc];
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> FETCH_HEAD
-=======
 >>>>>>> FETCH_HEAD
 =======
 >>>>>>> FETCH_HEAD
