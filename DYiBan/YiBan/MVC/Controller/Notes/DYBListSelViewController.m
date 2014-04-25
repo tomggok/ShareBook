@@ -367,7 +367,6 @@ static NSString *cellName = @"cellName";
     [_lbTagName addSubview:_btnDel];
     RELEASE(_btnDel);
     
-    
     [_lbTagName setText:[NSString stringWithFormat:@"  %@", addTag.tag]]; //文本显示往左偏移点
     
     
@@ -416,7 +415,7 @@ static NSString *cellName = @"cellName";
                 [lb removeFromSuperview];
             }
         }
-          
+        
         for (tag_list_info *tag in _arrayTagSelected) {
             [self AddSelectedTag:tag];
         }
