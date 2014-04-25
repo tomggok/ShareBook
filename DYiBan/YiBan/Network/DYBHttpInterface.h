@@ -518,13 +518,5 @@
 //circle_booklist
 + (NSMutableDictionary *)shareBook_circle_booklist_user_id:(NSString *)user_id page:(NSString *)page num:(NSString *)num;
 
-//pay_logs
 
-+ (NSMutableDictionary *)shareBook_pay_logs_user_id:(NSString *)user_id;
-
-//address_add
-+ (NSMutableDictionary *)shareBook_address_add_address:(NSString *)address;
-
-//order_list
-+ (NSMutableDictionary *)shareBook_order_list_tag:(NSString *)kind;
 @end

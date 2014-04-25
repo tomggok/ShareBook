@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-@interface BasicMapAnnotation : MKPointAnnotation <MKAnnotation> {
+@interface BasicMapAnnotation : NSObject <MKAnnotation> {
 	CLLocationDegrees _latitude;
 	CLLocationDegrees _longitude;
 	NSString *_title;

@@ -162,14 +162,8 @@
 //        [self creatDownBar];
         
         
-    }else if ([signal is:[MagicViewController WILL_APPEAR]]) {
-        NSLog(@"ddd");
-        if (!_bEnter) {
-            
-            MagicRequest *request = [DYBHttpMethod shareBook_circle_list_sAlert:YES receive:self];
-            [request setTag:3];
-        }
-       
+    }else if ([signal is:[MagicViewController DID_APPEAR]]) {
+        
         DLogInfo(@"rrr");
     } else if ([signal is:[MagicViewController DID_DISAPPEAR]]){
         
@@ -344,23 +338,10 @@ static NSString *cellName = @"cellName";
     
 }
 
-// [self sendViewSignal:[ShareAddQuanViewController SUCCUS] withObject:nil from:self target:vc];
-- (void)handleViewSignal_ShareAddQuanViewController:(ShareAddQuanViewController *)signal
-{
-    if ([signal is:[ShareAddQuanViewController SUCCUS]]) {
-        
-        MagicRequest *request = [DYBHttpMethod shareBook_circle_list_sAlert:YES receive:self];
-        [request setTag:3];
-    }
-
-
-
-}
 
 -(void)doChoose{
 
     ShareAddQuanViewController *add = [[ShareAddQuanViewController alloc]init];
-    add.vc = self;
     [self.drNavigationController pushViewController:add animated:YES];
     RELEASE(add);
 }

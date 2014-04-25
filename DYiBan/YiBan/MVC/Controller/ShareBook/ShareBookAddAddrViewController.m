@@ -9,20 +9,13 @@
 #import "ShareBookAddAddrViewController.h"
 #import "DYBInputView.h"
 #import "CALayer+Custom.h"
-#import "JSONKit.h"
-#import "JSON.h"
 
 
-@interface ShareBookAddAddrViewController (){
-
-   
-}
+@interface ShareBookAddAddrViewController ()
 
 @end
 
 @implementation ShareBookAddAddrViewController
-@synthesize _phoneInputName;
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -78,7 +71,7 @@
         RELEASE(label);
         
         
-        _phoneInputName = [[DYBInputView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, self.headHeight + 60, INPUTWIDTH, INPUTHEIGHT) placeText:@"地址" textType:0];
+        DYBInputView *_phoneInputName = [[DYBInputView alloc]initWithFrame:CGRectMake((320-INPUTWIDTH)/2, self.headHeight + 60, INPUTWIDTH, INPUTHEIGHT) placeText:@"地址" textType:0];
         [_phoneInputName.layer AddborderByIsMasksToBounds:YES cornerRadius:3 borderWidth:1 borderColor:[[UIColor colorWithRed:188.0f/255 green:188.0f/255 blue:188.0f/255 alpha:1.0f] CGColor]];
         //        [_phoneInputName.nameField setText:@"1"];
         [_phoneInputName.nameField setTextColor:[UIColor blackColor]];
@@ -121,68 +114,6 @@
 }
 
 
--(void)doChoose{
-    
-    MagicRequest *request = [DYBHttpMethod shareBook_address_add_address:_phoneInputName.nameField.text sAlert:YES receive:self];
-    [request setTag:2];
 
-}
-
-#pragma mark- 只接受HTTP信号
-- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
-{
-    
-    if ([request succeed])
-    {
-        //        JsonResponse *response = (JsonResponse *)receiveObj;
-        if (request.tag == 2) {
-            
-            
-            NSDictionary *dict = [request.responseString JSONValue];
-            
-            if (dict) {
-                
-                if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
-                    
-                    JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
-                     [DYBShareinstaceDelegate popViewText:@"添加成功" target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
-                    [self.navigationController popViewControllerAnimated:YES];
-                    
-                }else{
-                    NSString *strMSG = [dict objectForKey:@"message"];
-                    
-                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
-                    
-                    
-                }
-            }
-        }else if(request.tag == 3){
-            
-            NSDictionary *dict = [request.responseString JSONValue];
-            
-            if (dict) {
-                BOOL result = [[dict objectForKey:@"result"] boolValue];
-                if (!result) {
-                    
-                }
-                else{
-                    NSString *strMSG = [dict objectForKey:@"message"];
-                    
-                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
-                    
-                    
-                }
-            }
-            
-        } else{
-            NSDictionary *dict = [request.responseString JSONValue];
-            NSString *strMSG = [dict objectForKey:@"message"];
-            
-            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
-            
-            
-        }
-    }
-}
 
 @end
