@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 #import "BMKPolyline.h"
-#import "BMKOverlayGLBasicView.h"
+#import "BMKOverlayPathView.h"
 
 /// 此类用于定义一个折线View
-@interface BMKPolylineView : BMKOverlayGLBasicView
+@interface BMKPolylineView : BMKOverlayPathView
 
 /**
  *根据指定的折线生成一个折线View

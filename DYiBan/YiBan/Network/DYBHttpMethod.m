@@ -1764,34 +1764,7 @@
 
 }
 
-+ (MagicRequest *)shareBook_pay_logs_user_id:(NSString *)user_id sAlert:(BOOL)isAlert receive:(id)receive{
 
-    NSMutableDictionary *dict = [DYBHttpInterface shareBook_pay_logs_user_id:user_id];
-    DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
-    MagicRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
-    return dre;
-}
-
-
-+ (MagicRequest *)shareBook_address_add_address:(NSString *)address sAlert:(BOOL)isAlert receive:(id)receive{
-
-    NSMutableDictionary *dict = [DYBHttpInterface shareBook_address_add_address:address];
-    DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
-    MagicRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
-    return dre;
-
-
-}
-
-
-+ (MagicRequest *)shareBook_order_list_tag:(NSString *)kind sAlert:(BOOL)isAlert receive:(id)receive{
-
-    NSMutableDictionary *dict = [DYBHttpInterface shareBook_order_list_tag:kind];
-    DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
-    MagicRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
-    return dre;
-
-}
 @end
 
 

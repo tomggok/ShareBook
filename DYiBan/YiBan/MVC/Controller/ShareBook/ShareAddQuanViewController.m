@@ -20,17 +20,13 @@
 
     DYBInputView  *_phoneInputName;
     UILabel *labelJINWEI;
-//    CLLocationCoordinate2D coordinate2D;
-    BOOL bUpdate;
+    CLLocationCoordinate2D coordinate2D;
 
 }
 
 @end
 
 @implementation ShareAddQuanViewController
-@synthesize coordinate2D,_phoneInputName,vc;
-
-DEF_SIGNAL(SUCCUS)
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -85,7 +81,7 @@ DEF_SIGNAL(SUCCUS)
         [self.view addSubview:viewBG];
         RELEASE(viewBG);
         
-        bUpdate = NO;
+        
         
         UILabel *labelName = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, self.headHeight + 10, 100.0f, 40.0f)];
         [labelName setText:@"圈子名称："];
@@ -199,18 +195,9 @@ DEF_SIGNAL(SUCCUS)
                 
                 if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
                     
-//                    JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
+                    JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
                     [DYBShareinstaceDelegate popViewText:@"创建成功" target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
-<<<<<<< HEAD
-                    [self.navigationController popViewControllerAnimated:YES];
-=======
                     
-                    [self.navigationController popViewControllerAnimated:YES];
-                    [self sendViewSignal:[ShareAddQuanViewController SUCCUS] withObject:nil from:self target:vc];
-<<<<<<< HEAD
->>>>>>> FETCH_HEAD
-=======
->>>>>>> FETCH_HEAD
                 }else{
                     NSString *strMSG = [dict objectForKey:@"message"];
                     
@@ -319,9 +306,9 @@ DEF_SIGNAL(SUCCUS)
          CLPlacemark *placemark = [placemarks objectAtIndex:0];
          NSArray *names = [placemark.addressDictionary objectForKey:@"FormattedAddressLines"];
          
-         if (!bUpdate) {
+         if (_phoneInputName.nameField.text.length == 0) {
              
-             bUpdate = YES;
+         
              if (names.count>0) {
                   [_phoneInputName.nameField setText:[names objectAtIndex:0 ]];
              }else{
@@ -342,7 +329,6 @@ DEF_SIGNAL(SUCCUS)
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
     NSLog(@"%@",error);
 }
-
 
 
 @end

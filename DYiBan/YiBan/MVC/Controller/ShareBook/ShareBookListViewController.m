@@ -10,15 +10,14 @@
 #import "ShareBookCell.h"
 #import "ShareBookDetailViewController.h"
 #import "UITableView+property.h"
-#import "JSONKit.h"
-#import "JSON.h"
+
 
 
 @interface ShareBookListViewController (){
 
 
     DYBUITableView * tbDataBank11 ;
-    NSMutableArray *arrayResultList;
+
 }
 
 @end
@@ -56,7 +55,7 @@
     if ([signal is:[MagicViewController LAYOUT_VIEWS]])
     {
         //        [self.rightButton setHidden:YES];
-        [self.headview setTitle:[self getTitle:_type]];
+        [self.headview setTitle:@"图书"];
         
         
         //        [self.leftButton setHidden:YES];
@@ -72,49 +71,6 @@
         
         [self.view setBackgroundColor:[UIColor whiteColor]];
         
-        
-        if (_type == 0) {
-            
-           
-            
-        }
-        
-        
-        
-        
-        
-        switch (_type) {
-            case 0:
-            {
-                MagicRequest *request = [DYBHttpMethod shareBook_book_list_tag_id:SHARED.userId sAlert:YES receive:self];
-                [request setTag:2];
-            
-            }
-                break;
-            case 1:
-            {
-                MagicRequest *request = [DYBHttpMethod shareBook_order_list_tag:@"1" sAlert:YES receive:self];
-                [request setTag:2];
-                 break;
-            }
-            case 2:
-            {
-                MagicRequest *request = [DYBHttpMethod shareBook_order_list_tag:@"2" sAlert:YES receive:self];
-                [request setTag:2];
-                break;
-              
-            }
-                
-            case 3:
-            {
-                
-                break;
-               
-            }
-                
-            default:
-                break;
-        }
 //        arraySouce = [[NSMutableArray alloc]initWithObjects:@"上架图书",@"借入图书",@"借出图书",@"旅行中的图书",@"预借中的图书", nil];
         
         UIImageView *viewBG = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0, 320.0f, self.view.frame.size.height)];
@@ -162,7 +118,7 @@ static NSString *cellName = @"cellName";
         NSNumber *s;
         
         //        if ([_section intValue] == 0) {
-        s = [NSNumber numberWithInteger:arrayResultList.count];
+        s = [NSNumber numberWithInteger:10];
         //        }else{
         //            s = [NSNumber numberWithInteger:[_arrStatusData count]];
         //        }
@@ -195,9 +151,12 @@ static NSString *cellName = @"cellName";
         cell.tb  = tbDataBank11;
         cell.type = _type;
         cell.indexPath = indexPath;
-        [cell creatCell:[arrayResultList objectAtIndex:indexPath.row]];
+        [cell creatCell:nil];
+        //        NSDictionary *dictInfoFood = nil;
+        //        [cell creatCell:dictInfoFood];
         DLogInfo(@"%d", indexPath.section);
         [tbDataBank11.muD_dicfferIndexForCellView setValue:cell forKey:[NSString stringWithFormat:@"%d",indexPath.row]];
+//        [tbDataBank11._muA_differHeightCellView addObject:cell];
         cell.indexPath = indexPath;
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [signal setReturnValue:cell];
@@ -224,93 +183,7 @@ static NSString *cellName = @"cellName";
     
     
 }
--(NSString *)getTitle:(int)row{
-    
-    switch (row) {
-        case 0:
-            return @"架上图书";
-            break;
-        case 1:
-            return @"借入图书";
-            break;
-        case 2:
-            return @"借出图书";
-            break;
-        case 3:
-            return @"漂流中图书";
-            break;
-            
-        default:
-            break;
-    }
-    return nil;
-}
-
--(void)setVCTitle:(NSString *)title{
 
 
-    [self.headview setTitle:title];
 
-}
-
-
-#pragma mark- 只接受HTTP信号
-- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
-{
-    
-    if ([request succeed])
-    {
-        //        JsonResponse *response = (JsonResponse *)receiveObj;
-        if (request.tag == 2) {
-            
-            
-            NSDictionary *dict = [request.responseString JSONValue];
-            
-            if (dict) {
-                
-                if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
-                    
-                    JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
-                    
-                    RELEASEDICTARRAYOBJ(arrayResultList)
-                    arrayResultList =[[NSMutableArray alloc]initWithArray:[[dict objectForKey:@"data"]objectForKey:@"book_list"]];
-                    [tbDataBank11 reloadData];
-                    
-                }else{
-                    NSString *strMSG = [dict objectForKey:@"message"];
-                    
-                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
-                    
-                    
-                }
-            }
-        }else if(request.tag == 3){
-            
-            NSDictionary *dict = [request.responseString JSONValue];
-            
-            if (dict) {
-                BOOL result = [[dict objectForKey:@"result"] boolValue];
-                if (!result) {
-                    
-                   
-                }
-                else{
-                    NSString *strMSG = [dict objectForKey:@"message"];
-                    
-                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
-                    
-                    
-                }
-            }
-            
-        } else{
-            NSDictionary *dict = [request.responseString JSONValue];
-            NSString *strMSG = [dict objectForKey:@"message"];
-            
-            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
-            
-            
-        }
-    }
-}
 @end

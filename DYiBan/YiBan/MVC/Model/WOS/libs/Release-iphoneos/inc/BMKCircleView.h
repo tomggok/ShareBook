@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 #import "BMKCircle.h"
-#import "BMKOverlayGLBasicView.h"
+#import "BMKOverlayPathView.h"
 
 /// 该类用于定义圆对应的View
-@interface BMKCircleView : BMKOverlayGLBasicView
+@interface BMKCircleView : BMKOverlayPathView
 
 /**
  *根据指定圆生成对应的View
