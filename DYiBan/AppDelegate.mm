@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+//#import "APService.h"
 #import "DYBHttpMethod.h"
 #import "DYBLoginViewController.h"
 #import "Magic_NavigationController.h"
@@ -109,6 +109,15 @@
         [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
 
     }
+    
+    
+    // Required
+//    [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+//                                                   UIRemoteNotificationTypeSound |
+//                                                   UIRemoteNotificationTypeAlert)];
+    // Required
+//    [APService setupWithOption:launchOptions];
+
     return YES;
 }
 
@@ -134,6 +143,9 @@
 //推送服务注册成功后回调
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
+    
+//     [APService registerDeviceToken:deviceToken];
+    
     NSString *string = [[deviceToken description] stringByReplacingOccurrencesOfString:@"<" withString:@""];
 	string = [string stringByReplacingOccurrencesOfString:@">" withString:@""];
     SHARED.token = [NSString stringWithFormat:@"%@",string];
@@ -147,6 +159,9 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
+//    [APService handleRemoteNotification:userInfo];
+
+    
     NSMutableDictionary *apsDict = [userInfo objectForKey:@"aps"];
     
     if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateInactive)
