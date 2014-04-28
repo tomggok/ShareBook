@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-//#import "APService.h"
+#import "APService.h"
 #import "DYBHttpMethod.h"
 #import "DYBLoginViewController.h"
 #import "Magic_NavigationController.h"
@@ -112,11 +112,11 @@
     
     
     // Required
-//    [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-//                                                   UIRemoteNotificationTypeSound |
-//                                                   UIRemoteNotificationTypeAlert)];
+    [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                   UIRemoteNotificationTypeSound |
+                                                   UIRemoteNotificationTypeAlert)];
     // Required
-//    [APService setupWithOption:launchOptions];
+    [APService setupWithOption:launchOptions];
 
     return YES;
 }
@@ -144,12 +144,13 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     
-//     [APService registerDeviceToken:deviceToken];
+     [APService registerDeviceToken:deviceToken];
     
     NSString *string = [[deviceToken description] stringByReplacingOccurrencesOfString:@"<" withString:@""];
 	string = [string stringByReplacingOccurrencesOfString:@">" withString:@""];
     SHARED.token = [NSString stringWithFormat:@"%@",string];
-
+    NSSet *arrr = [[NSSet alloc]initWithObjects:@"dddd", nil];
+    [APService setTags:arrr alias:@"tttt" callbackSelector:nil object:nil];
 }
 
 //推送注册失败
@@ -159,7 +160,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-//    [APService handleRemoteNotification:userInfo];
+    [APService handleRemoteNotification:userInfo];
 
     
     NSMutableDictionary *apsDict = [userInfo objectForKey:@"aps"];
