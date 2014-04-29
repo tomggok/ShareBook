@@ -489,6 +489,11 @@ sAlert:(BOOL)isAlert receive:(id)receive;
 + (MagicRequest *)shareBook_circle_booklist_user_id:(NSString *)user_id page:(NSString *)page num:(NSString *)num sAlert:(BOOL)isAlert receive:(id)receive;
 
 
++ (MagicRequest *)book_loan_pub_id:(NSString *)pub_id content:(NSString *)content loan_time:(NSString *)loan_time sAlert:(BOOL)isAlert receive:(id)receive;
 
+
++(MagicRequest *)message_chat_userid:(NSString *)userid page:(NSString *)page num:(NSString *)num last_id:(NSString *)last_id sAlert:(BOOL)isAlert receive:(id)receive;
+
++(MagicRequest *)order_confirm_msg_id:(NSString *)msg_id type:(NSString *)type sAlert:(BOOL)isAlert receive:(id)receive;
 
 @end

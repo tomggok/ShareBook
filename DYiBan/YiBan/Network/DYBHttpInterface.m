@@ -2180,4 +2180,36 @@ address:(NSString *)address lat:(NSString *)lat lng:(NSString *)lng kind:(NSStri
     return dict;
 
 }
+
++ (NSMutableDictionary *)book_loan_pub_id:(NSString *)pub_id content:(NSString *)content loan_time:(NSString *)loan_time{
+    
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:pub_id forKey:@"pub_id"];
+    [dict setValue:loan_time forKey:@"loan_time"];
+    [dict setValue:content forKey:@"content"];
+    [dict setValue:@"book_loan" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+
++(NSMutableDictionary *)message_chat_userid:(NSString *)userid page:(NSString *)page num:(NSString *)num last_id:(NSString *)last_id{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:userid forKey:@"userid"];
+    [dict setValue:last_id forKey:@"last_id"];
+    [dict setValue:page forKey:@"page"];
+    [dict setValue:num forKey:@"num"];
+    [dict setValue:@"message_chat" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+
++(NSMutableDictionary *)order_confirm_msg_id:(NSString *)msg_id type:(NSString *)type{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:msg_id forKey:@"msg_id"];
+    [dict setValue:type forKey:@"type"];
+    [dict setValue:@"order_confirm" forKey:INTERFACEDOACTION];
+    return dict;
+}
 @end

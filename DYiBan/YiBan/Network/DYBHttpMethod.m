@@ -1763,7 +1763,31 @@
     return dre;
 
 }
++ (MagicRequest *)book_loan_pub_id:(NSString *)pub_id content:(NSString *)content loan_time:(NSString *)loan_time sAlert:(BOOL)isAlert receive:(id)receive{
 
+    NSMutableDictionary *dict = [DYBHttpInterface book_loan_pub_id:pub_id content:content loan_time:loan_time];
+    DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
+    MagicRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
+    return dre;
+}
+
+
++(MagicRequest *)message_chat_userid:(NSString *)userid page:(NSString *)page num:(NSString *)num last_id:(NSString *)last_id sAlert:(BOOL)isAlert receive:(id)receive{
+   
+    NSMutableDictionary *dict = [DYBHttpInterface message_chat_userid:userid page:page num:num last_id:last_id];
+    DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
+    MagicRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
+    return dre;
+}
+
++(MagicRequest *)order_confirm_msg_id:(NSString *)msg_id type:(NSString *)type sAlert:(BOOL)isAlert receive:(id)receive{
+
+    NSMutableDictionary *dict = [DYBHttpInterface order_confirm_msg_id:msg_id type:type];
+    DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
+    MagicRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
+    return dre;
+
+}
 
 @end
 

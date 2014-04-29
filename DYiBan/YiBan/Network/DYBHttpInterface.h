@@ -518,5 +518,14 @@
 //circle_booklist
 + (NSMutableDictionary *)shareBook_circle_booklist_user_id:(NSString *)user_id page:(NSString *)page num:(NSString *)num;
 
+//book_loan
++ (NSMutableDictionary *)book_loan_pub_id:(NSString *)pub_id content:(NSString *)content loan_time:(NSString *)loan_time;
 
+
+//message_chat
++(NSMutableDictionary *)message_chat_userid:(NSString *)userid page:(NSString *)page num:(NSString *)num last_id:(NSString *)last_id;
+
+//order_confirm
+
++(NSMutableDictionary *)order_confirm_msg_id:(NSString *)msg_id type:(NSString *)type;
 @end

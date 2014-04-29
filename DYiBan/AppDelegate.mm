@@ -150,7 +150,7 @@
 	string = [string stringByReplacingOccurrencesOfString:@">" withString:@""];
     SHARED.token = [NSString stringWithFormat:@"%@",string];
     NSSet *arrr = [[NSSet alloc]initWithObjects:@"dddd", nil];
-    [APService setTags:arrr alias:@"tttt" callbackSelector:nil object:nil];
+    [APService setTags:nil alias:SHARED.userId callbackSelector:nil object:nil];
 }
 
 //推送注册失败
@@ -161,7 +161,6 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     [APService handleRemoteNotification:userInfo];
-
     
     NSMutableDictionary *apsDict = [userInfo objectForKey:@"aps"];
     

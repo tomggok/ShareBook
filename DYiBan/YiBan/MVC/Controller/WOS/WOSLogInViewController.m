@@ -17,7 +17,7 @@
 #import "JSON.h"
 #import "Magic_Database.h"
 #import "ShareBookMissPWViewController.h"
-
+#import "APService.h"
 
 @interface WOSLogInViewController (){
 
@@ -529,6 +529,10 @@
                 SHARED.userId = [[dict objectForKey:@"data"] objectForKey:@"user_id"]; //设置userid 全局变量
                 DLogInfo(@"SHARED.userId -- >%@",SHARED.userId);
 
+            // 注册推送
+                [APService setTags:nil alias:SHARED.userId callbackSelector:nil object:nil];
+
+                
                 DYBUITabbarViewController *vc = [[DYBUITabbarViewController sharedInstace] init:self];
                 
                 [self.drNavigationController pushViewController:vc animated:YES];
