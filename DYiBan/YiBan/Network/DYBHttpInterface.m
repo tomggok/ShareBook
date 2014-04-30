@@ -2212,4 +2212,55 @@ address:(NSString *)address lat:(NSString *)lat lng:(NSString *)lng kind:(NSStri
     [dict setValue:@"order_confirm" forKey:INTERFACEDOACTION];
     return dict;
 }
+
++(NSMutableDictionary *)message_send_userid:(NSString *)userid content:(NSString *)content type:(NSString *)type mid:(NSString *)mid{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:mid forKey:@"mid"];
+    [dict setValue:type forKey:@"type"];
+    [dict setValue:userid forKey:@"userid"];
+    [dict setValue:content forKey:@"content"];
+    [dict setValue:@"message_send" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+
++(NSMutableDictionary *)order_list_kind:(NSString *)kind page:(NSString *)page num:(NSString *)num{
+
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:kind forKey:@"kind"];
+    [dict setValue:num forKey:@"num"];
+    [dict setValue:page forKey:@"page"];
+//    [dict setValue:content forKey:@"content"];
+    [dict setValue:@"order_list" forKey:INTERFACEDOACTION];
+    return dict;
+
+}
+
++(NSMutableDictionary *)order_detail_order_id:(NSString *)order_id{
+
+    
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:order_id forKey:@"order_id"];
+//    [dict setValue:num forKey:@"num"];
+//    [dict setValue:page forKey:@"page"];
+    //    [dict setValue:content forKey:@"content"];
+    [dict setValue:@"order_detail" forKey:INTERFACEDOACTION];
+    return dict;
+}
+
+
++(NSMutableDictionary *)message_list_page:(NSString *)page num:(NSString *)num{
+
+    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+    [dict setValue:num forKey:@"num"];
+    [dict setValue:page forKey:@"page"];
+    //    [dict setValue:page forKey:@"page"];
+    //    [dict setValue:content forKey:@"content"];
+    [dict setValue:@"message_list" forKey:INTERFACEDOACTION];
+    return dict;
+
+
+}
 @end

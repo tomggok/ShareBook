@@ -15,7 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        [self creatCell];
+//        [self creatCell];
     }
     return self;
 }
@@ -27,7 +27,7 @@
     // Configure the view for the selected state
 }
 
--(void)creatCell{
+-(void)creatCell:(NSDictionary *)dict{
 
     UIImage *imageIcon0 = [UIImage imageNamed:@"system-avatar"];
     UIImageView *imageIcon = [[UIImageView alloc]initWithFrame:CGRectMake(5.0f, 5.0f, imageIcon0.size.width/2, imageIcon0.size.height/2)];
@@ -37,12 +37,12 @@
     [imageIcon release];
     
     UILabel *labelName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 10, 5, 100.0f, 20.0f)];
-    [labelName setText:@"齐天大圣"];
+    [labelName setText:@""];
     [self addSubview:labelName];
     [labelName release];
     
     UILabel *labelMSG = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(imageIcon.frame) + CGRectGetWidth(imageIcon.frame)+ 10, 25, 200, 20)];
-    [labelMSG setText:@"曾新想您借《大闹天空》"];
+    [labelMSG setText:[dict objectForKey:@"content"]];
     [labelMSG setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
     [labelMSG setFont:[UIFont systemFontOfSize:12]];
     [self addSubview:labelMSG];

@@ -26,8 +26,9 @@
     // Configure the view for the selected state
 }
 
--(void)creatCell:(NSInteger) itype{
+-(void)creatCell:(NSDictionary *) dict{
 
+    NSInteger itype = [[dict objectForKey:@"index"] intValue];
     if (itype%2 == 0) {
         
     
@@ -39,14 +40,14 @@
         
         
     UILabel *labelMSG = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, 20.0f, 200.0f, 40.0f)];
-    [labelMSG setText:@"今天老地方见？"];
+    [labelMSG setText:[dict objectForKey:@"content"]];
     [labelMSG setBackgroundColor:[UIColor clearColor]];
     [self addSubview:labelMSG];
     RELEASE(labelMSG);
     
     UILabel *labelTime = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelMSG.frame) + CGRectGetMinX(labelMSG.frame) - 30, 10.0f+ 5, 150.0f, 40.0f)];
         [labelTime setBackgroundColor:[UIColor clearColor]];
-    [labelTime setText:@"2014-02-10 16:30"];
+    [labelTime setText:[dict objectForKey:@"date"]];
         [labelTime setFont:[UIFont systemFontOfSize:13.0f]];
     [self addSubview:labelTime];
     [labelTime release];
@@ -55,7 +56,7 @@
        
 
         UILabel *labelMSG = [[UILabel alloc]initWithFrame:CGRectMake(10.0f, 20.0f - 5, 200.0f, 40.0f)];
-        [labelMSG setText:@"2014-02-10 16:30"];
+        [labelMSG setText:[dict objectForKey:@"date"]];
         [labelMSG setFont:[UIFont systemFontOfSize:13.0f]];
         [labelMSG setBackgroundColor:[UIColor clearColor]];
         [self addSubview:labelMSG];
@@ -67,7 +68,7 @@
         RELEASE(imageBG);
         
         UILabel *labelTime = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelMSG.frame)-50 + CGRectGetMinX(labelMSG.frame), 10.0f, 100.0f, 40.0f)];
-        [labelTime setText:@"不见不散。。"];
+        [labelTime setText:[dict objectForKey:@"content"]];
         [self addSubview:labelTime];
         [labelTime release];
         [labelTime setBackgroundColor:[UIColor clearColor]];

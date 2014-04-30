@@ -528,4 +528,18 @@
 //order_confirm
 
 +(NSMutableDictionary *)order_confirm_msg_id:(NSString *)msg_id type:(NSString *)type;
+
+//message_send
++(NSMutableDictionary *)message_send_userid:(NSString *)userid content:(NSString *)content type:(NSString *)type mid:(NSString *)mid;
+
+
+//order_list
+
++(NSMutableDictionary *)order_list_kind:(NSString *)kind page:(NSString *)page num:(NSString *)num;
+
+//order_detail
++(NSMutableDictionary *)order_detail_order_id:(NSString *)order_id;
+
+//message_list
++(NSMutableDictionary *)message_list_page:(NSString *)page num:(NSString *)page;
 @end

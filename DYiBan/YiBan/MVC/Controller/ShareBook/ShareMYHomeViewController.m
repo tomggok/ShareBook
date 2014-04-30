@@ -14,11 +14,16 @@
 #import "ShareBookCenterViewController.h"
 #import "ShareBookMyQuanCenterViewController.h"
 #import "ShareBookFriendListViewController.h"
-
-
+#import "JSONKit.h"
+#import "JSON.h"
+#import "ShareBookApplyViewController.h"
 #define  RIGHTVIEWTAG 111
 
-@interface ShareMYHomeViewController ()
+@interface ShareMYHomeViewController (){
+
+    NSMutableArray *arrayResult;
+    DYBUITableView  *tbDataBank1;
+}
 
 @end
 
@@ -68,9 +73,9 @@
 //        arrayFoodList = [[NSArray alloc]init];
 //        arrayAddorder = [[NSMutableArray alloc]init];
         [self.view setBackgroundColor:[UIColor whiteColor]];
-        
-//        MagicRequest *request = [DYBHttpMethod wosKitchenInfo_foodlist:[_dictInfo objectForKey:@"kitchenIndex"]sAlert:YES receive:self];
-//        [request setTag:3];
+        arrayResult = [[NSMutableArray alloc]init];
+        MagicRequest *request = [DYBHttpMethod message_list_page:@"1" num:@"10000" sAlert:YES receive:self];
+        [request setTag:1];
         
         UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 44, 320.0f, self.view.frame.size.height - 44)];
         [viewBG setBackgroundColor:[UIColor whiteColor]];
@@ -81,7 +86,7 @@
         UIImage *image = [UIImage imageNamed:@"menu_inactive"];
         
         
-       DYBUITableView  *tbDataBank1 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, self.headHeight, 320.0f , self.view.frame.size.height - self.headHeight  ) isNeedUpdate:YES];
+       tbDataBank1 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, self.headHeight, 320.0f , self.view.frame.size.height - self.headHeight  ) isNeedUpdate:YES];
         [tbDataBank1 setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:tbDataBank1];
         [tbDataBank1 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
@@ -115,7 +120,7 @@ static NSString *cellName = @"cellName";
         NSNumber *s;
         
         //        if ([_section intValue] == 0) {
-        s = [NSNumber numberWithInteger:10];
+        s = [NSNumber numberWithInteger:arrayResult.count];
         //        }else{
         //            s = [NSNumber numberWithInteger:[_arrStatusData count]];
         //        }
@@ -147,7 +152,7 @@ static NSString *cellName = @"cellName";
 //        NSDictionary *dictInfoFood = Nil;
 //        [cell creatCell:dictInfoFood];
         DLogInfo(@"%d", indexPath.section);
-        
+        [cell creatCell:[arrayResult objectAtIndex:indexPath.row]];
         
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [signal setReturnValue:cell];
@@ -156,7 +161,10 @@ static NSString *cellName = @"cellName";
         NSDictionary *dict = (NSDictionary *)[signal object];
         NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
         
+        ShareBookApplyViewController *apple = [[ShareBookApplyViewController alloc]init];
         
+        apple.mi = [[arrayResult objectAtIndex:indexPath.row] objectForKey:@"order_id"];
+        [self.drNavigationController pushViewController:apple animated:YES];
         
         
     }else if([signal is:[MagicUITableView TABLESCROLLVIEWDIDSCROLL]])/*滚动*/{
@@ -272,4 +280,65 @@ static NSString *cellName = @"cellName";
 //       
 //    }
 //}
+
+
+
+#pragma mark- 只接受HTTP信号
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
+{
+    
+    if ([request succeed])
+    {
+        //        JsonResponse *response = (JsonResponse *)receiveObj;
+        if (request.tag == 1) {
+            
+            
+            NSDictionary *dict = [request.responseString JSONValue];
+            
+            if (dict) {
+                
+                if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
+                    
+                    JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
+                  
+                    arrayResult = [[NSMutableArray alloc]initWithArray:[[dict objectForKey:@"data"] objectForKey:@"list"]];
+                    
+                    [tbDataBank1 reloadData];
+                }else{
+                    NSString *strMSG = [dict objectForKey:@"message"];
+                    
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+                    
+                    
+                }
+            }
+        }else if(request.tag == 3){
+            
+            NSDictionary *dict = [request.responseString JSONValue];
+            
+            if (dict) {
+                BOOL result = [[dict objectForKey:@"result"] boolValue];
+                if (!result) {
+                    
+                   
+                }
+                else{
+                    NSString *strMSG = [dict objectForKey:@"message"];
+                    
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+                    
+                    
+                }
+            }
+            
+        } else{
+            NSDictionary *dict = [request.responseString JSONValue];
+            NSString *strMSG = [dict objectForKey:@"message"];
+            
+            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+            
+            
+        }
+    }
+}
 @end

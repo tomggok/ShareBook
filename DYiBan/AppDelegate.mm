@@ -1,3 +1,4 @@
+
 //
 //  AppDelegate.m
 //  DYiBan
@@ -23,7 +24,7 @@
 #import "DYBEmployInfoViewController.h"
 #import <TencentOpenAPI/TencentOAuth.h>
 
-
+#import "ShareBookApplyViewController.h"
 #define IOS7_OR_LATER    ( [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending )
 @implementation AppDelegate
 {
@@ -169,13 +170,19 @@
         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
         [[UIApplication sharedApplication] cancelAllLocalNotifications];
-        if (SHARED.isLogin)
-        {
-            NSString *mtType = [[apsDict objectForKey:@"mt"] description];
-            if ([mtType isEqualToString:@"8"])
+//        if (SHARED.isLogin)
+//        {
+            NSString *mtType = [[userInfo objectForKey:@"mt"] description];
+            if ([mtType isEqualToString:@"2"])
             {//有私信
-                MagicRequest *request = [DYBHttpMethod user_detail:[apsDict objectForKey:@"ui"] isAlert:YES receive:self];
-                [request setTag:2];
+                
+                NSString *mi = [userInfo objectForKey:@"mi"];
+                ShareBookApplyViewController * apply = [[ShareBookApplyViewController alloc]init];
+                apply.mi = mi;
+                [self.navi pushViewController:apply animated:YES];
+                
+//                MagicRequest *request = [DYBHttpMethod user_detail:[apsDict objectForKey:@"ui"] isAlert:YES receive:self];
+//                [request setTag:2];
             }else if([mtType isEqualToString:@"5"] )
             {//评价
                 DYBCommentMeViewController *vc = [[DYBCommentMeViewController alloc] init];
@@ -204,7 +211,16 @@
                 [_navi pushViewController:vc animated:YES];
                 RELEASE(vc);
             }
-        }
+//        }
+    }else {
+    
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"GETMESSAGE" object:userInfo userInfo:userInfo];
+    
+        
+        
+        
+    
+    
     }
     
 }
