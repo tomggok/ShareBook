@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ShareBookApplyCell : UITableViewCell
--(void)creatCell:(NSInteger) itype;
-
+-(void)creatCell:(NSDictionary *) dict;
 @end

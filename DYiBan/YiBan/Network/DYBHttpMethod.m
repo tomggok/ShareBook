@@ -1790,22 +1790,58 @@
 }
 
 
+<<<<<<< HEAD
 +(MagicRequest *)message_contacts_userid:(NSString *)userid page:(NSString *)page num:(NSString *)num sAlert:(BOOL)isAlert receive:(id)receive{
 
     NSMutableDictionary *dict = [DYBHttpInterface message_contacts_userid:userid page:page num:num];
+=======
++(MagicRequest *)message_send_userid:(NSString *)userid content:(NSString *)content type:(NSString *)type mid:(NSString *)mid sAlert:(BOOL)isAlert receive:(id)receive{
+
+
+    NSMutableDictionary *dict = [DYBHttpInterface message_send_userid:userid content:content type:type mid:mid];
+>>>>>>> FETCH_HEAD
     DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
     MagicRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
     return dre;
 
 }
 
+<<<<<<< HEAD
 +(MagicRequest *)message_send_userid:(NSString *)userid content:(NSString *)content type:(NSString *)type mid:(NSString *)mid sAlert:(BOOL)isAlert receive:(id)receive{
 
     NSMutableDictionary *dict = [DYBHttpInterface message_send_userid:userid content:content type:type mid:mid];
+=======
+
++(MagicRequest *)order_list_kind:(NSString *)kind page:(NSString *)page num:(NSString *)num sAlert:(BOOL)isAlert receive:(id)receive{
+
+    NSMutableDictionary *dict = [DYBHttpInterface order_list_kind:kind page:page num:num];
+>>>>>>> FETCH_HEAD
     DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
     MagicRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
     return dre;
 
+<<<<<<< HEAD
+=======
+
+}
+
++(MagicRequest *)order_detail_order_id:(NSString *)order_id sAlert:(BOOL)isAlert receive:(id)receive{
+
+    NSMutableDictionary *dict = [DYBHttpInterface order_detail_order_id:order_id];
+    DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
+    MagicRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
+    return dre;
+
+}
+
++(MagicRequest *)message_list_page:(NSString *)page num:(NSString *)num  sAlert:(BOOL)isAlert receive:(id)receive{
+
+
+    NSMutableDictionary *dict = [DYBHttpInterface message_list_page:page num:num];
+    DYBRequest *request = AUTORELEASE([[DYBRequest alloc] init]);
+    MagicRequest *dre = [request DYBGET:dict isAlert:isAlert receive:receive];
+    return dre;
+>>>>>>> FETCH_HEAD
 }
 @end
 

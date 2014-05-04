@@ -13,6 +13,9 @@
 #import "CALayer+Custom.h"
 #import "ShareBookMoreAddrViewController.h"
 #import "NSDate+Helpers.h"
+#import "JSONKit.h"
+#import "JSON.h"
+
 
 #import "JSONKit.h"
 #import "JSON.h"
@@ -21,15 +24,28 @@
 
     UILabel *labelTime1;
     DYBInputView *_phoneInputNameRSend;
+    
+    DYBInputView *_phoneInputNameR;
     BOOL bKeyShow;
     UIDatePicker *datePicker;
+<<<<<<< HEAD
     NSString *order_id;
+=======
+    DYBUITableView * tbDataBank11;
+    NSMutableArray *arrayDate;
+    
+    NSDictionary *dictRR;
+>>>>>>> FETCH_HEAD
 }
 
 @end
 
 @implementation ShareBookApplyViewController
+<<<<<<< HEAD
 @synthesize dictInfo;
+=======
+@synthesize dictInfo,mi = _mi;
+>>>>>>> FETCH_HEAD
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -63,6 +79,7 @@
         //        [self.rightButton setHidden:YES];
         [self.headview setTitle:@"申请借阅"];
         
+       
         
         //        [self.leftButton setHidden:YES];
         [self setButtonImage:self.leftButton setImage:@"icon_retreat"];
@@ -73,6 +90,21 @@
     }
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
+//        book_loan_pub_id
+        
+        
+//        order_detail_order_id
+        
+        if (_mi) {
+            
+            MagicRequest *request = [DYBHttpMethod order_detail_order_id:_mi sAlert:YES receive:self];
+            [request setTag:3];
+
+        }
+       
+        
+        
+         arrayDate = [[NSMutableArray alloc]init];
 //        [self.rightButton setHidden:YES];
         
         order_id = [[NSString alloc]init];
@@ -83,100 +115,107 @@
         bKeyShow = NO;
         [self.view setBackgroundColor:[MagicCommentMethod colorWithHex:@"f0f0f0"]];
         
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doAddMessage:) name:@"GETMESSAGE" object:nil];
+        
         if([[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0) {
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
         }
         else{
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillShowNotification object:nil];
         };
+        if (!_mi) {
+            
+            
+            UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0, 320.0f, self.view.frame.size.height)];
+            [viewBG setBackgroundColor:[MagicCommentMethod colorWithHex:@"f0f0f0"]];
+            [self.view addSubview:viewBG];
+            RELEASE(viewBG);
+            
+            
+            UIImage *imageIcon = [UIImage imageNamed:@"defualt_book"];
+            UIImageView *imageBook = [[UIImageView alloc]initWithFrame:CGRectMake(5.0f, 5.0f + self.headHeight, imageIcon.size.width/2, imageIcon.size.height/2)];
+            [imageBook setBackgroundColor:[UIColor clearColor]];
+            [imageBook setImage:[UIImage imageNamed:@"defualt_book"]];
+            [viewBG addSubview:imageBook];
+            [imageBook release];
+            
+            UILabel *labelName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, 5.0f + self.headHeight, 200, 20)];
+            [labelName setText:@"三生三室枕上书"];
+            [viewBG addSubview:labelName];
+            [labelName release];
+            
+            UILabel *labelAuther = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, CGRectGetMinY(labelName.frame) + CGRectGetHeight(labelName.frame) + 0, 200, 20)];
+            [labelAuther setText:[ NSString stringWithFormat:@"作者：曾新"]];
+            [labelAuther setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
+            
+            [labelAuther setFont:[UIFont systemFontOfSize:15]];
+            [viewBG addSubview:labelAuther];
+            [labelAuther release];
+            
+            UILabel *labelPublic = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, CGRectGetMinY(labelAuther.frame) + CGRectGetHeight(labelAuther.frame) + 0, 200, 20)];
+            [labelPublic setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
+            [labelPublic setText:[NSString stringWithFormat:@"出版社：中国民族艺术出版社"]];
+            [viewBG addSubview:labelPublic];
+            [labelPublic setFont:[UIFont systemFontOfSize:14]];
+            [labelPublic release];
+            
+            
+            UILabel *labelTime = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, CGRectGetMinY(labelPublic.frame) + CGRectGetHeight(labelPublic.frame) + 0, 200, 20)];
+            [labelTime setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
+            [labelTime setText:[NSString stringWithFormat:@"借阅时间："]];
+            [viewBG addSubview:labelTime];
+            [labelTime setFont:[UIFont systemFontOfSize:14]];
+            [labelTime release];
+            
+            labelTime1 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelTime.frame) + CGRectGetMinX(labelTime.frame) -130, CGRectGetMinY(labelPublic.frame) + CGRectGetHeight(labelPublic.frame) + 0, 200, 20)];
+            [labelTime1 setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
+            [labelTime1 setText:[NSString stringWithFormat:@"2014-02-20 15：30"]];
+            [viewBG addSubview:labelTime1];
+            [labelTime1 setFont:[UIFont systemFontOfSize:14]];
+            [labelTime1 release];
+            
+            UIButton *btnChooseTime = [[UIButton alloc]initWithFrame:CGRectMake(280.0f, CGRectGetMinY(labelPublic.frame) + CGRectGetHeight(labelPublic.frame) + 0, 20.0f, 20.0f)];
+            [btnChooseTime setBackgroundColor:[UIColor clearColor]];
+            [btnChooseTime setImage:[UIImage imageNamed:@"calendar"] forState:UIControlStateNormal];
+            [btnChooseTime addTarget:self action:@selector(doChooseTime) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:btnChooseTime];
+            RELEASE(btnChooseTime);
+            
+            
+            
+            _phoneInputNameR = [[DYBInputView alloc]initWithFrame:CGRectMake( 5, CGRectGetMinY(btnChooseTime.frame) + CGRectGetHeight(btnChooseTime.frame) + 10, 250, 40) placeText:@"长宁区天山路145号" textType:0];
+            [_phoneInputNameR.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[UIColor blackColor] CGColor]];
+            //        [_phoneInputNameR.nameField setText:@"1"];
+            [_phoneInputNameR.nameField setTextColor:[UIColor blackColor]];
+            [_phoneInputNameR setBackgroundColor:[UIColor clearColor]];
+            [self.view addSubview:_phoneInputNameR];
+            RELEASE(_phoneInputNameR);
+            
+            
+            UIButton *btnMoreAddr = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(_phoneInputNameR.frame) + CGRectGetMinX(_phoneInputNameR.frame)+ 5 , CGRectGetMinY(btnChooseTime.frame) + CGRectGetHeight(btnChooseTime.frame)+ 10, 55, 30)];
+            [btnMoreAddr addTarget:self action:@selector(doMoreAddr) forControlEvents:UIControlEventTouchUpInside];
+            
+            [btnMoreAddr setImage:[UIImage imageNamed:@"top_bt_bg"] forState:UIControlStateNormal];
+            [btnMoreAddr setBackgroundColor:[UIColor clearColor]];
+            [self.view addSubview:btnMoreAddr];
+            RELEASE(btnMoreAddr);
+            [self addlabel_title:@"选地址" frame:btnMoreAddr.frame view:btnMoreAddr];
+            
+            tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMinY(_phoneInputNameR.frame) + CGRectGetHeight(_phoneInputNameR.frame) + 10, 320.0f, self.view.frame.size.height -CGRectGetMinY(_phoneInputNameR.frame) + CGRectGetHeight(_phoneInputNameR.frame) + 10  ) isNeedUpdate:YES];
+            [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];
+            [self.view addSubview:tbDataBank11];
+            [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
+            RELEASE(tbDataBank11);
+            [tbDataBank11 setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+            
+            [self creatDownBar];
 
-        
-        UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0, 320.0f, self.view.frame.size.height)];
-        [viewBG setBackgroundColor:[MagicCommentMethod colorWithHex:@"f0f0f0"]];
-        [self.view addSubview:viewBG];
-        RELEASE(viewBG);
-        
-        
-        UIImage *imageIcon = [UIImage imageNamed:@"defualt_book"];
-        UIImageView *imageBook = [[UIImageView alloc]initWithFrame:CGRectMake(5.0f, 5.0f + self.headHeight, imageIcon.size.width/2, imageIcon.size.height/2)];
-        [imageBook setBackgroundColor:[UIColor clearColor]];
-        [imageBook setImage:[UIImage imageNamed:@"defualt_book"]];
-        [viewBG addSubview:imageBook];
-        [imageBook release];
-        
-        UILabel *labelName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, 5.0f + self.headHeight, 200, 20)];
-        [labelName setText:@"三生三室枕上书"];
-        [viewBG addSubview:labelName];
-        [labelName release];
-        
-        UILabel *labelAuther = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, CGRectGetMinY(labelName.frame) + CGRectGetHeight(labelName.frame) + 0, 200, 20)];
-        [labelAuther setText:[ NSString stringWithFormat:@"作者：曾新"]];
-        [labelAuther setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
-        
-        [labelAuther setFont:[UIFont systemFontOfSize:15]];
-        [viewBG addSubview:labelAuther];
-        [labelAuther release];
-        
-        UILabel *labelPublic = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, CGRectGetMinY(labelAuther.frame) + CGRectGetHeight(labelAuther.frame) + 0, 200, 20)];
-        [labelPublic setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
-        [labelPublic setText:[NSString stringWithFormat:@"出版社：中国民族艺术出版社"]];
-        [viewBG addSubview:labelPublic];
-        [labelPublic setFont:[UIFont systemFontOfSize:14]];
-        [labelPublic release];
-        
- 
-        UILabel *labelTime = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, CGRectGetMinY(labelPublic.frame) + CGRectGetHeight(labelPublic.frame) + 0, 200, 20)];
-        [labelTime setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
-        [labelTime setText:[NSString stringWithFormat:@"借阅时间："]];
-        [viewBG addSubview:labelTime];
-        [labelTime setFont:[UIFont systemFontOfSize:14]];
-        [labelTime release];
-        
-        labelTime1 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelTime.frame) + CGRectGetMinX(labelTime.frame) -130, CGRectGetMinY(labelPublic.frame) + CGRectGetHeight(labelPublic.frame) + 0, 200, 20)];
-        [labelTime1 setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
-        [labelTime1 setText:[NSString stringWithFormat:@"2014-02-20 15：30"]];
-        [viewBG addSubview:labelTime1];
-        [labelTime1 setFont:[UIFont systemFontOfSize:14]];
-        [labelTime1 release];
-        
-        UIButton *btnChooseTime = [[UIButton alloc]initWithFrame:CGRectMake(280.0f, CGRectGetMinY(labelPublic.frame) + CGRectGetHeight(labelPublic.frame) + 0, 20.0f, 20.0f)];
-        [btnChooseTime setBackgroundColor:[UIColor clearColor]];
-        [btnChooseTime setImage:[UIImage imageNamed:@"calendar"] forState:UIControlStateNormal];
-        [btnChooseTime addTarget:self action:@selector(doChooseTime) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:btnChooseTime];
-        RELEASE(btnChooseTime);
+            
+            
+        }
         
         
         
-        DYBInputView *_phoneInputNameR = [[DYBInputView alloc]initWithFrame:CGRectMake( 5, CGRectGetMinY(btnChooseTime.frame) + CGRectGetHeight(btnChooseTime.frame) + 10, 250, 40) placeText:@"长宁区天山路145号" textType:0];
-        [_phoneInputNameR.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[UIColor blackColor] CGColor]];
-        //        [_phoneInputNameR.nameField setText:@"1"];
-        [_phoneInputNameR.nameField setTextColor:[UIColor blackColor]];
-        [_phoneInputNameR setBackgroundColor:[UIColor clearColor]];
-        [self.view addSubview:_phoneInputNameR];
-        RELEASE(_phoneInputNameR);
-        
-        
-        UIButton *btnMoreAddr = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(_phoneInputNameR.frame) + CGRectGetMinX(_phoneInputNameR.frame)+ 5 , CGRectGetMinY(btnChooseTime.frame) + CGRectGetHeight(btnChooseTime.frame)+ 10, 55, 30)];
-        [btnMoreAddr addTarget:self action:@selector(doMoreAddr) forControlEvents:UIControlEventTouchUpInside];
-
-        [btnMoreAddr setImage:[UIImage imageNamed:@"top_bt_bg"] forState:UIControlStateNormal];
-        [btnMoreAddr setBackgroundColor:[UIColor clearColor]];
-        [self.view addSubview:btnMoreAddr];
-        RELEASE(btnMoreAddr);
-        [self addlabel_title:@"选地址" frame:btnMoreAddr.frame view:btnMoreAddr];
-
-        
-        
-        
-        DYBUITableView * tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMinY(_phoneInputNameR.frame) + CGRectGetHeight(_phoneInputNameR.frame) + 10, 320.0f, self.view.frame.size.height -CGRectGetMinY(_phoneInputNameR.frame) + CGRectGetHeight(_phoneInputNameR.frame) + 10  ) isNeedUpdate:YES];
-        [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];
-        [self.view addSubview:tbDataBank11];
-        [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
-        RELEASE(tbDataBank11);
-        [tbDataBank11 setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        
-        [self creatDownBar];
         
         
     }else if ([signal is:[MagicViewController DID_APPEAR]]) {
@@ -186,6 +225,132 @@
         
         
     }
+}
+
+
+
+
+-(void)creatView:(NSDictionary *)dict{
+    
+    
+    NSDictionary *dicttt = [[dict objectForKey:@"order"] objectForKey:@"book"];
+    UIView *viewBG = [[UIView alloc]initWithFrame:CGRectMake(0.0f, self.headHeight, 320.0f, self.view.frame.size.height)];
+    [viewBG setBackgroundColor:[MagicCommentMethod colorWithHex:@"f0f0f0"]];
+    [self.view addSubview:viewBG];
+    RELEASE(viewBG);
+    
+    
+    UIImage *imageIcon = [UIImage imageNamed:@"defualt_book"];
+    UIImageView *imageBook = [[UIImageView alloc]initWithFrame:CGRectMake(5.0f, 5.0f , imageIcon.size.width/2, imageIcon.size.height/2)];
+    [imageBook setBackgroundColor:[UIColor clearColor]];
+    [imageBook setImage:[UIImage imageNamed:@"defualt_book"]];
+    [viewBG addSubview:imageBook];
+    [imageBook release];
+    
+    UILabel *labelName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, 5.0f + 0, 200, 20)];
+    [labelName setText:[dicttt objectForKey:@"bood_name"]];
+    [viewBG addSubview:labelName];
+    [labelName release];
+    
+    UILabel *labelAuther = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, CGRectGetMinY(labelName.frame) + CGRectGetHeight(labelName.frame) + 0, 200, 20)];
+    [labelAuther setText:[ NSString stringWithFormat:@"作者：%@",[dicttt objectForKey:@"book_author"]]];
+    [labelAuther setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
+    
+    [labelAuther setFont:[UIFont systemFontOfSize:15]];
+    [viewBG addSubview:labelAuther];
+    [labelAuther release];
+    
+    UILabel *labelPublic = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, CGRectGetMinY(labelAuther.frame) + CGRectGetHeight(labelAuther.frame) + 0, 200, 20)];
+    [labelPublic setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
+    [labelPublic setText:[NSString stringWithFormat:@"出版社：%@",[dicttt objectForKey:@"book_author"]]];
+    [viewBG addSubview:labelPublic];
+    [labelPublic setFont:[UIFont systemFontOfSize:14]];
+    [labelPublic release];
+    
+    
+    UILabel *labelTime = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(imageBook.frame) + CGRectGetMinX(imageBook.frame) + 5, CGRectGetMinY(labelPublic.frame) + CGRectGetHeight(labelPublic.frame) + 0, 200, 20)];
+    [labelTime setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
+    [labelTime setText:[NSString stringWithFormat:@"借阅时间："]];
+    [viewBG addSubview:labelTime];
+    [labelTime setFont:[UIFont systemFontOfSize:14]];
+    [labelTime release];
+    
+    labelTime1 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(labelTime.frame) + CGRectGetMinX(labelTime.frame) -130, CGRectGetMinY(labelPublic.frame) + CGRectGetHeight(labelPublic.frame) + 0, 200, 20)];
+    [labelTime1 setTextColor:[UIColor colorWithRed:82.0f/255 green:82.0f/255 blue:82.0f/255 alpha:1.0f]];
+    [labelTime1 setText:[NSString stringWithFormat:@"2014-02-20 15：30"]];
+    [viewBG addSubview:labelTime1];
+    [labelTime1 setFont:[UIFont systemFontOfSize:14]];
+    [labelTime1 release];
+    
+    UIButton *btnChooseTime = [[UIButton alloc]initWithFrame:CGRectMake(280.0f, CGRectGetMinY(labelPublic.frame) + CGRectGetHeight(labelPublic.frame) + self.headHeight, 20.0f, 20.0f)];
+    [btnChooseTime setBackgroundColor:[UIColor clearColor]];
+    [btnChooseTime setImage:[UIImage imageNamed:@"calendar"] forState:UIControlStateNormal];
+    [btnChooseTime addTarget:self action:@selector(doChooseTime) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnChooseTime];
+    RELEASE(btnChooseTime);
+    
+    
+    
+    _phoneInputNameR = [[DYBInputView alloc]initWithFrame:CGRectMake( 5, CGRectGetMinY(btnChooseTime.frame) + CGRectGetHeight(btnChooseTime.frame) + 10 , 250, 40) placeText:@"长宁区天山路145号" textType:0];
+    [_phoneInputNameR.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[UIColor blackColor] CGColor]];
+    //        [_phoneInputNameR.nameField setText:@"1"];
+    [_phoneInputNameR.nameField setDelegate:self];
+    [_phoneInputNameR.nameField setTextColor:[UIColor blackColor]];
+    [_phoneInputNameR setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:_phoneInputNameR];
+    RELEASE(_phoneInputNameR);
+    
+    
+    UIButton *btnMoreAddr = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(_phoneInputNameR.frame) + CGRectGetMinX(_phoneInputNameR.frame)+ 5 , CGRectGetMinY(btnChooseTime.frame) + CGRectGetHeight(btnChooseTime.frame)+ 10, 55, 30)];
+    [btnMoreAddr addTarget:self action:@selector(doMoreAddr) forControlEvents:UIControlEventTouchUpInside];
+    
+    [btnMoreAddr setImage:[UIImage imageNamed:@"top_bt_bg"] forState:UIControlStateNormal];
+    [btnMoreAddr setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:btnMoreAddr];
+    RELEASE(btnMoreAddr);
+    [self addlabel_title:@"选地址" frame:btnMoreAddr.frame view:btnMoreAddr];
+    
+    
+    NSDictionary *dictTime = [[dict objectForKey:@"charts"] objectAtIndex:0];
+    NSString *strDate = [dictTime objectForKey:@"time"];
+    
+    NSString *content = [dictTime objectForKey:@"content"];
+    
+    NSString *index = @"2";
+    
+    NSDictionary *dict44 = [[NSDictionary alloc]initWithObjectsAndKeys:strDate,@"date",content,@"content",index, @"index",nil];
+    
+    [arrayDate addObject:dict44];
+    
+    
+    tbDataBank11 = [[DYBUITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMinY(_phoneInputNameR.frame) + CGRectGetHeight(_phoneInputNameR.frame) + 10, 320.0f, self.view.frame.size.height -CGRectGetMinY(_phoneInputNameR.frame) + CGRectGetHeight(_phoneInputNameR.frame) + 10  ) isNeedUpdate:YES];
+    [tbDataBank11 setBackgroundColor:[UIColor whiteColor]];
+    [self.view addSubview:tbDataBank11];
+    [tbDataBank11 setSeparatorColor:[UIColor colorWithRed:78.0f/255 green:78.0f/255 blue:78.0f/255 alpha:1.0f]];
+    RELEASE(tbDataBank11);
+    [tbDataBank11 setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
+    [self creatDownBar];
+
+    [tbDataBank11 reloadData];
+    
+}
+
+-(void)doAddMessage:(NSNotification *)sender{
+
+    
+//initWithObjectsAndKeys:strDate,@"date",content,@"content",index, @"index",nil];
+    
+
+    
+    
+    NSDictionary *dict = [sender object];
+    NSString *centent = [dict objectForKey:@"alert"];
+    NSString *date = [self stringFromDate:[NSDate date]];
+    NSString *type = @"2";
+    NSDictionary *dictt = [[NSDictionary alloc]initWithObjectsAndKeys:centent,@"content",date,@"date",type,@"index", nil];
+    [arrayDate addObject:dictt];
+    [tbDataBank11 reloadData];
 }
 
 +(NSDate*) convertDateFromString:(NSString*)uiDate
@@ -376,6 +541,7 @@
     _phoneInputNameRSend = [[DYBInputView alloc]initWithFrame:CGRectMake(10.0f, 10.0f, 250.0f, 30.0f) placeText:@"输入内容" textType:0];
     [_phoneInputNameRSend.layer AddborderByIsMasksToBounds:YES cornerRadius:4 borderWidth:1 borderColor:[[UIColor blackColor] CGColor]];
     //        [_phoneInputNameR.nameField setText:@"1"];
+    [_phoneInputNameRSend.nameField setDelegate:self];
     [_phoneInputNameRSend.nameField setTextColor:[UIColor blackColor]];
     [_phoneInputNameRSend setBackgroundColor:[UIColor clearColor]];
     [viewBG addSubview:_phoneInputNameRSend];
@@ -393,10 +559,26 @@
 }
 
 -(void)doSend{
+<<<<<<< HEAD
 
 //    MagicRequest *request = [DYBHttpMethod message_send_userid:<#(NSString *)#> content:@"" type: mid: sAlert:YES receive:self];
 //    [request setTag:3];
 
+=======
+    
+    if (_mi) {
+        NSDictionary *dictTime = [[dictRR objectForKey:@"charts"] objectAtIndex:0];
+        NSString *strDate = [dictTime objectForKey:@"user_id"];
+        
+        MagicRequest *request = [DYBHttpMethod message_send_userid:strDate content:_phoneInputNameRSend.nameField.text type:@"1" mid:@"0" sAlert:YES receive:self];
+        //    MagicRequest *request = [DYBHttpMethod book_loan_pub_id:[dictInfo objectForKey:@"pub_id"] content:_phoneInputNameRSend.nameField.text loan_time:[self stringFromDate:[NSDate date]] sAlert:YES receive:self];
+        [request setTag:1];
+    }else{
+    MagicRequest *request = [DYBHttpMethod message_send_userid:[dictInfo objectForKey:@"user_id"] content:_phoneInputNameRSend.nameField.text type:@"1" mid:@"0" sAlert:YES receive:self];
+//    MagicRequest *request = [DYBHttpMethod book_loan_pub_id:[dictInfo objectForKey:@"pub_id"] content:_phoneInputNameRSend.nameField.text loan_time:[self stringFromDate:[NSDate date]] sAlert:YES receive:self];
+    [request setTag:1];
+    }
+>>>>>>> FETCH_HEAD
     
     [_phoneInputNameRSend.nameField resignFirstResponder];
 }
@@ -414,7 +596,7 @@ static NSString *cellName = @"cellName";
         NSNumber *s;
         
         //        if ([_section intValue] == 0) {
-        s = [NSNumber numberWithInteger:10];
+        s = [NSNumber numberWithInteger:arrayDate.count];
         //        }else{
         //            s = [NSNumber numberWithInteger:[_arrStatusData count]];
         //        }
@@ -444,7 +626,7 @@ static NSString *cellName = @"cellName";
         ShareBookApplyCell *cell = [[ShareBookApplyCell alloc]init];
         
         
-        [cell creatCell:indexPath.row];
+        [cell creatCell:[arrayDate objectAtIndex:indexPath.row]];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
         
@@ -537,6 +719,10 @@ static NSString *cellName = @"cellName";
     
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> FETCH_HEAD
 #pragma mark- 只接受HTTP信号
 - (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
@@ -553,8 +739,29 @@ static NSString *cellName = @"cellName";
                 
                 if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
                     
+<<<<<<< HEAD
                     JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
                     
+=======
+                    
+                    NSString *strDate = [self stringFromDate:[NSDate date]];
+                    
+                    NSString *content = _phoneInputNameRSend.nameField.text;
+                    
+                    NSString *index = @"1";
+                    
+                    NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:strDate,@"date",content,@"content",index, @"index",nil];
+                    
+                    [arrayDate addObject:dict];
+                    
+                    
+                    
+                    [tbDataBank11 reloadData];
+                    [_phoneInputNameRSend.nameField setText:@""];
+
+//                    JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
+//                    
+>>>>>>> FETCH_HEAD
 //                    SHARED.sessionID = response.sessID;
 //                    
 //                    self.DB.FROM(USERMODLE)
@@ -564,10 +771,17 @@ static NSString *cellName = @"cellName";
 //                    
 //                    SHARED.userId = [[dict objectForKey:@"data"] objectForKey:@"user_id"]; //设置userid 全局变量
 //                    DLogInfo(@"SHARED.userId -- >%@",SHARED.userId);
+<<<<<<< HEAD
                     
                     // 注册推送
 //                    [APService setTags:nil alias:SHARED.userId callbackSelector:nil object:nil];
                     
+=======
+//                    
+//                    // 注册推送
+//                    [APService setTags:nil alias:SHARED.userId callbackSelector:nil object:nil];
+//                    
+>>>>>>> FETCH_HEAD
 //                    
 //                    DYBUITabbarViewController *vc = [[DYBUITabbarViewController sharedInstace] init:self];
 //                    
@@ -589,6 +803,14 @@ static NSString *cellName = @"cellName";
                 BOOL result = [[dict objectForKey:@"result"] boolValue];
                 if (!result) {
                     
+<<<<<<< HEAD
+=======
+                    
+                    dictRR = [[NSDictionary alloc]initWithDictionary:[dict objectForKey:@"data"]];
+                    
+                    [self creatView:dictRR];
+                    
+>>>>>>> FETCH_HEAD
 //                    UIButton *btn = (UIButton *)[UIButton buttonWithType:UIButtonTypeCustom];
 //                    [btn setTag:10];
 //                    [self doChange:btn];
@@ -613,4 +835,34 @@ static NSString *cellName = @"cellName";
     }
 }
 
+<<<<<<< HEAD
+=======
+
+- (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
+{
+    if ([signal is:[DYBBaseViewController BACKBUTTON]])
+    {
+        [self.drNavigationController popViewControllerAnimated:YES];
+        
+    }else if ([signal is:[DYBBaseViewController NEXTSTEPBUTTON]]){
+        
+        
+    
+        MagicRequest *request = [DYBHttpMethod book_loan_pub_id:[dictInfo objectForKey:@"pub_id"] content:_phoneInputNameRSend.nameField.text loan_time:[self stringFromDate:[NSDate date]] sAlert:YES receive:self];
+        [request setTag:2];
+        
+
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+
+    if ([textField isEqual:[_phoneInputNameRSend nameField]]) {
+        [textField resignFirstResponder];
+        
+        [self doSend];
+    }
+}
+
+>>>>>>> FETCH_HEAD
 @end

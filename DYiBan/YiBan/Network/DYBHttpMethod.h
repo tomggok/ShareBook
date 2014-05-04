@@ -496,8 +496,21 @@ sAlert:(BOOL)isAlert receive:(id)receive;
 
 +(MagicRequest *)order_confirm_msg_id:(NSString *)msg_id type:(NSString *)type sAlert:(BOOL)isAlert receive:(id)receive;
 
+<<<<<<< HEAD
 +(MagicRequest *)message_contacts_userid:(NSString *)userid page:(NSString *)page num:(NSString *)num sAlert:(BOOL)isAlert receive:(id)receive;
 
 
 +(MagicRequest *)message_send_userid:(NSString *)userid content:(NSString *)content type:(NSString *)type mid:(NSString *)mid sAlert:(BOOL)isAlert receive:(id)receive;
+=======
+
++(MagicRequest *)message_send_userid:(NSString *)userid content:(NSString *)content type:(NSString *)type mid:(NSString *)mid sAlert:(BOOL)isAlert receive:(id)receive;
+
++(MagicRequest *)order_list_kind:(NSString *)kind page:(NSString *)page num:(NSString *)num sAlert:(BOOL)isAlert receive:(id)receive;
+
+
++(MagicRequest *)order_detail_order_id:(NSString *)order_id sAlert:(BOOL)isAlert receive:(id)receive;
+
++(MagicRequest *)message_list_page:(NSString *)page num:(NSString *)num  sAlert:(BOOL)isAlert receive:(id)receive;
+
+>>>>>>> FETCH_HEAD
 @end
