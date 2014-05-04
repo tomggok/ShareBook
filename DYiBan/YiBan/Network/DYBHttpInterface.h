@@ -528,4 +528,11 @@
 //order_confirm
 
 +(NSMutableDictionary *)order_confirm_msg_id:(NSString *)msg_id type:(NSString *)type;
+
+//message_contacts
++(NSMutableDictionary *)message_contacts_userid:(NSString *)userid page:(NSString *)page num:(NSString *)num;
+
+//message_send
+
++(NSMutableDictionary *)message_send_userid:(NSString *)userid content:(NSString *)content type:(NSString *)type mid:(NSString *)mid;
 @end

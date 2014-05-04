@@ -14,17 +14,22 @@
 #import "ShareBookMoreAddrViewController.h"
 #import "NSDate+Helpers.h"
 
+#import "JSONKit.h"
+#import "JSON.h"
+
 @interface ShareBookApplyViewController (){
 
     UILabel *labelTime1;
     DYBInputView *_phoneInputNameRSend;
     BOOL bKeyShow;
     UIDatePicker *datePicker;
+    NSString *order_id;
 }
 
 @end
 
 @implementation ShareBookApplyViewController
+@synthesize dictInfo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -69,6 +74,12 @@
     else if ([signal is:[MagicViewController CREATE_VIEWS]]) {
         
 //        [self.rightButton setHidden:YES];
+        
+        order_id = [[NSString alloc]init];
+        
+        MagicRequest *request = [DYBHttpMethod book_loan_pub_id:[dictInfo objectForKey:@"pub_id"] content:@"" loan_time:@"" sAlert:YES receive:self];
+        [request setTag:1];
+        
         bKeyShow = NO;
         [self.view setBackgroundColor:[MagicCommentMethod colorWithHex:@"f0f0f0"]];
         
@@ -383,6 +394,10 @@
 
 -(void)doSend{
 
+//    MagicRequest *request = [DYBHttpMethod message_send_userid:<#(NSString *)#> content:@"" type: mid: sAlert:YES receive:self];
+//    [request setTag:3];
+
+    
     [_phoneInputNameRSend.nameField resignFirstResponder];
 }
 
@@ -520,6 +535,82 @@ static NSString *cellName = @"cellName";
     
     
     
+}
+
+#pragma mark- 只接受HTTP信号
+- (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
+{
+    
+    if ([request succeed])
+    {
+        //        JsonResponse *response = (JsonResponse *)receiveObj;
+        if (request.tag == 1) {
+            
+            
+            NSDictionary *dict = [request.responseString JSONValue];
+            
+            if (dict) {
+                
+                if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
+                    
+                    JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
+                    
+//                    SHARED.sessionID = response.sessID;
+//                    
+//                    self.DB.FROM(USERMODLE)
+//                    .SET(@"userInfo", request.responseString)
+//                    .SET(@"userIndex",[dict objectForKey:@"user_id"])
+//                    .INSERT();
+//                    
+//                    SHARED.userId = [[dict objectForKey:@"data"] objectForKey:@"user_id"]; //设置userid 全局变量
+//                    DLogInfo(@"SHARED.userId -- >%@",SHARED.userId);
+                    
+                    // 注册推送
+//                    [APService setTags:nil alias:SHARED.userId callbackSelector:nil object:nil];
+                    
+//                    
+//                    DYBUITabbarViewController *vc = [[DYBUITabbarViewController sharedInstace] init:self];
+//                    
+//                    [self.drNavigationController pushViewController:vc animated:YES];
+                    
+                }else{
+                    NSString *strMSG = [dict objectForKey:@"message"];
+                    
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+                    
+                    
+                }
+            }
+        }else if(request.tag == 3){
+            
+            NSDictionary *dict = [request.responseString JSONValue];
+            
+            if (dict) {
+                BOOL result = [[dict objectForKey:@"result"] boolValue];
+                if (!result) {
+                    
+//                    UIButton *btn = (UIButton *)[UIButton buttonWithType:UIButtonTypeCustom];
+//                    [btn setTag:10];
+//                    [self doChange:btn];
+                }
+                else{
+                    NSString *strMSG = [dict objectForKey:@"message"];
+                    
+                    [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+                    
+                    
+                }
+            }
+            
+        } else{
+            NSDictionary *dict = [request.responseString JSONValue];
+            NSString *strMSG = [dict objectForKey:@"message"];
+            
+            [DYBShareinstaceDelegate popViewText:strMSG target:self hideTime:.5f isRelease:YES mode:MagicPOPALERTVIEWINDICATOR];
+            
+            
+        }
+    }
 }
 
 @end

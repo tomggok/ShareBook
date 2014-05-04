@@ -175,16 +175,24 @@
     [btnYU addTarget:self action:@selector(doBorrow:) forControlEvents:UIControlEventTouchUpInside];
 //    [btnYU setEnabled:NO];
     [self addlabel_title:@"预借" frame:btnYU.frame view:btnYU textColor:[UIColor blackColor]];
-    [viewBar addSubview:btnYU];
-    [btnYU release];
+//    [viewBar addSubview:btnYU];
+//    [btnYU release];
     
 //    [UIColor whiteColor];
-    UIButton *btnBorrow = [[UIButton alloc]initWithFrame:CGRectMake(167, (image.size.height/2 -btnImage.size.height/2)/2 , btnImage.size.width/2, btnImage.size.height/2)];
+    UIButton *btnBorrow = [[UIButton alloc]initWithFrame:CGRectMake(07, (image.size.height/2 -btnImage.size.height/2)/2 , btnImage.size.width, btnImage.size.height/2)];
     [btnBorrow setTag:102];
     [btnBorrow setImage:[UIImage imageNamed:@"bt02_click"] forState:UIControlStateHighlighted];
     [btnBorrow setImage:[UIImage imageNamed:@"bt02"] forState:UIControlStateNormal];
     [btnBorrow setBackgroundColor:[UIColor yellowColor]];
     [self addlabel_title:@"申请借阅" frame:btnBorrow.frame view:btnBorrow textColor:[UIColor whiteColor]];
+    
+    if ([[_dictInfo objectForKey:@"user_id"] isEqualToString:SHARED.userId]) {
+        
+        [btnBorrow setUserInteractionEnabled:NO];
+        [btnBorrow setImage:btnImage forState:UIControlStateNormal];
+        
+    }
+    
     [btnBorrow addTarget:self action:@selector(doBorrow:) forControlEvents:UIControlEventTouchUpInside];
     [viewBar addSubview:btnBorrow];
     [btnBorrow release];
@@ -222,6 +230,7 @@
     }else{
         
         ShareBookApplyViewController *apply = [[ShareBookApplyViewController alloc]init];
+        apply.dictInfo  = _dictInfo;
         [self.drNavigationController pushViewController:apply animated:YES];
         RELEASE(apply);
         
