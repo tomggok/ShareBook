@@ -2213,7 +2213,7 @@ address:(NSString *)address lat:(NSString *)lat lng:(NSString *)lng kind:(NSStri
     return dict;
 }
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 +(NSMutableDictionary *)message_contacts_userid:(NSString *)userid page:(NSString *)page num:(NSString *)num{
 
     NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
@@ -2224,17 +2224,17 @@ address:(NSString *)address lat:(NSString *)lat lng:(NSString *)lng kind:(NSStri
     return dict;
 }
 
-+(NSMutableDictionary *)message_send_userid:(NSString *)userid content:(NSString *)content type:(NSString *)type mid:(NSString *)mid{
-
-    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
-    [dict setValue:userid forKey:@"userid"];
-    [dict setValue:type forKey:@"type"];
-    [dict setValue:content forKey:@"content"];
-    [dict setValue:mid forKey:@"mid"];
-    [dict setValue:@"message_send" forKey:INTERFACEDOACTION];
-    return dict;
-
-=======
+//+(NSMutableDictionary *)message_send_userid:(NSString *)userid content:(NSString *)content type:(NSString *)type mid:(NSString *)mid{
+//
+//    NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
+//    [dict setValue:userid forKey:@"userid"];
+//    [dict setValue:type forKey:@"type"];
+//    [dict setValue:content forKey:@"content"];
+//    [dict setValue:mid forKey:@"mid"];
+//    [dict setValue:@"message_send" forKey:INTERFACEDOACTION];
+//    return dict;
+//}
+//=======
 +(NSMutableDictionary *)message_send_userid:(NSString *)userid content:(NSString *)content type:(NSString *)type mid:(NSString *)mid{
 
     NSMutableDictionary * dict = AUTORELEASE([[NSMutableDictionary alloc] init]);
@@ -2284,6 +2284,6 @@ address:(NSString *)address lat:(NSString *)lat lng:(NSString *)lng kind:(NSStri
     return dict;
 
 
->>>>>>> FETCH_HEAD
+//>>>>>>> FETCH_HEAD
 }
 @end

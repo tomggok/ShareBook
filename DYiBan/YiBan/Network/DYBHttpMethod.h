@@ -496,12 +496,12 @@ sAlert:(BOOL)isAlert receive:(id)receive;
 
 +(MagicRequest *)order_confirm_msg_id:(NSString *)msg_id type:(NSString *)type sAlert:(BOOL)isAlert receive:(id)receive;
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 +(MagicRequest *)message_contacts_userid:(NSString *)userid page:(NSString *)page num:(NSString *)num sAlert:(BOOL)isAlert receive:(id)receive;
 
 
 +(MagicRequest *)message_send_userid:(NSString *)userid content:(NSString *)content type:(NSString *)type mid:(NSString *)mid sAlert:(BOOL)isAlert receive:(id)receive;
-=======
+//=======
 
 +(MagicRequest *)message_send_userid:(NSString *)userid content:(NSString *)content type:(NSString *)type mid:(NSString *)mid sAlert:(BOOL)isAlert receive:(id)receive;
 
@@ -512,5 +512,5 @@ sAlert:(BOOL)isAlert receive:(id)receive;
 
 +(MagicRequest *)message_list_page:(NSString *)page num:(NSString *)num  sAlert:(BOOL)isAlert receive:(id)receive;
 
->>>>>>> FETCH_HEAD
+//>>>>>>> FETCH_HEAD
 @end

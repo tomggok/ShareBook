@@ -179,11 +179,11 @@
 //    [btnYU release];
     
 //    [UIColor whiteColor];
-<<<<<<< HEAD
-    UIButton *btnBorrow = [[UIButton alloc]initWithFrame:CGRectMake(07, (image.size.height/2 -btnImage.size.height/2)/2 , btnImage.size.width, btnImage.size.height/2)];
-=======
+//<<<<<<< HEAD
+//    UIButton *btnBorrow = [[UIButton alloc]initWithFrame:CGRectMake(07, (image.size.height/2 -btnImage.size.height/2)/2 , btnImage.size.width, btnImage.size.height/2)];
+//=======
     UIButton *btnBorrow = [[UIButton alloc]initWithFrame:CGRectMake(10, (image.size.height/2 -btnImage.size.height/2)/2 , btnImage.size.width, btnImage.size.height/2)];
->>>>>>> FETCH_HEAD
+//>>>>>>> FETCH_HEAD
     [btnBorrow setTag:102];
     [btnBorrow setImage:[UIImage imageNamed:@"bt02_click"] forState:UIControlStateHighlighted];
     [btnBorrow setImage:[UIImage imageNamed:@"bt02"] forState:UIControlStateNormal];
@@ -191,16 +191,16 @@
     [self addlabel_title:@"申请借阅" frame:btnBorrow.frame view:btnBorrow textColor:[UIColor whiteColor]];
     
     if ([[_dictInfo objectForKey:@"user_id"] isEqualToString:SHARED.userId]) {
-<<<<<<< HEAD
+//<<<<<<< HEAD
         
         [btnBorrow setUserInteractionEnabled:NO];
         [btnBorrow setImage:btnImage forState:UIControlStateNormal];
         
-=======
+//=======
         [btnBorrow setUserInteractionEnabled:NO];
         [btnBorrow setImage:[UIImage imageNamed:@"bt01_click"] forState:UIControlStateNormal];
         [self addlabel_title:@"申请借阅" frame:btnBorrow.frame view:btnBorrow textColor:[UIColor blackColor]];
->>>>>>> FETCH_HEAD
+//>>>>>>> FETCH_HEAD
     }
     
     [btnBorrow addTarget:self action:@selector(doBorrow:) forControlEvents:UIControlEventTouchUpInside];
@@ -240,11 +240,11 @@
     }else{
         
         ShareBookApplyViewController *apply = [[ShareBookApplyViewController alloc]init];
-<<<<<<< HEAD
+//<<<<<<< HEAD
         apply.dictInfo  = _dictInfo;
-=======
-        apply.dictInfo = _dictInfo;
->>>>>>> FETCH_HEAD
+//=======
+//        apply.dictInfo = _dictInfo;
+//>>>>>>> FETCH_HEAD
         [self.drNavigationController pushViewController:apply animated:YES];
         RELEASE(apply);
         

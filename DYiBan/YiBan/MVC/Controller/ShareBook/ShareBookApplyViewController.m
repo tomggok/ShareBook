@@ -28,24 +28,24 @@
     DYBInputView *_phoneInputNameR;
     BOOL bKeyShow;
     UIDatePicker *datePicker;
-<<<<<<< HEAD
+//<<<<<<< HEAD
     NSString *order_id;
-=======
+//=======
     DYBUITableView * tbDataBank11;
     NSMutableArray *arrayDate;
     
     NSDictionary *dictRR;
->>>>>>> FETCH_HEAD
+//>>>>>>> FETCH_HEAD
 }
 
 @end
 
 @implementation ShareBookApplyViewController
-<<<<<<< HEAD
-@synthesize dictInfo;
-=======
+//<<<<<<< HEAD
+//@synthesize dictInfo;
+//=======
 @synthesize dictInfo,mi = _mi;
->>>>>>> FETCH_HEAD
+//>>>>>>> FETCH_HEAD
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -559,12 +559,12 @@
 }
 
 -(void)doSend{
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
 //    MagicRequest *request = [DYBHttpMethod message_send_userid:<#(NSString *)#> content:@"" type: mid: sAlert:YES receive:self];
 //    [request setTag:3];
 
-=======
+//=======
     
     if (_mi) {
         NSDictionary *dictTime = [[dictRR objectForKey:@"charts"] objectAtIndex:0];
@@ -578,7 +578,7 @@
 //    MagicRequest *request = [DYBHttpMethod book_loan_pub_id:[dictInfo objectForKey:@"pub_id"] content:_phoneInputNameRSend.nameField.text loan_time:[self stringFromDate:[NSDate date]] sAlert:YES receive:self];
     [request setTag:1];
     }
->>>>>>> FETCH_HEAD
+//>>>>>>> FETCH_HEAD
     
     [_phoneInputNameRSend.nameField resignFirstResponder];
 }
@@ -719,10 +719,10 @@ static NSString *cellName = @"cellName";
     
 }
 
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 
->>>>>>> FETCH_HEAD
+//>>>>>>> FETCH_HEAD
 #pragma mark- 只接受HTTP信号
 - (void)handleRequest:(MagicRequest *)request receiveObj:(id)receiveObj
 {
@@ -738,11 +738,11 @@ static NSString *cellName = @"cellName";
             if (dict) {
                 
                 if ([[dict objectForKey:@"response"] isEqualToString:@"100"]) {
-                    
-<<<<<<< HEAD
+//                    
+//<<<<<<< HEAD
                     JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
                     
-=======
+//=======
                     
                     NSString *strDate = [self stringFromDate:[NSDate date]];
                     
@@ -761,7 +761,7 @@ static NSString *cellName = @"cellName";
 
 //                    JsonResponse *response = (JsonResponse *)receiveObj; //登陆成功，记下
 //                    
->>>>>>> FETCH_HEAD
+//>>>>>>> FETCH_HEAD
 //                    SHARED.sessionID = response.sessID;
 //                    
 //                    self.DB.FROM(USERMODLE)
@@ -771,18 +771,18 @@ static NSString *cellName = @"cellName";
 //                    
 //                    SHARED.userId = [[dict objectForKey:@"data"] objectForKey:@"user_id"]; //设置userid 全局变量
 //                    DLogInfo(@"SHARED.userId -- >%@",SHARED.userId);
-<<<<<<< HEAD
+//<<<<<<< HEAD
                     
                     // 注册推送
 //                    [APService setTags:nil alias:SHARED.userId callbackSelector:nil object:nil];
                     
-=======
-//                    
+//=======
+//
 //                    // 注册推送
 //                    [APService setTags:nil alias:SHARED.userId callbackSelector:nil object:nil];
 //                    
->>>>>>> FETCH_HEAD
-//                    
+//>>>>>>> FETCH_HEAD
+//
 //                    DYBUITabbarViewController *vc = [[DYBUITabbarViewController sharedInstace] init:self];
 //                    
 //                    [self.drNavigationController pushViewController:vc animated:YES];
@@ -803,14 +803,14 @@ static NSString *cellName = @"cellName";
                 BOOL result = [[dict objectForKey:@"result"] boolValue];
                 if (!result) {
                     
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
                     
                     dictRR = [[NSDictionary alloc]initWithDictionary:[dict objectForKey:@"data"]];
                     
                     [self creatView:dictRR];
                     
->>>>>>> FETCH_HEAD
+//>>>>>>> FETCH_HEAD
 //                    UIButton *btn = (UIButton *)[UIButton buttonWithType:UIButtonTypeCustom];
 //                    [btn setTag:10];
 //                    [self doChange:btn];
@@ -835,8 +835,8 @@ static NSString *cellName = @"cellName";
     }
 }
 
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 
 - (void)handleViewSignal_DYBBaseViewController:(MagicViewSignal *)signal
 {
@@ -864,5 +864,5 @@ static NSString *cellName = @"cellName";
     }
 }
 
->>>>>>> FETCH_HEAD
+//>>>>>>> FETCH_HEAD
 @end
